@@ -1,0 +1,138 @@
+#################################################################################################################################
+#																																#
+#	Minorities SMP Plugin	    MC 1.16																					        #
+#	Version 1.0	                Made by: Val_Mobile											                                    #
+#																																#
+#################################################################################################################################
+
+
+#######################################
+#          Messages                   #
+#######################################
+
+usage: '&cUsage: /msmp [reload, give [item] ]'
+reload: '&5[&6MSMP&5] &aPlugin reloaded!'
+nopermission: '&cYou do not have permission to do this!'
+
+#######################################
+#          Gameplay Features          #
+#######################################
+
+# Enable, disable, and customize any features
+flintTools: true
+noTreePunching: true
+dragons:
+  enabled: true
+  fireDragonRate: 0.4
+  iceDragonRate: 0.3
+  lightningDragonRate: 0.3
+  # Recursive drop rates determine the number of bones and meat based on the number of scales dropped
+  # More scales means less bones and more meat
+  # Recommended since this is how the Ice and Fire mod determines drop rates for dragon loot
+  recursiveDropRates:
+    enabled: true
+    minScales: 24
+    maxScales: 48
+    minBones: 6
+    # The amount of dragon blood dropped is the amount of scales dropped times this multiplier
+    # Ex: 48 scales * 0.2 bloodMultiplier = 9 dragon blood dropped (decimals are truncated)
+    bloodMultiplier: 0.1
+    meatMultiplier: 0.6
+  # Standard drop rates, rates for all loot must be specified
+  specifiedDropRates:
+    enabled: false
+    minScales: 24
+    maxScales: 48
+    minBones: 6
+    maxBones: 54
+    minBlood: 4
+    maxBlood: 6
+    minMeat: 12
+    maxMeat: 36
+seaSerpents:
+  enabled: true
+  minSerpentScales: 24
+  maxSerpentScales: 48
+  # Note that shiny scales only drop from regular guardians
+  minShinyScales: 1
+  maxShinyScales: 1
+witherbones:
+  enabled: true
+  minBonesWither: 20
+  maxBonesWither: 32
+  minBonesWitherSkeleton: 1
+  maxBonesWitherSkeleton: 1
+baubles: true
+
+#######################################
+#          Item Attributes            #
+#######################################
+
+# Customize the attributes of tools, weapons, and armor
+
+tools:
+  flintPickaxe:
+    attackDamage: 2.5
+    attackSpeed: 2.5
+  flintAxe:
+    attackDamage: 5.0
+    attackSpeed: 1.0
+  flintShovel:
+    attackDamage: 3.0
+    attackSpeed: 2.4
+  flintHoe:
+    attackDamage: 1.0
+    attackSpeed: 2.6
+  dragonbonePickaxe:
+    attackDamage:
+    attackSpeed:
+  dragonboneAxe:
+    attackDamage:
+    attackSpeed:
+  dragonboneShovel:
+    attackDamage:
+    attackSpeed:
+  dragonboneHoe:
+    attackDamage:
+    attackSpeed:
+weapons:
+  flintKnife:
+    attackDamage: 2.0
+    attackSpeed: 3.0
+  dragonboneSword:
+    attackDamage:
+    attackSpeed:
+  flamedDragonboneSword:
+    attackDamage:
+    attackSpeed:
+  icedDragonboneSword:
+    attackDamage:
+    attackSpeed:
+  lightningDragonboneSword:
+    attackDamage:
+    attackSpeed:
+armor:
+  DragonScaleHelmet:
+    armor: 5.0
+    toughness: 2.0
+  DragonScaleChestplate:
+    armor: 9.0
+    toughness: 2.0
+  DragonScaleLeggings:
+    armor: 7.0
+    toughness: 2.0
+  DragonScaleBoots:
+    armor: 5.0
+    toughness: 2.0
+  tideGuardianHelmet:
+    armor: 4.0
+    toughness: 2.5
+  tideGuardianChestplate:
+    armor: 7.0
+    toughness: 2.5
+  tideGuardianLeggings:
+    armor: 8.0
+    toughness: 2.5
+  tideGuardianBoots:
+    armor: 4.0
+    toughness: 2.5

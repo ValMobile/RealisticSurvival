@@ -1,0 +1,11 @@
+main: me.val_mobile.minorities_smp_extras.Main
+name: Minorities_SMP_Extras
+version: ${project.version}
+author: Val_Mobile
+api-version: 1.16
+depend: [NBTAPI]
+
+commands:
+  MinoritiesSMP:
+    aliases: [msmp, smp]
+
