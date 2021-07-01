@@ -1,4 +1,4 @@
-package me.val_mobile.minorities_smp_extras;
+package me.val_mobile.rlcraft;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -8,13 +8,14 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import java.util.Random;
 
 public class WitherDrops implements Listener {
-
-    private final Main plugin;
+    
+    private final RLCraft plugin;
     private final Items citem;
-    private final Utils util = new Utils();
+    private final Utils util;
 
-    public WitherDrops(Main instance) {
+    public WitherDrops(RLCraft instance) {
         plugin = instance;
+        util = new Utils(instance);
         citem = new Items(instance);
     }
 

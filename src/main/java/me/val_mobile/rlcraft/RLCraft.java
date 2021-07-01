@@ -1,31 +1,25 @@
-package me.val_mobile.minorities_smp_extras;
+package me.val_mobile.rlcraft;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.FallingBlock;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
-public final class Main extends JavaPlugin {
+public final class RLCraft extends JavaPlugin {
 
     private final Recipes recipes = new Recipes(this);
-    private final DragonDrops dragonDrops = new DragonDrops(this);
+    private final MiscEvents recipeEvents = new MiscEvents(this);
+    private final NoTreePunching noTreePunching = new NoTreePunching(this);
+    private final DragonEvents dragonEvents = new DragonEvents(this);
     private final SeaSerpentDrops seaSerpentDrops = new SeaSerpentDrops(this);
     private final WitherDrops witherDrops = new WitherDrops(this);
-    private final NoTreePunching noTreePunching = new NoTreePunching(this);
-    private final BaublesEvents baublesEvents = new BaublesEvents(this);
-    private final DragonFight dragonFight = new DragonFight(this);
+    private final BaubleEvents baubleEvents = new BaubleEvents(this);
+    private final ItemEvents itemEvents = new ItemEvents(this);
+    private final ArmorEvents armorEvents = new ArmorEvents(this);
     private final Commands commands = new Commands(this);
     private final Tab tabCompleter = new Tab();
-
-    List<FallingBlock> iceDragonBoneBlocks = new ArrayList<>();
-    List<FallingBlock> iceDragonsteelBlocks = new ArrayList<>();
-
-    String dragon;
-
 
     // Hashmaps for saving player and potion effect bauble amounts
     HashMap<UUID, Integer> prRes = new HashMap<UUID, Integer>();
@@ -39,12 +33,19 @@ public final class Main extends JavaPlugin {
     HashMap<UUID, Boolean> dragonsEye = new HashMap<UUID, Boolean>();
     HashMap<UUID, Boolean> scarliteRing = new HashMap<UUID, Boolean>();
     HashMap<UUID, Boolean> minersRing = new HashMap<UUID, Boolean>();
+    HashMap<UUID, Boolean> crossNecklace = new HashMap<>();
 
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         this.saveDefaultConfig();
+
+        PluginManager pm = this.getServer().getPluginManager();
+        
+        if (this.getConfig().getBoolean("unlockRecipes")) {
+            pm.registerEvents(recipeEvents, this);
+        }
 
         if (this.getConfig().getBoolean("flintTools")) {
             Bukkit.addRecipe(recipes.getFlintAxeRecipe());
@@ -59,7 +60,7 @@ public final class Main extends JavaPlugin {
             Bukkit.addRecipe(recipes.getCobblestoneRecipe());
             Bukkit.addRecipe(recipes.getPlantStringRecipe());
 
-            this.getServer().getPluginManager().registerEvents(noTreePunching, this);
+            pm.registerEvents(noTreePunching, this);
         }
 
         if (this.getConfig().getBoolean("dragons.enabled")) {
@@ -136,7 +137,8 @@ public final class Main extends JavaPlugin {
             Bukkit.addRecipe(recipes.getIceDragonBoneSwordRecipe());
             Bukkit.addRecipe(recipes.getLightningDragonBoneSwordRecipe());
 
-            this.getServer().getPluginManager().registerEvents(dragonDrops, this);
+            pm.registerEvents(dragonEvents, this);
+            pm.registerEvents(itemEvents, this);
         }
         if (this.getConfig().getBoolean("seaSerpents.enabled")) {
             Bukkit.addRecipe(recipes.getTideGuardianHelmetBlueRecipe());
@@ -174,14 +176,15 @@ public final class Main extends JavaPlugin {
             Bukkit.addRecipe(recipes.getTideGuardianLeggingsTealRecipe());
             Bukkit.addRecipe(recipes.getTideGuardianBootsTealRecipe());
 
-            this.getServer().getPluginManager().registerEvents(seaSerpentDrops, this);
+            pm.registerEvents(seaSerpentDrops, this);
+            pm.registerEvents(armorEvents, this);
         }
 
         if (this.getConfig().getBoolean("witherbones.enabled")) {
-            this.getServer().getPluginManager().registerEvents(witherDrops, this);
+            pm.registerEvents(witherDrops, this);
         }
 
-        if (this.getConfig().getBoolean("baubles")) {
+        if (this.getConfig().getBoolean("baubles.enabled")) {
             Bukkit.addRecipe(recipes.getBalloonRecipe());
             Bukkit.addRecipe(recipes.getSunglassesRecipe());
             Bukkit.addRecipe(recipes.getCobaltShieldRecipe());
@@ -191,10 +194,8 @@ public final class Main extends JavaPlugin {
             Bukkit.addRecipe(recipes.getAnkhCharmRecipe());
             Bukkit.addRecipe(recipes.getWarpedScrollRecipe());
 
-            this.getServer().getPluginManager().registerEvents(baublesEvents, this);
-            this.getServer().getPluginManager().registerEvents(dragonFight, this);
+            pm.registerEvents(baubleEvents, this);
         }
-
 
         this.getCommand("MinoritiesSMP").setExecutor(commands);
         this.getCommand("MinoritiesSMP").setTabCompleter(tabCompleter);

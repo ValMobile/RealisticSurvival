@@ -1,4 +1,4 @@
-package me.val_mobile.minorities_smp_extras;
+package me.val_mobile.rlcraft;
 
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -16,7 +16,7 @@ import java.util.Random;
 public class NoTreePunching implements Listener {
 
     private final Items citem;
-    public NoTreePunching(Main instance) {
+    public NoTreePunching(RLCraft instance) {
         citem = new Items(instance);
     }
 

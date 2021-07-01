@@ -1,4 +1,4 @@
-package me.val_mobile.minorities_smp_extras;
+package me.val_mobile.rlcraft;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -9,11 +9,12 @@ import java.util.Random;
 
 public class SeaSerpentDrops implements Listener {
 
-    private final Main plugin;
-    private final Utils util = new Utils();
+    private final RLCraft plugin;
+    private final Utils util;
     private final Items citem;
-    public SeaSerpentDrops(Main instance) {
+    public SeaSerpentDrops(RLCraft instance) {
         plugin = instance;
+        util = new Utils(instance);
         citem = new Items(instance);
     }
 

@@ -1,4 +1,4 @@
-package me.val_mobile.minorities_smp_extras;
+package me.val_mobile.rlcraft;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -8,11 +8,12 @@ import org.bukkit.inventory.ShapelessRecipe;
 
 public class Recipes {
 
-    private final Main plugin;
+    private final RLCraft plugin;
     private final Items citem;
-    private final Utils util = new Utils();
-    public Recipes(Main instance) {
+    private final Utils util;
+    public Recipes(RLCraft instance) {
         plugin = instance;
+        util = new Utils(instance);
         citem = new Items(instance);
     }
 
@@ -1271,7 +1272,7 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "ice_dragon_bone_sword");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getIceDragonBoneSword());
+        ShapedRecipe recipe = new ShapedRecipe(key, citem.getIcedDragonBoneSword());
 
         recipe.shape("SB", "  ");
 
@@ -1417,7 +1418,21 @@ public class Recipes {
         return recipe;
     }
 
-
+//    public ShapedRecipe getFireDragonsteelSwordRecipe() {
+//
+//        NamespacedKey key = new NamespacedKey(plugin, "dragonsteel_fire_sword");
+//
+//        ShapedRecipe recipe = new ShapedRecipe(key, citem.getFireDragonsteelSword());
+//
+//        recipe.shape("EDE", "PPP", "GDG");
+//
+//        recipe.setIngredient('E', Material.ENDER_PEARL);
+//        recipe.setIngredient('D', Material.PURPLE_DYE);
+//        recipe.setIngredient('P', Material.PAPER);
+//        recipe.setIngredient('G', Material.GOLD_NUGGET);
+//
+//        return recipe;
+//    }
 
 
 

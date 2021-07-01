@@ -1,8 +1,8 @@
-main: me.val_mobile.minorities_smp_extras.Main
+main: me.val_mobile.rlcraft.RLCraft
 name: Minorities_SMP_Extras
 version: ${project.version}
 author: Val_Mobile
-api-version: 1.16
+api-version: 1.17
 depend: [NBTAPI]
 
 commands:
