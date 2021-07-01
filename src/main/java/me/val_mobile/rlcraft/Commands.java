@@ -36,7 +36,7 @@ public class Commands implements CommandExecutor {
                 }
                 if (args[0].equalsIgnoreCase("give")) {
                     if (sender instanceof Player) {
-                        if (! (sender.hasPermission("msmp.use") || sender.isOp())) {
+                        if (! (sender.hasPermission("rlcraft.command.give") || sender.isOp())) {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("nopermission")));
                             return true;
                         }
@@ -3467,7 +3467,7 @@ public class Commands implements CommandExecutor {
                 else if (args[0].equalsIgnoreCase("reload")) {
                     if (sender instanceof Player) {
                         Player player = (Player) sender;
-                        if (player.hasPermission("msmp.use") || player.isOp()) {
+                        if (player.hasPermission("rlcraft.command.reload") || player.isOp()) {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("reload")));
                             plugin.reloadConfig();
                             return true;

@@ -23,10 +23,10 @@ misspelledItemName: "&cYou mispelled the item!"
 
 # Enable, disable, and customize any features
 # Resource pack is disabled by default to allow for integration of it into
-# your own custom server pack
+# your own custom server pack if needed
 resourcePack:
   enabled: false
-  url: "https://www.dropbox.com/s/7yiigglfm8bxbq6/IceandFire%20RP.zip?dl=1"
+  url: "https://www.dropbox.com/s/8rtmxy6joc8asxm/RLCraft-Addons%20RP.zip?dl=1"
 unlockRecipes: true
 flintTools: true
 noTreePunching: true
