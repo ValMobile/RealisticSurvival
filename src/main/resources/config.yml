@@ -10,8 +10,8 @@
 #          Messages                   #
 #######################################
 
-usage: "&cUsage: /msmp [reload, give [player] [item] ]"
-reload: "&5[&6MSMP&5] &aPlugin reloaded!"
+usage: "&cUsage: /rlcraft [reload, give [player] [item] ]"
+reload: "&4[&cRLCRAFT&4] &aPlugin reloaded!"
 nopermission: "&cYou do not have permission to do this!"
 noOnlinePlayer: "&cThe specified player is not online!"
 misspelledPlayer: "&cThe specified player's name was misspelled"
@@ -26,7 +26,7 @@ misspelledItemName: "&cYou mispelled the item!"
 # your own custom server pack if needed
 resourcePack:
   enabled: false
-  url: "https://www.dropbox.com/s/8rtmxy6joc8asxm/RLCraft-Addons%20RP.zip?dl=1"
+  url: "https://www.dropbox.com/s/sgru3wm4vj2tje5/RLCraft-Addons%20RP.zip?dl=1"
 unlockRecipes: true
 flintTools: true
 noTreePunching: true
@@ -232,10 +232,13 @@ weapons:
     attackSpeed: 1.0
   DragonBoneLongbow:
     attackDamageMultiplier: 1.75
+    velocityMultiplier: 1.75
   DragonBoneBow:
     attackDamageMultiplier: 1.75
+    velocityMultiplier: 1.75
   DragonBoneCrossbow:
     attackDamageMultiplier: 1.75
+    velocityMultiplier: 1.75
   FlamedDragonBoneSword:
     attackDamage: 9.5
     attackSpeed: 1.6
@@ -300,8 +303,10 @@ weapons:
     attackSpeed: 1.0
   FlamedDragonBoneLongbow:
     attackDamageMultiplier: 2.0
+    velocityMultiplier: 2.0
   FlamedDragonBoneCrossbow:
     attackDamageMultiplier: 2.0
+    velocityMultiplier: 2.0
   IcedDragonBoneSword:
     attackDamage: 9.5
     attackSpeed: 1.6
@@ -366,8 +371,10 @@ weapons:
     attackSpeed: 1.0
   IcedDragonBoneLongbow:
     attackDamageMultiplier: 2.0
+    velocityMultiplier: 2.0
   IcedDragonBoneCrossbow:
     attackDamageMultiplier: 2.0
+    velocityMultiplier: 2.0
   LightningDragonBoneSword:
     attackDamage: 9.5
     attackSpeed: 1.6
@@ -432,8 +439,10 @@ weapons:
     attackSpeed: 1.0
   LightningDragonBoneLongbow:
     attackDamageMultiplier: 2.0
+    velocityMultiplier: 2.0
   LightningDragonBoneCrossbow:
     attackDamageMultiplier: 2.0
+    velocityMultiplier: 2.0
   FireDragonsteelSword:
     attackDamage: 25.0
     attackSpeed: 1.6
@@ -498,8 +507,10 @@ weapons:
     attackSpeed: 1.0
   FireDragonsteelLongbow:
     attackDamageMultiplier: 3.0
+    velocityMultiplier: 3.0
   FireDragonsteelCrossbow:
     attackDamageMultiplier: 3.0
+    velocityMultiplier: 3.0
   IceDragonsteelSword:
     attackDamage: 25.0
     attackSpeed: 1.6
@@ -564,8 +575,10 @@ weapons:
     attackSpeed: 1.0
   IceDragonsteelLongbow:
     attackDamageMultiplier: 3.0
+    velocityMultiplier: 3.0
   IceDragonsteelCrossbow:
     attackDamageMultiplier: 3.0
+    velocityMultiplier: 3.0
   LightningDragonsteelSword:
     attackDamage: 25.0
     attackSpeed: 1.6
@@ -630,8 +643,10 @@ weapons:
     attackSpeed: 1.0
   LightningDragonsteelLongbow:
     attackDamageMultiplier: 3.0
+    velocityMultiplier: 3.0
   LightningDragonsteelCrossbow:
     attackDamageMultiplier: 3.0
+    velocityMultiplier: 3.0
 armor:
   DragonScaleHelmet:
     armor: 5.0

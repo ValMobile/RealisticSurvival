@@ -1,11 +1,9 @@
 main: me.val_mobile.rlcraft.RLCraft
-name: Minorities_SMP_Extras
+name: RLCraft
 version: ${project.version}
 author: Val_Mobile
 api-version: 1.17
 depend: [NBTAPI]
 
 commands:
-  MinoritiesSMP:
-    aliases: [msmp, smp]
-
+  RLCraft:

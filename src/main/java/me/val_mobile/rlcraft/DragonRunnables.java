@@ -14,11 +14,9 @@ import java.util.Collection;
 
 public class DragonRunnables {
 
-    private final RLCraft plugin;
     private final ItemAbilities itemAbilities;
     private final Utils util;
     public DragonRunnables(RLCraft instance) {
-        plugin = instance;
         util = new Utils(instance);
         itemAbilities = new ItemAbilities(instance);
     }

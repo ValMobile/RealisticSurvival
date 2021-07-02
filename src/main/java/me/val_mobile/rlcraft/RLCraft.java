@@ -1,11 +1,13 @@
 package me.val_mobile.rlcraft;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 public final class RLCraft extends JavaPlugin {
 
@@ -40,6 +42,15 @@ public final class RLCraft extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         this.saveDefaultConfig();
+
+        Logger logger = this.getLogger();
+        new UpdateChecker(this, 93795).getVersion(version -> {
+            if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
+                logger.info(ChatColor.translateAlternateColorCodes('&', "&aYou are running the latest version of RLCraft"));
+            } else {
+                logger.info(ChatColor.translateAlternateColorCodes('&', "&aThere is a new update available for RLCraft: https://www.spigotmc.org/resources/rlcraft-1-17-baubles-dragons-sea-serpents.93795/"));
+            }
+        });
 
         PluginManager pm = this.getServer().getPluginManager();
         
@@ -197,8 +208,8 @@ public final class RLCraft extends JavaPlugin {
             pm.registerEvents(baubleEvents, this);
         }
 
-        this.getCommand("MinoritiesSMP").setExecutor(commands);
-        this.getCommand("MinoritiesSMP").setTabCompleter(tabCompleter);
+        this.getCommand("RLCraft").setExecutor(commands);
+        this.getCommand("RLCraft").setTabCompleter(tabCompleter);
     }
 
     @Override

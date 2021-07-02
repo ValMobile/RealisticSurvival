@@ -15,7 +15,7 @@ public class Tab implements TabCompleter {
     List<String> msmpThirdArgs = new ArrayList<String>();
 
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
-        if (label.toLowerCase().equals("msmp") || label.toLowerCase().equals("minoritiessmp") || label.toLowerCase().equals("smp")) {
+        if (label.equalsIgnoreCase("rlcraft")) {
             if (msmpFirstArgs.isEmpty()) {
                 msmpFirstArgs.add("reload");
                 msmpFirstArgs.add("give");

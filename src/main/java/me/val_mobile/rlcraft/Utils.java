@@ -590,10 +590,77 @@ public class Utils {
             int currentDuration = currentEffect.getDuration();
             if (newAmplifier >= currentAmplifier) {
                 if (newDuration >= currentDuration) {
+                    newDuration += currentDuration;
+                    effect = new PotionEffect(effect.getType(), newAmplifier, newDuration);
                     entity.removePotionEffect(type);
                     entity.addPotionEffect(effect);
                 }
             }
+        }
+    }
+
+    public void addMeleeStatsLore(List<String> lore, Double damage, Double speed) {
+        if (Math.floor(damage) == damage) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage.intValue() + " Attack Damage"));
+        }
+        else {
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage + " Attack Damage"));
+        }
+
+        if (Math.floor(speed) == speed) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage.intValue() + " Attack Speed"));
+        }
+        else {
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage + " Attack Speed"));
+        }
+    }
+
+    public void addWeaponLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
+    }
+
+    public void addHelmetLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
+    }
+
+    public void addChestplateLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
+    }
+
+    public void addLeggingsLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
+    }
+
+    public void addBootsLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
+    }
+
+    public void addDefenseStatsLore(List<String> lore, Double armor, Double toughness) {
+        if (Math.floor(armor) == armor) {
+            lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + armor.intValue() + " Armor"));
+        }
+        else {
+            lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + armor + " Armor"));
+        }
+
+        if (Math.floor(toughness) == toughness) {
+            lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + toughness.intValue() + " Armor Toughness"));
+        }
+        else {
+            lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + toughness + " Armor Toughness"));
+        }
+    }
+
+    public void addThrowableLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When thrown:"));
+    }
+
+    public void addThrowableStatsLore(List<String> lore, Double damage) {
+        if (Math.floor(damage) == damage) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage.intValue() + " Attack Damage"));
+        }
+        else {
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage + " Attack Damage"));
         }
     }
 }

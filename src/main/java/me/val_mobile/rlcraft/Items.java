@@ -34,17 +34,16 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlint Axe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.FlintAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.FlintAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FlintAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FlintAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FlintAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FlintAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FlintAxe.attackDamage"), plugin.getConfig().getDouble("tools.FlintAxe.attackSpeed"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -58,17 +57,17 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlint Knife"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlintKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlintKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlintKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlintKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlintKnife.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlintKnife.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlintKnife.attackDamage"), plugin.getConfig().getDouble("weapons.FlintKnife.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -82,17 +81,16 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlint Pickaxe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.FlintPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.FlintPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FlintPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FlintPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FlintPickaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FlintPickaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FlintPickaxe.attackDamage"), plugin.getConfig().getDouble("tools.FlintPickaxe.attackSpeed"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -106,17 +104,16 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlint Shovel"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.FlintShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.FlintShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FlintShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FlintShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FlintShovel.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FlintShovel.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FlintShovel.attackDamage"), plugin.getConfig().getDouble("tools.FlintShovel.attackSpeed"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -130,17 +127,16 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlint Hoe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.FlintHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.FlintHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FlintHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FlintHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FlintHoe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FlintHoe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FlintHoe.attackDamage"), plugin.getConfig().getDouble("tools.FlintHoe.attackSpeed"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -728,9 +724,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -758,9 +753,9 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -788,9 +783,9 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -818,9 +813,9 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -848,9 +843,9 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -878,9 +873,9 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -908,9 +903,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -938,9 +932,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -968,9 +961,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Gray"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -998,9 +990,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Gray"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1028,9 +1019,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Gray"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1058,9 +1048,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Gray"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1088,9 +1077,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Emerald"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1118,9 +1106,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Emerald"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1148,9 +1135,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Emerald"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1178,9 +1164,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Emerald"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1208,9 +1193,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1238,9 +1222,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1268,9 +1251,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1298,9 +1280,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1328,9 +1309,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Sapphire"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1358,9 +1338,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Sapphire"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1388,9 +1367,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Sapphire"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1418,9 +1396,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Sapphire"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1448,9 +1425,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Silver"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1478,9 +1454,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Silver"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1508,9 +1483,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Silver"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1538,9 +1512,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Silver"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1568,9 +1541,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&fWhite"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1598,9 +1570,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&fWhite"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1628,9 +1599,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&fWhite"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1658,9 +1628,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&fWhite"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1688,9 +1657,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&dAmethyst"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1718,9 +1686,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&dAmethyst"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1748,9 +1715,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&dAmethyst"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1778,9 +1744,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&dAmethyst"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1808,9 +1773,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Black"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1838,9 +1802,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Black"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1868,9 +1831,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Black"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1898,9 +1860,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Black"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1928,9 +1889,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Copper"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1958,9 +1918,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Copper"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1988,9 +1947,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Copper"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2018,9 +1976,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Copper"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2048,9 +2005,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Electric Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2078,9 +2034,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Electric Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2108,9 +2063,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Electric Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2138,9 +2092,8 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Electric Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2171,7 +2124,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
+        util.addHelmetLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2204,7 +2157,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
+        util.addChestplateLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestlate.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2237,7 +2190,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
+        util.addLeggingsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2270,7 +2223,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
+        util.addBootsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2302,7 +2255,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
+        util.addHelmetLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2335,7 +2288,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
+        util.addChestplateLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2368,7 +2321,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
+        util.addLeggingsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2401,7 +2354,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
+        util.addBootsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2434,7 +2387,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
+        util.addHelmetLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2467,7 +2420,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
+        util.addChestplateLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2500,7 +2453,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
+        util.addLeggingsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2533,7 +2486,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
+        util.addBootsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2566,7 +2519,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
+        util.addHelmetLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2599,7 +2552,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
+        util.addChestplateLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2632,7 +2585,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
+        util.addLeggingsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2665,7 +2618,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
+        util.addBootsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2698,7 +2651,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
+        util.addHelmetLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2731,7 +2684,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
+        util.addChestplateLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2764,7 +2717,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
+        util.addLeggingsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2797,7 +2750,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
+        util.addBootsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2830,7 +2783,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
+        util.addHelmetLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2863,7 +2816,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
+        util.addChestplateLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2896,7 +2849,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
+        util.addLeggingsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2929,7 +2882,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
+        util.addBootsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2962,7 +2915,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
+        util.addHelmetLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -2995,7 +2948,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
+        util.addChestplateLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -3028,7 +2981,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
+        util.addLeggingsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -3061,7 +3014,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
+        util.addBootsLore(lore);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
         meta.setLore(lore);
@@ -3081,17 +3034,17 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Bone Pickaxe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackDamage"), plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackSpeed"));
+
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -3104,17 +3057,17 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Bone Axe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.DragonBoneAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.DragonBoneAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.DragonBoneAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.DragonBoneAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.DragonBoneAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.DragonBoneAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.DragonBoneAxe.attackDamage"), plugin.getConfig().getDouble("tools.DragonBoneAxe.attackSpeed"));
+
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -3127,17 +3080,17 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Bone Shovel"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.DragonBoneShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.DragonBoneShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.DragonBoneShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.DragonBoneShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.DragonBoneShovel.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.DragonBoneShovel.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.DragonBoneShovel.attackDamage"), plugin.getConfig().getDouble("tools.DragonBoneShovel.attackSpeed"));
+
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -3150,17 +3103,17 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Bone Hoe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.DragonBoneHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.DragonBoneHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.DragonBoneHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.DragonBoneHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.DragonBoneHoe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.DragonBoneHoe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.DragonBoneHoe.attackDamage"), plugin.getConfig().getDouble("tools.DragonBoneHoe.attackSpeed"));
+
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -3173,17 +3126,17 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Bone Sword"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneSword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneSword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneSword.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneSword.attackSpeed"));
+
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -3197,6 +3150,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Bone Bow"));
         meta.setCustomModelData(83650);
         item.setItemMeta(meta);
+
+        NBTItem nbti = new NBTItem(item);
+        nbti.setString("Dragon Weapon", "Dragon Bone");
+        nbti.setString("Spartan's Weapon", "Bow");
+        item = nbti.getItem();
 
         return item;
     }
@@ -3212,16 +3170,16 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Legendary Weapon"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Ice Dragons"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -3244,16 +3202,16 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Legendary Weapon"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Fire Dragons"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -3276,16 +3234,16 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Legendary Weapon"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&a+4 damage against Fire Dragons and Ice Dragons"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackSpeed"));
+
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -3956,8 +3914,9 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fBattle Burrito"));
         List<String> lore = new ArrayList<>();
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&9Negates fall damage."));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&aWhy did the horse need this?"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&aA powerful fusion of many tasty meats!"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&aApplies: Strength, Resistance,"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&aAbsorption, Health Boost, and Heals!"));
 
         meta.setLore(lore);
         meta.setCustomModelData(83650);
@@ -4597,16 +4556,16 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4627,16 +4586,16 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackDamage"), plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4657,16 +4616,16 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackDamage"), plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4680,23 +4639,23 @@ public class Items {
 
     public ItemStack getFireDragonsteelShovel() {
 
-        ItemStack item = new ItemStack(Material.NETHERITE_PICKAXE);
+        ItemStack item = new ItemStack(Material.NETHERITE_SHOVEL);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Shovel"));
         meta.setCustomModelData(83650);
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackDamage"), plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4710,23 +4669,23 @@ public class Items {
 
     public ItemStack getFireDragonsteelHoe() {
 
-        ItemStack item = new ItemStack(Material.NETHERITE_PICKAXE);
+        ItemStack item = new ItemStack(Material.NETHERITE_HOE);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Hoe"));
         meta.setCustomModelData(83650);
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackDamage"), plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4747,16 +4706,16 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4777,16 +4736,16 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackDamage"), plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4807,16 +4766,16 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackDamage"), plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4830,23 +4789,23 @@ public class Items {
 
     public ItemStack getIceDragonsteelShovel() {
 
-        ItemStack item = new ItemStack(Material.NETHERITE_PICKAXE);
+        ItemStack item = new ItemStack(Material.NETHERITE_SHOVEL);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Shovel"));
         meta.setCustomModelData(83651);
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackDamage"), plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4860,23 +4819,23 @@ public class Items {
 
     public ItemStack getIceDragonsteelHoe() {
 
-        ItemStack item = new ItemStack(Material.NETHERITE_PICKAXE);
+        ItemStack item = new ItemStack(Material.NETHERITE_HOE);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Hoe"));
         meta.setCustomModelData(83651);
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackDamage"), plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4897,16 +4856,16 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4927,16 +4886,16 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackDamage"), plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4957,16 +4916,16 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackDamage"), plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -4980,23 +4939,23 @@ public class Items {
 
     public ItemStack getLightningDragonsteelShovel() {
 
-        ItemStack item = new ItemStack(Material.NETHERITE_PICKAXE);
+        ItemStack item = new ItemStack(Material.NETHERITE_SHOVEL);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Shovel"));
         meta.setCustomModelData(83652);
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackDamage"), plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5010,23 +4969,23 @@ public class Items {
 
     public ItemStack getLightningDragonsteelHoe() {
 
-        ItemStack item = new ItemStack(Material.NETHERITE_PICKAXE);
+        ItemStack item = new ItemStack(Material.NETHERITE_HOE);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Hoe"));
         meta.setCustomModelData(83652);
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackDamage"), plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackSpeed"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5053,9 +5012,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.FireDragonsteelHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.FireDragonsteelHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.FireDragonsteelHelmet.armor"), plugin.getConfig().getDouble("armor.FireDragonsteelHelmet.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5082,9 +5041,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.FireDragonsteelChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.FireDragonsteelChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.FireDragonsteelChestplate.armor"), plugin.getConfig().getDouble("armor.FireDragonsteelChestplate.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5111,9 +5070,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.FireDragonsteelLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.FireDragonsteelLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.FireDragonsteelLeggings.armor"), plugin.getConfig().getDouble("armor.FireDragonsteelLeggings.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5140,9 +5099,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.FireDragonsteelBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.FireDragonsteelBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.FireDragonsteelBoots.armor"), plugin.getConfig().getDouble("armor.FireDragonsteelBoots.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5169,9 +5128,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.IceDragonsteelHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.IceDragonsteelHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.IceDragonsteelHelmet.armor"), plugin.getConfig().getDouble("armor.IceDragonsteelHelmet.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5198,9 +5157,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.IceDragonsteelChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.IceDragonsteelChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.IceDragonsteelChestplate.armor"), plugin.getConfig().getDouble("armor.IceDragonsteelChestplate.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5227,9 +5186,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.IceDragonsteelLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.IceDragonsteelLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.IceDragonsteelLeggings.armor"), plugin.getConfig().getDouble("armor.IceDragonsteelLeggings.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5256,9 +5215,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.IceDragonsteelBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.IceDragonsteelBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.IceDragonsteelBoots.armor"), plugin.getConfig().getDouble("armor.IceDragonsteelBoots.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5285,9 +5244,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.LightningDragonsteelHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.LightningDragonsteelHelmet.toughness") + " Armor Toughness"));
+        util.addHelmetLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.LightningDragonsteelHelmet.armor"), plugin.getConfig().getDouble("armor.LightningDragonsteelHelmet.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5314,9 +5273,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.LightningDragonsteelChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.LightningDragonsteelChestplate.toughness") + " Armor Toughness"));
+        util.addChestplateLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.LightningDragonsteelChestplate.armor"), plugin.getConfig().getDouble("armor.LightningDragonsteelChestplate.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5343,9 +5302,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.LightningDragonsteelLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.LightningDragonsteelLeggings.toughness") + " Armor Toughness"));
+        util.addLeggingsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.LightningDragonsteelLeggings.armor"), plugin.getConfig().getDouble("armor.LightningDragonsteelLeggings.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5372,9 +5331,9 @@ public class Items {
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.LightningDragonsteelBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.LightningDragonsteelBoots.toughness") + " Armor Toughness"));
+        util.addBootsLore(lore);
+        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.LightningDragonsteelBoots.armor"), plugin.getConfig().getDouble("armor.LightningDragonsteelBoots.toughness"));
+
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -5394,8 +5353,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Rapier"));
         meta.setCustomModelData(83654);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5404,9 +5363,8 @@ public class Items {
         util.addRapierLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackSpeed"));
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5426,8 +5384,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Katana"));
         meta.setCustomModelData(83655);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5436,9 +5394,8 @@ public class Items {
         util.addKatanaLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackSpeed"));
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5458,8 +5415,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Greatsword"));
         meta.setCustomModelData(83656);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5468,9 +5425,9 @@ public class Items {
         util.addGreatswordLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5490,8 +5447,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Longsword"));
         meta.setCustomModelData(83657);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5500,9 +5457,9 @@ public class Items {
         util.addLongswordLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5522,8 +5479,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Spear"));
         meta.setCustomModelData(83658);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5532,9 +5489,9 @@ public class Items {
         util.addSpearLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5554,8 +5511,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Saber"));
         meta.setCustomModelData(83659);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5564,9 +5521,9 @@ public class Items {
         util.addSaberLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5586,8 +5543,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Boomerang"));
         meta.setCustomModelData(83660);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5596,9 +5553,8 @@ public class Items {
         util.addBoomerangLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneBoomerang.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneBoomerang.attackSpeed") + " Attack Speed"));
+        util.addThrowableLore(lore);
+        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneBoomerang.attackDamage"));
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5618,8 +5574,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Dagger"));
         meta.setCustomModelData(83661);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5628,9 +5584,9 @@ public class Items {
         util.addDaggerLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5650,8 +5606,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Glaive"));
         meta.setCustomModelData(83662);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5660,9 +5616,9 @@ public class Items {
         util.addGlaiveLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5682,8 +5638,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Halberd"));
         meta.setCustomModelData(83663);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5692,9 +5648,9 @@ public class Items {
         util.addHalberdLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5714,8 +5670,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Hammer"));
         meta.setCustomModelData(83664);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5724,9 +5680,9 @@ public class Items {
         util.addHammerLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5746,8 +5702,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Javelin"));
         meta.setCustomModelData(83665);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5756,9 +5712,9 @@ public class Items {
         util.addJavelinLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5778,8 +5734,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Lance"));
         meta.setCustomModelData(83666);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5788,9 +5744,9 @@ public class Items {
         util.addLanceLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneLance.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneLance.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneLance.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneLance.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5810,8 +5766,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Flanged Mace"));
         meta.setCustomModelData(83667);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5820,9 +5776,9 @@ public class Items {
         util.addMaceLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneMace.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneMace.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneMace.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneMace.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5842,8 +5798,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Pike"));
         meta.setCustomModelData(83668);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5852,9 +5808,9 @@ public class Items {
         util.addPikeLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBonePike.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBonePike.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBonePike.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBonePike.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5874,8 +5830,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Quarterstaff"));
         meta.setCustomModelData(83669);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5884,9 +5840,9 @@ public class Items {
         util.addQuarterstaffLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5906,8 +5862,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Throwing Axe"));
         meta.setCustomModelData(83670);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5916,9 +5872,9 @@ public class Items {
         util.addThrowingAxeLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5938,8 +5894,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Throwing Knife"));
         meta.setCustomModelData(83671);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5948,9 +5904,9 @@ public class Items {
         util.addThrowingKnifeLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5970,8 +5926,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Warhammer"));
         meta.setCustomModelData(83672);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5980,9 +5936,9 @@ public class Items {
         util.addWarhammerLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6002,8 +5958,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Battleaxe"));
         meta.setCustomModelData(83651);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6012,9 +5968,9 @@ public class Items {
         util.addBattleaxeLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6040,6 +5996,7 @@ public class Items {
         item.setItemMeta(meta);
 
         NBTItem nbti = new NBTItem(item);
+        nbti.setString("Dragon Weapon", "Dragon Bone");
         nbti.setString("Spartan's Weapon", "Longbow");
         item = nbti.getItem();
 
@@ -6060,6 +6017,7 @@ public class Items {
         item.setItemMeta(meta);
 
         NBTItem nbti = new NBTItem(item);
+        nbti.setString("Dragon Weapon", "Dragon Bone");
         nbti.setString("Spartan's Weapon", "Crossbow");
         item = nbti.getItem();
 
@@ -6074,8 +6032,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Rapier"));
         meta.setCustomModelData(83673);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6085,9 +6043,9 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6108,8 +6066,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Katana"));
         meta.setCustomModelData(83674);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6119,9 +6077,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6142,8 +6101,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Greatsword"));
         meta.setCustomModelData(83675);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6153,9 +6112,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6176,8 +6136,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Longsword"));
         meta.setCustomModelData(83676);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6187,9 +6147,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6210,8 +6171,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Spear"));
         meta.setCustomModelData(83677);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6221,9 +6182,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6244,8 +6206,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Saber"));
         meta.setCustomModelData(83678);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6255,9 +6217,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6278,8 +6241,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Boomerang"));
         meta.setCustomModelData(83679);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6289,9 +6252,8 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBoomerang.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBoomerang.attackSpeed") + " Attack Speed"));
+        util.addThrowableLore(lore);
+        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneBoomerang.attackDamage"));
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6312,8 +6274,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Dagger"));
         meta.setCustomModelData(83680);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6323,9 +6285,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6346,8 +6309,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Glaive"));
         meta.setCustomModelData(83681);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6357,9 +6320,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6380,8 +6344,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Halberd"));
         meta.setCustomModelData(83682);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6391,9 +6355,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6414,8 +6379,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Hammer"));
         meta.setCustomModelData(83683);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6425,9 +6390,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6448,8 +6414,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Javelin"));
         meta.setCustomModelData(83684);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6459,9 +6425,9 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6482,8 +6448,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Lance"));
         meta.setCustomModelData(83685);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6493,9 +6459,9 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6516,8 +6482,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Flanged Mace"));
         meta.setCustomModelData(83686);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6527,9 +6493,9 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6550,8 +6516,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Pike"));
         meta.setCustomModelData(83687);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6561,9 +6527,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6584,8 +6551,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Quarterstaff"));
         meta.setCustomModelData(83688);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6595,9 +6562,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6618,8 +6586,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Throwing Axe"));
         meta.setCustomModelData(83689);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6629,9 +6597,9 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6652,8 +6620,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Throwing Knife"));
         meta.setCustomModelData(83690);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6663,9 +6631,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6686,8 +6655,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Warhammer"));
         meta.setCustomModelData(83691);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6697,9 +6666,10 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6720,8 +6690,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Battleaxe"));
         meta.setCustomModelData(83652);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6731,9 +6701,9 @@ public class Items {
         util.addFlamedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6798,8 +6768,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Rapier"));
         meta.setCustomModelData(83692);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6809,9 +6779,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6832,8 +6802,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Katana"));
         meta.setCustomModelData(83693);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6843,9 +6813,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6866,8 +6836,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Greatsword"));
         meta.setCustomModelData(83694);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6877,9 +6847,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6900,8 +6870,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Longsword"));
         meta.setCustomModelData(83695);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6911,9 +6881,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6934,8 +6904,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Spear"));
         meta.setCustomModelData(83696);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6945,9 +6915,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6968,8 +6938,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Saber"));
         meta.setCustomModelData(83697);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6979,9 +6949,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7002,8 +6972,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Boomerang"));
         meta.setCustomModelData(83698);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7013,7 +6983,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
+        util.addThrowableLore(lore);
+        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackDamage"));
+
         lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackDamage") + " Attack Damage"));
         lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackSpeed") + " Attack Speed"));
 
@@ -7036,8 +7008,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Dagger"));
         meta.setCustomModelData(83699);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7047,9 +7019,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7070,8 +7042,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Glaive"));
         meta.setCustomModelData(83700);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7081,9 +7053,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7104,8 +7076,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Halberd"));
         meta.setCustomModelData(83701);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7115,9 +7087,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7138,8 +7110,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Hammer"));
         meta.setCustomModelData(83702);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7149,9 +7121,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7172,8 +7144,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Javelin"));
         meta.setCustomModelData(83703);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7183,9 +7155,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7206,8 +7178,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Lance"));
         meta.setCustomModelData(83704);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7217,9 +7189,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7240,8 +7212,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Flanged Mace"));
         meta.setCustomModelData(83705);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7251,9 +7223,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7274,8 +7246,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Pike"));
         meta.setCustomModelData(83706);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7285,9 +7257,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7308,8 +7280,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Quarterstaff"));
         meta.setCustomModelData(83707);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7319,9 +7291,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7342,8 +7314,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Throwing Axe"));
         meta.setCustomModelData(83708);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7353,9 +7325,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7376,8 +7348,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Throwing Knife"));
         meta.setCustomModelData(83709);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7387,9 +7359,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7410,8 +7382,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Warhammer"));
         meta.setCustomModelData(83710);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7421,9 +7393,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7444,8 +7416,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Battleaxe"));
         meta.setCustomModelData(83653);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7455,9 +7427,9 @@ public class Items {
         util.addIcedDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7522,8 +7494,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Rapier"));
         meta.setCustomModelData(83711);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7533,9 +7505,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7556,8 +7528,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Katana"));
         meta.setCustomModelData(83712);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7567,9 +7539,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7590,8 +7562,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Greatsword"));
         meta.setCustomModelData(83713);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7601,9 +7573,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7624,8 +7596,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Longsword"));
         meta.setCustomModelData(83714);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7635,9 +7607,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7658,8 +7630,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Spear"));
         meta.setCustomModelData(83715);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7669,9 +7641,8 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackSpeed"));
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7692,8 +7663,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Saber"));
         meta.setCustomModelData(83716);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7703,9 +7674,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7726,8 +7697,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Boomerang"));
         meta.setCustomModelData(83717);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7737,9 +7708,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneBoomerang.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneBoomerang.attackSpeed") + " Attack Speed"));
+        util.addThrowableLore(lore);
+        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneBoomerang.attackDamage"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7760,8 +7731,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Dagger"));
         meta.setCustomModelData(83718);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7771,9 +7742,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7794,8 +7765,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Glaive"));
         meta.setCustomModelData(83719);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7805,9 +7776,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7828,8 +7799,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Halberd"));
         meta.setCustomModelData(83720);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7839,9 +7810,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7862,8 +7833,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Hammer"));
         meta.setCustomModelData(83721);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7873,9 +7844,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7896,8 +7867,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Javelin"));
         meta.setCustomModelData(83722);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7907,9 +7878,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7930,8 +7901,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Lance"));
         meta.setCustomModelData(83723);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7941,9 +7912,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7964,8 +7935,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Flanged Mace"));
         meta.setCustomModelData(83724);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7975,9 +7946,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7998,8 +7969,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Pike"));
         meta.setCustomModelData(83725);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8009,9 +7980,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8032,8 +8003,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Quarterstaff"));
         meta.setCustomModelData(83726);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8043,9 +8014,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8066,8 +8037,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Throwing Axe"));
         meta.setCustomModelData(83727);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8077,9 +8048,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8100,8 +8071,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Throwing Knife"));
         meta.setCustomModelData(83728);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8111,9 +8082,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8134,8 +8105,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Warhammer"));
         meta.setCustomModelData(83729);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8145,9 +8116,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8168,8 +8139,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Battleaxe"));
         meta.setCustomModelData(83654);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8179,9 +8150,9 @@ public class Items {
         util.addLightningDragonBoneLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8246,8 +8217,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Rapier"));
         meta.setCustomModelData(83653);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8257,9 +8228,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8280,8 +8251,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Katana"));
         meta.setCustomModelData(83654);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8291,9 +8262,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8314,8 +8285,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Greatsword"));
         meta.setCustomModelData(83655);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8325,9 +8296,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8348,8 +8319,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Longsword"));
         meta.setCustomModelData(83656);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8359,9 +8330,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8382,8 +8353,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Spear"));
         meta.setCustomModelData(83657);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8393,9 +8364,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8416,8 +8387,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Saber"));
         meta.setCustomModelData(83658);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8427,9 +8398,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8450,8 +8421,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Boomerang"));
         meta.setCustomModelData(83659);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8461,9 +8432,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelBoomerang.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelBoomerang.attackSpeed") + " Attack Speed"));
+        util.addThrowableLore(lore);
+        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelBoomerang.attackDamage"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8484,8 +8455,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Dagger"));
         meta.setCustomModelData(83660);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8495,9 +8466,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8518,8 +8489,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Glaive"));
         meta.setCustomModelData(83661);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8529,9 +8500,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8552,8 +8523,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Halberd"));
         meta.setCustomModelData(83662);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8563,9 +8534,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8586,8 +8557,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Hammer"));
         meta.setCustomModelData(83663);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8597,9 +8568,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8620,8 +8591,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Javelin"));
         meta.setCustomModelData(83664);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8631,9 +8602,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8654,8 +8625,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Lance"));
         meta.setCustomModelData(83665);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8665,9 +8636,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8688,8 +8659,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Flanged Mace"));
         meta.setCustomModelData(83666);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8699,9 +8670,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8722,8 +8693,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Pike"));
         meta.setCustomModelData(83667);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8733,9 +8704,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8756,8 +8727,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Quarterstaff"));
         meta.setCustomModelData(83668);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8767,9 +8738,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8790,8 +8761,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Throwing Axe"));
         meta.setCustomModelData(83669);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8801,9 +8772,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8824,8 +8795,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Throwing Knife"));
         meta.setCustomModelData(83670);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8835,9 +8806,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8858,8 +8829,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Warhammer"));
         meta.setCustomModelData(83671);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8869,9 +8840,9 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8892,8 +8863,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Battleaxe"));
         meta.setCustomModelData(83653);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8903,9 +8874,8 @@ public class Items {
         util.addFireDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackSpeed"));
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8970,8 +8940,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Rapier"));
         meta.setCustomModelData(83672);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8981,9 +8951,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9004,8 +8974,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Katana"));
         meta.setCustomModelData(83673);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9015,9 +8985,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9038,8 +9008,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Greatsword"));
         meta.setCustomModelData(83674);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9049,9 +9019,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9072,8 +9042,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Longsword"));
         meta.setCustomModelData(83675);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9083,9 +9053,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9106,8 +9076,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Spear"));
         meta.setCustomModelData(83676);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9117,9 +9087,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9140,8 +9110,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Saber"));
         meta.setCustomModelData(83677);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9151,9 +9121,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9174,8 +9144,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Boomerang"));
         meta.setCustomModelData(83678);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9185,9 +9155,8 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelBoomerang.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelBoomerang.attackSpeed") + " Attack Speed"));
+        util.addThrowableLore(lore);
+        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelBoomerang.attackDamage"));
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9208,8 +9177,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Dagger"));
         meta.setCustomModelData(83679);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9219,9 +9188,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9242,8 +9211,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Glaive"));
         meta.setCustomModelData(83680);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9253,9 +9222,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9276,8 +9245,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Halberd"));
         meta.setCustomModelData(83681);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9287,9 +9256,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9310,8 +9279,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Hammer"));
         meta.setCustomModelData(83682);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9321,9 +9290,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9344,8 +9313,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Javelin"));
         meta.setCustomModelData(83683);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9355,9 +9324,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9378,8 +9347,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Lance"));
         meta.setCustomModelData(83684);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9389,9 +9358,8 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackSpeed"));
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9412,8 +9380,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Flanged Mace"));
         meta.setCustomModelData(83685);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9423,9 +9391,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9446,8 +9414,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Pike"));
         meta.setCustomModelData(83686);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9457,9 +9425,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9480,8 +9448,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Quarterstaff"));
         meta.setCustomModelData(83687);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9491,9 +9459,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9514,8 +9482,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Throwing Axe"));
         meta.setCustomModelData(83688);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9525,9 +9493,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9548,8 +9516,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Throwing Knife"));
         meta.setCustomModelData(83689);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9559,9 +9527,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9582,8 +9550,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Warhammer"));
         meta.setCustomModelData(83690);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9593,9 +9561,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9616,8 +9584,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Battleaxe"));
         meta.setCustomModelData(83654);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9627,9 +9595,9 @@ public class Items {
         util.addIceDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9694,8 +9662,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Rapier"));
         meta.setCustomModelData(83691);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9705,9 +9673,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9728,8 +9696,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Katana"));
         meta.setCustomModelData(83692);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9739,9 +9707,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9762,8 +9730,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Greatsword"));
         meta.setCustomModelData(83693);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9773,9 +9741,10 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackSpeed"));
+
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9796,8 +9765,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Longsword"));
         meta.setCustomModelData(83694);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9807,9 +9776,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9830,8 +9799,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Spear"));
         meta.setCustomModelData(83695);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9841,9 +9810,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9864,8 +9833,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Saber"));
         meta.setCustomModelData(83696);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9875,9 +9844,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9898,8 +9867,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Boomerang"));
         meta.setCustomModelData(83697);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9909,9 +9878,8 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelBoomerang.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelBoomerang.attackSpeed") + " Attack Speed"));
+        util.addThrowableLore(lore);
+        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelBoomerang.attackDamage"));
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9932,8 +9900,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Dagger"));
         meta.setCustomModelData(83698);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9943,9 +9911,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9966,8 +9934,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Glaive"));
         meta.setCustomModelData(83699);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9977,9 +9945,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -10000,8 +9968,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Halberd"));
         meta.setCustomModelData(83700);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10011,9 +9979,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -10034,8 +10002,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Hammer"));
         meta.setCustomModelData(83701);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10045,9 +10013,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -10068,8 +10036,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Javelin"));
         meta.setCustomModelData(83702);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10079,9 +10047,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -10102,8 +10070,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Lance"));
         meta.setCustomModelData(83703);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10113,9 +10081,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -10136,8 +10104,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Flanged Mace"));
         meta.setCustomModelData(83704);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10147,9 +10115,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -10170,8 +10138,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Pike"));
         meta.setCustomModelData(83705);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10181,9 +10149,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -10204,8 +10172,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Quarterstaff"));
         meta.setCustomModelData(83706);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10215,9 +10183,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -10238,8 +10206,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Throwing Axe"));
         meta.setCustomModelData(83707);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10249,9 +10217,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -10272,8 +10240,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Throwing Knife"));
         meta.setCustomModelData(83708);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10283,9 +10251,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -10306,8 +10274,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Warhammer"));
         meta.setCustomModelData(83709);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10317,9 +10285,9 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackSpeed"));
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -10340,8 +10308,8 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Battleaxe"));
         meta.setCustomModelData(83655);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10351,9 +10319,8 @@ public class Items {
         util.addLightningDragonsteelLore(lore);
 
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackSpeed") + " Attack Speed"));
+        util.addWeaponLore(lore);
+        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackSpeed"));
 
         meta.setLore(lore);
         item.setItemMeta(meta);

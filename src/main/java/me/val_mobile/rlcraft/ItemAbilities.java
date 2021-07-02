@@ -94,7 +94,7 @@ public class ItemAbilities {
             }
         }
 
-        entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 10, 29);
+        entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 1, 1);
         itemRunnables.removeIceDragonBoneBlocks().runTaskLater(plugin, util.convertSecondsIntoTicks(0.25));
 
     }
@@ -143,7 +143,7 @@ public class ItemAbilities {
             }
             else {
                 loc.setY(loc.getY() + 1.0D);
-                block2 = entity.getWorld().spawnFallingBlock(loc, Material.ICE.createBlockData());
+                block2 = entity.getWorld().spawnFallingBlock(loc, Material.BLUE_ICE.createBlockData());
 
                 block2.setDropItem(false);
                 block2.setHurtEntities(false);
@@ -153,7 +153,7 @@ public class ItemAbilities {
                 itemRunnables.iceDragonsteelBlocks.add(block2);
             }
         }
-        entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 10, 29);
+        entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 1, 1);
         itemRunnables.removeIceDragonsteelBlocks().runTaskLater(plugin, util.convertSecondsIntoTicks(0.5));
 
     }

@@ -49,6 +49,7 @@ public class ItemRunnables {
             int iteration = 0;
             @Override
             public void run() {
+                entity.setVelocity(new Vector());
                 entity.damage(0.1);
                 iteration++;
                 if (iteration > 9) {
@@ -64,6 +65,7 @@ public class ItemRunnables {
             @Override
             public void run() {
                 entity.damage(0.2);
+                entity.setVelocity(new Vector());
                 iteration++;
                 if (iteration > 19) {
                     cancel();

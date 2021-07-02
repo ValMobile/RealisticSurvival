@@ -3,17 +3,25 @@ package me.val_mobile.rlcraft;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class MiscEvents implements Listener {
 
     private final RLCraft plugin;
     private final Recipes recipes;
+    private final Items citem;
+    private final Utils util;
 
     public MiscEvents(RLCraft instance) {
 
         plugin = instance;
         recipes = new Recipes(instance);
+        citem = new Items(instance);
+        util = new Utils(instance);
     }
 
     @EventHandler
@@ -160,5 +168,45 @@ public class MiscEvents implements Listener {
         }
 
 
+    }
+
+    @EventHandler
+    public void onConsume(PlayerItemConsumeEvent event) {
+        ItemStack item = event.getItem();
+        if (item.getItemMeta().equals(citem.getBattleBurrito().getItemMeta())) {
+            Player player = event.getPlayer();
+
+            int speedAmplifier = 2;
+            int speedDuration = 500;
+
+            int regenAmplifier = 2;
+            int regenDuration = 500;
+
+            int strengthAmplifier = 2;
+            int strengthDuration = 500;
+
+            int resAmplifier = 2;
+            int resDuration = 1000;
+
+            int absorptionAmplifier = 2;
+            int absorptionDuration = 2000;
+
+            int fireResAmplifier = 2;
+            int fireResDuration = 2000;
+
+            PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, speedAmplifier, speedDuration);
+            PotionEffect regen = new PotionEffect(PotionEffectType.SPEED, regenAmplifier, regenDuration);
+            PotionEffect strength = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, strengthAmplifier, strengthDuration);
+            PotionEffect res = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, resAmplifier, resDuration);
+            PotionEffect absorption = new PotionEffect(PotionEffectType.ABSORPTION, absorptionAmplifier, absorptionDuration);
+            PotionEffect fireRes = new PotionEffect(PotionEffectType.ABSORPTION, fireResAmplifier, fireResDuration);
+
+            util.addOrStackPotionEffect(player, speed);
+            util.addOrStackPotionEffect(player, regen);
+            util.addOrStackPotionEffect(player, strength);
+            util.addOrStackPotionEffect(player, res);
+            util.addOrStackPotionEffect(player, absorption);
+            util.addOrStackPotionEffect(player, fireRes);
+        }
     }
 }
