@@ -23,9 +23,11 @@ public class Items {
 
     private final Utils util;
     private final RLCraft plugin;
+    private final CustomConfig customConfig;
     public Items(RLCraft instance) {
         plugin = instance;
         util = new Utils(instance);
+        customConfig = new CustomConfig(instance);
     }
 
     public ItemStack getFlintAxe() {
@@ -34,19 +36,26 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlint Axe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FlintAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FlintAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+
+        Double baseDamage = customConfig.getNoTreePunchingConfig().getDouble("Axe.Flint.AttackDamage");
+        Double baseSpeed = customConfig.getNoTreePunchingConfig().getDouble("Axe.Flint.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
-
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FlintAxe.attackDamage"), plugin.getConfig().getDouble("tools.FlintAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
+
+        NBTItem nbti = new NBTItem(item);
+        nbti.setString("Spartan's Weapon", "Dagger");
+        item = nbti.getItem();
 
         return item;
     }
@@ -57,16 +66,18 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlint Knife"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlintKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlintKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getNoTreePunchingConfig().getDouble("Knife.Flint.AttackDamage");
+        Double baseSpeed = customConfig.getNoTreePunchingConfig().getDouble("Knife.Flint.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
-
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlintKnife.attackDamage"), plugin.getConfig().getDouble("weapons.FlintKnife.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -81,16 +92,18 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlint Pickaxe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FlintPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FlintPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getNoTreePunchingConfig().getDouble("Pickaxe.Flint.AttackDamage");
+        Double baseSpeed = customConfig.getNoTreePunchingConfig().getDouble("Pickaxe.Flint.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
-
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FlintPickaxe.attackDamage"), plugin.getConfig().getDouble("tools.FlintPickaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -104,16 +117,18 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlint Shovel"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FlintShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FlintShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getNoTreePunchingConfig().getDouble("Shovel.Flint.AttackDamage");
+        Double baseSpeed = customConfig.getNoTreePunchingConfig().getDouble("Shovel.Flint.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
-
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FlintShovel.attackDamage"), plugin.getConfig().getDouble("tools.FlintShovel.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -127,16 +142,18 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlint Hoe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FlintHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FlintHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getNoTreePunchingConfig().getDouble("Hoe.Flint.AttackDamage");
+        Double baseSpeed = customConfig.getNoTreePunchingConfig().getDouble("Hoe.Flint.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
-
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FlintHoe.attackDamage"), plugin.getConfig().getDouble("tools.FlintHoe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -716,16 +733,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83650);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -745,16 +765,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83650);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -775,16 +798,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83650);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -805,16 +831,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
         meta.setCustomModelData(83650);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -835,16 +864,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83651);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -865,16 +897,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83651);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -895,16 +930,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83651);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -924,16 +962,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
         meta.setCustomModelData(83651);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -953,16 +994,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83652);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Gray"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -982,16 +1026,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83652);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Gray"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1011,16 +1058,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83652);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Gray"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1040,16 +1090,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
         meta.setCustomModelData(83652);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Gray"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1069,16 +1122,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83653);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Emerald"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1098,16 +1154,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83653);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Emerald"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1127,16 +1186,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83653);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Emerald"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1156,16 +1218,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
         meta.setCustomModelData(83653);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Emerald"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1185,16 +1250,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83654);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1214,16 +1282,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83654);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1243,16 +1314,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83654);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1272,16 +1346,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
         meta.setCustomModelData(83654);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness",baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1301,16 +1378,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83655);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Sapphire"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1330,16 +1410,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83655);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Sapphire"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1359,16 +1442,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83655);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Sapphire"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1386,18 +1472,21 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         List<String> lore = new ArrayList<>();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
-        meta.setCustomModelData(83655);
+
+
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Sapphire"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1417,16 +1506,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83656);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Silver"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1446,16 +1538,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83656);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Silver"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1475,16 +1570,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83656);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Silver"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1504,16 +1602,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
         meta.setCustomModelData(83656);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Silver"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1533,16 +1634,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83657);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&fWhite"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1562,16 +1666,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83657);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&fWhite"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1591,16 +1698,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83657);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&fWhite"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1620,16 +1730,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
         meta.setCustomModelData(83657);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&fWhite"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1649,16 +1762,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83658);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&dAmethyst"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1678,16 +1794,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83658);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&dAmethyst"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1707,16 +1826,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83658);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&dAmethyst"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1736,16 +1858,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
         meta.setCustomModelData(83658);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&dAmethyst"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1765,16 +1890,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83659);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Black"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1794,16 +1922,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83659);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Black"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1823,16 +1954,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83659);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Black"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1852,16 +1986,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
         meta.setCustomModelData(83659);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&8Black"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1881,16 +2018,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83660);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Copper"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1910,16 +2050,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83660);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Copper"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1939,16 +2082,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83660);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Copper"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1968,16 +2114,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
         meta.setCustomModelData(83660);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Copper"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -1997,16 +2146,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Helmet"));
         meta.setCustomModelData(83661);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Electric Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleHelmet.armor"), plugin.getConfig().getDouble("armor.DragonScaleHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2026,16 +2178,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Chestplate"));
         meta.setCustomModelData(83661);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Electric Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleChestplate.armor"), plugin.getConfig().getDouble("armor.DragonScaleChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2055,16 +2210,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Leggings"));
         meta.setCustomModelData(83661);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Electric Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleLeggings.armor"), plugin.getConfig().getDouble("armor.DragonScaleLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2084,16 +2242,19 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Scale Boots"));
         meta.setCustomModelData(83661);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.DragonScale.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Electric Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.DragonScaleBoots.armor"), plugin.getConfig().getDouble("armor.DragonScaleBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2114,9 +2275,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Helmet"));
         meta.setCustomModelData(83662);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
@@ -2125,8 +2289,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2147,9 +2310,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Chestplate"));
         meta.setCustomModelData(83662);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
@@ -2158,8 +2324,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestlate.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2180,9 +2345,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Leggings"));
         meta.setCustomModelData(83662);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
@@ -2191,8 +2359,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2213,9 +2380,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Boots"));
         meta.setCustomModelData(83662);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
@@ -2224,8 +2394,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2245,9 +2414,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Helmet"));
         meta.setCustomModelData(83663);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
@@ -2256,8 +2428,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2278,9 +2449,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Chestplate"));
         meta.setCustomModelData(83663);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
@@ -2289,8 +2463,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2311,9 +2484,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Leggings"));
         meta.setCustomModelData(83663);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
@@ -2322,8 +2498,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2344,9 +2519,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Boots"));
         meta.setCustomModelData(83663);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Bronze"));
@@ -2355,8 +2533,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2377,9 +2554,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Helmet"));
         meta.setCustomModelData(83664);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Deep Blue"));
@@ -2388,8 +2568,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2410,9 +2589,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Chestplate"));
         meta.setCustomModelData(83664);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Deep Blue"));
@@ -2421,8 +2603,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2443,9 +2624,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Leggings"));
         meta.setCustomModelData(83664);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Deep Blue"));
@@ -2454,8 +2638,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2476,9 +2659,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Boots"));
         meta.setCustomModelData(83664);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&1Deep Blue"));
@@ -2487,8 +2673,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2509,9 +2694,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Helmet"));
         meta.setCustomModelData(83665);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Green"));
@@ -2520,8 +2708,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2542,9 +2729,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Chestplate"));
         meta.setCustomModelData(83665);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Green"));
@@ -2553,8 +2743,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2575,9 +2764,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Leggings"));
         meta.setCustomModelData(83665);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Green"));
@@ -2586,8 +2778,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2608,9 +2799,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Boots"));
         meta.setCustomModelData(83665);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&2Green"));
@@ -2619,8 +2813,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2641,9 +2834,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Helmet"));
         meta.setCustomModelData(83666);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Purple"));
@@ -2652,8 +2848,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2674,9 +2869,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Chestplate"));
         meta.setCustomModelData(83666);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Purple"));
@@ -2685,8 +2883,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2707,9 +2904,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Leggings"));
         meta.setCustomModelData(83666);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Purple"));
@@ -2718,8 +2918,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2740,9 +2939,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Boots"));
         meta.setCustomModelData(83666);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Purple"));
@@ -2751,8 +2953,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2773,9 +2974,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Helmet"));
         meta.setCustomModelData(83667);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
@@ -2784,8 +2988,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2806,9 +3009,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Chestplate"));
         meta.setCustomModelData(83667);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
@@ -2817,8 +3023,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2839,9 +3044,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Leggings"));
         meta.setCustomModelData(83667);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
@@ -2850,8 +3058,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2872,9 +3079,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Boots"));
         meta.setCustomModelData(83667);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Red"));
@@ -2883,8 +3093,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2905,9 +3114,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Helmet"));
         meta.setCustomModelData(83668);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bTeal"));
@@ -2916,8 +3128,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianHelmet.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2938,9 +3149,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Chestplate"));
         meta.setCustomModelData(83668);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bTeal"));
@@ -2949,8 +3163,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianChestplate.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -2971,9 +3184,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Leggings"));
         meta.setCustomModelData(83668);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bTeal"));
@@ -2982,8 +3198,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianLeggings.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -3004,9 +3219,12 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fTide Guardian Boots"));
         meta.setCustomModelData(83668);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.TideGuardian.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.TideGuardianBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bTeal"));
@@ -3015,8 +3233,7 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7with full set"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.armor") + " Armor"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + plugin.getConfig().getDouble("armor.TideGuardianBoots.toughness") + " Armor Toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -3034,16 +3251,18 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Bone Pickaxe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Pickaxe.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Pickaxe.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
-
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackDamage"), plugin.getConfig().getDouble("tools.DragonBonePickaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -3057,16 +3276,18 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Bone Axe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.DragonBoneAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.DragonBoneAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Axe.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Axe.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
-
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.DragonBoneAxe.attackDamage"), plugin.getConfig().getDouble("tools.DragonBoneAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -3080,16 +3301,18 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Bone Shovel"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.DragonBoneShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.DragonBoneShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Shovel.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Shovel.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
-
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.DragonBoneShovel.attackDamage"), plugin.getConfig().getDouble("tools.DragonBoneShovel.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -3103,16 +3326,19 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Bone Hoe"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.DragonBoneHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.DragonBoneHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Hoe.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Hoe.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
-
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.DragonBoneHoe.attackDamage"), plugin.getConfig().getDouble("tools.DragonBoneHoe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
+
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -3126,16 +3352,18 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragon Bone Sword"));
         meta.setCustomModelData(83650);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Sword.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Sword.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
-
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         List<String> lore = new ArrayList<>();
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneSword.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneSword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -3170,15 +3398,17 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Legendary Weapon"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Ice Dragons"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Sword.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Sword.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneSword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -3202,15 +3432,17 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Legendary Weapon"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Fire Dragons"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Sword.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Sword.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneSword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -3234,15 +3466,17 @@ public class Items {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&6Legendary Weapon"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&a+4 damage against Fire Dragons and Ice Dragons"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Sword.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Sword.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneSword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -4007,7 +4241,6 @@ public class Items {
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.translateAlternateColorCodes('&', "&9Increases length of invicibility when damaged."));
         lore.add(ChatColor.translateAlternateColorCodes('&', "&9Sleep to regenerate heart containers."));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&aHow did this happen?"));
         lore.add(ChatColor.translateAlternateColorCodes('&', ""));
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Bauble (Amulet)"));
 
@@ -4556,15 +4789,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Sword.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Sword.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelSword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4586,15 +4821,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Pickaxe.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Pickaxe.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackDamage"), plugin.getConfig().getDouble("tools.FireDragonsteelPickaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4616,15 +4853,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Axe.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Axe.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackDamage"), plugin.getConfig().getDouble("tools.FireDragonsteelAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4646,15 +4885,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Shovel.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Shovel.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackDamage"), plugin.getConfig().getDouble("tools.FireDragonsteelShovel.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4676,15 +4917,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Hoe.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Hoe.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackDamage"), plugin.getConfig().getDouble("tools.FireDragonsteelHoe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4706,15 +4949,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Sword.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Sword.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelSword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4736,15 +4981,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Pickaxe.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Pickaxe.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackDamage"), plugin.getConfig().getDouble("tools.IceDragonsteelPickaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4766,15 +5013,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Axe.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Axe.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackDamage"), plugin.getConfig().getDouble("tools.IceDragonsteelAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4796,15 +5045,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Shovel.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Shovel.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackDamage"), plugin.getConfig().getDouble("tools.IceDragonsteelShovel.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4826,15 +5077,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Hoe.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Hoe.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackDamage"), plugin.getConfig().getDouble("tools.IceDragonsteelHoe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4856,15 +5109,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Sword.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Sword.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelSword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4886,15 +5141,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Pickaxe.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Pickaxe.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackDamage"), plugin.getConfig().getDouble("tools.LightningDragonsteelPickaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4916,15 +5173,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Axe.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Axe.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackDamage"), plugin.getConfig().getDouble("tools.LightningDragonsteelAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4946,15 +5205,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Shovel.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Shovel.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackDamage"), plugin.getConfig().getDouble("tools.LightningDragonsteelShovel.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -4976,15 +5237,17 @@ public class Items {
         List<String> lore = new ArrayList<>();
 
         lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getIceFireGearConfig().getDouble("Hoe.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getIceFireGearConfig().getDouble("Hoe.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackDamage"), plugin.getConfig().getDouble("tools.LightningDragonsteelHoe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
 
@@ -5005,15 +5268,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Helmet"));
         meta.setCustomModelData(83650);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.FireDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.FireDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.FireDragonsteelHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.FireDragonsteelHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.FireDragonsteelHelmet.armor"), plugin.getConfig().getDouble("armor.FireDragonsteelHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5034,15 +5300,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Chestplate"));
         meta.setCustomModelData(83650);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.FireDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.FireDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.FireDragonsteelChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.FireDragonsteelChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.FireDragonsteelChestplate.armor"), plugin.getConfig().getDouble("armor.FireDragonsteelChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5063,15 +5332,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Leggings"));
         meta.setCustomModelData(83650);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.FireDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.FireDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.FireDragonsteelLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.FireDragonsteelLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.FireDragonsteelLeggings.armor"), plugin.getConfig().getDouble("armor.FireDragonsteelLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5092,15 +5364,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Boots"));
         meta.setCustomModelData(83650);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.FireDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.FireDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.FireDragonsteelBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.FireDragonsteelBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.FireDragonsteelBoots.armor"), plugin.getConfig().getDouble("armor.FireDragonsteelBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5121,15 +5396,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Helmet"));
         meta.setCustomModelData(83651);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.IceDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.IceDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.IceDragonsteelHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.IceDragonsteelHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.IceDragonsteelHelmet.armor"), plugin.getConfig().getDouble("armor.IceDragonsteelHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5150,15 +5428,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Chestplate"));
         meta.setCustomModelData(83651);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.IceDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.IceDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.IceDragonsteelChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.IceDragonsteelChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.IceDragonsteelChestplate.armor"), plugin.getConfig().getDouble("armor.IceDragonsteelChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5179,15 +5460,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Leggings"));
         meta.setCustomModelData(83651);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.IceDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.IceDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.IceDragonsteelLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.IceDragonsteelLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.IceDragonsteelLeggings.armor"), plugin.getConfig().getDouble("armor.IceDragonsteelLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5208,15 +5492,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Boots"));
         meta.setCustomModelData(83651);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.IceDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.IceDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.IceDragonsteelBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.IceDragonsteelBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.IceDragonsteelBoots.armor"), plugin.getConfig().getDouble("armor.IceDragonsteelBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5237,15 +5524,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Helmet"));
         meta.setCustomModelData(83652);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Helmet.LightningDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Helmet.LightningDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.LightningDragonsteelHelmet.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.LightningDragonsteelHelmet.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addHelmetLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.LightningDragonsteelHelmet.armor"), plugin.getConfig().getDouble("armor.LightningDragonsteelHelmet.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5266,15 +5556,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Chestplate"));
         meta.setCustomModelData(83652);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Chestplate.LightningDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Chestplate.LightningDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.LightningDragonsteelChestplate.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.LightningDragonsteelChestplate.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addChestplateLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.LightningDragonsteelChestplate.armor"), plugin.getConfig().getDouble("armor.LightningDragonsteelChestplate.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5295,15 +5588,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Leggings"));
         meta.setCustomModelData(83652);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Leggings.LightningDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Leggings.LightningDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.LightningDragonsteelLeggings.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.LightningDragonsteelLeggings.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.LEGS);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addLeggingsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.LightningDragonsteelLeggings.armor"), plugin.getConfig().getDouble("armor.LightningDragonsteelLeggings.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5324,15 +5620,18 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Boots"));
         meta.setCustomModelData(83652);
 
+        Double baseArmor = customConfig.getIceFireGearConfig().getDouble("Boots.LightningDragonsteel.Armor");
+        Double baseToughness = customConfig.getIceFireGearConfig().getDouble("Boots.LightningDragonsteel.Toughness");
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", plugin.getConfig().getDouble("armor.LightningDragonsteelBoots.armor"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
-        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", plugin.getConfig().getDouble("armor.LightningDragonsteelBoots.toughness"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier armor = new AttributeModifier(UUID.randomUUID(), "generic.armor", baseArmor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
+        AttributeModifier toughness = new AttributeModifier(UUID.randomUUID(), "generic.armorToughness", baseToughness, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armor);
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, toughness);
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
         util.addBootsLore(lore);
-        util.addDefenseStatsLore(lore, plugin.getConfig().getDouble("armor.LightningDragonsteelBoots.armor"), plugin.getConfig().getDouble("armor.LightningDragonsteelBoots.toughness"));
+        util.addDefenseStatsLore(lore, baseArmor, baseToughness);
 
         meta.setLore(lore);
 
@@ -5353,8 +5652,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Rapier"));
         meta.setCustomModelData(83654);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5364,7 +5666,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneRapier.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5384,8 +5686,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Katana"));
         meta.setCustomModelData(83655);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Katana.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Katana.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5395,7 +5700,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneKatana.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5415,8 +5720,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Greatsword"));
         meta.setCustomModelData(83656);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5426,7 +5734,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneGreatsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5447,8 +5755,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Longsword"));
         meta.setCustomModelData(83657);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5458,7 +5769,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneLongsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5479,8 +5790,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Spear"));
         meta.setCustomModelData(83658);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Spear.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Spear.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5490,7 +5804,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneSpear.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5511,8 +5825,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Saber"));
         meta.setCustomModelData(83659);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Saber.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Saber.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5522,7 +5839,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneSaber.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5543,10 +5860,10 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Boomerang"));
         meta.setCustomModelData(83660);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Boomerang.DragonBone.AttackDamage");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
@@ -5554,7 +5871,7 @@ public class Items {
 
         lore.add("");
         util.addThrowableLore(lore);
-        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneBoomerang.attackDamage"));
+        util.addThrowableStatsLore(lore, baseDamage);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -5574,8 +5891,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Dagger"));
         meta.setCustomModelData(83661);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5585,7 +5905,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneDagger.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5606,8 +5926,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Glaive"));
         meta.setCustomModelData(83662);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5617,7 +5940,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneGlaive.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5638,8 +5961,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Halberd"));
         meta.setCustomModelData(83663);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5649,7 +5975,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneHalberd.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5670,8 +5996,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Hammer"));
         meta.setCustomModelData(83664);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5681,7 +6010,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneHammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5702,8 +6031,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Javelin"));
         meta.setCustomModelData(83665);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5713,7 +6045,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneJavelin.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5734,8 +6066,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Lance"));
         meta.setCustomModelData(83666);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Lance.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Lance.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5745,7 +6080,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneLance.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneLance.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5766,8 +6101,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Flanged Mace"));
         meta.setCustomModelData(83667);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Mace.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Mace.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5777,7 +6115,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneMace.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneMace.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5798,8 +6136,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Pike"));
         meta.setCustomModelData(83668);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Pike.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Pike.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5809,7 +6150,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBonePike.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBonePike.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5830,8 +6171,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Quarterstaff"));
         meta.setCustomModelData(83669);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5841,7 +6185,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneQuarterstaff.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5862,8 +6206,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Throwing Axe"));
         meta.setCustomModelData(83670);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5873,7 +6220,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneThrowingAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5894,8 +6241,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Throwing Knife"));
         meta.setCustomModelData(83671);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5905,7 +6255,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneThrowingKnife.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5926,8 +6276,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Warhammer"));
         meta.setCustomModelData(83672);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5937,7 +6290,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneWarhammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -5958,8 +6311,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fDragonbone Battleaxe"));
         meta.setCustomModelData(83651);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.DragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.DragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -5969,7 +6325,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.DragonBoneBattleaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6032,8 +6388,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Rapier"));
         meta.setCustomModelData(83673);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6044,7 +6403,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneRapier.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6066,8 +6425,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Katana"));
         meta.setCustomModelData(83674);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Katana.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Katana.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6078,7 +6440,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneKatana.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6101,8 +6463,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Greatsword"));
         meta.setCustomModelData(83675);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6113,7 +6478,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneGreatsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6136,8 +6501,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Longsword"));
         meta.setCustomModelData(83676);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6148,7 +6516,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6171,8 +6539,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Spear"));
         meta.setCustomModelData(83677);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Spear.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Spear.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6183,7 +6554,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneSpear.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6206,8 +6577,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Saber"));
         meta.setCustomModelData(83678);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Saber.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Saber.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6218,7 +6592,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneSaber.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6241,10 +6615,10 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Boomerang"));
         meta.setCustomModelData(83679);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Boomerang.FlamedDragonBone.AttackDamage");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
@@ -6253,7 +6627,7 @@ public class Items {
 
         lore.add("");
         util.addThrowableLore(lore);
-        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneBoomerang.attackDamage"));
+        util.addThrowableStatsLore(lore, baseDamage);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6274,8 +6648,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Dagger"));
         meta.setCustomModelData(83680);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6286,7 +6663,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneDagger.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6309,8 +6686,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Glaive"));
         meta.setCustomModelData(83681);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6321,7 +6701,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneGlaive.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6344,8 +6724,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Halberd"));
         meta.setCustomModelData(83682);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6356,7 +6739,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneHalberd.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6379,8 +6762,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Hammer"));
         meta.setCustomModelData(83683);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6391,7 +6777,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneHammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6414,8 +6800,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Javelin"));
         meta.setCustomModelData(83684);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6426,7 +6815,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneJavelin.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6448,8 +6837,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Lance"));
         meta.setCustomModelData(83685);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Lance.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Lance.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6460,7 +6852,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneLance.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6482,8 +6874,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Flanged Mace"));
         meta.setCustomModelData(83686);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Mace.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Mace.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6494,7 +6889,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneMace.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6516,8 +6911,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Pike"));
         meta.setCustomModelData(83687);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Pike.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Pike.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6528,7 +6926,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBonePike.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6551,8 +6949,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Quarterstaff"));
         meta.setCustomModelData(83688);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6563,7 +6964,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneQuarterstaff.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6586,8 +6987,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Throwing Axe"));
         meta.setCustomModelData(83689);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6598,7 +7002,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6620,8 +7024,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Throwing Knife"));
         meta.setCustomModelData(83690);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6632,7 +7039,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneThrowingKnife.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6655,8 +7062,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Warhammer"));
         meta.setCustomModelData(83691);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6667,7 +7077,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneWarhammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -6690,8 +7100,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFlamed Dragonbone Battleaxe"));
         meta.setCustomModelData(83652);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.FlamedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.FlamedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6702,7 +7115,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.FlamedDragonBoneBattleaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6768,8 +7181,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Rapier"));
         meta.setCustomModelData(83692);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6780,7 +7196,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneRapier.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6802,8 +7218,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Katana"));
         meta.setCustomModelData(83693);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Katana.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Katana.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6814,7 +7233,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneKatana.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6836,8 +7255,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Greatsword"));
         meta.setCustomModelData(83694);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6848,7 +7270,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneGreatsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6870,8 +7292,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Longsword"));
         meta.setCustomModelData(83695);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6882,7 +7307,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneLongsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6904,8 +7329,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Spear"));
         meta.setCustomModelData(83696);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Spear.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Spear.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6916,7 +7344,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneSpear.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -6938,8 +7366,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Saber"));
         meta.setCustomModelData(83697);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Saber.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Saber.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -6950,8 +7381,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneSaber.attackSpeed"));
-
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -6972,10 +7402,10 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Boomerang"));
         meta.setCustomModelData(83698);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Boomerang.IcedDragonBone.AttackDamage");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
@@ -6984,10 +7414,7 @@ public class Items {
 
         lore.add("");
         util.addThrowableLore(lore);
-        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackDamage"));
-
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackDamage") + " Attack Damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + plugin.getConfig().getDouble("weapons.IcedDragonBoneBoomerang.attackSpeed") + " Attack Speed"));
+        util.addThrowableStatsLore(lore, baseDamage);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7008,8 +7435,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Dagger"));
         meta.setCustomModelData(83699);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7020,7 +7450,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneDagger.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7042,8 +7472,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Glaive"));
         meta.setCustomModelData(83700);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7054,7 +7487,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneGlaive.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7076,8 +7509,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Halberd"));
         meta.setCustomModelData(83701);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7088,7 +7524,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneHalberd.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7110,8 +7546,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Hammer"));
         meta.setCustomModelData(83702);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7122,7 +7561,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneHammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7144,8 +7583,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Javelin"));
         meta.setCustomModelData(83703);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7156,7 +7598,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneJavelin.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7178,8 +7620,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Lance"));
         meta.setCustomModelData(83704);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Lance.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Lance.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7190,7 +7635,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneLance.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7212,8 +7657,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Flanged Mace"));
         meta.setCustomModelData(83705);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Mace.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Mace.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7224,7 +7672,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneMace.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7246,8 +7694,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Pike"));
         meta.setCustomModelData(83706);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Pike.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Pike.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7258,7 +7709,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBonePike.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7280,8 +7731,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Quarterstaff"));
         meta.setCustomModelData(83707);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7292,7 +7746,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneQuarterstaff.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7314,8 +7768,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Throwing Axe"));
         meta.setCustomModelData(83708);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7326,7 +7783,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7348,8 +7805,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Throwing Knife"));
         meta.setCustomModelData(83709);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7360,7 +7820,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneThrowingKnife.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7382,8 +7842,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Warhammer"));
         meta.setCustomModelData(83710);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7394,7 +7857,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneWarhammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7416,8 +7879,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIced Dragonbone Battleaxe"));
         meta.setCustomModelData(83653);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.IcedDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.IcedDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7428,7 +7894,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.IcedDragonBoneBattleaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7494,8 +7960,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Rapier"));
         meta.setCustomModelData(83711);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7506,7 +7975,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneRapier.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7528,8 +7997,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Katana"));
         meta.setCustomModelData(83712);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Katana.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Katana.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7540,7 +8012,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneKatana.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7562,8 +8034,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Greatsword"));
         meta.setCustomModelData(83713);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7574,7 +8049,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneGreatsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7596,8 +8071,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Longsword"));
         meta.setCustomModelData(83714);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7608,7 +8086,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneLongsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7630,8 +8108,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Spear"));
         meta.setCustomModelData(83715);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Spear.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Spear.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7642,7 +8123,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneSpear.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -7663,8 +8144,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Saber"));
         meta.setCustomModelData(83716);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Saber.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Saber.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7675,7 +8159,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneSaber.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7697,10 +8181,10 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Boomerang"));
         meta.setCustomModelData(83717);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Boomerang.LightningDragonBone.AttackDamage");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
@@ -7709,7 +8193,7 @@ public class Items {
 
         lore.add("");
         util.addThrowableLore(lore);
-        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneBoomerang.attackDamage"));
+        util.addThrowableStatsLore(lore, baseDamage);
 
 
         meta.setLore(lore);
@@ -7731,8 +8215,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Dagger"));
         meta.setCustomModelData(83718);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7743,7 +8230,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneDagger.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7765,8 +8252,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Glaive"));
         meta.setCustomModelData(83719);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7777,7 +8267,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneGlaive.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7799,8 +8289,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Halberd"));
         meta.setCustomModelData(83720);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7811,7 +8304,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneHalberd.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7833,8 +8326,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Hammer"));
         meta.setCustomModelData(83721);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7845,7 +8341,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneHammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7867,8 +8363,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Javelin"));
         meta.setCustomModelData(83722);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7879,7 +8378,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneJavelin.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7901,8 +8400,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Lance"));
         meta.setCustomModelData(83723);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Lance.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Lance.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7913,7 +8415,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneLance.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7935,8 +8437,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Flanged Mace"));
         meta.setCustomModelData(83724);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Mace.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Mace.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7947,7 +8452,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneMace.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -7969,8 +8474,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Pike"));
         meta.setCustomModelData(83725);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Pike.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Pike.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -7981,7 +8489,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBonePike.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8003,8 +8511,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Quarterstaff"));
         meta.setCustomModelData(83726);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8015,7 +8526,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneQuarterstaff.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8037,8 +8548,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Throwing Axe"));
         meta.setCustomModelData(83727);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8049,7 +8563,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8071,8 +8585,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Throwing Knife"));
         meta.setCustomModelData(83728);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8083,7 +8600,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneThrowingKnife.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8105,8 +8622,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Warhammer"));
         meta.setCustomModelData(83729);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8117,7 +8637,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneWarhammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8139,8 +8659,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonbone Battleaxe"));
         meta.setCustomModelData(83654);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.LightningDragonBone.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.LightningDragonBone.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8151,7 +8674,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonBoneBattleaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8217,8 +8740,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Rapier"));
         meta.setCustomModelData(83653);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8229,7 +8755,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelRapier.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8251,8 +8777,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Katana"));
         meta.setCustomModelData(83654);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Katana.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Katana.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8263,7 +8792,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelKatana.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8285,8 +8814,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Greatsword"));
         meta.setCustomModelData(83655);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8297,7 +8829,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelGreatsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8319,8 +8851,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Longsword"));
         meta.setCustomModelData(83656);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8331,7 +8866,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelLongsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8353,8 +8888,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Spear"));
         meta.setCustomModelData(83657);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Spear.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Spear.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8365,7 +8903,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelSpear.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8387,8 +8925,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Saber"));
         meta.setCustomModelData(83658);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Saber.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Saber.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8399,7 +8940,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelSaber.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8421,10 +8962,10 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Boomerang"));
         meta.setCustomModelData(83659);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Boomerang.FireDragonsteel.AttackDamage");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
@@ -8433,7 +8974,7 @@ public class Items {
 
         lore.add("");
         util.addThrowableLore(lore);
-        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelBoomerang.attackDamage"));
+        util.addThrowableStatsLore(lore, baseDamage);
 
 
         meta.setLore(lore);
@@ -8455,8 +8996,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Dagger"));
         meta.setCustomModelData(83660);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8467,7 +9011,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelDagger.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8489,8 +9033,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Glaive"));
         meta.setCustomModelData(83661);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8501,7 +9048,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelGlaive.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8523,8 +9070,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Halberd"));
         meta.setCustomModelData(83662);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8535,7 +9085,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelHalberd.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8557,8 +9107,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Hammer"));
         meta.setCustomModelData(83663);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8569,7 +9122,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelHammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8591,8 +9144,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Javelin"));
         meta.setCustomModelData(83664);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8603,7 +9159,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelJavelin.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8625,8 +9181,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Lance"));
         meta.setCustomModelData(83665);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Lance.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Lance.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8637,7 +9196,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelLance.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8659,8 +9218,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Flanged Mace"));
         meta.setCustomModelData(83666);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Mace.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Mace.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8671,7 +9233,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelMace.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8693,8 +9255,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Pike"));
         meta.setCustomModelData(83667);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Pike.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Pike.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8705,7 +9270,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelPike.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8727,8 +9292,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Quarterstaff"));
         meta.setCustomModelData(83668);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8739,7 +9307,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelQuarterstaff.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8761,8 +9329,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Throwing Axe"));
         meta.setCustomModelData(83669);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8773,7 +9344,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8795,8 +9366,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Throwing Knife"));
         meta.setCustomModelData(83670);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8807,7 +9381,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelThrowingKnife.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8829,8 +9403,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Warhammer"));
         meta.setCustomModelData(83671);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8841,7 +9418,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelWarhammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8863,8 +9440,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fFire Dragonsteel Battleaxe"));
         meta.setCustomModelData(83653);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.FireDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.FireDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8875,7 +9455,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.FireDragonsteelBattleaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -8940,8 +9520,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Rapier"));
         meta.setCustomModelData(83672);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8952,7 +9535,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelRapier.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -8974,8 +9557,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Katana"));
         meta.setCustomModelData(83673);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Katana.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Katana.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -8986,7 +9572,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelKatana.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9008,8 +9594,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Greatsword"));
         meta.setCustomModelData(83674);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9020,7 +9609,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelGreatsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9042,8 +9631,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Longsword"));
         meta.setCustomModelData(83675);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9054,7 +9646,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelLongsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9076,8 +9668,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Spear"));
         meta.setCustomModelData(83676);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Spear.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Spear.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9088,7 +9683,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelSpear.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9110,8 +9705,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Saber"));
         meta.setCustomModelData(83677);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Saber.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Saber.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9122,7 +9720,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelSaber.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9144,11 +9742,10 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Boomerang"));
         meta.setCustomModelData(83678);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Boomerang.IceDragonsteel.AttackDamage");
 
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         util.addBoomerangLore(lore);
@@ -9156,7 +9753,7 @@ public class Items {
 
         lore.add("");
         util.addThrowableLore(lore);
-        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelBoomerang.attackDamage"));
+        util.addThrowableStatsLore(lore, baseDamage);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9177,8 +9774,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Dagger"));
         meta.setCustomModelData(83679);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9189,7 +9789,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelDagger.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9211,8 +9811,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Glaive"));
         meta.setCustomModelData(83680);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9223,7 +9826,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelGlaive.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9245,8 +9848,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Halberd"));
         meta.setCustomModelData(83681);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9257,7 +9863,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelHalberd.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9279,8 +9885,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Hammer"));
         meta.setCustomModelData(83682);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9291,7 +9900,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelHammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9313,8 +9922,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Javelin"));
         meta.setCustomModelData(83683);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9325,7 +9937,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelJavelin.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9347,8 +9959,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Lance"));
         meta.setCustomModelData(83684);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Lance.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Lance.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9359,7 +9974,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelLance.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9380,8 +9995,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Flanged Mace"));
         meta.setCustomModelData(83685);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Mace.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Mace.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9392,7 +10010,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelMace.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9414,8 +10032,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Pike"));
         meta.setCustomModelData(83686);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Pike.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Pike.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9426,7 +10047,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelPike.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9448,8 +10069,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Quarterstaff"));
         meta.setCustomModelData(83687);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9460,7 +10084,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelQuarterstaff.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9482,8 +10106,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Throwing Axe"));
         meta.setCustomModelData(83688);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9494,7 +10121,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9516,8 +10143,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Throwing Knife"));
         meta.setCustomModelData(83689);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9528,7 +10158,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelThrowingKnife.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9550,8 +10180,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Warhammer"));
         meta.setCustomModelData(83690);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9562,7 +10195,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelWarhammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9584,8 +10217,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fIce Dragonsteel Battleaxe"));
         meta.setCustomModelData(83654);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.IceDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.IceDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9596,7 +10232,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.IceDragonsteelBattleaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9662,8 +10298,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Rapier"));
         meta.setCustomModelData(83691);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Rapier.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9674,7 +10313,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelRapier.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9696,8 +10335,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Katana"));
         meta.setCustomModelData(83692);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Katana.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Katana.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9708,7 +10350,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelKatana.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9730,8 +10372,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Greatsword"));
         meta.setCustomModelData(83693);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Greatsword.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9742,7 +10387,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelGreatsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
 
@@ -9765,8 +10410,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Longsword"));
         meta.setCustomModelData(83694);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Longsword.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9777,7 +10425,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelLongsword.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9799,8 +10447,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Spear"));
         meta.setCustomModelData(83695);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Spear.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Spear.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9811,7 +10462,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelSpear.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9833,8 +10484,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Saber"));
         meta.setCustomModelData(83696);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Saber.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Saber.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9845,7 +10499,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelSaber.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9867,10 +10521,10 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Boomerang"));
         meta.setCustomModelData(83697);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelBoomerang.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelBoomerang.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Boomerang.LightningDragonsteel.AttackDamage");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
@@ -9879,7 +10533,7 @@ public class Items {
 
         lore.add("");
         util.addThrowableLore(lore);
-        util.addThrowableStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelBoomerang.attackDamage"));
+        util.addThrowableStatsLore(lore, baseDamage);
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -9900,8 +10554,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Dagger"));
         meta.setCustomModelData(83698);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Dagger.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9912,7 +10569,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelDagger.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9934,8 +10591,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Glaive"));
         meta.setCustomModelData(83699);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Glaive.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9946,7 +10606,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelGlaive.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -9968,8 +10628,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Halberd"));
         meta.setCustomModelData(83700);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Halberd.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -9980,7 +10643,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelHalberd.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -10002,8 +10665,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Hammer"));
         meta.setCustomModelData(83701);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Hammer.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10014,7 +10680,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelHammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -10036,8 +10702,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Javelin"));
         meta.setCustomModelData(83702);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Javelin.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10048,7 +10717,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelJavelin.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -10070,8 +10739,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Lance"));
         meta.setCustomModelData(83703);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Lance.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Lance.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10082,7 +10754,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelLance.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -10104,8 +10776,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Flanged Mace"));
         meta.setCustomModelData(83704);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Mace.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Mace.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10116,7 +10791,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelMace.attackSpeed"));
+        util.addMeleeStatsLore(lore,baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -10138,8 +10813,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Pike"));
         meta.setCustomModelData(83705);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Pike.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Pike.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10150,7 +10828,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelPike.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -10172,8 +10850,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Quarterstaff"));
         meta.setCustomModelData(83706);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Quarterstaff.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10184,7 +10865,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelQuarterstaff.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -10206,8 +10887,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Throwing Axe"));
         meta.setCustomModelData(83707);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingAxe.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10218,7 +10902,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingAxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -10240,8 +10924,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Throwing Knife"));
         meta.setCustomModelData(83708);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("ThrowingKnife.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10252,7 +10939,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelThrowingKnife.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -10274,8 +10961,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Warhammer"));
         meta.setCustomModelData(83709);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Warhammer.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10286,7 +10976,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelWarhammer.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
 
         meta.setLore(lore);
@@ -10308,8 +10998,11 @@ public class Items {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&fLightning Dragonsteel Battleaxe"));
         meta.setCustomModelData(83655);
 
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackDamage"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackSpeed"), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Double baseDamage = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.LightningDragonsteel.AttackDamage");
+        Double baseSpeed = customConfig.getSpartanWeaponryConfig().getDouble("Battleaxe.LightningDragonsteel.AttackSpeed");
+
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", -1D + baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -4D + baseSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
 
@@ -10320,7 +11013,7 @@ public class Items {
 
         lore.add("");
         util.addWeaponLore(lore);
-        util.addMeleeStatsLore(lore, plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackDamage"), plugin.getConfig().getDouble("weapons.LightningDragonsteelBattleaxe.attackSpeed"));
+        util.addMeleeStatsLore(lore, baseDamage, baseSpeed);
 
         meta.setLore(lore);
         item.setItemMeta(meta);

@@ -1,5 +1,6 @@
 package me.val_mobile.rlcraft;
 
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -10,8 +11,15 @@ import java.util.List;
 
 public class ItemRunnables {
 
-    List<FallingBlock> iceDragonBoneBlocks = new ArrayList<>();
-    List<FallingBlock> iceDragonsteelBlocks = new ArrayList<>();
+    static List<FallingBlock> iceDragonBoneBlocks = new ArrayList<>();
+    static List<FallingBlock> iceDragonsteelBlocks = new ArrayList<>();
+
+    private final RLCraft plugin;
+    private final CustomConfig customConfig;
+    public ItemRunnables(RLCraft instance) {
+        plugin = instance;
+        customConfig = new CustomConfig(instance);
+    }
 
     public BukkitRunnable freezeEntity(LivingEntity entity) {
         return new BukkitRunnable() {
@@ -44,30 +52,30 @@ public class ItemRunnables {
         };
     }
 
-    public BukkitRunnable shockEntity(LivingEntity entity) {
+    public BukkitRunnable shockEntity(Entity source, LivingEntity entity) {
         return new BukkitRunnable() {
-            int iteration = 0;
+            int iteration = 1;
             @Override
             public void run() {
                 entity.setVelocity(new Vector());
-                entity.damage(0.1);
+                entity.damage(customConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonBone.ShockDamage"), source);
                 iteration++;
-                if (iteration > 9) {
+                if (iteration > customConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonBone.ShockAmount")) {
                     cancel();
                 }
             }
         };
     }
 
-    public BukkitRunnable electrocuteEntity(LivingEntity entity) {
+    public BukkitRunnable electrocuteEntity(Entity source, LivingEntity entity) {
         return new BukkitRunnable() {
-            int iteration = 0;
+            int iteration = 1;
             @Override
             public void run() {
-                entity.damage(0.2);
+                entity.damage(customConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonsteel.ShockDamage"), source);
                 entity.setVelocity(new Vector());
                 iteration++;
-                if (iteration > 19) {
+                if (iteration > customConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonsteel.ShockAmount")) {
                     cancel();
                 }
             }

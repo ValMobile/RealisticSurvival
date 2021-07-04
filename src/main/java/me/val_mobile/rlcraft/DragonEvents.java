@@ -20,11 +20,13 @@ public class DragonEvents implements Listener {
     private final Items citem;
     private final Utils util;
     private final DragonRunnables dragonRunnables;
+    private final CustomConfig customConfig;
     public DragonEvents(RLCraft instance) {
         plugin = instance;
         dragonRunnables = new DragonRunnables(instance);
         util = new Utils(instance);
         citem = new Items(instance);
+        customConfig = new CustomConfig(instance);
     }
 
     @EventHandler
@@ -49,9 +51,9 @@ public class DragonEvents implements Listener {
             }
             String dragonType = util.getDragonType(dragon);
 
-            if (!(random <= plugin.getConfig().getDouble("dragons.normalAttackChance"))) {
+            if (!(random <= customConfig.getMobLootConfig().getDouble("Dragons.NormalAttackChance"))) {
 
-                if (random <= plugin.getConfig().getDouble("dragons.normalAttackChance") + plugin.getConfig().getDouble("dragons.breathAttackChance")) {
+                if (random <= customConfig.getMobLootConfig().getDouble("Dragons.NormalAttackChance") + customConfig.getBaubleConfig().getDouble("Dragons.BreathAttackChance")) {
                     if (dragonType.equals("Fire")) {
                         new BukkitRunnable() {
                             @Override
@@ -59,7 +61,7 @@ public class DragonEvents implements Listener {
                                 dragonRunnables.getFireDragonBreathRunnable(dragon, acidBall).runTaskTimer(plugin, 0L, 1L);
                                 acidBall.remove();
                             }
-                        }.runTaskLater(plugin, util.convertSecondsIntoTicks(0.1));
+                        }.runTaskLater(plugin, 2);
                     }
                     else if (dragonType.equals("Ice")) {
                         new BukkitRunnable() {
@@ -68,7 +70,7 @@ public class DragonEvents implements Listener {
                                 dragonRunnables.getIceDragonBreathRunnable(dragon, acidBall).runTaskTimer(plugin, 0L, 1L);
                                 acidBall.remove();
                             }
-                        }.runTaskLater(plugin, util.convertSecondsIntoTicks(0.1));
+                        }.runTaskLater(plugin, 2);
                     }
                     else {
                         new BukkitRunnable() {
@@ -77,7 +79,7 @@ public class DragonEvents implements Listener {
                                 dragonRunnables.getLightningDragonBreathRunnable(dragon, acidBall).runTaskTimer(plugin, 0L, 1L);
                                 acidBall.remove();
                             }
-                        }.runTaskLater(plugin, util.convertSecondsIntoTicks(0.1));
+                        }.runTaskLater(plugin, 2);
                     }
                 }
                 else {
@@ -102,18 +104,18 @@ public class DragonEvents implements Listener {
             String dragonType = util.getDragonType(entity);
             int stage = util.getDragonStage(entity);
 
-            if (plugin.getConfig().getBoolean("dragons.recursiveDropRates.enabled")) {
+            if (customConfig.getMobLootConfig().getBoolean("Dragons.RecursiveDropRates.Enabled")) {
                 // Determining if the dragon is fire or ice-blooded and
                 // how many scales, dragonbones, and blood to drop
                 // Dragons are fire about 66% of the time
                 Random r = new Random();
 
                 int scaleAmount = (int) Math.round(r.nextDouble() *
-                        (plugin.getConfig().getInt("dragons.recursiveDropRates.maxScales") - plugin.getConfig().getInt("dragons.recursiveDropRates.minScales") ))
-                        + plugin.getConfig().getInt("dragons.recursiveDropRates.minScales");
-                int boneAmount = plugin.getConfig().getInt("dragons.recursiveDropRates.maxScales") - scaleAmount + plugin.getConfig().getInt("dragons.recursiveDropRates.minBones");
-                int bloodAmount = (int) Math.round(scaleAmount * plugin.getConfig().getDouble("dragons.recursiveDropRates.bloodMultiplier"));
-                int fleshAmount = (int) Math.round(scaleAmount * plugin.getConfig().getDouble("dragons.recursiveDropRates.fleshMultiplier"));
+                        (customConfig.getMobLootConfig().getInt("Dragons.RecursiveDropRates.MaxScales") - customConfig.getMobLootConfig().getInt("Dragons.RecursiveDropRates.MinScales") ))
+                        + customConfig.getMobLootConfig().getInt("Dragons.RecursiveDropRates.MinScales");
+                int boneAmount = customConfig.getMobLootConfig().getInt("Dragons.RecursiveDropRates.MaxScales") - scaleAmount + customConfig.getMobLootConfig().getInt("Dragons.RecursiveDropRates.MinBones");
+                int bloodAmount = (int) Math.round(scaleAmount * customConfig.getMobLootConfig().getDouble("Dragons.RecursiveDropRates.BloodMultiplier"));
+                int fleshAmount = (int) Math.round(scaleAmount * customConfig.getMobLootConfig().getDouble("Dragons.RecursiveDropRates.FleshMultiplier"));
 
                 // Dropping the dragonbones
                 if (boneAmount > 0) {

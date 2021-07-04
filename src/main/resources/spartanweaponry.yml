@@ -1,0 +1,486 @@
+#######################################
+#          Spartan's Weaponry         #
+#######################################
+
+# Customize weapon and armor traits of the Spartan and Fire weapons
+# If you're looking to customize the regular Ice and Fire items, look in "icefiregear.yml"
+# NOTE: Lightning spartan weapons do NOT have a texture because Spartan and Fire has not updated past 1.12
+# NOTE: Once Spartan and Fire updates, lightning weapons will receive correct textures
+
+Rapier:
+  DragonBone:
+    AttackDamage: 4.5
+    AttackSpeed: 2.4
+  FlamedDragonBone:
+    AttackDamage: 5.25
+    AttackSpeed: 2.4
+  IcedDragonBone:
+    AttackDamage: 5.25
+    AttackSpeed: 2.4
+  LightningDragonBone:
+    AttackDamage: 5.25
+    AttackSpeed: 2.4
+  FireDragonsteel:
+    AttackDamage: 13.0
+    AttackSpeed: 2.4
+  IceDragonsteel:
+    AttackDamage: 13.0
+    AttackSpeed: 2.4
+  LightningDragonsteel:
+    AttackDamage: 13.0
+    AttackSpeed: 2.4
+Katana:
+  DragonBone:
+    AttackDamage: 5.5
+    AttackSpeed: 2.0
+  FlamedDragonBone:
+    AttackDamage: 6.5
+    AttackSpeed: 2.0
+  IcedDragonBone:
+    AttackDamage: 6.5
+    AttackSpeed: 2.0
+  LightningDragonBone:
+    AttackDamage: 6.5
+    AttackSpeed: 2.0
+  FireDragonsteel:
+    AttackDamage: 14.0
+    AttackSpeed: 2.0
+  IceDragonsteel:
+    AttackDamage: 14.0
+    AttackSpeed: 2.0
+  LightningDragonsteel:
+    AttackDamage: 14.0
+    AttackSpeed: 2.0
+Greatsword:
+  DragonBone:
+    AttackDamage: 14.0
+    AttackSpeed: 1.4
+  FlamedDragonBone:
+    AttackDamage: 17.0
+    AttackSpeed: 1.4
+  IcedDragonBone:
+    AttackDamage: 17.0
+    AttackSpeed: 1.4
+  LightningDragonBone:
+    AttackDamage: 17.0
+    AttackSpeed: 1.4
+  FireDragonsteel:
+    AttackDamage: 48.0
+    AttackSpeed: 1.4
+  IceDragonsteel:
+    AttackDamage: 48.0
+    AttackSpeed: 1.4
+  LightningDragonsteel:
+    AttackDamage: 48.0
+    AttackSpeed: 1.4
+Longsword:
+  DragonBone:
+    AttackDamage: 10.5
+    AttackSpeed: 1.4
+  FlamedDragonBone:
+    AttackDamage: 12.75
+    AttackSpeed: 1.4
+  IcedDragonBone:
+    AttackDamage: 12.75
+    AttackSpeed: 1.4
+  LightningDragonBone:
+    AttackDamage: 12.75
+    AttackSpeed: 1.4
+  FireDragonsteel:
+    AttackDamage: 36.0
+    AttackSpeed: 1.4
+  IceDragonsteel:
+    AttackDamage: 36.0
+    AttackSpeed: 1.4
+  LightningDragonsteel:
+    AttackDamage: 36.0
+    AttackSpeed: 1.4
+Spear:
+  DragonBone:
+    AttackDamage: 6.5
+    AttackSpeed: 1.4
+  FlamedDragonBone:
+    AttackDamage: 7.25
+    AttackSpeed: 1.4
+  IcedDragonBone:
+    AttackDamage: 7.25
+    AttackSpeed: 1.4
+  LightningDragonBone:
+    AttackDamage: 7.25
+    AttackSpeed: 1.4
+  FireDragonsteel:
+    AttackDamage: 15.0
+    AttackSpeed: 1.4
+  IceDragonsteel:
+    AttackDamage: 15.0
+    AttackSpeed: 1.4
+  LightningDragonsteel:
+    AttackDamage: 15.0
+    AttackSpeed: 1.4
+Saber:
+  DragonBone:
+    AttackDamage: 6.5
+    AttackSpeed: 1.6
+  FlamedDragonBone:
+    AttackDamage: 7.25
+    AttackSpeed: 1.6
+  IcedDragonBone:
+    AttackDamage: 7.25
+    AttackSpeed: 1.6
+  LightningDragonBone:
+    AttackDamage: 7.25
+    AttackSpeed: 1.6
+  FireDragonsteel:
+    AttackDamage: 15.0
+    AttackSpeed: 1.6
+  IceDragonsteel:
+    AttackDamage: 15.0
+    AttackSpeed: 1.6
+  LightningDragonsteel:
+    AttackDamage: 15.0
+    AttackSpeed: 1.6
+Boomerang:
+  DragonBone:
+    AttackDamage: 8.0
+  FlamedDragonBone:
+    AttackDamage: 9.5
+  IcedDragonBone:
+    AttackDamage: 9.5
+  LightningDragonBone:
+    AttackDamage: 9.5
+  FireDragonsteel:
+    AttackDamage: 25.0
+  IceDragonsteel:
+    AttackDamage: 25.0
+  LightningDragonsteel:
+    AttackDamage: 25.0
+Dagger:
+  DragonBone:
+    AttackDamage: 4.5
+    AttackSpeed: 2.5
+  FlamedDragonBone:
+    AttackDamage: 5.25
+    AttackSpeed: 2.5
+  IcedDragonBone:
+    AttackDamage: 5.25
+    AttackSpeed: 2.5
+  LightningDragonBone:
+    AttackDamage: 5.25
+    AttackSpeed: 2.5
+  FireDragonsteel:
+    AttackDamage: 13.0
+    AttackSpeed: 2.5
+  IceDragonsteel:
+    AttackDamage: 13.0
+    AttackSpeed: 2.5
+  LightningDragonsteel:
+    AttackDamage: 13.0
+    AttackSpeed: 2.5
+Glaive:
+  DragonBone:
+    AttackDamage: 8.0
+    AttackSpeed: 1.0
+  FlamedDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.0
+  IcedDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.0
+  LightningDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.0
+  FireDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.0
+  IceDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.0
+  LightningDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.0
+Halberd:
+  DragonBone:
+    AttackDamage: 16.5
+    AttackSpeed: 1.2
+  FlamedDragonBone:
+    AttackDamage: 20.25
+    AttackSpeed: 1.2
+  IcedDragonBone:
+    AttackDamage: 20.25
+    AttackSpeed: 1.2
+  LightningDragonBone:
+    AttackDamage: 20.25
+    AttackSpeed: 1.2
+  FireDragonsteel:
+    AttackDamage: 59.0
+    AttackSpeed: 1.2
+  IceDragonsteel:
+    AttackDamage: 59.0
+    AttackSpeed: 1.2
+  LightningDragonsteel:
+    AttackDamage: 59.0
+    AttackSpeed: 1.2
+Hammer:
+  DragonBone:
+    AttackDamage: 10.0
+    AttackSpeed: 0.8
+  FlamedDragonBone:
+    AttackDamage: 11.5
+    AttackSpeed: 0.8
+  IcedDragonBone:
+    AttackDamage: 11.5
+    AttackSpeed: 0.8
+  LightningDragonBone:
+    AttackDamage: 11.5
+    AttackSpeed: 0.8
+  FireDragonsteel:
+    AttackDamage: 27.0
+    AttackSpeed: 0.8
+  IceDragonsteel:
+    AttackDamage: 27.0
+    AttackSpeed: 0.8
+  LightningDragonsteel:
+    AttackDamage: 27.0
+    AttackSpeed: 0.8
+Javelin:
+  DragonBone:
+    AttackDamage: 3.5
+    AttackSpeed: 1.2
+  FlamedDragonBone:
+    AttackDamage: 4.25
+    AttackSpeed: 1.2
+  IcedDragonBone:
+    AttackDamage: 4.25
+    AttackSpeed: 1.2
+  LightningDragonBone:
+    AttackDamage: 4.25
+    AttackSpeed: 1.2
+  FireDragonsteel:
+    AttackDamage: 12.0
+    AttackSpeed: 1.2
+  IceDragonsteel:
+    AttackDamage: 12.0
+    AttackSpeed: 1.2
+  LightningDragonsteel:
+    AttackDamage: 12.0
+    AttackSpeed: 1.2
+Lance:
+  DragonBone:
+    AttackDamage: 8.0
+    AttackSpeed: 1.0
+  FlamedDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.0
+  IcedDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.0
+  LightningDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.0
+  FireDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.0
+  IceDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.0
+  LightningDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.0
+Mace:
+  DragonBone:
+    AttackDamage: 8.0
+    AttackSpeed: 1.2
+  FlamedDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.2
+  IcedDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.2
+  LightningDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.2
+  FireDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.2
+  IceDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.2
+  LightningDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.2
+Pike:
+  DragonBone:
+    AttackDamage: 6.0
+    AttackSpeed: 1.4
+  FlamedDragonBone:
+    AttackDamage: 6.75
+    AttackSpeed: 1.4
+  IcedDragonBone:
+    AttackDamage: 6.75
+    AttackSpeed: 1.4
+  LightningDragonBone:
+    AttackDamage: 6.75
+    AttackSpeed: 1.4
+  FireDragonsteel:
+    AttackDamage: 14.5
+    AttackSpeed: 1.4
+  IceDragonsteel:
+    AttackDamage: 14.5
+    AttackSpeed: 1.4
+  LightningDragonsteel:
+    AttackDamage: 14.5
+    AttackSpeed: 1.4
+Quarterstaff:
+  DragonBone:
+    AttackDamage: 5.5
+    AttackSpeed: 1.4
+  FlamedDragonBone:
+    AttackDamage: 7.0
+    AttackSpeed: 1.4
+  IcedDragonBone:
+    AttackDamage: 7.0
+    AttackSpeed: 1.4
+  LightningDragonBone:
+    AttackDamage: 7.0
+    AttackSpeed: 1.4
+  FireDragonsteel:
+    AttackDamage: 22.5
+    AttackSpeed: 1.4
+  IceDragonsteel:
+    AttackDamage: 22.5
+    AttackSpeed: 1.4
+  LightningDragonsteel:
+    AttackDamage: 22.5
+    AttackSpeed: 1.4
+ThrowingAxe:
+  DragonBone:
+    AttackDamage: 6.0
+    AttackSpeed: 0.9
+  FlamedDragonBone:
+    AttackDamage: 7.5
+    AttackSpeed: 0.9
+  IcedDragonBone:
+    AttackDamage: 7.5
+    AttackSpeed: 0.9
+  LightningDragonBone:
+    AttackDamage: 7.5
+    AttackSpeed: 0.9
+  FireDragonsteel:
+    AttackDamage: 23.0
+    AttackSpeed: 0.9
+  IceDragonsteel:
+    AttackDamage: 23.0
+    AttackSpeed: 0.9
+  LightningDragonsteel:
+    AttackDamage: 23.0
+    AttackSpeed: 0.9
+ThrowingKnife:
+  DragonBone:
+    AttackDamage: 3.5
+    AttackSpeed: 2.5
+  FlamedDragonBone:
+    AttackDamage: 4.25
+    AttackSpeed: 2.5
+  IcedDragonBone:
+    AttackDamage: 4.25
+    AttackSpeed: 2.5
+  LightningDragonBone:
+    AttackDamage: 4.25
+    AttackSpeed: 2.5
+  FireDragonsteel:
+    AttackDamage: 12.0
+    AttackSpeed: 2.5
+  IceDragonsteel:
+    AttackDamage: 12.0
+    AttackSpeed: 2.5
+  LightningDragonsteel:
+    AttackDamage: 12.0
+    AttackSpeed: 2.5
+Warhammer:
+  DragonBone:
+    AttackDamage: 8.0
+    AttackSpeed: 1.1
+  FlamedDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.1
+  IcedDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.1
+  LightningDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.1
+  FireDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.1
+  IceDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.1
+  LightningDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.1
+Battleaxe:
+  DragonBone:
+    AttackDamage: 13.0
+    AttackSpeed: 1.0
+  FlamedDragonBone:
+    AttackDamage: 16.0
+    AttackSpeed: 1.0
+  IcedDragonBone:
+    AttackDamage: 16.0
+    AttackSpeed: 1.0
+  LightningDragonBone:
+    AttackDamage: 16.0
+    AttackSpeed: 1.0
+  FireDragonsteel:
+    AttackDamage: 47.0
+    AttackSpeed: 1.0
+  IceDragonsteel:
+    AttackDamage: 47.0
+    AttackSpeed: 1.0
+  LightningDragonsteel:
+    AttackDamage: 47.0
+    AttackSpeed: 1.0
+Longbow:
+  DragonBone:
+    AttackDamageMultiplier: 1.75
+    arrowVelocityMultiplier: 1.75
+  FlamedDragonBone:
+    AttackDamageMultiplier: 2.0
+    arrowVelocityMultiplier: 2.0
+  IcedDragonBone:
+    AttackDamageMultiplier: 2.0
+    arrowVelocityMultiplier: 2.0
+  LightningDragonBone:
+    AttackDamageMultiplier: 2.0
+    arrowVelocityMultiplier: 2.0
+  FireDragonsteel:
+    AttackDamageMultiplier: 3.0
+    arrowVelocityMultiplier: 3.0
+  IceDragonsteel:
+    AttackDamageMultiplier: 3.0
+    arrowVelocityMultiplier: 3.0
+  LightningDragonsteel:
+    AttackDamageMultiplier: 3.0
+    arrowVelocityMultiplier: 3.0
+Crossbow:
+  DragonBone:
+    AttackDamageMultiplier: 1.75
+    arrowVelocityMultiplier: 1.75
+  FlamedDragonBone:
+    AttackDamageMultiplier: 2.0
+    arrowVelocityMultiplier: 2.0
+  IcedDragonBone:
+    AttackDamageMultiplier: 2.0
+    arrowVelocityMultiplier: 2.0
+  LightningDragonBone:
+    AttackDamageMultiplier: 2.0
+    arrowVelocityMultiplier: 2.0
+  FireDragonsteel:
+    AttackDamageMultiplier: 3.0
+    arrowVelocityMultiplier: 3.0
+  IceDragonsteel:
+    AttackDamageMultiplier: 3.0
+    arrowVelocityMultiplier: 3.0
+  LightningDragonsteel:
+    AttackDamageMultiplier: 3.0
+    arrowVelocityMultiplier: 3.0

@@ -14,7 +14,10 @@ import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -33,6 +36,7 @@ public class BaubleEvents implements Listener {
     private final BaubleAbilities abilities;
     private final BaubleRunnables baubleRunnables;
     private final Utils util;
+    private final CustomConfig customConfig;
 
     public BaubleEvents(RLCraft instance) {
 
@@ -41,6 +45,7 @@ public class BaubleEvents implements Listener {
         citem = new Items(instance);
         util = new Utils(instance);
         baubleRunnables = new BaubleRunnables(instance);
+        customConfig = new CustomConfig(instance);
     }
 
 
@@ -49,16 +54,16 @@ public class BaubleEvents implements Listener {
         Player player = event.getPlayer();
         util.checkBauble(player);
 
-        baubleRunnables.getPotionRingResistanceRunnable(player).runTaskTimer(plugin, 0L, util.convertSecondsIntoTicks(1.5));
-        baubleRunnables.getPotionRingStrengthRunnable(player).runTaskTimer(plugin, 0L, util.convertSecondsIntoTicks(1.5));
-        baubleRunnables.getPotionRingSpeedRunnable(player).runTaskTimer(plugin, 0L, util.convertSecondsIntoTicks(1.5));
-        baubleRunnables.getPotionRingJumpBoostRunnable(player).runTaskTimer(plugin, 0L, util.convertSecondsIntoTicks(1.5));
-        baubleRunnables.getPotionRingHasteRunnable(player).runTaskTimer(plugin, 0L, util.convertSecondsIntoTicks(1.5));
-        baubleRunnables.getPotionRingRegenerationRunnable(player).runTaskTimer(plugin, 0L, util.convertSecondsIntoTicks(1.5));
+        baubleRunnables.getPotionRingResistanceRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingResistance.TickTime"));
+        baubleRunnables.getPotionRingStrengthRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingStrength.TickTime"));
+        baubleRunnables.getPotionRingSpeedRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingSpeed.TickTime"));
+        baubleRunnables.getPotionRingJumpBoostRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingJumpBoost.TickTime"));
+        baubleRunnables.getPotionRingHasteRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingHaste.TickTime"));
+        baubleRunnables.getPotionRingRegenerationRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingRegeneration.TickTime"));
 
-        baubleRunnables.getScarliteRingRunnable(player).runTaskTimer(plugin, 0L, util.convertSecondsIntoTicks(15));
-        baubleRunnables.getDragonsEyeRunnable(player).runTaskTimer(plugin, 0L, util.convertSecondsIntoTicks(1.5));
-        baubleRunnables.getMinersRingRunnable(player).runTaskTimer(plugin, 0L, util.convertSecondsIntoTicks(1.5));
+        baubleRunnables.getScarliteRingRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("ScarliteRing.TickTime"));
+        baubleRunnables.getDragonsEyeRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("DragonsEye.TickTime"));
+        baubleRunnables.getMinersRingRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("MinersRing.TickTime"));
 
     }
 
@@ -137,7 +142,7 @@ public class BaubleEvents implements Listener {
                     if (bauble.equals("Cobalt Shield") ||
                             bauble.equals("Obsidian Shield") ||
                             bauble.equals("Ankh Shield")) {
-                        baubleRunnables.freezeEntity(player).runTaskLater(plugin, util.convertSecondsIntoTicks(0.05));
+                        baubleRunnables.freezeEntity(player).runTaskLater(plugin, 1);
                     }
                 }
             }
@@ -154,53 +159,57 @@ public class BaubleEvents implements Listener {
             if (!(inv.getItemInOffHand() == null || inv.getItemInOffHand().getType() == Material.AIR)) {
                 itemOffHand = inv.getItemInOffHand();
             }
-
-            if (cause.equals(EntityDamageEvent.DamageCause.FIRE) ||
-                    cause.equals(EntityDamageEvent.DamageCause.FIRE_TICK) ||
-                    cause.equals(EntityDamageEvent.DamageCause.LAVA) ||
-                    cause.equals(EntityDamageEvent.DamageCause.HOT_FLOOR)) {
-                if (inv.containsAtLeast(citem.getObsidianSkull(), 1)) {
-                    event.setDamage(event.getDamage() * 0.25);
-                }
-                else if (! (itemOffHand == null || itemOffHand.getType() == Material.AIR) ) {
-                    if (((Damageable) itemOffHand.getItemMeta()).hasDamage()) {
-                        itemOffHand = util.resetDurability(itemOffHand);
-                        if (itemOffHand.getItemMeta().equals(citem.getObsidianShield()) ||
-                                itemOffHand.getItemMeta().equals(citem.getAnkhShield())) {
-                            event.setDamage(event.getDamage() * 0.25);
+            switch (event.getCause()) {
+                case FIRE:
+                case FIRE_TICK:
+                case LAVA:
+                case HOT_FLOOR: {
+                    if (inv.containsAtLeast(citem.getObsidianSkull(), 1)) {
+                        event.setDamage(event.getDamage() * customConfig.getBaubleConfig().getDouble("ObsidianSkull.HeatDamageMultiplier"));
+                    }
+                    else if (!(itemOffHand == null || itemOffHand.getType() == Material.AIR)) {
+                        if (((Damageable) itemOffHand.getItemMeta()).hasDamage()) {
+                            itemOffHand = util.resetDurability(itemOffHand);
+                            if (itemOffHand.getItemMeta().equals(citem.getObsidianShield())) {
+                                event.setDamage(event.getDamage() * customConfig.getBaubleConfig().getDouble("ObsidianShield.HeatDamageMultiplier"));
+                            }
+                            else if (itemOffHand.getItemMeta().equals(citem.getAnkhShield())) {
+                                event.setDamage(event.getDamage() * customConfig.getBaubleConfig().getDouble("AnkhShield.HeatDamageMultiplier"));
+                            }
                         }
                     }
                 }
-
-            }
-            else if (cause.equals(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) ||
-                    cause.equals(EntityDamageEvent.DamageCause.BLOCK_EXPLOSION)) {
-                if (! (itemOffHand == null || itemOffHand.getType() == Material.AIR) ) {
-                    itemOffHand = util.resetDurability(itemOffHand);
-                    if (itemOffHand.getItemMeta().equals(citem.getCobaltShield()) ||
-                            itemOffHand.getItemMeta().equals(citem.getObsidianShield()) ||
-                            itemOffHand.getItemMeta().equals(citem.getAnkhShield())) {
-                        baubleRunnables.freezeEntity(player);
+                case ENTITY_EXPLOSION:
+                case ENTITY_ATTACK:
+                case ENTITY_SWEEP_ATTACK:
+                case BLOCK_EXPLOSION: {
+                    if (! (itemOffHand == null || itemOffHand.getType() == Material.AIR) ) {
+                        itemOffHand = util.resetDurability(itemOffHand);
+                        if (itemOffHand.getItemMeta().equals(citem.getCobaltShield()) ||
+                                itemOffHand.getItemMeta().equals(citem.getObsidianShield()) ||
+                                itemOffHand.getItemMeta().equals(citem.getAnkhShield())) {
+                            baubleRunnables.freezeEntity(player);
+                        }
                     }
                 }
-            }
-            else if (cause.equals(EntityDamageEvent.DamageCause.FALL)) {
-                if (player.getInventory().containsAtLeast(citem.getBalloon(), 1))
-                    if (player.getFallDistance() <= 8.0D) {
+                case FALL: {
+                    if (player.getInventory().containsAtLeast(citem.getBalloon(), 1))
+                        if (player.getFallDistance() <= customConfig.getBaubleConfig().getDouble("Balloon.MinFallDistance")) {
+                            event.setCancelled(true);
+                        }
+                        else {
+                            event.setDamage(event.getDamage() * customConfig.getBaubleConfig().getDouble("Balloon.FallDamageMultiplier"));
+                        }
+                    if (player.getInventory().containsAtLeast(citem.getLuckyHorseshoe(), 1))
                         event.setCancelled(true);
-                    }
-                    else {
-                        event.setDamage(event.getDamage() * 0.25);
-                    }
-                if (player.getInventory().containsAtLeast(citem.getLuckyHorseshoe(), 1))
-                    event.setCancelled(true);
-            }
-            else if (cause.equals(EntityDamageEvent.DamageCause.CONTACT)) {
-                if (player.getInventory().containsAtLeast(citem.getPhytoprostasiaAmulet(), 1))
-                    event.setCancelled(true);
+                }
+                case CONTACT: {
+                    if (player.getInventory().containsAtLeast(citem.getPhytoprostasiaAmulet(), 1))
+                        event.setCancelled(true);
+                }
             }
 
-            if (util.playerInCrossNecklace(player)) {
+            if (plugin.crossNecklace.containsKey(player.getUniqueId())) {
                 if (plugin.crossNecklace.get(player.getUniqueId())) {
                     event.setCancelled(true);
                 }
@@ -208,13 +217,8 @@ public class BaubleEvents implements Listener {
 
             if (!event.isCancelled()) {
                 if (player.getInventory().containsAtLeast(citem.getCrossNecklace(), 1)) {
-                    if (util.playerInCrossNecklace(player)) {
-                        plugin.crossNecklace.replace(player.getUniqueId(), true);
-                    }
-                    else {
-                        plugin.crossNecklace.put(player.getUniqueId(), true);
-                    }
-                    baubleRunnables.removeInvFrames(player).runTaskLater(plugin, util.convertSecondsIntoTicks(1.2));
+                    util.setOrReplaceHashmap(plugin.crossNecklace, player.getUniqueId(), true);
+                    baubleRunnables.removeInvFrames(player).runTaskLater(plugin, customConfig.getBaubleConfig().getInt("CrossNecklace.InvFrameLength"));
                 }
             }
         }
@@ -245,7 +249,7 @@ public class BaubleEvents implements Listener {
                         && Math.abs(velocity.getY() - jumpVelocity) <= 0.01)
                 {
                     if ( !(player.isInWater() || player.isRiptiding() || player.isFlying()) ) {
-                        velocity.setY(jumpVelocity * 2.0D);
+                        velocity.setY(jumpVelocity * customConfig.getBaubleConfig().getDouble("Balloon.JumpVelocityMultiplier"));
                         player.setVelocity(velocity);
                     }
                 }
@@ -258,8 +262,8 @@ public class BaubleEvents implements Listener {
         switch (event.getEntity().getType()) {
             case ENDER_DRAGON: {
                 Random r = new Random();
-                double chance = plugin.getConfig().getDouble("baubles.EnderDragonScale.dropChance");
-                if (plugin.getConfig().getBoolean("baubles.EnderDragonScale.checkLooting")) {
+                double chance = customConfig.getBaubleConfig().getDouble("EnderDragonScale.DropChance");
+                if (customConfig.getBaubleConfig().getBoolean("EnderDragonScale.CheckLooting")) {
                     if (!(event.getEntity().getKiller() == null)) {
                         Player player = event.getEntity().getKiller();
                         if (!(player.getInventory().getItemInMainHand() == null || player.getInventory().getItemInMainHand().getType() == Material.AIR)) {
@@ -280,8 +284,8 @@ public class BaubleEvents implements Listener {
             }
             case HUSK: {
                 Random r = new Random();
-                double chance = plugin.getConfig().getDouble("baubles.ForbiddenFruit.dropChance");
-                if (plugin.getConfig().getBoolean("baubles.ForbiddenFruit.checkLooting")) {
+                double chance = customConfig.getBaubleConfig().getDouble("ForbiddenFruit.DropChance");
+                if (customConfig.getBaubleConfig().getBoolean("ForbiddenFruit.CheckLooting")) {
                     if (!(event.getEntity().getKiller() == null)) {
                         Player player = event.getEntity().getKiller();
                         if (!(player.getInventory().getItemInMainHand() == null || player.getInventory().getItemInMainHand().getType() == Material.AIR)) {
@@ -302,8 +306,8 @@ public class BaubleEvents implements Listener {
             }
             case STRAY: {
                 Random r = new Random();
-                double chance = plugin.getConfig().getDouble("baubles.RingOverclocking.dropChance");
-                if (plugin.getConfig().getBoolean("baubles.RingOverclocking.checkLooting")) {
+                double chance = customConfig.getBaubleConfig().getDouble("RingOverclocking.DropChance");
+                if (customConfig.getBaubleConfig().getBoolean("RingOverclocking.CheckLooting")) {
                     if (!(event.getEntity().getKiller() == null)) {
                         Player player = event.getEntity().getKiller();
                         if (! (player.getInventory().getItemInMainHand() == null || player.getInventory().getItemInMainHand().getType() == Material.AIR) ) {
@@ -324,8 +328,8 @@ public class BaubleEvents implements Listener {
             }
             case ELDER_GUARDIAN: {
                 Random r = new Random();
-                double chance = plugin.getConfig().getDouble("baubles.Vitamins.dropChance");
-                if (plugin.getConfig().getBoolean("baubles.Vitamins.checkLooting")) {
+                double chance = customConfig.getBaubleConfig().getDouble("Vitamins.DropChance");
+                if (customConfig.getBaubleConfig().getBoolean("Vitamins.CheckLooting")) {
                     if (!(event.getEntity().getKiller() == null)) {
                         Player player = event.getEntity().getKiller();
                         if (! (player.getInventory().getItemInMainHand() == null || player.getInventory().getItemInMainHand().getType() == Material.AIR) ) {
@@ -346,8 +350,8 @@ public class BaubleEvents implements Listener {
             }
             case CAVE_SPIDER: {
                 Random r = new Random();
-                double chance = plugin.getConfig().getDouble("baubles.Bezoar.dropChance");
-                if (plugin.getConfig().getBoolean("baubles.Bezoar.checkLooting")) {
+                double chance = customConfig.getBaubleConfig().getDouble("Bezoar.DropChance");
+                if (customConfig.getBaubleConfig().getBoolean("Bezoar.CheckLooting")) {
                     if (!(event.getEntity().getKiller() == null)) {
                         Player player = event.getEntity().getKiller();
                         if (! (player.getInventory().getItemInMainHand() == null || player.getInventory().getItemInMainHand().getType() == Material.AIR) ) {
@@ -375,12 +379,6 @@ public class BaubleEvents implements Listener {
             Player player = (Player) event.getEntity();
             PotionEffect newEffect = event.getNewEffect();
             NBTItem itemOffHand = null;
-            if (! (player.getInventory().getItemInOffHand() == null || player.getInventory().getItemInOffHand().getType() == Material.AIR) ) {
-                itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
-                if (itemOffHand.hasKey("Bauble")) {
-
-                }
-            }
             if (newEffect != null) {
                 switch (newEffect.getType().getName()) {
                     case "HUNGER":
@@ -400,8 +398,7 @@ public class BaubleEvents implements Listener {
                     case "SLOW":
                         if (player.getInventory().containsAtLeast(citem.getRingofOverclocking(), 1) ||
                                 player.getInventory().containsAtLeast(citem.getRingofFreeAction(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getAnkhCharm(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getAnkhShield(), 1)) {
+                                player.getInventory().containsAtLeast(citem.getAnkhCharm(), 1)) {
                             event.setCancelled(true);
                         }
                         if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
@@ -416,8 +413,7 @@ public class BaubleEvents implements Listener {
                     case "POISON":
                         if (player.getInventory().containsAtLeast(citem.getBezoar(), 1) ||
                                 player.getInventory().containsAtLeast(citem.getMixedColorDragonScale(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getAnkhCharm(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getAnkhShield(), 1)) {
+                                player.getInventory().containsAtLeast(citem.getAnkhCharm(), 1)) {
                             event.setCancelled(true);
                         }
                         if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
@@ -512,23 +508,23 @@ public class BaubleEvents implements Listener {
 
                 if (firstMeta.equals(citem.getCobaltShield().getItemMeta()) && secondMeta.equals(citem.getObsidianSkull().getItemMeta())) {
                     event.setResult(citem.getObsidianShield());
-                    inv.setRepairCost(10);
-                    inv.setMaximumRepairCost(10);
+                    inv.setRepairCost(customConfig.getBaubleConfig().getInt("ObsidianShield.AnvilCost"));
+                    inv.setMaximumRepairCost(customConfig.getBaubleConfig().getInt("ObsidianShield.AnvilCost"));
                 }
                 else if (firstMeta.equals(citem.getRingofOverclocking().getItemMeta()) && secondMeta.equals(citem.getShulkerHeart().getItemMeta())) {
                     event.setResult(citem.getRingofFreeAction());
-                    inv.setRepairCost(10);
-                    inv.setMaximumRepairCost(10);
+                    inv.setRepairCost(customConfig.getBaubleConfig().getInt("RingFreeAction.AnvilCost"));
+                    inv.setMaximumRepairCost(customConfig.getBaubleConfig().getInt("RingFreeAction.AnvilCost"));
                 }
                 else if (firstMeta.equals(citem.getBezoar().getItemMeta()) && secondMeta.equals(citem.getBlackDragonScale().getItemMeta())) {
                     event.setResult(citem.getMixedColorDragonScale());
-                    inv.setRepairCost(10);
-                    inv.setMaximumRepairCost(10);
+                    inv.setRepairCost(customConfig.getBaubleConfig().getInt("MixedColorDragonScale.AnvilCost"));
+                    inv.setMaximumRepairCost(customConfig.getBaubleConfig().getInt("MixedColorDragonScale.AnvilCost"));
                 }
                 else if (firstMeta.equals(citem.getObsidianShield().getItemMeta()) && secondMeta.equals(citem.getAnkhCharm().getItemMeta())) {
                     event.setResult(citem.getAnkhShield());
-                    inv.setRepairCost(10);
-                    inv.setMaximumRepairCost(10);
+                    inv.setRepairCost(customConfig.getBaubleConfig().getInt("AnkhShield.AnvilCost"));
+                    inv.setMaximumRepairCost(customConfig.getBaubleConfig().getInt("AnkhShield.AnvilCost"));
                 }
             }
         }

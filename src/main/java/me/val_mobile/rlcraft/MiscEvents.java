@@ -28,11 +28,11 @@ public class MiscEvents implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (plugin.getConfig().getBoolean("resourcePack.enabled")) {
-            player.setResourcePack(plugin.getConfig().getString("resourcePack.url"));
+        if (plugin.getConfig().getBoolean("ResourcePack.Enabled")) {
+            player.setResourcePack(plugin.getConfig().getString("ResourcePack.URL"));
         }
 
-        if (plugin.getConfig().getBoolean("flintTools")) {
+        if (plugin.getConfig().getBoolean("FlintTools")) {
             player.discoverRecipe(recipes.getFlintAxeRecipe().getKey());
             player.discoverRecipe(recipes.getFlintKnifeRecipe().getKey());
             player.discoverRecipe(recipes.getFlintShovelRecipe().getKey());
@@ -40,12 +40,12 @@ public class MiscEvents implements Listener {
             player.discoverRecipe(recipes.getFlintHoeRecipe().getKey());
         }
 
-        if (plugin.getConfig().getBoolean("noTreePunching")) {
+        if (plugin.getConfig().getBoolean("NoTreePunching")) {
             player.discoverRecipe(recipes.getCobblestoneRecipe().getKey());
             player.discoverRecipe(recipes.getPlantStringRecipe().getKey());
         }
 
-        if (plugin.getConfig().getBoolean("dragons.enabled")) {
+        if (plugin.getConfig().getBoolean("Dragons")) {
             player.discoverRecipe(recipes.getFireDragonsteelIngotRecipe().getKey());
             player.discoverRecipe(recipes.getIceDragonsteelIngotRecipe().getKey());
             player.discoverRecipe(recipes.getLightningDragonsteelIngotRecipe().getKey());
@@ -119,7 +119,7 @@ public class MiscEvents implements Listener {
             player.discoverRecipe(recipes.getIceDragonBoneSwordRecipe().getKey());
             player.discoverRecipe(recipes.getLightningDragonBoneSwordRecipe().getKey());
         }
-        if (plugin.getConfig().getBoolean("seaSerpents.enabled")) {
+        if (plugin.getConfig().getBoolean("SeaSerpents")) {
             player.discoverRecipe(recipes.getTideGuardianHelmetBlueRecipe().getKey());
             player.discoverRecipe(recipes.getTideGuardianChestplateBlueRecipe().getKey());
             player.discoverRecipe(recipes.getTideGuardianLeggingsBlueRecipe().getKey());
@@ -156,7 +156,7 @@ public class MiscEvents implements Listener {
             player.discoverRecipe(recipes.getTideGuardianBootsTealRecipe().getKey());
 
         }
-        if (plugin.getConfig().getBoolean("baubles")) {
+        if (plugin.getConfig().getBoolean("Baubles")) {
             player.discoverRecipe(recipes.getBalloonRecipe().getKey());
             player.discoverRecipe(recipes.getCobaltShieldRecipe().getKey());
             player.discoverRecipe(recipes.getObsidianSkullRecipe().getKey());
@@ -195,11 +195,11 @@ public class MiscEvents implements Listener {
             int fireResDuration = 2000;
 
             PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, speedAmplifier, speedDuration);
-            PotionEffect regen = new PotionEffect(PotionEffectType.SPEED, regenAmplifier, regenDuration);
+            PotionEffect regen = new PotionEffect(PotionEffectType.REGENERATION, regenAmplifier, regenDuration);
             PotionEffect strength = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, strengthAmplifier, strengthDuration);
             PotionEffect res = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, resAmplifier, resDuration);
             PotionEffect absorption = new PotionEffect(PotionEffectType.ABSORPTION, absorptionAmplifier, absorptionDuration);
-            PotionEffect fireRes = new PotionEffect(PotionEffectType.ABSORPTION, fireResAmplifier, fireResDuration);
+            PotionEffect fireRes = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, fireResAmplifier, fireResDuration);
 
             util.addOrStackPotionEffect(player, speed);
             util.addOrStackPotionEffect(player, regen);

@@ -9,15 +9,17 @@ import org.bukkit.potion.PotionEffectType;
 public class BaubleAbilities {
 
     private final Utils util;
+    private final CustomConfig customConfig;
     public BaubleAbilities(RLCraft instance) {
         util = new Utils(instance);
+        customConfig = new CustomConfig(instance);
     }
 
     public void DragonsEyeAbility(Player player) {
-        int fireResAmplifier = 0;
-        int fireResDuration = 220;
-        int nightVisAmplifier = 0;
-        int nightVisDuration = 220;
+        int fireResAmplifier = customConfig.getBaubleConfig().getInt("DragonsEye.FireResistance.Amplifier");
+        int fireResDuration = customConfig.getBaubleConfig().getInt("DragonsEye.FireResistance.Duration");
+        int nightVisAmplifier = customConfig.getBaubleConfig().getInt("DragonsEye.NightVision.Amplifier");
+        int nightVisDuration = customConfig.getBaubleConfig().getInt("DragonsEye.NightVision.Duration");
 
         PotionEffect fireRes = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, fireResDuration, fireResAmplifier);
         util.addOrStackPotionEffect(player, fireRes);
@@ -30,9 +32,11 @@ public class BaubleAbilities {
     public void RingResistanceAbility(Player player, int amount) {
 
         int amplifier = amount - 1;
-        int duration = 270;
-        if (amplifier > 2) {
-            amplifier = 2;
+        int duration = customConfig.getBaubleConfig().getInt("PotionRingResistance.Duration");
+        if (customConfig.getBaubleConfig().getInt("PotionRingResistance.MaxAmplifier") != -1) {
+            if (amplifier > customConfig.getBaubleConfig().getInt("PotionRingResistance.MaxAmplifier")) {
+                amplifier = customConfig.getBaubleConfig().getInt("PotionRingResistance.MaxAmplifier");
+            }
         }
 
         PotionEffect effect = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, duration, amplifier);
@@ -41,7 +45,12 @@ public class BaubleAbilities {
 
     public void RingHasteAbility(Player player, int amount) {
         int amplifier = amount - 1;
-        int duration = 270;
+        int duration = customConfig.getBaubleConfig().getInt("PotionRingHaste.Duration");
+        if (customConfig.getBaubleConfig().getInt("PotionRingHaste.MaxAmplifier") != -1) {
+            if (amplifier > customConfig.getBaubleConfig().getInt("PotionRingHaste.MaxAmplifier")) {
+                amplifier = customConfig.getBaubleConfig().getInt("PotionRingHaste.MaxAmplifier");
+            }
+        }
 
         PotionEffect effect = new PotionEffect(PotionEffectType.FAST_DIGGING, duration, amplifier);
         util.addOrStackPotionEffect(player, effect);
@@ -50,10 +59,13 @@ public class BaubleAbilities {
     public void RingRegenerationAbility(Player player, int amount) {
 
         int amplifier = amount - 1;
-        int duration = 270;
-        if (amplifier > 2) {
-            amplifier = 2;
+        int duration = customConfig.getBaubleConfig().getInt("PotionRingRegeneration.Duration");
+        if (customConfig.getBaubleConfig().getInt("PotionRingRegeneration.MaxAmplifier") != -1) {
+            if (amplifier > customConfig.getBaubleConfig().getInt("PotionRingRegeneration.MaxAmplifier")) {
+                amplifier = customConfig.getBaubleConfig().getInt("PotionRingRegeneration.MaxAmplifier");
+            }
         }
+
 
         PotionEffect effect = new PotionEffect(PotionEffectType.REGENERATION, duration, amplifier);
         util.addOrStackPotionEffect(player, effect);
@@ -61,7 +73,12 @@ public class BaubleAbilities {
 
     public void RingSpeedAbility(Player player, int amount) {
         int amplifier = amount - 1;
-        int duration = 270;
+        int duration = customConfig.getBaubleConfig().getInt("PotionRingSpeed.Duration");
+        if (customConfig.getBaubleConfig().getInt("PotionRingSpeed.MaxAmplifier") != -1) {
+            if (amplifier > customConfig.getBaubleConfig().getInt("PotionRingSpeed.MaxAmplifier")) {
+                amplifier = customConfig.getBaubleConfig().getInt("PotionRingSpeed.MaxAmplifier");
+            }
+        }
 
         PotionEffect effect = new PotionEffect(PotionEffectType.SPEED, duration, amplifier);
         util.addOrStackPotionEffect(player, effect);
@@ -70,7 +87,12 @@ public class BaubleAbilities {
     public void RingJumpBoostAbility(Player player, int amount) {
 
         int amplifier = amount - 1;
-        int duration = 270;
+        int duration = customConfig.getBaubleConfig().getInt("PotionRingJumpBoost.Duration");
+        if (customConfig.getBaubleConfig().getInt("PotionRingJumpBoost.MaxAmplifier") != -1) {
+            if (amplifier > customConfig.getBaubleConfig().getInt("PotionRingJumpBoost.MaxAmplifier")) {
+                amplifier = customConfig.getBaubleConfig().getInt("PotionRingJumpBoost.MaxAmplifier");
+            }
+        }
 
         PotionEffect effect = new PotionEffect(PotionEffectType.JUMP, duration, amplifier);
         util.addOrStackPotionEffect(player, effect);
@@ -79,9 +101,11 @@ public class BaubleAbilities {
     public void RingStrengthAbility(Player player, int amount) {
 
         int amplifier = amount - 1;
-        int duration = 270;
-        if (amplifier > 2) {
-            amplifier = 2;
+        int duration = customConfig.getBaubleConfig().getInt("PotionRingStrength.Duration");
+        if (customConfig.getBaubleConfig().getInt("PotionRingStrength.MaxAmplifier") != -1) {
+            if (amplifier > customConfig.getBaubleConfig().getInt("PotionRingStrength.MaxAmplifier")) {
+                amplifier = customConfig.getBaubleConfig().getInt("PotionRingStrength.MaxAmplifier");
+            }
         }
 
         PotionEffect effect = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, duration, amplifier);
@@ -90,8 +114,8 @@ public class BaubleAbilities {
 
     public void PoisonStoneAbility(LivingEntity entity) {
 
-        int amplifier = 1;
-        int duration = 270;
+        int amplifier = customConfig.getBaubleConfig().getInt("PoisonStone.Amplifier");
+        int duration = customConfig.getBaubleConfig().getInt("PoisonStone.Duration");
 
         PotionEffect effect = new PotionEffect(PotionEffectType.POISON, duration, amplifier);
         util.addOrStackPotionEffect(entity, effect);
@@ -100,7 +124,7 @@ public class BaubleAbilities {
 
     public void ScarliteRingAbility(Player player) {
 
-        double healAmount = 1.0D;
+        double healAmount = customConfig.getBaubleConfig().getDouble("ScarliteRing.HealAmount");
 
         if (player.getHealth() < player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
             double difference = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() - player.getHealth();
@@ -115,8 +139,8 @@ public class BaubleAbilities {
 
     public void MinersRingAbility(Player player) {
 
-        int amplifier = 0;
-        int duration = 270;
+        int amplifier = customConfig.getBaubleConfig().getInt("MinersRing.Amplifier");
+        int duration = customConfig.getBaubleConfig().getInt("MinersRing.Duration");
 
         PotionEffect effect = new PotionEffect(PotionEffectType.FAST_DIGGING, duration, amplifier);
         util.addOrStackPotionEffect(player, effect);

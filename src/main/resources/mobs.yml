@@ -1,0 +1,47 @@
+#######################################
+#          Mobs                       #
+#######################################
+
+# Customize chance and loot tables of dragons, sea serpents, and withers
+
+dragons:
+  # Chance the vanilla acid ball attack becomes a special attack instead
+  # Make sure rates add up to 1.0
+  BreathAttackChance: 0.7
+  ExplosionAttackChance: 0.2
+  NormalAttackChance: 0.1
+  # Make sure rates add up to 1.0
+  FireDragonRate: 0.4
+  IceDragonRate: 0.3
+  LightningDragonRate: 0.3
+  RecursiveDropRates:
+    Enabled: true
+    MinScales: 24
+    MaxScales: 48
+    MinBones: 6
+    # The amount of dragon blood dropped is the amount of scales dropped times this multiplier
+    # Ex: 48 scales * 0.2 bloodMultiplier = 9 dragon blood dropped (decimals are truncated)
+    BloodMultiplier: 0.1
+    FleshMultiplier: 0.6
+  # Standard drop rates, rates for all loot must be specified
+  SpecifiedDropRates:
+    MinScales: 24
+    MaxScales: 48
+    MinBones: 6
+    MaxBones: 54
+    MinBlood: 4
+    MaxBlood: 6
+    MinFlesh: 12
+    MaxFlesh: 36
+SeaSerpents:
+  MinSerpentScales: 24
+  MaxSerpentScales: 48
+  # Note that shiny scales only drop from regular guardians
+  MinShinyScales: 1
+  MaxShinyScales: 1
+# Witherbones are required to craft dragon tools and weapons
+Witherbones:
+  MinBonesWither: 20
+  MaxBonesWither: 32
+  MinBonesWitherSkeleton: 1
+  MaxBonesWitherSkeleton: 1

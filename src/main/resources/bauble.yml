@@ -1,0 +1,105 @@
+#######################################
+#          Baubles                    #
+#######################################
+
+# Customize any feature about the baubles
+
+# MaxAmplifier - Maximum level of potion effect a player can have get with multiple potion rings
+# Amplifiers are 1 value stronger than they appear
+# Ex: An amplifier of 0 corresponds to Resistance I
+# Set to -1 to disable
+# Duration - Length of the potion effect in ticks (20 ticks = 1 second)
+# TickTime - How frequently potion rings update in ticks
+# Increase this number if you have performance issues with the plugin
+# Do not set below 1
+PotionRingResistance:
+  MaxAmplifier: 2
+  Duration: 270
+  TickTime: 20
+PotionRingRegeneration:
+  MaxAmplifier: 2
+  Duration: 270
+  TickTime: 20
+PotionRingStrength:
+  MaxAmplifier: 2
+  Duration: 270
+  TickTime: 20
+PotionRingSpeed:
+  MaxAmplifier: 2
+  Duration: 270
+  TickTime: 20
+PotionRingHaste:
+  MaxAmplifier: 2
+  Duration: 270
+  TickTime: 20
+PotionRingJumpBoost:
+  MaxAmplifier: 2
+  Duration: 270
+  TickTime: 20
+DragonsEye:
+  NightVision:
+    # Amplifier - Potency of the potion effect
+    # Amplifiers are 1 value stronger than they appear
+    # Ex: An amplifier of 0 corresponds to Resistance I
+    Amplifier: 0
+    Duration: 270
+  FireResistance:
+    Amplifier: 0
+    Duration: 270
+  TickTime: 20
+MinersRing:
+  Amplifier: 0
+  Duration: 270
+  TickTime: 20
+PoisonStone:
+  Amplifier: 1
+  Duration: 270
+# The tick time of the scarlite ring affects how long it will take to heal the player
+# For reference, 1.0 HP is half a heart
+ScarliteRing:
+  HealAmount: 1.0
+  TickTime: 300
+# Note 1.00 = 100%
+EnderDragonScale:
+  DropChance: 1.00
+  CheckLooting: true
+ForbiddenFruit:
+  DropChance: 0.025
+  CheckLooting: true
+RingOverclocking:
+  DropChance: 0.03
+  CheckLooting: true
+Bezoar:
+  DropChance: 0.05
+  CheckLooting: true
+Vitamins:
+  DropChance: 1.00
+  CheckLooting: true
+# Length of the invincibility frame the cross necklace gives you in ticks (20 ticks = 1 second)
+# Vanilla i-frames are 10 ticks long
+CrossNecklace:
+  InvFrameLength: 20
+# MinFallDistance - The minimum distance a player can fall with a balloon without taking fall damage.
+# Vanilla minimum fall distance is 3 blocks
+# FallDamageMultiplier - How much is fall damage reduced
+# 1.0 = complete reduction of fall damage
+# JumpVelocityMultiplier - How much faster is jump speed
+# Avoid going too high otherwise the player will take damage just from landing
+Balloon:
+  MinFallDistance: 8.0
+  FallDamageMultiplier: 0.25
+  JumpVelocityMultiplier: 2.0
+# Should a player take fire, lava, or magma block damage, by how much is it reduced
+ObsidianSkull:
+  HeatDamageMultiplier: 0.25
+ObsidianShield:
+  # Cost to create the obsidian shield from a cobalt shield and obsidian skull in experience levels
+  AnvilCost: 10
+  HeatDamageMultiplier: 0.25
+AnkhShield:
+  AnvilCost: 10
+  HeatDamageMultiplier: 0.25
+RingFreeAction:
+  AnvilCost: 10
+MixedColorDragonScale:
+  AnvilCost: 10

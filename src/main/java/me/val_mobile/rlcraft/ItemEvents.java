@@ -6,7 +6,6 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -18,11 +17,9 @@ public class ItemEvents implements Listener {
 
     private final RLCraft plugin;
     private final ItemAbilities itemAbilities;
-    private final DragonRunnables dragonRunnables;
     private final Utils util;
     public ItemEvents(RLCraft instance) {
         plugin = instance;
-        dragonRunnables = new DragonRunnables(instance);
         util = new Utils(instance);
         itemAbilities = new ItemAbilities(instance);
     }
@@ -75,7 +72,7 @@ public class ItemEvents implements Listener {
                                     event.setDamage(event.getDamage() + 4.0D);
                                 }
                             }
-                            itemAbilities.LightningDragonBoneAbility((LivingEntity) entity);
+                            itemAbilities.LightningDragonBoneAbility((LivingEntity) entity, player);
                             break;
                         case "Fire Dragonsteel":
                             itemAbilities.FireDragonsteelAbility((LivingEntity) entity);
@@ -84,7 +81,7 @@ public class ItemEvents implements Listener {
                             itemAbilities.IceDragonsteelAbility((LivingEntity) entity);
                             break;
                         case "Lightning Dragonsteel":
-                            itemAbilities.LightningDragonsteelAbility((LivingEntity) entity);
+                            itemAbilities.LightningDragonsteelAbility((LivingEntity) entity, player);
                             break;
                     }
                 }
@@ -188,7 +185,7 @@ public class ItemEvents implements Listener {
                                             event.setDamage(event.getDamage() + 4.0D);
                                         }
                                     }
-                                    itemAbilities.LightningDragonBoneAbility((LivingEntity) entity);
+                                    itemAbilities.LightningDragonBoneAbility((LivingEntity) entity, player);
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
@@ -227,7 +224,7 @@ public class ItemEvents implements Listener {
                                     }
                                     break;
                                 case "Lightning Dragonsteel":
-                                    itemAbilities.LightningDragonsteelAbility((LivingEntity) entity);
+                                    itemAbilities.LightningDragonsteelAbility((LivingEntity) entity, player);
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":

@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 public final class RLCraft extends JavaPlugin {
 
+    private final int resourceID = 93795;
     private final Recipes recipes = new Recipes(this);
     private final MiscEvents recipeEvents = new MiscEvents(this);
     private final NoTreePunching noTreePunching = new NoTreePunching(this);
@@ -20,6 +21,7 @@ public final class RLCraft extends JavaPlugin {
     private final BaubleEvents baubleEvents = new BaubleEvents(this);
     private final ItemEvents itemEvents = new ItemEvents(this);
     private final ArmorEvents armorEvents = new ArmorEvents(this);
+    private final CustomConfig customConfig = new CustomConfig(this);
     private final Commands commands = new Commands(this);
     private final Tab tabCompleter = new Tab();
 
@@ -43,22 +45,28 @@ public final class RLCraft extends JavaPlugin {
         // Plugin startup logic
         this.saveDefaultConfig();
 
+        customConfig.createSpartanWeaponryConfig();
+        customConfig.createBaubleConfig();
+        customConfig.createIceFireGearConfig();
+        customConfig.createMobLootConfig();
+        customConfig.createNoTreePunchingConfig();
+
         Logger logger = this.getLogger();
-        new UpdateChecker(this, 93795).getVersion(version -> {
+        new UpdateChecker(this, resourceID).getVersion(version -> {
             if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
-                logger.info(ChatColor.translateAlternateColorCodes('&', "&aYou are running the latest version of RLCraft"));
+                logger.info(ChatColor.translateAlternateColorCodes('&', "&aYou are running the latest version"));
             } else {
-                logger.info(ChatColor.translateAlternateColorCodes('&', "&aThere is a new update available for RLCraft: https://www.spigotmc.org/resources/rlcraft-1-17-baubles-dragons-sea-serpents.93795/"));
+                logger.info(ChatColor.translateAlternateColorCodes('&', "&aThere is a new update available: https://www.spigotmc.org/resources/rlcraft-1-17-baubles-dragons-sea-serpents.93795/history"));
             }
         });
 
         PluginManager pm = this.getServer().getPluginManager();
         
-        if (this.getConfig().getBoolean("unlockRecipes")) {
+        if (this.getConfig().getBoolean("UnlockRecipes")) {
             pm.registerEvents(recipeEvents, this);
         }
 
-        if (this.getConfig().getBoolean("flintTools")) {
+        if (this.getConfig().getBoolean("FlintTools")) {
             Bukkit.addRecipe(recipes.getFlintAxeRecipe());
             Bukkit.addRecipe(recipes.getFlintKnifeRecipe());
             Bukkit.addRecipe(recipes.getFlintShovelRecipe());
@@ -67,14 +75,14 @@ public final class RLCraft extends JavaPlugin {
 
         }
 
-        if (this.getConfig().getBoolean("noTreePunching")) {
+        if (this.getConfig().getBoolean("NoTreePunching")) {
             Bukkit.addRecipe(recipes.getCobblestoneRecipe());
             Bukkit.addRecipe(recipes.getPlantStringRecipe());
 
             pm.registerEvents(noTreePunching, this);
         }
 
-        if (this.getConfig().getBoolean("dragons.enabled")) {
+        if (this.getConfig().getBoolean("Dragons")) {
             Bukkit.addRecipe(recipes.getFireDragonsteelIngotRecipe());
             Bukkit.addRecipe(recipes.getIceDragonsteelIngotRecipe());
             Bukkit.addRecipe(recipes.getLightningDragonsteelIngotRecipe());
@@ -151,7 +159,7 @@ public final class RLCraft extends JavaPlugin {
             pm.registerEvents(dragonEvents, this);
             pm.registerEvents(itemEvents, this);
         }
-        if (this.getConfig().getBoolean("seaSerpents.enabled")) {
+        if (this.getConfig().getBoolean("SeaSerpents")) {
             Bukkit.addRecipe(recipes.getTideGuardianHelmetBlueRecipe());
             Bukkit.addRecipe(recipes.getTideGuardianChestplateBlueRecipe());
             Bukkit.addRecipe(recipes.getTideGuardianLeggingsBlueRecipe());
@@ -191,11 +199,11 @@ public final class RLCraft extends JavaPlugin {
             pm.registerEvents(armorEvents, this);
         }
 
-        if (this.getConfig().getBoolean("witherbones.enabled")) {
+        if (this.getConfig().getBoolean("Witherbones")) {
             pm.registerEvents(witherDrops, this);
         }
 
-        if (this.getConfig().getBoolean("baubles.enabled")) {
+        if (this.getConfig().getBoolean("Baubles")) {
             Bukkit.addRecipe(recipes.getBalloonRecipe());
             Bukkit.addRecipe(recipes.getSunglassesRecipe());
             Bukkit.addRecipe(recipes.getCobaltShieldRecipe());

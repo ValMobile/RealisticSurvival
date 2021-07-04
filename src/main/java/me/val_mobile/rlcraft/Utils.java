@@ -546,14 +546,6 @@ public class Utils {
 
     }
 
-    public boolean playerInCrossNecklace(Player player) {
-
-        if (plugin.crossNecklace.containsKey(player.getUniqueId())) {
-            return true;
-        }
-        return false;
-    }
-
     public void setOrReplaceHashmap(HashMap<UUID, Integer> map, UUID key, Integer amount) {
         if (map.containsKey(key)) {
             map.replace(key, amount);
@@ -588,10 +580,14 @@ public class Utils {
             PotionEffect currentEffect = entity.getPotionEffect(type);
             int currentAmplifier = currentEffect.getAmplifier();
             int currentDuration = currentEffect.getDuration();
-            if (newAmplifier >= currentAmplifier) {
-                if (newDuration >= currentDuration) {
-                    newDuration += currentDuration;
-                    effect = new PotionEffect(effect.getType(), newAmplifier, newDuration);
+            if (newAmplifier > currentAmplifier) {
+                newDuration += currentDuration;
+                effect = new PotionEffect(effect.getType(), newAmplifier, newDuration);
+                entity.removePotionEffect(type);
+                entity.addPotionEffect(effect);
+            }
+            else {
+                if (newDuration > currentDuration) {
                     entity.removePotionEffect(type);
                     entity.addPotionEffect(effect);
                 }
@@ -608,10 +604,10 @@ public class Utils {
         }
 
         if (Math.floor(speed) == speed) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage.intValue() + " Attack Speed"));
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + speed.intValue() + " Attack Speed"));
         }
         else {
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage + " Attack Speed"));
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + speed + " Attack Speed"));
         }
     }
 

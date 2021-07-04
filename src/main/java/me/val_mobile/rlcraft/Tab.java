@@ -440,6 +440,7 @@ public class Tab implements TabCompleter {
 
                 msmpThirdArgs.add("bauble_crown_golden");
                 msmpThirdArgs.add("bauble_sunglasses");
+                msmpThirdArgs.add("bauble_broken_heart");
                 msmpThirdArgs.add("dragonsteel_fire_block");
                 msmpThirdArgs.add("dragonsteel_ice_block");
                 msmpThirdArgs.add("dragonsteel_lightning_block");

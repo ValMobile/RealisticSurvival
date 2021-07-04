@@ -13,16 +13,19 @@ import org.bukkit.potion.PotionEffectType;
 public class ItemAbilities {
 
     private final RLCraft plugin;
-    private final ItemRunnables itemRunnables = new ItemRunnables();
+    private final ItemRunnables itemRunnables;
     private final Utils util;
+    private final CustomConfig customConfig;
     public ItemAbilities(RLCraft instance) {
         plugin = instance;
         util = new Utils(instance);
+        customConfig = new CustomConfig(instance);
+        itemRunnables = new ItemRunnables(instance);
     }
 
     public void FireDragonBoneAbility(LivingEntity entity) {
 
-        int fireTicks = 200;
+        int fireTicks = customConfig.getIceFireGearConfig().getInt("Abilities.FlamedDragonBone.FireTicks");
 
         if (entity.getFireTicks() < fireTicks) {
             entity.setFireTicks(fireTicks);
@@ -32,7 +35,7 @@ public class ItemAbilities {
 
     public void FireDragonsteelAbility(LivingEntity entity) {
 
-        int fireTicks = 400;
+        int fireTicks = customConfig.getIceFireGearConfig().getInt("Abilities.FireDragonsteel.FireTicks");
 
         if (entity.getFireTicks() < fireTicks) {
             entity.setFireTicks(fireTicks);
@@ -42,12 +45,12 @@ public class ItemAbilities {
 
     public void IceDragonBoneAbility(LivingEntity entity) {
 
-        int amplifier = 4;
-        int duration = 30;
+        int amplifier = customConfig.getIceFireGearConfig().getInt("Abilities.IcedDragonBone.Slowness.Amplifier");
+        int duration = customConfig.getIceFireGearConfig().getInt("Abilities.IcedDragonBone.Slowness.Duration");
         PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
         util.addOrStackPotionEffect(entity, slowness);
 
-        itemRunnables.freezeEntity(entity).runTaskLater(plugin, util.convertSecondsIntoTicks(0.05));
+        itemRunnables.freezeEntity(entity).runTaskLater(plugin, 1);
 
         Location loc = entity.getLocation();
         FallingBlock block = entity.getWorld().spawnFallingBlock(loc, Material.ICE.createBlockData());
@@ -95,19 +98,19 @@ public class ItemAbilities {
         }
 
         entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 1, 1);
-        itemRunnables.removeIceDragonBoneBlocks().runTaskLater(plugin, util.convertSecondsIntoTicks(0.25));
+        itemRunnables.removeIceDragonBoneBlocks().runTaskLater(plugin, customConfig.getIceFireGearConfig().getInt("Abilities.IcedDragonBone.FrozenDuration"));
 
     }
 
     public void IceDragonsteelAbility(LivingEntity entity) {
 
-        int amplifier = 4;
-        int duration = 60;
+        int amplifier = customConfig.getIceFireGearConfig().getInt("Abilities.IceDragonsteel.Slowness.Amplifier");
+        int duration = customConfig.getIceFireGearConfig().getInt("Abilities.IceDragonsteel.Slowness.Duration");
 
         PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
         util.addOrStackPotionEffect(entity, slowness);
 
-        itemRunnables.freezeEntity(entity).runTaskLater(plugin, util.convertSecondsIntoTicks(0.05));
+        itemRunnables.freezeEntity(entity).runTaskLater(plugin, 1);
 
         Location loc = entity.getLocation();
         FallingBlock block = entity.getWorld().spawnFallingBlock(loc, Material.BLUE_ICE.createBlockData());
@@ -154,20 +157,18 @@ public class ItemAbilities {
             }
         }
         entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 1, 1);
-        itemRunnables.removeIceDragonsteelBlocks().runTaskLater(plugin, util.convertSecondsIntoTicks(0.5));
+        itemRunnables.removeIceDragonsteelBlocks().runTaskLater(plugin, customConfig.getIceFireGearConfig().getInt("Abilities.IceDragonsteel.FrozenDuration"));
 
     }
 
-    public void LightningDragonBoneAbility(LivingEntity entity) {
+    public void LightningDragonBoneAbility(LivingEntity entity, LivingEntity source) {
         entity.getWorld().strikeLightning(entity.getLocation());
-        itemRunnables.freezeEntity(entity).runTaskLater(plugin, util.convertSecondsIntoTicks(0.05));
-        itemRunnables.shockEntity(entity).runTaskTimer(plugin, 0L, util.convertSecondsIntoTicks(0.05));
+        itemRunnables.shockEntity(entity, source).runTaskTimer(plugin, 0L, 1);
     }
 
-    public void LightningDragonsteelAbility(LivingEntity entity) {
+    public void LightningDragonsteelAbility(LivingEntity entity, LivingEntity source) {
         entity.getWorld().strikeLightning(entity.getLocation());
-        itemRunnables.freezeEntity(entity).runTaskLater(plugin, util.convertSecondsIntoTicks(0.05));
-        itemRunnables.electrocuteEntity(entity).runTaskTimer(plugin, 0L, util.convertSecondsIntoTicks(0.05));
+        itemRunnables.electrocuteEntity(entity, source).runTaskTimer(plugin, 0L, 1);
     }
 
     public boolean hasArmor(LivingEntity entity) {

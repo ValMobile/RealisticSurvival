@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.Random;
@@ -15,11 +16,13 @@ public class Commands implements CommandExecutor {
     private final RLCraft plugin;
     private final Items citem;
     private final Utils util;
+    private final CustomConfig customConfig;
 
     public Commands(RLCraft instance) {
         plugin = instance;
         util = new Utils(instance);
         citem = new Items(instance);
+        customConfig = new CustomConfig(instance);
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -3450,6 +3453,15 @@ public class Commands implements CommandExecutor {
                                             }
                                             player.getWorld().dropItemNaturally(player.getLocation(), citem.getSunglasses());
                                             return true;
+                                        case "bauble_broken_heart":
+                                            for (int i = 0; i < 36; i++) {
+                                                if (player.getInventory().getItem(i) == null || player.getInventory().getItem(i).getType() == Material.AIR) {
+                                                    player.getInventory().setItem(i, citem.getBrokenHeart());
+                                                    return true;
+                                                }
+                                            }
+                                            player.getWorld().dropItemNaturally(player.getLocation(), citem.getBrokenHeart());
+                                            return true;
                                         default:
                                             player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("misspelledItemName")));
                                             return true;
@@ -3473,6 +3485,11 @@ public class Commands implements CommandExecutor {
                         if (player.hasPermission("rlcraft.command.reload") || player.isOp()) {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("reload")));
                             plugin.reloadConfig();
+                            customConfig.setBaubleConfig(YamlConfiguration.loadConfiguration(customConfig.getBaubleFile()));
+                            customConfig.setSpartanWeaponryConfig(YamlConfiguration.loadConfiguration(customConfig.getSpartanWeaponryFile()));
+                            customConfig.setIceFireGearConfig(YamlConfiguration.loadConfiguration(customConfig.getIceFireGearFile()));
+                            customConfig.setMobLootConfig(YamlConfiguration.loadConfiguration(customConfig.getMobLootFile()));
+                            customConfig.setNoTreePunchingConfig(YamlConfiguration.loadConfiguration(customConfig.getNoTreePunchingFile()));
                             return true;
                         }
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("nopermission")));

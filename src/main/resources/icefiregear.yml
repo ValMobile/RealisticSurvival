@@ -1,0 +1,176 @@
+#######################################
+#          Ice and Fire Gear          #
+#######################################
+
+# Customize weapon and armor traits of the canon Ice and Fire weapons
+# If you're looking to customize the Spartan's weaponry items, look in "spartanweaponry.yml"
+
+Abilities:
+  FlamedDragonBone:
+    FireTicks: 200
+  IcedDragonBone:
+    # Amplifier - Potency of the potion effect
+    # Amplifiers are 1 value stronger than they appear
+    # Ex: An amplifier of 0 corresponds to Slowness I
+    # Duration and FrozenDuration measured in ticks (20 ticks = 1 second)
+    # FrozenDuration determines how long a mob is encased in ice
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+  LightningDragonBone:
+    ShockDamage: 0.2
+    ShockAmount: 10
+  FireDragonsteel:
+    FireTicks: 400
+  IceDragonsteel:
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+  LightningDragonsteel:
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+Pickaxe:
+  DragonBone:
+    AttackDamage: 6.0
+    AttackSpeed: 1.2
+  FireDragonsteel:
+    AttackDamage: 26.0
+    AttackSpeed: 1.2
+  IceDragonsteel:
+    AttackDamage: 26.0
+    AttackSpeed: 1.2
+  LightningDragonsteel:
+    AttackDamage: 26.0
+    AttackSpeed: 1.2
+Axe:
+  DragonBone:
+    AttackDamage: 10.0
+    AttackSpeed: 1.0
+  FireDragonsteel:
+    AttackDamage: 30.0
+    AttackSpeed: 1.0
+  IceDragonsteel:
+    AttackDamage: 30.0
+    AttackSpeed: 1.0
+  LightningDragonsteel:
+    AttackDamage: 30.0
+    AttackSpeed: 1.0
+Shovel:
+  DragonBone:
+    AttackDamage: 6.5
+    AttackSpeed: 1.0
+  FireDragonsteel:
+    AttackDamage: 26.5
+    AttackSpeed: 1.0
+  IceDragonsteel:
+    AttackDamage: 26.5
+    AttackSpeed: 1.0
+  LightningDragonsteel:
+    AttackDamage: 26.5
+    AttackSpeed: 1.0
+Hoe:
+  DragonBone:
+    AttackDamage: 1.0
+    AttackSpeed: 1.0
+  FireDragonsteel:
+    AttackDamage: 2.0
+    AttackSpeed: 1.0
+  IceDragonsteel:
+    AttackDamage: 2.0
+    AttackSpeed: 1.0
+  LightningDragonsteel:
+    AttackDamage: 2.0
+    AttackSpeed: 1.0
+Sword:
+  DragonBone:
+    AttackDamage: 8.0
+    AttackSpeed: 1.6
+  FlamedDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.6
+  IcedDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.6
+  LightningDragonBone:
+    AttackDamage: 9.5
+    AttackSpeed: 1.6
+  FireDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.6
+  IceDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.6
+  LightningDragonsteel:
+    AttackDamage: 25.0
+    AttackSpeed: 1.6
+Bow:
+  DragonBone:
+    AttackDamageMultiplier: 1.75
+    ArrowVelocityMultiplier: 1.75
+Helmet:
+  DragonScale:
+    Armor: 5.0
+    Toughness: 2.0
+  TideGuardian:
+    Armor: 4.0
+    Toughness: 2.5
+  FireDragonsteel:
+    Armor: 7.0
+    Toughness: 6.0
+  IceDragonsteel:
+    Armor: 7.0
+    Toughness: 6.0
+  LightningDragonsteel:
+    Armor: 7.0
+    Toughness: 6.0
+Chestplate:
+  DragonScale:
+    Armor: 9.0
+    Toughness: 2.0
+  TideGuardian:
+    Armor: 7.0
+    Toughness: 2.5
+  FireDragonsteel:
+    Armor: 12.0
+    Toughness: 6.0
+  IceDragonsteel:
+    Armor: 12.0
+    Toughness: 6.0
+  LightningDragonsteel:
+    Armor: 12.0
+    Toughness: 6.0
+Leggings:
+  DragonScale:
+    Armor: 7.0
+    Toughness: 2.0
+  TideGuardian:
+    Armor: 8.0
+    Toughness: 2.5
+  FireDragonsteel:
+    Armor: 9.0
+    Toughness: 6.0
+  IceDragonsteel:
+    Armor: 9.0
+    Toughness: 6.0
+  LightningDragonsteel:
+    Armor: 9.0
+    Toughness: 6.0
+Boots:
+  DragonScale:
+    Armor: 5.0
+    Toughness: 2.0
+  TideGuardian:
+    Armor: 4.0
+    Toughness: 2.5
+  FireDragonsteel:
+    Armor: 6.0
+    Toughness: 6.0
+  IceDragonsteel:
+    Armor: 6.0
+    Toughness: 6.0
+  LightningDragonsteel:
+    Armor: 6.0
+    Toughness: 6.0

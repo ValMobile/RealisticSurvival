@@ -1,0 +1,32 @@
+#######################################
+#          No Tree Punching           #
+#######################################
+
+# Customize weapon traits of flint gear and drop chance of plant fiber
+# Breaking grass with any dagger and throwing knive can drop plant fiber in addition to the regular flint knife
+# 25% = 0.25
+PlantFiber:
+  DropChance: 0.25
+  checkLooting: true
+FlintShard:
+  DropChance: 0.3
+Pickaxe:
+  Flint:
+    AttackDamage: 2.5
+    AttackSpeed: 2.5
+Axe:
+  Flint:
+    AttackDamage: 5.0
+    AttackSpeed: 1.0
+Shovel:
+  Flint:
+    AttackDamage: 3.0
+    AttackSpeed: 2.4
+Hoe:
+  Flint:
+    AttackDamage: 1.0
+    AttackSpeed: 2.6
+Knife:
+  Flint:
+    AttackDamage: 2.0
+    AttackSpeed: 3.0
