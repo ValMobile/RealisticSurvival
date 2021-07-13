@@ -7,171 +7,177 @@ import org.bukkit.util.Vector;
 
 public class BaubleRunnables {
 
-    private final RLCraft plugin;
-    private final BaubleAbilities abilities;
-    private final BaseRunnables baseRunnables;
-
-    public BaubleRunnables(RLCraft instance) {
-        plugin = instance;
-        abilities = new BaubleAbilities(instance);
-        baseRunnables = new BaseRunnables(instance);
-    }
-
-    public BukkitRunnable getPotionRingResistanceRunnable(Player player) {
-        return new BukkitRunnable() {
+    public static BukkitRunnable getPotionRingResistanceRunnable(Player player) {
+        String name = CustomItems.getPotionRingResistance().getItemMeta().getDisplayName();
+        Utils.removeColorCodes(name);
+        return new PlayerRunnable(player, name) {
             @Override
             public void run() {
-                if (!player.isOnline()) {
+                if (PlayerRunnable.getPrRes().get(player.getName()) > 0) {
+                    BaubleAbilities.RingResistanceAbility(player, PlayerRunnable.getPrRes().get(player.getName()));
+                }
+                else {
+                    Utils.setOrReplaceEntry(getPrResRunnables(), player.getName(), false);
                     cancel();
-                }
-                if (player.isDead()) {
-                    baseRunnables.resetBaubleMaps(player);
-                }
-                if (plugin.prRes.get(player.getUniqueId()) > 0) {
-                    abilities.RingResistanceAbility(player, plugin.prRes.get(player.getUniqueId()));
-                }
-
-            }
-        };
-    }
-
-    public BukkitRunnable getPotionRingRegenerationRunnable(Player player) {
-        return new BukkitRunnable() {
-            @Override
-            public void run() {
-                if (!player.isOnline()) {
-                    cancel();
-                }
-                if (player.isDead()) {
-                    baseRunnables.resetBaubleMaps(player);
-                }
-                if (plugin.prRegen.get(player.getUniqueId()) > 0) {
-                    abilities.RingRegenerationAbility(player, plugin.prRegen.get(player.getUniqueId()));
                 }
             }
         };
     }
 
-    public BukkitRunnable getPotionRingStrengthRunnable(Player player) {
-        return new BukkitRunnable() {
+    public static BukkitRunnable getPotionRingRegenerationRunnable(Player player) {
+        String name = CustomItems.getPotionRingRegeneration().getItemMeta().getDisplayName();
+        Utils.removeColorCodes(name);
+        return new PlayerRunnable(player, name) {
             @Override
             public void run() {
-                if (!player.isOnline()) {
+                if (PlayerRunnable.getPrRegen().get(player.getName()) > 0) {
+                    BaubleAbilities.RingRegenerationAbility(player, PlayerRunnable.getPrRegen().get(player.getName()));
+                }
+                else {
+                    Utils.setOrReplaceEntry(getPrRegenRunnables(), player.getName(), false);
                     cancel();
-                }
-                if (player.isDead()) {
-                    baseRunnables.resetBaubleMaps(player);
-                }
-                if (plugin.prStrength.get(player.getUniqueId()) > 0) {
-                    abilities.RingStrengthAbility(player, plugin.prStrength.get(player.getUniqueId()));
                 }
             }
         };
     }
 
-    public BukkitRunnable getPotionRingSpeedRunnable(Player player) {
-        return new BukkitRunnable() {
+    public static BukkitRunnable getPotionRingStrengthRunnable(Player player) {
+        String name = CustomItems.getPotionRingStrength().getItemMeta().getDisplayName();
+        Utils.removeColorCodes(name);
+        return new PlayerRunnable(player, name) {
             @Override
             public void run() {
-                if (!player.isOnline()) {
+                if (PlayerRunnable.getPrStrength().get(player.getName()) > 0) {
+                    BaubleAbilities.RingStrengthAbility(player, PlayerRunnable.getPrStrength().get(player.getName()));
+                }
+                else {
+                    Utils.setOrReplaceEntry(getPrStrengthRunnables(), player.getName(), false);
                     cancel();
-                }
-                if (player.isDead()) {
-                    baseRunnables.resetBaubleMaps(player);
-                }
-                if (plugin.prSpeed.get(player.getUniqueId()) > 0) {
-                    abilities.RingSpeedAbility(player, plugin.prSpeed.get(player.getUniqueId()));
                 }
             }
         };
     }
 
-    public BukkitRunnable getPotionRingJumpBoostRunnable(Player player) {
-        return new BukkitRunnable() {
+    public static BukkitRunnable getPotionRingSpeedRunnable(Player player) {
+        String name = CustomItems.getPotionRingSpeed().getItemMeta().getDisplayName();
+        Utils.removeColorCodes(name);
+        return new PlayerRunnable(player, name) {
             @Override
             public void run() {
-                if (!player.isOnline()) {
+                if (PlayerRunnable.getPrSpeed().get(player.getName()) > 0) {
+                    BaubleAbilities.RingSpeedAbility(player, PlayerRunnable.getPrSpeed().get(player.getName()));
+                }
+                else {
+                    Utils.setOrReplaceEntry(getPrSpeedRunnables(), player.getName(), false);
                     cancel();
-                }
-                if (player.isDead()) {
-                    baseRunnables.resetBaubleMaps(player);
-                }
-                if (plugin.prJump.get(player.getUniqueId()) > 0) {
-                    abilities.RingJumpBoostAbility(player, plugin.prJump.get(player.getUniqueId()));
                 }
             }
         };
     }
 
-    public BukkitRunnable getPotionRingHasteRunnable(Player player) {
-        return new BukkitRunnable() {
+    public static BukkitRunnable getPotionRingJumpBoostRunnable(Player player) {
+        String name = CustomItems.getPotionRingJumpBoost().getItemMeta().getDisplayName();
+        Utils.removeColorCodes(name);
+        return new PlayerRunnable(player, name) {
             @Override
             public void run() {
-                if (!player.isOnline()) {
+                if (PlayerRunnable.getPrJump().get(player.getName()) > 0) {
+                    BaubleAbilities.RingJumpBoostAbility(player, PlayerRunnable.getPrJump().get(player.getName()));
+                }
+                else {
+                    Utils.setOrReplaceEntry(getPrJumpRunnables(), player.getName(), false);
                     cancel();
-                }
-                if (player.isDead()) {
-                    baseRunnables.resetBaubleMaps(player);
-                }
-                if (plugin.prHaste.get(player.getUniqueId()) > 0) {
-                    abilities.RingHasteAbility(player, plugin.prHaste.get(player.getUniqueId()));
                 }
             }
         };
     }
 
-    public BukkitRunnable getDragonsEyeRunnable(Player player) {
-        return new BukkitRunnable() {
+    public static BukkitRunnable getPotionRingHasteRunnable(Player player) {
+        String name = CustomItems.getPotionRingHaste().getItemMeta().getDisplayName();
+        Utils.removeColorCodes(name);
+        return new PlayerRunnable(player, name) {
             @Override
             public void run() {
-                if (!player.isOnline()) {
+                if (PlayerRunnable.getPrHaste().get(player.getName()) > 0) {
+                    BaubleAbilities.RingHasteAbility(player, PlayerRunnable.getPrHaste().get(player.getName()));
+                }
+                else {
+                    Utils.setOrReplaceEntry(getPrHasteRunnables(), player.getName(), false);
                     cancel();
-                }
-                if (player.isDead()) {
-                    baseRunnables.resetBaubleMaps(player);
-                }
-                if (plugin.dragonsEye.get(player.getUniqueId())) {
-                    abilities.DragonsEyeAbility(player);
                 }
             }
         };
     }
 
-    public BukkitRunnable getScarliteRingRunnable(Player player) {
-        return new BukkitRunnable() {
+    public static BukkitRunnable getDragonsEyeRunnable(Player player) {
+        String name = CustomItems.getDragonsEye().getItemMeta().getDisplayName();
+        Utils.removeColorCodes(name);
+        return new PlayerRunnable(player, name) {
             @Override
             public void run() {
-                if (!player.isOnline()) {
+                if (PlayerRunnable.getDragonsEye().get(player.getName()) > 0) {
+                    BaubleAbilities.DragonsEyeAbility(player);
+                }
+                else {
+                    Utils.setOrReplaceEntry(getDragonsEyeRunnables(), player.getName(), false);
                     cancel();
-                }
-                if (player.isDead()) {
-                    baseRunnables.resetBaubleMaps(player);
-                }
-                if (plugin.scarliteRing.get(player.getUniqueId())) {
-                    abilities.ScarliteRingAbility(player);
                 }
             }
         };
     }
 
-    public BukkitRunnable getMinersRingRunnable(Player player) {
-        return new BukkitRunnable() {
+    public static BukkitRunnable getScarliteRingRunnable(Player player) {
+        String name = CustomItems.getScarliteRing().getItemMeta().getDisplayName();
+        Utils.removeColorCodes(name);
+        return new PlayerRunnable(player, name) {
             @Override
             public void run() {
-                if (!player.isOnline()) {
+                if (PlayerRunnable.getScarliteRing().get(player.getName()) > 0) {
+                    BaubleAbilities.ScarliteRingAbility(player);
+                }
+                else {
+                    Utils.setOrReplaceEntry(getScarliteRingRunnables(), player.getName(), false);
                     cancel();
-                }
-                if (player.isDead()) {
-                    baseRunnables.resetBaubleMaps(player);
-                }
-                if (plugin.minersRing.get(player.getUniqueId())) {
-                    abilities.MinersRingAbility(player);
                 }
             }
         };
     }
 
-    public BukkitRunnable freezeEntity(Entity entity) {
+    public static BukkitRunnable getMinersRingRunnable(Player player) {
+        String name = CustomItems.getMinersRing().getItemMeta().getDisplayName();
+        Utils.removeColorCodes(name);
+        return new PlayerRunnable(player, name) {
+            @Override
+            public void run() {
+                if (PlayerRunnable.getMinersRing().get(player.getName()) > 0) {
+                    BaubleAbilities.MinersRingAbility(player);
+                }
+                else {
+                    Utils.setOrReplaceEntry(getMinersRingRunnables(), player.getName(), false);
+                    cancel();
+                }
+            }
+        };
+    }
+
+    public static BukkitRunnable getShieldHonorRunnable(Player player) {
+        String name = CustomItems.getShieldHonor().getItemMeta().getDisplayName();
+        Utils.removeColorCodes(name);
+        return new PlayerRunnable(player, name) {
+            @Override
+            public void run() {
+                if (PlayerRunnable.getShieldHonor().get(player.getName()) > 0) {
+                    BaubleAbilities.ShieldHonorAbility(player);
+                }
+                else {
+                    Utils.setOrReplaceEntry(getShieldHonorRunnables(), player.getName(), false);
+                    cancel();
+                }
+            }
+        };
+    }
+
+    public static BukkitRunnable freezeEntity(Entity entity) {
         return new BukkitRunnable() {
             public void run() {
                 entity.setVelocity(new Vector());
@@ -179,10 +185,10 @@ public class BaubleRunnables {
         };
     }
 
-    public BukkitRunnable removeInvFrames(Player player) {
+    public static BukkitRunnable removeInvFrames(Player player) {
         return new BukkitRunnable() {
             public void run() {
-                plugin.crossNecklace.replace(player.getUniqueId(), false);
+                Utils.setOrReplaceEntry(PlayerRunnable.getCrossNecklace(), player.getName(), false);
             }
         };
     }

@@ -10,6 +10,10 @@ import java.io.IOException;
 public class CustomConfig {
 
     private final RLCraft plugin;
+    public CustomConfig(RLCraft instance) {
+        plugin = instance;
+    }
+
     private static File baubleConfigFile;
     private static FileConfiguration baubleConfig;
 
@@ -22,23 +26,21 @@ public class CustomConfig {
     private static File spartanWeaponryConfigFile;
     private static FileConfiguration spartanWeaponryConfig;
 
-    private static File mobLootConfigFile;
-    private static FileConfiguration mobLootConfig;
+    private static File mobConfigFile;
+    private static FileConfiguration mobConfig;
 
-    public CustomConfig(RLCraft instance) {
-        plugin = instance;
-    }
+    private static File lycanitesMobsConfigFile;
+    private static FileConfiguration lycanitesMobsConfig;
 
-    public FileConfiguration getBaubleConfig() {
+    private static File itemsConfigFile;
+    private static FileConfiguration itemsConfig;
+
+    public static FileConfiguration getBaubleConfig() {
         return baubleConfig;
     }
 
     public void setBaubleConfig(FileConfiguration config) {
         baubleConfig = config;
-    }
-
-    public File getBaubleFile() {
-        return baubleConfigFile;
     }
 
     public void createBaubleConfig() {
@@ -56,16 +58,16 @@ public class CustomConfig {
         }
     }
 
-    public FileConfiguration getSpartanWeaponryConfig() {
+    public void reloadBaubleConfig() {
+        setBaubleConfig(YamlConfiguration.loadConfiguration(baubleConfigFile));
+    }
+
+    public static FileConfiguration getSpartanWeaponryConfig() {
         return spartanWeaponryConfig;
     }
 
     public void setSpartanWeaponryConfig(FileConfiguration config) {
         spartanWeaponryConfig = config;
-    }
-
-    public File getSpartanWeaponryFile() {
-        return spartanWeaponryConfigFile;
     }
 
     public void createSpartanWeaponryConfig() {
@@ -83,18 +85,17 @@ public class CustomConfig {
         }
     }
 
-    public FileConfiguration getIceFireGearConfig() {
+    public void reloadSpartanWeaponryConfig() {
+        setSpartanWeaponryConfig(YamlConfiguration.loadConfiguration(spartanWeaponryConfigFile));
+    }
+
+    public static FileConfiguration getIceFireGearConfig() {
         return iceFireGearConfig;
     }
 
     public void setIceFireGearConfig(FileConfiguration config) {
         iceFireGearConfig = config;
     }
-
-    public File getIceFireGearFile() {
-        return iceFireGearConfigFile;
-    }
-
 
     public void createIceFireGearConfig() {
         iceFireGearConfigFile = new File(plugin.getDataFolder(), "icefiregear.yml");
@@ -111,16 +112,16 @@ public class CustomConfig {
         }
     }
 
-    public FileConfiguration getNoTreePunchingConfig() {
+    public void reloadIceFireGearConfig() {
+        setIceFireGearConfig(YamlConfiguration.loadConfiguration(iceFireGearConfigFile));
+    }
+
+    public static FileConfiguration getNoTreePunchingConfig() {
         return noTreePunchingConfig;
     }
 
     public void setNoTreePunchingConfig(FileConfiguration config) {
         noTreePunchingConfig = config;
-    }
-
-    public File getNoTreePunchingFile() {
-        return noTreePunchingConfigFile;
     }
 
     public void createNoTreePunchingConfig() {
@@ -138,30 +139,88 @@ public class CustomConfig {
         }
     }
 
-    public FileConfiguration getMobLootConfig() {
-        return mobLootConfig;
+    public void reloadNoTreePunchingConfig() {
+        setNoTreePunchingConfig(YamlConfiguration.loadConfiguration(noTreePunchingConfigFile));
     }
 
-    public void setMobLootConfig(FileConfiguration config) {
-        mobLootConfig = config;
+    public static FileConfiguration getMobConfig() {
+        return mobConfig;
     }
 
-    public File getMobLootFile() {
-        return mobLootConfigFile;
+    public void setMobConfig(FileConfiguration config) {
+        mobConfig = config;
     }
 
-    public void createMobLootConfig() {
-        mobLootConfigFile = new File(plugin.getDataFolder(), "mobs.yml");
-        if (!mobLootConfigFile.exists()) {
-            mobLootConfigFile.getParentFile().mkdirs();
+    public void createMobConfig() {
+        mobConfigFile = new File(plugin.getDataFolder(), "mobs.yml");
+        if (!mobConfigFile.exists()) {
+            mobConfigFile.getParentFile().mkdirs();
             plugin.saveResource("mobs.yml", false);
         }
 
-        mobLootConfig = new YamlConfiguration();
+        mobConfig = new YamlConfiguration();
         try {
-            mobLootConfig.load(mobLootConfigFile);
+            mobConfig.load(mobConfigFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
+    }
+
+    public void reloadMobConfig() {
+        setMobConfig(YamlConfiguration.loadConfiguration(mobConfigFile));
+    }
+
+    public static FileConfiguration getLycanitesMobsConfig() {
+        return lycanitesMobsConfig;
+    }
+
+    public void setLycanitesMobsConfig(FileConfiguration config) {
+        lycanitesMobsConfig = config;
+    }
+
+    public void createLycanitesMobsConfig() {
+        lycanitesMobsConfigFile = new File(plugin.getDataFolder(), "lycanitesmobs.yml");
+        if (!lycanitesMobsConfigFile.exists()) {
+            lycanitesMobsConfigFile.getParentFile().mkdirs();
+            plugin.saveResource("lycanitesmobs.yml", false);
+        }
+
+        lycanitesMobsConfig = new YamlConfiguration();
+        try {
+            lycanitesMobsConfig.load(lycanitesMobsConfigFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void reloadLycanitesMobsConfig() {
+        setLycanitesMobsConfig(YamlConfiguration.loadConfiguration(lycanitesMobsConfigFile));
+    }
+
+    public static FileConfiguration getItemsConfig() {
+        return itemsConfig;
+    }
+
+    public void setItemsConfig(FileConfiguration config) {
+        itemsConfig = config;
+    }
+
+    public void createItemsConfig() {
+        itemsConfigFile = new File(plugin.getDataFolder(), "items.yml");
+        if (!itemsConfigFile.exists()) {
+            itemsConfigFile.getParentFile().mkdirs();
+            plugin.saveResource("items.yml", false);
+        }
+
+        itemsConfig = new YamlConfiguration();
+        try {
+            itemsConfig.load(itemsConfigFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void reloadItemsConfig() {
+        setItemsConfig(YamlConfiguration.loadConfiguration(itemsConfigFile));
     }
 }

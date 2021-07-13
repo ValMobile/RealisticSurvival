@@ -6,35 +6,26 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class ArmorRunnables {
+public class SeaSerpentGearRunnables {
 
-    private final RLCraft plugin;
-    private final BaseRunnables baseRunnables;
-    private final ArmorAbilities armorAbilities;
-
-    public ArmorRunnables(RLCraft instance) {
-        plugin = instance;
-        armorAbilities = new ArmorAbilities(instance);
-        baseRunnables = new BaseRunnables(instance);
+    private final Utils util;
+    private final SeaSerpentGearAbilities seaSerpentGearAbilities = new SeaSerpentGearAbilities();
+    public SeaSerpentGearRunnables(RLCraft instance) {
+        util = new Utils(instance);
     }
 
     public void checkTideGuardianArmor(Player player) {
-        boolean hasTideGuardianArmor = false;
+        int pieces = 0;
         for (ItemStack item : player.getInventory().getArmorContents()) {
             if (! (item == null || item.getType() == Material.AIR)) {
                 NBTItem nbti = new NBTItem(item);
                 if (nbti.hasKey("Tide Guardian Armor")) {
-                    hasTideGuardianArmor = true;
+                    pieces++;
                     break;
                 }
             }
         }
-        if (plugin.tideArmor.containsKey(player.getUniqueId())) {
-            plugin.tideArmor.replace(player.getUniqueId(), plugin.tideArmor.get(player.getUniqueId()), hasTideGuardianArmor);
-        }
-        else {
-            plugin.tideArmor.put(player.getUniqueId(), hasTideGuardianArmor);
-        }
+        Utils.setOrReplaceEntry(PlayerRunnable.getTideArmor(), player.getName(), pieces);
 
     }
 
@@ -46,10 +37,10 @@ public class ArmorRunnables {
                     cancel();
                 }
                 if (player.isDead()) {
-                    baseRunnables.resetBaubleMaps(player);
+                    util.resetArmorMaps(player);
                 }
-                if (plugin.tideArmor.get(player.getUniqueId())) {
-                    armorAbilities.TideGuardianArmorAbility(player);
+                if (PlayerRunnable.getTideArmor().get(player.getName()) != 0) {
+                    seaSerpentGearAbilities.TideGuardianArmorAbility(player, PlayerRunnable.getTideArmor().get(player.getName()));
                 }
             }
         };

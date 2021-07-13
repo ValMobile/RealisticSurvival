@@ -2,31 +2,195 @@ package me.val_mobile.rlcraft;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Recipes {
 
     private final RLCraft plugin;
-    private final Items citem;
-    private final Utils util;
+
+    private static List<Recipe> ntrRecipes = new ArrayList<>();
+    private static List<Recipe> baubleRecipes = new ArrayList<>();
+    private static List<Recipe> dragonRecipes = new ArrayList<>();
+    private static List<Recipe> seaSerpentRecipes = new ArrayList<>();
+    private static List<Recipe> spartanWeaponryRecipes = new ArrayList<>();
+    private static List<Recipe> waystoneRecipes = new ArrayList<>();
+
+    public static List<Recipe> getNtrRecipes() {
+        return ntrRecipes;
+    }
+    public static List<Recipe> getBaubleRecipes() {
+        return baubleRecipes;
+    }
+    public static List<Recipe> getDragonRecipes() {
+        return dragonRecipes;
+    }
+    public static List<Recipe> getSeaSerpentRecipes() {
+        return seaSerpentRecipes;
+    }
+    public static List<Recipe> getSpartanWeaponryRecipes() {
+        return spartanWeaponryRecipes;
+    }
+    public static List<Recipe> getWaystoneRecipes() {
+        return spartanWeaponryRecipes;
+    }
+
     public Recipes(RLCraft instance) {
         plugin = instance;
-        util = new Utils(instance);
-        citem = new Items(instance);
+    }
+
+    public void populateNtrRecipes() {
+        ntrRecipes.add(getFlintAxeRecipe());
+        ntrRecipes.add(getFlintKnifeRecipe());
+        ntrRecipes.add(getFlintHoeRecipe());
+        ntrRecipes.add(getFlintPickaxeRecipe());
+        ntrRecipes.add(getFlintShovelRecipe());
+        ntrRecipes.add(getCobblestoneRecipe());
+        ntrRecipes.add(getPlantStringRecipe());
+    }
+
+    public void populateBaubleRecipes() {
+        baubleRecipes.add(getBalloonRecipe());
+        baubleRecipes.add(getCobaltShieldRecipe());
+        baubleRecipes.add(getObsidianSkullRecipe());
+        baubleRecipes.add(getSunglassesRecipe());
+        baubleRecipes.add(getCrackedBlackDragonScaleRecipe());
+        baubleRecipes.add(getBlackDragonScaleRecipe());
+        baubleRecipes.add(getAnkhCharmRecipe());
+    }
+
+    public void populateDragonRecipes() {
+        dragonRecipes.add(getFireDragonsteelIngotRecipe());
+        dragonRecipes.add(getIceDragonsteelIngotRecipe());
+        dragonRecipes.add(getLightningDragonsteelIngotRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetBlueRecipe());
+        dragonRecipes.add(getDragonScaleChestplateBlueRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsBlueRecipe());
+        dragonRecipes.add(getDragonScaleBootsBlueRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetBronzeRecipe());
+        dragonRecipes.add(getDragonScaleChestplateBronzeRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsBronzeRecipe());
+        dragonRecipes.add(getDragonScaleBootsBronzeRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetGrayRecipe());
+        dragonRecipes.add(getDragonScaleChestplateGrayRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsGrayRecipe());
+        dragonRecipes.add(getDragonScaleBootsGrayRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetGreenRecipe());
+        dragonRecipes.add(getDragonScaleChestplateGreenRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsGreenRecipe());
+        dragonRecipes.add(getDragonScaleBootsGreenRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetRedRecipe());
+        dragonRecipes.add(getDragonScaleChestplateRedRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsRedRecipe());
+        dragonRecipes.add(getDragonScaleBootsRedRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetSapphireRecipe());
+        dragonRecipes.add(getDragonScaleChestplateSapphireRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsSapphireRecipe());
+        dragonRecipes.add(getDragonScaleBootsSapphireRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetSilverRecipe());
+        dragonRecipes.add(getDragonScaleChestplateSilverRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsSilverRecipe());
+        dragonRecipes.add(getDragonScaleBootsSilverRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetWhiteRecipe());
+        dragonRecipes.add(getDragonScaleChestplateWhiteRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsWhiteRecipe());
+        dragonRecipes.add(getDragonScaleBootsWhiteRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetAmethystRecipe());
+        dragonRecipes.add(getDragonScaleChestplateAmethystRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsAmethystRecipe());
+        dragonRecipes.add(getDragonScaleBootsAmethystRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetBlackRecipe());
+        dragonRecipes.add(getDragonScaleChestplateBlackRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsBlackRecipe());
+        dragonRecipes.add(getDragonScaleBootsBlackRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetCopperRecipe());
+        dragonRecipes.add(getDragonScaleChestplateCopperRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsCopperRecipe());
+        dragonRecipes.add(getDragonScaleBootsCopperRecipe());
+
+        dragonRecipes.add(getDragonScaleHelmetElectricRecipe());
+        dragonRecipes.add(getDragonScaleChestplateElectricRecipe());
+        dragonRecipes.add(getDragonScaleLeggingsElectricRecipe());
+        dragonRecipes.add(getDragonScaleBootsElectricRecipe());
+
+        dragonRecipes.add(getDragonBonePickaxeRecipe());
+        dragonRecipes.add(getDragonBoneShovelRecipe());
+        dragonRecipes.add(getDragonBoneHoeRecipe());
+        dragonRecipes.add(getDragonBoneSwordRecipe());
+        dragonRecipes.add(getDragonBoneBowRecipe());
+        dragonRecipes.add(getFlamedDragonBoneSwordRecipe());
+        dragonRecipes.add(getIceDragonBoneSwordRecipe());
+        dragonRecipes.add(getLightningDragonBoneSwordRecipe());
+    }
+
+    public void populateSeaSerpentRecipes() {
+        seaSerpentRecipes.add(getTideGuardianHelmetBlueRecipe());
+        seaSerpentRecipes.add(getTideGuardianChestplateBlueRecipe());
+        seaSerpentRecipes.add(getTideGuardianLeggingsBlueRecipe());
+        seaSerpentRecipes.add(getTideGuardianBootsBlueRecipe());
+
+        seaSerpentRecipes.add(getTideGuardianHelmetBronzeRecipe());
+        seaSerpentRecipes.add(getTideGuardianChestplateBronzeRecipe());
+        seaSerpentRecipes.add(getTideGuardianLeggingsBronzeRecipe());
+        seaSerpentRecipes.add(getTideGuardianBootsBronzeRecipe());
+
+        seaSerpentRecipes.add(getTideGuardianHelmetDeepBlueRecipe());
+        seaSerpentRecipes.add(getTideGuardianChestplateDeepBlueRecipe());
+        seaSerpentRecipes.add(getTideGuardianLeggingsDeepBlueRecipe());
+        seaSerpentRecipes.add(getTideGuardianBootsDeepBlueRecipe());
+
+        seaSerpentRecipes.add(getTideGuardianHelmetGreenRecipe());
+        seaSerpentRecipes.add(getTideGuardianChestplateGreenRecipe());
+        seaSerpentRecipes.add(getTideGuardianLeggingsGreenRecipe());
+        seaSerpentRecipes.add(getideGuardianBootsGreenRecipe());
+
+        seaSerpentRecipes.add(getTideGuardianHelmetPurpleRecipe());
+        seaSerpentRecipes.add(getTideGuardianChestplatePurpleRecipe());
+        seaSerpentRecipes.add(getTideGuardianLeggingsPurpleRecipe());
+        seaSerpentRecipes.add(getTideGuardianBootsPurpleRecipe());
+
+        seaSerpentRecipes.add(getTideGuardianHelmetRedRecipe());
+        seaSerpentRecipes.add(getTideGuardianChestplateRedRecipe());
+        seaSerpentRecipes.add(getTideGuardianLeggingsRedRecipe());
+        seaSerpentRecipes.add(getTideGuardianBootsRedRecipe());
+
+        seaSerpentRecipes.add(getTideGuardianHelmetTealRecipe());
+        seaSerpentRecipes.add(getTideGuardianChestplateTealRecipe());
+        seaSerpentRecipes.add(getTideGuardianLeggingsTealRecipe());
+        seaSerpentRecipes.add(getTideGuardianBootsTealRecipe());
+    }
+
+    public void populateSpartanWeaponryRecipes() {
+
+    }
+
+    public void populateWaystoneRecipes() {
+        waystoneRecipes.add(getWarpedScrollRecipe());
     }
 
     public ShapedRecipe getFlintAxeRecipe() {
 
         NamespacedKey key = new NamespacedKey(plugin, "flint_axe");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getFlintAxe());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getFlintAxe());
 
         recipe.shape("TF", "S ");
 
         recipe.setIngredient('T', Material.STRING);
-        recipe.setIngredient('F', new RecipeChoice.ExactChoice(citem.getFlintShard()));
+        recipe.setIngredient('F', new RecipeChoice.ExactChoice(CustomItems.getFlintShard()));
         recipe.setIngredient('S', Material.STICK);
 
         return recipe;
@@ -36,11 +200,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "flint_knife");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getFlintKnife());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getFlintKnife());
 
         recipe.shape(" F", " S");
 
-        recipe.setIngredient('F', new RecipeChoice.ExactChoice(citem.getFlintShard()));
+        recipe.setIngredient('F', new RecipeChoice.ExactChoice(CustomItems.getFlintShard()));
         recipe.setIngredient('S', Material.STICK);
 
         return recipe;
@@ -50,11 +214,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "flint_pickaxe");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getFlintPickaxe());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getFlintPickaxe());
 
         recipe.shape("FFF", " S ", " S ");
 
-        recipe.setIngredient('F', new RecipeChoice.ExactChoice(citem.getFlintShard()));
+        recipe.setIngredient('F', new RecipeChoice.ExactChoice(CustomItems.getFlintShard()));
         recipe.setIngredient('S', Material.STICK);
 
         return recipe;
@@ -64,11 +228,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "flint_shovel");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getFlintShovel());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getFlintShovel());
 
         recipe.shape(" F ", " S ", " S ");
 
-        recipe.setIngredient('F', new RecipeChoice.ExactChoice(citem.getFlintShard()));
+        recipe.setIngredient('F', new RecipeChoice.ExactChoice(CustomItems.getFlintShard()));
         recipe.setIngredient('S', Material.STICK);
 
         return recipe;
@@ -78,11 +242,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "flint_hoe");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getFlintHoe());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getFlintHoe());
 
         recipe.shape("FF ", " S ", " S ");
 
-        recipe.setIngredient('F', new RecipeChoice.ExactChoice(citem.getFlintShard()));
+        recipe.setIngredient('F', new RecipeChoice.ExactChoice(CustomItems.getFlintShard()));
         recipe.setIngredient('S', Material.STICK);
 
         return recipe;
@@ -92,7 +256,7 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "cobblestone");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getCobblestone());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getCobblestone());
 
         recipe.shape("BB", "BB");
 
@@ -105,11 +269,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "plant_string");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getPlantString());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getPlantString());
 
         recipe.shape("FF", "F ");
 
-        recipe.setIngredient('F', new RecipeChoice.ExactChoice(citem.getPlantFiber()));
+        recipe.setIngredient('F', new RecipeChoice.ExactChoice(CustomItems.getPlantFiber()));
 
         return recipe;
     }
@@ -118,9 +282,9 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "fire_dragonsteel_ingot");
 
-        ShapelessRecipe recipe = new ShapelessRecipe(key, citem.getFireDragonsteelIngot());
+        ShapelessRecipe recipe = new ShapelessRecipe(key, CustomItems.getFireDragonsteelIngot());
 
-        recipe.addIngredient(new RecipeChoice.ExactChoice(citem.getFireDragonBlood()));
+        recipe.addIngredient(new RecipeChoice.ExactChoice(CustomItems.getFireDragonBlood()));
         recipe.addIngredient(Material.IRON_INGOT);
         recipe.addIngredient(Material.NETHERITE_INGOT);
 
@@ -131,9 +295,9 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "ice_dragonsteel_ingot");
 
-        ShapelessRecipe recipe = new ShapelessRecipe(key, citem.getIceDragonsteelIngot());
+        ShapelessRecipe recipe = new ShapelessRecipe(key, CustomItems.getIceDragonsteelIngot());
 
-        recipe.addIngredient(new RecipeChoice.ExactChoice(citem.getIceDragonBlood()));
+        recipe.addIngredient(new RecipeChoice.ExactChoice(CustomItems.getIceDragonBlood()));
         recipe.addIngredient(Material.IRON_INGOT);
         recipe.addIngredient(Material.NETHERITE_INGOT);
 
@@ -144,9 +308,9 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "lightning_dragonsteel_ingot");
 
-        ShapelessRecipe recipe = new ShapelessRecipe(key, citem.getLightningDragonsteelIngot());
+        ShapelessRecipe recipe = new ShapelessRecipe(key, CustomItems.getLightningDragonsteelIngot());
 
-        recipe.addIngredient(new RecipeChoice.ExactChoice(citem.getLightningDragonBlood()));
+        recipe.addIngredient(new RecipeChoice.ExactChoice(CustomItems.getLightningDragonBlood()));
         recipe.addIngredient(Material.IRON_INGOT);
         recipe.addIngredient(Material.NETHERITE_INGOT);
 
@@ -157,11 +321,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_blue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetBlue());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBlue()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBlue()));
 
         return recipe;
     }
@@ -170,11 +334,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_blue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateBlue());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBlue()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBlue()));
 
         return recipe;
     }
@@ -183,11 +347,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_blue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsBlue());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBlue()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBlue()));
 
         return recipe;
     }
@@ -196,11 +360,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_blue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsBlue());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBlue()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBlue()));
 
         return recipe;
     }
@@ -209,11 +373,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_bronze");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetBronze());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetBronze());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBronze()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBronze()));
 
         return recipe;
     }
@@ -222,11 +386,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_bronze");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateBronze());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateBronze());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBronze()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBronze()));
 
         return recipe;
     }
@@ -235,11 +399,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_bronze");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsBronze());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsBronze());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBronze()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBronze()));
 
         return recipe;
     }
@@ -248,11 +412,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_bronze");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsBronze());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsBronze());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBronze()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBronze()));
 
         return recipe;
     }
@@ -261,11 +425,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_gray");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetGray());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetGray());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleGray()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleGray()));
 
         return recipe;
     }
@@ -274,11 +438,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_gray");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateGray());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateGray());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleGray()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleGray()));
 
         return recipe;
     }
@@ -287,11 +451,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_gray");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsGray());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsGray());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleGray()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleGray()));
 
         return recipe;
     }
@@ -300,11 +464,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_gray");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsGray());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsGray());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleGray()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleGray()));
 
         return recipe;
     }
@@ -313,11 +477,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_green");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetGreen());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetGreen());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleGreen()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleGreen()));
 
         return recipe;
     }
@@ -326,11 +490,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_green");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateGreen());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateGreen());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleGreen()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleGreen()));
 
         return recipe;
     }
@@ -339,11 +503,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_green");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsGreen());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsGreen());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleGreen()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleGreen()));
 
         return recipe;
     }
@@ -352,11 +516,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_green");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsGreen());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsGreen());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleGreen()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleGreen()));
 
         return recipe;
     }
@@ -365,11 +529,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_red");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetRed());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetRed());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleRed()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleRed()));
 
         return recipe;
     }
@@ -378,11 +542,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_red");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateRed());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateRed());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleRed()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleRed()));
 
         return recipe;
     }
@@ -391,11 +555,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_red");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsRed());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsRed());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleRed()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleRed()));
 
         return recipe;
     }
@@ -404,11 +568,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_red");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsRed());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsRed());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleRed()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleRed()));
 
         return recipe;
     }
@@ -417,11 +581,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_sapphire");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetSapphire());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetSapphire());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleSapphire()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleSapphire()));
 
         return recipe;
     }
@@ -430,11 +594,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_sapphire");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateSapphire());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateSapphire());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleSapphire()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleSapphire()));
 
         return recipe;
     }
@@ -443,11 +607,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_sapphire");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsSapphire());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsSapphire());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleSapphire()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleSapphire()));
 
         return recipe;
     }
@@ -456,11 +620,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_sapphire");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsSapphire());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsSapphire());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleSapphire()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleSapphire()));
 
         return recipe;
     }
@@ -469,11 +633,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_silver");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetSilver());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetSilver());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleSilver()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleSilver()));
 
         return recipe;
     }
@@ -482,11 +646,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_silver");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateSilver());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateSilver());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleSilver()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleSilver()));
 
         return recipe;
     }
@@ -495,11 +659,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_silver");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsSilver());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsSilver());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleSilver()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleSilver()));
 
         return recipe;
     }
@@ -508,11 +672,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_silver");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsSilver());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsSilver());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleSilver()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleSilver()));
 
         return recipe;
     }
@@ -521,11 +685,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_white");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetWhite());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetWhite());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleWhite()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleWhite()));
 
         return recipe;
     }
@@ -534,11 +698,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_white");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateWhite());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateWhite());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleWhite()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleWhite()));
 
         return recipe;
     }
@@ -547,11 +711,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_white");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsWhite());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsWhite());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleWhite()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleWhite()));
 
         return recipe;
     }
@@ -560,11 +724,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_white");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsWhite());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsWhite());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleWhite()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleWhite()));
 
         return recipe;
     }
@@ -573,11 +737,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_amethyst");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetAmethyst());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetAmethyst());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleAmethyst()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleAmethyst()));
 
         return recipe;
     }
@@ -586,11 +750,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_amethyst");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateAmethyst());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateAmethyst());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleAmethyst()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleAmethyst()));
 
         return recipe;
     }
@@ -599,11 +763,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_amethyst");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsAmethyst());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsAmethyst());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleAmethyst()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleAmethyst()));
 
         return recipe;
     }
@@ -612,11 +776,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_amethyst");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsAmethyst());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsAmethyst());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleAmethyst()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleAmethyst()));
 
         return recipe;
     }
@@ -625,11 +789,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_black");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetBlack());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetBlack());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBlack()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBlack()));
 
         return recipe;
     }
@@ -638,11 +802,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_black");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateBlack());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateBlack());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBlack()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBlack()));
 
         return recipe;
     }
@@ -651,11 +815,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_black");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsBlack());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsBlack());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBlack()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBlack()));
 
         return recipe;
     }
@@ -664,11 +828,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_black");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsBlack());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsBlack());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleBlack()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleBlack()));
 
         return recipe;
     }
@@ -677,11 +841,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_copper");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetCopper());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetCopper());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleCopper()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleCopper()));
 
         return recipe;
     }
@@ -690,11 +854,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_copper");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateCopper());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateCopper());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleCopper()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleCopper()));
 
         return recipe;
     }
@@ -703,11 +867,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_copper");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsCopper());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsCopper());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleCopper()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleCopper()));
 
         return recipe;
     }
@@ -716,11 +880,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_copper");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsCopper());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsCopper());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleCopper()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleCopper()));
 
         return recipe;
     }
@@ -729,11 +893,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_helmet_electric");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleHelmetElectric());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleHelmetElectric());
 
         recipe.shape("SSS", "S S", "   ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleElectric()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleElectric()));
 
         return recipe;
     }
@@ -742,11 +906,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_chestplate_electric");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleChestplateElectric());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleChestplateElectric());
 
         recipe.shape("S S", "SSS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleElectric()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleElectric()));
 
         return recipe;
     }
@@ -755,11 +919,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_leggings_electric");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleLeggingsElectric());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleLeggingsElectric());
 
         recipe.shape("SSS", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleElectric()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleElectric()));
 
         return recipe;
     }
@@ -768,11 +932,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_scale_boots_electric");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonScaleBootsElectric());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonScaleBootsElectric());
 
         recipe.shape("   ", "S S", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonScaleElectric()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonScaleElectric()));
 
         return recipe;
     }
@@ -781,12 +945,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_helmet_blue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianHelmetBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianHelmetBlue());
 
         recipe.shape("T T", "SSS", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleBlue()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleBlue()));
 
         return recipe;
     }
@@ -795,12 +959,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_chestplate_blue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianChestplateBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianChestplateBlue());
 
         recipe.shape("S S", "SSS", "TST");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleBlue()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleBlue()));
 
         return recipe;
     }
@@ -809,12 +973,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_leggings_blue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianLeggingsBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianLeggingsBlue());
 
         recipe.shape("SSS", "S S", "T T");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleBlue()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleBlue()));
 
         return recipe;
     }
@@ -823,12 +987,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_boots_blue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianBootsBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianBootsBlue());
 
         recipe.shape("T T", "S S", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleBlue()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleBlue()));
 
         return recipe;
     }
@@ -837,12 +1001,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_helmet_bronze");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianHelmetBronze());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianHelmetBronze());
 
         recipe.shape("T T", "SSS", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleBronze()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleBronze()));
 
         return recipe;
     }
@@ -851,12 +1015,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_chestplate_bronze");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianChestplateBronze());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianChestplateBronze());
 
         recipe.shape("S S", "SSS", "TST");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleBronze()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleBronze()));
 
         return recipe;
     }
@@ -865,12 +1029,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_leggings_bronze");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianLeggingsBronze());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianLeggingsBronze());
 
         recipe.shape("SSS", "S S", "T T");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleBronze()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleBronze()));
 
         return recipe;
     }
@@ -879,12 +1043,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_boots_bronze");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianBootsBronze());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianBootsBronze());
 
         recipe.shape("T T", "S S", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleBronze()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleBronze()));
 
         return recipe;
     }
@@ -893,12 +1057,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_helmet_deepblue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianHelmetDeepBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianHelmetDeepBlue());
 
         recipe.shape("T T", "SSS", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleDeepBlue()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleDeepBlue()));
 
         return recipe;
     }
@@ -907,12 +1071,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_chestplate_deepblue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianChestplateDeepBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianChestplateDeepBlue());
 
         recipe.shape("S S", "SSS", "TST");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleDeepBlue()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleDeepBlue()));
 
         return recipe;
     }
@@ -921,12 +1085,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_leggings_deepblue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianLeggingsDeepBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianLeggingsDeepBlue());
 
         recipe.shape("SSS", "S S", "T T");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleDeepBlue()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleDeepBlue()));
 
         return recipe;
     }
@@ -935,12 +1099,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_boots_deepblue");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianBootsDeepBlue());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianBootsDeepBlue());
 
         recipe.shape("T T", "S S", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleDeepBlue()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleDeepBlue()));
 
         return recipe;
     }
@@ -949,12 +1113,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_helmet_green");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianHelmetGreen());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianHelmetGreen());
 
         recipe.shape("T T", "SSS", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleGreen()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleGreen()));
 
         return recipe;
     }
@@ -963,12 +1127,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_chestplate_green");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianChestplateGreen());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianChestplateGreen());
 
         recipe.shape("S S", "SSS", "TST");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleGreen()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleGreen()));
 
         return recipe;
     }
@@ -977,12 +1141,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_leggings_green");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianLeggingsGreen());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianLeggingsGreen());
 
         recipe.shape("SSS", "S S", "T T");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleGreen()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleGreen()));
 
         return recipe;
     }
@@ -991,12 +1155,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_boots_green");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianBootsGreen());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianBootsGreen());
 
         recipe.shape("T T", "S S", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleGreen()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleGreen()));
 
         return recipe;
     }
@@ -1005,12 +1169,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_helmet_purple");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianHelmetPurple());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianHelmetPurple());
 
         recipe.shape("T T", "SSS", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScalePurple()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScalePurple()));
 
         return recipe;
     }
@@ -1019,12 +1183,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_chestplate_purple");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianChestplatePurple());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianChestplatePurple());
 
         recipe.shape("S S", "SSS", "TST");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScalePurple()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScalePurple()));
 
         return recipe;
     }
@@ -1033,12 +1197,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_leggings_purple");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianLeggingsPurple());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianLeggingsPurple());
 
         recipe.shape("SSS", "S S", "T T");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScalePurple()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScalePurple()));
 
         return recipe;
     }
@@ -1047,12 +1211,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_boots_purple");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianBootsPurple());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianBootsPurple());
 
         recipe.shape("T T", "S S", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScalePurple()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScalePurple()));
 
         return recipe;
     }
@@ -1061,12 +1225,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_helmet_red");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianHelmetRed());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianHelmetRed());
 
         recipe.shape("T T", "SSS", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleRed()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleRed()));
 
         return recipe;
     }
@@ -1075,12 +1239,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_chestplate_red");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianChestplateRed());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianChestplateRed());
 
         recipe.shape("S S", "SSS", "TST");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleRed()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleRed()));
 
         return recipe;
     }
@@ -1089,12 +1253,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_leggings_red");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianLeggingsRed());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianLeggingsRed());
 
         recipe.shape("SSS", "S S", "T T");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleRed()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleRed()));
 
         return recipe;
     }
@@ -1103,12 +1267,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_boots_red");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianBootsRed());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianBootsRed());
 
         recipe.shape("T T", "S S", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleRed()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleRed()));
 
         return recipe;
     }
@@ -1117,12 +1281,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_helmet_teal");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianHelmetTeal());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianHelmetTeal());
 
         recipe.shape("T T", "SSS", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleTeal()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleTeal()));
 
         return recipe;
     }
@@ -1131,12 +1295,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_chestplate_teal");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianChestplateTeal());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianChestplateTeal());
 
         recipe.shape("S S", "SSS", "TST");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleTeal()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleTeal()));
 
         return recipe;
     }
@@ -1145,12 +1309,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_leggings_teal");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianLeggingsTeal());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianLeggingsTeal());
 
         recipe.shape("SSS", "S S", "T T");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleTeal()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleTeal()));
 
         return recipe;
     }
@@ -1159,12 +1323,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "tide_guardian_boots_teal");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getTideGuardianBootsTeal());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getTideGuardianBootsTeal());
 
         recipe.shape("T T", "S S", "S S");
 
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(citem.getShinyScale()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSeaSerpentScaleTeal()));
+        recipe.setIngredient('T', new RecipeChoice.ExactChoice(CustomItems.getShinyScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSeaSerpentScaleTeal()));
 
         return recipe;
     }
@@ -1173,12 +1337,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_bone_pickaxe");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonBonePickaxe());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonBonePickaxe());
 
         recipe.shape("BBB", " W ", " W ");
 
-        recipe.setIngredient('B', new RecipeChoice.ExactChoice(citem.getDragonBone()));
-        recipe.setIngredient('W', new RecipeChoice.ExactChoice(citem.getWitherbone()));
+        recipe.setIngredient('B', new RecipeChoice.ExactChoice(CustomItems.getDragonBone()));
+        recipe.setIngredient('W', new RecipeChoice.ExactChoice(CustomItems.getWitherbone()));
 
         return recipe;
     }
@@ -1187,12 +1351,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_bone_axe");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonBoneAxe());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonBoneAxe());
 
         recipe.shape("BB ", "BW ", " W ");
 
-        recipe.setIngredient('B', new RecipeChoice.ExactChoice(citem.getDragonBone()));
-        recipe.setIngredient('W', new RecipeChoice.ExactChoice(citem.getWitherbone()));
+        recipe.setIngredient('B', new RecipeChoice.ExactChoice(CustomItems.getDragonBone()));
+        recipe.setIngredient('W', new RecipeChoice.ExactChoice(CustomItems.getWitherbone()));
 
         return recipe;
     }
@@ -1201,12 +1365,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_bone_shovel");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonBoneShovel());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonBoneShovel());
 
         recipe.shape(" B ", " W ", " W ");
 
-        recipe.setIngredient('B', new RecipeChoice.ExactChoice(citem.getDragonBone()));
-        recipe.setIngredient('W', new RecipeChoice.ExactChoice(citem.getWitherbone()));
+        recipe.setIngredient('B', new RecipeChoice.ExactChoice(CustomItems.getDragonBone()));
+        recipe.setIngredient('W', new RecipeChoice.ExactChoice(CustomItems.getWitherbone()));
 
         return recipe;
     }
@@ -1215,12 +1379,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_bone_hoe");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonBoneHoe());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonBoneHoe());
 
         recipe.shape("BB ", " W ", " W ");
 
-        recipe.setIngredient('B', new RecipeChoice.ExactChoice(citem.getDragonBone()));
-        recipe.setIngredient('W', new RecipeChoice.ExactChoice(citem.getWitherbone()));
+        recipe.setIngredient('B', new RecipeChoice.ExactChoice(CustomItems.getDragonBone()));
+        recipe.setIngredient('W', new RecipeChoice.ExactChoice(CustomItems.getWitherbone()));
 
         return recipe;
     }
@@ -1229,12 +1393,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_bone_sword");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonBoneSword());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonBoneSword());
 
         recipe.shape(" B ", " B ", " W ");
 
-        recipe.setIngredient('B', new RecipeChoice.ExactChoice(citem.getDragonBone()));
-        recipe.setIngredient('W', new RecipeChoice.ExactChoice(citem.getWitherbone()));
+        recipe.setIngredient('B', new RecipeChoice.ExactChoice(CustomItems.getDragonBone()));
+        recipe.setIngredient('W', new RecipeChoice.ExactChoice(CustomItems.getWitherbone()));
 
         return recipe;
     }
@@ -1243,13 +1407,13 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "dragon_bone_bow");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getDragonBoneBow());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getDragonBoneBow());
 
         recipe.shape(" BS", "W S", " BS");
 
-        recipe.setIngredient('B', new RecipeChoice.ExactChoice(citem.getDragonBone()));
-        recipe.setIngredient('W', new RecipeChoice.ExactChoice(citem.getWitherbone()));
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getString()));
+        recipe.setIngredient('B', new RecipeChoice.ExactChoice(CustomItems.getDragonBone()));
+        recipe.setIngredient('W', new RecipeChoice.ExactChoice(CustomItems.getWitherbone()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getString()));
 
         return recipe;
     }
@@ -1258,12 +1422,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "flamed_dragon_bone_sword");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getFlamedDragonBoneSword());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getFlamedDragonBoneSword());
 
         recipe.shape("SB", "  ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonBoneSword()));
-        recipe.setIngredient('B', new RecipeChoice.ExactChoice(citem.getFireDragonBlood()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonBoneSword()));
+        recipe.setIngredient('B', new RecipeChoice.ExactChoice(CustomItems.getFireDragonBlood()));
 
         return recipe;
     }
@@ -1272,12 +1436,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "ice_dragon_bone_sword");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getIcedDragonBoneSword());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getIcedDragonBoneSword());
 
         recipe.shape("SB", "  ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonBoneSword()));
-        recipe.setIngredient('B', new RecipeChoice.ExactChoice(citem.getIceDragonBlood()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonBoneSword()));
+        recipe.setIngredient('B', new RecipeChoice.ExactChoice(CustomItems.getIceDragonBlood()));
 
         return recipe;
     }
@@ -1286,12 +1450,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "lightning_dragon_bone_sword");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getLightningDragonBoneSword());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getLightningDragonBoneSword());
 
         recipe.shape("SB", "  ");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getDragonBoneSword()));
-        recipe.setIngredient('B', new RecipeChoice.ExactChoice(citem.getLightningDragonBlood()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getDragonBoneSword()));
+        recipe.setIngredient('B', new RecipeChoice.ExactChoice(CustomItems.getLightningDragonBlood()));
 
         return recipe;
     }
@@ -1300,11 +1464,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "bauble_balloon");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getBalloon());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getBalloon());
 
         recipe.shape("SWS", "WSW", "SWS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSpectralSilt()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSpectralSilt()));
         recipe.setIngredient('W', Material.WHITE_WOOL);
 
         return recipe;
@@ -1314,11 +1478,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "bauble_cobalt_shield");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getCobaltShield());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getCobaltShield());
 
         recipe.shape("SSS", "SHS", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSpectralSilt()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSpectralSilt()));
         recipe.setIngredient('H', Material.SHIELD);
 
         return recipe;
@@ -1328,13 +1492,13 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "bauble_obsidian_skull");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getObsidianSkull());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getObsidianSkull());
 
         recipe.shape("OBO", "PWP", "OBO");
 
         recipe.setIngredient('O', Material.OBSIDIAN);
         recipe.setIngredient('B', Material.BLAZE_POWDER);
-        recipe.setIngredient('P', new RecipeChoice.ExactChoice(citem.getFireResistancePotion()));
+        recipe.setIngredient('P', new RecipeChoice.ExactChoice(CustomItems.getFireResistancePotion()));
         recipe.setIngredient('W', Material.WITHER_SKELETON_SKULL);
 
         return recipe;
@@ -1344,11 +1508,11 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "bauble_sunglasses");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getSunglasses());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getSunglasses());
 
         recipe.shape("S S", "GTG", "S S");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSpectralSilt()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSpectralSilt()));
         recipe.setIngredient('G', Material.GLASS);
         recipe.setIngredient('T', Material.STICK);
 
@@ -1359,12 +1523,12 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "bauble_cracked_black_dragon_scale");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getCrackedBlackDragonScale());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getCrackedBlackDragonScale());
 
         recipe.shape("SSS", "SES", "SSS");
 
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSpectralSilt()));
-        recipe.setIngredient('E', new RecipeChoice.ExactChoice(citem.getEnderDragonScale()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSpectralSilt()));
+        recipe.setIngredient('E', new RecipeChoice.ExactChoice(CustomItems.getEnderDragonScale()));
 
         return recipe;
     }
@@ -1373,13 +1537,13 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "bauble_black_dragon_scale");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getBlackDragonScale());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getBlackDragonScale());
 
         recipe.shape("   ", "NEC", "   ");
 
         recipe.setIngredient('N', Material.NETHER_STAR);
-        recipe.setIngredient('E', new RecipeChoice.ExactChoice(citem.getEnderDragonScale()));
-        recipe.setIngredient('C', new RecipeChoice.ExactChoice(citem.getCrackedBlackDragonScale()));
+        recipe.setIngredient('E', new RecipeChoice.ExactChoice(CustomItems.getEnderDragonScale()));
+        recipe.setIngredient('C', new RecipeChoice.ExactChoice(CustomItems.getCrackedBlackDragonScale()));
 
         return recipe;
     }
@@ -1388,25 +1552,28 @@ public class Recipes {
 
         NamespacedKey key = new NamespacedKey(plugin, "bauble_ankh_charm");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, citem.getAnkhCharm());
+        ShapedRecipe recipe = new ShapedRecipe(key, CustomItems.getAnkhCharm());
 
         recipe.shape("GSG", "RMF", "GVG");
 
         recipe.setIngredient('G', Material.GOLD_INGOT);
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(citem.getSunglasses()));
-        recipe.setIngredient('R', new RecipeChoice.ExactChoice(citem.getRingofFreeAction()));
-        recipe.setIngredient('M', new RecipeChoice.ExactChoice(citem.getMixedColorDragonScale()));
-        recipe.setIngredient('F', new RecipeChoice.ExactChoice(citem.getForbiddenFruit()));
-        recipe.setIngredient('V', new RecipeChoice.ExactChoice(citem.getVitamins()));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(CustomItems.getSunglasses()));
+        recipe.setIngredient('R', new RecipeChoice.ExactChoice(CustomItems.getRingofFreeAction()));
+        recipe.setIngredient('M', new RecipeChoice.ExactChoice(CustomItems.getMixedColorDragonScale()));
+        recipe.setIngredient('F', new RecipeChoice.ExactChoice(CustomItems.getForbiddenFruit()));
+        recipe.setIngredient('V', new RecipeChoice.ExactChoice(CustomItems.getVitamins()));
 
         return recipe;
     }
 
     public ShapedRecipe getWarpedScrollRecipe() {
 
+        ItemStack warpedScroll = CustomItems.getWarpedScroll();
+        Utils.resizeItem(warpedScroll, 3);
+
         NamespacedKey key = new NamespacedKey(plugin, "warped_scroll");
 
-        ShapedRecipe recipe = new ShapedRecipe(key, util.resizeItem(citem.getWarpedScroll(), 3));
+        ShapedRecipe recipe = new ShapedRecipe(key, warpedScroll);
 
         recipe.shape("EDE", "PPP", "GDG");
 
@@ -1417,24 +1584,5 @@ public class Recipes {
 
         return recipe;
     }
-
-//    public ShapedRecipe getFireDragonsteelSwordRecipe() {
-//
-//        NamespacedKey key = new NamespacedKey(plugin, "dragonsteel_fire_sword");
-//
-//        ShapedRecipe recipe = new ShapedRecipe(key, citem.getFireDragonsteelSword());
-//
-//        recipe.shape("EDE", "PPP", "GDG");
-//
-//        recipe.setIngredient('E', Material.ENDER_PEARL);
-//        recipe.setIngredient('D', Material.PURPLE_DYE);
-//        recipe.setIngredient('P', Material.PAPER);
-//        recipe.setIngredient('G', Material.GOLD_NUGGET);
-//
-//        return recipe;
-//    }
-
-
-
 
 }

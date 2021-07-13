@@ -6,21 +6,31 @@
 # If you're looking to customize the Spartan's weaponry items, look in "spartanweaponry.yml"
 
 Abilities:
+  # BonusDamage - How much extra damage is done to the opposite dragon type
+  # Ex: Flamed dragon bone does 8.0 extra damage to ice dragons
+  # Lighting dragon bone weapons do extra damage to both fire and ice dragons
+  # NOTE: BonusDamage also affects extra damage for appropriate spartan's weapons
   FlamedDragonBone:
     FireTicks: 200
+    BonusDamage: 8.0
   IcedDragonBone:
     # Amplifier - Potency of the potion effect
     # Amplifiers are 1 value stronger than they appear
     # Ex: An amplifier of 0 corresponds to Slowness I
     # Duration and FrozenDuration measured in ticks (20 ticks = 1 second)
     # FrozenDuration determines how long a mob is encased in ice
+    # Block - What block the mob is encased in, default is ice
+    # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
     Slowness:
       Amplifier: 4
       Duration: 30
     FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
   LightningDragonBone:
     ShockDamage: 0.2
     ShockAmount: 10
+    BonusDamage: 4.0
   FireDragonsteel:
     FireTicks: 400
   IceDragonsteel:
@@ -28,9 +38,23 @@ Abilities:
       Amplifier: 4
       Duration: 60
     FrozenDuration: 10
+    Block: "PACKED_ICE"
   LightningDragonsteel:
     ShockDamage: 0.4
     ShockAmount: 20
+  Dragonsteel:
+    # DamageReduction - How much is the damage of dragon attacks reduced per each piece of armor
+    # 1.0 = full damage reduction
+    DamageReduction: 0.2
+  DragonScale:
+    DamageReduction: 0.1
+  TideGuardian:
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      AmplifierPerArmorPiece: 0
+      Duration: 270
 
 Pickaxe:
   DragonBone:

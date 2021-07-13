@@ -1,7 +1,7 @@
 #################################################################################################################################
 #																																#
-#	RLCraft Addon Plugin	    MC 1.17																					        #
-#	Version 1.0	                Made by: Val_Mobile											                                    #
+#	RLCraft Plugin	            MC 1.17																					        #
+#	Version 1.2	                Made by: Val_Mobile											                                    #
 #																																#
 #################################################################################################################################
 
@@ -11,7 +11,7 @@
 #######################################
 
 usage: "&cUsage: /rlcraft [reload, give [player] [item] ]"
-reload: "&4[&cRLCRAFT&4] &aPlugin reloaded!"
+reload: "&6[RLCRAFT] &aPlugin reloaded!"
 nopermission: "&cYou do not have permission to do this!"
 noOnlinePlayer: "&cThe specified player is not online!"
 misspelledPlayer: "&cThe specified player's name was misspelled"
@@ -22,16 +22,17 @@ misspelledItemName: "&cYou mispelled the item!"
 #######################################
 
 # Enable and disable features to your liking
-# There are 5 other configs to customize the individual details of each feature
+# There are 6 other configs to customize the individual details of each feature
 # Resource pack is disabled by default to allow for integration of it into
 # your own custom server pack if needed
 ResourcePack:
   Enabled: false
-  URL: "https://www.dropbox.com/s/sgru3wm4vj2tje5/RLCraft-Addons%20RP.zip?dl=1"
+  URL: "https://www.dropbox.com/s/czj0lzu4jajr4qs/RLCraft-Addons%20RP.zip?dl=1"
 UnlockRecipes: true
-FlintTools: true
 NoTreePunching: true
 Dragons: true
 SeaSerpents: true
 Witherbones: true
 Baubles: true
+LycanitesMobs: true
+Waystones: true

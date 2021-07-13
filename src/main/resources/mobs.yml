@@ -4,16 +4,82 @@
 
 # Customize chance and loot tables of dragons, sea serpents, and withers
 
-dragons:
-  # Chance the vanilla acid ball attack becomes a special attack instead
-  # Make sure rates add up to 1.0
-  BreathAttackChance: 0.7
-  ExplosionAttackChance: 0.2
-  NormalAttackChance: 0.1
-  # Make sure rates add up to 1.0
-  FireDragonRate: 0.4
-  IceDragonRate: 0.3
-  LightningDragonRate: 0.3
+Dragons:
+  # The vanilla ender dragon will randomly become either an fire, ice, or lightning dragon
+  # Increase the chance of a dragon type to make that dragon more common
+  # Make sure chances add up to 1.0
+  FireDragon:
+    Chance: 0.4
+    # Chance the vanilla acid ball attack becomes a special attack instead
+    # Make sure rates add up to 1.0
+    BreathAttack:
+      # LayerBlock - The block that replaces air
+      # BurntBlock - The block which flammable blocks get turned into
+      # CharredBlock - The block which nonflammable blocks get turned into
+      # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+      # VelocityMultiplier - How much faster the flames travel compared to the speed of a normal acid ball
+      # RadiusConstant - Helps determine the minimum radius of fire and charring
+      # DecayTicks - Determines when the breath attack is removed due to having traveled too far
+      # ImmuneBlocks - Specify which blocks are immune to breath attacks
+      # Endstone, bedrock, and other blocks found in the end are put here to prevent the main end island from being destroyed
+      # The following settings already work well for a good dragon fight
+      # You don't need to change them in most cases
+      Chance: 1.0
+      LayerBlock: "FIRE"
+      BurntBlock: "BLACKSTONE"
+      CharredBlock: "SMOOTH_BASALT"
+      VelocityMultiplier: 30
+      RadiusConstant: 2
+      DecayTicks: 200
+      ImmuneBlocks:
+        - "END_STONE"
+        - "OBSIDIAN"
+        - "IRON_BARS"
+        - "CHORUS_FLOWER"
+        - "CHORUS_PLANT"
+        - "BEDROCK"
+    ExplosionAttack:
+      Chance: 0.0
+    NormalAttack:
+      Chance: 0.0
+  IceDragon:
+    Chance: 0.3
+    BreathAttack:
+      # LayerBlock - What block will air be converted into
+      # FrozenBlock - What block will solid blocks be converted into
+      # SolidifiedLavaBlock - What block will lava be converted into
+      # SolidifiedWaterBlock - What block will water be converted into
+      Chance: 1.0
+      LayerBlock: "SNOW"
+      FrozenBlock: "PACKED_ICE"
+      SolidifiedLavaBlock: "OBSIDIAN"
+      SolidifiedWaterBlock: "PACKED_ICE"
+      VelocityMultiplier: 30.0
+      RadiusConstant: 2
+      DecayTicks: 200
+      ImmuneBlocks:
+        - "END_STONE"
+        - "OBSIDIAN"
+        - "IRON_BARS"
+        - "CHORUS_FLOWER"
+        - "CHORUS_PLANT"
+        - "BEDROCK"
+    ExplosionAttack:
+      Chance: 0.0
+    NormalAttack:
+      Chance: 0.0
+  LightningDragon:
+    Chance: 0.3
+    BreathAttack:
+      Chance: 1.0
+      # RadiusConstant determines how far away the lightning can strike
+      VelocityMultiplier: 30.0
+      RadiusConstant: 2
+      DecayTicks: 200
+    ExplosionAttack:
+      Chance: 0.0
+    NormalAttack:
+      Chance: 0.0
   RecursiveDropRates:
     Enabled: true
     MinScales: 24

@@ -1,0 +1,370 @@
+#######################################
+#          Items                      #
+#######################################
+
+# For dev use only, do NOT edit anything
+0:
+  Material: "WOODEN_AXE"
+  Amount: 1
+  DisplayName: "&fFlint Axe"
+  CodeName: "FlintAxe"
+  CommandName: "flint_axe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+1:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fFlint Knife"
+  CodeName: "FlintKnife"
+  CommandName: "flint_knife"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Dagger"
+2:
+  Material: "WOODEN_PICKAXE"
+  Amount: 1
+  DisplayName: "&fFlint Pickaxe"
+  CodeName: "FlintPickaxe"
+  CommandName: "flint_pickaxe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+3:
+  Material: "WOODEN_SHOVEL"
+  Amount: 1
+  DisplayName: "&fFlint Shovel"
+  CodeName: "FlintShovel"
+  CommandName: "flint_shovel"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+4:
+  Material: "WOODEN_HOE"
+  Amount: 1
+  DisplayName: "&fFlint Hoe"
+  CodeName: "FlintHoe"
+  CommandName: "flint_hoe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+5:
+  Material: "GRASS"
+  Amount: 1
+  DisplayName: "&fPlant Fiber"
+  CodeName: "PlantFiber"
+  CommandName: "plant_fiber"
+  CustomModelData: 83650
+6:
+  Material: "STRING"
+  Amount: 1
+  DisplayName: "&fPlant String"
+  CodeName: "PlantString"
+  CommandName: "plant_string"
+  CustomModelData: 83650
+7:
+  Material: "FLINT"
+  Amount: 1
+  DisplayName: "&fFlint Shard"
+  CodeName: "FlintShard"
+  CommandName: "flint_shard"
+  CustomModelData: 93650
+8:
+  Material: "BONE"
+  Amount: 1
+  DisplayName: "&fDragon Bone"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone"
+  CustomModelData: 83650
+9:
+  Material: "BONE"
+  Amount: 1
+  DisplayName: "&fWitherbone"
+  CodeName: "Witherbone"
+  CommandName: "witherbone"
+  CustomModelData: 83651
+10:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleBlue"
+  CommandName: "dragon_scale_blue"
+  CustomModelData: 83650
+  Lore:
+    - "&bBlue"
+11:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleBronze"
+  CommandName: "dragon_scale_bronze"
+  CustomModelData: 83651
+  Lore:
+    - "&6Bronze"
+12:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleGray"
+  CommandName: "dragon_scale_gray"
+  CustomModelData: 83652
+  Lore:
+    - "&7Gray"
+13:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleGreen"
+  CommandName: "dragon_scale_green"
+  CustomModelData: 83653
+  Lore:
+    - "&2Emerald"
+14:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleRed"
+  CommandName: "dragon_scale_red"
+  CustomModelData: 83654
+  Lore:
+    - "&4Red"
+15:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleSapphire"
+  CommandName: "dragon_scale_sapphire"
+  CustomModelData: 83655
+  Lore:
+    - "&9Sapphire"
+16:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleSilver"
+  CommandName: "dragon_scale_silver"
+  CustomModelData: 83656
+  Lore:
+    - "&8Silver"
+17:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleWhite"
+  CommandName: "dragon_scale_white"
+  CustomModelData: 83657
+  Lore:
+    - "&fWhite"
+18:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleAmethyst"
+  CommandName: "dragon_scale_amethyst"
+  CustomModelData: 83658
+  Lore:
+    - "&dAmethyst"
+19:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleBlack"
+  CommandName: "dragon_scale_black"
+  CustomModelData: 83659
+  Lore:
+    - "&8Black"
+20:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleCopper"
+  CommandName: "dragon_scale_copper"
+  CustomModelData: 83660
+  Lore:
+    - "&6Copper"
+21:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fDragon Scales"
+  CodeName: "DragonScaleElectric"
+  CommandName: "dragon_scale_electric"
+  CustomModelData: 83661
+  Lore:
+    - "&1Electric Blue"
+22:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fSea Serpent Scales"
+  CodeName: "SeaSerpentScaleBlue"
+  CommandName: "sea_serpent_scale_blue"
+  CustomModelData: 83662
+  Lore:
+    - "&9Blue"
+23:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fSea Serpent Scales"
+  CodeName: "SeaSerpentScaleBronze"
+  CommandName: "sea_serpent_scale_bronze"
+  CustomModelData: 83663
+  Lore:
+    - "&6Bronze"
+24:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fSea Serpent Scales"
+  CodeName: "SeaSerpentScaleDeepblue"
+  CommandName: "sea_serpent_scale_Deepblue"
+  CustomModelData: 83664
+  Lore:
+    - "&1Deep Blue"
+25:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fSea Serpent Scales"
+  CodeName: "SeaSerpentScaleGreen"
+  CommandName: "sea_serpent_scale_green"
+  CustomModelData: 83665
+  Lore:
+    - "&2Green"
+26:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fSea Serpent Scales"
+  CodeName: "SeaSerpentScalePurple"
+  CommandName: "sea_serpent_scale_purple"
+  CustomModelData: 83666
+  Lore:
+    - "&5Purple"
+27:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fSea Serpent Scales"
+  CodeName: "SeaSerpentScaleRed"
+  CommandName: "sea_serpent_scale_red"
+  CustomModelData: 83667
+  Lore:
+    - "&4Red"
+28:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fSea Serpent Scales"
+  CodeName: "SeaSerpentScaleTeal"
+  CommandName: "sea_serpent_scale_teal"
+  CustomModelData: 83668
+  Lore:
+    - "&bTeal"
+29:
+  Material: "IRON_NUGGET"
+  Amount: 1
+  DisplayName: "&fShiny Scale"
+  CodeName: "ShinyScale"
+  CommandName: "shiny_scale"
+  CustomModelData: 83669
+30:
+  Material: "DRAGON_BREATH"
+  Amount: 1
+  DisplayName: "&fFire Dragon Blood"
+  CodeName: "FireDragonBlood"
+  CommandName: "dragon_blood_fire"
+  CustomModelData: 83650
+31:
+  Material: "DRAGON_BREATH"
+  Amount: 1
+  DisplayName: "&fIce Dragon Blood"
+  CodeName: "IceDragonBlood"
+  CommandName: "dragon_blood_ice"
+  CustomModelData: 83651
+32:
+  Material: "DRAGON_BREATH"
+  Amount: 1
+  DisplayName: "&fLightning Dragon Blood"
+  CodeName: "LightningDragonBlood"
+  CommandName: "dragon_blood_lightning"
+  CustomModelData: 83652
+33:
+  Material: "HEART_OF_THE_SEA"
+  Amount: 1
+  DisplayName: "&fFire Dragon Heart"
+  CodeName: "FireDragonHeart"
+  CommandName: "dragon_heart_fire"
+  CustomModelData: 83650
+34:
+  Material: "HEART_OF_THE_SEA"
+  Amount: 1
+  DisplayName: "&fIce Dragon Heart"
+  CodeName: "IceDragonHeart"
+  CommandName: "dragon_heart_ice"
+  CustomModelData: 83651
+35:
+  Material: "HEART_OF_THE_SEA"
+  Amount: 1
+  DisplayName: "&fLightning Dragon Heart"
+  CodeName: "LightningDragonHeart"
+  CommandName: "dragon_heart_lightning"
+  CustomModelData: 83652
+36:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fDragon Skull"
+  CodeName: "FireDragonSkull"
+  CommandName: "dragon_skull_fire"
+  CustomModelData: 83658
+37:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fDragon Skull"
+  CodeName: "IceDragonSkull"
+  CommandName: "dragon_skull_ice"
+  CustomModelData: 83659
+38:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fDragon Skull"
+  CodeName: "LightningDragonSkull"
+  CommandName: "dragon_skull_lightning"
+  CustomModelData: 83660
+39:
+  Material: "COOKED_BEEF"
+  Amount: 1
+  DisplayName: "&fFire Dragon Flesh"
+  CodeName: "FireDragonFlesh"
+  CommandName: "dragon_flesh_fire"
+  CustomModelData: 83650
+40:
+  Material: "COOKED_BEEF"
+  Amount: 1
+  DisplayName: "&fIce Dragon Flesh"
+  CodeName: "IceDragonFlesh"
+  CommandName: "dragon_flesh_ice"
+  CustomModelData: 83651
+41:
+  Material: "COOKED_BEEF"
+  Amount: 1
+  DisplayName: "&fLightning Dragon Flesh"
+  CodeName: "LightningDragonFlesh"
+  CommandName: "dragon_flesh_lightning"
+  CustomModelData: 83652
+42:
+  Material: "IRON_INGOT"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Ingot"
+  CodeName: "FireDragonsteelIngot"
+  CommandName: "dragonsteel_fire_ingot"
+  CustomModelData: 83650
+43:
+  Material: "IRON_INGOT"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Ingot"
+  CodeName: "IceDragonsteelIngot"
+  CommandName: "dragonsteel_ice_ingot"
+  CustomModelData: 83651
+44:
+  Material: "IRON_INGOT"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Ingot"
+  CodeName: "LightningDragonsteelIngot"
+  CommandName: "dragonsteel_lightning_ingot"
+  CustomModelData: 83652

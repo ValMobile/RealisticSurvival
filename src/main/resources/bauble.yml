@@ -103,3 +103,8 @@ RingFreeAction:
   AnvilCost: 10
 MixedColorDragonScale:
   AnvilCost: 10
+ShieldHonor:
+  Amplifier: 0
+  Duration: 270
+  ExplosionDamageMultiplier: 0.5
+  TickTime: 20

@@ -1,0 +1,26 @@
+#######################################
+#          Lycanite's Mobs            #
+#######################################
+
+# Customize features of the lycanite's mobs and its items
+# Note: Lycanite's mobs are a heavy WIP and as such, features are unstable
+
+BattleBurrito:
+  Speed:
+    Amplifier: 2
+    Duration: 500
+  Regeneration:
+    Amplifier: 2
+    Duration: 500
+  Strength:
+    Amplifier: 2
+    Duration: 500
+  Resistance:
+    Amplifier: 2
+    Duration: 2000
+  Absorption:
+    Amplifier: 2
+    Duration: 2000
+  FireResistance:
+    Amplifier: 2
+    Duration: 2000

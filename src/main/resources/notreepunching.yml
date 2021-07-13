@@ -7,26 +7,26 @@
 # 25% = 0.25
 PlantFiber:
   DropChance: 0.25
-  checkLooting: true
+  CheckLooting: true
 FlintShard:
   DropChance: 0.3
 Pickaxe:
-  Flint:
+  FlintPickaxe:
     AttackDamage: 2.5
     AttackSpeed: 2.5
 Axe:
-  Flint:
+  FlintAxe:
     AttackDamage: 5.0
     AttackSpeed: 1.0
 Shovel:
-  Flint:
+  FlintShovel:
     AttackDamage: 3.0
     AttackSpeed: 2.4
 Hoe:
-  Flint:
+  FlintHoe:
     AttackDamage: 1.0
     AttackSpeed: 2.6
 Knife:
-  Flint:
+  FlintKnife:
     AttackDamage: 2.0
     AttackSpeed: 3.0

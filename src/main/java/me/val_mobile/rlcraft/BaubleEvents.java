@@ -17,14 +17,13 @@ import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
-import org.bukkit.inventory.AnvilInventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.Random;
@@ -32,117 +31,611 @@ import java.util.Random;
 public class BaubleEvents implements Listener {
 
     private final RLCraft plugin;
-    private final Items citem;
-    private final BaubleAbilities abilities;
-    private final BaubleRunnables baubleRunnables;
+    private final BaubleRunnables baubleRunnables = new BaubleRunnables();
+    private final BaubleAbilities baubleAbilities = new BaubleAbilities();
     private final Utils util;
-    private final CustomConfig customConfig;
-
     public BaubleEvents(RLCraft instance) {
-
         plugin = instance;
-        abilities = new BaubleAbilities(instance);
-        citem = new Items(instance);
         util = new Utils(instance);
-        baubleRunnables = new BaubleRunnables(instance);
-        customConfig = new CustomConfig(instance);
     }
-
-
+    
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        util.checkBauble(player);
+        Utils.resetBaubleMaps(player);
+        Utils.updateBaubleValues(player);
 
-        baubleRunnables.getPotionRingResistanceRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingResistance.TickTime"));
-        baubleRunnables.getPotionRingStrengthRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingStrength.TickTime"));
-        baubleRunnables.getPotionRingSpeedRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingSpeed.TickTime"));
-        baubleRunnables.getPotionRingJumpBoostRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingJumpBoost.TickTime"));
-        baubleRunnables.getPotionRingHasteRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingHaste.TickTime"));
-        baubleRunnables.getPotionRingRegenerationRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("PotionRingRegeneration.TickTime"));
+        util.startPrResRunnable(player);
+        util.startPrStrengthRunnable(player);
+        util.startPrSpeedRunnable(player);
+        util.startPrJumpRunnable(player);
+        util.startPrHasteRunnable(player);
+        util.startPrRegenRunnable(player);
 
-        baubleRunnables.getScarliteRingRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("ScarliteRing.TickTime"));
-        baubleRunnables.getDragonsEyeRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("DragonsEye.TickTime"));
-        baubleRunnables.getMinersRingRunnable(player).runTaskTimer(plugin, 0L, customConfig.getBaubleConfig().getInt("MinersRing.TickTime"));
+        util.startScarliteRingRunnable(player);
+        util.startDragonsEyeRunnable(player);
+        util.startMinersRingRunnable(player);
+        util.startShieldHonorRunnable(player);
+
+        for (Recipe r : Recipes.getBaubleRecipes()) {
+            if (r instanceof ShapedRecipe) {
+                player.discoverRecipe(((ShapedRecipe) r).getKey());
+            }
+            else if (r instanceof ShapelessRecipe) {
+                player.discoverRecipe(((ShapelessRecipe) r).getKey());
+            }
+        }
 
     }
 
     @EventHandler
-    public void onItemPickup(PlayerPickupItemEvent event) {
-        NBTItem item = new NBTItem(event.getItem().getItemStack());
-        if (item.hasKey("Potion Effect Bauble")) {
-            util.checkBauble(event.getPlayer());
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        Utils.resetBaubleMaps(event.getEntity());
+    }
+
+    @EventHandler
+    public void onPlayerLeave(PlayerQuitEvent event) {
+        Utils.resetBaubleMaps(event.getPlayer());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemPickup(EntityPickupItemEvent event) {
+        if (!event.isCancelled()) {
+            LivingEntity entity = event.getEntity();
+            if (entity instanceof Player) {
+                Player player = (Player) entity;
+                ItemStack item = event.getItem().getItemStack();
+                if (! (item == null || item.getType() == Material.AIR) ) {
+                    NBTItem nbti = new NBTItem(item);
+                    if (nbti.hasKey("Bauble")) {
+                        switch (nbti.getString("Bauble")) {
+                            case "Potion Ring of Resistance":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrResValues(player);
+                                        util.startPrResRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Regeneration":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrRegenValues(player);
+                                        util.startPrRegenRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Strength":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrStrengthValues(player);
+                                        util.startPrStrengthRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Speed":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrSpeedValues(player);
+                                        util.startPrSpeedRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Jump Boost":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrJumpValues(player);
+                                        util.startPrJumpRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Haste":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrHasteValues(player);
+                                        util.startPrHasteRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Miner's Ring":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateMinersRingValues(player);
+                                        util.startMinersRingRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Scarlite Ring":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateScarliteRingValues(player);
+                                        util.startScarliteRingRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Dragon's Eye":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateDragonsEyeValues(player);
+                                        util.startDragonsEyeRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Shield of Honor":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateShieldHonorValues(player);
+                                        util.startShieldHonorRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                        }
+                    }
+                }
+            }
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onItemThrow(PlayerDropItemEvent event) {
-        NBTItem item = new NBTItem(event.getItemDrop().getItemStack());
-        if (item.hasKey("Potion Effect Bauble")) {
-            util.checkBauble(event.getPlayer());
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
+            NBTItem item = new NBTItem(event.getItemDrop().getItemStack());
+            if (item.hasKey("Bauble")) {
+                switch (item.getString("Bauble")) {
+                    case "Potion Ring of Resistance":
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Utils.updatePrResValues(player);
+                                util.startPrResRunnable(player);
+                            }
+                        }.runTaskLater(plugin, 1L);
+                        break;
+                    case "Potion Ring of Regeneration":
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Utils.updatePrRegenValues(player);
+                                util.startPrRegenRunnable(player);
+                            }
+                        }.runTaskLater(plugin, 1L);
+                        break;
+                    case "Potion Ring of Strength":
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Utils.updatePrStrengthValues(player);
+                                util.startPrStrengthRunnable(player);
+                            }
+                        }.runTaskLater(plugin, 1L);
+                        break;
+                    case "Potion Ring of Speed":
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Utils.updatePrSpeedValues(player);
+                                util.startPrSpeedRunnable(player);
+                            }
+                        }.runTaskLater(plugin, 1L);
+                        break;
+                    case "Potion Ring of Jump Boost":
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Utils.updatePrJumpValues(player);
+                                util.startPrJumpRunnable(player);
+                            }
+                        }.runTaskLater(plugin, 1L);
+                        break;
+                    case "Potion Ring of Haste":
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Utils.updatePrHasteValues(player);
+                                util.startPrHasteRunnable(player);
+                            }
+                        }.runTaskLater(plugin, 1L);
+                        break;
+                    case "Miner's Ring":
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Utils.updateMinersRingValues(player);
+                                util.startMinersRingRunnable(player);
+                            }
+                        }.runTaskLater(plugin, 1L);
+                        break;
+                    case "Scarlite Ring":
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Utils.updateScarliteRingValues(player);
+                                util.startScarliteRingRunnable(player);
+                            }
+                        }.runTaskLater(plugin, 1L);
+                        break;
+                    case "Dragon's Eye":
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Utils.updateDragonsEyeValues(player);
+                                util.startDragonsEyeRunnable(player);
+                            }
+                        }.runTaskLater(plugin, 1L);
+                        break;
+                    case "Shield of Honor":
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Utils.updateShieldHonorValues(player);
+                                util.startShieldHonorRunnable(player);
+                            }
+                        }.runTaskLater(plugin, 1L);
+                        break;
+                }
+            }
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onClick(InventoryClickEvent event) {
-        if (! (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) ) {
-            NBTItem item = new NBTItem(event.getCurrentItem());
-            if (item.hasKey("Potion Effect Bauble")) {
-                util.checkBauble((Player) event.getWhoClicked());
+        if (!event.isCancelled()) {
+            Player player = (Player) event.getWhoClicked();
+            if (event.getView().getBottomInventory() instanceof PlayerInventory) {
+                if (! (event.getCursor() == null || event.getCursor().getType() == Material.AIR) ) {
+                    NBTItem item = new NBTItem(event.getCursor());
+                    if (item.hasKey("Bauble")) {
+                        switch (item.getString("Bauble")) {
+                            case "Potion Ring of Resistance":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrResValues(player);
+                                        util.startPrResRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Regeneration":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrRegenValues(player);
+                                        util.startPrRegenRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Strength":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrStrengthValues(player);
+                                        util.startPrStrengthRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Speed":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrSpeedValues(player);
+                                        util.startPrSpeedRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Jump Boost":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrJumpValues(player);
+                                        util.startPrJumpRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Haste":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrHasteValues(player);
+                                        util.startPrHasteRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Miner's Ring":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateMinersRingValues(player);
+                                        util.startMinersRingRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Scarlite Ring":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateScarliteRingValues(player);
+                                        util.startScarliteRingRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Dragon's Eye":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateDragonsEyeValues(player);
+                                        util.startDragonsEyeRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Shield of Honor":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateShieldHonorValues(player);
+                                        util.startShieldHonorRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                        }
+                    }
+
+                }
+                if (! (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) ) {
+                    NBTItem item = new NBTItem(event.getCurrentItem());
+                    if (item.hasKey("Bauble")) {
+                        switch (item.getString("Bauble")) {
+                            case "Potion Ring of Resistance":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrResValues(player);
+                                        util.startPrResRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Regeneration":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrRegenValues(player);
+                                        util.startPrRegenRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Strength":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrStrengthValues(player);
+                                        util.startPrStrengthRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Speed":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrSpeedValues(player);
+                                        util.startPrSpeedRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Jump Boost":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrJumpValues(player);
+                                        util.startPrJumpRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Haste":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrHasteValues(player);
+                                        util.startPrHasteRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Miner's Ring":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateMinersRingValues(player);
+                                        util.startMinersRingRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Scarlite Ring":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateScarliteRingValues(player);
+                                        util.startScarliteRingRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Dragon's Eye":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateDragonsEyeValues(player);
+                                        util.startDragonsEyeRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Shield of Honor":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateShieldHonorValues(player);
+                                        util.startShieldHonorRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                        }
+                    }
+                }
             }
-        }
-        if (! (event.getCursor() == null || event.getCursor().getType() == Material.AIR) ) {
-            NBTItem item = new NBTItem(event.getCursor());
-            if (item.hasKey("Potion Effect Bauble")) {
-                util.checkBauble((Player) event.getWhoClicked());
-            }
+
         }
 
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onDragClick(InventoryDragEvent event) {
-        if (! (event.getCursor() == null || event.getCursor().getType() == Material.AIR) ) {
-            NBTItem item = new NBTItem(event.getCursor());
-            if (item.hasKey("Potion Effect Bauble")) {
-                util.checkBauble((Player) event.getWhoClicked());
+        if (!event.isCancelled()) {
+            Player player = (Player) event.getWhoClicked();
+            if (event.getView().getBottomInventory() instanceof PlayerInventory) {
+                if (! (event.getOldCursor() == null || event.getOldCursor().getType() == Material.AIR) ) {
+                    NBTItem item = new NBTItem(event.getOldCursor());
+                    if (item.hasKey("Bauble")) {
+                        switch (item.getString("Bauble")) {
+                            case "Potion Ring of Resistance":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrResValues(player);
+                                        util.startPrResRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Regeneration":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrRegenValues(player);
+                                        util.startPrRegenRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Strength":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrStrengthValues(player);
+                                        util.startPrStrengthRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Speed":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrSpeedValues(player);
+                                        util.startPrSpeedRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Jump Boost":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrJumpValues(player);
+                                        util.startPrJumpRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Potion Ring of Haste":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updatePrHasteValues(player);
+                                        util.startPrHasteRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Miner's Ring":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateMinersRingValues(player);
+                                        util.startMinersRingRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Scarlite Ring":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateScarliteRingValues(player);
+                                        util.startScarliteRingRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Dragon's Eye":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateDragonsEyeValues(player);
+                                        util.startDragonsEyeRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                            case "Shield of Honor":
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Utils.updateShieldHonorValues(player);
+                                        util.startShieldHonorRunnable(player);
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                                break;
+                        }
+                    }
+
+                }
             }
         }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onTarget(EntityTargetEvent event) {
-        if(event.getEntity() instanceof Enderman && event.getTarget() instanceof Player) {
+        if (event.getEntity() instanceof Enderman && event.getTarget() instanceof Player) {
             Player player = (Player) event.getTarget();
-            if (player.getInventory().contains(citem.getEnderQueensCrown()))
+            if (player.getInventory().containsAtLeast(CustomItems.getEnderQueensCrown(), 1))
                 event.setCancelled(true);
         }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager() instanceof Player) {
-            Player player = (Player) event.getDamager();
-            Entity entity = event.getEntity();
-            if (player.getInventory().containsAtLeast(citem.getPoisonStone(), 1)) {
-                abilities.PoisonStoneAbility((LivingEntity) entity);
-            }
+        if (!event.isCancelled()) {
+            if (event.getDamager() instanceof Player) {
+                Player player = (Player) event.getDamager();
+                Entity entity = event.getEntity();
+                if (player.getInventory().containsAtLeast(CustomItems.getPoisonStone(), 1)) {
+                    baubleAbilities.PoisonStoneAbility((LivingEntity) entity);
+                }
 
-        }
-        if (event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
-            NBTItem itemOffHand = null;
-            if (! (player.getInventory().getItemInOffHand() == null || player.getInventory().getItemInOffHand().getType() == Material.AIR) ) {
-                itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
             }
-            if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
-                itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
-                if (itemOffHand.hasKey("Bauble")) {
-                    String bauble = itemOffHand.getString("Bauble");
-                    if (bauble.equals("Cobalt Shield") ||
-                            bauble.equals("Obsidian Shield") ||
-                            bauble.equals("Ankh Shield")) {
-                        baubleRunnables.freezeEntity(player).runTaskLater(plugin, 1);
+            if (event.getEntity() instanceof Player) {
+                Player player = (Player) event.getEntity();
+                NBTItem itemOffHand = null;
+                if (! (player.getInventory().getItemInOffHand() == null || player.getInventory().getItemInOffHand().getType() == Material.AIR) ) {
+                    itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
+                }
+                if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
+                    itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
+                    if (itemOffHand.hasKey("Bauble")) {
+                        switch (itemOffHand.getString("Bauble")) {
+                            case "Cobalt Shield":
+                            case "Obsidian Shield":
+                            case "Ankh Shield":
+                                baubleRunnables.freezeEntity(player).runTaskLater(plugin, 1);
+                        }
                     }
                 }
             }
@@ -155,71 +648,70 @@ public class BaubleEvents implements Listener {
             EntityDamageEvent.DamageCause cause = event.getCause();
             Player player = (Player) event.getEntity();
             PlayerInventory inv = player.getInventory();
-            ItemStack itemOffHand = null;
-            if (!(inv.getItemInOffHand() == null || inv.getItemInOffHand().getType() == Material.AIR)) {
-                itemOffHand = inv.getItemInOffHand();
+            NBTItem itemOffHand = null;
+            if (! (player.getInventory().getItemInOffHand() == null || player.getInventory().getItemInOffHand().getType() == Material.AIR) ) {
+                itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
             }
-            switch (event.getCause()) {
+
+            switch (cause) {
                 case FIRE:
                 case FIRE_TICK:
                 case LAVA:
                 case HOT_FLOOR: {
-                    if (inv.containsAtLeast(citem.getObsidianSkull(), 1)) {
-                        event.setDamage(event.getDamage() * customConfig.getBaubleConfig().getDouble("ObsidianSkull.HeatDamageMultiplier"));
+                    if (inv.containsAtLeast(CustomItems.getObsidianSkull(), 1)) {
+                        event.setDamage(event.getDamage() * CustomConfig.getBaubleConfig().getDouble("ObsidianSkull.HeatDamageMultiplier"));
                     }
-                    else if (!(itemOffHand == null || itemOffHand.getType() == Material.AIR)) {
-                        if (((Damageable) itemOffHand.getItemMeta()).hasDamage()) {
-                            itemOffHand = util.resetDurability(itemOffHand);
-                            if (itemOffHand.getItemMeta().equals(citem.getObsidianShield())) {
-                                event.setDamage(event.getDamage() * customConfig.getBaubleConfig().getDouble("ObsidianShield.HeatDamageMultiplier"));
-                            }
-                            else if (itemOffHand.getItemMeta().equals(citem.getAnkhShield())) {
-                                event.setDamage(event.getDamage() * customConfig.getBaubleConfig().getDouble("AnkhShield.HeatDamageMultiplier"));
-                            }
+                    else if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
+                        if (itemOffHand.hasKey("Bauble")) {
+                            if (itemOffHand.getString("Bauble").equals("Obsidian Shield"))
+                                event.setDamage(event.getDamage() * CustomConfig.getBaubleConfig().getDouble("ObsidianShield.HeatDamageMultiplier"));
+                            else if (itemOffHand.getString("Bauble").equals("Ankh Shield"))
+                                event.setDamage(event.getDamage() * CustomConfig.getBaubleConfig().getDouble("AnkhShield.HeatDamageMultiplier"));
                         }
                     }
                 }
                 case ENTITY_EXPLOSION:
-                case ENTITY_ATTACK:
-                case ENTITY_SWEEP_ATTACK:
                 case BLOCK_EXPLOSION: {
-                    if (! (itemOffHand == null || itemOffHand.getType() == Material.AIR) ) {
-                        itemOffHand = util.resetDurability(itemOffHand);
-                        if (itemOffHand.getItemMeta().equals(citem.getCobaltShield()) ||
-                                itemOffHand.getItemMeta().equals(citem.getObsidianShield()) ||
-                                itemOffHand.getItemMeta().equals(citem.getAnkhShield())) {
-                            baubleRunnables.freezeEntity(player);
+                    if (! (itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR) ) {
+                        if (itemOffHand.hasKey("Bauble")) {
+                            switch (itemOffHand.getString("Bauble")) {
+                                case "Cobalt Shield":
+                                case "Obsidian Shield":
+                                case "Ankh Shield":
+                                    baubleRunnables.freezeEntity(player).runTaskLater(plugin, 1);
+                            }
                         }
+                    }
+                    if (player.getInventory().containsAtLeast(CustomItems.getShieldHonor(), 1)) {
+                        event.setDamage(event.getDamage() * CustomConfig.getBaubleConfig().getDouble("ShieldHonor.ExplosionDamageMultiplier"));
                     }
                 }
                 case FALL: {
-                    if (player.getInventory().containsAtLeast(citem.getBalloon(), 1))
-                        if (player.getFallDistance() <= customConfig.getBaubleConfig().getDouble("Balloon.MinFallDistance")) {
+                    if (player.getInventory().containsAtLeast(CustomItems.getBalloon(), 1))
+                        if (player.getFallDistance() <= CustomConfig.getBaubleConfig().getDouble("Balloon.MinFallDistance")) {
                             event.setCancelled(true);
                         }
                         else {
-                            event.setDamage(event.getDamage() * customConfig.getBaubleConfig().getDouble("Balloon.FallDamageMultiplier"));
+                            event.setDamage(event.getDamage() * CustomConfig.getBaubleConfig().getDouble("Balloon.FallDamageMultiplier"));
                         }
-                    if (player.getInventory().containsAtLeast(citem.getLuckyHorseshoe(), 1))
+                    if (player.getInventory().containsAtLeast(CustomItems.getLuckyHorseshoe(), 1))
                         event.setCancelled(true);
                 }
                 case CONTACT: {
-                    if (player.getInventory().containsAtLeast(citem.getPhytoprostasiaAmulet(), 1))
+                    if (player.getInventory().containsAtLeast(CustomItems.getPhytoprostasiaAmulet(), 1))
                         event.setCancelled(true);
                 }
             }
 
-            if (plugin.crossNecklace.containsKey(player.getUniqueId())) {
-                if (plugin.crossNecklace.get(player.getUniqueId())) {
+            if (PlayerRunnable.getCrossNecklace().containsKey(player.getName())) {
+                if (PlayerRunnable.getCrossNecklace().get(player.getName())) {
                     event.setCancelled(true);
                 }
             }
 
-            if (!event.isCancelled()) {
-                if (player.getInventory().containsAtLeast(citem.getCrossNecklace(), 1)) {
-                    util.setOrReplaceHashmap(plugin.crossNecklace, player.getUniqueId(), true);
-                    baubleRunnables.removeInvFrames(player).runTaskLater(plugin, customConfig.getBaubleConfig().getInt("CrossNecklace.InvFrameLength"));
-                }
+            if (player.getInventory().containsAtLeast(CustomItems.getCrossNecklace(), 1)) {
+                Utils.setOrReplaceEntry(PlayerRunnable.getCrossNecklace(), player.getName(), true);
+                baubleRunnables.removeInvFrames(player).runTaskLater(plugin, CustomConfig.getBaubleConfig().getInt("CrossNecklace.InvFrameLength"));
             }
         }
     }
@@ -227,30 +719,32 @@ public class BaubleEvents implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event)
     {
-        if (event.getPlayer().getInventory().containsAtLeast(citem.getBalloon(), 1)) {
-            Player player = event.getPlayer();
-            Vector velocity = player.getVelocity();
-            // Check if the player is moving "up"
-            if (velocity.getY() > 0)
-            {
-                // Default jump velocity
-                double jumpVelocity = (double) 0.42D; // Default jump velocity
-                if (player.hasPotionEffect(PotionEffectType.JUMP)) {
-                    PotionEffect jumpPotion = player.getPotionEffect(PotionEffectType.JUMP);
-                    // If player has jump potion add it to jump velocity
-                    jumpVelocity += ((double) jumpPotion.getAmplifier() + 1) * 0.1D;
-
-                }
-                // Check if player is not on ladder and if jump velocity calculated is equals to player Y velocity
-                if (player.getLocation().getBlock().getType() != Material.LADDER &&
-                        player.getLocation().getBlock().getType() != Material.VINE &&
-                        player.getLocation().getBlock().getType() != Material.TWISTING_VINES &&
-                        player.getLocation().getBlock().getType() != Material.WEEPING_VINES
-                        && Math.abs(velocity.getY() - jumpVelocity) <= 0.01)
+        if (!event.isCancelled()) {
+            if (event.getPlayer().getInventory().containsAtLeast(CustomItems.getBalloon(), 1)) {
+                Player player = event.getPlayer();
+                Vector velocity = player.getVelocity();
+                // Check if the player is moving "up"
+                if (velocity.getY() > 0)
                 {
-                    if ( !(player.isInWater() || player.isRiptiding() || player.isFlying()) ) {
-                        velocity.setY(jumpVelocity * customConfig.getBaubleConfig().getDouble("Balloon.JumpVelocityMultiplier"));
-                        player.setVelocity(velocity);
+                    // Default jump velocity
+                    double jumpVelocity = 0.42D; // Default jump velocity
+                    if (player.hasPotionEffect(PotionEffectType.JUMP)) {
+                        PotionEffect jumpPotion = player.getPotionEffect(PotionEffectType.JUMP);
+                        // If player has jump potion add it to jump velocity
+                        jumpVelocity += ((double) jumpPotion.getAmplifier() + 1) * 0.1D;
+
+                    }
+                    // Check if player is not on ladder and if jump velocity calculated is equals to player Y velocity
+                    if (player.getLocation().getBlock().getType() != Material.LADDER &&
+                            player.getLocation().getBlock().getType() != Material.VINE &&
+                            player.getLocation().getBlock().getType() != Material.TWISTING_VINES &&
+                            player.getLocation().getBlock().getType() != Material.WEEPING_VINES
+                            && Math.abs(velocity.getY() - jumpVelocity) <= 0.01)
+                    {
+                        if ( !(player.isInWater() || player.isRiptiding() || player.isFlying()) ) {
+                            velocity.setY(jumpVelocity * CustomConfig.getBaubleConfig().getDouble("Balloon.JumpVelocityMultiplier"));
+                            player.setVelocity(velocity);
+                        }
                     }
                 }
             }
@@ -262,8 +756,8 @@ public class BaubleEvents implements Listener {
         switch (event.getEntity().getType()) {
             case ENDER_DRAGON: {
                 Random r = new Random();
-                double chance = customConfig.getBaubleConfig().getDouble("EnderDragonScale.DropChance");
-                if (customConfig.getBaubleConfig().getBoolean("EnderDragonScale.CheckLooting")) {
+                double chance = CustomConfig.getBaubleConfig().getDouble("EnderDragonScale.DropChance");
+                if (CustomConfig.getBaubleConfig().getBoolean("EnderDragonScale.CheckLooting")) {
                     if (!(event.getEntity().getKiller() == null)) {
                         Player player = event.getEntity().getKiller();
                         if (!(player.getInventory().getItemInMainHand() == null || player.getInventory().getItemInMainHand().getType() == Material.AIR)) {
@@ -278,14 +772,14 @@ public class BaubleEvents implements Listener {
                 }
                 if (r.nextDouble() <= chance) {
                     event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(),
-                            citem.getEnderDragonScale());
+                            CustomItems.getEnderDragonScale());
                 }
                 break;
             }
             case HUSK: {
                 Random r = new Random();
-                double chance = customConfig.getBaubleConfig().getDouble("ForbiddenFruit.DropChance");
-                if (customConfig.getBaubleConfig().getBoolean("ForbiddenFruit.CheckLooting")) {
+                double chance = CustomConfig.getBaubleConfig().getDouble("ForbiddenFruit.DropChance");
+                if (CustomConfig.getBaubleConfig().getBoolean("ForbiddenFruit.CheckLooting")) {
                     if (!(event.getEntity().getKiller() == null)) {
                         Player player = event.getEntity().getKiller();
                         if (!(player.getInventory().getItemInMainHand() == null || player.getInventory().getItemInMainHand().getType() == Material.AIR)) {
@@ -300,14 +794,14 @@ public class BaubleEvents implements Listener {
                 }
                 if (r.nextDouble() <= chance) {
                     event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(),
-                            citem.getForbiddenFruit());
+                            CustomItems.getForbiddenFruit());
                 }
                 break;
             }
             case STRAY: {
                 Random r = new Random();
-                double chance = customConfig.getBaubleConfig().getDouble("RingOverclocking.DropChance");
-                if (customConfig.getBaubleConfig().getBoolean("RingOverclocking.CheckLooting")) {
+                double chance = CustomConfig.getBaubleConfig().getDouble("RingOverclocking.DropChance");
+                if (CustomConfig.getBaubleConfig().getBoolean("RingOverclocking.CheckLooting")) {
                     if (!(event.getEntity().getKiller() == null)) {
                         Player player = event.getEntity().getKiller();
                         if (! (player.getInventory().getItemInMainHand() == null || player.getInventory().getItemInMainHand().getType() == Material.AIR) ) {
@@ -322,14 +816,14 @@ public class BaubleEvents implements Listener {
                 }
                 if (r.nextDouble() <= chance) {
                     event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(),
-                            citem.getRingofOverclocking());
+                            CustomItems.getRingofOverclocking());
                 }
                 break;
             }
             case ELDER_GUARDIAN: {
                 Random r = new Random();
-                double chance = customConfig.getBaubleConfig().getDouble("Vitamins.DropChance");
-                if (customConfig.getBaubleConfig().getBoolean("Vitamins.CheckLooting")) {
+                double chance = CustomConfig.getBaubleConfig().getDouble("Vitamins.DropChance");
+                if (CustomConfig.getBaubleConfig().getBoolean("Vitamins.CheckLooting")) {
                     if (!(event.getEntity().getKiller() == null)) {
                         Player player = event.getEntity().getKiller();
                         if (! (player.getInventory().getItemInMainHand() == null || player.getInventory().getItemInMainHand().getType() == Material.AIR) ) {
@@ -344,14 +838,14 @@ public class BaubleEvents implements Listener {
                 }
                 if (r.nextDouble() <= chance) {
                     event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(),
-                            citem.getVitamins());
+                            CustomItems.getVitamins());
                 }
                 break;
             }
             case CAVE_SPIDER: {
                 Random r = new Random();
-                double chance = customConfig.getBaubleConfig().getDouble("Bezoar.DropChance");
-                if (customConfig.getBaubleConfig().getBoolean("Bezoar.CheckLooting")) {
+                double chance = CustomConfig.getBaubleConfig().getDouble("Bezoar.DropChance");
+                if (CustomConfig.getBaubleConfig().getBoolean("Bezoar.CheckLooting")) {
                     if (!(event.getEntity().getKiller() == null)) {
                         Player player = event.getEntity().getKiller();
                         if (! (player.getInventory().getItemInMainHand() == null || player.getInventory().getItemInMainHand().getType() == Material.AIR) ) {
@@ -366,7 +860,7 @@ public class BaubleEvents implements Listener {
                 }
                 if (r.nextDouble() <= chance) {
                     event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(),
-                            citem.getBezoar());
+                            CustomItems.getBezoar());
                 }
                 break;
             }
@@ -379,15 +873,17 @@ public class BaubleEvents implements Listener {
             Player player = (Player) event.getEntity();
             PotionEffect newEffect = event.getNewEffect();
             NBTItem itemOffHand = null;
+            if (! (player.getInventory().getItemInOffHand() == null || player.getInventory().getItemInOffHand().getType() == Material.AIR) ) {
+                itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
+            }
             if (newEffect != null) {
                 switch (newEffect.getType().getName()) {
                     case "HUNGER":
-                        if (player.getInventory().containsAtLeast(citem.getForbiddenFruit(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getAnkhCharm(), 1)) {
+                        if (player.getInventory().containsAtLeast(CustomItems.getForbiddenFruit(), 1) ||
+                                player.getInventory().containsAtLeast(CustomItems.getAnkhCharm(), 1)) {
                             event.setCancelled(true);
                         }
                         if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
-                            itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
                             if (itemOffHand.hasKey("Bauble")) {
                                 if (itemOffHand.getString("Bauble").equals("Ankh Shield")) {
                                     event.setCancelled(true);
@@ -396,13 +892,12 @@ public class BaubleEvents implements Listener {
                         }
                         break;
                     case "SLOW":
-                        if (player.getInventory().containsAtLeast(citem.getRingofOverclocking(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getRingofFreeAction(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getAnkhCharm(), 1)) {
+                        if (player.getInventory().containsAtLeast(CustomItems.getRingofOverclocking(), 1) ||
+                                player.getInventory().containsAtLeast(CustomItems.getRingofFreeAction(), 1) ||
+                                player.getInventory().containsAtLeast(CustomItems.getAnkhCharm(), 1)) {
                             event.setCancelled(true);
                         }
                         if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
-                            itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
                             if (itemOffHand.hasKey("Bauble")) {
                                 if (itemOffHand.getString("Bauble").equals("Ankh Shield")) {
                                     event.setCancelled(true);
@@ -411,13 +906,12 @@ public class BaubleEvents implements Listener {
                         }
                         break;
                     case "POISON":
-                        if (player.getInventory().containsAtLeast(citem.getBezoar(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getMixedColorDragonScale(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getAnkhCharm(), 1)) {
+                        if (player.getInventory().containsAtLeast(CustomItems.getBezoar(), 1) ||
+                                player.getInventory().containsAtLeast(CustomItems.getMixedColorDragonScale(), 1) ||
+                                player.getInventory().containsAtLeast(CustomItems.getAnkhCharm(), 1)) {
                             event.setCancelled(true);
                         }
                         if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
-                            itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
                             if (itemOffHand.hasKey("Bauble")) {
                                 if (itemOffHand.getString("Bauble").equals("Ankh Shield")) {
                                     event.setCancelled(true);
@@ -426,13 +920,12 @@ public class BaubleEvents implements Listener {
                         }
                         break;
                     case "WITHER":
-                        if (player.getInventory().containsAtLeast(citem.getBlackDragonScale(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getMixedColorDragonScale(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getAnkhCharm(), 1)) {
+                        if (player.getInventory().containsAtLeast(CustomItems.getBlackDragonScale(), 1) ||
+                                player.getInventory().containsAtLeast(CustomItems.getMixedColorDragonScale(), 1) ||
+                                player.getInventory().containsAtLeast(CustomItems.getAnkhCharm(), 1)) {
                             event.setCancelled(true);
                         }
                         if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
-                            itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
                             if (itemOffHand.hasKey("Bauble")) {
                                 if (itemOffHand.getString("Bauble").equals("Ankh Shield")) {
                                     event.setCancelled(true);
@@ -441,12 +934,11 @@ public class BaubleEvents implements Listener {
                         }
                         break;
                     case "SLOW_DIGGING":
-                        if (player.getInventory().containsAtLeast(citem.getVitamins(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getAnkhCharm(), 1)) {
+                        if (player.getInventory().containsAtLeast(CustomItems.getVitamins(), 1) ||
+                                player.getInventory().containsAtLeast(CustomItems.getAnkhCharm(), 1)) {
                             event.setCancelled(true);
                         }
                         if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
-                            itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
                             if (itemOffHand.hasKey("Bauble")) {
                                 if (itemOffHand.getString("Bauble").equals("Ankh Shield")) {
                                     event.setCancelled(true);
@@ -455,12 +947,11 @@ public class BaubleEvents implements Listener {
                         }
                         break;
                     case "BLINDNESS":
-                        if (player.getInventory().containsAtLeast(citem.getSunglasses(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getAnkhCharm(), 1)) {
+                        if (player.getInventory().containsAtLeast(CustomItems.getSunglasses(), 1) ||
+                                player.getInventory().containsAtLeast(CustomItems.getAnkhCharm(), 1)) {
                             event.setCancelled(true);
                         }
                         if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
-                            itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
                             if (itemOffHand.hasKey("Bauble")) {
                                 if (itemOffHand.getString("Bauble").equals("Ankh Shield")) {
                                     event.setCancelled(true);
@@ -469,13 +960,12 @@ public class BaubleEvents implements Listener {
                         }
                         break;
                     case "LEVITATION":
-                        if (player.getInventory().containsAtLeast(citem.getShulkerHeart(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getRingofFreeAction(), 1) ||
-                                player.getInventory().containsAtLeast(citem.getAnkhCharm(), 1)) {
+                        if (player.getInventory().containsAtLeast(CustomItems.getShulkerHeart(), 1) ||
+                                player.getInventory().containsAtLeast(CustomItems.getRingofFreeAction(), 1) ||
+                                player.getInventory().containsAtLeast(CustomItems.getAnkhCharm(), 1)) {
                             event.setCancelled(true);
                         }
                         if (!(itemOffHand == null || itemOffHand.getItem().getType() == Material.AIR)) {
-                            itemOffHand = new NBTItem(player.getInventory().getItemInOffHand());
                             if (itemOffHand.hasKey("Bauble")) {
                                 if (itemOffHand.getString("Bauble").equals("Ankh Shield")) {
                                     event.setCancelled(true);
@@ -506,25 +996,25 @@ public class BaubleEvents implements Listener {
                     ((Damageable) secondMeta).setDamage(0);
                 }
 
-                if (firstMeta.equals(citem.getCobaltShield().getItemMeta()) && secondMeta.equals(citem.getObsidianSkull().getItemMeta())) {
-                    event.setResult(citem.getObsidianShield());
-                    inv.setRepairCost(customConfig.getBaubleConfig().getInt("ObsidianShield.AnvilCost"));
-                    inv.setMaximumRepairCost(customConfig.getBaubleConfig().getInt("ObsidianShield.AnvilCost"));
+                if (firstMeta.equals(CustomItems.getCobaltShield().getItemMeta()) && secondMeta.equals(CustomItems.getObsidianSkull().getItemMeta())) {
+                    event.setResult(CustomItems.getObsidianShield());
+                    inv.setRepairCost(CustomConfig.getBaubleConfig().getInt("ObsidianShield.AnvilCost"));
+                    inv.setMaximumRepairCost(CustomConfig.getBaubleConfig().getInt("ObsidianShield.AnvilCost"));
                 }
-                else if (firstMeta.equals(citem.getRingofOverclocking().getItemMeta()) && secondMeta.equals(citem.getShulkerHeart().getItemMeta())) {
-                    event.setResult(citem.getRingofFreeAction());
-                    inv.setRepairCost(customConfig.getBaubleConfig().getInt("RingFreeAction.AnvilCost"));
-                    inv.setMaximumRepairCost(customConfig.getBaubleConfig().getInt("RingFreeAction.AnvilCost"));
+                else if (firstMeta.equals(CustomItems.getRingofOverclocking().getItemMeta()) && secondMeta.equals(CustomItems.getShulkerHeart().getItemMeta())) {
+                    event.setResult(CustomItems.getRingofFreeAction());
+                    inv.setRepairCost(CustomConfig.getBaubleConfig().getInt("RingFreeAction.AnvilCost"));
+                    inv.setMaximumRepairCost(CustomConfig.getBaubleConfig().getInt("RingFreeAction.AnvilCost"));
                 }
-                else if (firstMeta.equals(citem.getBezoar().getItemMeta()) && secondMeta.equals(citem.getBlackDragonScale().getItemMeta())) {
-                    event.setResult(citem.getMixedColorDragonScale());
-                    inv.setRepairCost(customConfig.getBaubleConfig().getInt("MixedColorDragonScale.AnvilCost"));
-                    inv.setMaximumRepairCost(customConfig.getBaubleConfig().getInt("MixedColorDragonScale.AnvilCost"));
+                else if (firstMeta.equals(CustomItems.getBezoar().getItemMeta()) && secondMeta.equals(CustomItems.getBlackDragonScale().getItemMeta())) {
+                    event.setResult(CustomItems.getMixedColorDragonScale());
+                    inv.setRepairCost(CustomConfig.getBaubleConfig().getInt("MixedColorDragonScale.AnvilCost"));
+                    inv.setMaximumRepairCost(CustomConfig.getBaubleConfig().getInt("MixedColorDragonScale.AnvilCost"));
                 }
-                else if (firstMeta.equals(citem.getObsidianShield().getItemMeta()) && secondMeta.equals(citem.getAnkhCharm().getItemMeta())) {
-                    event.setResult(citem.getAnkhShield());
-                    inv.setRepairCost(customConfig.getBaubleConfig().getInt("AnkhShield.AnvilCost"));
-                    inv.setMaximumRepairCost(customConfig.getBaubleConfig().getInt("AnkhShield.AnvilCost"));
+                else if (firstMeta.equals(CustomItems.getObsidianShield().getItemMeta()) && secondMeta.equals(CustomItems.getAnkhCharm().getItemMeta())) {
+                    event.setResult(CustomItems.getAnkhShield());
+                    inv.setRepairCost(CustomConfig.getBaubleConfig().getInt("AnkhShield.AnvilCost"));
+                    inv.setMaximumRepairCost(CustomConfig.getBaubleConfig().getInt("AnkhShield.AnvilCost"));
                 }
             }
         }

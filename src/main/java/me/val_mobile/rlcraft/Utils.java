@@ -5,9 +5,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -17,23 +19,29 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class Utils {
 
+    public static final double ATTACK_DAMAGE_CONSTANT = -1.0;
+    public static final double ATTACK_SPEED_CONSTANT = -4.0;
+
     private final RLCraft plugin;
+    private final BaubleRunnables baubleRunnables = new BaubleRunnables();
     public Utils(RLCraft instance) {
         plugin = instance;
     }
 
-    public ItemStack resizeItem(ItemStack item, int amount) {
+    public static void resizeItem(ItemStack item, int amount) {
 
         item.setAmount(amount);
 
-        return item;
     }
 
-    public ItemStack addDragonSkullLore(ItemStack item, int stage, String dragon) {
+    public static void addDragonSkullLore(ItemStack item, int stage, String dragon) {
 
         ItemMeta meta = item.getItemMeta();
         if (!(meta.getLore() == null || meta.getLore().isEmpty())) {
@@ -46,31 +54,29 @@ public class Utils {
             meta.setLore(lore);
             item.setItemMeta(meta);
 
-            return item;
         }
-        List<String> lore = new ArrayList<>();
+        else {
+            List<String> lore = new ArrayList<>();
 
-        lore.add(ChatColor.translateAlternateColorCodes('&',""));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7" + dragon));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Stage " + stage));
+            lore.add(ChatColor.translateAlternateColorCodes('&',""));
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&7" + dragon));
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&7Stage " + stage));
 
-        meta.setLore(lore);
-        item.setItemMeta(meta);
-
-        return item;
+            meta.setLore(lore);
+            item.setItemMeta(meta);
+        }
     }
 
-    public ItemStack resetDurability(ItemStack item) {
+    public static void resetDurability(ItemStack item) {
 
         ItemMeta meta = item.getItemMeta();
         ((Damageable)meta).setDamage(0);
 
         item.setItemMeta(meta);
 
-        return item;
     }
 
-    public Location modifyLocationX(Location loc, double x) {
+    public static Location modifyLocationX(Location loc, double x) {
 
         Location newLoc = loc.clone();
         newLoc.setX(newLoc.getX() + x);
@@ -78,7 +84,7 @@ public class Utils {
         return newLoc;
     }
 
-    public Location modifyLocationY(Location loc, double y) {
+    public static Location modifyLocationY(Location loc, double y) {
 
         Location newLoc = loc.clone();
         newLoc.setX(newLoc.getY() + y);
@@ -86,7 +92,7 @@ public class Utils {
         return newLoc;
     }
 
-    public Location modifyLocationZ(Location loc, double z) {
+    public static Location modifyLocationZ(Location loc, double z) {
 
         Location newLoc = loc.clone();
         newLoc.setZ(newLoc.getZ() + z);
@@ -94,7 +100,7 @@ public class Utils {
         return newLoc;
     }
 
-    public Location modifyLocation(Location loc, double x, double y, double z) {
+    public static Location modifyLocation(Location loc, double x, double y, double z) {
 
         Location newLoc = loc.clone();
         newLoc.setX(newLoc.getX() + x);
@@ -104,47 +110,47 @@ public class Utils {
         return newLoc;
     }
 
-    public double getDiamondHelmetArmor() {
+    public static double getDiamondHelmetArmor() {
 
         return 3.0;
     }
 
-    public double getDiamondHelmetToughness() {
+    public static double getDiamondHelmetToughness() {
 
         return 2.0;
     }
 
-    public double getDiamondChestplateArmor() {
+    public static double getDiamondChestplateArmor() {
 
         return 8.0;
     }
 
-    public double getDiamondChestplateToughness() {
+    public static double getDiamondChestplateToughness() {
 
         return 2.0;
     }
 
-    public double getDiamondLeggingsArmor() {
+    public static double getDiamondLeggingsArmor() {
 
         return 6.0;
     }
 
-    public double getDiamondLeggingsToughness() {
+    public static double getDiamondLeggingsToughness() {
 
         return 2.0;
     }
 
-    public double getDiamondBootsArmor() {
+    public static double getDiamondBootsArmor() {
 
         return 3.0;
     }
 
-    public double getDiamondBootsToughness() {
+    public static double getDiamondBootsToughness() {
 
         return 2.0;
     }
 
-    public void addRapierLore(List<String> lore) {
+    public static void addRapierLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Damage Absorption"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &725.0% of damage taken dealt"));
@@ -155,7 +161,7 @@ public class Utils {
 
     }
 
-    public void addSaberLore(List<String> lore) {
+    public static void addSaberLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Damage Absorption"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &725.0% of damage taken dealt"));
@@ -166,7 +172,7 @@ public class Utils {
 
     }
 
-    public void addBattleaxeLore(List<String> lore) {
+    public static void addBattleaxeLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
@@ -176,13 +182,13 @@ public class Utils {
 
     }
 
-    public void addBoomerangLore(List<String> lore) {
+    public static void addBoomerangLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
 
     }
 
-    public void addCrossbowLore(List<String> lore) {
+    public static void addCrossbowLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7High damage & Long-ranged. Requires loading before firing. Uses Bolts."));
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7Quick shots after firing will affect accuracy."));
@@ -190,14 +196,14 @@ public class Utils {
 
     }
 
-    public void addDaggerLore(List<String> lore) {
+    public static void addDaggerLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
 
     }
 
-    public void addGlaiveLore(List<String> lore) {
+    public static void addGlaiveLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
@@ -211,7 +217,7 @@ public class Utils {
 
     }
 
-    public void addGreatswordLore(List<String> lore) {
+    public static void addGreatswordLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed II"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
@@ -225,7 +231,7 @@ public class Utils {
 
     }
 
-    public void addHalberdLore(List<String> lore) {
+    public static void addHalberdLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed II"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
@@ -238,7 +244,7 @@ public class Utils {
     }
 
 
-    public void addHammerLore(List<String> lore) {
+    public static void addHammerLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Enhanced Knockback"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Foes get knocked back further away"));
@@ -248,7 +254,7 @@ public class Utils {
 
     }
 
-    public void addJavelinLore(List<String> lore) {
+    public static void addJavelinLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
@@ -257,7 +263,7 @@ public class Utils {
 
     }
 
-    public void addKatanaLore(List<String> lore) {
+    public static void addKatanaLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
@@ -268,7 +274,7 @@ public class Utils {
 
     }
 
-    public void addLanceLore(List<String> lore) {
+    public static void addLanceLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
@@ -279,14 +285,14 @@ public class Utils {
 
     }
 
-    public void addLongbowLore(List<String> lore) {
+    public static void addLongbowLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7Long-range version of the standard bow"));
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7Takes longer to draw fully"));
 
     }
 
-    public void addLongswordLore(List<String> lore) {
+    public static void addLongswordLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
@@ -294,14 +300,14 @@ public class Utils {
 
     }
 
-    public void addMaceLore(List<String> lore) {
+    public static void addMaceLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Undead Damage Bonus"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7+50% base weapon damage against Undead foes"));
 
     }
 
-    public void addPikeLore(List<String> lore) {
+    public static void addPikeLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
@@ -312,7 +318,7 @@ public class Utils {
 
     }
 
-    public void addSpearLore(List<String> lore) {
+    public static void addSpearLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
@@ -320,7 +326,7 @@ public class Utils {
 
     }
 
-    public void addQuarterstaffLore(List<String> lore) {
+    public static void addQuarterstaffLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
@@ -331,7 +337,7 @@ public class Utils {
 
     }
 
-    public void addThrowingAxeLore(List<String> lore) {
+    public static void addThrowingAxeLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
@@ -340,7 +346,7 @@ public class Utils {
 
     }
 
-    public void addThrowingKnifeLore(List<String> lore) {
+    public static void addThrowingKnifeLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
@@ -349,7 +355,7 @@ public class Utils {
 
     }
 
-    public void addWarhammerLore(List<String> lore) {
+    public static void addWarhammerLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
@@ -359,43 +365,43 @@ public class Utils {
 
     }
 
-    public void addFlamedDragonBoneLore(List<String> lore) {
+    public static void addFlamedDragonBoneLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Ignites and knocks back targets, deals extra damage to ice dragons"));
 
     }
 
-    public void addIcedDragonBoneLore(List<String> lore) {
+    public static void addIcedDragonBoneLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Slows and knocks back targets, deals extra damage to fire dragons"));
 
     }
 
-    public void addLightningDragonBoneLore(List<String> lore) {
+    public static void addLightningDragonBoneLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Strikes targets with lightning, deals extra damage to fire and ice dragons"));
 
     }
 
-    public void addFireDragonsteelLore(List<String> lore) {
+    public static void addFireDragonsteelLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Ignites and knocks back targets"));
 
     }
 
-    public void addIceDragonsteelLore(List<String> lore) {
+    public static void addIceDragonsteelLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Slows and knocks back targets"));
 
     }
 
-    public void addLightningDragonsteelLore(List<String> lore) {
+    public static void addLightningDragonsteelLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Strikes targets with lightning"));
 
     }
 
-    public void subtractDurability(ItemStack item) {
+    public static void subtractDurability(ItemStack item) {
 
         if (((Damageable)item).getDamage() >= item.getType().getMaxDurability() - 1) {
             item.setAmount(0);
@@ -435,11 +441,11 @@ public class Utils {
         int stage = (int) Math.round(r.nextDouble() * 4) + 1;
         int age = stage * 100 + (int) Math.round(r.nextDouble() * 99);
         double temp = r.nextDouble();
-        if (temp <= plugin.getConfig().getDouble("dragons.fireDragonRate")) {
+        if (temp <= CustomConfig.getMobConfig().getDouble("Dragons.FireDragon.Chance")) {
             dragonType = "Fire";
         }
-        else if (temp > plugin.getConfig().getDouble("dragons.fireDragonRate") &&
-                temp <= (plugin.getConfig().getDouble("dragons.fireDragonRate") + plugin.getConfig().getDouble("dragons.iceDragonRate"))) {
+        else if (temp > CustomConfig.getMobConfig().getDouble("Dragons.FireDragon.Chance") &&
+                temp <= (CustomConfig.getMobConfig().getDouble("Dragons.FireDragon.Chance") + CustomConfig.getMobConfig().getDouble("Dragons.IceDragon.Chance"))) {
             dragonType = "Ice";
         }
         else {
@@ -478,7 +484,7 @@ public class Utils {
 
     }
 
-    public Vector randomizeVelocity(Vector velocity) {
+    public static Vector randomizeVelocity(Vector velocity) {
         Vector newVelocity = velocity.clone();
         Random r = new Random();
 
@@ -489,23 +495,299 @@ public class Utils {
         return newVelocity;
     }
 
-    public void checkBauble(Player player) {
+    public static boolean decideStartRunnable(HashMap<String, Integer> values, HashMap<String, Boolean> runnables, Player player) {
+        String name = player.getName();
+        if (values.get(name) > 0) {
+            if (!runnables.get(name)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public void startPrResRunnable(Player player) {
+        String name = player.getName();
+
+        int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingResistance.TickTime");
+        BaubleRunnables.getPotionRingResistanceRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        Utils.setOrReplaceEntry(PlayerRunnable.getPrResRunnables(), name, true);
+    }
+
+    public void startPrRegenRunnable(Player player) {
+        String name = player.getName();
+
+        int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingRegeneration.TickTime");
+        BaubleRunnables.getPotionRingRegenerationRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        Utils.setOrReplaceEntry(PlayerRunnable.getPrRegenRunnables(), name, true);
+    }
+
+    public void startPrStrengthRunnable(Player player) {
+        String name = player.getName();
+
+        int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingStrength.TickTime");
+        BaubleRunnables.getPotionRingStrengthRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        Utils.setOrReplaceEntry(PlayerRunnable.getPrStrengthRunnables(), name, true);
+
+    }
+
+    public void startPrSpeedRunnable(Player player) {
+        String name = player.getName();
+
+        int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingSpeed.TickTime");
+        BaubleRunnables.getPotionRingSpeedRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        Utils.setOrReplaceEntry(PlayerRunnable.getPrSpeedRunnables(), name, true);
+    }
+
+    public void startPrJumpRunnable(Player player) {
+        String name = player.getName();
+
+        int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingJumpBoost.TickTime");
+        BaubleRunnables.getPotionRingJumpBoostRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        Utils.setOrReplaceEntry(PlayerRunnable.getPrJumpRunnables(), name, true);
+    }
+
+    public void startPrHasteRunnable(Player player) {
+        String name = player.getName();
+
+        int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingHaste.TickTime");
+        BaubleRunnables.getPotionRingHasteRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        Utils.setOrReplaceEntry(PlayerRunnable.getPrHasteRunnables(), name, true);
+    }
+
+    public void startDragonsEyeRunnable(Player player) {
+        String name = player.getName();
+
+        int tickSpeed = CustomConfig.getBaubleConfig().getInt("DragonsEye.TickTime");
+        BaubleRunnables.getDragonsEyeRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        Utils.setOrReplaceEntry(PlayerRunnable.getDragonsEyeRunnables(), name, true);
+
+    }
+
+    public void startScarliteRingRunnable(Player player) {
+        String name = player.getName();
+
+        int tickSpeed = CustomConfig.getBaubleConfig().getInt("ScarliteRing.TickTime");
+        BaubleRunnables.getScarliteRingRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        Utils.setOrReplaceEntry(PlayerRunnable.getScarliteRingRunnables(), name, true);
+    }
+
+    public void startMinersRingRunnable(Player player) {
+        String name = player.getName();
+
+        int tickSpeed = CustomConfig.getBaubleConfig().getInt("MinersRing.TickTime");
+        BaubleRunnables.getMinersRingRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        Utils.setOrReplaceEntry(PlayerRunnable.getMinersRingRunnables(), name, true);
+    }
+
+    public void startShieldHonorRunnable(Player player) {
+        String name = player.getName();
+
+        int tickSpeed = CustomConfig.getBaubleConfig().getInt("ShieldHonor.TickTime");
+        BaubleRunnables.getShieldHonorRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        Utils.setOrReplaceEntry(PlayerRunnable.getShieldHonorRunnables(), name, true);
+    }
+
+    public static void updatePrResValues(Player player) {
+        String name = player.getName();
+        int prResAmount = 0;
+
+        for (ItemStack item : player.getInventory()) {
+            if (!(item == null || item.getType() == Material.AIR) ) {
+                int amount = item.getAmount();
+                NBTItem nbti = new NBTItem(item);
+                if (nbti.hasKey("Bauble")) {
+                    if (nbti.getString("Bauble").equals("Potion Ring of Resistance")) {
+                        prResAmount += amount;
+                    }
+                }
+            }
+        }
+        setOrReplaceEntry(PlayerRunnable.getPrRes(), name, prResAmount);
+    }
+
+    public static void updatePrRegenValues(Player player) {
+        String name = player.getName();
+        int prRegenAmount = 0;
+
+        for (ItemStack item : player.getInventory()) {
+            if (!(item == null || item.getType() == Material.AIR) ) {
+                int amount = item.getAmount();
+                NBTItem nbti = new NBTItem(item);
+                if (nbti.hasKey("Bauble")) {
+                    if (nbti.getString("Bauble").equals("Potion Ring of Regeneration")) {
+                        prRegenAmount += amount;
+                    }
+                }
+            }
+        }
+        setOrReplaceEntry(PlayerRunnable.getPrRegen(), name, prRegenAmount);
+    }
+
+    public static void updatePrStrengthValues(Player player) {
+        String name = player.getName();
+        int prStrengthAmount = 0;
+
+        for (ItemStack item : player.getInventory()) {
+            if (!(item == null || item.getType() == Material.AIR) ) {
+                int amount = item.getAmount();
+                NBTItem nbti = new NBTItem(item);
+                if (nbti.hasKey("Bauble")) {
+                    if (nbti.getString("Bauble").equals("Potion Ring of Strength")) {
+                        prStrengthAmount += amount;
+                    }
+                }
+            }
+        }
+        setOrReplaceEntry(PlayerRunnable.getPrStrength(), name, prStrengthAmount);
+    }
+
+    public static void updatePrSpeedValues(Player player) {
+        String name = player.getName();
+        int prSpeedAmount = 0;
+
+        for (ItemStack item : player.getInventory()) {
+            if (!(item == null || item.getType() == Material.AIR) ) {
+                int amount = item.getAmount();
+                NBTItem nbti = new NBTItem(item);
+                if (nbti.hasKey("Bauble")) {
+                    if (nbti.getString("Bauble").equals("Potion Ring of Speed")) {
+                        prSpeedAmount += amount;
+                    }
+                }
+            }
+        }
+        setOrReplaceEntry(PlayerRunnable.getPrSpeed(), name, prSpeedAmount);
+    }
+
+    public static void updatePrJumpValues(Player player) {
+        String name = player.getName();
+        int prJumpAmount = 0;
+
+        for (ItemStack item : player.getInventory()) {
+            if (!(item == null || item.getType() == Material.AIR) ) {
+                int amount = item.getAmount();
+                NBTItem nbti = new NBTItem(item);
+                if (nbti.hasKey("Bauble")) {
+                    if (nbti.getString("Bauble").equals("Potion Ring of Jump Boost")) {
+                        prJumpAmount += amount;
+                    }
+                }
+            }
+        }
+        setOrReplaceEntry(PlayerRunnable.getPrJump(), name, prJumpAmount);
+    }
+
+    public static void updatePrHasteValues(Player player) {
+        String name = player.getName();
+        int prHasteAmount = 0;
+
+        for (ItemStack item : player.getInventory()) {
+            if (!(item == null || item.getType() == Material.AIR) ) {
+                int amount = item.getAmount();
+                NBTItem nbti = new NBTItem(item);
+                if (nbti.hasKey("Bauble")) {
+                    if (nbti.getString("Bauble").equals("Potion Ring of Haste")) {
+                        prHasteAmount += amount;
+                    }
+                }
+            }
+        }
+        setOrReplaceEntry(PlayerRunnable.getPrHaste(), name, prHasteAmount);
+    }
+
+    public static void updateDragonsEyeValues(Player player) {
+        String name = player.getName();
+        int dragonsEyeAmount = 0;
+
+        for (ItemStack item : player.getInventory()) {
+            if (!(item == null || item.getType() == Material.AIR) ) {
+                int amount = item.getAmount();
+                NBTItem nbti = new NBTItem(item);
+                if (nbti.hasKey("Bauble")) {
+                    if (nbti.getString("Bauble").equals("Dragon's Eye")) {
+                        dragonsEyeAmount += amount;
+                    }
+                }
+            }
+        }
+        setOrReplaceEntry(PlayerRunnable.getDragonsEye(), name, dragonsEyeAmount);
+    }
+
+    public static void updateMinersRingValues(Player player) {
+        String name = player.getName();
+        int minersRingAmount = 0;
+
+        for (ItemStack item : player.getInventory()) {
+            if (!(item == null || item.getType() == Material.AIR) ) {
+                int amount = item.getAmount();
+                NBTItem nbti = new NBTItem(item);
+                if (nbti.hasKey("Bauble")) {
+                    if (nbti.getString("Bauble").equals("Miner's Ring")) {
+                        minersRingAmount += amount;
+                    }
+                }
+            }
+        }
+        setOrReplaceEntry(PlayerRunnable.getMinersRing(), name, minersRingAmount);
+    }
+
+    public static void updateScarliteRingValues(Player player) {
+        String name = player.getName();
+        int scarliteRingAmount = 0;
+
+        for (ItemStack item : player.getInventory()) {
+            if (!(item == null || item.getType() == Material.AIR) ) {
+                int amount = item.getAmount();
+                NBTItem nbti = new NBTItem(item);
+                if (nbti.hasKey("Bauble")) {
+                    if (nbti.getString("Bauble").equals("Scarlite Ring")) {
+                        scarliteRingAmount += amount;
+                    }
+                }
+            }
+        }
+        setOrReplaceEntry(PlayerRunnable.getScarliteRing(), name, scarliteRingAmount);
+    }
+
+    public static void updateShieldHonorValues(Player player) {
+        String name = player.getName();
+        int shieldHonorAmount = 0;
+
+        for (ItemStack item : player.getInventory()) {
+            if (!(item == null || item.getType() == Material.AIR) ) {
+                int amount = item.getAmount();
+                NBTItem nbti = new NBTItem(item);
+                if (nbti.hasKey("Bauble")) {
+                    if (nbti.getString("Bauble").equals("Shield of Honor")) {
+                        shieldHonorAmount += amount;
+                    }
+                }
+            }
+        }
+        setOrReplaceEntry(PlayerRunnable.getShieldHonor(), name, shieldHonorAmount);
+    }
+
+    public static void updateBaubleValues(Player player) {
+        String name = player.getName();
+        
         int prResAmount = 0;
         int prRegenAmount = 0;
         int prStrengthAmount = 0;
         int prSpeedAmount = 0;
         int prJumpAmount = 0;
         int prHasteAmount = 0;
-        boolean hasDragonsEye = false;
-        boolean hasScarliteRing = false;
-        boolean hasMinersRing = false;
+        int dragonsEyeAmount = 0;
+        int scarliteRingAmount = 0;
+        int minersRingAmount = 0;
+        int shieldHonorAmount = 0;
 
         for (ItemStack item : player.getInventory()) {
             if (!(item == null || item.getType() == Material.AIR) ) {
                 int amount = item.getAmount();
                 NBTItem nbti = new NBTItem(item);
-                if (nbti.hasKey("Potion Effect Bauble")) {
-                    switch (nbti.getString("Potion Effect Bauble")) {
+                if (nbti.hasKey("Bauble")) {
+                    switch (nbti.getString("Bauble")) {
                         case "Potion Ring of Resistance":
                             prResAmount += amount;
                             break;
@@ -522,116 +804,110 @@ public class Utils {
                             prJumpAmount += amount;
                             break;
                         case "Dragon's Eye":
-                            hasDragonsEye = true;
+                            dragonsEyeAmount += amount;
                             break;
                         case "Scarlite Ring":
-                            hasScarliteRing = true;
+                            scarliteRingAmount += amount;
                             break;
                         case "Miner's Ring":
-                            hasMinersRing = true;
+                            minersRingAmount += amount;
+                            break;
+                        case "Shield of Honor":
+                            shieldHonorAmount += amount;
                             break;
                     }
                 }
             }
         }
-        setOrReplaceHashmap(plugin.prRes, player.getUniqueId(), prResAmount);
-        setOrReplaceHashmap(plugin.prRegen, player.getUniqueId(), prRegenAmount);
-        setOrReplaceHashmap(plugin.prStrength, player.getUniqueId(), prStrengthAmount);
-        setOrReplaceHashmap(plugin.prSpeed, player.getUniqueId(), prSpeedAmount);
-        setOrReplaceHashmap(plugin.prJump, player.getUniqueId(), prJumpAmount);
-        setOrReplaceHashmap(plugin.prHaste, player.getUniqueId(), prHasteAmount);
-        setOrReplaceHashmap(plugin.dragonsEye, player.getUniqueId(), hasDragonsEye);
-        setOrReplaceHashmap(plugin.scarliteRing, player.getUniqueId(), hasScarliteRing);
-        setOrReplaceHashmap(plugin.minersRing, player.getUniqueId(), hasMinersRing);
+        setOrReplaceEntry(PlayerRunnable.getPrRes(), name, prResAmount);
+        setOrReplaceEntry(PlayerRunnable.getPrRegen(), name, prRegenAmount);
+        setOrReplaceEntry(PlayerRunnable.getPrStrength(), name, prStrengthAmount);
+        setOrReplaceEntry(PlayerRunnable.getPrSpeed(), name, prSpeedAmount);
+        setOrReplaceEntry(PlayerRunnable.getPrJump(), name, prJumpAmount);
+        setOrReplaceEntry(PlayerRunnable.getPrHaste(), name, prHasteAmount);
+        setOrReplaceEntry(PlayerRunnable.getDragonsEye(), name, dragonsEyeAmount);
+        setOrReplaceEntry(PlayerRunnable.getScarliteRing(), name, scarliteRingAmount);
+        setOrReplaceEntry(PlayerRunnable.getMinersRing(), name, minersRingAmount);
+        setOrReplaceEntry(PlayerRunnable.getShieldHonor(), name, shieldHonorAmount);
 
     }
 
-    public void setOrReplaceHashmap(HashMap<UUID, Integer> map, UUID key, Integer amount) {
+    public static void resetBaubleMaps(Player player) {
+
+        setOrReplaceEntry(PlayerRunnable.getPrRes(), player.getName(), 0);
+        setOrReplaceEntry(PlayerRunnable.getPrStrength(), player.getName(), 0);
+        setOrReplaceEntry(PlayerRunnable.getPrRegen(), player.getName(), 0);
+        setOrReplaceEntry(PlayerRunnable.getPrHaste(), player.getName(), 0);
+        setOrReplaceEntry(PlayerRunnable.getPrJump(), player.getName(), 0);
+        setOrReplaceEntry(PlayerRunnable.getPrSpeed(), player.getName(), 0);
+
+        setOrReplaceEntry(PlayerRunnable.getDragonsEye(), player.getName(), 0);
+        setOrReplaceEntry(PlayerRunnable.getScarliteRing(), player.getName(), 0);
+        setOrReplaceEntry(PlayerRunnable.getShieldHonor(), player.getName(), 0);
+        setOrReplaceEntry(PlayerRunnable.getCrossNecklace(), player.getName(), false);
+
+        setOrReplaceEntry(PlayerRunnable.getPrResRunnables(), player.getName(), false);
+        setOrReplaceEntry(PlayerRunnable.getPrStrengthRunnables(), player.getName(), false);
+        setOrReplaceEntry(PlayerRunnable.getPrRegenRunnables(), player.getName(), false);
+        setOrReplaceEntry(PlayerRunnable.getPrHasteRunnables(), player.getName(), false);
+        setOrReplaceEntry(PlayerRunnable.getPrJumpRunnables(), player.getName(), false);
+        setOrReplaceEntry(PlayerRunnable.getPrSpeedRunnables(), player.getName(), false);
+
+        setOrReplaceEntry(PlayerRunnable.getDragonsEyeRunnables(), player.getName(), false);
+        setOrReplaceEntry(PlayerRunnable.getScarliteRingRunnables(), player.getName(), false);
+        setOrReplaceEntry(PlayerRunnable.getShieldHonorRunnables(), player.getName(), false);
+
+    }
+
+    public void resetArmorMaps(Player player) {
+
+        setOrReplaceEntry(PlayerRunnable.getTideArmor(), player.getName(), 0);
+
+    }
+
+    public static void setOrReplaceEntry(HashMap<String, Integer> map, String key, Integer value) {
         if (map.containsKey(key)) {
-            map.replace(key, amount);
+            map.replace(key, value);
         }
         else {
-            map.put(key, amount);
+            map.put(key, value);
         }
     }
 
-    public void setOrReplaceHashmap(HashMap<UUID, Boolean> map, UUID key, Boolean bool) {
+    public static void setOrReplaceEntry(HashMap<String, Boolean> map, String key, Boolean value) {
         if (map.containsKey(key)) {
-            map.replace(key, bool);
+            map.replace(key, value);
         }
         else {
-            map.put(key, bool);
+            map.put(key, value);
         }
     }
 
-    public long convertSecondsIntoTicks(double seconds) {
+    public static long convertSecondsIntoTicks(double seconds) {
         return Math.round(seconds * 20);
     }
 
-    public void addOrStackPotionEffect(LivingEntity entity, PotionEffect effect) {
-        PotionEffectType type = effect.getType();
-        int newAmplifier = effect.getAmplifier();
-        int newDuration = effect.getDuration();
-
-        if (!entity.hasPotionEffect(type)) {
-            entity.addPotionEffect(effect);
-        }
-        else {
-            PotionEffect currentEffect = entity.getPotionEffect(type);
-            int currentAmplifier = currentEffect.getAmplifier();
-            int currentDuration = currentEffect.getDuration();
-            if (newAmplifier > currentAmplifier) {
-                newDuration += currentDuration;
-                effect = new PotionEffect(effect.getType(), newAmplifier, newDuration);
-                entity.removePotionEffect(type);
-                entity.addPotionEffect(effect);
-            }
-            else {
-                if (newDuration > currentDuration) {
-                    entity.removePotionEffect(type);
-                    entity.addPotionEffect(effect);
-                }
-            }
-        }
-    }
-
-    public void addMeleeStatsLore(List<String> lore, Double damage, Double speed) {
-        if (Math.floor(damage) == damage) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage.intValue() + " Attack Damage"));
-        }
-        else {
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage + " Attack Damage"));
-        }
-
-        if (Math.floor(speed) == speed) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + speed.intValue() + " Attack Speed"));
-        }
-        else {
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + speed + " Attack Speed"));
-        }
-    }
-
-    public void addWeaponLore(List<String> lore) {
+    public static void addWeaponLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
     }
 
-    public void addHelmetLore(List<String> lore) {
+    public static void addHelmetLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
     }
 
-    public void addChestplateLore(List<String> lore) {
+    public static void addChestplateLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
     }
 
-    public void addLeggingsLore(List<String> lore) {
+    public static void addLeggingsLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
     }
 
-    public void addBootsLore(List<String> lore) {
+    public static void addBootsLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
     }
 
-    public void addDefenseStatsLore(List<String> lore, Double armor, Double toughness) {
+    public static void addDefenseStatsLore(List<String> lore, Double armor, Double toughness) {
         if (Math.floor(armor) == armor) {
             lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + armor.intValue() + " Armor"));
         }
@@ -647,11 +923,11 @@ public class Utils {
         }
     }
 
-    public void addThrowableLore(List<String> lore) {
+    public static void addThrowableLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7When thrown:"));
     }
 
-    public void addThrowableStatsLore(List<String> lore, Double damage) {
+    public static void addThrowableStatsLore(List<String> lore, Double damage) {
         if (Math.floor(damage) == damage) {
             lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage.intValue() + " Attack Damage"));
         }
@@ -659,4 +935,503 @@ public class Utils {
             lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage + " Attack Damage"));
         }
     }
+
+    public static String getLowercaseAtrName(String name) {
+        switch (name) {
+            case "GENERIC_ATTACK_DAMAGE":
+                return "generic.attackDamage";
+            case "GENERIC_ATTACK_SPEED":
+                return "generic.attackSpeed";
+            case "GENERIC_ARMOR":
+                return "generic.armor";
+            case "GENERIC_ARMOR_TOUGHNESS":
+                return "generic.armorToughness";
+            default:
+                return null;
+        }
+    }
+
+    public static double getCorrectAtrAmount(Attribute attribute, double requestedValue) {
+        switch (attribute) {
+            case GENERIC_ATTACK_DAMAGE:
+                return requestedValue + Utils.ATTACK_DAMAGE_CONSTANT;
+            case GENERIC_ATTACK_SPEED:
+                return requestedValue + Utils.ATTACK_SPEED_CONSTANT;
+            case GENERIC_ARMOR:
+            case GENERIC_ARMOR_TOUGHNESS:
+                return requestedValue;
+            default:
+                return Double.parseDouble(null);
+        }
+    }
+
+    public static boolean isHelmet(Material material) {
+        switch (material) {
+            case LEATHER_HELMET:
+            case CHAINMAIL_HELMET:
+            case IRON_HELMET:
+            case GOLDEN_HELMET:
+            case DIAMOND_HELMET:
+            case NETHERITE_HELMET:
+            case TURTLE_HELMET:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public static boolean isChestplate(Material material) {
+        switch (material) {
+            case LEATHER_CHESTPLATE:
+            case CHAINMAIL_CHESTPLATE:
+            case IRON_CHESTPLATE:
+            case GOLDEN_CHESTPLATE:
+            case DIAMOND_CHESTPLATE:
+            case NETHERITE_CHESTPLATE:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public static boolean isLeggings(Material material) {
+        switch (material) {
+            case LEATHER_LEGGINGS:
+            case CHAINMAIL_LEGGINGS:
+            case IRON_LEGGINGS:
+            case GOLDEN_LEGGINGS:
+            case DIAMOND_LEGGINGS:
+            case NETHERITE_LEGGINGS:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public static boolean isBoots(Material material) {
+        switch (material) {
+            case LEATHER_BOOTS:
+            case CHAINMAIL_BOOTS:
+            case IRON_BOOTS:
+            case GOLDEN_BOOTS:
+            case DIAMOND_BOOTS:
+            case NETHERITE_BOOTS:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public static boolean isArmor(Material material) {
+        switch (material) {
+            case LEATHER_HELMET:
+            case CHAINMAIL_HELMET:
+            case IRON_HELMET:
+            case GOLDEN_HELMET:
+            case DIAMOND_HELMET:
+            case NETHERITE_HELMET:
+            case TURTLE_HELMET:
+            case LEATHER_CHESTPLATE:
+            case CHAINMAIL_CHESTPLATE:
+            case IRON_CHESTPLATE:
+            case GOLDEN_CHESTPLATE:
+            case DIAMOND_CHESTPLATE:
+            case NETHERITE_CHESTPLATE:
+            case LEATHER_LEGGINGS:
+            case CHAINMAIL_LEGGINGS:
+            case IRON_LEGGINGS:
+            case GOLDEN_LEGGINGS:
+            case DIAMOND_LEGGINGS:
+            case NETHERITE_LEGGINGS:
+            case LEATHER_BOOTS:
+            case CHAINMAIL_BOOTS:
+            case IRON_BOOTS:
+            case GOLDEN_BOOTS:
+            case DIAMOND_BOOTS:
+            case NETHERITE_BOOTS:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public static EquipmentSlot getCorrectEquipmentSlot(Attribute attribute, Material material) {
+        switch (attribute) {
+            case GENERIC_ATTACK_DAMAGE:
+            case GENERIC_ATTACK_SPEED:
+                return EquipmentSlot.HAND;
+            case GENERIC_ARMOR:
+            case GENERIC_ARMOR_TOUGHNESS:
+                if (isHelmet(material)) {
+                    return EquipmentSlot.HEAD;
+                }
+                else if (isChestplate(material)) {
+                    return EquipmentSlot.CHEST;
+                }
+                else if (isLeggings(material)) {
+                    return EquipmentSlot.LEGS;
+                }
+                else if (isBoots(material)) {
+                    return EquipmentSlot.FEET;
+                }
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    public static String translateInformalAtrName(String name) {
+        switch (name) {
+            case "AttackDamage":
+                return "GENERIC_ATTACK_DAMAGE";
+            case "AttackSpeed":
+                return "GENERIC_ATTACK_SPEED";
+            case "Armor":
+                return "GENERIC_ARMOR";
+            case "Toughness":
+                return "GENERIC_ARMOR_TOUGHNESS";
+            default:
+                return null;
+        }
+    }
+
+    public static String getMinecraftEnchName(String keyName) {
+        switch (keyName) {
+            case "ARROW_DAMAGE":
+                return "Power";
+            case "ARROW_FIRE":
+                return "Flame";
+            case "ARROW_INFINITE":
+                return "Infinity";
+            case "ARROW_KNOCKBACK":
+                return "Punch";
+            case "BINDING_CURSE":
+                return "Curse of Binding";
+            case "DAMAGE_ALL":
+                return "Sharpness";
+            case "DAMAGE_ARTHROPODS":
+                return "Bane of Arthropods";
+            case "DAMAGE_UNDEAD":
+                return "Smite";
+            case "DEPTH_STRIDER":
+                return "Depth Strider";
+            case "DIG_SPEED":
+                return "Efficiency";
+            case "DURABILITY":
+                return "Unbreaking";
+            case "FIRE_ASPECT":
+                return "Fire Aspect";
+            case "FROST_WALKER":
+                return "Frost Walker";
+            case "KNOCKBACK":
+                return "Knockback";
+            case "LOOT_BONUS_BLOCKS":
+                return "Fortune";
+            case "LOOT_BONUS_MOBS":
+                return "Looting";
+            case "LUCK":
+                return "Luck of the Sea";
+            case "LURE":
+                return "Lure";
+            case "MENDING":
+                return "Mending";
+            case "OXYGEN":
+                return "Respiration";
+            case "PROTECTION_ENVIRONMENTAL":
+                return "Protection";
+            case "PROTECTION_EXPLOSIONS":
+                return "Blast Protection";
+            case "PROTECTION_FALL":
+                return "Feather Falling";
+            case "PROTECTION_FIRE":
+                return "Fire Protection";
+            case "PROTECTION_PROJECTILE":
+                return "Projectile Protection";
+            case "SILK_TOUCH":
+                return "Silk Touch";
+            case "SWEEPING_EDGE":
+                return "Sweeping Edge";
+            case "THORNS":
+                return "Thorns";
+            case "VANISHING_CURSE":
+                return "Curse of Vanishing";
+            case "WATER_WORKER":
+                return "Aqua Affinity";
+            case "SOUL_SPEED":
+                return "Soul Speed";
+            case "PIERCING":
+                return "Piercing";
+            case "QUICK_CHARGE":
+                return "Quick Charge";
+            case "MULTISHOT":
+                return "Multishot";
+            case "CHANNELING":
+                return "Channeling";
+            case "RIPTIDE":
+                return "Riptide";
+            case "IMPALING":
+                return "Impaling";
+            case "LOYALTY":
+                return "Loyalty";
+            default:
+                return null;
+        }
+    }
+
+    public static boolean isWooden(Material material) {
+        switch (material) {
+            case OAK_LOG:
+            case OAK_WOOD:
+            case STRIPPED_OAK_LOG:
+            case STRIPPED_OAK_WOOD:
+            case BIRCH_LOG:
+            case BIRCH_WOOD:
+            case STRIPPED_BIRCH_LOG:
+            case STRIPPED_BIRCH_WOOD:
+            case SPRUCE_LOG:
+            case SPRUCE_WOOD:
+            case STRIPPED_SPRUCE_LOG:
+            case STRIPPED_SPRUCE_WOOD:
+            case DARK_OAK_LOG:
+            case DARK_OAK_WOOD:
+            case STRIPPED_DARK_OAK_LOG:
+            case STRIPPED_DARK_OAK_WOOD:
+            case ACACIA_LOG:
+            case ACACIA_WOOD:
+            case STRIPPED_ACACIA_LOG:
+            case STRIPPED_ACACIA_WOOD:
+            case JUNGLE_LOG:
+            case JUNGLE_WOOD:
+            case STRIPPED_JUNGLE_LOG:
+            case STRIPPED_JUNGLE_WOOD:
+            case CRIMSON_STEM:
+            case CRIMSON_HYPHAE:
+            case STRIPPED_CRIMSON_STEM:
+            case STRIPPED_CRIMSON_HYPHAE:
+            case WARPED_STEM:
+            case WARPED_HYPHAE:
+            case STRIPPED_WARPED_STEM:
+            case STRIPPED_WARPED_HYPHAE:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public static boolean isHoldingAxe(Player player) {
+        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+        if (! (itemMainHand == null || itemMainHand.getType().equals(Material.AIR)) ) {
+            switch (itemMainHand.getType()) {
+                case WOODEN_AXE:
+                case STONE_AXE:
+                case IRON_AXE:
+                case GOLDEN_AXE:
+                case DIAMOND_AXE:
+                case NETHERITE_AXE:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isGrass(Material material) {
+        switch (material) {
+            case TALL_GRASS:
+            case GRASS:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public static boolean isHoldingKnife(Player player) {
+        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+
+        if (! (itemMainHand == null || itemMainHand.getType() == Material.AIR)) {
+            NBTItem nbti = new NBTItem(itemMainHand);
+            if (nbti.hasKey("Spartan's Weapon")) {
+                if (nbti.getString("Spartan's Weapon").equals("Dagger") ||  nbti.getString("Spartan's Weapon").equals("Throwing Knife")) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public static boolean hasArmor(LivingEntity entity) {
+        ItemStack[] armor = entity.getEquipment().getArmorContents();
+        for (ItemStack item : armor) {
+            if (! (item == null || item.getType() == Material.AIR) ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean hasChestplate(LivingEntity entity) {
+        ItemStack chestplate = entity.getEquipment().getChestplate();
+        if (! (chestplate == null || chestplate.getType() == Material.AIR)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isHoldingTwoHandedWeapon(LivingEntity entity) {
+        ItemStack item = entity.getEquipment().getItemInMainHand();
+        if (! (item == null || item.getType() == Material.AIR)) {
+            NBTItem nbti = new NBTItem(item);
+            if (nbti.hasKey("Spartan's Weapon")) {
+                switch (nbti.getString("Spartan's Weapon")) {
+                    case "Katana":
+                    case "Glaive":
+                    case "Quarterstaff":
+                    case "Battleaxe":
+                    case "Warhammer":
+                    case "Halberd":
+                    case "Pike":
+                    case "Longsword":
+                    case "Greatsword":
+                        return true;
+                }
+                return false;
+            }
+            return false;
+
+        }
+        return false;
+    }
+
+    public static boolean checkTwoHandedDebuff(LivingEntity entity) {
+        if (isHoldingTwoHandedWeapon(entity)) {
+            ItemStack item = entity.getEquipment().getItemInOffHand();
+            if (! (item == null || item.getType() == Material.AIR)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public static void applyTwoHandedDebuff(LivingEntity entity) {
+        PotionEffect effect = new PotionEffect(PotionEffectType.SLOW_DIGGING, 30, 0);
+    }
+
+    public static void removeColorCodes(String name) {
+        name.replaceAll("&0", "");
+        name.replaceAll("&1", "");
+        name.replaceAll("&2", "");
+        name.replaceAll("&3", "");
+        name.replaceAll("&4", "");
+        name.replaceAll("&5", "");
+        name.replaceAll("&6", "");
+        name.replaceAll("&7", "");
+        name.replaceAll("&8", "");
+        name.replaceAll("&9", "");
+        name.replaceAll("&a", "");
+        name.replaceAll("&b", "");
+        name.replaceAll("&c", "");
+        name.replaceAll("&d", "");
+        name.replaceAll("&e", "");
+        name.replaceAll("&f", "");
+        name.replaceAll("&k", "");
+        name.replaceAll("&m", "");
+        name.replaceAll("&o", "");
+        name.replaceAll("&l", "");
+        name.replaceAll("&n", "");
+        name.replaceAll("&r", "");
+
+    }
+
+    public static boolean isSword(Material material) {
+        switch (material) {
+            case WOODEN_SWORD:
+            case STONE_SWORD:
+            case IRON_SWORD:
+            case GOLDEN_SWORD:
+            case DIAMOND_SWORD:
+            case NETHERITE_SWORD:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public static void addGearLore(List<String> lore, Material material) {
+        lore.add("");
+        if (isArmor(material)) {
+            if (isHelmet(material)) {
+                lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
+            }
+            else if (isChestplate(material)) {
+                lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
+            }
+            else if (isLeggings(material)) {
+                lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
+            }
+            else if (isBoots(material)) {
+                lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
+            }
+        }
+        else {
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
+        }
+    }
+
+    public static void addGearStats(List<String> lore, Attribute atr, Double value) {
+        switch (atr) {
+            case GENERIC_ATTACK_DAMAGE:
+                if (Math.floor(value) == value) {
+                    lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + value.intValue() + " Attack Damage"));
+                }
+                else {
+                    lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + value + " Attack Damage"));
+                }
+                break;
+            case GENERIC_ATTACK_SPEED:
+                if (Math.floor(value) == value) {
+                    lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + value.intValue() + " Attack Speed"));
+                }
+                else {
+                    lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + value + " Attack Speed"));
+                }
+                break;
+            case GENERIC_ARMOR:
+                if (Math.floor(value) == value) {
+                    lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + value.intValue() + " Armor"));
+                }
+                else {
+                    lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + value + " Armor"));
+                }
+                break;
+            case GENERIC_ARMOR_TOUGHNESS:
+                if (Math.floor(value) == value) {
+                    lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + value.intValue() + " Armor Toughness"));
+                }
+                else {
+                    lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + value + " Armor Toughness"));
+                }
+                break;
+        }
+    }
+
+    public static void addMeleeStatsLore(List<String> lore, Double damage, Double speed) {
+        if (Math.floor(damage) == damage) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage.intValue() + " Attack Damage"));
+        }
+        else {
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage + " Attack Damage"));
+        }
+
+        if (Math.floor(speed) == speed) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + speed.intValue() + " Attack Speed"));
+        }
+        else {
+            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + speed + " Attack Speed"));
+        }
+    }
+
 }

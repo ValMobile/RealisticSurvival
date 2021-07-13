@@ -4,27 +4,70 @@ import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.List;
 
-public class ItemEvents implements Listener {
+public class DragonGearEvents implements Listener {
 
     private final RLCraft plugin;
-    private final ItemAbilities itemAbilities;
     private final Utils util;
-    public ItemEvents(RLCraft instance) {
+    private final DragonGearAbilities dragonGearAbilities;
+    public DragonGearEvents(RLCraft instance) {
         plugin = instance;
         util = new Utils(instance);
-        itemAbilities = new ItemAbilities(instance);
+        dragonGearAbilities = new DragonGearAbilities(instance);
     }
 
     @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+
+        for (Recipe r : Recipes.getDragonRecipes()) {
+            if (r instanceof ShapedRecipe) {
+                player.discoverRecipe(((ShapedRecipe) r).getKey());
+            }
+            else if (r instanceof ShapelessRecipe) {
+                player.discoverRecipe(((ShapelessRecipe) r).getKey());
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onEntityDamage(EntityDamageEvent event) {
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            EntityDamageEvent.DamageCause cause = event.getCause();
+            if (cause.equals(EntityDamageEvent.DamageCause.DRAGON_BREATH)) {
+                double dragonProtection = 0;
+                for (ItemStack item : player.getInventory().getArmorContents()) {
+                    if (!(item == null || item.getType() == Material.AIR)) {
+                        NBTItem nbti = new NBTItem(item);
+                        if (nbti.hasKey("Dragon Scale Armor")) {
+                            dragonProtection += CustomConfig.getIceFireGearConfig().getDouble("Abilities.DragonScale.DamageReduction");
+                        }
+                        else if (nbti.hasKey("Dragonsteel Armor")) {
+                            dragonProtection += CustomConfig.getIceFireGearConfig().getDouble("Abilities.Dragonsteel.DamageReduction");
+                        }
+                    }
+                }
+                event.setDamage(event.getDamage() * (1D - dragonProtection));
+            }
+        }
+    }
+
+    @EventHandler (priority = EventPriority.LOWEST)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Player) {
             Player player = (Player) event.getDamager();
@@ -43,10 +86,10 @@ public class ItemEvents implements Listener {
                                 String dragonType = util.getDragonType(entity);
 
                                 if (dragonType.equals("Ice")) {
-                                    event.setDamage(event.getDamage() + 8.0D);
+                                    event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.FlamedDragonBone.BonusDamage"));
                                 }
                             }
-                            itemAbilities.FireDragonBoneAbility((LivingEntity) entity);
+                            dragonGearAbilities.FireDragonBoneAbility((LivingEntity) entity);
                             break;
                         case "Ice Dragon Bone":
                             if (entity instanceof EnderDragon) {
@@ -56,10 +99,10 @@ public class ItemEvents implements Listener {
                                 String dragonType = util.getDragonType(entity);
 
                                 if (dragonType.equals("Fire")) {
-                                    event.setDamage(event.getDamage() + 8.0D);
+                                    event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.IcedDragonBone.BonusDamage"));
                                 }
                             }
-                            itemAbilities.IceDragonBoneAbility((LivingEntity) entity);
+                            dragonGearAbilities.IceDragonBoneAbility((LivingEntity) entity);
                             break;
                         case "Lightning Dragon Bone":
                             if (entity instanceof EnderDragon) {
@@ -69,31 +112,31 @@ public class ItemEvents implements Listener {
                                 String dragonType = util.getDragonType(entity);
 
                                 if (dragonType.equals("Ice") || dragonType.equals("Fire")) {
-                                    event.setDamage(event.getDamage() + 4.0D);
+                                    event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.LightningDragonBone.BonusDamage"));
                                 }
                             }
-                            itemAbilities.LightningDragonBoneAbility((LivingEntity) entity, player);
+                            dragonGearAbilities.LightningDragonBoneAbility((LivingEntity) entity, player);
                             break;
                         case "Fire Dragonsteel":
-                            itemAbilities.FireDragonsteelAbility((LivingEntity) entity);
+                            dragonGearAbilities.FireDragonsteelAbility((LivingEntity) entity);
                             break;
                         case "Ice Dragonsteel":
-                            itemAbilities.IceDragonsteelAbility((LivingEntity) entity);
+                            dragonGearAbilities.IceDragonsteelAbility((LivingEntity) entity);
                             break;
                         case "Lightning Dragonsteel":
-                            itemAbilities.LightningDragonsteelAbility((LivingEntity) entity, player);
+                            dragonGearAbilities.LightningDragonsteelAbility((LivingEntity) entity, player);
                             break;
                     }
                 }
                 if (item.hasKey("Spartan's Weapon")) {
                     switch (item.getString("Spartan's Weapon")) {
                         case "Rapier":
-                            if (!itemAbilities.hasArmor((LivingEntity) entity)) {
+                            if (!Utils.hasArmor((LivingEntity) entity)) {
                                 event.setDamage(event.getDamage() * 3.0D);
                             }
                             break;
                         case "Katana":
-                            if (!itemAbilities.hasChestplate((LivingEntity) entity)) {
+                            if (!Utils.hasChestplate((LivingEntity) entity)) {
                                 event.setDamage(event.getDamage() * 2.0D);
                             }
                             break;
@@ -139,7 +182,7 @@ public class ItemEvents implements Listener {
                                             event.setDamage(event.getDamage() + 8.0D);
                                         }
                                     }
-                                    itemAbilities.FireDragonBoneAbility((LivingEntity) entity);
+                                    dragonGearAbilities.FireDragonBoneAbility((LivingEntity) entity);
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
@@ -162,7 +205,7 @@ public class ItemEvents implements Listener {
                                             event.setDamage(event.getDamage() + 8.0D);
                                         }
                                     }
-                                    itemAbilities.IceDragonBoneAbility((LivingEntity) entity);
+                                    dragonGearAbilities.IceDragonBoneAbility((LivingEntity) entity);
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
@@ -185,7 +228,7 @@ public class ItemEvents implements Listener {
                                             event.setDamage(event.getDamage() + 4.0D);
                                         }
                                     }
-                                    itemAbilities.LightningDragonBoneAbility((LivingEntity) entity, player);
+                                    dragonGearAbilities.LightningDragonBoneAbility((LivingEntity) entity, player);
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
@@ -198,7 +241,7 @@ public class ItemEvents implements Listener {
                                     }
                                     break;
                                 case "Fire Dragonsteel":
-                                    itemAbilities.FireDragonsteelAbility((LivingEntity) entity);
+                                    dragonGearAbilities.FireDragonsteelAbility((LivingEntity) entity);
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
@@ -211,7 +254,7 @@ public class ItemEvents implements Listener {
                                     }
                                     break;
                                 case "Ice Dragonsteel":
-                                    itemAbilities.IceDragonsteelAbility((LivingEntity) entity);
+                                    dragonGearAbilities.IceDragonsteelAbility((LivingEntity) entity);
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
@@ -224,7 +267,7 @@ public class ItemEvents implements Listener {
                                     }
                                     break;
                                 case "Lightning Dragonsteel":
-                                    itemAbilities.LightningDragonsteelAbility((LivingEntity) entity, player);
+                                    dragonGearAbilities.LightningDragonsteelAbility((LivingEntity) entity, player);
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
@@ -240,6 +283,24 @@ public class ItemEvents implements Listener {
                         }
                     }
                 }
+            }
+        }
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            Entity damager = event.getDamager();
+            if (damager instanceof EnderDragon) {
+                double dragonProtection = 0;
+                for (ItemStack item : player.getInventory().getArmorContents()) {
+                    if (!(item == null || item.getType() == Material.AIR)) {
+                        NBTItem nbti = new NBTItem(item);
+                        if (nbti.hasKey("Dragon Scale Armor")) {
+                            dragonProtection += 0.1;
+                        } else if (nbti.hasKey("Dragonsteel Armor")) {
+                            dragonProtection += 0.2;
+                        }
+                    }
+                }
+                event.setDamage(event.getDamage() * (1D - dragonProtection));
             }
         }
     }

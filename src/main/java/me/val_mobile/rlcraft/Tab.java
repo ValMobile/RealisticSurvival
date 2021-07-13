@@ -3,13 +3,12 @@ package me.val_mobile.rlcraft;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tab implements TabCompleter {
+public class Tab implements org.bukkit.command.TabCompleter {
     List<String> msmpFirstArgs = new ArrayList<String>();
     List<String> msmpSecondArgs = new ArrayList<String>();
     List<String> msmpThirdArgs = new ArrayList<String>();
