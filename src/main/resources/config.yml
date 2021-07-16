@@ -10,12 +10,12 @@
 #          Messages                   #
 #######################################
 
-usage: "&cUsage: /rlcraft [reload, give [player] [item] ]"
-reload: "&6[RLCRAFT] &aPlugin reloaded!"
-nopermission: "&cYou do not have permission to do this!"
-noOnlinePlayer: "&cThe specified player is not online!"
-misspelledPlayer: "&cThe specified player's name was misspelled"
-misspelledItemName: "&cYou mispelled the item!"
+Usage: "&cUsage: /rlcraft [reload, give [player] [item] ]"
+Reload: "&6[RLCRAFT] &aPlugin reloaded!"
+NoPermission: "&cYou do not have permission to do this!"
+NoOnlinePlayer: "&cThe specified player is not online!"
+MisspelledPlayer: "&cThe specified player's name was misspelled"
+MisspelledItemName: "&cYou mispelled the item!"
 
 #######################################
 #          Gameplay Features          #

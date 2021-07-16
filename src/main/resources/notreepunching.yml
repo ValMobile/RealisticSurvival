@@ -11,22 +11,22 @@ PlantFiber:
 FlintShard:
   DropChance: 0.3
 Pickaxe:
-  FlintPickaxe:
+  Flint:
     AttackDamage: 2.5
     AttackSpeed: 2.5
 Axe:
-  FlintAxe:
+  Flint:
     AttackDamage: 5.0
     AttackSpeed: 1.0
 Shovel:
-  FlintShovel:
+  Flint:
     AttackDamage: 3.0
     AttackSpeed: 2.4
 Hoe:
-  FlintHoe:
+  Flint:
     AttackDamage: 1.0
     AttackSpeed: 2.6
 Knife:
-  FlintKnife:
+  Flint:
     AttackDamage: 2.0
     AttackSpeed: 3.0

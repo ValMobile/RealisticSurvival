@@ -7,7 +7,7 @@
   Material: "WOODEN_AXE"
   Amount: 1
   DisplayName: "&fFlint Axe"
-  CodeName: "FlintAxe"
+  CodeName: "Flint"
   CommandName: "flint_axe"
   CustomModelData: 83650
   ItemFlags:
@@ -16,7 +16,7 @@
   Material: "WOODEN_SWORD"
   Amount: 1
   DisplayName: "&fFlint Knife"
-  CodeName: "FlintKnife"
+  CodeName: "Flint"
   CommandName: "flint_knife"
   CustomModelData: 83650
   ItemFlags:
@@ -27,7 +27,7 @@
   Material: "WOODEN_PICKAXE"
   Amount: 1
   DisplayName: "&fFlint Pickaxe"
-  CodeName: "FlintPickaxe"
+  CodeName: "Flint"
   CommandName: "flint_pickaxe"
   CustomModelData: 83650
   ItemFlags:
@@ -36,7 +36,7 @@
   Material: "WOODEN_SHOVEL"
   Amount: 1
   DisplayName: "&fFlint Shovel"
-  CodeName: "FlintShovel"
+  CodeName: "Flint"
   CommandName: "flint_shovel"
   CustomModelData: 83650
   ItemFlags:
@@ -45,7 +45,7 @@
   Material: "WOODEN_HOE"
   Amount: 1
   DisplayName: "&fFlint Hoe"
-  CodeName: "FlintHoe"
+  CodeName: "Flint"
   CommandName: "flint_hoe"
   CustomModelData: 83650
   ItemFlags:
@@ -93,7 +93,7 @@
   CommandName: "dragon_scale_blue"
   CustomModelData: 83650
   Lore:
-    - "&bBlue"
+    - "LOREADDER.BLUE_DRAGON_SCALE"
 11:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -102,7 +102,7 @@
   CommandName: "dragon_scale_bronze"
   CustomModelData: 83651
   Lore:
-    - "&6Bronze"
+    - "LOREADDER.BRONZE_DRAGON_SCALE"
 12:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -111,7 +111,7 @@
   CommandName: "dragon_scale_gray"
   CustomModelData: 83652
   Lore:
-    - "&7Gray"
+    - "LOREADDER.GRAY_DRAGON_SCALE"
 13:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -120,7 +120,7 @@
   CommandName: "dragon_scale_green"
   CustomModelData: 83653
   Lore:
-    - "&2Emerald"
+    - "LOREADDER.GREEN_DRAGON_SCALE"
 14:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -129,7 +129,7 @@
   CommandName: "dragon_scale_red"
   CustomModelData: 83654
   Lore:
-    - "&4Red"
+    - "LOREADDER.RED_DRAGON_SCALE"
 15:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -138,7 +138,7 @@
   CommandName: "dragon_scale_sapphire"
   CustomModelData: 83655
   Lore:
-    - "&9Sapphire"
+    - "LOREADDER.SAPPHIRE_DRAGON_SCALE"
 16:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -147,7 +147,7 @@
   CommandName: "dragon_scale_silver"
   CustomModelData: 83656
   Lore:
-    - "&8Silver"
+    - "LOREADDER.SILVER_DRAGON_SCALE"
 17:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -156,7 +156,7 @@
   CommandName: "dragon_scale_white"
   CustomModelData: 83657
   Lore:
-    - "&fWhite"
+    - "LOREADDER.WHITE_DRAGON_SCALE"
 18:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -165,7 +165,7 @@
   CommandName: "dragon_scale_amethyst"
   CustomModelData: 83658
   Lore:
-    - "&dAmethyst"
+    - "LOREADDER.AMETHYST_DRAGON_SCALE"
 19:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -174,7 +174,7 @@
   CommandName: "dragon_scale_black"
   CustomModelData: 83659
   Lore:
-    - "&8Black"
+    - "LOREADDER.BLACK_DRAGON_SCALE"
 20:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -183,7 +183,7 @@
   CommandName: "dragon_scale_copper"
   CustomModelData: 83660
   Lore:
-    - "&6Copper"
+    - "LOREADDER.COPPER_DRAGON_SCALE"
 21:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -192,7 +192,7 @@
   CommandName: "dragon_scale_electric"
   CustomModelData: 83661
   Lore:
-    - "&1Electric Blue"
+    - "LOREADDER.ELECTRIC_DRAGON_SCALE"
 22:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -201,7 +201,7 @@
   CommandName: "sea_serpent_scale_blue"
   CustomModelData: 83662
   Lore:
-    - "&9Blue"
+    - "LOREADDER.BLUE_SEA_SERPENT_SCALE"
 23:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -210,7 +210,7 @@
   CommandName: "sea_serpent_scale_bronze"
   CustomModelData: 83663
   Lore:
-    - "&6Bronze"
+    - "LOREADDER.BRONZE_SEA_SERPENT_SCALE"
 24:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -219,7 +219,7 @@
   CommandName: "sea_serpent_scale_Deepblue"
   CustomModelData: 83664
   Lore:
-    - "&1Deep Blue"
+    - "LOREADDER.DEEPBLUE_SEA_SERPENT_SCALE"
 25:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -228,7 +228,7 @@
   CommandName: "sea_serpent_scale_green"
   CustomModelData: 83665
   Lore:
-    - "&2Green"
+    - "LOREADDER.GREEN_SEA_SERPENT_SCALE"
 26:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -237,7 +237,7 @@
   CommandName: "sea_serpent_scale_purple"
   CustomModelData: 83666
   Lore:
-    - "&5Purple"
+    - "LOREADDER.PURPLE_SEA_SERPENT_SCALE"
 27:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -246,7 +246,7 @@
   CommandName: "sea_serpent_scale_red"
   CustomModelData: 83667
   Lore:
-    - "&4Red"
+    - "LOREADDER.RED_SEA_SERPENT_SCALE"
 28:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -255,7 +255,7 @@
   CommandName: "sea_serpent_scale_teal"
   CustomModelData: 83668
   Lore:
-    - "&bTeal"
+    - "LOREADDER.TEAL_SEA_SERPENT_SCALE"
 29:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -368,3 +368,4607 @@
   CodeName: "LightningDragonsteelIngot"
   CommandName: "dragonsteel_lightning_ingot"
   CustomModelData: 83652
+45:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_blue"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.BLUE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+46:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_blue"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.BLUE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+47:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_blue"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.BLUE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+48:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_blue"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.BLUE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+49:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_bronze"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.BRONZE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+50:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_bronze"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.BRONZE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+51:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_bronze"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.BRONZE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+52:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_bronze"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.BRONZE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+53:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_gray"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.GRAY_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+54:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_gray"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.GRAY_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+55:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_gray"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.GRAY_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+56:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_gray"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.GRAY_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+57:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_green"
+  CustomModelData: 83653
+  Lore:
+    - "LOREADDER.GREEN_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+58:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_green"
+  CustomModelData: 83653
+  Lore:
+    - "LOREADDER.GREEN_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+59:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_green"
+  CustomModelData: 83653
+  Lore:
+    - "LOREADDER.GREEN_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+60:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_red"
+  CustomModelData: 83654
+  Lore:
+    - "LOREADDER.RED_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+61:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_red"
+  CustomModelData: 83654
+  Lore:
+    - "LOREADDER.RED_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+62:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_red"
+  CustomModelData: 83654
+  Lore:
+    - "LOREADDER.RED_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+63:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_red"
+  CustomModelData: 83654
+  Lore:
+    - "LOREADDER.RED_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+64:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_red"
+  CustomModelData: 83654
+  Lore:
+    - "LOREADDER.RED_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+65:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_sapphire"
+  CustomModelData: 83655
+  Lore:
+    - "LOREADDER.SAPPHIRE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+66:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_sapphire"
+  CustomModelData: 83655
+  Lore:
+    - "LOREADDER.SAPPHIRE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+67:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_sapphire"
+  CustomModelData: 83655
+  Lore:
+    - "LOREADDER.SAPPHIRE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+68:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_sapphire"
+  CustomModelData: 83655
+  Lore:
+    - "LOREADDER.SAPPHIRE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+69:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_silver"
+  CustomModelData: 83656
+  Lore:
+    - "LOREADDER.SILVER_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+70:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_silver"
+  CustomModelData: 83656
+  Lore:
+    - "LOREADDER.SILVER_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+71:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_silver"
+  CustomModelData: 83656
+  Lore:
+    - "LOREADDER.SILVER_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+72:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_silver"
+  CustomModelData: 83656
+  Lore:
+    - "LOREADDER.SILVER_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+73:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_white"
+  CustomModelData: 83657
+  Lore:
+    - "LOREADDER.WHITE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+74:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_white"
+  CustomModelData: 83657
+  Lore:
+    - "LOREADDER.WHITE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+75:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_white"
+  CustomModelData: 83657
+  Lore:
+    - "LOREADDER.WHITE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+76:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_white"
+  CustomModelData: 83657
+  Lore:
+    - "LOREADDER.WHITE_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+77:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_amethyst"
+  CustomModelData: 83658
+  Lore:
+    - "LOREADDER.AMETHYST_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+78:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_amethyst"
+  CustomModelData: 83658
+  Lore:
+    - "LOREADDER.AMETHYST_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+79:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_amethyst"
+  CustomModelData: 83658
+  Lore:
+    - "LOREADDER.AMETHYST_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+80:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_amethyst"
+  CustomModelData: 83658
+  Lore:
+    - "LOREADDER.AMETHYST_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+81:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_black"
+  CustomModelData: 83659
+  Lore:
+    - "LOREADDER.BLACK_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+82:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_black"
+  CustomModelData: 83659
+  Lore:
+    - "LOREADDER.BLACK_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+83:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_black"
+  CustomModelData: 83659
+  Lore:
+    - "LOREADDER.BLACK_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+84:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_black"
+  CustomModelData: 83659
+  Lore:
+    - "LOREADDER.BLACK_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+85:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_copper"
+  CustomModelData: 83660
+  Lore:
+    - "LOREADDER.COPPER_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+86:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_copper"
+  CustomModelData: 83660
+  Lore:
+    - "LOREADDER.COPPER_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+87:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_copper"
+  CustomModelData: 83660
+  Lore:
+    - "LOREADDER.COPPER_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+88:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_copper"
+  CustomModelData: 83660
+  Lore:
+    - "LOREADDER.COPPER_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+89:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fDragon Scale Helmet"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_helmet_electric"
+  CustomModelData: 83661
+  Lore:
+    - "LOREADDER.ELECTRIC_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Helmet"
+90:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fDragon Scale Chestplate"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_chestplate_electric"
+  CustomModelData: 83661
+  Lore:
+    - "LOREADDER.ELECTRIC_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Chestplate"
+91:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Leggings"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_leggings_electric"
+  CustomModelData: 83661
+  Lore:
+    - "LOREADDER.ELECTRIC_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Leggings"
+92:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fDragon Scale Boots"
+  CodeName: "DragonScale"
+  CommandName: "dragon_scale_boots_electric"
+  CustomModelData: 83661
+  Lore:
+    - "LOREADDER.ELECTRIC_DRAGON_SCALE"
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Scale Armor: "Dragon Scale Boots"
+93:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fTide Guardian Helmet"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_helmet_blue"
+  CustomModelData: 83662
+  Lore:
+    - "LOREADDER.BLUE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Helmet"
+94:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fTide Guardian Chestplate"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_chestplate_blue"
+  CustomModelData: 83662
+  Lore:
+    - "LOREADDER.BLUE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Chestplate"
+95:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Leggings"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_leggings_blue"
+  CustomModelData: 83662
+  Lore:
+    - "LOREADDER.BLUE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Leggings"
+96:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Boots"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_boots_blue"
+  CustomModelData: 83662
+  Lore:
+    - "LOREADDER.BLUE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Boots"
+97:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fTide Guardian Helmet"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_helmet_bronze"
+  CustomModelData: 83663
+  Lore:
+    - "LOREADDER.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Helmet"
+98:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fTide Guardian Chestplate"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_chestplate_bronze"
+  CustomModelData: 83663
+  Lore:
+    - "LOREADDER.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Chestplate"
+99:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Leggings"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_leggings_bronze"
+  CustomModelData: 83663
+  Lore:
+    - "LOREADDER.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Leggings"
+100:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Boots"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_boots_bronze"
+  CustomModelData: 83663
+  Lore:
+    - "LOREADDER.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Boots"
+101:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fTide Guardian Helmet"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_helmet_deepblue"
+  CustomModelData: 83664
+  Lore:
+    - "LOREADDER.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Helmet"
+102:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fTide Guardian Chestplate"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_chestplate_deepblue"
+  CustomModelData: 83664
+  Lore:
+    - "LOREADDER.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Chestplate"
+103:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Leggings"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_leggings_deepblue"
+  CustomModelData: 83664
+  Lore:
+    - "LOREADDER.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Leggings"
+104:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Boots"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_boots_deepblue"
+  CustomModelData: 83664
+  Lore:
+    - "LOREADDER.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Boots"
+105:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fTide Guardian Helmet"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_helmet_green"
+  CustomModelData: 83665
+  Lore:
+    - "LOREADDER.GREEN_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Helmet"
+106:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fTide Guardian Chestplate"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_chestplate_green"
+  CustomModelData: 83665
+  Lore:
+    - "LOREADDER.GREEN_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Chestplate"
+107:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Leggings"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_leggings_green"
+  CustomModelData: 83665
+  Lore:
+    - "LOREADDER.GREEN_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Leggings"
+108:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Boots"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_boots_green"
+  CustomModelData: 83665
+  Lore:
+    - "LOREADDER.GREEN_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Boots"
+109:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fTide Guardian Helmet"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_helmet_purple"
+  CustomModelData: 83666
+  Lore:
+    - "LOREADDER.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Helmet"
+110:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fTide Guardian Chestplate"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_chestplate_purple"
+  CustomModelData: 83666
+  Lore:
+    - "LOREADDER.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Chestplate"
+111:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Leggings"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_leggings_purple"
+  CustomModelData: 83666
+  Lore:
+    - "LOREADDER.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Leggings"
+112:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Boots"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_boots_purple"
+  CustomModelData: 83666
+  Lore:
+    - "LOREADDER.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Boots"
+113:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fTide Guardian Helmet"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_helmet_red"
+  CustomModelData: 83667
+  Lore:
+    - "LOREADDER.RED_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Helmet"
+114:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fTide Guardian Chestplate"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_chestplate_red"
+  CustomModelData: 83667
+  Lore:
+    - "LOREADDER.RED_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Chestplate"
+115:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Leggings"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_leggings_red"
+  CustomModelData: 83667
+  Lore:
+    - "LOREADDER.RED_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Leggings"
+116:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Boots"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_boots_red"
+  CustomModelData: 83667
+  Lore:
+    - "LOREADDER.RED_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Boots"
+117:
+  Material: "DIAMOND_HELMET"
+  Amount: 1
+  DisplayName: "&fTide Guardian Helmet"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_helmet_teal"
+  CustomModelData: 83668
+  Lore:
+    - "LOREADDER.TEAL_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Helmet"
+118:
+  Material: "DIAMOND_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fTide Guardian Chestplate"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_chestplate_teal"
+  CustomModelData: 83668
+  Lore:
+    - "LOREADDER.TEAL_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Chestplate"
+119:
+  Material: "DIAMOND_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Leggings"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_leggings_teal"
+  CustomModelData: 83668
+  Lore:
+    - "LOREADDER.TEAL_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Leggings"
+120:
+  Material: "DIAMOND_BOOTS"
+  Amount: 1
+  DisplayName: "&fTide Guardian Boots"
+  CodeName: "TideGuardian"
+  CommandName: "tide_guardian_boots_teal"
+  CustomModelData: 83668
+  Lore:
+    - "LOREADDER.TEAL_SEA_SERPENT_SCALE"
+    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Tide Guardian Armor: "Tide Guardian Boots"
+121:
+  Material: "DIAMOND_PICKAXE"
+  Amount: 1
+  DisplayName: "&fDragon Bone Pickaxe"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_pickaxe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+122:
+  Material: "DIAMOND_AXE"
+  Amount: 1
+  DisplayName: "&fDragon Bone Axe"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_axe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+123:
+  Material: "DIAMOND_SHOVEL"
+  Amount: 1
+  DisplayName: "&fDragon Bone Shovel"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_shovel"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+124:
+  Material: "DIAMOND_HOE"
+  Amount: 1
+  DisplayName: "&fDragon Bone Hoe"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_hoe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+125:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragon Bone Sword"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_sword"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+126:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fDragon Bone Bow"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_bow"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Dragon Bone"
+    Spartan's Weapon: "Bow"
+127:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragon Bone Sword"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_sword"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.LEGENDARY_WEAPON"
+    - "LOREADDER.FLAMED_EXTRA_DAMAGE"
+    - "LOREADDER.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+128:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragon Bone Sword"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_sword"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.LEGENDARY_WEAPON"
+    - "LOREADDER.ICED_EXTRA_DAMAGE"
+    - "LOREADDER.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+129:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragon Bone Sword"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_sword"
+  CustomModelData: 83653
+  Lore:
+    - "LOREADDER.LEGENDARY_WEAPON"
+    - "LOREADDER.LIGHTNING_EXTRA_DAMAGE"
+    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+130:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fDragon's Eye"
+  CodeName: "DragonsEye"
+  CommandName: "bauble_dragons_eye"
+  CustomModelData: 83650
+  Lore:
+    - "&7Night Vision On"
+    - "&7Current Target: None"
+    - ""
+    - "&6Bauble (Head)"
+  NBTTags:
+    Bauble: "Dragon's Eye"
+131:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fPoison Stone"
+  CodeName: "PoisonStone"
+  CommandName: "bauble_stone_poison"
+  CustomModelData: 83651
+  Lore:
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Poison Stone"
+132:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fPotion Ring of Resistance"
+  CodeName: "PotionRingResistance"
+  CommandName: "bauble_potion_ring_resistance"
+  CustomModelData: 83652
+  Enchantments:
+    DURABILITY: 1
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Potion Ring of Resistance"
+133:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fPotion Ring of Regeneration"
+  CodeName: "PotionRingRegneration"
+  CommandName: "bauble_potion_ring_regeneration"
+  CustomModelData: 83653
+  Enchantments:
+    DURABILITY: 1
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Potion Ring of Regeneration"
+134:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fPotion Ring of Haste"
+  CodeName: "PotionRingHaste"
+  CommandName: "bauble_potion_ring_haste"
+  CustomModelData: 83654
+  Enchantments:
+    DURABILITY: 1
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Potion Ring of Haste"
+135:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fPotion Ring of Strength"
+  CodeName: "PotionRingStrength"
+  CommandName: "bauble_potion_ring_strength"
+  CustomModelData: 83655
+  Enchantments:
+    DURABILITY: 1
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Potion Ring of Strength"
+136:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fPotion Ring of Speed"
+  CodeName: "PotionRingSpeed"
+  CommandName: "bauble_potion_ring_speed"
+  CustomModelData: 83656
+  Enchantments:
+    DURABILITY: 1
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Potion Ring of Speed"
+137:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fPotion Ring of Jump Boost"
+  CodeName: "PotionRingJumpBoost"
+  CommandName: "bauble_potion_ring_jump_boost"
+  CustomModelData: 83657
+  Enchantments:
+    DURABILITY: 1
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Potion Ring of Jump Boost"
+138:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bEnder Queen's Crown"
+  CodeName: "EnderQueensCrown"
+  CommandName: "bauble_crown_ender_queens"
+  CustomModelData: 83661
+  Lore:
+    - ""
+    - "&6Bauble (Head)"
+  NBTTags:
+    Bauble: "Ender Queen's Crown"
+139:
+  Material: "LEATHER_HELMET"
+  Amount: 1
+  DisplayName: "&fSunglasses"
+  CodeName: "Sunglasses"
+  CommandName: "bauble_sunglasses"
+  CustomModelData: 83650
+  Lore:
+    - "&9Grants immunity to blindness."
+    - "&aCool guys don't look at explosions."
+    - ""
+    - "&6Bauble (Head)"
+  NBTTags:
+    Bauble: "Sunglasses"
+140:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fBalloon"
+  CodeName: "Balloon"
+  CommandName: "bauble_balloon"
+  CustomModelData: 83662
+  Lore:
+    - "&9Increases jump height and negates some fall damage."
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Balloon"
+141:
+  Material: "SHIELD"
+  Amount: 1
+  DisplayName: "&fCobalt Shield"
+  CodeName: "CobaltShield"
+  CommandName: "bauble_shield_cobalt"
+  CustomModelData: 83650
+  Lore:
+    - "&9Grants immunity to knockback when held or equipped in bauble slot."
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Cobalt Shield"
+142:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fObsidian Skull"
+  CodeName: "ObsidianSkull"
+  CommandName: "bauble_obsidian_skull"
+  CustomModelData: 83663
+  Lore:
+    - "&9Grants immunity to burning and 50% resistance to fire damage. (Does not."
+    - "&9protect against lava)"
+    - "&aHolding this makes you feel vaguely nervous."
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Obsidian Skull"
+143:
+  Material: "SHIELD"
+  Amount: 1
+  DisplayName: "&fObsidian Shield"
+  CodeName: "ObsidianShield"
+  CommandName: "bauble_shield_obsidian"
+  CustomModelData: 83651
+  Lore:
+    - "&9Grants partial fire resistance and immunity to knockback when held or equipped"
+    - "&9in bauble slot"
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Obsidian Shield"
+144:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fForbidden Fruit"
+  CodeName: "ForbiddenFruit"
+  CommandName: "bauble_forbidden_fruit"
+  CustomModelData: 83664
+  Lore:
+    - "&9Grants immunity to hunger status effect, and nausea."
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Forbidden Fruit"
+145:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fVitamins"
+  CodeName: "Vitamins"
+  CommandName: "bauble_vitamins"
+  CustomModelData: 83665
+  Lore:
+    - "&9Grants immunity to weakness and mining fatigue."
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Vitamins"
+146:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fRing of Overclocking"
+  CodeName: "RingOverclocking"
+  CommandName: "bauble_ring_overclocking"
+  CustomModelData: 83666
+  Lore:
+    - "&9Grants immunity to slowness and +7% move speed."
+    - "&aEveryone knows that blue LEDs make your PC run faster."
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Ring of Overclocking"
+147:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fShulker Heart"
+  CodeName: "ShulkerHeart"
+  CommandName: "bauble_shulker_heart"
+  CustomModelData: 83667
+  Lore:
+    - "&9Grants immunity to levitation"
+    - "&aIt's squishy..."
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Shulker Heart"
+148:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fRing of Free Action"
+  CodeName: "RingFreeAction"
+  CommandName: "bauble_ring_free_action"
+  CustomModelData: 83668
+  Lore:
+    - "&9Grants immunity to slowness and levitation and allows free movement through"
+    - "&9cobwebs"
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Ring of Free Action"
+149:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fBezoar"
+  CodeName: "Bezoar"
+  CommandName: "bauble_bezoar"
+  CustomModelData: 83669
+  Lore:
+    - "&9Grants immunity to poison."
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Bezoar"
+150:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fEnder Dragon Scale"
+  CodeName: "EnderDragonScale"
+  CommandName: "bauble_dragon_scale_ender"
+  CustomModelData: 83670
+151:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fCracked Black Dragon Scale"
+  CodeName: "CrackedBlackDragonScale"
+  CommandName: "bauble_dragon_scale_black_cracked"
+  CustomModelData: 83671
+  Lore:
+    - "&aBlack dragon scales are said to protect against withering. Perhaps this broken one"
+    - "&acould be repaired?"
+152:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fBlack Dragon Scale"
+  CodeName: "BlackDragonScale"
+  CommandName: "bauble_dragon_scale_black"
+  CustomModelData: 83672
+  Lore:
+    - "&9Grants immunity to withering."
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Black Dragon Scale"
+153:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fMixed Color Dragon Scale"
+  CodeName: "MixedColorDragonScale"
+  CommandName: "bauble_dragon_scale_mixed_color"
+  CustomModelData: 83673
+  Lore:
+    - "&9Grants immunity to poison and withering."
+    - "&aInterestingly, the bezoar has fused with the scale and made it appear to"
+    - "&abe two different colors."
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Mixed Color Dragon Scale"
+154:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fAnkh Charm"
+  CodeName: "AnkhCharm"
+  CommandName: "bauble_ankh_charm"
+  CustomModelData: 83674
+  Lore:
+    - "&9Grants immunity to most negative status effects."
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Ankh Charm"
+155:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fAnkh Shield"
+  CodeName: "AnkhShield"
+  CommandName: "bauble_shield_ankh"
+  CustomModelData: 83652
+  Lore:
+    - "&9Grants partial fire resistance and immunity to knockback and most negative"
+    - "&9status effects when held or equipped in bauble slot."
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Ankh Shield"
+156:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fIron Ring"
+  CodeName: "IronRing"
+  CommandName: "bauble_ring_iron"
+  CustomModelData: 83675
+  Lore:
+    - "&9Crafting component"
+157:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fMagic Mirror"
+  CodeName: "MagicMirror"
+  CommandName: "bauble_mirror_magic"
+  CustomModelData: 83676
+  Lore:
+    - "&9Teleports you to your spawn point."
+    - "&aIt may bend space at will, but it can't make ugly things beautiful,"
+    - "&aunfortunately for you."
+158:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fRecall Potion"
+  CodeName: "RecallPotion"
+  CommandName: "potion_recall"
+  CustomModelData: 83650
+  Color: "AQUA"
+  Lore:
+    - "&9Teleports you to your spawn point."
+159:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fWormhole Mirror"
+  CodeName: "WormholeMirror"
+  CommandName: "bauble_mirror_wormhole"
+  CustomModelData: 83677
+  Lore:
+    - "&9Right click to teleport to your spawn point."
+    - "&9Right click while sneaking to teleport to another player."
+    - "&aYou can feel the void staring back at you."
+160:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fWormhole Potion"
+  CodeName: "WormholePotion"
+  CommandName: "potion_wormhole"
+  CustomModelData: 83651
+  Color: "BLUE"
+  Lore:
+    - "&9Teleports you to other players."
+    - "&aYou suddenly feel very alone."
+161:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fLucky Horseshoe"
+  CodeName: "LuckyHorseshoe"
+  CommandName: "bauble_lucky_horseshoe"
+  CustomModelData: 83678
+  Lore:
+    - "&9Negates fall damage."
+    - "&aWhy did the horse need this?"
+162:
+  Material: "GOLDEN_APPLE"
+  Amount: 1
+  DisplayName: "&fBattle Burrito"
+  CodeName: "BattleBurrito"
+  CommandName: "battle_burrito"
+  CustomModelData: 83650
+  Lore:
+    - "&aA powerful fusion of many tasty meats!"
+    - "&aApplies: Strength, Resistance,"
+    - "&aAbsorption, Health Boost, and Heals!"
+163:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fScarlite Ring"
+  CodeName: "ScarliteRing"
+  CommandName: "bauble_ring_scarlite"
+  CustomModelData: 83679
+  Lore:
+    - "&7Slowly restores health"
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Scarlite Ring"
+164:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fSpectral Silt"
+  CodeName: "SpectralSilt"
+  CommandName: "bauble_spectral_silt"
+  CustomModelData: 83680
+  Lore:
+    - "&9Crafting component"
+165:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fDisintegration Tablet"
+  CodeName: "DisintegrationTablet"
+  CommandName: "bauble_disintegration_tablet"
+  CustomModelData: 83681
+  Lore:
+    - "&9Craft with dungeon loot to convert it into spectral silt"
+166:
+  Material: "TOTEM_OF_UNDYING"
+  Amount: 1
+  DisplayName: "&fBroken Heart"
+  CodeName: "BrokenHeart"
+  CommandName: "bauble_broken_heart"
+  CustomModelData: 83650
+  Lore:
+    - "&9Lethal damage destroys empty heart containers instead."
+    - "&9Sleep to regenerate heart containers."
+    - "&aHow did this happen?"
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Broken Heart"
+167:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fCross Necklace"
+  CodeName: "CrossNecklace"
+  CommandName: "bauble_cross_necklace"
+  CustomModelData: 83682
+  Lore:
+    - "&9Increases length of invicibility when damaged."
+    - "&9Sleep to regenerate heart containers."
+    - "&aHow did this happen?"
+    - ""
+    - "&6Bauble (Amulet)"
+  NBTTags:
+    Bauble: "Cross Necklace"
+168:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fWrath Pendant"
+  CodeName: "WrathPendant"
+  CommandName: "bauble_pendant_wrath"
+  CustomModelData: 83683
+  Lore:
+    - "&9Gives +2 damage."
+    - "&9Grants sinful buff (+damage, +armor) after you deal a critical hit."
+    - "&aHow did this happen?"
+    - ""
+    - "&6Bauble (Amulet)"
+  NBTTags:
+    Bauble: "Wrath Pendant"
+169:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fPride Pendant"
+  CodeName: "PridePendant"
+  CommandName: "bauble_pendant_pride"
+  CustomModelData: 83684
+  Lore:
+    - "&9Gives sinful buff (+damage, +armor) while at full health."
+    - ""
+    - "&6Bauble (Amulet)"
+  NBTTags:
+    Bauble: "Pride Pendant"
+170:
+  Material: "GOLDEN_HELMET"
+  Amount: 1
+  DisplayName: "&fGolden Crown"
+  CodeName: "GoldenCrown"
+  CommandName: "bauble_crown_golden"
+  CustomModelData: 83650
+  Attributes:
+    GENERIC_ARMOR: 13.0
+171:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fGluttony Pendant"
+  CodeName: "GluttonyPendant"
+  CommandName: "bauble_pendant_gluttony"
+  CustomModelData: 83685
+  Lore:
+    - "&9Eat faster."
+    - "&9Gives sinful buff (+damage, +armor) while you eat."
+    - ""
+    - "&6Bauble (Amulet)"
+  NBTTags:
+    Bauble: "Gluttony Pendant"
+172:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fSin Pendant"
+  CodeName: "SinPendant"
+  CommandName: "bauble_pendant_sin"
+  CustomModelData: 83686
+  Lore:
+    - "&9Crafting Component."
+    - ""
+    - "&6Bauble (Amulet)"
+  NBTTags:
+    Bauble: "Sin Pendant"
+173:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fFlare Gun"
+  CodeName: "FlareGun"
+  CommandName: "bauble_flare_gun"
+  CustomModelData: 83687
+  Lore:
+    - "&9Exactly what it sounds like"
+    - "&aShine a light on the situation!"
+174:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fFlare"
+  CodeName: "Flare"
+  CommandName: "bauble_flare"
+  CustomModelData: 83688
+  Lore:
+    - "&9Ammo for the Flare Gun."
+175:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fPhytoprostasia Amulet"
+  CodeName: "PhytoprostasiaAmulet"
+  CommandName: "bauble_amulet_phytoprostasia"
+  CustomModelData: 83689
+  Lore:
+    - "&7Protects from cactus and berry bush damage"
+  NBTTags:
+    Bauble: "Phytoprotasia Amulet"
+176:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fPotion Ring"
+  CodeName: "PotionRing"
+  CommandName: "bauble_potion_ring"
+  CustomModelData: 83690
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Potion Ring"
+177:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fEmerald Ring"
+  CodeName: "EmeraldRing"
+  CommandName: "bauble_ring_emerald"
+  CustomModelData: 83691
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Emerald Ring"
+178:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fEmerald Amulet"
+  CodeName: "EmeraldAmulet"
+  CommandName: "bauble_amulet_emerald"
+  CustomModelData: 83692
+  Lore:
+    - ""
+    - "&6Bauble (Amulet)"
+  NBTTags:
+    Bauble: "Emerald Amulet"
+179:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fGlowing Ingot"
+  CodeName: "GlowingIngot"
+  CommandName: "bauble_glowing_ingot"
+  CustomModelData: 83693
+180:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fGlowing Powder"
+  CodeName: "GlowingPowder"
+  CommandName: "bauble_glowing_powder"
+  CustomModelData: 83694
+181:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fGlowing Gem"
+  CodeName: "GlowingGem"
+  CommandName: "bauble_glowing_gem"
+  CustomModelData: 83695
+182:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fDwarf Stout"
+  CodeName: "DwarfStout"
+  CommandName: "bauble_dwarf_stout"
+  CustomModelData: 83696
+  Lore:
+    - "&7I might be able to remove the effects"
+    - "&7by drinking some sort of potion"
+183:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fFairy Dew"
+  CodeName: "FairyDew"
+  CommandName: "bauble_fairy_dew"
+  CustomModelData: 83697
+  Lore:
+    - "&7I might be able to remove the effects"
+    - "&7by drinking some sort of potion"
+184:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bStone of Negative Gravity"
+  CodeName: "StoneNegativeGravity"
+  CommandName: "bauble_stone_negative_gravity"
+  CustomModelData: 83698
+  Lore:
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Stone of Negative Gravity"
+185:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bStone of Inertia Null"
+  CodeName: "StoneInertiaNull"
+  CommandName: "bauble_stone_inertia_null"
+  CustomModelData: 83699
+  Lore:
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Stone of Inertia Null"
+186:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bStone of Greater Inertia"
+  CodeName: "StoneGreaterInertia"
+  CommandName: "bauble_stone_greater_inertia"
+  CustomModelData: 83700
+  Lore:
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Stone of Greater Inertia"
+187:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bRing of Enchanted Eyes"
+  CodeName: "RingEnchantedEyes"
+  CommandName: "bauble_ring_enchanted_eyes"
+  CustomModelData: 83701
+  Lore:
+    - ""
+    - "&6Bauble (Any)"
+  NBTTags:
+    Bauble: "Ring of Enchanted Eyes"
+188:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bStone of the Sea"
+  CodeName: "StoneSea"
+  CommandName: "bauble_stone_sea"
+  CustomModelData: 83702
+  Lore:
+    - ""
+    - "&6Bauble (Amulet)"
+  NBTTags:
+    Bauble: "Stone of the Sea"
+189:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bPolarized Stone"
+  CodeName: "StonePolarized"
+  CommandName: "bauble_stone_polarized"
+  CustomModelData: 83703
+  Lore:
+    - "&7Magnetization On"
+    - "&6Repell Off"
+  NBTTags:
+    Bauble: "Polarized Stone"
+190:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bRing of the Fairies"
+  CodeName: "RingFairies"
+  CommandName: "bauble_ring_fairies"
+  CustomModelData: 83704
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Ring of the Fairies"
+191:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bRing of the Dwarves"
+  CodeName: "RingDwarves"
+  CommandName: "bauble_ring_dwarves"
+  CustomModelData: 83705
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Ring of the Dwarves"
+192:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bWither Ring"
+  CodeName: "RingWither"
+  CommandName: "bauble_ring_wither"
+  CustomModelData: 83706
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Wither Ring"
+193:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bShield of Honor"
+  CodeName: "ShieldHonor"
+  CommandName: "bauble_shield_honor"
+  CustomModelData: 83707
+  Lore:
+    - ""
+    - "&6Bauble (Body)"
+  NBTTags:
+    Bauble: "Shield of Honor"
+194:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&bMiner's Ring"
+  CodeName: "RingMiners"
+  CommandName: "bauble_ring_miners"
+  CustomModelData: 83708
+  Lore:
+    - ""
+    - "&6Bauble (Ring)"
+  NBTTags:
+    Bauble: "Miner's Ring"
+195:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fWarped Scroll"
+  CodeName: "WarpedScroll"
+  CommandName: "warped_scroll"
+  CustomModelData: 83709
+196:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fPotion of Fire Resistance"
+  CodeName: "PotionFireResistance"
+  CommandName: "potion_fire_resistance"
+  Color: Orange
+  Effects:
+    FIRE_RESISTANCE:
+      Amplifier: 0
+      Duration: 3600
+197:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Sword"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_sword"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+198:
+  Material: "NETHERITE_PICKAXE"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Pickaxe"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_pickaxe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+199:
+  Material: "NETHERITE_AXE"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Axe"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_axe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+200:
+  Material: "NETHERITE_SHOVEL"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Shovel"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_shovel"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+201:
+  Material: "NETHERITE_HOE"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Hoe"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_hoe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+202:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Sword"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_sword"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+203:
+  Material: "NETHERITE_PICKAXE"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Pickaxe"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_pickaxe"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+204:
+  Material: "NETHERITE_AXE"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Axe"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_axe"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+205:
+  Material: "NETHERITE_SHOVEL"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Shovel"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_shovel"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+206:
+  Material: "NETHERITE_HOE"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Hoe"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_hoe"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+207:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Sword"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_sword"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+208:
+  Material: "NETHERITE_PICKAXE"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Pickaxe"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_pickaxe"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+209:
+  Material: "NETHERITE_AXE"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Axe"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_axe"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+210:
+  Material: "NETHERITE_SHOVEL"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Shovel"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_shovel"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+211:
+  Material: "NETHERITE_HOE"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Hoe"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_hoe"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+212:
+  Material: "NETHERITE_HELMET"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Helmet"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_helmet"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Helmet"
+213:
+  Material: "NETHERITE_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Chestplate"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_chestplate"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Chestplate"
+214:
+  Material: "NETHERITE_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Leggings"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_leggings"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Leggings"
+215:
+  Material: "NETHERITE_BOOTS"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Boots"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_boots"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Boots"
+216:
+  Material: "NETHERITE_HELMET"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Helmet"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_helmet"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Helmet"
+217:
+  Material: "NETHERITE_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Chestplate"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_chestplate"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Chestplate"
+218:
+  Material: "NETHERITE_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Leggings"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_leggings"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Leggings"
+219:
+  Material: "NETHERITE_BOOTS"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Boots"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_boots"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Boots"
+220:
+  Material: "NETHERITE_HELMET"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Helmet"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_helmet"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Helmet"
+221:
+  Material: "NETHERITE_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Chestplate"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_chestplate"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Chestplate"
+222:
+  Material: "NETHERITE_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Leggings"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_leggings"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Leggings"
+223:
+  Material: "NETHERITE_BOOTS"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Boots"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_boots"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragonsteel Armor: "Dragonsteel Boots"
+224:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Rapier"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_rapier"
+  CustomModelData: 83654
+  Lore:
+    - "LOREADDER.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Rapier"
+225:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Katana"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_katana"
+  CustomModelData: 83655
+  Lore:
+    - "LOREADDER.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Katana"
+226:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Greatsword"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_greatsword"
+  CustomModelData: 83656
+  Lore:
+    - "LOREADDER.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Greatsword"
+227:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Longsword"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_longsword"
+  CustomModelData: 83657
+  Lore:
+    - "LOREADDER.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Longsword"
+228:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Spear"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_spear"
+  CustomModelData: 83658
+  Lore:
+    - "LOREADDER.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Spear"
+229:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Saber"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_saber"
+  CustomModelData: 83659
+  Lore:
+    - "LOREADDER.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Saber"
+230:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Boomerang"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_boomerang"
+  CustomModelData: 83660
+  Lore:
+    - "LOREADDER.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Boomerang"
+231:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Dagger"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_dagger"
+  CustomModelData: 83661
+  Lore:
+    - "LOREADDER.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Dagger"
+232:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Glaive"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_glaive"
+  CustomModelData: 83662
+  Lore:
+    - "LOREADDER.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Glaive"
+233:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Halberd"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_halberd"
+  CustomModelData: 83663
+  Lore:
+    - "LOREADDER.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Halberd"
+234:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Hammer"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_hammer"
+  CustomModelData: 83664
+  Lore:
+    - "LOREADDER.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Hammer"
+235:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Javelin"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_javelin"
+  CustomModelData: 83665
+  Lore:
+    - "LOREADDER.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Javelin"
+236:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Lance"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_lance"
+  CustomModelData: 83666
+  Lore:
+    - "LOREADDER.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Lance"
+237:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Flanged Mace"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_mace"
+  CustomModelData: 83667
+  Lore:
+    - "LOREADDER.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Mace"
+238:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Pike"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_pike"
+  CustomModelData: 83668
+  Lore:
+    - "LOREADDER.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Pike"
+239:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Quarterstaff"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_quarterstaff"
+  CustomModelData: 83669
+  Lore:
+    - "LOREADDER.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Quarterstaff"
+240:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Throwing Axe"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_throwing_axe"
+  CustomModelData: 83670
+  Lore:
+    - "LOREADDER.THROWING_AXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Throwing Axe"
+241:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Throwing Knife"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_throwing_knife"
+  CustomModelData: 83671
+  Lore:
+    - "LOREADDER.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Throwing Knife"
+242:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDragonbone Warhammer"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_warhammer"
+  CustomModelData: 83672
+  Lore:
+    - "LOREADDER.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Warhammer"
+243:
+  Material: "DIAMOND_AXE"
+  Amount: 1
+  DisplayName: "&fDragonbone Battleaxe"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_battleaxe"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Spartan's Weapon: "Battleaxe"
+244:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fDragonbone-Strengthened Longbow"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_longbow"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Dragon Bone"
+    Spartan's Weapon: "Longbow"
+245:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fDragonbone-Strengthened Crossbow"
+  CodeName: "DragonBone"
+  CommandName: "dragon_bone_crossbow"
+  CustomModelData: 83650
+  Lore:
+    - "LOREADDER.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Dragon Bone"
+    Spartan's Weapon: "Crossbow"
+246:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Rapier"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_rapier"
+  CustomModelData: 83673
+  Lore:
+    - "LOREADDER.RAPIER"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Rapier"
+247:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Katana"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_katana"
+  CustomModelData: 83674
+  Lore:
+    - "LOREADDER.KATANA"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Katana"
+248:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Greatsword"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_greatsword"
+  CustomModelData: 83675
+  Lore:
+    - "LOREADDER.GREATSWORD"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Greatsword"
+249:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Longsword"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_longsword"
+  CustomModelData: 83676
+  Lore:
+    - "LOREADDER.LONGSWORD"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Longsword"
+250:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Spear"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_spear"
+  CustomModelData: 83677
+  Lore:
+    - "LOREADDER.SPEAR"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Spear"
+251:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Saber"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_saber"
+  CustomModelData: 83678
+  Lore:
+    - "LOREADDER.SABER"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Saber"
+252:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Boomerang"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_boomerang"
+  CustomModelData: 83679
+  Lore:
+    - "LOREADDER.BOOMERANG"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Boomerang"
+253:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Dagger"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_dagger"
+  CustomModelData: 83680
+  Lore:
+    - "LOREADDER.DAGGER"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Dagger"
+254:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Glaive"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_glaive"
+  CustomModelData: 83681
+  Lore:
+    - "LOREADDER.GLAIVE"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Glaive"
+255:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Halberd"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_halberd"
+  CustomModelData: 83682
+  Lore:
+    - "LOREADDER.HALBERD"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Halberd"
+256:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Hammer"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_hammer"
+  CustomModelData: 83683
+  Lore:
+    - "LOREADDER.HAMMER"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Hammer"
+257:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Javelin"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_javelin"
+  CustomModelData: 83684
+  Lore:
+    - "LOREADDER.JAVELIN"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Javelin"
+258:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Lance"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_lance"
+  CustomModelData: 83685
+  Lore:
+    - "LOREADDER.LANCE"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Lance"
+259:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Flanged Mace"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_mace"
+  CustomModelData: 83686
+  Lore:
+    - "LOREADDER.MACE"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Mace"
+260:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Pike"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_pike"
+  CustomModelData: 83687
+  Lore:
+    - "LOREADDER.PIKE"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Pike"
+261:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Quarterstaff"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_quarterstaff"
+  CustomModelData: 83688
+  Lore:
+    - "LOREADDER.QUARTERSTAFF"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Quarterstaff"
+262:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Throwing Axe"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_throwing_axe"
+  CustomModelData: 83689
+  Lore:
+    - "LOREADDER.THROWING_AXE"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Throwing Axe"
+263:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Throwing Knife"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_throwing_knife"
+  CustomModelData: 83690
+  Lore:
+    - "LOREADDER.THROWING_KNIFE"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Throwing Knife"
+264:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Warhammer"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_warhammer"
+  CustomModelData: 83691
+  Lore:
+    - "LOREADDER.WARHAMMER"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Warhammer"
+265:
+  Material: "DIAMOND_AXE"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone Battleaxe"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_battleaxe"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.BATTLEAXE"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Battleaxe"
+266:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone-Strengthened Longbow"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_longbow"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.LONGBOW"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Longbow"
+267:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fFlamed Dragonbone-Strengthened Crossbow"
+  CodeName: "FlamedDragonBone"
+  CommandName: "dragon_bone_flamed_crossbow"
+  CustomModelData: 83651
+  Lore:
+    - "LOREADDER.CROSSBOW"
+    - "LOREADDER.FLAMED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragon Bone"
+    Spartan's Weapon: "Crossbow"
+268:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Rapier"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_rapier"
+  CustomModelData: 83692
+  Lore:
+    - "LOREADDER.RAPIER"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Rapier"
+269:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Katana"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_katana"
+  CustomModelData: 83693
+  Lore:
+    - "LOREADDER.KATANA"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Katana"
+270:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Greatsword"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_greatsword"
+  CustomModelData: 83694
+  Lore:
+    - "LOREADDER.GREATSWORD"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Greatsword"
+271:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Longsword"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_longsword"
+  CustomModelData: 83695
+  Lore:
+    - "LOREADDER.LONGSWORD"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Longsword"
+272:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Spear"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_spear"
+  CustomModelData: 83696
+  Lore:
+    - "LOREADDER.SPEAR"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Spear"
+273:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Saber"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_saber"
+  CustomModelData: 83697
+  Lore:
+    - "LOREADDER.SABER"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Saber"
+274:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Boomerang"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_boomerang"
+  CustomModelData: 83698
+  Lore:
+    - "LOREADDER.BOOMERANG"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Boomerang"
+275:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Dagger"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_dagger"
+  CustomModelData: 83699
+  Lore:
+    - "LOREADDER.DAGGER"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Dagger"
+276:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Glaive"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_glaive"
+  CustomModelData: 83700
+  Lore:
+    - "LOREADDER.GLAIVE"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Glaive"
+277:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Halberd"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_halberd"
+  CustomModelData: 83701
+  Lore:
+    - "LOREADDER.HALBERD"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Halberd"
+278:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Hammer"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_hammer"
+  CustomModelData: 83702
+  Lore:
+    - "LOREADDER.HAMMER"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Hammer"
+279:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Javelin"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_javelin"
+  CustomModelData: 83703
+  Lore:
+    - "LOREADDER.JAVELIN"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Javelin"
+280:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Lance"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_lance"
+  CustomModelData: 83704
+  Lore:
+    - "LOREADDER.LANCE"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Lance"
+281:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Flanged Mace"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_mace"
+  CustomModelData: 83705
+  Lore:
+    - "LOREADDER.MACE"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Mace"
+282:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Pike"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_pike"
+  CustomModelData: 83706
+  Lore:
+    - "LOREADDER.PIKE"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Pike"
+283:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Quarterstaff"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_quarterstaff"
+  CustomModelData: 83707
+  Lore:
+    - "LOREADDER.QUARTERSTAFF"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Quarterstaff"
+284:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Throwing Axe"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_throwing_axe"
+  CustomModelData: 83708
+  Lore:
+    - "LOREADDER.THROWING_AXE"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Throwing Axe"
+285:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Throwing Knife"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_throwing_knife"
+  CustomModelData: 83709
+  Lore:
+    - "LOREADDER.THROWING_KNIFE"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Throwing Knife"
+286:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Warhammer"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_warhammer"
+  CustomModelData: 83710
+  Lore:
+    - "LOREADDER.WARHAMMER"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Warhammer"
+287:
+  Material: "DIAMOND_AXE"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone Battleaxe"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_battleaxe"
+  CustomModelData: 83653
+  Lore:
+    - "LOREADDER.BATTLEAXE"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Battleaxe"
+288:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone-Strengthened Longbow"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_longbow"
+  CustomModelData: 83653
+  Lore:
+    - "LOREADDER.LONGBOW"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Longbow"
+289:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fIced Dragonbone-Strengthened Crossbow"
+  CodeName: "IcedDragonBone"
+  CommandName: "dragon_bone_iced_crossbow"
+  CustomModelData: 83652
+  Lore:
+    - "LOREADDER.CROSSBOW"
+    - "LOREADDER.ICED_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragon Bone"
+    Spartan's Weapon: "Crossbow"
+290:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Rapier"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_rapier"
+  CustomModelData: 83711
+  Lore:
+    - "LOREADDER.RAPIER"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Rapier"
+291:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Katana"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_katana"
+  CustomModelData: 83712
+  Lore:
+    - "LOREADDER.KATANA"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Katana"
+292:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Greatsword"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_greatsword"
+  CustomModelData: 83713
+  Lore:
+    - "LOREADDER.GREATSWORD"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Greatsword"
+293:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Longsword"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_longsword"
+  CustomModelData: 83714
+  Lore:
+    - "LOREADDER.LONGSWORD"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Longsword"
+294:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Spear"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_spear"
+  CustomModelData: 83715
+  Lore:
+    - "LOREADDER.SPEAR"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Spear"
+295:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Saber"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_saber"
+  CustomModelData: 83716
+  Lore:
+    - "LOREADDER.SABER"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Saber"
+296:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Boomerang"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_boomerang"
+  CustomModelData: 83717
+  Lore:
+    - "LOREADDER.BOOMERANG"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Boomerang"
+297:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Dagger"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_dagger"
+  CustomModelData: 83718
+  Lore:
+    - "LOREADDER.DAGGER"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Dagger"
+298:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Glaive"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_glaive"
+  CustomModelData: 83719
+  Lore:
+    - "LOREADDER.GLAIVE"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Glaive"
+299:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Halberd"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_halberd"
+  CustomModelData: 83720
+  Lore:
+    - "LOREADDER.HALBERD"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Halberd"
+300:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Hammer"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_hammer"
+  CustomModelData: 83721
+  Lore:
+    - "LOREADDER.HAMMER"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Hammer"
+301:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Javelin"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_javelin"
+  CustomModelData: 83722
+  Lore:
+    - "LOREADDER.JAVELIN"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Javelin"
+302:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Lance"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_lance"
+  CustomModelData: 83723
+  Lore:
+    - "LOREADDER.LANCE"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Lance"
+303:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Flanged Mace"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_mace"
+  CustomModelData: 83724
+  Lore:
+    - "LOREADDER.MACE"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Mace"
+304:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Pike"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_pike"
+  CustomModelData: 83725
+  Lore:
+    - "LOREADDER.PIKE"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Pike"
+305:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Quarterstaff"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_quarterstaff"
+  CustomModelData: 83726
+  Lore:
+    - "LOREADDER.QUARTERSTAFF"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Quarterstaff"
+306:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Throwing Axe"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_throwing_axe"
+  CustomModelData: 83727
+  Lore:
+    - "LOREADDER.THROWING_AXE"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Throwing Axe"
+307:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Throwing Knife"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_throwing_knife"
+  CustomModelData: 83728
+  Lore:
+    - "LOREADDER.THROWING_KNIFE"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Throwing Knife"
+308:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Warhammer"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_warhammer"
+  CustomModelData: 83729
+  Lore:
+    - "LOREADDER.WARHAMMER"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Warhammer"
+309:
+  Material: "DIAMOND_AXE"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone Battleaxe"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_battleaxe"
+  CustomModelData: 83654
+  Lore:
+    - "LOREADDER.BATTLEAXE"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Battleaxe"
+310:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone-Strengthened Longbow"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_longbow"
+  CustomModelData: 83654
+  Lore:
+    - "LOREADDER.LONGBOW"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Longbow"
+311:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fLightning Dragonbone-Strengthened Crossbow"
+  CodeName: "LightningDragonBone"
+  CommandName: "dragon_bone_lightning_crossbow"
+  CustomModelData: 83653
+  Lore:
+    - "LOREADDER.CROSSBOW"
+    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragon Bone"
+    Spartan's Weapon: "Crossbow"
+312:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Rapier"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_rapier"
+  CustomModelData: 83653
+  Lore:
+    - "LOREADDER.RAPIER"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Rapier"
+313:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Katana"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_katana"
+  CustomModelData: 83654
+  Lore:
+    - "LOREADDER.KATANA"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Katana"
+314:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Greatsword"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_greatsword"
+  CustomModelData: 83655
+  Lore:
+    - "LOREADDER.GREATSWORD"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Greatsword"
+315:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Longsword"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_longsword"
+  CustomModelData: 83656
+  Lore:
+    - "LOREADDER.LONGSWORD"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Longsword"
+316:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Spear"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_spear"
+  CustomModelData: 83657
+  Lore:
+    - "LOREADDER.SPEAR"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Spear"
+317:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Saber"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_saber"
+  CustomModelData: 83658
+  Lore:
+    - "LOREADDER.SABER"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Saber"
+318:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Boomerang"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_boomerang"
+  CustomModelData: 83659
+  Lore:
+    - "LOREADDER.BOOMERANG"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Boomerang"
+319:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Dagger"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_dagger"
+  CustomModelData: 83660
+  Lore:
+    - "LOREADDER.DAGGER"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Dagger"
+320:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Glaive"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_glaive"
+  CustomModelData: 83661
+  Lore:
+    - "LOREADDER.GLAIVE"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Glaive"
+321:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Halberd"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_halberd"
+  CustomModelData: 83662
+  Lore:
+    - "LOREADDER.HALBERD"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Halberd"
+322:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Hammer"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_hammer"
+  CustomModelData: 83663
+  Lore:
+    - "LOREADDER.HAMMER"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Hammer"
+323:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Javelin"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_javelin"
+  CustomModelData: 83664
+  Lore:
+    - "LOREADDER.JAVELIN"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Javelin"
+324:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Lance"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_lance"
+  CustomModelData: 83665
+  Lore:
+    - "LOREADDER.LANCE"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Lance"
+325:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Flanged Mace"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_mace"
+  CustomModelData: 83666
+  Lore:
+    - "LOREADDER.MACE"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Mace"
+326:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Pike"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_pike"
+  CustomModelData: 83667
+  Lore:
+    - "LOREADDER.PIKE"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Pike"
+327:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Quarterstaff"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_quarterstaff"
+  CustomModelData: 83668
+  Lore:
+    - "LOREADDER.QUARTERSTAFF"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Quarterstaff"
+328:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Throwing Axe"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_throwing_axe"
+  CustomModelData: 83669
+  Lore:
+    - "LOREADDER.THROWING_AXE"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Throwing Axe"
+329:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Throwing Knife"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_throwing_knife"
+  CustomModelData: 83670
+  Lore:
+    - "LOREADDER.THROWING_KNIFE"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Throwing Knife"
+330:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Warhammer"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_warhammer"
+  CustomModelData: 83671
+  Lore:
+    - "LOREADDER.WARHAMMER"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Warhammer"
+331:
+  Material: "NETHERITE_AXE"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Battleaxe"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_battleaxe"
+  CustomModelData: 83653
+  Lore:
+    - "LOREADDER.BATTLEAXE"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Battleaxe"
+332:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel-Strengthened Longbow"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_longbow"
+  CustomModelData: 83655
+  Lore:
+    - "LOREADDER.LONGBOW"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Longbow"
+333:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel-Strengthened Crossbow"
+  CodeName: "FireDragonsteel"
+  CommandName: "dragonsteel_fire_crossbow"
+  CustomModelData: 83654
+  Lore:
+    - "LOREADDER.CROSSBOW"
+    - "LOREADDER.FIRE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Fire Dragonsteel"
+    Spartan's Weapon: "Crossbow"
+334:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Rapier"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_rapier"
+  CustomModelData: 83672
+  Lore:
+    - "LOREADDER.RAPIER"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Rapier"
+335:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Katana"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_katana"
+  CustomModelData: 83673
+  Lore:
+    - "LOREADDER.KATANA"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Katana"
+336:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Greatsword"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_greatsword"
+  CustomModelData: 83674
+  Lore:
+    - "LOREADDER.GREATSWORD"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Greatsword"
+337:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Longsword"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_longsword"
+  CustomModelData: 83675
+  Lore:
+    - "LOREADDER.LONGSWORD"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Longsword"
+338:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Spear"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_spear"
+  CustomModelData: 83676
+  Lore:
+    - "LOREADDER.SPEAR"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Spear"
+339:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Saber"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_saber"
+  CustomModelData: 83677
+  Lore:
+    - "LOREADDER.SABER"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Saber"
+340:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Boomerang"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_boomerang"
+  CustomModelData: 83678
+  Lore:
+    - "LOREADDER.BOOMERANG"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Boomerang"
+341:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Dagger"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_dagger"
+  CustomModelData: 83679
+  Lore:
+    - "LOREADDER.DAGGER"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Dagger"
+342:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Glaive"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_glaive"
+  CustomModelData: 83680
+  Lore:
+    - "LOREADDER.GLAIVE"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Glaive"
+343:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Halberd"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_halberd"
+  CustomModelData: 83681
+  Lore:
+    - "LOREADDER.HALBERD"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Halberd"
+344:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Hammer"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_hammer"
+  CustomModelData: 83682
+  Lore:
+    - "LOREADDER.HAMMER"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Hammer"
+345:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Javelin"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_javelin"
+  CustomModelData: 83683
+  Lore:
+    - "LOREADDER.JAVELIN"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Javelin"
+346:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Lance"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_lance"
+  CustomModelData: 83684
+  Lore:
+    - "LOREADDER.LANCE"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Lance"
+347:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Flanged Mace"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_mace"
+  CustomModelData: 83685
+  Lore:
+    - "LOREADDER.MACE"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Mace"
+348:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Pike"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_pike"
+  CustomModelData: 83686
+  Lore:
+    - "LOREADDER.PIKE"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Pike"
+349:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Quarterstaff"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_quarterstaff"
+  CustomModelData: 83687
+  Lore:
+    - "LOREADDER.QUARTERSTAFF"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Quarterstaff"
+350:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Throwing Axe"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_throwing_axe"
+  CustomModelData: 83688
+  Lore:
+    - "LOREADDER.THROWING_AXE"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Throwing Axe"
+351:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Throwing Knife"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_throwing_knife"
+  CustomModelData: 83689
+  Lore:
+    - "LOREADDER.THROWING_KNIFE"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Throwing Knife"
+352:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Warhammer"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_warhammer"
+  CustomModelData: 83690
+  Lore:
+    - "LOREADDER.WARHAMMER"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Warhammer"
+353:
+  Material: "NETHERITE_AXE"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Battleaxe"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_battleaxe"
+  CustomModelData: 83654
+  Lore:
+    - "LOREADDER.BATTLEAXE"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Battleaxe"
+354:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel-Strengthened Longbow"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_longbow"
+  CustomModelData: 83656
+  Lore:
+    - "LOREADDER.LONGBOW"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Longbow"
+355:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel-Strengthened Crossbow"
+  CodeName: "IceDragonsteel"
+  CommandName: "dragonsteel_ice_crossbow"
+  CustomModelData: 83655
+  Lore:
+    - "LOREADDER.CROSSBOW"
+    - "LOREADDER.ICE_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Ice Dragonsteel"
+    Spartan's Weapon: "Crossbow"
+356:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Rapier"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_rapier"
+  CustomModelData: 83691
+  Lore:
+    - "LOREADDER.RAPIER"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Rapier"
+357:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Katana"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_katana"
+  CustomModelData: 83692
+  Lore:
+    - "LOREADDER.KATANA"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Katana"
+358:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Greatsword"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_greatsword"
+  CustomModelData: 83693
+  Lore:
+    - "LOREADDER.GREATSWORD"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Greatsword"
+359:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Longsword"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_longsword"
+  CustomModelData: 83694
+  Lore:
+    - "LOREADDER.LONGSWORD"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Longsword"
+360:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Spear"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_spear"
+  CustomModelData: 83695
+  Lore:
+    - "LOREADDER.SPEAR"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Spear"
+361:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Saber"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_saber"
+  CustomModelData: 83696
+  Lore:
+    - "LOREADDER.SABER"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Saber"
+362:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Boomerang"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_boomerang"
+  CustomModelData: 83697
+  Lore:
+    - "LOREADDER.BOOMERANG"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Boomerang"
+363:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Dagger"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_dagger"
+  CustomModelData: 83698
+  Lore:
+    - "LOREADDER.DAGGER"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Dagger"
+364:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Glaive"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_glaive"
+  CustomModelData: 83699
+  Lore:
+    - "LOREADDER.GLAIVE"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Glaive"
+365:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Halberd"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_halberd"
+  CustomModelData: 83700
+  Lore:
+    - "LOREADDER.HALBERD"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Halberd"
+366:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Hammer"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_hammer"
+  CustomModelData: 83701
+  Lore:
+    - "LOREADDER.HAMMER"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Hammer"
+367:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Javelin"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_javelin"
+  CustomModelData: 83702
+  Lore:
+    - "LOREADDER.JAVELIN"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Javelin"
+368:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Lance"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_lance"
+  CustomModelData: 83703
+  Lore:
+    - "LOREADDER.LANCE"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Lance"
+369:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Flanged Mace"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_mace"
+  CustomModelData: 83704
+  Lore:
+    - "LOREADDER.MACE"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Mace"
+370:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Pike"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_pike"
+  CustomModelData: 83705
+  Lore:
+    - "LOREADDER.PIKE"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Pike"
+371:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Quarterstaff"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_quarterstaff"
+  CustomModelData: 83706
+  Lore:
+    - "LOREADDER.QUARTERSTAFF"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Quarterstaff"
+372:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Throwing Axe"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_throwing_axe"
+  CustomModelData: 83707
+  Lore:
+    - "LOREADDER.THROWING_AXE"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Throwing Axe"
+373:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Throwing Knife"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_throwing_knife"
+  CustomModelData: 83708
+  Lore:
+    - "LOREADDER.THROWING_KNIFE"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Throwing Knife"
+374:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Warhammer"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_warhammer"
+  CustomModelData: 83709
+  Lore:
+    - "LOREADDER.WARHAMMER"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Warhammer"
+375:
+  Material: "NETHERITE_AXE"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Battleaxe"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_battleaxe"
+  CustomModelData: 83655
+  Lore:
+    - "LOREADDER.BATTLEAXE"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Battleaxe"
+376:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel-Strengthened Longbow"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_longbow"
+  CustomModelData: 83657
+  Lore:
+    - "LOREADDER.LONGBOW"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Longbow"
+377:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel-Strengthened Crossbow"
+  CodeName: "LightningDragonsteel"
+  CommandName: "dragonsteel_lightning_crossbow"
+  CustomModelData: 83656
+  Lore:
+    - "LOREADDER.CROSSBOW"
+    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    Dragon Weapon: "Lightning Dragonsteel"
+    Spartan's Weapon: "Crossbow"
+378:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fFire Dragonsteel Block"
+  CodeName: "FireDragonsteelBlock"
+  CommandName: "dragonsteel_fire_block"
+  CustomModelData: 83710
+379:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fIce Dragonsteel Block"
+  CodeName: "IceDragonsteelBlock"
+  CommandName: "dragonsteel_ice_block"
+  CustomModelData: 83711
+380:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fLightning Dragonsteel Block"
+  CodeName: "LightningDragonsteelBlock"
+  CommandName: "dragonsteel_lightning_block"
+  CustomModelData: 83712

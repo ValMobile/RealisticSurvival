@@ -1,10 +1,7 @@
 package me.val_mobile.rlcraft;
 
 import de.tr7zw.nbtapi.NBTItem;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -366,39 +363,113 @@ public class Utils {
     }
 
     public static void addFlamedDragonBoneLore(List<String> lore) {
-
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Ignites and knocks back targets, deals extra damage to ice dragons"));
-
     }
 
     public static void addIcedDragonBoneLore(List<String> lore) {
-
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Slows and knocks back targets, deals extra damage to fire dragons"));
-
     }
 
     public static void addLightningDragonBoneLore(List<String> lore) {
-
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Strikes targets with lightning, deals extra damage to fire and ice dragons"));
-
     }
 
     public static void addFireDragonsteelLore(List<String> lore) {
-
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Ignites and knocks back targets"));
-
     }
 
     public static void addIceDragonsteelLore(List<String> lore) {
-
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Slows and knocks back targets"));
-
     }
 
     public static void addLightningDragonsteelLore(List<String> lore) {
-
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Strikes targets with lightning"));
+    }
 
+    public static void addBlueDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&bBlue"));
+    }
+
+    public static void addBronzeDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Bronze"));
+    }
+
+    public static void addGrayDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Gray"));
+    }
+
+    public static void addGreenDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&2Emerald"));
+    }
+
+    public static void addRedDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&4Red"));
+    }
+
+    public static void addSapphireDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&9Sapphire"));
+    }
+
+    public static void addSilverDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&8Silver"));
+    }
+
+    public static void addWhiteDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&fWhite"));
+    }
+
+    public static void addAmethystDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&dAmethyst"));
+    }
+
+    public static void addBlackDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&8Black"));
+    }
+
+    public static void addCopperDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Copper"));
+    }
+
+    public static void addElectricDragonScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&1Electric Blue"));
+    }
+
+    public static void addBlueSeaSerpentScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&9Blue"));
+    }
+
+    public static void addBronzeSeaSerpentScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Bronze"));
+    }
+
+    public static void addDeepBlueSeaSerpentScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&1Deep Blue"));
+    }
+
+    public static void addGreenSeaSerpentScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&2Green"));
+    }
+
+    public static void addPurpleSeaSerpentScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&5Purple"));
+    }
+
+    public static void addRedSeaSerpentScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&4Red"));
+    }
+
+    public static void addTealSeaSerpentScaleLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&bTeal"));
+    }
+
+    public static void addDragonProtectionLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
+    }
+
+    public static void addTideGuardianBreathingLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Water Breathing"));
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
     }
 
     public static void subtractDurability(ItemStack item) {
@@ -1418,6 +1489,8 @@ public class Utils {
         }
     }
 
+
+
     public static void addMeleeStatsLore(List<String> lore, Double damage, Double speed) {
         if (Math.floor(damage) == damage) {
             lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage.intValue() + " Attack Damage"));
@@ -1431,6 +1504,317 @@ public class Utils {
         }
         else {
             lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + speed + " Attack Speed"));
+        }
+    }
+
+    public static void useLoreAdder(List<String> lore, String weaponType) {
+        switch (weaponType) {
+            case "RAPIER":
+                addRapierLore(lore);
+                break;
+            case "SABER":
+                addSaberLore(lore);
+                break;
+            case "KATANA":
+                addKatanaLore(lore);
+                break;
+            case "GREATSWORD":
+                addGreatswordLore(lore);
+                break;
+            case "LONGSWORD":
+                addLongswordLore(lore);
+                break;
+            case "SPEAR":
+                addSpearLore(lore);
+                break;
+            case "GLAIVE":
+                addGlaiveLore(lore);
+                break;
+            case "BOOMERANG":
+                addBoomerangLore(lore);
+                break;
+            case "DAGGER":
+                addDaggerLore(lore);
+                break;
+            case "HALBERD":
+                addHalberdLore(lore);
+                break;
+            case "HAMMER":
+                addHammerLore(lore);
+                break;
+            case "JAVELIN":
+                addJavelinLore(lore);
+                break;
+            case "LANCE":
+                addLanceLore(lore);
+                break;
+            case "MACE":
+                addMaceLore(lore);
+                break;
+            case "PIKE":
+                addPikeLore(lore);
+                break;
+            case "QUARTERSTAFF":
+                addQuarterstaffLore(lore);
+                break;
+            case "THROWING_AXE":
+                addThrowingAxeLore(lore);
+                break;
+            case "THROWING_KNIFE":
+                addThrowingKnifeLore(lore);
+                break;
+            case "WARHAMMER":
+                addWarhammerLore(lore);
+                break;
+            case "BATTLEAXE":
+                addBattleaxeLore(lore);
+                break;
+            case "LONGBOW":
+                addLongbowLore(lore);
+                break;
+            case "CROSSBOW":
+                addCrossbowLore(lore);
+                break;
+            case "FLAMED_DRAGON_BONE":
+                addFlamedDragonBoneLore(lore);
+                break;
+            case "ICED_DRAGON_BONE":
+                addIcedDragonBoneLore(lore);
+                break;
+            case "LIGHTNING_DRAGON_BONE":
+                addLightningDragonBoneLore(lore);
+                break;
+            case "FIRE_DRAGONSTEEL":
+                addFireDragonsteelLore(lore);
+                break;
+            case "ICE_DRAGONSTEEL":
+                addIceDragonsteelLore(lore);
+                break;
+            case "LIGHTNING_DRAGONSTEEL":
+                addLightningDragonsteelLore(lore);
+                break;
+            case "BLUE_DRAGON_SCALE":
+                addBlueDragonScaleLore(lore);
+                break;
+            case "BRONZE_DRAGON_SCALE":
+                addBronzeDragonScaleLore(lore);
+                break;
+            case "GRAY_DRAGON_SCALE":
+                addGrayDragonScaleLore(lore);
+                break;
+            case "GREEN_DRAGON_SCALE":
+                addGreenDragonScaleLore(lore);
+                break;
+            case "RED_DRAGON_SCALE":
+                addRedDragonScaleLore(lore);
+                break;
+            case "SAPPHIRE_DRAGON_SCALE":
+                addSapphireDragonScaleLore(lore);
+                break;
+            case "SILVER_DRAGON_SCALE":
+                addSilverDragonScaleLore(lore);
+                break;
+            case "WHITE_DRAGON_SCALE":
+                addWhiteDragonScaleLore(lore);
+                break;
+            case "AMETHYST_DRAGON_SCALE":
+                addAmethystDragonScaleLore(lore);
+                break;
+            case "BLACK_DRAGON_SCALE":
+                addBlackDragonScaleLore(lore);
+                break;
+            case "COPPER_DRAGON_SCALE":
+                addCopperDragonScaleLore(lore);
+                break;
+            case "ELECTRIC_DRAGON_SCALE":
+                addElectricDragonScaleLore(lore);
+                break;
+            case "BLUE_SEA_SERPENT_SCALE":
+                addBlueSeaSerpentScaleLore(lore);
+                break;
+            case "BRONZE_SEA_SERPENT_SCALE":
+                addBronzeSeaSerpentScaleLore(lore);
+                break;
+            case "DEEPBLUE_SEA_SERPENT_SCALE":
+                addDeepBlueSeaSerpentScaleLore(lore);
+                break;
+            case "GREEN_SEA_SERPENT_SCALE":
+                addGreenSeaSerpentScaleLore(lore);
+                break;
+            case "PURPLE_SEA_SERPENT_SCALE":
+                addPurpleSeaSerpentScaleLore(lore);
+                break;
+            case "RED_SEA_SERPENT_SCALE":
+                addRedSeaSerpentScaleLore(lore);
+                break;
+            case "TEAL_SEA_SERPENT_SCALE":
+                addTealSeaSerpentScaleLore(lore);
+                break;
+            case "DRAGON_PROTECTION":
+                addDragonProtectionLore(lore);
+                break;
+            case "TIDE_GUARDIAN_BREATHING":
+                addTideGuardianBreathingLore(lore);
+                break;
+            case "LEGENDARY_WEAPON":
+                addLegendaryWeaponLore(lore);
+                break;
+            case "FLAMED_EXTRA_DAMAGE":
+                addFlamedExtraDamageLore(lore);
+                break;
+            case "ICED_EXTRA_DAMAGE":
+                addIcedExtraDamageLore(lore);
+                break;
+            case "LIGHTNING_EXTRA_DAMAGE":
+                addLightningExtraDamageLore(lore);
+                break;
+            case "FIRE_DRAGON_ABILITY":
+                addFireDragonAbilityLore(lore);
+                break;
+            case "ICE_DRAGON_ABILITY":
+                addIceDragonAbilityLore(lore);
+                break;
+            case "LIGHTNING_DRAGON_ABILITY":
+                addLightningDragonAbilityLore(lore);
+                break;
+        }
+    }
+
+    public static void addLegendaryWeaponLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&6Legendary Weapon"));
+    }
+
+    public static void addFlamedExtraDamageLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Ice Dragons"));
+    }
+
+    public static void addFireDragonAbilityLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
+    }
+
+    public static void addIceDragonAbilityLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
+    }
+
+    public static void addLightningDragonAbilityLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
+    }
+
+    public static void addIcedExtraDamageLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Fire Dragons"));
+    }
+
+    public static void addLightningExtraDamageLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+4 damage against Fire Dragons and Ice Dragons"));
+    }
+
+    public static Color valueOfColor(String color) {
+        switch (color) {
+            case "AQUA":
+                return Color.AQUA;
+            case "BLACK":
+                return Color.BLACK;
+            case "BLUE":
+                return Color.BLUE;
+            case "FUCHSIA":
+                return Color.FUCHSIA;
+            case "GRAY":
+                return Color.GRAY;
+            case "GREEN":
+                return Color.GREEN;
+            case "LIME":
+                return Color.LIME;
+            case "MAROON":
+                return Color.MAROON;
+            case "NAVY":
+                return Color.NAVY;
+            case "OLIVE":
+                return Color.OLIVE;
+            case "ORANGE":
+                return Color.ORANGE;
+            case "PURPLE":
+                return Color.PURPLE;
+            case "RED":
+                return Color.RED;
+            case "SILVER":
+                return Color.SILVER;
+            case "TEAL":
+                return Color.TEAL;
+            case "WHITE":
+                return Color.WHITE;
+            case "YELLOW":
+                return Color.YELLOW;
+            default:
+                return null;
+        }
+    }
+
+    public static PotionEffectType valueOfPotionEffectType(String potionEffectType) {
+        switch (potionEffectType) {
+            case "ABSORPTION":
+                return PotionEffectType.ABSORPTION;
+            case "BAD_OMEN":
+                return PotionEffectType.BAD_OMEN;
+            case "BLINDNESS":
+                return PotionEffectType.BLINDNESS;
+            case "CONDUIT_POWER":
+                return PotionEffectType.CONDUIT_POWER;
+            case "CONFUSION":
+                return PotionEffectType.CONFUSION;
+            case "DAMAGE_RESISTANCE":
+                return PotionEffectType.DAMAGE_RESISTANCE;
+            case "DOLPHINS_GRACE":
+                return PotionEffectType.DOLPHINS_GRACE;
+            case "FAST_DIGGING":
+                return PotionEffectType.FAST_DIGGING;
+            case "FIRE_RESISTANCE":
+                return PotionEffectType.FIRE_RESISTANCE;
+            case "GLOWING":
+                return PotionEffectType.GLOWING;
+            case "HARM":
+                return PotionEffectType.HARM;
+            case "HEAL":
+                return PotionEffectType.HEAL;
+            case "HEALTH_BOOST":
+                return PotionEffectType.HEALTH_BOOST;
+            case "HERO_OF_THE_VILLAGE":
+                return PotionEffectType.HERO_OF_THE_VILLAGE;
+            case "HUNGER":
+                return PotionEffectType.HUNGER;
+            case "INCREASE_DAMAGE":
+                return PotionEffectType.INCREASE_DAMAGE;
+            case "INVISIBILITY":
+                return PotionEffectType.INVISIBILITY;
+            case "JUMP":
+                return PotionEffectType.JUMP;
+            case "LEVITATION":
+                return PotionEffectType.LEVITATION;
+            case "LUCK":
+                return PotionEffectType.LUCK;
+            case "NIGHT_VISION":
+                return PotionEffectType.NIGHT_VISION;
+            case "POISON":
+                return PotionEffectType.POISON;
+            case "REGENERATION":
+                return PotionEffectType.REGENERATION;
+            case "SATURATION":
+                return PotionEffectType.SATURATION;
+            case "SLOW":
+                return PotionEffectType.SLOW;
+            case "SLOW_DIGGING":
+                return PotionEffectType.SLOW_DIGGING;
+            case "SPEED":
+                return PotionEffectType.SPEED;
+            case "UNLUCK":
+                return PotionEffectType.UNLUCK;
+            case "WATER_BREATHING":
+                return PotionEffectType.WATER_BREATHING;
+            case "WEAKNESS":
+                return PotionEffectType.WEAKNESS;
+            case "WITHER":
+                return PotionEffectType.WITHER;
+            default:
+                return null;
         }
     }
 
