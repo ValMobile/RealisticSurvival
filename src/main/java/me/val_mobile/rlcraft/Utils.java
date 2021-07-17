@@ -467,9 +467,36 @@ public class Utils {
     }
 
     public static void addTideGuardianBreathingLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&9Blue"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Water Breathing"));
         lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
+    }
+
+    public static void addLegendaryWeaponLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&6Legendary Weapon"));
+    }
+
+    public static void addFlamedExtraDamageLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Ice Dragons"));
+    }
+
+    public static void addFireDragonAbilityLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
+    }
+
+    public static void addIceDragonAbilityLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
+    }
+
+    public static void addLightningDragonAbilityLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
+    }
+
+    public static void addIcedExtraDamageLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Fire Dragons"));
+    }
+
+    public static void addLightningExtraDamageLore(List<String> lore) {
+        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+4 damage against Fire Dragons and Ice Dragons"));
     }
 
     public static void subtractDurability(ItemStack item) {
@@ -1489,8 +1516,6 @@ public class Utils {
         }
     }
 
-
-
     public static void addMeleeStatsLore(List<String> lore, Double damage, Double speed) {
         if (Math.floor(damage) == damage) {
             lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage.intValue() + " Attack Damage"));
@@ -1507,7 +1532,7 @@ public class Utils {
         }
     }
 
-    public static void useLoreAdder(List<String> lore, String weaponType) {
+    public static void useLorePreset(List<String> lore, String weaponType) {
         switch (weaponType) {
             case "RAPIER":
                 addRapierLore(lore);
@@ -1678,34 +1703,6 @@ public class Utils {
                 addLightningDragonAbilityLore(lore);
                 break;
         }
-    }
-
-    public static void addLegendaryWeaponLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&6Legendary Weapon"));
-    }
-
-    public static void addFlamedExtraDamageLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Ice Dragons"));
-    }
-
-    public static void addFireDragonAbilityLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-    }
-
-    public static void addIceDragonAbilityLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-    }
-
-    public static void addLightningDragonAbilityLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-    }
-
-    public static void addIcedExtraDamageLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Fire Dragons"));
-    }
-
-    public static void addLightningExtraDamageLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+4 damage against Fire Dragons and Ice Dragons"));
     }
 
     public static Color valueOfColor(String color) {

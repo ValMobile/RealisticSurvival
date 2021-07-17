@@ -93,7 +93,7 @@
   CommandName: "dragon_scale_blue"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.BLUE_DRAGON_SCALE"
+    - "LOREPRESET.BLUE_DRAGON_SCALE"
 11:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -102,7 +102,7 @@
   CommandName: "dragon_scale_bronze"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.BRONZE_DRAGON_SCALE"
+    - "LOREPRESET.BRONZE_DRAGON_SCALE"
 12:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -111,7 +111,7 @@
   CommandName: "dragon_scale_gray"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.GRAY_DRAGON_SCALE"
+    - "LOREPRESET.GRAY_DRAGON_SCALE"
 13:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -120,7 +120,7 @@
   CommandName: "dragon_scale_green"
   CustomModelData: 83653
   Lore:
-    - "LOREADDER.GREEN_DRAGON_SCALE"
+    - "LOREPRESET.GREEN_DRAGON_SCALE"
 14:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -129,7 +129,7 @@
   CommandName: "dragon_scale_red"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.RED_DRAGON_SCALE"
+    - "LOREPRESET.RED_DRAGON_SCALE"
 15:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -138,7 +138,7 @@
   CommandName: "dragon_scale_sapphire"
   CustomModelData: 83655
   Lore:
-    - "LOREADDER.SAPPHIRE_DRAGON_SCALE"
+    - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
 16:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -147,7 +147,7 @@
   CommandName: "dragon_scale_silver"
   CustomModelData: 83656
   Lore:
-    - "LOREADDER.SILVER_DRAGON_SCALE"
+    - "LOREPRESET.SILVER_DRAGON_SCALE"
 17:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -156,7 +156,7 @@
   CommandName: "dragon_scale_white"
   CustomModelData: 83657
   Lore:
-    - "LOREADDER.WHITE_DRAGON_SCALE"
+    - "LOREPRESET.WHITE_DRAGON_SCALE"
 18:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -165,7 +165,7 @@
   CommandName: "dragon_scale_amethyst"
   CustomModelData: 83658
   Lore:
-    - "LOREADDER.AMETHYST_DRAGON_SCALE"
+    - "LOREPRESET.AMETHYST_DRAGON_SCALE"
 19:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -174,7 +174,7 @@
   CommandName: "dragon_scale_black"
   CustomModelData: 83659
   Lore:
-    - "LOREADDER.BLACK_DRAGON_SCALE"
+    - "LOREPRESET.BLACK_DRAGON_SCALE"
 20:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -183,7 +183,7 @@
   CommandName: "dragon_scale_copper"
   CustomModelData: 83660
   Lore:
-    - "LOREADDER.COPPER_DRAGON_SCALE"
+    - "LOREPRESET.COPPER_DRAGON_SCALE"
 21:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -192,7 +192,7 @@
   CommandName: "dragon_scale_electric"
   CustomModelData: 83661
   Lore:
-    - "LOREADDER.ELECTRIC_DRAGON_SCALE"
+    - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
 22:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -201,7 +201,7 @@
   CommandName: "sea_serpent_scale_blue"
   CustomModelData: 83662
   Lore:
-    - "LOREADDER.BLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.BLUE_SEA_SERPENT_SCALE"
 23:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -210,7 +210,7 @@
   CommandName: "sea_serpent_scale_bronze"
   CustomModelData: 83663
   Lore:
-    - "LOREADDER.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.BRONZE_SEA_SERPENT_SCALE"
 24:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -219,7 +219,7 @@
   CommandName: "sea_serpent_scale_Deepblue"
   CustomModelData: 83664
   Lore:
-    - "LOREADDER.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"
 25:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -228,7 +228,7 @@
   CommandName: "sea_serpent_scale_green"
   CustomModelData: 83665
   Lore:
-    - "LOREADDER.GREEN_SEA_SERPENT_SCALE"
+    - "LOREPRESET.GREEN_SEA_SERPENT_SCALE"
 26:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -237,7 +237,7 @@
   CommandName: "sea_serpent_scale_purple"
   CustomModelData: 83666
   Lore:
-    - "LOREADDER.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.PURPLE_SEA_SERPENT_SCALE"
 27:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -246,7 +246,7 @@
   CommandName: "sea_serpent_scale_red"
   CustomModelData: 83667
   Lore:
-    - "LOREADDER.RED_SEA_SERPENT_SCALE"
+    - "LOREPRESET.RED_SEA_SERPENT_SCALE"
 28:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -255,7 +255,7 @@
   CommandName: "sea_serpent_scale_teal"
   CustomModelData: 83668
   Lore:
-    - "LOREADDER.TEAL_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TEAL_SEA_SERPENT_SCALE"
 29:
   Material: "IRON_NUGGET"
   Amount: 1
@@ -376,8 +376,8 @@
   CommandName: "dragon_scale_helmet_blue"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.BLUE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BLUE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -390,8 +390,8 @@
   CommandName: "dragon_scale_chestplate_blue"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.BLUE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BLUE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -404,8 +404,8 @@
   CommandName: "dragon_scale_leggings_blue"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.BLUE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BLUE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -418,8 +418,8 @@
   CommandName: "dragon_scale_boots_blue"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.BLUE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BLUE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -432,8 +432,8 @@
   CommandName: "dragon_scale_helmet_bronze"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.BRONZE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BRONZE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -446,8 +446,8 @@
   CommandName: "dragon_scale_chestplate_bronze"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.BRONZE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BRONZE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -460,8 +460,8 @@
   CommandName: "dragon_scale_leggings_bronze"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.BRONZE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BRONZE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -474,8 +474,8 @@
   CommandName: "dragon_scale_boots_bronze"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.BRONZE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BRONZE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -488,8 +488,8 @@
   CommandName: "dragon_scale_helmet_gray"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.GRAY_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.GRAY_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -502,8 +502,8 @@
   CommandName: "dragon_scale_chestplate_gray"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.GRAY_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.GRAY_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -516,8 +516,8 @@
   CommandName: "dragon_scale_leggings_gray"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.GRAY_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.GRAY_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -530,8 +530,8 @@
   CommandName: "dragon_scale_boots_gray"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.GRAY_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.GRAY_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -544,8 +544,8 @@
   CommandName: "dragon_scale_helmet_green"
   CustomModelData: 83653
   Lore:
-    - "LOREADDER.GREEN_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.GREEN_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -558,8 +558,8 @@
   CommandName: "dragon_scale_chestplate_green"
   CustomModelData: 83653
   Lore:
-    - "LOREADDER.GREEN_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.GREEN_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -572,8 +572,8 @@
   CommandName: "dragon_scale_leggings_green"
   CustomModelData: 83653
   Lore:
-    - "LOREADDER.GREEN_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.GREEN_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -586,8 +586,8 @@
   CommandName: "dragon_scale_boots_red"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.RED_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.RED_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -600,8 +600,8 @@
   CommandName: "dragon_scale_helmet_red"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.RED_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.RED_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -614,8 +614,8 @@
   CommandName: "dragon_scale_chestplate_red"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.RED_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.RED_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -628,8 +628,8 @@
   CommandName: "dragon_scale_leggings_red"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.RED_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.RED_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -642,8 +642,8 @@
   CommandName: "dragon_scale_boots_red"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.RED_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.RED_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -656,8 +656,8 @@
   CommandName: "dragon_scale_helmet_sapphire"
   CustomModelData: 83655
   Lore:
-    - "LOREADDER.SAPPHIRE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -670,8 +670,8 @@
   CommandName: "dragon_scale_chestplate_sapphire"
   CustomModelData: 83655
   Lore:
-    - "LOREADDER.SAPPHIRE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -684,8 +684,8 @@
   CommandName: "dragon_scale_leggings_sapphire"
   CustomModelData: 83655
   Lore:
-    - "LOREADDER.SAPPHIRE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -698,8 +698,8 @@
   CommandName: "dragon_scale_boots_sapphire"
   CustomModelData: 83655
   Lore:
-    - "LOREADDER.SAPPHIRE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -712,8 +712,8 @@
   CommandName: "dragon_scale_helmet_silver"
   CustomModelData: 83656
   Lore:
-    - "LOREADDER.SILVER_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.SILVER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -726,8 +726,8 @@
   CommandName: "dragon_scale_chestplate_silver"
   CustomModelData: 83656
   Lore:
-    - "LOREADDER.SILVER_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.SILVER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -740,8 +740,8 @@
   CommandName: "dragon_scale_leggings_silver"
   CustomModelData: 83656
   Lore:
-    - "LOREADDER.SILVER_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.SILVER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -754,8 +754,8 @@
   CommandName: "dragon_scale_boots_silver"
   CustomModelData: 83656
   Lore:
-    - "LOREADDER.SILVER_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.SILVER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -768,8 +768,8 @@
   CommandName: "dragon_scale_helmet_white"
   CustomModelData: 83657
   Lore:
-    - "LOREADDER.WHITE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.WHITE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -782,8 +782,8 @@
   CommandName: "dragon_scale_chestplate_white"
   CustomModelData: 83657
   Lore:
-    - "LOREADDER.WHITE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.WHITE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -796,8 +796,8 @@
   CommandName: "dragon_scale_leggings_white"
   CustomModelData: 83657
   Lore:
-    - "LOREADDER.WHITE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.WHITE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -810,8 +810,8 @@
   CommandName: "dragon_scale_boots_white"
   CustomModelData: 83657
   Lore:
-    - "LOREADDER.WHITE_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.WHITE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -824,8 +824,8 @@
   CommandName: "dragon_scale_helmet_amethyst"
   CustomModelData: 83658
   Lore:
-    - "LOREADDER.AMETHYST_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.AMETHYST_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -838,8 +838,8 @@
   CommandName: "dragon_scale_chestplate_amethyst"
   CustomModelData: 83658
   Lore:
-    - "LOREADDER.AMETHYST_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.AMETHYST_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -852,8 +852,8 @@
   CommandName: "dragon_scale_leggings_amethyst"
   CustomModelData: 83658
   Lore:
-    - "LOREADDER.AMETHYST_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.AMETHYST_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -866,8 +866,8 @@
   CommandName: "dragon_scale_boots_amethyst"
   CustomModelData: 83658
   Lore:
-    - "LOREADDER.AMETHYST_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.AMETHYST_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -880,8 +880,8 @@
   CommandName: "dragon_scale_helmet_black"
   CustomModelData: 83659
   Lore:
-    - "LOREADDER.BLACK_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BLACK_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -894,8 +894,8 @@
   CommandName: "dragon_scale_chestplate_black"
   CustomModelData: 83659
   Lore:
-    - "LOREADDER.BLACK_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BLACK_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -908,8 +908,8 @@
   CommandName: "dragon_scale_leggings_black"
   CustomModelData: 83659
   Lore:
-    - "LOREADDER.BLACK_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BLACK_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -922,8 +922,8 @@
   CommandName: "dragon_scale_boots_black"
   CustomModelData: 83659
   Lore:
-    - "LOREADDER.BLACK_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.BLACK_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -936,8 +936,8 @@
   CommandName: "dragon_scale_helmet_copper"
   CustomModelData: 83660
   Lore:
-    - "LOREADDER.COPPER_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.COPPER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -950,8 +950,8 @@
   CommandName: "dragon_scale_chestplate_copper"
   CustomModelData: 83660
   Lore:
-    - "LOREADDER.COPPER_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.COPPER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -964,8 +964,8 @@
   CommandName: "dragon_scale_leggings_copper"
   CustomModelData: 83660
   Lore:
-    - "LOREADDER.COPPER_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.COPPER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -978,8 +978,8 @@
   CommandName: "dragon_scale_boots_copper"
   CustomModelData: 83660
   Lore:
-    - "LOREADDER.COPPER_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.COPPER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -992,8 +992,8 @@
   CommandName: "dragon_scale_helmet_electric"
   CustomModelData: 83661
   Lore:
-    - "LOREADDER.ELECTRIC_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1006,8 +1006,8 @@
   CommandName: "dragon_scale_chestplate_electric"
   CustomModelData: 83661
   Lore:
-    - "LOREADDER.ELECTRIC_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1020,8 +1020,8 @@
   CommandName: "dragon_scale_leggings_electric"
   CustomModelData: 83661
   Lore:
-    - "LOREADDER.ELECTRIC_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1034,8 +1034,8 @@
   CommandName: "dragon_scale_boots_electric"
   CustomModelData: 83661
   Lore:
-    - "LOREADDER.ELECTRIC_DRAGON_SCALE"
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1048,8 +1048,8 @@
   CommandName: "tide_guardian_helmet_blue"
   CustomModelData: 83662
   Lore:
-    - "LOREADDER.BLUE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.BLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1062,8 +1062,8 @@
   CommandName: "tide_guardian_chestplate_blue"
   CustomModelData: 83662
   Lore:
-    - "LOREADDER.BLUE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.BLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1076,8 +1076,8 @@
   CommandName: "tide_guardian_leggings_blue"
   CustomModelData: 83662
   Lore:
-    - "LOREADDER.BLUE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.BLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1090,8 +1090,8 @@
   CommandName: "tide_guardian_boots_blue"
   CustomModelData: 83662
   Lore:
-    - "LOREADDER.BLUE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.BLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1104,8 +1104,8 @@
   CommandName: "tide_guardian_helmet_bronze"
   CustomModelData: 83663
   Lore:
-    - "LOREADDER.BRONZE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1118,8 +1118,8 @@
   CommandName: "tide_guardian_chestplate_bronze"
   CustomModelData: 83663
   Lore:
-    - "LOREADDER.BRONZE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1132,8 +1132,8 @@
   CommandName: "tide_guardian_leggings_bronze"
   CustomModelData: 83663
   Lore:
-    - "LOREADDER.BRONZE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1146,8 +1146,8 @@
   CommandName: "tide_guardian_boots_bronze"
   CustomModelData: 83663
   Lore:
-    - "LOREADDER.BRONZE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1160,8 +1160,8 @@
   CommandName: "tide_guardian_helmet_deepblue"
   CustomModelData: 83664
   Lore:
-    - "LOREADDER.DEEPBLUE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1174,8 +1174,8 @@
   CommandName: "tide_guardian_chestplate_deepblue"
   CustomModelData: 83664
   Lore:
-    - "LOREADDER.DEEPBLUE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1188,8 +1188,8 @@
   CommandName: "tide_guardian_leggings_deepblue"
   CustomModelData: 83664
   Lore:
-    - "LOREADDER.DEEPBLUE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1202,8 +1202,8 @@
   CommandName: "tide_guardian_boots_deepblue"
   CustomModelData: 83664
   Lore:
-    - "LOREADDER.DEEPBLUE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1216,8 +1216,8 @@
   CommandName: "tide_guardian_helmet_green"
   CustomModelData: 83665
   Lore:
-    - "LOREADDER.GREEN_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.GREEN_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1230,8 +1230,8 @@
   CommandName: "tide_guardian_chestplate_green"
   CustomModelData: 83665
   Lore:
-    - "LOREADDER.GREEN_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.GREEN_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1244,8 +1244,8 @@
   CommandName: "tide_guardian_leggings_green"
   CustomModelData: 83665
   Lore:
-    - "LOREADDER.GREEN_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.GREEN_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1258,8 +1258,8 @@
   CommandName: "tide_guardian_boots_green"
   CustomModelData: 83665
   Lore:
-    - "LOREADDER.GREEN_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.GREEN_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1272,8 +1272,8 @@
   CommandName: "tide_guardian_helmet_purple"
   CustomModelData: 83666
   Lore:
-    - "LOREADDER.PURPLE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1286,8 +1286,8 @@
   CommandName: "tide_guardian_chestplate_purple"
   CustomModelData: 83666
   Lore:
-    - "LOREADDER.PURPLE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1300,8 +1300,8 @@
   CommandName: "tide_guardian_leggings_purple"
   CustomModelData: 83666
   Lore:
-    - "LOREADDER.PURPLE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1314,8 +1314,8 @@
   CommandName: "tide_guardian_boots_purple"
   CustomModelData: 83666
   Lore:
-    - "LOREADDER.PURPLE_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1328,8 +1328,8 @@
   CommandName: "tide_guardian_helmet_red"
   CustomModelData: 83667
   Lore:
-    - "LOREADDER.RED_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.RED_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1342,8 +1342,8 @@
   CommandName: "tide_guardian_chestplate_red"
   CustomModelData: 83667
   Lore:
-    - "LOREADDER.RED_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.RED_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1356,8 +1356,8 @@
   CommandName: "tide_guardian_leggings_red"
   CustomModelData: 83667
   Lore:
-    - "LOREADDER.RED_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.RED_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1370,8 +1370,8 @@
   CommandName: "tide_guardian_boots_red"
   CustomModelData: 83667
   Lore:
-    - "LOREADDER.RED_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.RED_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1384,8 +1384,8 @@
   CommandName: "tide_guardian_helmet_teal"
   CustomModelData: 83668
   Lore:
-    - "LOREADDER.TEAL_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.TEAL_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1398,8 +1398,8 @@
   CommandName: "tide_guardian_chestplate_teal"
   CustomModelData: 83668
   Lore:
-    - "LOREADDER.TEAL_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.TEAL_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1412,8 +1412,8 @@
   CommandName: "tide_guardian_leggings_teal"
   CustomModelData: 83668
   Lore:
-    - "LOREADDER.TEAL_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.TEAL_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1426,8 +1426,8 @@
   CommandName: "tide_guardian_boots_teal"
   CustomModelData: 83668
   Lore:
-    - "LOREADDER.TEAL_SEA_SERPENT_SCALE"
-    - "LOREADDER.TIDE_GUARDIAN_BREATHING"
+    - "LOREPRESET.TEAL_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1497,9 +1497,9 @@
   CommandName: "dragon_bone_flamed_sword"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.LEGENDARY_WEAPON"
-    - "LOREADDER.FLAMED_EXTRA_DAMAGE"
-    - "LOREADDER.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.LEGENDARY_WEAPON"
+    - "LOREPRESET.FLAMED_EXTRA_DAMAGE"
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1512,9 +1512,9 @@
   CommandName: "dragon_bone_iced_sword"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.LEGENDARY_WEAPON"
-    - "LOREADDER.ICED_EXTRA_DAMAGE"
-    - "LOREADDER.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.LEGENDARY_WEAPON"
+    - "LOREPRESET.ICED_EXTRA_DAMAGE"
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1527,9 +1527,9 @@
   CommandName: "dragon_bone_lightning_sword"
   CustomModelData: 83653
   Lore:
-    - "LOREADDER.LEGENDARY_WEAPON"
-    - "LOREADDER.LIGHTNING_EXTRA_DAMAGE"
-    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LEGENDARY_WEAPON"
+    - "LOREPRESET.LIGHTNING_EXTRA_DAMAGE"
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -1864,7 +1864,7 @@
   NBTTags:
     Bauble: "Ankh Charm"
 155:
-  Material: "PRISMARINE_SHARD"
+  Material: "SHIELD"
   Amount: 1
   DisplayName: "&fAnkh Shield"
   CodeName: "AnkhShield"
@@ -2327,7 +2327,7 @@
   DisplayName: "&fPotion of Fire Resistance"
   CodeName: "PotionFireResistance"
   CommandName: "potion_fire_resistance"
-  Color: Orange
+  Color: ORANGE
   Effects:
     FIRE_RESISTANCE:
       Amplifier: 0
@@ -2340,7 +2340,7 @@
   CommandName: "dragonsteel_fire_sword"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2353,7 +2353,7 @@
   CommandName: "dragonsteel_fire_pickaxe"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2366,7 +2366,7 @@
   CommandName: "dragonsteel_fire_axe"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2379,7 +2379,7 @@
   CommandName: "dragonsteel_fire_shovel"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2392,7 +2392,7 @@
   CommandName: "dragonsteel_fire_hoe"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2405,7 +2405,7 @@
   CommandName: "dragonsteel_ice_sword"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2418,7 +2418,7 @@
   CommandName: "dragonsteel_ice_pickaxe"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2431,7 +2431,7 @@
   CommandName: "dragonsteel_ice_axe"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2444,7 +2444,7 @@
   CommandName: "dragonsteel_ice_shovel"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2457,7 +2457,7 @@
   CommandName: "dragonsteel_ice_hoe"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2470,7 +2470,7 @@
   CommandName: "dragonsteel_lightning_sword"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2483,7 +2483,7 @@
   CommandName: "dragonsteel_lightning_pickaxe"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2496,7 +2496,7 @@
   CommandName: "dragonsteel_lightning_axe"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2509,7 +2509,7 @@
   CommandName: "dragonsteel_lightning_shovel"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2522,7 +2522,7 @@
   CommandName: "dragonsteel_lightning_hoe"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2535,7 +2535,7 @@
   CommandName: "dragonsteel_fire_helmet"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2548,7 +2548,7 @@
   CommandName: "dragonsteel_fire_chestplate"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2561,7 +2561,7 @@
   CommandName: "dragonsteel_fire_leggings"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2574,7 +2574,7 @@
   CommandName: "dragonsteel_fire_boots"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2587,7 +2587,7 @@
   CommandName: "dragonsteel_ice_helmet"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2600,7 +2600,7 @@
   CommandName: "dragonsteel_ice_chestplate"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2613,7 +2613,7 @@
   CommandName: "dragonsteel_ice_leggings"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2626,7 +2626,7 @@
   CommandName: "dragonsteel_ice_boots"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2639,7 +2639,7 @@
   CommandName: "dragonsteel_lightning_helmet"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2652,7 +2652,7 @@
   CommandName: "dragonsteel_lightning_chestplate"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2665,7 +2665,7 @@
   CommandName: "dragonsteel_lightning_leggings"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2678,7 +2678,7 @@
   CommandName: "dragonsteel_lightning_boots"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.DRAGON_PROTECTION"
+    - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2691,7 +2691,7 @@
   CommandName: "dragon_bone_rapier"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.RAPIER"
+    - "LOREPRESET.RAPIER"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2704,7 +2704,7 @@
   CommandName: "dragon_bone_katana"
   CustomModelData: 83655
   Lore:
-    - "LOREADDER.KATANA"
+    - "LOREPRESET.KATANA"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2717,7 +2717,7 @@
   CommandName: "dragon_bone_greatsword"
   CustomModelData: 83656
   Lore:
-    - "LOREADDER.GREATSWORD"
+    - "LOREPRESET.GREATSWORD"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2730,7 +2730,7 @@
   CommandName: "dragon_bone_longsword"
   CustomModelData: 83657
   Lore:
-    - "LOREADDER.LONGSWORD"
+    - "LOREPRESET.LONGSWORD"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2743,7 +2743,7 @@
   CommandName: "dragon_bone_spear"
   CustomModelData: 83658
   Lore:
-    - "LOREADDER.SPEAR"
+    - "LOREPRESET.SPEAR"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2756,7 +2756,7 @@
   CommandName: "dragon_bone_saber"
   CustomModelData: 83659
   Lore:
-    - "LOREADDER.SABER"
+    - "LOREPRESET.SABER"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2769,7 +2769,7 @@
   CommandName: "dragon_bone_boomerang"
   CustomModelData: 83660
   Lore:
-    - "LOREADDER.BOOMERANG"
+    - "LOREPRESET.BOOMERANG"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2782,7 +2782,7 @@
   CommandName: "dragon_bone_dagger"
   CustomModelData: 83661
   Lore:
-    - "LOREADDER.DAGGER"
+    - "LOREPRESET.DAGGER"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2795,7 +2795,7 @@
   CommandName: "dragon_bone_glaive"
   CustomModelData: 83662
   Lore:
-    - "LOREADDER.GLAIVE"
+    - "LOREPRESET.GLAIVE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2808,7 +2808,7 @@
   CommandName: "dragon_bone_halberd"
   CustomModelData: 83663
   Lore:
-    - "LOREADDER.HALBERD"
+    - "LOREPRESET.HALBERD"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2821,7 +2821,7 @@
   CommandName: "dragon_bone_hammer"
   CustomModelData: 83664
   Lore:
-    - "LOREADDER.HAMMER"
+    - "LOREPRESET.HAMMER"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2834,7 +2834,7 @@
   CommandName: "dragon_bone_javelin"
   CustomModelData: 83665
   Lore:
-    - "LOREADDER.JAVELIN"
+    - "LOREPRESET.JAVELIN"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2847,7 +2847,7 @@
   CommandName: "dragon_bone_lance"
   CustomModelData: 83666
   Lore:
-    - "LOREADDER.LANCE"
+    - "LOREPRESET.LANCE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2860,7 +2860,7 @@
   CommandName: "dragon_bone_mace"
   CustomModelData: 83667
   Lore:
-    - "LOREADDER.MACE"
+    - "LOREPRESET.MACE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2873,7 +2873,7 @@
   CommandName: "dragon_bone_pike"
   CustomModelData: 83668
   Lore:
-    - "LOREADDER.PIKE"
+    - "LOREPRESET.PIKE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2886,7 +2886,7 @@
   CommandName: "dragon_bone_quarterstaff"
   CustomModelData: 83669
   Lore:
-    - "LOREADDER.QUARTERSTAFF"
+    - "LOREPRESET.QUARTERSTAFF"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2899,7 +2899,7 @@
   CommandName: "dragon_bone_throwing_axe"
   CustomModelData: 83670
   Lore:
-    - "LOREADDER.THROWING_AXE"
+    - "LOREPRESET.THROWING_AXE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2912,7 +2912,7 @@
   CommandName: "dragon_bone_throwing_knife"
   CustomModelData: 83671
   Lore:
-    - "LOREADDER.THROWING_KNIFE"
+    - "LOREPRESET.THROWING_KNIFE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2925,7 +2925,7 @@
   CommandName: "dragon_bone_warhammer"
   CustomModelData: 83672
   Lore:
-    - "LOREADDER.WARHAMMER"
+    - "LOREPRESET.WARHAMMER"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2938,7 +2938,7 @@
   CommandName: "dragon_bone_battleaxe"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.BATTLEAXE"
+    - "LOREPRESET.BATTLEAXE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2951,7 +2951,7 @@
   CommandName: "dragon_bone_longbow"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.LONGBOW"
+    - "LOREPRESET.LONGBOW"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2965,7 +2965,7 @@
   CommandName: "dragon_bone_crossbow"
   CustomModelData: 83650
   Lore:
-    - "LOREADDER.CROSSBOW"
+    - "LOREPRESET.CROSSBOW"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2979,8 +2979,8 @@
   CommandName: "dragon_bone_flamed_rapier"
   CustomModelData: 83673
   Lore:
-    - "LOREADDER.RAPIER"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.RAPIER"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -2994,8 +2994,8 @@
   CommandName: "dragon_bone_flamed_katana"
   CustomModelData: 83674
   Lore:
-    - "LOREADDER.KATANA"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.KATANA"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3009,8 +3009,8 @@
   CommandName: "dragon_bone_flamed_greatsword"
   CustomModelData: 83675
   Lore:
-    - "LOREADDER.GREATSWORD"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.GREATSWORD"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3024,8 +3024,8 @@
   CommandName: "dragon_bone_flamed_longsword"
   CustomModelData: 83676
   Lore:
-    - "LOREADDER.LONGSWORD"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.LONGSWORD"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3039,8 +3039,8 @@
   CommandName: "dragon_bone_flamed_spear"
   CustomModelData: 83677
   Lore:
-    - "LOREADDER.SPEAR"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.SPEAR"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3054,8 +3054,8 @@
   CommandName: "dragon_bone_flamed_saber"
   CustomModelData: 83678
   Lore:
-    - "LOREADDER.SABER"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.SABER"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3069,8 +3069,8 @@
   CommandName: "dragon_bone_flamed_boomerang"
   CustomModelData: 83679
   Lore:
-    - "LOREADDER.BOOMERANG"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.BOOMERANG"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3084,8 +3084,8 @@
   CommandName: "dragon_bone_flamed_dagger"
   CustomModelData: 83680
   Lore:
-    - "LOREADDER.DAGGER"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.DAGGER"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3099,8 +3099,8 @@
   CommandName: "dragon_bone_flamed_glaive"
   CustomModelData: 83681
   Lore:
-    - "LOREADDER.GLAIVE"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.GLAIVE"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3114,8 +3114,8 @@
   CommandName: "dragon_bone_flamed_halberd"
   CustomModelData: 83682
   Lore:
-    - "LOREADDER.HALBERD"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.HALBERD"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3129,8 +3129,8 @@
   CommandName: "dragon_bone_flamed_hammer"
   CustomModelData: 83683
   Lore:
-    - "LOREADDER.HAMMER"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.HAMMER"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3144,8 +3144,8 @@
   CommandName: "dragon_bone_flamed_javelin"
   CustomModelData: 83684
   Lore:
-    - "LOREADDER.JAVELIN"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.JAVELIN"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3159,8 +3159,8 @@
   CommandName: "dragon_bone_flamed_lance"
   CustomModelData: 83685
   Lore:
-    - "LOREADDER.LANCE"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.LANCE"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3174,8 +3174,8 @@
   CommandName: "dragon_bone_flamed_mace"
   CustomModelData: 83686
   Lore:
-    - "LOREADDER.MACE"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.MACE"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3189,8 +3189,8 @@
   CommandName: "dragon_bone_flamed_pike"
   CustomModelData: 83687
   Lore:
-    - "LOREADDER.PIKE"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.PIKE"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3204,8 +3204,8 @@
   CommandName: "dragon_bone_flamed_quarterstaff"
   CustomModelData: 83688
   Lore:
-    - "LOREADDER.QUARTERSTAFF"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.QUARTERSTAFF"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3219,8 +3219,8 @@
   CommandName: "dragon_bone_flamed_throwing_axe"
   CustomModelData: 83689
   Lore:
-    - "LOREADDER.THROWING_AXE"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.THROWING_AXE"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3234,8 +3234,8 @@
   CommandName: "dragon_bone_flamed_throwing_knife"
   CustomModelData: 83690
   Lore:
-    - "LOREADDER.THROWING_KNIFE"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.THROWING_KNIFE"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3249,8 +3249,8 @@
   CommandName: "dragon_bone_flamed_warhammer"
   CustomModelData: 83691
   Lore:
-    - "LOREADDER.WARHAMMER"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.WARHAMMER"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3264,8 +3264,8 @@
   CommandName: "dragon_bone_flamed_battleaxe"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.BATTLEAXE"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.BATTLEAXE"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3279,8 +3279,8 @@
   CommandName: "dragon_bone_flamed_longbow"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.LONGBOW"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.LONGBOW"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3294,8 +3294,8 @@
   CommandName: "dragon_bone_flamed_crossbow"
   CustomModelData: 83651
   Lore:
-    - "LOREADDER.CROSSBOW"
-    - "LOREADDER.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.CROSSBOW"
+    - "LOREPRESET.FLAMED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3309,8 +3309,8 @@
   CommandName: "dragon_bone_iced_rapier"
   CustomModelData: 83692
   Lore:
-    - "LOREADDER.RAPIER"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.RAPIER"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3324,8 +3324,8 @@
   CommandName: "dragon_bone_iced_katana"
   CustomModelData: 83693
   Lore:
-    - "LOREADDER.KATANA"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.KATANA"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3339,8 +3339,8 @@
   CommandName: "dragon_bone_iced_greatsword"
   CustomModelData: 83694
   Lore:
-    - "LOREADDER.GREATSWORD"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.GREATSWORD"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3354,8 +3354,8 @@
   CommandName: "dragon_bone_iced_longsword"
   CustomModelData: 83695
   Lore:
-    - "LOREADDER.LONGSWORD"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.LONGSWORD"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3369,8 +3369,8 @@
   CommandName: "dragon_bone_iced_spear"
   CustomModelData: 83696
   Lore:
-    - "LOREADDER.SPEAR"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.SPEAR"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3384,8 +3384,8 @@
   CommandName: "dragon_bone_iced_saber"
   CustomModelData: 83697
   Lore:
-    - "LOREADDER.SABER"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.SABER"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3399,8 +3399,8 @@
   CommandName: "dragon_bone_iced_boomerang"
   CustomModelData: 83698
   Lore:
-    - "LOREADDER.BOOMERANG"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.BOOMERANG"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3414,8 +3414,8 @@
   CommandName: "dragon_bone_iced_dagger"
   CustomModelData: 83699
   Lore:
-    - "LOREADDER.DAGGER"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.DAGGER"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3429,8 +3429,8 @@
   CommandName: "dragon_bone_iced_glaive"
   CustomModelData: 83700
   Lore:
-    - "LOREADDER.GLAIVE"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.GLAIVE"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3444,8 +3444,8 @@
   CommandName: "dragon_bone_iced_halberd"
   CustomModelData: 83701
   Lore:
-    - "LOREADDER.HALBERD"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.HALBERD"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3459,8 +3459,8 @@
   CommandName: "dragon_bone_iced_hammer"
   CustomModelData: 83702
   Lore:
-    - "LOREADDER.HAMMER"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.HAMMER"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3474,8 +3474,8 @@
   CommandName: "dragon_bone_iced_javelin"
   CustomModelData: 83703
   Lore:
-    - "LOREADDER.JAVELIN"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.JAVELIN"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3489,8 +3489,8 @@
   CommandName: "dragon_bone_iced_lance"
   CustomModelData: 83704
   Lore:
-    - "LOREADDER.LANCE"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.LANCE"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3504,8 +3504,8 @@
   CommandName: "dragon_bone_iced_mace"
   CustomModelData: 83705
   Lore:
-    - "LOREADDER.MACE"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.MACE"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3519,8 +3519,8 @@
   CommandName: "dragon_bone_iced_pike"
   CustomModelData: 83706
   Lore:
-    - "LOREADDER.PIKE"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.PIKE"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3534,8 +3534,8 @@
   CommandName: "dragon_bone_iced_quarterstaff"
   CustomModelData: 83707
   Lore:
-    - "LOREADDER.QUARTERSTAFF"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.QUARTERSTAFF"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3549,8 +3549,8 @@
   CommandName: "dragon_bone_iced_throwing_axe"
   CustomModelData: 83708
   Lore:
-    - "LOREADDER.THROWING_AXE"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.THROWING_AXE"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3564,8 +3564,8 @@
   CommandName: "dragon_bone_iced_throwing_knife"
   CustomModelData: 83709
   Lore:
-    - "LOREADDER.THROWING_KNIFE"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.THROWING_KNIFE"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3579,8 +3579,8 @@
   CommandName: "dragon_bone_iced_warhammer"
   CustomModelData: 83710
   Lore:
-    - "LOREADDER.WARHAMMER"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.WARHAMMER"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3594,8 +3594,8 @@
   CommandName: "dragon_bone_iced_battleaxe"
   CustomModelData: 83653
   Lore:
-    - "LOREADDER.BATTLEAXE"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.BATTLEAXE"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3609,8 +3609,8 @@
   CommandName: "dragon_bone_iced_longbow"
   CustomModelData: 83653
   Lore:
-    - "LOREADDER.LONGBOW"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.LONGBOW"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3624,8 +3624,8 @@
   CommandName: "dragon_bone_iced_crossbow"
   CustomModelData: 83652
   Lore:
-    - "LOREADDER.CROSSBOW"
-    - "LOREADDER.ICED_DRAGON_BONE"
+    - "LOREPRESET.CROSSBOW"
+    - "LOREPRESET.ICED_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3639,8 +3639,8 @@
   CommandName: "dragon_bone_lightning_rapier"
   CustomModelData: 83711
   Lore:
-    - "LOREADDER.RAPIER"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.RAPIER"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3654,8 +3654,8 @@
   CommandName: "dragon_bone_lightning_katana"
   CustomModelData: 83712
   Lore:
-    - "LOREADDER.KATANA"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.KATANA"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3669,8 +3669,8 @@
   CommandName: "dragon_bone_lightning_greatsword"
   CustomModelData: 83713
   Lore:
-    - "LOREADDER.GREATSWORD"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.GREATSWORD"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3684,8 +3684,8 @@
   CommandName: "dragon_bone_lightning_longsword"
   CustomModelData: 83714
   Lore:
-    - "LOREADDER.LONGSWORD"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LONGSWORD"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3699,8 +3699,8 @@
   CommandName: "dragon_bone_lightning_spear"
   CustomModelData: 83715
   Lore:
-    - "LOREADDER.SPEAR"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.SPEAR"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3714,8 +3714,8 @@
   CommandName: "dragon_bone_lightning_saber"
   CustomModelData: 83716
   Lore:
-    - "LOREADDER.SABER"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.SABER"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3729,8 +3729,8 @@
   CommandName: "dragon_bone_lightning_boomerang"
   CustomModelData: 83717
   Lore:
-    - "LOREADDER.BOOMERANG"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.BOOMERANG"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3744,8 +3744,8 @@
   CommandName: "dragon_bone_lightning_dagger"
   CustomModelData: 83718
   Lore:
-    - "LOREADDER.DAGGER"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.DAGGER"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3759,8 +3759,8 @@
   CommandName: "dragon_bone_lightning_glaive"
   CustomModelData: 83719
   Lore:
-    - "LOREADDER.GLAIVE"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.GLAIVE"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3774,8 +3774,8 @@
   CommandName: "dragon_bone_lightning_halberd"
   CustomModelData: 83720
   Lore:
-    - "LOREADDER.HALBERD"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.HALBERD"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3789,8 +3789,8 @@
   CommandName: "dragon_bone_lightning_hammer"
   CustomModelData: 83721
   Lore:
-    - "LOREADDER.HAMMER"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.HAMMER"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3804,8 +3804,8 @@
   CommandName: "dragon_bone_lightning_javelin"
   CustomModelData: 83722
   Lore:
-    - "LOREADDER.JAVELIN"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.JAVELIN"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3819,8 +3819,8 @@
   CommandName: "dragon_bone_lightning_lance"
   CustomModelData: 83723
   Lore:
-    - "LOREADDER.LANCE"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LANCE"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3834,8 +3834,8 @@
   CommandName: "dragon_bone_lightning_mace"
   CustomModelData: 83724
   Lore:
-    - "LOREADDER.MACE"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.MACE"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3849,8 +3849,8 @@
   CommandName: "dragon_bone_lightning_pike"
   CustomModelData: 83725
   Lore:
-    - "LOREADDER.PIKE"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.PIKE"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3864,8 +3864,8 @@
   CommandName: "dragon_bone_lightning_quarterstaff"
   CustomModelData: 83726
   Lore:
-    - "LOREADDER.QUARTERSTAFF"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.QUARTERSTAFF"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3879,8 +3879,8 @@
   CommandName: "dragon_bone_lightning_throwing_axe"
   CustomModelData: 83727
   Lore:
-    - "LOREADDER.THROWING_AXE"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.THROWING_AXE"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3894,8 +3894,8 @@
   CommandName: "dragon_bone_lightning_throwing_knife"
   CustomModelData: 83728
   Lore:
-    - "LOREADDER.THROWING_KNIFE"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.THROWING_KNIFE"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3909,8 +3909,8 @@
   CommandName: "dragon_bone_lightning_warhammer"
   CustomModelData: 83729
   Lore:
-    - "LOREADDER.WARHAMMER"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.WARHAMMER"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3924,8 +3924,8 @@
   CommandName: "dragon_bone_lightning_battleaxe"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.BATTLEAXE"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.BATTLEAXE"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3939,8 +3939,8 @@
   CommandName: "dragon_bone_lightning_longbow"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.LONGBOW"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LONGBOW"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3954,8 +3954,8 @@
   CommandName: "dragon_bone_lightning_crossbow"
   CustomModelData: 83653
   Lore:
-    - "LOREADDER.CROSSBOW"
-    - "LOREADDER.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.CROSSBOW"
+    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3969,8 +3969,8 @@
   CommandName: "dragonsteel_fire_rapier"
   CustomModelData: 83653
   Lore:
-    - "LOREADDER.RAPIER"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.RAPIER"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3984,8 +3984,8 @@
   CommandName: "dragonsteel_fire_katana"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.KATANA"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.KATANA"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -3999,8 +3999,8 @@
   CommandName: "dragonsteel_fire_greatsword"
   CustomModelData: 83655
   Lore:
-    - "LOREADDER.GREATSWORD"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.GREATSWORD"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4014,8 +4014,8 @@
   CommandName: "dragonsteel_fire_longsword"
   CustomModelData: 83656
   Lore:
-    - "LOREADDER.LONGSWORD"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.LONGSWORD"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4029,8 +4029,8 @@
   CommandName: "dragonsteel_fire_spear"
   CustomModelData: 83657
   Lore:
-    - "LOREADDER.SPEAR"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.SPEAR"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4044,8 +4044,8 @@
   CommandName: "dragonsteel_fire_saber"
   CustomModelData: 83658
   Lore:
-    - "LOREADDER.SABER"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.SABER"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4059,8 +4059,8 @@
   CommandName: "dragonsteel_fire_boomerang"
   CustomModelData: 83659
   Lore:
-    - "LOREADDER.BOOMERANG"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.BOOMERANG"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4074,8 +4074,8 @@
   CommandName: "dragonsteel_fire_dagger"
   CustomModelData: 83660
   Lore:
-    - "LOREADDER.DAGGER"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.DAGGER"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4089,8 +4089,8 @@
   CommandName: "dragonsteel_fire_glaive"
   CustomModelData: 83661
   Lore:
-    - "LOREADDER.GLAIVE"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.GLAIVE"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4104,8 +4104,8 @@
   CommandName: "dragonsteel_fire_halberd"
   CustomModelData: 83662
   Lore:
-    - "LOREADDER.HALBERD"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.HALBERD"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4119,8 +4119,8 @@
   CommandName: "dragonsteel_fire_hammer"
   CustomModelData: 83663
   Lore:
-    - "LOREADDER.HAMMER"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.HAMMER"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4134,8 +4134,8 @@
   CommandName: "dragonsteel_fire_javelin"
   CustomModelData: 83664
   Lore:
-    - "LOREADDER.JAVELIN"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.JAVELIN"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4149,8 +4149,8 @@
   CommandName: "dragonsteel_fire_lance"
   CustomModelData: 83665
   Lore:
-    - "LOREADDER.LANCE"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.LANCE"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4164,8 +4164,8 @@
   CommandName: "dragonsteel_fire_mace"
   CustomModelData: 83666
   Lore:
-    - "LOREADDER.MACE"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.MACE"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4179,8 +4179,8 @@
   CommandName: "dragonsteel_fire_pike"
   CustomModelData: 83667
   Lore:
-    - "LOREADDER.PIKE"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.PIKE"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4194,8 +4194,8 @@
   CommandName: "dragonsteel_fire_quarterstaff"
   CustomModelData: 83668
   Lore:
-    - "LOREADDER.QUARTERSTAFF"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.QUARTERSTAFF"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4209,8 +4209,8 @@
   CommandName: "dragonsteel_fire_throwing_axe"
   CustomModelData: 83669
   Lore:
-    - "LOREADDER.THROWING_AXE"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.THROWING_AXE"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4224,8 +4224,8 @@
   CommandName: "dragonsteel_fire_throwing_knife"
   CustomModelData: 83670
   Lore:
-    - "LOREADDER.THROWING_KNIFE"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.THROWING_KNIFE"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4239,8 +4239,8 @@
   CommandName: "dragonsteel_fire_warhammer"
   CustomModelData: 83671
   Lore:
-    - "LOREADDER.WARHAMMER"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.WARHAMMER"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4254,8 +4254,8 @@
   CommandName: "dragonsteel_fire_battleaxe"
   CustomModelData: 83653
   Lore:
-    - "LOREADDER.BATTLEAXE"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.BATTLEAXE"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4269,8 +4269,8 @@
   CommandName: "dragonsteel_fire_longbow"
   CustomModelData: 83655
   Lore:
-    - "LOREADDER.LONGBOW"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.LONGBOW"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4284,8 +4284,8 @@
   CommandName: "dragonsteel_fire_crossbow"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.CROSSBOW"
-    - "LOREADDER.FIRE_DRAGONSTEEL"
+    - "LOREPRESET.CROSSBOW"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4299,8 +4299,8 @@
   CommandName: "dragonsteel_ice_rapier"
   CustomModelData: 83672
   Lore:
-    - "LOREADDER.RAPIER"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.RAPIER"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4314,8 +4314,8 @@
   CommandName: "dragonsteel_ice_katana"
   CustomModelData: 83673
   Lore:
-    - "LOREADDER.KATANA"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.KATANA"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4329,8 +4329,8 @@
   CommandName: "dragonsteel_ice_greatsword"
   CustomModelData: 83674
   Lore:
-    - "LOREADDER.GREATSWORD"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.GREATSWORD"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4344,8 +4344,8 @@
   CommandName: "dragonsteel_ice_longsword"
   CustomModelData: 83675
   Lore:
-    - "LOREADDER.LONGSWORD"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.LONGSWORD"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4359,8 +4359,8 @@
   CommandName: "dragonsteel_ice_spear"
   CustomModelData: 83676
   Lore:
-    - "LOREADDER.SPEAR"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.SPEAR"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4374,8 +4374,8 @@
   CommandName: "dragonsteel_ice_saber"
   CustomModelData: 83677
   Lore:
-    - "LOREADDER.SABER"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.SABER"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4389,8 +4389,8 @@
   CommandName: "dragonsteel_ice_boomerang"
   CustomModelData: 83678
   Lore:
-    - "LOREADDER.BOOMERANG"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.BOOMERANG"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4404,8 +4404,8 @@
   CommandName: "dragonsteel_ice_dagger"
   CustomModelData: 83679
   Lore:
-    - "LOREADDER.DAGGER"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.DAGGER"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4419,8 +4419,8 @@
   CommandName: "dragonsteel_ice_glaive"
   CustomModelData: 83680
   Lore:
-    - "LOREADDER.GLAIVE"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.GLAIVE"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4434,8 +4434,8 @@
   CommandName: "dragonsteel_ice_halberd"
   CustomModelData: 83681
   Lore:
-    - "LOREADDER.HALBERD"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.HALBERD"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4449,8 +4449,8 @@
   CommandName: "dragonsteel_ice_hammer"
   CustomModelData: 83682
   Lore:
-    - "LOREADDER.HAMMER"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.HAMMER"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4464,8 +4464,8 @@
   CommandName: "dragonsteel_ice_javelin"
   CustomModelData: 83683
   Lore:
-    - "LOREADDER.JAVELIN"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.JAVELIN"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4479,8 +4479,8 @@
   CommandName: "dragonsteel_ice_lance"
   CustomModelData: 83684
   Lore:
-    - "LOREADDER.LANCE"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.LANCE"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4494,8 +4494,8 @@
   CommandName: "dragonsteel_ice_mace"
   CustomModelData: 83685
   Lore:
-    - "LOREADDER.MACE"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.MACE"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4509,8 +4509,8 @@
   CommandName: "dragonsteel_ice_pike"
   CustomModelData: 83686
   Lore:
-    - "LOREADDER.PIKE"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.PIKE"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4524,8 +4524,8 @@
   CommandName: "dragonsteel_ice_quarterstaff"
   CustomModelData: 83687
   Lore:
-    - "LOREADDER.QUARTERSTAFF"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.QUARTERSTAFF"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4539,8 +4539,8 @@
   CommandName: "dragonsteel_ice_throwing_axe"
   CustomModelData: 83688
   Lore:
-    - "LOREADDER.THROWING_AXE"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.THROWING_AXE"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4554,8 +4554,8 @@
   CommandName: "dragonsteel_ice_throwing_knife"
   CustomModelData: 83689
   Lore:
-    - "LOREADDER.THROWING_KNIFE"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.THROWING_KNIFE"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4569,8 +4569,8 @@
   CommandName: "dragonsteel_ice_warhammer"
   CustomModelData: 83690
   Lore:
-    - "LOREADDER.WARHAMMER"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.WARHAMMER"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4584,8 +4584,8 @@
   CommandName: "dragonsteel_ice_battleaxe"
   CustomModelData: 83654
   Lore:
-    - "LOREADDER.BATTLEAXE"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.BATTLEAXE"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4599,8 +4599,8 @@
   CommandName: "dragonsteel_ice_longbow"
   CustomModelData: 83656
   Lore:
-    - "LOREADDER.LONGBOW"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.LONGBOW"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4614,8 +4614,8 @@
   CommandName: "dragonsteel_ice_crossbow"
   CustomModelData: 83655
   Lore:
-    - "LOREADDER.CROSSBOW"
-    - "LOREADDER.ICE_DRAGONSTEEL"
+    - "LOREPRESET.CROSSBOW"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4629,8 +4629,8 @@
   CommandName: "dragonsteel_lightning_rapier"
   CustomModelData: 83691
   Lore:
-    - "LOREADDER.RAPIER"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.RAPIER"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4644,8 +4644,8 @@
   CommandName: "dragonsteel_lightning_katana"
   CustomModelData: 83692
   Lore:
-    - "LOREADDER.KATANA"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.KATANA"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4659,8 +4659,8 @@
   CommandName: "dragonsteel_lightning_greatsword"
   CustomModelData: 83693
   Lore:
-    - "LOREADDER.GREATSWORD"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.GREATSWORD"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4674,8 +4674,8 @@
   CommandName: "dragonsteel_lightning_longsword"
   CustomModelData: 83694
   Lore:
-    - "LOREADDER.LONGSWORD"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.LONGSWORD"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4689,8 +4689,8 @@
   CommandName: "dragonsteel_lightning_spear"
   CustomModelData: 83695
   Lore:
-    - "LOREADDER.SPEAR"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.SPEAR"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4704,8 +4704,8 @@
   CommandName: "dragonsteel_lightning_saber"
   CustomModelData: 83696
   Lore:
-    - "LOREADDER.SABER"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.SABER"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4719,8 +4719,8 @@
   CommandName: "dragonsteel_lightning_boomerang"
   CustomModelData: 83697
   Lore:
-    - "LOREADDER.BOOMERANG"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.BOOMERANG"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4734,8 +4734,8 @@
   CommandName: "dragonsteel_lightning_dagger"
   CustomModelData: 83698
   Lore:
-    - "LOREADDER.DAGGER"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.DAGGER"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4749,8 +4749,8 @@
   CommandName: "dragonsteel_lightning_glaive"
   CustomModelData: 83699
   Lore:
-    - "LOREADDER.GLAIVE"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.GLAIVE"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4764,8 +4764,8 @@
   CommandName: "dragonsteel_lightning_halberd"
   CustomModelData: 83700
   Lore:
-    - "LOREADDER.HALBERD"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.HALBERD"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4779,8 +4779,8 @@
   CommandName: "dragonsteel_lightning_hammer"
   CustomModelData: 83701
   Lore:
-    - "LOREADDER.HAMMER"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.HAMMER"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4794,8 +4794,8 @@
   CommandName: "dragonsteel_lightning_javelin"
   CustomModelData: 83702
   Lore:
-    - "LOREADDER.JAVELIN"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.JAVELIN"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4809,8 +4809,8 @@
   CommandName: "dragonsteel_lightning_lance"
   CustomModelData: 83703
   Lore:
-    - "LOREADDER.LANCE"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.LANCE"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4824,8 +4824,8 @@
   CommandName: "dragonsteel_lightning_mace"
   CustomModelData: 83704
   Lore:
-    - "LOREADDER.MACE"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.MACE"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4839,8 +4839,8 @@
   CommandName: "dragonsteel_lightning_pike"
   CustomModelData: 83705
   Lore:
-    - "LOREADDER.PIKE"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.PIKE"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4854,8 +4854,8 @@
   CommandName: "dragonsteel_lightning_quarterstaff"
   CustomModelData: 83706
   Lore:
-    - "LOREADDER.QUARTERSTAFF"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.QUARTERSTAFF"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4869,8 +4869,8 @@
   CommandName: "dragonsteel_lightning_throwing_axe"
   CustomModelData: 83707
   Lore:
-    - "LOREADDER.THROWING_AXE"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.THROWING_AXE"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4884,8 +4884,8 @@
   CommandName: "dragonsteel_lightning_throwing_knife"
   CustomModelData: 83708
   Lore:
-    - "LOREADDER.THROWING_KNIFE"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.THROWING_KNIFE"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4899,8 +4899,8 @@
   CommandName: "dragonsteel_lightning_warhammer"
   CustomModelData: 83709
   Lore:
-    - "LOREADDER.WARHAMMER"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.WARHAMMER"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4914,8 +4914,8 @@
   CommandName: "dragonsteel_lightning_battleaxe"
   CustomModelData: 83655
   Lore:
-    - "LOREADDER.BATTLEAXE"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.BATTLEAXE"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4929,8 +4929,8 @@
   CommandName: "dragonsteel_lightning_longbow"
   CustomModelData: 83657
   Lore:
-    - "LOREADDER.LONGBOW"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.LONGBOW"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -4944,8 +4944,8 @@
   CommandName: "dragonsteel_lightning_crossbow"
   CustomModelData: 83656
   Lore:
-    - "LOREADDER.CROSSBOW"
-    - "LOREADDER.LIGHTNING_DRAGONSTEEL"
+    - "LOREPRESET.CROSSBOW"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:

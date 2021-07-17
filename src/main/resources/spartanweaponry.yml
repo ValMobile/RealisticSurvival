@@ -443,44 +443,44 @@ Battleaxe:
 Longbow:
   DragonBone:
     AttackDamageMultiplier: 1.75
-    arrowVelocityMultiplier: 1.75
+    ArrowVelocityMultiplier: 1.75
   FlamedDragonBone:
     AttackDamageMultiplier: 2.0
-    arrowVelocityMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
   IcedDragonBone:
     AttackDamageMultiplier: 2.0
-    arrowVelocityMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
   LightningDragonBone:
     AttackDamageMultiplier: 2.0
-    arrowVelocityMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
   FireDragonsteel:
     AttackDamageMultiplier: 3.0
-    arrowVelocityMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0
   IceDragonsteel:
     AttackDamageMultiplier: 3.0
-    arrowVelocityMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0
   LightningDragonsteel:
     AttackDamageMultiplier: 3.0
-    arrowVelocityMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0
 Crossbow:
   DragonBone:
     AttackDamageMultiplier: 1.75
-    arrowVelocityMultiplier: 1.75
+    ArrowVelocityMultiplier: 1.75
   FlamedDragonBone:
     AttackDamageMultiplier: 2.0
-    arrowVelocityMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
   IcedDragonBone:
     AttackDamageMultiplier: 2.0
-    arrowVelocityMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
   LightningDragonBone:
     AttackDamageMultiplier: 2.0
-    arrowVelocityMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
   FireDragonsteel:
     AttackDamageMultiplier: 3.0
-    arrowVelocityMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0
   IceDragonsteel:
     AttackDamageMultiplier: 3.0
-    arrowVelocityMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0
   LightningDragonsteel:
     AttackDamageMultiplier: 3.0
-    arrowVelocityMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0

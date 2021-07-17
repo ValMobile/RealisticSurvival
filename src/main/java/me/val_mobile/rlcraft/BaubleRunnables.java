@@ -4,11 +4,24 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
+/**
+ * BaubleRunnables is a utility class containing methods that
+ * execute various runnables to allow for correct functioning of baubles
+ * @author Val_Mobile
+ * @version 1.2
+ * @since 1.0
+ */
 public class BaubleRunnables {
 
+    /**
+     * Effects the player with resistance if they have rings of resistance and
+     * automatically cancels if the player doesn't have any
+     * @param player The target player
+     * @see BaubleAbilities
+     * @see Utils
+     */
     public static BukkitRunnable getPotionRingResistanceRunnable(Player player) {
-        String name = CustomItems.getPotionRingResistance().getItemMeta().getDisplayName();
+        String name = CustomItems.getPotionRingResistance().getItemMeta().getDisplayName(); // get the name of the
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
             @Override

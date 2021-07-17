@@ -9,15 +9,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.projectiles.ProjectileSource;
-
-import java.util.List;
 
 public class DragonGearEvents implements Listener {
 
@@ -160,13 +157,13 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.DragonBoneCrossbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.DragonBone.AttackDamageMultiplier"));
                                                 break;
                                             case "Longbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.DragonBoneLongbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.DragonBone.AttackDamageMultiplier"));
                                                 break;
                                             case "Bow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.DragonBoneBow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getIceFireGearConfig().getDouble("Bow.DragonBone.AttackDamageMultiplier"));
                                                 break;
                                         }
                                     }
@@ -186,10 +183,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.FlamedDragonBoneCrossbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.FlamedDragonBone.AttackDamageMultiplier"));
                                                 break;
                                             case "Longbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.FlamedDragonBone.AttackDamageMultiplier"));
                                                 break;
                                         }
                                     }
@@ -209,10 +206,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.IcedDragonBoneCrossbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.IcedDragonBone.AttackDamageMultiplier"));
                                                 break;
                                             case "Longbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.IcedDragonBoneLongbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.IcedDragonBone.AttackDamageMultiplier"));
                                                 break;
                                         }
                                     }
@@ -232,10 +229,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.LightningDragonBoneCrossbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.LightningDragonBone.AttackDamageMultiplier"));
                                                 break;
                                             case "Longbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.LightningDragonBoneLongbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.LightningDragonBone.AttackDamageMultiplier"));
                                                 break;
                                         }
                                     }
@@ -245,10 +242,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.FireDragonsteelCrossbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.FireDragonsteel.AttackDamageMultiplier"));
                                                 break;
                                             case "Longbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.FireDragonsteelLongbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.FireDragonsteel.AttackDamageMultiplier"));
                                                 break;
                                         }
                                     }
@@ -258,10 +255,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.IceDragonsteelCrossbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.IceDragonsteel.AttackDamageMultiplier"));
                                                 break;
                                             case "Longbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.IceDragonsteelLongbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.IceDragonsteel.AttackDamageMultiplier"));
                                                 break;
                                         }
                                     }
@@ -271,10 +268,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.LightningDragonsteelCrossbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.LightningDragonsteel.AttackDamageMultiplier"));
                                                 break;
                                             case "Longbow":
-                                                event.setDamage(event.getDamage() * plugin.getConfig().getDouble("weapons.LightningDragonsteelLongbow.attackDamageMultiplier"));
+                                                event.setDamage(event.getDamage() * CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.LightningDragonsteel.AttackDamageMultiplier"));
                                                 break;
                                         }
                                     }
@@ -306,28 +303,6 @@ public class DragonGearEvents implements Listener {
     }
 
     @EventHandler
-    public void onPlayerHit(PlayerInteractEvent event) {
-        if (! (event.getItem() == null || event.getItem().getType() == Material.AIR) ) {
-            Player player = event.getPlayer();
-            NBTItem item = new NBTItem(event.getItem());
-            if (item.hasKey("Spartan's Weapon")) {
-                switch (item.getString("Spartan's Weapon")) {
-                    case "Greatsword":
-                        List<Entity> list = player.getNearbyEntities(6, 6, 6);
-                        for (Entity e : list) {
-                            if (player.hasLineOfSight(e)) {
-                                if (e.getLocation().toVector().distance(player.getLocation().toVector()) > 3) {
-                                    break;
-                                }
-                            }
-                        }
-                        break;
-                }
-            }
-        }
-    }
-
-    @EventHandler
     public void onProjectileLaunch(ProjectileLaunchEvent event) {
         Projectile projectile = event.getEntity();
         ProjectileSource shooter = projectile.getShooter();
@@ -344,13 +319,13 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.DragonBoneCrossbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.DragonBone.VelocityMultiplier")));
                                                 break;
                                             case "Longbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.DragonBoneLongbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.DragonBone.VelocityMultiplier")));
                                                 break;
                                             case "Bow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.DragonBoneBow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Bow.DragonBone.VelocityMultiplier")));
                                                 break;
                                         }
                                     }
@@ -359,10 +334,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.FlamedDragonBoneCrossbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.FlamedDragonBone.VelocityMultiplier")));
                                                 break;
                                             case "Longbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.FlamedDragonBoneLongbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.FlamedDragonBone.VelocityMultiplier")));
                                                 break;
                                         }
                                     }
@@ -370,10 +345,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.IcedDragonBoneCrossbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.IcedDragonBone.VelocityMultiplier")));
                                                 break;
                                             case "Longbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.IcedDragonBoneLongbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.IcedDragonBone.VelocityMultiplier")));
                                                 break;
                                         }
                                     }
@@ -382,10 +357,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.LightningDragonBoneCrossbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.LightningDragonBone.VelocityMultiplier")));
                                                 break;
                                             case "Longbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.LightningDragonBoneLongbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.LightningDragonBone.VelocityMultiplier")));
                                                 break;
                                         }
                                     }
@@ -394,10 +369,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.FireDragonsteelCrossbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.FireDragonsteel.VelocityMultiplier")));
                                                 break;
                                             case "Longbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.FireDragonsteelLongbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.FireDragonsteel.VelocityMultiplier")));
                                                 break;
                                         }
                                     }
@@ -406,10 +381,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.IceDragonsteelCrossbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.IceDragonsteel.VelocityMultiplier")));
                                                 break;
                                             case "Longbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.IceDragonsteelLongbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.IceDragonsteel.VelocityMultiplier")));
                                                 break;
                                         }
                                     }
@@ -418,10 +393,10 @@ public class DragonGearEvents implements Listener {
                                     if (item.hasKey("Spartan's Weapon")) {
                                         switch (item.getString("Spartan's Weapon")) {
                                             case "Crossbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.LightningDragonsteelCrossbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Crossbow.LightningDragonsteel.VelocityMultiplier")));
                                                 break;
                                             case "Longbow":
-                                                projectile.setVelocity(projectile.getVelocity().multiply(plugin.getConfig().getDouble("weapons.LightningDragonsteelLongbow.velocityMultiplier")));
+                                                projectile.setVelocity(projectile.getVelocity().multiply(CustomConfig.getSpartanWeaponryConfig().getDouble("Longbow.LightningDragonsteel.VelocityMultiplier")));
                                                 break;
                                         }
                                     }

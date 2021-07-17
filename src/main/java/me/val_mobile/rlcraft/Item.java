@@ -23,7 +23,7 @@ import java.util.*;
 
 public class Item extends ItemStack {
 
-    private static final String LOREADDER = "LOREADDER";
+    private static final String LOREPRESET = "LOREPRESET";
     public static final String PICKAXE = "Pickaxe";
     public static final String AXE = "Axe";
     public static final String SHOVEL = "Shovel";
@@ -123,9 +123,9 @@ public class Item extends ItemStack {
 
         if (! (lore == null || lore.isEmpty()) ) {
             for (String s : lore) {
-                if (s.startsWith(LOREADDER)) {
-                    String key = s.substring(LOREADDER.length() + 1);
-                    Utils.useLoreAdder(newLore, key);
+                if (s.startsWith(LOREPRESET)) {
+                    String key = s.substring(LOREPRESET.length() + 1);
+                    Utils.useLorePreset(newLore, key);
                 }
                 else {
                     newLore.add(ChatColor.translateAlternateColorCodes('&', s));
@@ -248,9 +248,9 @@ public class Item extends ItemStack {
 
         if (! (lore == null || lore.isEmpty()) ) {
             for (String s : lore) {
-                if (s.startsWith(LOREADDER)) {
-                    String key = s.substring(LOREADDER.length() + 1);
-                    Utils.useLoreAdder(newLore, key);
+                if (s.startsWith(LOREPRESET)) {
+                    String key = s.substring(LOREPRESET.length() + 1);
+                    Utils.useLorePreset(newLore, key);
                 }
                 else {
                     newLore.add(ChatColor.translateAlternateColorCodes('&', s));

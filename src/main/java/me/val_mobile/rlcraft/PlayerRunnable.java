@@ -88,11 +88,6 @@ public class PlayerRunnable extends BukkitRunnable {
     }
 
     @Override
-    public synchronized BukkitTask runTaskLater(Plugin plugin, long delay) throws IllegalArgumentException, IllegalStateException {
-        return super.runTaskLater(plugin, delay);
-    }
-
-    @Override
     public void run() {
 
     }
@@ -183,10 +178,6 @@ public class PlayerRunnable extends BukkitRunnable {
 
     public static HashMap<String, Boolean> getMinersRingRunnables() {
         return minersRingRunnables;
-    }
-
-    public static HashMap<String, Boolean> getCrossNecklaceRunnables() {
-        return getCrossNecklaceRunnables();
     }
 
     public static HashMap<String, Boolean> getShieldHonorRunnables() {
