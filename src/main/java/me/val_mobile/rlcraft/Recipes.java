@@ -1569,7 +1569,7 @@ public class Recipes {
     public ShapedRecipe getWarpedScrollRecipe() {
 
         ItemStack warpedScroll = CustomItems.getWarpedScroll();
-        Utils.resizeItem(warpedScroll, 3);
+        warpedScroll.setAmount(3);
 
         NamespacedKey key = new NamespacedKey(plugin, "warped_scroll");
 

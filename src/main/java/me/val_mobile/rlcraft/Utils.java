@@ -27,15 +27,8 @@ public class Utils {
     public static final double ATTACK_SPEED_CONSTANT = -4.0;
 
     private final RLCraft plugin;
-    private final BaubleRunnables baubleRunnables = new BaubleRunnables();
     public Utils(RLCraft instance) {
         plugin = instance;
-    }
-
-    public static void resizeItem(ItemStack item, int amount) {
-
-        item.setAmount(amount);
-
     }
 
     public static void addDragonSkullLore(ItemStack item, int stage, String dragon) {
@@ -1034,7 +1027,7 @@ public class Utils {
         }
     }
 
-    public static String getLowercaseAtrName(String name) {
+    public static String toLowercaseAttributeName(String name) {
         switch (name) {
             case "GENERIC_ATTACK_DAMAGE":
                 return "generic.attackDamage";
@@ -1049,7 +1042,7 @@ public class Utils {
         }
     }
 
-    public static double getCorrectAtrAmount(Attribute attribute, double requestedValue) {
+    public static double getCorrectAttributeValue(Attribute attribute, double requestedValue) {
         switch (attribute) {
             case GENERIC_ATTACK_DAMAGE:
                 return requestedValue + Utils.ATTACK_DAMAGE_CONSTANT;
@@ -1178,7 +1171,7 @@ public class Utils {
         }
     }
 
-    public static String translateInformalAtrName(String name) {
+    public static String translateInformalAttributeName(String name) {
         switch (name) {
             case "AttackDamage":
                 return "GENERIC_ATTACK_DAMAGE";

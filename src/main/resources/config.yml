@@ -16,6 +16,11 @@ NoPermission: "&cYou do not have permission to do this!"
 NoOnlinePlayer: "&cThe specified player is not online!"
 MisspelledPlayer: "&cThe specified player's name was misspelled"
 MisspelledItemName: "&cYou mispelled the item!"
+CorrectVersion:
+  - "&fYou are running the latest version"
+OutdatedVersion:
+  - "&7You are running on an outdated version"
+  - "&7Update to receive the latest features! https://www.spigotmc.org/resources/rlcraft-1-17-baubles-dragons-sea-serpents.93795/history"
 
 #######################################
 #          Gameplay Features          #
@@ -25,14 +30,16 @@ MisspelledItemName: "&cYou mispelled the item!"
 # There are 6 other configs to customize the individual details of each feature
 # Resource pack is disabled by default to allow for integration of it into
 # your own custom server pack if needed
+# NOTE: You must restart the server after enabling or disabling any feature
 ResourcePack:
   Enabled: false
-  URL: "https://www.dropbox.com/s/czj0lzu4jajr4qs/RLCraft-Addons%20RP.zip?dl=1"
+  URL: "https://www.dropbox.com/s/ra53k6zarnm28nq/RLCraft-Addons%20RP.zip?dl=1"
 UnlockRecipes: true
 NoTreePunching: true
 Dragons: true
 SeaSerpents: true
 Witherbones: true
 Baubles: true
+SpartanWeaponry: true
 LycanitesMobs: true
 Waystones: true

@@ -1487,7 +1487,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Dragon Bone"
+    Material Type: "Dragon Bone"
     Spartan's Weapon: "Bow"
 127:
   Material: "DIAMOND_SWORD"
@@ -1503,7 +1503,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
 128:
   Material: "DIAMOND_SWORD"
   Amount: 1
@@ -1518,7 +1518,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
 129:
   Material: "DIAMOND_SWORD"
   Amount: 1
@@ -1533,7 +1533,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
 130:
   Material: "PRISMARINE_SHARD"
   Amount: 1
@@ -1679,6 +1679,7 @@
   CustomModelData: 83662
   Lore:
     - "&9Increases jump height and negates some fall damage."
+    - ""
     - "&6Bauble (Any)"
   NBTTags:
     Bauble: "Balloon"
@@ -2327,11 +2328,7 @@
   DisplayName: "&fPotion of Fire Resistance"
   CodeName: "PotionFireResistance"
   CommandName: "potion_fire_resistance"
-  Color: ORANGE
-  Effects:
-    FIRE_RESISTANCE:
-      Amplifier: 0
-      Duration: 3600
+  Effects: "FIRE_RESISTANCE"
 197:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -2344,7 +2341,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
 198:
   Material: "NETHERITE_PICKAXE"
   Amount: 1
@@ -2357,7 +2354,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
 199:
   Material: "NETHERITE_AXE"
   Amount: 1
@@ -2370,7 +2367,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
 200:
   Material: "NETHERITE_SHOVEL"
   Amount: 1
@@ -2383,7 +2380,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
 201:
   Material: "NETHERITE_HOE"
   Amount: 1
@@ -2396,7 +2393,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
 202:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -2409,7 +2406,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
 203:
   Material: "NETHERITE_PICKAXE"
   Amount: 1
@@ -2422,7 +2419,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
 204:
   Material: "NETHERITE_AXE"
   Amount: 1
@@ -2435,7 +2432,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
 205:
   Material: "NETHERITE_SHOVEL"
   Amount: 1
@@ -2448,7 +2445,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
 206:
   Material: "NETHERITE_HOE"
   Amount: 1
@@ -2461,7 +2458,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
 207:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -2474,7 +2471,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
 208:
   Material: "NETHERITE_PICKAXE"
   Amount: 1
@@ -2487,7 +2484,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
 209:
   Material: "NETHERITE_AXE"
   Amount: 1
@@ -2500,7 +2497,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
 210:
   Material: "NETHERITE_SHOVEL"
   Amount: 1
@@ -2513,7 +2510,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
 211:
   Material: "NETHERITE_HOE"
   Amount: 1
@@ -2526,7 +2523,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
 212:
   Material: "NETHERITE_HELMET"
   Amount: 1
@@ -2955,7 +2952,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Dragon Bone"
+    Material Type: "Dragon Bone"
     Spartan's Weapon: "Longbow"
 245:
   Material: "CROSSBOW"
@@ -2969,7 +2966,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Dragon Bone"
+    Material Type: "Dragon Bone"
     Spartan's Weapon: "Crossbow"
 246:
   Material: "DIAMOND_SWORD"
@@ -2984,7 +2981,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Rapier"
 247:
   Material: "DIAMOND_SWORD"
@@ -2999,7 +2996,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Katana"
 248:
   Material: "DIAMOND_SWORD"
@@ -3014,7 +3011,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Greatsword"
 249:
   Material: "DIAMOND_SWORD"
@@ -3029,7 +3026,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Longsword"
 250:
   Material: "DIAMOND_SWORD"
@@ -3044,7 +3041,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Spear"
 251:
   Material: "DIAMOND_SWORD"
@@ -3059,7 +3056,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Saber"
 252:
   Material: "DIAMOND_SWORD"
@@ -3074,7 +3071,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Boomerang"
 253:
   Material: "DIAMOND_SWORD"
@@ -3089,7 +3086,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Dagger"
 254:
   Material: "DIAMOND_SWORD"
@@ -3104,7 +3101,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Glaive"
 255:
   Material: "DIAMOND_SWORD"
@@ -3119,7 +3116,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Halberd"
 256:
   Material: "DIAMOND_SWORD"
@@ -3134,7 +3131,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Hammer"
 257:
   Material: "DIAMOND_SWORD"
@@ -3149,7 +3146,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Javelin"
 258:
   Material: "DIAMOND_SWORD"
@@ -3164,7 +3161,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Lance"
 259:
   Material: "DIAMOND_SWORD"
@@ -3179,7 +3176,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Mace"
 260:
   Material: "DIAMOND_SWORD"
@@ -3194,7 +3191,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Pike"
 261:
   Material: "DIAMOND_SWORD"
@@ -3209,7 +3206,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Quarterstaff"
 262:
   Material: "DIAMOND_SWORD"
@@ -3224,7 +3221,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Throwing Axe"
 263:
   Material: "DIAMOND_SWORD"
@@ -3239,7 +3236,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Throwing Knife"
 264:
   Material: "DIAMOND_SWORD"
@@ -3254,7 +3251,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Warhammer"
 265:
   Material: "DIAMOND_AXE"
@@ -3269,7 +3266,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Battleaxe"
 266:
   Material: "BOW"
@@ -3284,7 +3281,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Longbow"
 267:
   Material: "CROSSBOW"
@@ -3299,7 +3296,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragon Bone"
+    Material Type: "Fire Dragon Bone"
     Spartan's Weapon: "Crossbow"
 268:
   Material: "DIAMOND_SWORD"
@@ -3314,7 +3311,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Rapier"
 269:
   Material: "DIAMOND_SWORD"
@@ -3329,7 +3326,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Katana"
 270:
   Material: "DIAMOND_SWORD"
@@ -3344,7 +3341,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Greatsword"
 271:
   Material: "DIAMOND_SWORD"
@@ -3359,7 +3356,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Longsword"
 272:
   Material: "DIAMOND_SWORD"
@@ -3374,7 +3371,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Spear"
 273:
   Material: "DIAMOND_SWORD"
@@ -3389,7 +3386,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Saber"
 274:
   Material: "DIAMOND_SWORD"
@@ -3404,7 +3401,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Boomerang"
 275:
   Material: "DIAMOND_SWORD"
@@ -3419,7 +3416,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Dagger"
 276:
   Material: "DIAMOND_SWORD"
@@ -3434,7 +3431,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Glaive"
 277:
   Material: "DIAMOND_SWORD"
@@ -3449,7 +3446,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Halberd"
 278:
   Material: "DIAMOND_SWORD"
@@ -3464,7 +3461,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Hammer"
 279:
   Material: "DIAMOND_SWORD"
@@ -3479,7 +3476,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Javelin"
 280:
   Material: "DIAMOND_SWORD"
@@ -3494,7 +3491,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Lance"
 281:
   Material: "DIAMOND_SWORD"
@@ -3509,7 +3506,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Mace"
 282:
   Material: "DIAMOND_SWORD"
@@ -3524,7 +3521,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Pike"
 283:
   Material: "DIAMOND_SWORD"
@@ -3539,7 +3536,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Quarterstaff"
 284:
   Material: "DIAMOND_SWORD"
@@ -3554,7 +3551,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Throwing Axe"
 285:
   Material: "DIAMOND_SWORD"
@@ -3569,7 +3566,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Throwing Knife"
 286:
   Material: "DIAMOND_SWORD"
@@ -3584,7 +3581,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Warhammer"
 287:
   Material: "DIAMOND_AXE"
@@ -3599,7 +3596,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Battleaxe"
 288:
   Material: "BOW"
@@ -3614,7 +3611,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Longbow"
 289:
   Material: "CROSSBOW"
@@ -3629,7 +3626,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragon Bone"
+    Material Type: "Ice Dragon Bone"
     Spartan's Weapon: "Crossbow"
 290:
   Material: "DIAMOND_SWORD"
@@ -3644,7 +3641,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Rapier"
 291:
   Material: "DIAMOND_SWORD"
@@ -3659,7 +3656,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Katana"
 292:
   Material: "DIAMOND_SWORD"
@@ -3674,7 +3671,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Greatsword"
 293:
   Material: "DIAMOND_SWORD"
@@ -3689,7 +3686,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Longsword"
 294:
   Material: "DIAMOND_SWORD"
@@ -3704,7 +3701,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Spear"
 295:
   Material: "DIAMOND_SWORD"
@@ -3719,7 +3716,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Saber"
 296:
   Material: "DIAMOND_SWORD"
@@ -3734,7 +3731,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Boomerang"
 297:
   Material: "DIAMOND_SWORD"
@@ -3749,7 +3746,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Dagger"
 298:
   Material: "DIAMOND_SWORD"
@@ -3764,7 +3761,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Glaive"
 299:
   Material: "DIAMOND_SWORD"
@@ -3779,7 +3776,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Halberd"
 300:
   Material: "DIAMOND_SWORD"
@@ -3794,7 +3791,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Hammer"
 301:
   Material: "DIAMOND_SWORD"
@@ -3809,7 +3806,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Javelin"
 302:
   Material: "DIAMOND_SWORD"
@@ -3824,7 +3821,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Lance"
 303:
   Material: "DIAMOND_SWORD"
@@ -3839,7 +3836,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Mace"
 304:
   Material: "DIAMOND_SWORD"
@@ -3854,7 +3851,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Pike"
 305:
   Material: "DIAMOND_SWORD"
@@ -3869,7 +3866,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Quarterstaff"
 306:
   Material: "DIAMOND_SWORD"
@@ -3884,7 +3881,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Throwing Axe"
 307:
   Material: "DIAMOND_SWORD"
@@ -3899,7 +3896,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Throwing Knife"
 308:
   Material: "DIAMOND_SWORD"
@@ -3914,7 +3911,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Warhammer"
 309:
   Material: "DIAMOND_AXE"
@@ -3929,7 +3926,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Battleaxe"
 310:
   Material: "BOW"
@@ -3944,7 +3941,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Longbow"
 311:
   Material: "CROSSBOW"
@@ -3959,7 +3956,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragon Bone"
+    Material Type: "Lightning Dragon Bone"
     Spartan's Weapon: "Crossbow"
 312:
   Material: "NETHERITE_SWORD"
@@ -3974,7 +3971,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Rapier"
 313:
   Material: "NETHERITE_SWORD"
@@ -3989,7 +3986,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Katana"
 314:
   Material: "NETHERITE_SWORD"
@@ -4004,7 +4001,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Greatsword"
 315:
   Material: "NETHERITE_SWORD"
@@ -4019,7 +4016,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Longsword"
 316:
   Material: "NETHERITE_SWORD"
@@ -4034,7 +4031,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Spear"
 317:
   Material: "NETHERITE_SWORD"
@@ -4049,7 +4046,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Saber"
 318:
   Material: "NETHERITE_SWORD"
@@ -4064,7 +4061,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Boomerang"
 319:
   Material: "NETHERITE_SWORD"
@@ -4079,7 +4076,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Dagger"
 320:
   Material: "NETHERITE_SWORD"
@@ -4094,7 +4091,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Glaive"
 321:
   Material: "NETHERITE_SWORD"
@@ -4109,7 +4106,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Halberd"
 322:
   Material: "NETHERITE_SWORD"
@@ -4124,7 +4121,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Hammer"
 323:
   Material: "NETHERITE_SWORD"
@@ -4139,7 +4136,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Javelin"
 324:
   Material: "NETHERITE_SWORD"
@@ -4154,7 +4151,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Lance"
 325:
   Material: "NETHERITE_SWORD"
@@ -4169,7 +4166,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Mace"
 326:
   Material: "NETHERITE_SWORD"
@@ -4184,7 +4181,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Pike"
 327:
   Material: "NETHERITE_SWORD"
@@ -4199,7 +4196,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Quarterstaff"
 328:
   Material: "NETHERITE_SWORD"
@@ -4214,7 +4211,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Throwing Axe"
 329:
   Material: "NETHERITE_SWORD"
@@ -4229,7 +4226,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Throwing Knife"
 330:
   Material: "NETHERITE_SWORD"
@@ -4244,7 +4241,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Warhammer"
 331:
   Material: "NETHERITE_AXE"
@@ -4259,7 +4256,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Battleaxe"
 332:
   Material: "BOW"
@@ -4274,7 +4271,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Longbow"
 333:
   Material: "CROSSBOW"
@@ -4289,7 +4286,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Fire Dragonsteel"
+    Material Type: "Fire Dragonsteel"
     Spartan's Weapon: "Crossbow"
 334:
   Material: "NETHERITE_SWORD"
@@ -4304,7 +4301,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Rapier"
 335:
   Material: "NETHERITE_SWORD"
@@ -4319,7 +4316,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Katana"
 336:
   Material: "NETHERITE_SWORD"
@@ -4334,7 +4331,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Greatsword"
 337:
   Material: "NETHERITE_SWORD"
@@ -4349,7 +4346,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Longsword"
 338:
   Material: "NETHERITE_SWORD"
@@ -4364,7 +4361,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Spear"
 339:
   Material: "NETHERITE_SWORD"
@@ -4379,7 +4376,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Saber"
 340:
   Material: "NETHERITE_SWORD"
@@ -4394,7 +4391,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Boomerang"
 341:
   Material: "NETHERITE_SWORD"
@@ -4409,7 +4406,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Dagger"
 342:
   Material: "NETHERITE_SWORD"
@@ -4424,7 +4421,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Glaive"
 343:
   Material: "NETHERITE_SWORD"
@@ -4439,7 +4436,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Halberd"
 344:
   Material: "NETHERITE_SWORD"
@@ -4454,7 +4451,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Hammer"
 345:
   Material: "NETHERITE_SWORD"
@@ -4469,7 +4466,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Javelin"
 346:
   Material: "NETHERITE_SWORD"
@@ -4484,7 +4481,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Lance"
 347:
   Material: "NETHERITE_SWORD"
@@ -4499,7 +4496,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Mace"
 348:
   Material: "NETHERITE_SWORD"
@@ -4514,7 +4511,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Pike"
 349:
   Material: "NETHERITE_SWORD"
@@ -4529,7 +4526,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Quarterstaff"
 350:
   Material: "NETHERITE_SWORD"
@@ -4544,7 +4541,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Throwing Axe"
 351:
   Material: "NETHERITE_SWORD"
@@ -4559,7 +4556,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Throwing Knife"
 352:
   Material: "NETHERITE_SWORD"
@@ -4574,7 +4571,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Warhammer"
 353:
   Material: "NETHERITE_AXE"
@@ -4589,7 +4586,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Battleaxe"
 354:
   Material: "BOW"
@@ -4604,7 +4601,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Longbow"
 355:
   Material: "CROSSBOW"
@@ -4619,7 +4616,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Ice Dragonsteel"
+    Material Type: "Ice Dragonsteel"
     Spartan's Weapon: "Crossbow"
 356:
   Material: "NETHERITE_SWORD"
@@ -4634,7 +4631,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Rapier"
 357:
   Material: "NETHERITE_SWORD"
@@ -4649,7 +4646,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Katana"
 358:
   Material: "NETHERITE_SWORD"
@@ -4664,7 +4661,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Greatsword"
 359:
   Material: "NETHERITE_SWORD"
@@ -4679,7 +4676,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Longsword"
 360:
   Material: "NETHERITE_SWORD"
@@ -4694,7 +4691,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Spear"
 361:
   Material: "NETHERITE_SWORD"
@@ -4709,7 +4706,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Saber"
 362:
   Material: "NETHERITE_SWORD"
@@ -4724,7 +4721,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Boomerang"
 363:
   Material: "NETHERITE_SWORD"
@@ -4739,7 +4736,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Dagger"
 364:
   Material: "NETHERITE_SWORD"
@@ -4754,7 +4751,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Glaive"
 365:
   Material: "NETHERITE_SWORD"
@@ -4769,7 +4766,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Halberd"
 366:
   Material: "NETHERITE_SWORD"
@@ -4784,7 +4781,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Hammer"
 367:
   Material: "NETHERITE_SWORD"
@@ -4799,7 +4796,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Javelin"
 368:
   Material: "NETHERITE_SWORD"
@@ -4814,7 +4811,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Lance"
 369:
   Material: "NETHERITE_SWORD"
@@ -4829,7 +4826,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Mace"
 370:
   Material: "NETHERITE_SWORD"
@@ -4844,7 +4841,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Pike"
 371:
   Material: "NETHERITE_SWORD"
@@ -4859,7 +4856,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Quarterstaff"
 372:
   Material: "NETHERITE_SWORD"
@@ -4874,7 +4871,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Throwing Axe"
 373:
   Material: "NETHERITE_SWORD"
@@ -4889,7 +4886,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Throwing Knife"
 374:
   Material: "NETHERITE_SWORD"
@@ -4904,7 +4901,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Warhammer"
 375:
   Material: "NETHERITE_AXE"
@@ -4919,7 +4916,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Battleaxe"
 376:
   Material: "BOW"
@@ -4934,7 +4931,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Longbow"
 377:
   Material: "CROSSBOW"
@@ -4949,7 +4946,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Weapon: "Lightning Dragonsteel"
+    Material Type: "Lightning Dragonsteel"
     Spartan's Weapon: "Crossbow"
 378:
   Material: "PRISMARINE_SHARD"

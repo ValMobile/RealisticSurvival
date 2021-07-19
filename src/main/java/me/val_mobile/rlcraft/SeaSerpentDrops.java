@@ -37,43 +37,43 @@ public class SeaSerpentDrops implements Listener {
             switch (scaleColor) {
                 case 0: {
                     ItemStack blueScale = CustomItems.getSeaSerpentScaleBlue();
-                    Utils.resizeItem(blueScale, scaleAmount);
+                    blueScale.setAmount(scaleAmount);
                     drops.add(blueScale);
                     break;
                 }
                 case 1: {
                     ItemStack bronzeScale = CustomItems.getSeaSerpentScaleBronze();
-                    Utils.resizeItem(bronzeScale, scaleAmount);
+                    bronzeScale.setAmount(scaleAmount);
                     drops.add(bronzeScale);
                     break;
                 }
                 case 2: {
                     ItemStack deepBlueScale = CustomItems.getSeaSerpentScaleDeepBlue();
-                    Utils.resizeItem(deepBlueScale, scaleAmount);
+                    deepBlueScale.setAmount(scaleAmount);
                     drops.add(deepBlueScale);
                     break;
                 }
                 case 3: {
                     ItemStack greenScale = CustomItems.getSeaSerpentScaleGreen();
-                    Utils.resizeItem(greenScale, scaleAmount);
+                    greenScale.setAmount(scaleAmount);
                     drops.add(greenScale);
                     break;
                 }
                 case 4: {
                     ItemStack purpleScale = CustomItems.getSeaSerpentScalePurple();
-                    Utils.resizeItem(purpleScale, scaleAmount);
+                    purpleScale.setAmount(scaleAmount);
                     drops.add(purpleScale);
                     break;
                 }
                 case 5: {
                     ItemStack redScale = CustomItems.getSeaSerpentScaleRed();
-                    Utils.resizeItem(redScale, scaleAmount);
+                    redScale.setAmount(scaleAmount);
                     drops.add(redScale);
                     break;
                 }
                 case 6: {
                     ItemStack tealScale = CustomItems.getSeaSerpentScaleTeal();
-                    Utils.resizeItem(tealScale, scaleAmount);
+                    tealScale.setAmount(scaleAmount);
                     drops.add(tealScale);
                     break;
                 }
@@ -96,7 +96,7 @@ public class SeaSerpentDrops implements Listener {
                     CustomConfig.getMobConfig().getInt("SeaSerpents.MinShinyScales"))) + CustomConfig.getMobConfig().getInt("SeaSerpents.MinShinyScales");
 
             ItemStack shinyScale = CustomItems.getShinyScale();
-            Utils.resizeItem(shinyScale, scaleAmount);
+            shinyScale.setAmount(scaleAmount);
             drops.add(shinyScale);
 
             for (ItemStack item : drops) {

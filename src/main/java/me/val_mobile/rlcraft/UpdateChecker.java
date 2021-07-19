@@ -8,7 +8,9 @@ import org.bukkit.util.Consumer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class UpdateChecker {
 
@@ -28,6 +30,29 @@ public class UpdateChecker {
                 }
             } catch (IOException exception) {
                 this.plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&',"&cCannot look for updates: " + exception.getMessage()));
+            }
+        });
+    }
+
+    public void checkUpdate() {
+        Logger logger = plugin.getLogger();
+
+        getVersion(latestVersion -> {
+            String currentVersion = plugin.getDescription().getVersion();
+
+            if (currentVersion.equalsIgnoreCase(latestVersion)) {
+                List<String> messages = plugin.getConfig().getStringList("CorrectVersion");
+
+                for (String message : messages) {
+                    logger.info(ChatColor.translateAlternateColorCodes('&', message));
+                }
+            }
+            else {
+                List<String> messages = plugin.getConfig().getStringList("OutdatedVersion");
+
+                for (String message : messages) {
+                    logger.info(ChatColor.translateAlternateColorCodes('&', message));
+                }
             }
         });
     }

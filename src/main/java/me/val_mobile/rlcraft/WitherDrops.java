@@ -35,7 +35,7 @@ public class WitherDrops implements Listener {
                     CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWither"))) + CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWither");
 
             ItemStack bone = CustomItems.getWitherbone();
-            Utils.resizeItem(bone, boneAmount);
+            bone.setAmount(boneAmount);
             drops.add(bone);
 
             for (ItemStack item : drops) {
@@ -56,7 +56,7 @@ public class WitherDrops implements Listener {
                     CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWitherSkeleton"))) + CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWitherSkeleton");
 
             ItemStack bone = CustomItems.getWitherbone();
-            Utils.resizeItem(bone, boneAmount);
+            bone.setAmount(boneAmount);
             drops.add(bone);
 
             for (ItemStack item : drops) {

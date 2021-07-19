@@ -16,8 +16,8 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 
 import java.util.*;
 
@@ -98,24 +98,15 @@ public class Item extends ItemStack {
             String colorPath = index + ".Color";
             String effectsPath = index + ".Effects";
 
-            Color color = Utils.valueOfColor(config.getString(colorPath));
-            List<String> effects = config.getStringList(effectsPath);
-
-            if (color != null) {
+            if (config.getString(colorPath) != null) {
+                Color color = Utils.valueOfColor(config.getString(colorPath));
                 ((PotionMeta) meta).setColor(color);
             }
-            if (! (effects == null || effects.isEmpty()) ) {
-                for (String effectName : effects) {
-                    PotionEffectType potionEffectType = Utils.valueOfPotionEffectType(effectName);
-                    String amplifierPath = effectsPath + "." + effectName + ".Amplifier";
-                    String durationPath = effectsPath + "." + effectName + ".Duration";
+            if (config.getString(effectsPath) != null) {
+                String effect = config.getString(effectsPath);
+                PotionType potionType = PotionType.valueOf(effect);
 
-                    int amplifier = config.getInt(amplifierPath);
-                    int duration = config.getInt(durationPath);
-
-                    PotionEffect effect = new PotionEffect(potionEffectType, amplifier, duration);
-                    ((PotionMeta) meta).addCustomEffect(effect, true);
-                }
+                ((PotionMeta) meta).setBasePotionData(new PotionData(potionType));
             }
         }
 
@@ -145,7 +136,7 @@ public class Item extends ItemStack {
                 Enchantment ench = EnchantmentWrapper.getByKey(NamespacedKey.minecraft(mcName));
                 int value = config.getInt(enchantmentsPath + "." + s);
                 if (!(ench == null || value <= 0)) {
-                    meta.addEnchant(ench, value, true);
+                    this.addUnsafeEnchantment(ench, value);
                 }
             }
         }
@@ -154,14 +145,15 @@ public class Item extends ItemStack {
             Utils.addGearLore(newLore, material);
             for (String s : attributes.getKeys(true)) {
                 Attribute atr = Attribute.valueOf(s);
-                String atrName = Utils.getLowercaseAtrName(s);
-                double value = Utils.getCorrectAtrAmount(atr, config.getDouble(attributesPath + "." + s));
+                String atrName = Utils.toLowercaseAttributeName(s);
+                double displayValue = config.getDouble(attributesPath + "." + s);
+                double correctValue = Utils.getCorrectAttributeValue(atr, displayValue);
                 AttributeModifier.Operation op = AttributeModifier.Operation.ADD_NUMBER;
                 EquipmentSlot slot = Utils.getCorrectEquipmentSlot(atr, material);
 
-                AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, value, op, slot);
-                if (!(atr == null || value <= 0.0 || atrName == null)) {
-                    Utils.addGearStats(newLore, atr, value);
+                AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, op, slot);
+                if (!(atr == null || atrName == null)) {
+                    Utils.addGearStats(newLore, atr, displayValue);
                     meta.addAttributeModifier(atr, atrMod);
                 }
             }
@@ -223,24 +215,15 @@ public class Item extends ItemStack {
             String colorPath = index + ".Color";
             String effectsPath = index + ".Effects";
 
-            Color color = Utils.valueOfColor(config.getString(colorPath));
-            List<String> effects = config.getStringList(effectsPath);
-
-            if (color != null) {
+            if (config.getString(colorPath) != null) {
+                Color color = Utils.valueOfColor(config.getString(colorPath));
                 ((PotionMeta) meta).setColor(color);
             }
-            if (! (effects == null || effects.isEmpty()) ) {
-                for (String effectName : effects) {
-                    PotionEffectType potionEffectType = Utils.valueOfPotionEffectType(effectName);
-                    String amplifierPath = effectsPath + "." + effectName + ".Amplifier";
-                    String durationPath = effectsPath + "." + effectName + ".Duration";
+            if (config.getString(effectsPath) != null) {
+                String effect = config.getString(effectsPath);
+                PotionType potionType = PotionType.valueOf(effect);
 
-                    int amplifier = config.getInt(amplifierPath);
-                    int duration = config.getInt(durationPath);
-
-                    PotionEffect effect = new PotionEffect(potionEffectType, amplifier, duration);
-                    ((PotionMeta) meta).addCustomEffect(effect, true);
-                }
+                ((PotionMeta) meta).setBasePotionData(new PotionData(potionType));
             }
         }
 
@@ -271,7 +254,7 @@ public class Item extends ItemStack {
                 Enchantment ench = EnchantmentWrapper.getByKey(NamespacedKey.minecraft(mcName));
                 int value = config.getInt(enchantmentsPath + "." + s);
                 if (!(ench == null || value <= 0)) {
-                    meta.addEnchant(ench, value, true);
+                    this.addUnsafeEnchantment(ench, value);
                 }
             }
         }
@@ -279,16 +262,17 @@ public class Item extends ItemStack {
         if (attributes != null) {
             Utils.addGearLore(newLore, material);
             for (String s : attributes.getKeys(true)) {
-                String name = Utils.translateInformalAtrName(s);
+                String name = Utils.translateInformalAttributeName(s);
                 Attribute atr = Attribute.valueOf(name);
-                String atrName = Utils.getLowercaseAtrName(name);
-                double value = Utils.getCorrectAtrAmount(atr, extraConfig.getDouble(attributesPath + "." + s));
+                String atrName = Utils.toLowercaseAttributeName(name);
+                double displayValue = extraConfig.getDouble(attributesPath + "." + s);
+                double correctValue = Utils.getCorrectAttributeValue(atr, displayValue);
                 AttributeModifier.Operation op = AttributeModifier.Operation.ADD_NUMBER;
                 EquipmentSlot slot = Utils.getCorrectEquipmentSlot(atr, material);
 
-                AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, value, op, slot);
-                if (!(atr == null || value <= 0.0 || atrName == null)) {
-                    Utils.addGearStats(newLore, atr, value);
+                AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, op, slot);
+                if (!(atr == null || atrName == null)) {
+                    Utils.addGearStats(newLore, atr, displayValue);
                     meta.addAttributeModifier(atr, atrMod);
                 }
             }

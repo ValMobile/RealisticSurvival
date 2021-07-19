@@ -6,6 +6,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
@@ -17,6 +18,7 @@ public class RLCraft extends JavaPlugin {
     private final Recipes recipes = new Recipes(this);
 
     private final NoTreePunching noTreePunching = new NoTreePunching();
+    private final SpartanWeaponryEvents spartanWeaponry = new SpartanWeaponryEvents(this);
     private final DragonFightEvents dragonFight = new DragonFightEvents(this);
     private final DragonGearEvents dragonGear = new DragonGearEvents(this);
     private final SeaSerpentGearEvents seaSerpentGear = new SeaSerpentGearEvents(this);
@@ -25,6 +27,7 @@ public class RLCraft extends JavaPlugin {
     private final LycanitesMobsEvents lycanitesMobs = new LycanitesMobsEvents();
     private final BaubleEvents bauble = new BaubleEvents(this);
     private final WaystoneEvents waystones = new WaystoneEvents();
+    private final UpdateChecker updateChecker = new UpdateChecker(this, 93795);
     
     private final Tab tab = new Tab();
 
@@ -48,15 +51,7 @@ public class RLCraft extends JavaPlugin {
         recipes.populateSeaSerpentRecipes();
         recipes.populateWaystoneRecipes();
 
-        Logger logger = this.getLogger();
-        int resourceID = 93795;
-        new UpdateChecker(this, resourceID).getVersion(version -> {
-            if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
-                logger.info(ChatColor.translateAlternateColorCodes('&', "&fYou are running the latest version"));
-            } else {
-                logger.info(ChatColor.translateAlternateColorCodes('&', "&aThere is a new update available: https://www.spigotmc.org/resources/rlcraft-1-17-baubles-dragons-sea-serpents.93795/history"));
-            }
-        });
+        updateChecker.checkUpdate();
 
         PluginManager pm = this.getServer().getPluginManager();
 
@@ -107,8 +102,12 @@ public class RLCraft extends JavaPlugin {
             pm.registerEvents(waystones, this);
         }
 
-        Objects.requireNonNull(this.getCommand("RLCraft")).setExecutor(commands);
-        Objects.requireNonNull(this.getCommand("RLCraft")).setTabCompleter(tab);
+        if (this.getConfig().getBoolean("SpartanWeaponry")) {
+            pm.registerEvents(spartanWeaponry, this);
+        }
+
+        this.getCommand("RLCraft").setExecutor(commands);
+        this.getCommand("RLCraft").setTabCompleter(tab);
     }
 
     @Override

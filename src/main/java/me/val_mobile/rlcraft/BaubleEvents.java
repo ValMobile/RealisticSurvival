@@ -38,12 +38,14 @@ import java.util.Random;
  */
 public class BaubleEvents implements Listener {
 
-    // Injecting the main and util class for use
-    // The util class must be injected because its non-static methods are needed
+    /**
+     * Dependency injecting the main and util class for use
+     * The util class must be injected because its non-static methods are needed
+     */
     private final RLCraft plugin;
     private final Utils util;
 
-    // Constructing the BaubleEvents class
+    // constructing the BaubleEvents class
     public BaubleEvents(RLCraft instance) {
         plugin = instance;
         util = new Utils(instance);
