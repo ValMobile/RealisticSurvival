@@ -1,5 +1,23 @@
 package me.val_mobile.rlcraft;
 
+import me.val_mobile.baubles.BaubleEvents;
+import me.val_mobile.commands.Commands;
+import me.val_mobile.commands.Tab;
+import me.val_mobile.dragons.DragonFightEvents;
+import me.val_mobile.dragons.DragonGearEvents;
+import me.val_mobile.dragons.DragonWorldGenEvents;
+import me.val_mobile.dragons.WitherDrops;
+import me.val_mobile.lycanites_mobs.LycanitesMobsEvents;
+import me.val_mobile.misc.BStats;
+import me.val_mobile.misc.UpdateChecker;
+import me.val_mobile.no_tree_punching.NoTreePunching;
+import me.val_mobile.sea_serpents.SeaSerpentDrops;
+import me.val_mobile.sea_serpents.SeaSerpentGearEvents;
+import me.val_mobile.spartan_weaponry.SpartanWeaponryEvents;
+import me.val_mobile.utils.CustomConfig;
+import me.val_mobile.utils.Recipes;
+import me.val_mobile.utils.Schematics;
+import me.val_mobile.waystones.WaystoneEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.PluginManager;
@@ -18,6 +36,7 @@ public class RLCraft extends JavaPlugin {
     private final SpartanWeaponryEvents spartanWeaponry = new SpartanWeaponryEvents();
     private final DragonFightEvents dragonFight = new DragonFightEvents(this);
     private final DragonGearEvents dragonGear = new DragonGearEvents(this);
+    private final DragonWorldGenEvents dragonWorldGenEvents = new DragonWorldGenEvents();
     private final SeaSerpentGearEvents seaSerpentGear = new SeaSerpentGearEvents(this);
     private final SeaSerpentDrops seaSerpentDrops = new SeaSerpentDrops(this);
     private final WitherDrops witherDrops = new WitherDrops(this);
@@ -73,6 +92,7 @@ public class RLCraft extends JavaPlugin {
 
             pm.registerEvents(dragonFight, this);
             pm.registerEvents(dragonGear, this);
+            pm.registerEvents(dragonWorldGenEvents, this);
         }
         if (this.getConfig().getBoolean("SeaSerpents")) {
             for (Recipe r : Recipes.getSeaSerpentRecipes()) {

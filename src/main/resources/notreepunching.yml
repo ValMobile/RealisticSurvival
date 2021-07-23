@@ -30,3 +30,44 @@ Knife:
   Flint:
     AttackDamage: 2.0
     AttackSpeed: 3.0
+
+# How much less durability should flint tools have compared to their wooden counterparts
+# Higher values mean less durability
+DurabilityDamageMultiplier: 2.0
+
+# The wooden blocks that should not be broken by fist
+# Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+WoodBlocks:
+  - "OAK_LOG"
+  - "OAK_WOOD"
+  - "STRIPPED_OAK_LOG"
+  - "STRIPPED_OAK_WOOD"
+  - "BIRCH_LOG"
+  - "BIRCH_WOOD"
+  - "STRIPPED_BIRCH_LOG"
+  - "STRIPPED_BIRCH_WOOD"
+  - "SPRUCE_LOG"
+  - "SPRUCE_WOOD"
+  - "STRIPPED_SPRUCE_LOG"
+  - "STRIPPED_SPRUCE_WOOD"
+  - "DARK_OAK_LOG"
+  - "DARK_OAK_WOOD"
+  - "STRIPPED_DARK_OAK_LOG"
+  - "STRIPPED_DARK_OAK_WOOD"
+  - "JUNGLE_LOG"
+  - "JUNGLE_WOOD"
+  - "STRIPPED_JUNGLE_LOG"
+  - "STRIPPED_JUNGLE_WOOD"
+  - "CRIMSON_STEM"
+  - "CRIMSON_HYPHAE"
+  - "STRIPPED_CRIMSON_STEM"
+  - "STRIPPED_CRIMSON_HYPHAE"
+  - "WARPED_STEM"
+  - "WARPED_HYPHAE"
+  - "STRIPPED_WARPED_STEM"
+  - "STRIPPED_WARPED_HYPHAE"
+
+# What blocks should be counted as grass
+GrassBlocks:
+  - "TALL_GRASS"
+  - "GRASS"

@@ -55,6 +55,7 @@ Abilities:
     Strength:
       AmplifierPerArmorPiece: 0
       Duration: 270
+    TickTime: 20
 
 Pickaxe:
   DragonBone:
