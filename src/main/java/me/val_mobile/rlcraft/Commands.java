@@ -152,7 +152,8 @@ public class Commands implements CommandExecutor {
                         customConfig.reloadMobConfig();
                         customConfig.reloadNoTreePunchingConfig();
                         customConfig.reloadLycanitesMobsConfig();
-                        customConfig.reloadItemsConfig();
+                        customConfig.reloadItemConfig();
+                        customConfig.reloadRecipeConfig();
                         return true;
                     }
 
@@ -168,7 +169,8 @@ public class Commands implements CommandExecutor {
                     customConfig.reloadMobConfig();
                     customConfig.reloadNoTreePunchingConfig();
                     customConfig.reloadLycanitesMobsConfig();
-                    customConfig.reloadItemsConfig();
+                    customConfig.reloadItemConfig();
+                    customConfig.reloadRecipeConfig();
                     return true;
                 }
                 // send the user a message explaining how to use the rlcraft command

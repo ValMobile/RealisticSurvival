@@ -17,13 +17,6 @@ import static org.bukkit.Material.SPECTRAL_ARROW;
 
 public class SpartanWeaponryEvents implements Listener {
 
-    private final Utils util;
-    private final DragonGearAbilities dragonGearAbilities;
-    public SpartanWeaponryEvents(RLCraft instance) {
-        util = new Utils(instance);
-        dragonGearAbilities = new DragonGearAbilities(instance);
-    }
-
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onProjectileLaunch(ProjectileLaunchEvent event) {
         if (!event.isCancelled()) {

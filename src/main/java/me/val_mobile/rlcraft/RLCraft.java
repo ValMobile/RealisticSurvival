@@ -1,14 +1,9 @@
 package me.val_mobile.rlcraft;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.logging.Logger;
 
 public class RLCraft extends JavaPlugin {
 
@@ -17,8 +12,10 @@ public class RLCraft extends JavaPlugin {
     private final CustomConfig customConfig = new CustomConfig(this);
     private final Recipes recipes = new Recipes(this);
 
+    private final BStats bStats = new BStats(this);
+    private final Schematics schematics = new Schematics(this);
     private final NoTreePunching noTreePunching = new NoTreePunching();
-    private final SpartanWeaponryEvents spartanWeaponry = new SpartanWeaponryEvents(this);
+    private final SpartanWeaponryEvents spartanWeaponry = new SpartanWeaponryEvents();
     private final DragonFightEvents dragonFight = new DragonFightEvents(this);
     private final DragonGearEvents dragonGear = new DragonGearEvents(this);
     private final SeaSerpentGearEvents seaSerpentGear = new SeaSerpentGearEvents(this);
@@ -36,13 +33,18 @@ public class RLCraft extends JavaPlugin {
         // Plugin startup logic
         this.saveDefaultConfig();
 
+        customConfig.createResourcesFolder();
         customConfig.createSpartanWeaponryConfig();
         customConfig.createBaubleConfig();
         customConfig.createIceFireGearConfig();
         customConfig.createMobConfig();
         customConfig.createNoTreePunchingConfig();
         customConfig.createLycanitesMobsConfig();
-        customConfig.createItemsConfig();
+        customConfig.createItemConfig();
+        customConfig.createRecipeConfig();
+
+        schematics.createSchematicsFolder();
+        schematics.createFireDragonNest();
 
         recipes.populateSpartanWeaponryRecipes();
         recipes.populateBaubleRecipes();
@@ -104,6 +106,10 @@ public class RLCraft extends JavaPlugin {
 
         if (this.getConfig().getBoolean("SpartanWeaponry")) {
             pm.registerEvents(spartanWeaponry, this);
+        }
+
+        if (this.getConfig().getBoolean("BStats")) {
+            bStats.recordData();
         }
 
         this.getCommand("RLCraft").setExecutor(commands);

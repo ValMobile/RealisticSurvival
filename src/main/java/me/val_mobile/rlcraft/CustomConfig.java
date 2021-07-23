@@ -16,6 +16,8 @@ import java.io.IOException;
 public class CustomConfig {
 
     // initializing class variables to store the yaml files
+    private static File resourcesFolder;
+
     private static File baubleConfigFile;
     private static FileConfiguration baubleConfig;
 
@@ -34,8 +36,11 @@ public class CustomConfig {
     private static File lycanitesMobsConfigFile;
     private static FileConfiguration lycanitesMobsConfig;
 
-    private static File itemsConfigFile;
-    private static FileConfiguration itemsConfig;
+    private static File itemConfigFile;
+    private static FileConfiguration itemConfig;
+
+    private static File recipeConfigFile;
+    private static FileConfiguration recipeConfig;
 
     // dependency injecting the main class for use
     private final RLCraft plugin;
@@ -202,25 +207,62 @@ public class CustomConfig {
     }
 
     /**
-     * Creates the items config if one doesn't exist already and loads it in
+     * Creates the resources folder which stores the item and recipe configs
      */
-    public void createItemsConfig() {
-        itemsConfigFile = new File(plugin.getDataFolder(), "items.yml"); // assign the config file to a new file with the name "items.yml"
+    public void createResourcesFolder() {
+        resourcesFolder = new File(plugin.getDataFolder(), "resources"); // assign resource folder to a new folder with the name "resources"
+
+        File dir = resourcesFolder.getParentFile(); // get the directory of the resources folder
+        // make any directories if they do not exist already
+        dir.mkdirs();
+    }
+
+    /**
+     * Creates the item config if one doesn't exist already and loads it in
+     */
+    public void createItemConfig() {
+        itemConfigFile = new File(plugin.getDataFolder(), "resources/items.yml"); // assign the config file to a new file with the name "items.yml"
 
         // if the file "items.yml" doesn't exist in the RLCraft plugins folder
-        if (!itemsConfigFile.exists()) {
+        if (!itemConfigFile.exists()) {
             // make a new yaml file
-            itemsConfigFile.getParentFile().mkdirs();
+            itemConfigFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
-            plugin.saveResource("items.yml", false);
+            plugin.saveResource("resources/items.yml", false);
         }
 
-        itemsConfig = new YamlConfiguration(); // assign the config to an empty config
+        itemConfig = new YamlConfiguration(); // assign the config to an empty config
 
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            itemsConfig.load(itemsConfigFile);
+            itemConfig.load(itemConfigFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            // print any exceptions that are thrown
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates the recipe config if one doesn't exist already and loads it in
+     */
+    public void createRecipeConfig() {
+        recipeConfigFile = new File(plugin.getDataFolder(), "resources/recipes.yml"); // assign the config file to a new file with the name "recipes.yml"
+
+        // if the file "recipes.yml" doesn't exist in the RLCraft plugins folder
+        if (!recipeConfigFile.exists()) {
+            // make a new yaml file
+            recipeConfigFile.getParentFile().mkdirs();
+            // save the yaml file to the plugin resources
+            plugin.saveResource("resources/recipes.yml", false);
+        }
+
+        recipeConfig = new YamlConfiguration(); // assign the config to an empty config
+
+        // catch and print any exceptions while loading config
+        try {
+            // load the file into the config
+            recipeConfig.load(recipeConfigFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -276,11 +318,19 @@ public class CustomConfig {
     }
 
     /**
-     * Gets the items config
+     * Gets the item config
      * @return The config holding information of the custom items' meta
      */
-    public static FileConfiguration getItemsConfig() {
-        return itemsConfig;
+    public static FileConfiguration getItemConfig() {
+        return itemConfig;
+    }
+
+    /**
+     * Gets the recipe config
+     * @return The config holding information of the custom recipes
+     */
+    public static FileConfiguration getRecipeConfig() {
+        return recipeConfig;
     }
 
     /**
@@ -332,11 +382,19 @@ public class CustomConfig {
     }
 
     /**
-     * Assigns the current items config to a new one
+     * Assigns the current item config to a new one
      * @param config The new config which the current items config should be set to
      */
-    public void setItemsConfig(FileConfiguration config) {
-        itemsConfig = config;
+    public void setItemConfig(FileConfiguration config) {
+        itemConfig = config;
+    }
+
+    /**
+     * Assigns the current recipe config to a new one
+     * @param config The new config which the current recipe config should be set to
+     */
+    public void setRecipeConfig(FileConfiguration config) {
+        recipeConfig = config;
     }
 
     /**
@@ -384,7 +442,14 @@ public class CustomConfig {
     /**
      * Reloads the items config to use the most recent values
      */
-    public void reloadItemsConfig() {
-        setItemsConfig(YamlConfiguration.loadConfiguration(itemsConfigFile));
+    public void reloadItemConfig() {
+        setItemConfig(YamlConfiguration.loadConfiguration(itemConfigFile));
+    }
+
+    /**
+     * Reloads the recipe config to use the most recent values
+     */
+    public void reloadRecipeConfig() {
+        setItemConfig(YamlConfiguration.loadConfiguration(recipeConfigFile));
     }
 }

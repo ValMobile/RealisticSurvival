@@ -1,0 +1,7 @@
+0:
+  Result:
+    Item: "flint_axe"
+    Amount: 1
+  Ingredients:
+    - "STRING|flint_shard"
+    - "STICK"

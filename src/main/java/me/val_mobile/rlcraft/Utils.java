@@ -1808,4 +1808,186 @@ public class Utils {
         }
     }
 
+    public static void getNextChar(Character character) {
+        switch (character) {
+            case 'A':
+                character = 'B';
+            case 'B':
+                character = 'C';
+            case 'C':
+                character = 'D';
+            case 'D':
+                character = 'E';
+            case 'E':
+                character = 'F';
+            case 'F':
+                character = 'G';
+            case 'G':
+                character = 'H';
+            case 'H':
+                character = 'I';
+            case 'I':
+                character = 'J';
+            case 'J':
+                character = 'K';
+            case 'K':
+                character = 'L';
+            case 'L':
+                character = 'M';
+            case 'M':
+                character = 'N';
+            case 'N':
+                character = 'O';
+            case 'O':
+                character = 'P';
+            case 'P':
+                character = 'Q';
+            case 'Q':
+                character = 'R';
+            case 'R':
+                character = 'S';
+            case 'S':
+                character = 'T';
+            case 'T':
+                character = 'U';
+            case 'U':
+                character = 'V';
+            case 'V':
+                character = 'W';
+            case 'W':
+                character = 'X';
+            case 'X':
+                character = 'Y';
+            case 'Y':
+                character = 'Z';
+            case 'Z':
+                character = 'A';
+            case 'a':
+                character = 'b';
+            case 'b':
+                character = 'c';
+            case 'c':
+                character = 'd';
+            case 'd':
+                character = 'e';
+            case 'e':
+                character = 'f';
+            case 'f':
+                character = 'g';
+            case 'g':
+                character = 'h';
+            case 'h':
+                character = 'i';
+            case 'i':
+                character = 'j';
+            case 'j':
+                character = 'k';
+            case 'k':
+                character = 'l';
+            case 'l':
+                character = 'm';
+            case 'm':
+                character = 'n';
+            case 'n':
+                character = 'o';
+            case 'o':
+                character = 'p';
+            case 'p':
+                character = 'q';
+            case 'q':
+                character = 'r';
+            case 'r':
+                character = 's';
+            case 's':
+                character = 't';
+            case 't':
+                character = 'u';
+            case 'u':
+                character = 'v';
+            case 'v':
+                character = 'w';
+            case 'w':
+                character = 'x';
+            case 'x':
+                character = 'y';
+            case 'y':
+                character = 'z';
+            case 'z':
+                character = 'a';
+        }
+    }
+
+    public static ItemStack[] getItemsFromString(String raw) {
+        ItemStack[] items = new ItemStack[3];
+
+        int firstIndex;
+        int lastIndex;
+
+        firstIndex = raw.indexOf("|");
+        lastIndex = raw.lastIndexOf("|");
+
+        if (firstIndex != -1) {
+            String name = raw.substring(0, firstIndex);
+            if (firstIndex == lastIndex) {
+                ItemStack item;
+                if (Item.getItemMap().containsKey(name)) {
+                    item = Item.getItem(Item.getItemMap().get(name));
+                }
+                else {
+                    item = new ItemStack(Material.valueOf(name));
+                }
+                items[0] = item;
+
+                name = raw.substring(firstIndex + 1);
+                if (Item.getItemMap().containsKey(name)) {
+                    item = Item.getItem(Item.getItemMap().get(name));
+                }
+                else {
+                    item = new ItemStack(Material.valueOf(name));
+                }
+                items[1] = item;
+            }
+            else {
+                ItemStack item;
+                if (Item.getItemMap().containsKey(name)) {
+                    item = Item.getItem(Item.getItemMap().get(name));
+                }
+                else {
+                    item = new ItemStack(Material.valueOf(name));
+                }
+                items[0] = item;
+
+                name = raw.substring(firstIndex + 1, lastIndex);
+                if (Item.getItemMap().containsKey(name)) {
+                    item = Item.getItem(Item.getItemMap().get(name));
+                }
+                else {
+                    item = new ItemStack(Material.valueOf(name));
+                }
+                items[1] = item;
+
+                name = raw.substring(lastIndex + 1);
+                if (Item.getItemMap().containsKey(name)) {
+                    item = Item.getItem(Item.getItemMap().get(name));
+                }
+                else {
+                    item = new ItemStack(Material.valueOf(name));
+                }
+                items[2] = item;
+            }
+        }
+        else {
+            String name = raw;
+            ItemStack item;
+            if (Item.getItemMap().containsKey(name)) {
+                item = Item.getItem(Item.getItemMap().get(name));
+            }
+            else {
+                item = new ItemStack(Material.valueOf(name));
+            }
+            items[0] = item;
+        }
+
+        return items;
+    }
 }

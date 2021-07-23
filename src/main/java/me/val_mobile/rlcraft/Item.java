@@ -59,7 +59,7 @@ public class Item extends ItemStack {
     private static Collection<String> commandNames = new ArrayList<>();
     private static HashMap<String, Integer> itemMap = new HashMap<>();
     private ItemStack nmsItem;
-    private String codeName;
+    private String configName;
     private String commandName;
 
     public Item(FileConfiguration config, int index)  {
@@ -68,7 +68,7 @@ public class Item extends ItemStack {
         String materialPath = index + ".Material";
         String customModelDataPath = index + ".CustomModelData";
         String displayNamePath = index + ".DisplayName";
-        String codeNamePath = index + ".CodeName";
+        String configNamePath = index + ".ConfigName";
         String commandNamePath = index + ".CommandName";
         String lorePath = index + ".Lore";
         String itemFlagsPath = index + ".ItemFlags";
@@ -89,7 +89,7 @@ public class Item extends ItemStack {
         int customModelData = config.getInt(customModelDataPath);
 
         String displayName = config.getString(displayNamePath);
-        codeName = config.getString(codeNamePath);
+        configName = config.getString(configNamePath);
         commandName = config.getString(commandNamePath);
         commandNames.add(commandName);
         itemMap.put(commandName, index);
@@ -184,14 +184,14 @@ public class Item extends ItemStack {
         String materialPath = index + ".Material";
         String customModelDataPath = index + ".CustomModelData";
         String displayNamePath = index + ".DisplayName";
-        String codeNamePath = index + ".CodeName";
-        codeName = config.getString(codeNamePath);
+        String configNamePath = index + ".ConfigName";
+        configName = config.getString(configNamePath);
 
         String commandNamePath = index + ".CommandName";
         String lorePath = index + ".Lore";
         String itemFlagsPath = index + ".ItemFlags";
         String enchantmentsPath = index + ".Enchantments";
-        String attributesPath = gearType + "." + codeName;
+        String attributesPath = gearType + "." + configName;
         String nbtTagsPath = index + ".NBTTags";
 
         List<String> itemFlags = config.getStringList(itemFlagsPath);
@@ -301,8 +301,8 @@ public class Item extends ItemStack {
         return nmsItem;
     }
 
-    public String getCodeName() {
-        return codeName;
+    public String getConfigName() {
+        return configName;
     }
 
     public String getCommandName() {
@@ -318,6 +318,6 @@ public class Item extends ItemStack {
     }
 
     public static ItemStack getItem(int index) {
-        return new Item(CustomConfig.getItemsConfig(), index).getNmsItem();
+        return new Item(CustomConfig.getItemConfig(), index).getNmsItem();
     }
 }
