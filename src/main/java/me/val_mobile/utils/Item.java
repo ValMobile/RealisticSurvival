@@ -116,7 +116,7 @@ public class Item extends ItemStack {
             for (String s : lore) {
                 if (s.startsWith(LOREPRESET)) {
                     String key = s.substring(LOREPRESET.length() + 1);
-                    Utils.useLorePreset(newLore, key);
+                    LorePresets.useLorePreset(newLore, key);
                 }
                 else {
                     newLore.add(ChatColor.translateAlternateColorCodes('&', s));
@@ -142,7 +142,7 @@ public class Item extends ItemStack {
         }
 
         if (attributes != null) {
-            Utils.addGearLore(newLore, material);
+            LorePresets.addGearLore(newLore, material);
             for (String s : attributes.getKeys(true)) {
                 Attribute atr = Attribute.valueOf(s);
                 String atrName = Utils.toLowercaseAttributeName(s);
@@ -153,7 +153,7 @@ public class Item extends ItemStack {
 
                 AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, op, slot);
                 if (!(atr == null || atrName == null)) {
-                    Utils.addGearStats(newLore, atr, displayValue);
+                    LorePresets.addGearStats(newLore, atr, displayValue);
                     meta.addAttributeModifier(atr, atrMod);
                 }
             }
@@ -233,7 +233,7 @@ public class Item extends ItemStack {
             for (String s : lore) {
                 if (s.startsWith(LOREPRESET)) {
                     String key = s.substring(LOREPRESET.length() + 1);
-                    Utils.useLorePreset(newLore, key);
+                    LorePresets.useLorePreset(newLore, key);
                 }
                 else {
                     newLore.add(ChatColor.translateAlternateColorCodes('&', s));
@@ -260,7 +260,7 @@ public class Item extends ItemStack {
         }
 
         if (attributes != null) {
-            Utils.addGearLore(newLore, material);
+            LorePresets.addGearLore(newLore, material);
             for (String s : attributes.getKeys(true)) {
                 String name = Utils.translateInformalAttributeName(s);
                 Attribute atr = Attribute.valueOf(name);
@@ -272,7 +272,7 @@ public class Item extends ItemStack {
 
                 AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, op, slot);
                 if (!(atr == null || atrName == null)) {
-                    Utils.addGearStats(newLore, atr, displayValue);
+                    LorePresets.addGearStats(newLore, atr, displayValue);
                     meta.addAttributeModifier(atr, atrMod);
                 }
             }

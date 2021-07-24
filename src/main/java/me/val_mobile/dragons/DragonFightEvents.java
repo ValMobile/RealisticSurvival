@@ -3,6 +3,7 @@ package me.val_mobile.dragons;
 import me.val_mobile.rlcraft.RLCraft;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
+import me.val_mobile.utils.LorePresets;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -253,7 +254,7 @@ public class DragonFightEvents implements Listener {
                     flesh.setAmount(fleshAmount);
 
                     // add a lore to the dragon skull showing the breed and stage
-                    Utils.addDragonSkullLore(skull, stage, dragonBreed);
+                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
 
                     // add the items into the drop collection
                     drops.add(blood);
@@ -307,7 +308,7 @@ public class DragonFightEvents implements Listener {
                     blood.setAmount(bloodAmount);
                     flesh.setAmount(fleshAmount);
 
-                    Utils.addDragonSkullLore(skull, stage, dragonBreed);
+                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
 
                     drops.add(blood);
                     drops.add(flesh);
@@ -355,7 +356,7 @@ public class DragonFightEvents implements Listener {
                     blood.setAmount(bloodAmount);
                     flesh.setAmount(fleshAmount);
 
-                    Utils.addDragonSkullLore(skull, stage, dragonBreed);
+                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
 
                     drops.add(blood);
                     drops.add(flesh);
@@ -424,7 +425,7 @@ public class DragonFightEvents implements Listener {
                     blood.setAmount(scaleAmount);
                     flesh.setAmount(scaleAmount);
 
-                    Utils.addDragonSkullLore(skull, stage, dragonBreed);
+                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
 
                     drops.add(blood);
                     drops.add(flesh);
@@ -472,7 +473,7 @@ public class DragonFightEvents implements Listener {
                     blood.setAmount(bloodAmount);
                     flesh.setAmount(fleshAmount);
 
-                    Utils.addDragonSkullLore(skull, stage, dragonBreed);
+                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
 
                     drops.add(blood);
                     drops.add(flesh);
@@ -521,7 +522,7 @@ public class DragonFightEvents implements Listener {
                     blood.setAmount(bloodAmount);
                     flesh.setAmount(fleshAmount);
 
-                    Utils.addDragonSkullLore(skull, stage, dragonBreed);
+                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
 
                     drops.add(blood);
                     drops.add(flesh);

@@ -2,6 +2,7 @@ package me.val_mobile.sea_serpents;
 
 import de.tr7zw.nbtapi.NBTItem;
 import me.val_mobile.rlcraft.RLCraft;
+import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.PlayerRunnable;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Material;
@@ -10,6 +11,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class SeaSerpentGearRunnables {
+
+    private final RLCraft plugin;
+
+    public SeaSerpentGearRunnables(RLCraft instance) {
+        plugin = instance;
+    }
 
     public static void updateTideGuardianArmor(Player player) {
         int pieces = 0;
@@ -34,5 +41,17 @@ public class SeaSerpentGearRunnables {
                 }
             }
         };
+    }
+
+    public void startTideGuardianRunnable(Player player) {
+        String name = player.getName();
+
+        int tickSpeed = CustomConfig.getIceFireGearConfig().getInt("Abilities.TideGuardian.TickTime");
+        SeaSerpentGearRunnables.getTideGuardianArmorRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        Utils.setOrReplaceEntry(PlayerRunnable.getTideArmorRunnables(), name, true);
+    }
+
+    public static void resetArmorMaps(Player player) {
+        Utils.setOrReplaceEntry(PlayerRunnable.getTideArmor(), player.getName(), 0);
     }
 }

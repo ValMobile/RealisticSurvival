@@ -24,10 +24,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class SeaSerpentGearEvents implements Listener {
 
     private final RLCraft plugin;
-    private final Utils util;
+    private final SeaSerpentGearRunnables seaSerpentGearRunnables;
     public SeaSerpentGearEvents(RLCraft instance) {
         plugin = instance;
-        util = new Utils(instance);
+        seaSerpentGearRunnables = new SeaSerpentGearRunnables(instance);
     }
 
     @EventHandler
@@ -50,7 +50,7 @@ public class SeaSerpentGearEvents implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
 
-        Utils.resetBaubleMaps(player);
+        SeaSerpentGearRunnables.resetArmorMaps(player);
     }
 
     @EventHandler (priority = EventPriority.MONITOR)
@@ -67,7 +67,7 @@ public class SeaSerpentGearEvents implements Listener {
                         @Override
                         public void run() {
                             SeaSerpentGearRunnables.updateTideGuardianArmor(player);
-                            util.startTideGuardianRunnable(player);
+                            seaSerpentGearRunnables.startTideGuardianRunnable(player);
                         }
                     }.runTaskLater(plugin, 1L);
                 }
@@ -85,7 +85,7 @@ public class SeaSerpentGearEvents implements Listener {
                     @Override
                     public void run() {
                         SeaSerpentGearRunnables.updateTideGuardianArmor(player);
-                        util.startTideGuardianRunnable(player);
+                        seaSerpentGearRunnables.startTideGuardianRunnable(player);
                     }
                 }.runTaskLater(plugin, 1L);
             }
@@ -103,7 +103,7 @@ public class SeaSerpentGearEvents implements Listener {
                         @Override
                         public void run() {
                             SeaSerpentGearRunnables.updateTideGuardianArmor(player);
-                            util.startTideGuardianRunnable(player);
+                            seaSerpentGearRunnables.startTideGuardianRunnable(player);
                         }
                     }.runTaskLater(plugin, 1L);
                 }
@@ -116,7 +116,7 @@ public class SeaSerpentGearEvents implements Listener {
                         @Override
                         public void run() {
                             SeaSerpentGearRunnables.updateTideGuardianArmor(player);
-                            util.startTideGuardianRunnable(player);
+                            seaSerpentGearRunnables.startTideGuardianRunnable(player);
                         }
                     }.runTaskLater(plugin, 1L);
                 }
@@ -135,7 +135,7 @@ public class SeaSerpentGearEvents implements Listener {
                         @Override
                         public void run() {
                             SeaSerpentGearRunnables.updateTideGuardianArmor(player);
-                            util.startTideGuardianRunnable(player);
+                            seaSerpentGearRunnables.startTideGuardianRunnable(player);
                         }
                     }.runTaskLater(plugin, 1L);
                 }

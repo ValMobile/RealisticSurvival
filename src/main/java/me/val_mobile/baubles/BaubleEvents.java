@@ -21,7 +21,6 @@ import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -45,12 +44,12 @@ public class BaubleEvents implements Listener {
      * The util class must be injected because its non-static methods are needed
      */
     private final RLCraft plugin;
-    private final Utils util;
+    private final BaubleRunnables baubleRunnables;
 
     // constructing the BaubleEvents class
     public BaubleEvents(RLCraft instance) {
         plugin = instance;
-        util = new Utils(instance);
+        baubleRunnables = new BaubleRunnables(instance);
     }
 
     /**
@@ -65,21 +64,21 @@ public class BaubleEvents implements Listener {
         Player player = event.getPlayer(); // get the player
 
         // create new values in the static hashmaps
-        Utils.resetBaubleMaps(player);
-        Utils.updateBaubleValues(player);
+        BaubleRunnables.resetBaubleMaps(player);
+        BaubleRunnables.updateBaubleValues(player);
 
         // start every bauble runnable
-        util.startPrResRunnable(player);
-        util.startPrStrengthRunnable(player);
-        util.startPrSpeedRunnable(player);
-        util.startPrJumpRunnable(player);
-        util.startPrHasteRunnable(player);
-        util.startPrRegenRunnable(player);
+        baubleRunnables.startPrResRunnable(player);
+        baubleRunnables.startPrStrengthRunnable(player);
+        baubleRunnables.startPrSpeedRunnable(player);
+        baubleRunnables.startPrJumpRunnable(player);
+        baubleRunnables.startPrHasteRunnable(player);
+        baubleRunnables.startPrRegenRunnable(player);
 
-        util.startScarliteRingRunnable(player);
-        util.startDragonsEyeRunnable(player);
-        util.startMinersRingRunnable(player);
-        util.startShieldHonorRunnable(player);
+        baubleRunnables.startScarliteRingRunnable(player);
+        baubleRunnables.startDragonsEyeRunnable(player);
+        baubleRunnables.startMinersRingRunnable(player);
+        baubleRunnables.startShieldHonorRunnable(player);
 
         // give the player every bauble recipe
         for (Recipe r : Recipes.getBaubleRecipes()) {
@@ -105,19 +104,7 @@ public class BaubleEvents implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         // set all the bauble values of the target player to 0
-        Utils.resetBaubleMaps(event.getEntity());
-    }
-
-    /**
-     * Sets the amount of baubles in the static hashmaps to 0 when he/she leaves the server
-     * @param event The event called when a player leaves the server
-     * @see PlayerRunnable
-     * @see Utils
-     */
-    @EventHandler
-    public void onPlayerLeave(PlayerQuitEvent event) {
-        // set all the bauble values of the target player to 0
-        Utils.resetBaubleMaps(event.getPlayer());
+        BaubleRunnables.resetBaubleMaps(event.getEntity());
     }
 
     /**
@@ -149,8 +136,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrResValues(player);
-                                        util.startPrResRunnable(player);
+                                        BaubleRunnables.updatePrResValues(player);
+                                        baubleRunnables.startPrResRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -158,8 +145,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrRegenValues(player);
-                                        util.startPrRegenRunnable(player);
+                                        BaubleRunnables.updatePrRegenValues(player);
+                                        baubleRunnables.startPrRegenRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -167,8 +154,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrStrengthValues(player);
-                                        util.startPrStrengthRunnable(player);
+                                        BaubleRunnables.updatePrStrengthValues(player);
+                                        baubleRunnables.startPrStrengthRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -176,8 +163,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrSpeedValues(player);
-                                        util.startPrSpeedRunnable(player);
+                                        BaubleRunnables.updatePrSpeedValues(player);
+                                        baubleRunnables.startPrSpeedRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -185,8 +172,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrJumpValues(player);
-                                        util.startPrJumpRunnable(player);
+                                        BaubleRunnables.updatePrJumpValues(player);
+                                        baubleRunnables.startPrJumpRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -194,8 +181,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrHasteValues(player);
-                                        util.startPrHasteRunnable(player);
+                                        BaubleRunnables.updatePrHasteValues(player);
+                                        baubleRunnables.startPrHasteRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -203,8 +190,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateMinersRingValues(player);
-                                        util.startMinersRingRunnable(player);
+                                        BaubleRunnables.updateMinersRingValues(player);
+                                        baubleRunnables.startMinersRingRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -212,8 +199,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateScarliteRingValues(player);
-                                        util.startScarliteRingRunnable(player);
+                                        BaubleRunnables.updateScarliteRingValues(player);
+                                        baubleRunnables.startScarliteRingRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -221,8 +208,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateDragonsEyeValues(player);
-                                        util.startDragonsEyeRunnable(player);
+                                        BaubleRunnables.updateDragonsEyeValues(player);
+                                        baubleRunnables.startDragonsEyeRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -230,8 +217,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateShieldHonorValues(player);
-                                        util.startShieldHonorRunnable(player);
+                                        BaubleRunnables.updateShieldHonorValues(player);
+                                        baubleRunnables.startShieldHonorRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -267,8 +254,8 @@ public class BaubleEvents implements Listener {
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    Utils.updatePrResValues(player);
-                                    util.startPrResRunnable(player);
+                                    BaubleRunnables.updatePrResValues(player);
+                                    baubleRunnables.startPrResRunnable(player);
                                 }
                             }.runTaskLater(plugin, 1L);
                             break;
@@ -276,8 +263,8 @@ public class BaubleEvents implements Listener {
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    Utils.updatePrRegenValues(player);
-                                    util.startPrRegenRunnable(player);
+                                    BaubleRunnables.updatePrRegenValues(player);
+                                    baubleRunnables.startPrRegenRunnable(player);
                                 }
                             }.runTaskLater(plugin, 1L);
                             break;
@@ -285,8 +272,8 @@ public class BaubleEvents implements Listener {
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    Utils.updatePrStrengthValues(player);
-                                    util.startPrStrengthRunnable(player);
+                                    BaubleRunnables.updatePrStrengthValues(player);
+                                    baubleRunnables.startPrStrengthRunnable(player);
                                 }
                             }.runTaskLater(plugin, 1L);
                             break;
@@ -294,8 +281,8 @@ public class BaubleEvents implements Listener {
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    Utils.updatePrSpeedValues(player);
-                                    util.startPrSpeedRunnable(player);
+                                    BaubleRunnables.updatePrSpeedValues(player);
+                                    baubleRunnables.startPrSpeedRunnable(player);
                                 }
                             }.runTaskLater(plugin, 1L);
                             break;
@@ -303,8 +290,8 @@ public class BaubleEvents implements Listener {
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    Utils.updatePrJumpValues(player);
-                                    util.startPrJumpRunnable(player);
+                                    BaubleRunnables.updatePrJumpValues(player);
+                                    baubleRunnables.startPrJumpRunnable(player);
                                 }
                             }.runTaskLater(plugin, 1L);
                             break;
@@ -312,8 +299,8 @@ public class BaubleEvents implements Listener {
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    Utils.updatePrHasteValues(player);
-                                    util.startPrHasteRunnable(player);
+                                    BaubleRunnables.updatePrHasteValues(player);
+                                    baubleRunnables.startPrHasteRunnable(player);
                                 }
                             }.runTaskLater(plugin, 1L);
                             break;
@@ -321,8 +308,8 @@ public class BaubleEvents implements Listener {
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    Utils.updateMinersRingValues(player);
-                                    util.startMinersRingRunnable(player);
+                                    BaubleRunnables.updateMinersRingValues(player);
+                                    baubleRunnables.startMinersRingRunnable(player);
                                 }
                             }.runTaskLater(plugin, 1L);
                             break;
@@ -330,8 +317,8 @@ public class BaubleEvents implements Listener {
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    Utils.updateScarliteRingValues(player);
-                                    util.startScarliteRingRunnable(player);
+                                    BaubleRunnables.updateScarliteRingValues(player);
+                                    baubleRunnables.startScarliteRingRunnable(player);
                                 }
                             }.runTaskLater(plugin, 1L);
                             break;
@@ -339,8 +326,8 @@ public class BaubleEvents implements Listener {
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    Utils.updateDragonsEyeValues(player);
-                                    util.startDragonsEyeRunnable(player);
+                                    BaubleRunnables.updateDragonsEyeValues(player);
+                                    baubleRunnables.startDragonsEyeRunnable(player);
                                 }
                             }.runTaskLater(plugin, 1L);
                             break;
@@ -348,8 +335,8 @@ public class BaubleEvents implements Listener {
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    Utils.updateShieldHonorValues(player);
-                                    util.startShieldHonorRunnable(player);
+                                    BaubleRunnables.updateShieldHonorValues(player);
+                                    baubleRunnables.startShieldHonorRunnable(player);
                                 }
                             }.runTaskLater(plugin, 1L);
                             break;
@@ -386,8 +373,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrResValues(player);
-                                        util.startPrResRunnable(player);
+                                        BaubleRunnables.updatePrResValues(player);
+                                        baubleRunnables.startPrResRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -395,8 +382,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrRegenValues(player);
-                                        util.startPrRegenRunnable(player);
+                                        BaubleRunnables.updatePrRegenValues(player);
+                                        baubleRunnables.startPrRegenRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -404,8 +391,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrStrengthValues(player);
-                                        util.startPrStrengthRunnable(player);
+                                        BaubleRunnables.updatePrStrengthValues(player);
+                                        baubleRunnables.startPrStrengthRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -413,8 +400,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrSpeedValues(player);
-                                        util.startPrSpeedRunnable(player);
+                                        BaubleRunnables.updatePrSpeedValues(player);
+                                        baubleRunnables.startPrSpeedRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -422,8 +409,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrJumpValues(player);
-                                        util.startPrJumpRunnable(player);
+                                        BaubleRunnables.updatePrJumpValues(player);
+                                        baubleRunnables.startPrJumpRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -431,8 +418,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrHasteValues(player);
-                                        util.startPrHasteRunnable(player);
+                                        BaubleRunnables.updatePrHasteValues(player);
+                                        baubleRunnables.startPrHasteRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -440,8 +427,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateMinersRingValues(player);
-                                        util.startMinersRingRunnable(player);
+                                        BaubleRunnables.updateMinersRingValues(player);
+                                        baubleRunnables.startMinersRingRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -449,8 +436,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateScarliteRingValues(player);
-                                        util.startScarliteRingRunnable(player);
+                                        BaubleRunnables.updateScarliteRingValues(player);
+                                        baubleRunnables.startScarliteRingRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -458,8 +445,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateDragonsEyeValues(player);
-                                        util.startDragonsEyeRunnable(player);
+                                        BaubleRunnables.updateDragonsEyeValues(player);
+                                        baubleRunnables.startDragonsEyeRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -467,8 +454,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateShieldHonorValues(player);
-                                        util.startShieldHonorRunnable(player);
+                                        BaubleRunnables.updateShieldHonorValues(player);
+                                        baubleRunnables.startShieldHonorRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -488,8 +475,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrResValues(player);
-                                        util.startPrResRunnable(player);
+                                        BaubleRunnables.updatePrResValues(player);
+                                        baubleRunnables.startPrResRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -497,8 +484,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrRegenValues(player);
-                                        util.startPrRegenRunnable(player);
+                                        BaubleRunnables.updatePrRegenValues(player);
+                                        baubleRunnables.startPrRegenRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -506,8 +493,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrStrengthValues(player);
-                                        util.startPrStrengthRunnable(player);
+                                        BaubleRunnables.updatePrStrengthValues(player);
+                                        baubleRunnables.startPrStrengthRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -515,8 +502,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrSpeedValues(player);
-                                        util.startPrSpeedRunnable(player);
+                                        BaubleRunnables.updatePrSpeedValues(player);
+                                        baubleRunnables.startPrSpeedRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -524,8 +511,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrJumpValues(player);
-                                        util.startPrJumpRunnable(player);
+                                        BaubleRunnables.updatePrJumpValues(player);
+                                        baubleRunnables.startPrJumpRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -533,8 +520,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrHasteValues(player);
-                                        util.startPrHasteRunnable(player);
+                                        BaubleRunnables.updatePrHasteValues(player);
+                                        baubleRunnables.startPrHasteRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -542,8 +529,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateMinersRingValues(player);
-                                        util.startMinersRingRunnable(player);
+                                        BaubleRunnables.updateMinersRingValues(player);
+                                        baubleRunnables.startMinersRingRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -551,8 +538,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateScarliteRingValues(player);
-                                        util.startScarliteRingRunnable(player);
+                                        BaubleRunnables.updateScarliteRingValues(player);
+                                        baubleRunnables.startScarliteRingRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -560,8 +547,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateDragonsEyeValues(player);
-                                        util.startDragonsEyeRunnable(player);
+                                        BaubleRunnables.updateDragonsEyeValues(player);
+                                        baubleRunnables.startDragonsEyeRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -569,8 +556,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateShieldHonorValues(player);
-                                        util.startShieldHonorRunnable(player);
+                                        BaubleRunnables.updateShieldHonorValues(player);
+                                        baubleRunnables.startShieldHonorRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -609,8 +596,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrResValues(player);
-                                        util.startPrResRunnable(player);
+                                        BaubleRunnables.updatePrResValues(player);
+                                        baubleRunnables.startPrResRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -618,8 +605,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrRegenValues(player);
-                                        util.startPrRegenRunnable(player);
+                                        BaubleRunnables.updatePrRegenValues(player);
+                                        baubleRunnables.startPrRegenRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -627,8 +614,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrStrengthValues(player);
-                                        util.startPrStrengthRunnable(player);
+                                        BaubleRunnables.updatePrStrengthValues(player);
+                                        baubleRunnables.startPrStrengthRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -636,8 +623,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrSpeedValues(player);
-                                        util.startPrSpeedRunnable(player);
+                                        BaubleRunnables.updatePrSpeedValues(player);
+                                        baubleRunnables.startPrSpeedRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -645,8 +632,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrJumpValues(player);
-                                        util.startPrJumpRunnable(player);
+                                        BaubleRunnables.updatePrJumpValues(player);
+                                        baubleRunnables.startPrJumpRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -654,8 +641,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updatePrHasteValues(player);
-                                        util.startPrHasteRunnable(player);
+                                        BaubleRunnables.updatePrHasteValues(player);
+                                        baubleRunnables.startPrHasteRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -663,8 +650,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateMinersRingValues(player);
-                                        util.startMinersRingRunnable(player);
+                                        BaubleRunnables.updateMinersRingValues(player);
+                                        baubleRunnables.startMinersRingRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -672,8 +659,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateScarliteRingValues(player);
-                                        util.startScarliteRingRunnable(player);
+                                        BaubleRunnables.updateScarliteRingValues(player);
+                                        baubleRunnables.startScarliteRingRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -681,8 +668,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateDragonsEyeValues(player);
-                                        util.startDragonsEyeRunnable(player);
+                                        BaubleRunnables.updateDragonsEyeValues(player);
+                                        baubleRunnables.startDragonsEyeRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -690,8 +677,8 @@ public class BaubleEvents implements Listener {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
-                                        Utils.updateShieldHonorValues(player);
-                                        util.startShieldHonorRunnable(player);
+                                        BaubleRunnables.updateShieldHonorValues(player);
+                                        baubleRunnables.startShieldHonorRunnable(player);
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;

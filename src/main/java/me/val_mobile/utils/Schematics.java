@@ -66,8 +66,8 @@ public class Schematics {
             // create the file
             fireDragonNest.getParentFile().mkdirs();
 
-//            // save the file to the plugin resources, overwriting any previous schematic files
-//            plugin.saveResource(fireDragonNest.getPath(), true);
+            // save the file to the plugin resources, overwriting any previous schematic files
+            plugin.saveResource(fireDragonNest.getPath(), true);
         }
     }
 
