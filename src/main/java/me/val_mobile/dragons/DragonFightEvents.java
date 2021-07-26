@@ -1,3 +1,35 @@
+/*
+    Copyright (C) 2021  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+/*
+    Copyright (C) 2021  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.dragons;
 
 import me.val_mobile.rlcraft.RLCraft;
@@ -53,14 +85,17 @@ public class DragonFightEvents implements Listener {
      * @param event The event called when an entity spawns
      * @see Utils
      */
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onEntitySpawn(EntitySpawnEvent event) {
-        // if the entity spawned is an ender dragon
-        if (event.getEntity() instanceof EnderDragon) {
+        // if the event is active
+        if (!event.isCancelled()) {
             Entity entity = event.getEntity(); // get the entity
 
-            // add ice and fire information to the dragon
-            util.addDragonContainers(entity);
+            // if the entity spawned is an ender dragon
+            if (entity instanceof EnderDragon) {
+                // add ice and fire information to the dragon
+                util.addDragonContainers(entity);
+            }
         }
     }
 
@@ -73,6 +108,7 @@ public class DragonFightEvents implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onProjectileLaunch(ProjectileLaunchEvent event) {
+        // if the event is active
         if (!event.isCancelled()) {
             // if the projectile launched is a dragon fireball
             if (event.getEntity() instanceof DragonFireball) {
@@ -124,6 +160,7 @@ public class DragonFightEvents implements Listener {
                 else if (dragonBreed.equals("Ice")) {
                     // check if the dragon's fireball attack should be replaced with a special attack
                     if (!(random <= CustomConfig.getMobConfig().getDouble("Dragons.IceDragon.NormalAttack.Chance"))) {
+
                         // check if the dragon's special attack should be a breath attack
                         if (random <= CustomConfig.getMobConfig().getDouble("Dragons.IceDragon.NormalAttack.Chance") + CustomConfig.getMobConfig().getDouble("Dragons.IceDragon.BreathAttack.Chance")) {
                             new BukkitRunnable() {
@@ -191,7 +228,6 @@ public class DragonFightEvents implements Listener {
      */
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
-
         // if the entity that died was a dragon
         if (event.getEntity() instanceof EnderDragon) {
 
@@ -211,6 +247,23 @@ public class DragonFightEvents implements Listener {
             String dragonBreed = util.getDragonType(entity);  // get the breed of the dragon
             int stage = util.getDragonStage(entity); // get the stage of the dragon
 
+            Random r = new Random(); // create a random variable for calculations
+
+            // initialize loot items
+            ItemStack bone = CustomItems.getDragonBone();
+            ItemStack heart = null;
+            ItemStack blood = null;
+            ItemStack flesh = null;
+            ItemStack skull = null;
+            ItemStack scales = null;
+
+            // initialize the drop amounts of the loot
+            int scaleAmount;
+            int boneAmount;
+            int bloodAmount;
+            int fleshAmount;
+            int scaleColor = (int) Math.round(r.nextDouble() * 3); // only 4 scale colors for each dragon breed
+
             /**
              * Check if recursive drop rates are enabled for dragons.
              * Recursive drop rates favor more balanced drop rates. If a lot of scales drop,
@@ -218,8 +271,6 @@ public class DragonFightEvents implements Listener {
              * in the canonical Ice and Fire mod.
              */
             if (CustomConfig.getMobConfig().getBoolean("Dragons.RecursiveDropRates.Enabled")) {
-                Random r = new Random(); // create a random variable to perform calcalations
-
                 /**
                  * Scale amount is between the minimum and maximum specified values.
                  * Bone amount is calculated by subtracting the scale amount and adding a minimum bone amount.
@@ -227,333 +278,208 @@ public class DragonFightEvents implements Listener {
                  * Dragon flesh and blood amounts are determined by multiplying the scale amount
                  * by a specified multiplier.
                  */
-                int scaleAmount = (int) Math.round(r.nextDouble() *
+                scaleAmount = (int) Math.round(r.nextDouble() *
                         (CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MaxScales") - CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MinScales") ))
                         + CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MinScales");
-                int boneAmount = CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MaxScales") - scaleAmount + CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MinBones");
-                int bloodAmount = (int) Math.round(scaleAmount * CustomConfig.getMobConfig().getDouble("Dragons.RecursiveDropRates.BloodMultiplier"));
-                int fleshAmount = (int) Math.round(scaleAmount * CustomConfig.getMobConfig().getDouble("Dragons.RecursiveDropRates.FleshMultiplier"));
-
-                // create and add the bone to the drop list
-                ItemStack bone = CustomItems.getDragonBone();
-                bone.setAmount(boneAmount);
-
-                drops.add(bone);
+                boneAmount = CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MaxScales") - scaleAmount + CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MinBones");
+                bloodAmount = (int) Math.round(scaleAmount * CustomConfig.getMobConfig().getDouble("Dragons.RecursiveDropRates.BloodMultiplier"));
+                fleshAmount = (int) Math.round(scaleAmount * CustomConfig.getMobConfig().getDouble("Dragons.RecursiveDropRates.FleshMultiplier"));
 
                 // if the dragon's breed is fire
                 if (dragonBreed.equals("Fire")) {
 
                     // create fire dragon loot, scales are determined later
-                    ItemStack heart = CustomItems.getFireDragonHeart();
-                    ItemStack blood = CustomItems.getFireDragonBlood();
-                    ItemStack flesh = CustomItems.getFireDragonFlesh();
-                    ItemStack skull = CustomItems.getFireDragonSkull();
+                    heart = CustomItems.getFireDragonHeart();
+                    blood = CustomItems.getFireDragonBlood();
+                    flesh = CustomItems.getFireDragonFlesh();
+                    skull = CustomItems.getFireDragonSkull();
 
-                    // resize the blood and flesh amounts
-                    blood.setAmount(bloodAmount);
-                    flesh.setAmount(fleshAmount);
-
-                    // add a lore to the dragon skull showing the breed and stage
-                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
-
-                    // add the items into the drop collection
-                    drops.add(blood);
-                    drops.add(flesh);
-                    drops.add(heart);
-                    drops.add(skull);
-
-                    /**
-                     * Randomly determine what scale color to use. There
-                     * are 4 scale colors for the fire dragon.
-                     */
-                    int scaleColor = (int) Math.round(r.nextDouble() * 3);
-
-                    //
+                    // randomly determine the scale color
                     switch (scaleColor) {
                         case 0: {
-                            ItemStack bronzeScale = CustomItems.getDragonScaleBronze();
-                            bronzeScale.setAmount(scaleAmount);
-                            drops.add(bronzeScale);
+                            scales = CustomItems.getDragonScaleBronze(); // bronze scale
                             break;
                         }
                         case 1: {
-                            ItemStack grayScale = CustomItems.getDragonScaleGray();
-                            grayScale.setAmount(scaleAmount);
-                            drops.add(grayScale);
+                            scales = CustomItems.getDragonScaleGray(); // gray scale
                             break;
                         }
                         case 2: {
-                            ItemStack greenScale = CustomItems.getDragonScaleGreen();
-                            greenScale.setAmount(scaleAmount);
-                            drops.add(greenScale);
+                            scales = CustomItems.getDragonScaleGreen(); // green scale
                             break;
                         }
                         case 3: {
-                            ItemStack redScale = CustomItems.getDragonScaleRed();
-                            redScale.setAmount(scaleAmount);
-                            drops.add(redScale);
+                            scales = CustomItems.getDragonScaleRed(); // red scale
                             break;
                         }
                     }
 
                 }
-                // Ice Dragon
+                // if the dragon's breed is ice
                 else if (dragonBreed.equals("Ice")) {
 
-                    ItemStack heart = CustomItems.getIceDragonHeart();
-                    ItemStack blood = CustomItems.getIceDragonBlood();
-                    ItemStack flesh = CustomItems.getIceDragonFlesh();
-                    ItemStack skull = CustomItems.getIceDragonSkull();
+                    // create ice dragon loot, scales are determined later
+                    heart = CustomItems.getIceDragonHeart();
+                    blood = CustomItems.getIceDragonBlood();
+                    flesh = CustomItems.getIceDragonFlesh();
+                    skull = CustomItems.getIceDragonSkull();
 
-                    blood.setAmount(bloodAmount);
-                    flesh.setAmount(fleshAmount);
-
-                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
-
-                    drops.add(blood);
-                    drops.add(flesh);
-                    drops.add(heart);
-                    drops.add(skull);
-
-                    int scaleColor = (int) Math.round(r.nextDouble() * 3);
-
+                    // randomly determine the scale color
                     switch (scaleColor) {
                         case 0: {
-                            ItemStack blueScale = CustomItems.getDragonScaleBlue();
-                            blueScale.setAmount(scaleAmount);
-                            drops.add(blueScale);
+                            scales = CustomItems.getDragonScaleBlue(); // blue scale
                             break;
                         }
                         case 1: {
-                            ItemStack sapphireScale = CustomItems.getDragonScaleSapphire();
-                            sapphireScale.setAmount(scaleAmount);
-                            drops.add(sapphireScale);
+                            scales = CustomItems.getDragonScaleSapphire(); // sapphire scale
                             break;
                         }
                         case 2: {
-                            ItemStack silverScale = CustomItems.getDragonScaleSilver();
-                            silverScale.setAmount(scaleAmount);
-                            drops.add(silverScale);
+                            scales = CustomItems.getDragonScaleSilver(); // silver scale
                             break;
                         }
                         case 3: {
-                            ItemStack whiteScale = CustomItems.getDragonScaleWhite();
-                            whiteScale.setAmount(scaleAmount);
-                            drops.add(whiteScale);
+                            scales = CustomItems.getDragonScaleWhite(); // white scale
                             break;
                         }
                     }
 
                 }
-                // Lightning Dragon
+                // if the dragon's breed is lightning
                 else if (dragonBreed.equals("Lightning")) {
 
-                    ItemStack heart = CustomItems.getLightningDragonHeart();
-                    ItemStack blood = CustomItems.getLightningDragonBlood();
-                    ItemStack flesh = CustomItems.getLightningDragonFlesh();
-                    ItemStack skull = CustomItems.getLightningDragonSkull();
+                    // create lightning dragon loot, scales are determined later
+                    heart = CustomItems.getLightningDragonHeart();
+                    blood = CustomItems.getLightningDragonBlood();
+                    flesh = CustomItems.getLightningDragonFlesh();
+                    skull = CustomItems.getLightningDragonSkull();
 
-                    blood.setAmount(bloodAmount);
-                    flesh.setAmount(fleshAmount);
-
-                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
-
-                    drops.add(blood);
-                    drops.add(flesh);
-                    drops.add(heart);
-                    drops.add(skull);
-
-                    int scaleColor = (int) Math.round(r.nextDouble() * 3);
-
+                    // randomly determine the scale color
                     switch (scaleColor) {
                         case 0: {
-                            ItemStack amethystScale = CustomItems.getDragonScaleAmethyst();
-                            amethystScale.setAmount(scaleAmount);
-                            drops.add(amethystScale);
+                            scales = CustomItems.getDragonScaleAmethyst(); // amethyst scale
                             break;
                         }
                         case 1: {
-                            ItemStack blackScale = CustomItems.getDragonScaleBlack();
-                            blackScale.setAmount(scaleAmount);
-                            drops.add(blackScale);
+                            scales = CustomItems.getDragonScaleBlack(); // black scale
                             break;
                         }
                         case 2: {
-                            ItemStack copperScale = CustomItems.getDragonScaleCopper();
-                            copperScale.setAmount(scaleAmount);
-                            drops.add(copperScale);
+                            scales = CustomItems.getDragonScaleCopper(); // copper scale
                             break;
                         }
                         case 3: {
-                            ItemStack electricScale = CustomItems.getDragonScaleElectric();
-                            electricScale.setAmount(scaleAmount);
-                            drops.add(electricScale);
+                            scales = CustomItems.getDragonScaleElectric(); // electric scale
                             break;
                         }
                     }
 
                 }
             }
+            // if recursive drop rates are disabled
             else {
-                Random r = new Random();
-                int scaleAmount = (int) Math.round(r.nextDouble() *
+                /**
+                 * Scale, bone, blood, and flesh amounts are calculated using
+                 * their respective minimum and maximum values.
+                 */
+                scaleAmount = (int) Math.round(r.nextDouble() *
                         (plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MaxScales") - plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinScales") ))
                         + plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinScales");
-                int boneAmount = (int) Math.round(r.nextDouble() *
+                boneAmount = (int) Math.round(r.nextDouble() *
                         (plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MaxBones") - plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinBones") ))
                         + plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinBones");
-                int bloodAmount = (int) Math.round(r.nextDouble() *
+                bloodAmount = (int) Math.round(r.nextDouble() *
                         (plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MaxBlood") - plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinBlood") ))
                         + plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinBlood");
-                int fleshAmount = (int) Math.round(r.nextDouble() *
+                fleshAmount = (int) Math.round(r.nextDouble() *
                         (plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MaxFlesh") - plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinFlesh") ))
                         + plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinFlesh");
 
-                ItemStack bone = CustomItems.getDragonBone();
-                bone.setAmount(boneAmount);
-
-                drops.add(bone);
-
-                // Fire Dragon
+                // if the dragon's breed is fire
                 if (dragonBreed.equals("Fire")) {
 
-                    ItemStack heart = CustomItems.getFireDragonHeart();
-                    ItemStack blood = CustomItems.getFireDragonBlood();
-                    ItemStack flesh = CustomItems.getFireDragonFlesh();
-                    ItemStack skull = CustomItems.getFireDragonSkull();
+                    // create fire dragon loot, scales are determined later
+                    heart = CustomItems.getFireDragonHeart();
+                    blood = CustomItems.getFireDragonBlood();
+                    flesh = CustomItems.getFireDragonFlesh();
+                    skull = CustomItems.getFireDragonSkull();
 
-                    blood.setAmount(scaleAmount);
-                    flesh.setAmount(scaleAmount);
-
-                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
-
-                    drops.add(blood);
-                    drops.add(flesh);
-                    drops.add(heart);
-                    drops.add(skull);
-
-                    int scaleColor = (int) Math.round(r.nextDouble() * 3);
-
+                    // randomly determine the scale color
                     switch (scaleColor) {
                         case 0: {
-                            ItemStack bronzeScale = CustomItems.getDragonScaleBronze();
-                            bronzeScale.setAmount(scaleAmount);
-                            drops.add(bronzeScale);
+                            scales = CustomItems.getDragonScaleBronze(); // bronze scale
                             break;
                         }
                         case 1: {
-                            ItemStack grayScale = CustomItems.getDragonScaleGray();
-                            grayScale.setAmount(scaleAmount);
-                            drops.add(grayScale);
+                            scales = CustomItems.getDragonScaleGray(); // gray scale
                             break;
                         }
                         case 2: {
-                            ItemStack greenScale = CustomItems.getDragonScaleGreen();
-                            greenScale.setAmount(scaleAmount);
-                            drops.add(greenScale);
+                            scales = CustomItems.getDragonScaleGreen(); // green scale
                             break;
                         }
                         case 3: {
-                            ItemStack redScale = CustomItems.getDragonScaleRed();
-                            redScale.setAmount(scaleAmount);
-                            drops.add(redScale);
+                            scales = CustomItems.getDragonScaleRed(); // red scale
                             break;
                         }
                     }
 
                 }
-                // Ice Dragon
+                // if the dragon's breed is ice
                 else if (dragonBreed.equals("Ice")) {
 
-                    ItemStack heart = CustomItems.getIceDragonHeart();
-                    ItemStack blood = CustomItems.getIceDragonBlood();
-                    ItemStack flesh = CustomItems.getIceDragonFlesh();
-                    ItemStack skull = CustomItems.getIceDragonSkull();
+                    // create ice dragon loot, scales are determined later
+                    heart = CustomItems.getIceDragonHeart();
+                    blood = CustomItems.getIceDragonBlood();
+                    flesh = CustomItems.getIceDragonFlesh();
+                    skull = CustomItems.getIceDragonSkull();
 
-                    blood.setAmount(bloodAmount);
-                    flesh.setAmount(fleshAmount);
-
-                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
-
-                    drops.add(blood);
-                    drops.add(flesh);
-                    drops.add(heart);
-                    drops.add(skull);
-
-
-                    int scaleColor = (int) Math.round(r.nextDouble() * 3);
-
+                    // randomly determine the scale color
                     switch (scaleColor) {
                         case 0: {
-                            ItemStack blueScale = CustomItems.getDragonScaleBlue();
-                            blueScale.setAmount(scaleAmount);
-                            drops.add(blueScale);
+                            scales = CustomItems.getDragonScaleBlue(); // blue scale
                             break;
                         }
                         case 1: {
-                            ItemStack sapphireScale = CustomItems.getDragonScaleSapphire();
-                            sapphireScale.setAmount(scaleAmount);
-                            drops.add(sapphireScale);
+                            scales = CustomItems.getDragonScaleSapphire(); // sapphire scale
                             break;
                         }
                         case 2: {
-                            ItemStack silverScale = CustomItems.getDragonScaleSilver();
-                            silverScale.setAmount(scaleAmount);
-                            drops.add(silverScale);
+                            scales = CustomItems.getDragonScaleSilver(); // silver scale
                             break;
                         }
                         case 3: {
-                            ItemStack whiteScale = CustomItems.getDragonScaleWhite();
-                            whiteScale.setAmount(scaleAmount);
-                            drops.add(whiteScale);
+                            scales = CustomItems.getDragonScaleWhite(); // white scale
                             break;
                         }
                     }
 
                 }
-                // Lightning Dragon
+                // if the dragon's breed is lightning
                 else if (dragonBreed.equals("Lightning")) {
 
-                    ItemStack heart = CustomItems.getLightningDragonHeart();
-                    ItemStack blood = CustomItems.getLightningDragonBlood();
-                    ItemStack flesh = CustomItems.getLightningDragonFlesh();
-                    ItemStack skull = CustomItems.getLightningDragonSkull();
+                    // create lightning dragon loot, scales are determined later
+                    heart = CustomItems.getLightningDragonHeart();
+                    blood = CustomItems.getLightningDragonBlood();
+                    flesh = CustomItems.getLightningDragonFlesh();
+                    skull = CustomItems.getLightningDragonSkull();
 
-                    blood.setAmount(bloodAmount);
-                    flesh.setAmount(fleshAmount);
-
-                    LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
-
-                    drops.add(blood);
-                    drops.add(flesh);
-                    drops.add(heart);
-                    drops.add(skull);
-
-                    int scaleColor = (int) Math.round(r.nextDouble() * 3);
-
+                    // randomly determine the scale color
                     switch (scaleColor) {
                         case 0: {
-                            ItemStack amethystScale = CustomItems.getDragonScaleAmethyst();
-                            amethystScale.setAmount(scaleAmount);
-                            drops.add(amethystScale);
+                            scales = CustomItems.getDragonScaleAmethyst(); // amethyst scale
                             break;
                         }
                         case 1: {
-                            ItemStack blackScale = CustomItems.getDragonScaleBlack();
-                            blackScale.setAmount(scaleAmount);
-                            drops.add(blackScale);
+                            scales = CustomItems.getDragonScaleBlack(); // black scale
                             break;
                         }
                         case 2: {
-                            ItemStack copperScale = CustomItems.getDragonScaleCopper();
-                            copperScale.setAmount(scaleAmount);
-                            drops.add(copperScale);
+                            scales = CustomItems.getDragonScaleCopper(); // copper scale
                             break;
                         }
                         case 3: {
-                            ItemStack electricScale = CustomItems.getDragonScaleElectric();
-                            electricScale.setAmount(scaleAmount);
-                            drops.add(electricScale);
+                            scales = CustomItems.getDragonScaleElectric(); // electric scale
                             break;
                         }
                     }
@@ -561,7 +487,26 @@ public class DragonFightEvents implements Listener {
                 }
             }
 
+            // resize loot
+            bone.setAmount(boneAmount);
+            blood.setAmount(bloodAmount);
+            flesh.setAmount(fleshAmount);
+            scales.setAmount(scaleAmount);
+
+            // add a lore to the skull
+            LorePresets.addDragonSkullLore(skull, stage, dragonBreed);
+
+            // add the loot to the drop collection
+            drops.add(bone);
+            drops.add(blood);
+            drops.add(flesh);
+            drops.add(heart);
+            drops.add(skull);
+            drops.add(scales);
+
+            // for every item in the drop collection
             for (ItemStack item : drops) {
+                // drop the item
                 world.dropItemNaturally(loc, item);
             }
         }

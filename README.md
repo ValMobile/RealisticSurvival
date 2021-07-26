@@ -27,7 +27,7 @@ Alternatively, you can download development builds in the [Discord server](https
 builds are less stable but offer the newest features and improvements.
 
 ❗ It is recommended to use development builds since
-they are the most recent version of Slimefun and also receive the most frequent updates!   
+they are the most recent version of RLCraft and also receive the most frequent updates!   
 In fact, "stable" builds are so outdated that bug reports from them won't be accepted at all.
 
 ## 📷 Screenshots
@@ -45,10 +45,14 @@ Click the image below to join us!
 [![Discord logo](https://th.bing.com/th/id/OIP.nmHobRJPgkH-7YQqXsbCqwHaEK?pid=ImgDet&rs=1)](https://discord.gg/mMt3f4usqK)
 
 ## 🤝 Contributing to this project
+As RLCraft is an open-source project and licensed under [GNU GPLv3](https://www.gnu.org/licenses/#GPL).  
+Please consider helping me maintain this project, your dedication helps keep this project alive!  
+
 Here are some ways you can help support RLCraft:
  - Creating bug reports 
  - Suggesting features or optionally,   
-   coding in these features and creating a pull request
+   forking this repository and creating a pull request
+ - Answering frequently-asked-questions (FAQs) in my Discord server
  - Donating to my [Patreon](https://www.patreon.com/val_mobile)
 
 ## ❗ Disclaimers

@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2021  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.dragons;
 
 import me.val_mobile.rlcraft.RLCraft;
@@ -15,28 +31,47 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.Collection;
-
+/**
+ * DragonFightRunnables is a utility class containing methods that
+ * execute various runnables to allow for
+ * dragons to execute custom attacks
+ * @author Val_Mobile
+ * @version 1.2
+ * @since 1.0
+ */
 public class DragonFightRunnables {
 
+    // dependency injecting the utils and abilities classes
     private final DragonGearAbilities dragonGearAbilities;
     private final Utils util;
+
+    // constructing the DragonFightRunnables class
     public DragonFightRunnables(RLCraft instance) {
         util = new Utils(instance);
         dragonGearAbilities = new DragonGearAbilities(instance);
     }
 
+    /**
+     * Shoots a flame trail out of a dragon and chars blocks where the flame hits
+     * @param dragon The dragon breathing fire
+     * @param projectile The vanilla dragon fireball
+     * @return A runnable creating the flame trial
+     * @see DragonGearAbilities
+     * @see Utils
+     */
     public BukkitRunnable getFireDragonBreathRunnable(Entity dragon, Entity projectile) {
         return new BukkitRunnable() {
-            World world = projectile.getWorld();
-            Location loc = projectile.getLocation();
+            World world = projectile.getWorld(); // get the world
+            Location loc = projectile.getLocation(); // get the location
 
+            // create constants used in calculations
             Double velocityMultiplier = CustomConfig.getMobConfig().getDouble("Dragons.FireDragon.BreathAttack.VelocityMultiplier");
             int radiusConstant = CustomConfig.getMobConfig().getInt("Dragons.FireDragon.BreathAttack.RadiusConstant");
             int decayTicks = CustomConfig.getMobConfig().getInt("Dragons.FireDragon.BreathAttack.DecayTicks");
 
-            Vector velocity = projectile.getVelocity().multiply(velocityMultiplier * util.getDragonStage(dragon));
-            int radius = util.getDragonStage(dragon) + radiusConstant;
-            int ticks = 0;
+            Vector velocity = projectile.getVelocity().multiply(velocityMultiplier * util.getDragonStage(dragon)); // determine the velocity of the flame trail
+            int radius = util.getDragonStage(dragon) + radiusConstant; // determine the radius of charring
+            int ticks = 0; // temp variable to store how long the trail has been moving
             @Override
             public void run() {
                 if (! (loc.getBlock().isEmpty()) ) {
