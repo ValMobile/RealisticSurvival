@@ -16,6 +16,7 @@
  */
 package me.val_mobile.no_tree_punching;
 
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.Recipes;
@@ -42,8 +43,15 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Random;
 
-public class NoTreePunching implements Listener {
+public class NoTreePunchingEvents implements Listener {
 
+    private final CustomItems customItems;
+    private final Utils util;
+    public NoTreePunchingEvents(RLCraftPlugin instance) {
+        customItems = new CustomItems(instance);
+        util = new Utils(instance);
+    }
+    
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -73,7 +81,7 @@ public class NoTreePunching implements Listener {
             }
 
             if (CustomConfig.getNoTreePunchingConfig().getStringList("GrassBlocks").contains(material.toString())) {
-                if (Utils.isHoldingKnife(player)) {
+                if (util.isHoldingKnife(player)) {
                     Random r = new Random();
                     double chance = CustomConfig.getNoTreePunchingConfig().getDouble("PlantFiber.DropChance");
                     if (CustomConfig.getNoTreePunchingConfig().getBoolean("PlantFiber.CheckLooting")) {
@@ -84,7 +92,7 @@ public class NoTreePunching implements Listener {
                         }
                     }
                     if (r.nextDouble() <= chance) {
-                        block.getWorld().dropItemNaturally(block.getLocation(), CustomItems.getPlantFiber());
+                        block.getWorld().dropItemNaturally(block.getLocation(), customItems.getPlantFiber());
                     }
                 }
             }
@@ -111,7 +119,7 @@ public class NoTreePunching implements Listener {
                                 player.getInventory().setItemInMainHand(null);
                             }
 
-                            block.getWorld().dropItemNaturally(block.getLocation().add(0.0D, 0.6D, 0.0D), CustomItems.getFlintShard());
+                            block.getWorld().dropItemNaturally(block.getLocation().add(0.0D, 0.6D, 0.0D), customItems.getFlintShard());
                         }
                         player.playSound(player.getLocation(), Sound.BLOCK_STONE_HIT, 1, 1);
                     }
@@ -127,10 +135,10 @@ public class NoTreePunching implements Listener {
 
         ((Damageable) meta).setDamage(0);
 
-        if (meta.equals(CustomItems.getFlintAxe().getItemMeta()) ||
-                meta.equals(CustomItems.getFlintKnife().getItemMeta()) ||
-                meta.equals(CustomItems.getFlintHoe().getItemMeta()) ||
-                meta.equals(CustomItems.getFlintShovel().getItemMeta())) {
+        if (meta.equals(customItems.getFlintAxe().getItemMeta()) ||
+                meta.equals(customItems.getFlintKnife().getItemMeta()) ||
+                meta.equals(customItems.getFlintHoe().getItemMeta()) ||
+                meta.equals(customItems.getFlintShovel().getItemMeta())) {
             int newDamage = (int) Math.round(event.getDamage() * CustomConfig.getNoTreePunchingConfig().getDouble("DurabilityDamageMultiplier"));
 
             event.setDamage(newDamage);

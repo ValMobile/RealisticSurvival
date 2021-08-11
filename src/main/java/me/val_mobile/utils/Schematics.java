@@ -20,23 +20,16 @@ import com.fastasyncworldedit.core.FaweAPI;
 import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.extent.clipboard.Clipboard;
-import com.sk89q.worldedit.extent.clipboard.io.ClipboardFormat;
-import com.sk89q.worldedit.extent.clipboard.io.ClipboardFormats;
-import com.sk89q.worldedit.extent.clipboard.io.ClipboardReader;
+import com.sk89q.worldedit.extent.clipboard.io.*;
 import com.sk89q.worldedit.function.operation.Operation;
 import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.world.World;
-import me.val_mobile.rlcraft.RLCraft;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import org.bukkit.Location;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
+import java.io.*;
 /**
  * Schematics is a class that creates and stores schematic files
  * for world generation use
@@ -51,10 +44,10 @@ public class Schematics {
     private static File fireDragonNest;
 
     // dependency injecting the main class for use
-    private final RLCraft plugin;
+    private final RLCraftPlugin plugin;
 
     // constructing the Schematics class
-    public Schematics(RLCraft instance) {
+    public Schematics(RLCraftPlugin instance) {
         plugin = instance;
     }
 
@@ -75,12 +68,30 @@ public class Schematics {
      * Creates the fire dragon nest schematic file
      */
     public void createFireDragonNest() {
-        fireDragonNest = new File(plugin.getDataFolder(), "schematics/fire_dragon_nest.schem.gz");  // look for a file named "fire_dragon_nest.schem.gz" in the schematics folder
+        fireDragonNest = new File(plugin.getDataFolder(), "schematics/fire_dragon_nest.schem");  // look for a file named "fire_dragon_nest.schem" in the schematics folder
 
-        // if the file "fire_dragon_nest.schem.gz" doesn't exist in the schematics folder
+        // if the file "fire_dragon_nest.schem" doesn't exist in the schematics folder
         if (!fireDragonNest.exists()) {
             // create the file
-            fireDragonNest.getParentFile().mkdirs();
+
+            Clipboard clipboard = null;
+
+            ClipboardFormat format = ClipboardFormats.findByFile(fireDragonNest);
+            try (ClipboardReader reader = format.getReader(new FileInputStream(fireDragonNest))) {
+                clipboard = reader.read();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try (ClipboardWriter writer = BuiltInClipboardFormat.SPONGE_SCHEMATIC.getWriter(new FileOutputStream(fireDragonNest))) {
+                writer.write(clipboard);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             // save the file to the plugin resources, overwriting any previous schematic files
             plugin.saveResource(fireDragonNest.getPath(), true);
@@ -148,56 +159,6 @@ public class Schematics {
                     .ignoreAirBlocks(noAir)
                     .build();
             Operations.complete(operation);
-        }
-    }
-
-    /**
-     * Compresses a file into GZIP format
-     * @param sourceFile
-     * @param outputFile
-     * @throws IOException
-     */
-    public void compressGZipFile(String sourceFile, String outputFile) {
-        try {
-            FileInputStream fis = new FileInputStream(sourceFile);
-            FileOutputStream fos = new FileOutputStream(outputFile);
-            GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(fos);
-            byte[] buffer = new byte[1024];
-            int len;
-            while((len = fis.read(buffer)) > 0){
-                gZIPOutputStream.write(buffer, 0, len);
-            }
-            // keep it in finally
-            fis.close();
-            gZIPOutputStream.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Decompresses a GZIP file
-     * @param gZippedFile
-     * @param newFile
-     * @throws IOException
-     */
-    public void decompressGZipFile(String gZippedFile, String newFile) {
-        try {
-            FileInputStream fis = new FileInputStream(gZippedFile);
-            GZIPInputStream gZIPInputStream = new GZIPInputStream(fis);
-            FileOutputStream fos = new FileOutputStream(newFile);
-            byte[] buffer = new byte[1024];
-            int len;
-            while((len = gZIPInputStream.read(buffer)) > 0){
-                fos.write(buffer, 0, len);
-            }
-            // keep it in finally
-            fos.close();
-            gZIPInputStream.close();
-        }
-        catch (IOException e) {
-
         }
     }
 }

@@ -29,6 +29,27 @@ Rapier:
   LightningDragonsteel:
     AttackDamage: 13.0
     AttackSpeed: 2.4
+  Netherite:
+    AttackDamage: 4.0
+    AttackSpeed: 2.4
+  Diamond:
+    AttackDamage: 3.5
+    AttackSpeed: 2.4
+  Gold:
+    AttackDamage: 2.4
+    AttackSpeed: 2.4
+  Iron:
+    AttackDamage: 3.0
+    AttackSpeed: 2.4
+  Copper:
+    AttackDamage: 2.75
+    AttackSpeed: 2.4
+  Stone:
+    AttackDamage: 2.5
+    AttackSpeed: 2.4
+  Wood:
+    AttackDamage: 2.0
+    AttackSpeed: 2.4
 Katana:
   DragonBone:
     AttackDamage: 5.5
@@ -50,6 +71,27 @@ Katana:
     AttackSpeed: 2.0
   LightningDragonsteel:
     AttackDamage: 14.0
+    AttackSpeed: 2.0
+  Netherite:
+    AttackDamage: 5.5
+    AttackSpeed: 2.0
+  Diamond:
+    AttackDamage: 5.0
+    AttackSpeed: 2.0
+  Gold:
+    AttackDamage: 3.5
+    AttackSpeed: 2.0
+  Iron:
+    AttackDamage: 4.5
+    AttackSpeed: 2.0
+  Copper:
+    AttackDamage: 4.25
+    AttackSpeed: 2.0
+  Stone:
+    AttackDamage: 4.0
+    AttackSpeed: 2.0
+  Wood:
+    AttackDamage: 3.5
     AttackSpeed: 2.0
 Greatsword:
   DragonBone:
@@ -73,6 +115,27 @@ Greatsword:
   LightningDragonsteel:
     AttackDamage: 48.0
     AttackSpeed: 1.4
+  Netherite:
+    AttackDamage: 10.0
+    AttackSpeed: 1.4
+  Diamond:
+    AttackDamage: 8.5
+    AttackSpeed: 1.4
+  Gold:
+    AttackDamage: 4.0
+    AttackSpeed: 1.4
+  Iron:
+    AttackDamage: 7.0
+    AttackSpeed: 1.4
+  Copper:
+    AttackDamage: 6.25
+    AttackSpeed: 1.4
+  Stone:
+    AttackDamage: 5.5
+    AttackSpeed: 1.4
+  Wood:
+    AttackDamage: 4.0
+    AttackSpeed: 1.4
 Longsword:
   DragonBone:
     AttackDamage: 10.5
@@ -94,6 +157,27 @@ Longsword:
     AttackSpeed: 1.4
   LightningDragonsteel:
     AttackDamage: 36.0
+    AttackSpeed: 1.4
+  Netherite:
+    AttackDamage: 10.5
+    AttackSpeed: 1.4
+  Diamond:
+    AttackDamage: 9.0
+    AttackSpeed: 1.4
+  Gold:
+    AttackDamage: 4.5
+    AttackSpeed: 1.4
+  Iron:
+    AttackDamage: 7.5
+    AttackSpeed: 1.4
+  Copper:
+    AttackDamage: 6.75
+    AttackSpeed: 1.4
+  Stone:
+    AttackDamage: 6.0
+    AttackSpeed: 1.4
+  Wood:
+    AttackDamage: 4.5
     AttackSpeed: 1.4
 Spear:
   DragonBone:
@@ -117,6 +201,27 @@ Spear:
   LightningDragonsteel:
     AttackDamage: 15.0
     AttackSpeed: 1.4
+  Netherite:
+    AttackDamage: 7.5
+    AttackSpeed: 1.4
+  Diamond:
+    AttackDamage: 7.0
+    AttackSpeed: 1.4
+  Gold:
+    AttackDamage: 5.5
+    AttackSpeed: 1.4
+  Iron:
+    AttackDamage: 6.5
+    AttackSpeed: 1.4
+  Copper:
+    AttackDamage: 6.25
+    AttackSpeed: 1.4
+  Stone:
+    AttackDamage: 6.0
+    AttackSpeed: 1.4
+  Wood:
+    AttackDamage: 5.5
+    AttackSpeed: 1.4
 Saber:
   DragonBone:
     AttackDamage: 6.5
@@ -139,21 +244,70 @@ Saber:
   LightningDragonsteel:
     AttackDamage: 15.0
     AttackSpeed: 1.6
+  Netherite:
+    AttackDamage: 5.5
+    AttackSpeed: 1.6
+  Diamond:
+    AttackDamage: 5.0
+    AttackSpeed: 1.6
+  Gold:
+    AttackDamage: 3.5
+    AttackSpeed: 1.6
+  Iron:
+    AttackDamage: 4.5
+    AttackSpeed: 1.6
+  Copper:
+    AttackDamage: 4.25
+    AttackSpeed: 1.6
+  Stone:
+    AttackDamage: 4.0
+    AttackSpeed: 1.6
+  Wood:
+    AttackDamage: 3.5
+    AttackSpeed: 1.6
 Boomerang:
   DragonBone:
     AttackDamage: 8.0
+    AttackSpeed: 2.0
   FlamedDragonBone:
     AttackDamage: 9.5
+    AttackSpeed: 2.0
   IcedDragonBone:
     AttackDamage: 9.5
+    AttackSpeed: 2.0
   LightningDragonBone:
     AttackDamage: 9.5
+    AttackSpeed: 2.0
   FireDragonsteel:
     AttackDamage: 25.0
+    AttackSpeed: 2.0
   IceDragonsteel:
     AttackDamage: 25.0
+    AttackSpeed: 2.0
   LightningDragonsteel:
     AttackDamage: 25.0
+    AttackSpeed: 2.0
+  Netherite:
+    AttackDamage: 8.0
+    AttackSpeed: 2.0
+  Diamond:
+    AttackDamage: 7.0
+    AttackSpeed: 2.0
+  Gold:
+    AttackDamage: 4.0
+    AttackSpeed: 2.0
+  Iron:
+    AttackDamage: 6.0
+    AttackSpeed: 2.0
+  Copper:
+    AttackDamage: 5.5
+    AttackSpeed: 2.0
+  Stone:
+    AttackDamage: 5.0
+    AttackSpeed: 2.0
+  Wood:
+    AttackDamage: 4.0
+    AttackSpeed: 2.0
 Dagger:
   DragonBone:
     AttackDamage: 4.5
@@ -175,6 +329,27 @@ Dagger:
     AttackSpeed: 2.5
   LightningDragonsteel:
     AttackDamage: 13.0
+    AttackSpeed: 2.5
+  Netherite:
+    AttackDamage: 6.5
+    AttackSpeed: 2.5
+  Diamond:
+    AttackDamage: 5.5
+    AttackSpeed: 2.5
+  Gold:
+    AttackDamage: 2.5
+    AttackSpeed: 2.5
+  Iron:
+    AttackDamage: 4.5
+    AttackSpeed: 2.5
+  Copper:
+    AttackDamage: 4.0
+    AttackSpeed: 2.5
+  Stone:
+    AttackDamage: 3.5
+    AttackSpeed: 2.5
+  Wood:
+    AttackDamage: 2.5
     AttackSpeed: 2.5
 Glaive:
   DragonBone:
@@ -198,6 +373,27 @@ Glaive:
   LightningDragonsteel:
     AttackDamage: 25.0
     AttackSpeed: 1.0
+  Netherite:
+    AttackDamage: 10.0
+    AttackSpeed: 1.0
+  Diamond:
+    AttackDamage: 8.5
+    AttackSpeed: 1.0
+  Gold:
+    AttackDamage: 4.0
+    AttackSpeed: 1.0
+  Iron:
+    AttackDamage: 7.0
+    AttackSpeed: 1.0
+  Copper:
+    AttackDamage: 6.25
+    AttackSpeed: 1.0
+  Stone:
+    AttackDamage: 5.5
+    AttackSpeed: 1.0
+  Wood:
+    AttackDamage: 4.0
+    AttackSpeed: 1.0
 Halberd:
   DragonBone:
     AttackDamage: 16.5
@@ -219,6 +415,27 @@ Halberd:
     AttackSpeed: 1.2
   LightningDragonsteel:
     AttackDamage: 59.0
+    AttackSpeed: 1.2
+  Netherite:
+    AttackDamage: 11.0
+    AttackSpeed: 1.2
+  Diamond:
+    AttackDamage: 9.5
+    AttackSpeed: 1.2
+  Gold:
+    AttackDamage: 5.0
+    AttackSpeed: 1.2
+  Iron:
+    AttackDamage: 8.0
+    AttackSpeed: 1.2
+  Copper:
+    AttackDamage: 7.25
+    AttackSpeed: 1.2
+  Stone:
+    AttackDamage: 6.5
+    AttackSpeed: 1.2
+  Wood:
+    AttackDamage: 5.0
     AttackSpeed: 1.2
 Hammer:
   DragonBone:
@@ -242,6 +459,27 @@ Hammer:
   LightningDragonsteel:
     AttackDamage: 27.0
     AttackSpeed: 0.8
+  Netherite:
+    AttackDamage: 13.0
+    AttackSpeed: 0.8
+  Diamond:
+    AttackDamage: 11.0
+    AttackSpeed: 0.8
+  Gold:
+    AttackDamage: 5.0
+    AttackSpeed: 0.8
+  Iron:
+    AttackDamage: 9.0
+    AttackSpeed: 0.8
+  Copper:
+    AttackDamage: 8.0
+    AttackSpeed: 0.8
+  Stone:
+    AttackDamage: 7.0
+    AttackSpeed: 0.8
+  Wood:
+    AttackDamage: 5.0
+    AttackSpeed: 0.8
 Javelin:
   DragonBone:
     AttackDamage: 3.5
@@ -263,6 +501,27 @@ Javelin:
     AttackSpeed: 1.2
   LightningDragonsteel:
     AttackDamage: 12.0
+    AttackSpeed: 1.2
+  Netherite:
+    AttackDamage: 5.5
+    AttackSpeed: 1.2
+  Diamond:
+    AttackDamage: 4.5
+    AttackSpeed: 1.2
+  Gold:
+    AttackDamage: 1.5
+    AttackSpeed: 1.2
+  Iron:
+    AttackDamage: 3.5
+    AttackSpeed: 1.2
+  Copper:
+    AttackDamage: 3.0
+    AttackSpeed: 1.2
+  Stone:
+    AttackDamage: 2.5
+    AttackSpeed: 1.2
+  Wood:
+    AttackDamage: 1.5
     AttackSpeed: 1.2
 Lance:
   DragonBone:
@@ -286,6 +545,27 @@ Lance:
   LightningDragonsteel:
     AttackDamage: 25.0
     AttackSpeed: 1.0
+  Netherite:
+    AttackDamage: 8.0
+    AttackSpeed: 1.0
+  Diamond:
+    AttackDamage: 7.0
+    AttackSpeed: 1.0
+  Gold:
+    AttackDamage: 4.0
+    AttackSpeed: 1.0
+  Iron:
+    AttackDamage: 6.0
+    AttackSpeed: 1.0
+  Copper:
+    AttackDamage: 5.5
+    AttackSpeed: 1.0
+  Stone:
+    AttackDamage: 5.0
+    AttackSpeed: 1.0
+  Wood:
+    AttackDamage: 4.0
+    AttackSpeed: 1.0
 Mace:
   DragonBone:
     AttackDamage: 8.0
@@ -307,6 +587,27 @@ Mace:
     AttackSpeed: 1.2
   LightningDragonsteel:
     AttackDamage: 25.0
+    AttackSpeed: 1.2
+  Netherite:
+    AttackDamage: 9.0
+    AttackSpeed: 1.2
+  Diamond:
+    AttackDamage: 7.5
+    AttackSpeed: 1.2
+  Gold:
+    AttackDamage: 3.0
+    AttackSpeed: 1.2
+  Iron:
+    AttackDamage: 6.0
+    AttackSpeed: 1.2
+  Copper:
+    AttackDamage: 5.25
+    AttackSpeed: 1.2
+  Stone:
+    AttackDamage: 4.5
+    AttackSpeed: 1.2
+  Wood:
+    AttackDamage: 3.0
     AttackSpeed: 1.2
 Pike:
   DragonBone:
@@ -330,6 +631,27 @@ Pike:
   LightningDragonsteel:
     AttackDamage: 14.5
     AttackSpeed: 1.4
+  Netherite:
+    AttackDamage: 8.0
+    AttackSpeed: 1.4
+  Diamond:
+    AttackDamage: 7.0
+    AttackSpeed: 1.4
+  Gold:
+    AttackDamage: 4.0
+    AttackSpeed: 1.4
+  Iron:
+    AttackDamage: 6.0
+    AttackSpeed: 1.4
+  Copper:
+    AttackDamage: 5.5
+    AttackSpeed: 1.4
+  Stone:
+    AttackDamage: 5.0
+    AttackSpeed: 1.4
+  Wood:
+    AttackDamage: 4.0
+    AttackSpeed: 1.4
 Quarterstaff:
   DragonBone:
     AttackDamage: 5.5
@@ -352,7 +674,28 @@ Quarterstaff:
   LightningDragonsteel:
     AttackDamage: 22.5
     AttackSpeed: 1.4
-ThrowingAxe:
+  Netherite:
+    AttackDamage: 9.0
+    AttackSpeed: 1.4
+  Diamond:
+    AttackDamage: 7.5
+    AttackSpeed: 1.4
+  Gold:
+    AttackDamage: 3.0
+    AttackSpeed: 1.4
+  Iron:
+    AttackDamage: 6.0
+    AttackSpeed: 1.4
+  Copper:
+    AttackDamage: 5.25
+    AttackSpeed: 1.4
+  Stone:
+    AttackDamage: 4.5
+    AttackSpeed: 1.4
+  Wood:
+    AttackDamage: 3.0
+    AttackSpeed: 1.4
+Tomahawk:
   DragonBone:
     AttackDamage: 6.0
     AttackSpeed: 0.9
@@ -373,6 +716,27 @@ ThrowingAxe:
     AttackSpeed: 0.9
   LightningDragonsteel:
     AttackDamage: 23.0
+    AttackSpeed: 0.9
+  Netherite:
+    AttackDamage: 8.0
+    AttackSpeed: 0.9
+  Diamond:
+    AttackDamage: 6.5
+    AttackSpeed: 0.9
+  Gold:
+    AttackDamage: 2.0
+    AttackSpeed: 0.9
+  Iron:
+    AttackDamage: 5.0
+    AttackSpeed: 0.9
+  Copper:
+    AttackDamage: 4.25
+    AttackSpeed: 0.9
+  Stone:
+    AttackDamage: 3.5
+    AttackSpeed: 0.9
+  Wood:
+    AttackDamage: 2.0
     AttackSpeed: 0.9
 ThrowingKnife:
   DragonBone:
@@ -396,6 +760,27 @@ ThrowingKnife:
   LightningDragonsteel:
     AttackDamage: 12.0
     AttackSpeed: 2.5
+  Netherite:
+    AttackDamage: 5.5
+    AttackSpeed: 2.5
+  Diamond:
+    AttackDamage: 4.5
+    AttackSpeed: 2.5
+  Gold:
+    AttackDamage: 1.5
+    AttackSpeed: 2.5
+  Iron:
+    AttackDamage: 3.5
+    AttackSpeed: 2.5
+  Copper:
+    AttackDamage: 3.0
+    AttackSpeed: 2.5
+  Stone:
+    AttackDamage: 2.5
+    AttackSpeed: 2.5
+  Wood:
+    AttackDamage: 1.5
+    AttackSpeed: 2.5
 Warhammer:
   DragonBone:
     AttackDamage: 8.0
@@ -417,6 +802,27 @@ Warhammer:
     AttackSpeed: 1.1
   LightningDragonsteel:
     AttackDamage: 25.0
+    AttackSpeed: 1.1
+  Netherite:
+    AttackDamage: 10.0
+    AttackSpeed: 1.1
+  Diamond:
+    AttackDamage: 8.5
+    AttackSpeed: 1.1
+  Gold:
+    AttackDamage: 4.0
+    AttackSpeed: 1.1
+  Iron:
+    AttackDamage: 7.0
+    AttackSpeed: 1.1
+  Copper:
+    AttackDamage: 6.25
+    AttackSpeed: 1.1
+  Stone:
+    AttackDamage: 5.5
+    AttackSpeed: 1.1
+  Wood:
+    AttackDamage: 4.0
     AttackSpeed: 1.1
 Battleaxe:
   DragonBone:
@@ -440,6 +846,27 @@ Battleaxe:
   LightningDragonsteel:
     AttackDamage: 47.0
     AttackSpeed: 1.0
+  Netherite:
+    AttackDamage: 12.0
+    AttackSpeed: 1.0
+  Diamond:
+    AttackDamage: 10.0
+    AttackSpeed: 1.0
+  Gold:
+    AttackDamage: 4.0
+    AttackSpeed: 1.0
+  Iron:
+    AttackDamage: 8.0
+    AttackSpeed: 1.0
+  Copper:
+    AttackDamage: 7.0
+    AttackSpeed: 1.0
+  Stone:
+    AttackDamage: 6.0
+    AttackSpeed: 1.0
+  Wood:
+    AttackDamage: 4.0
+    AttackSpeed: 1.0
 Longbow:
   DragonBone:
     AttackDamageMultiplier: 1.75
@@ -462,14 +889,35 @@ Longbow:
   LightningDragonsteel:
     AttackDamageMultiplier: 3.0
     ArrowVelocityMultiplier: 3.0
+  Netherite:
+    AttackDamageMultiplier: 2.25
+    ArrowVelocityMultiplier: 2.25
+  Diamond:
+    AttackDamageMultiplier: 1.5
+    ArrowVelocityMultiplier: 1.5
+  Gold:
+    AttackDamageMultiplier: 1.1
+    ArrowVelocityMultiplier: 1.1
+  Iron:
+    AttackDamageMultiplier: 1.35
+    ArrowVelocityMultiplier: 1.35
+  Copper:
+    AttackDamageMultiplier: 1.25
+    ArrowVelocityMultiplier: 1.25
+  Stone:
+    AttackDamageMultiplier: 1.2
+    ArrowVelocityMultiplier: 1.2
+  Wood:
+    AttackDamageMultiplier: 1.1
+    ArrowVelocityMultiplier: 1.1
 Crossbow:
-  DragonBone:
+  Dragonbone:
     AttackDamageMultiplier: 1.75
     ArrowVelocityMultiplier: 1.75
-  FlamedDragonBone:
+  FlamedDragonbone:
     AttackDamageMultiplier: 2.0
     ArrowVelocityMultiplier: 2.0
-  IcedDragonBone:
+  IcedDragonbone:
     AttackDamageMultiplier: 2.0
     ArrowVelocityMultiplier: 2.0
   LightningDragonBone:
@@ -484,3 +932,24 @@ Crossbow:
   LightningDragonsteel:
     AttackDamageMultiplier: 3.0
     ArrowVelocityMultiplier: 3.0
+  Netherite:
+    AttackDamageMultiplier: 2.25
+    ArrowVelocityMultiplier: 2.25
+  Diamond:
+    AttackDamageMultiplier: 1.5
+    ArrowVelocityMultiplier: 1.5
+  Gold:
+    AttackDamageMultiplier: 1.1
+    ArrowVelocityMultiplier: 1.1
+  Iron:
+    AttackDamageMultiplier: 1.35
+    ArrowVelocityMultiplier: 1.35
+  Copper:
+    AttackDamageMultiplier: 1.25
+    ArrowVelocityMultiplier: 1.25
+  Stone:
+    AttackDamageMultiplier: 1.2
+    ArrowVelocityMultiplier: 1.2
+  Wood:
+    AttackDamageMultiplier: 1.1
+    ArrowVelocityMultiplier: 1.1

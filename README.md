@@ -65,8 +65,8 @@ not work properly. There is currently no support for protection plugins like Gri
 or WorldGuard. I am not responsible for any damage caused by RLCraft to your server.  
 
 
-RLCraft uses source textures from many mods. Listed below are the people
-responsible for creating the textures
+RLCraft uses source textures and ideas from many mods.  
+All credits go to the following people:
  - Raptorfarian and Alexthe666 of [Ice and Fire](https://www.curseforge.com/minecraft/mc-mods/ice-and-fire-dragons)
  - ObliviousSpartan and xwerffx of [Spartan Weaponry](https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry)
  - Raptorfarian and Janivire of [Spartan and Fire](https://www.curseforge.com/minecraft/mc-mods/spartan-and-fire)

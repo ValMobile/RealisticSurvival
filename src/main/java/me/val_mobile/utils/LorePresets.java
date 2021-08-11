@@ -16,6 +16,7 @@
  */
 package me.val_mobile.utils;
 
+import me.val_mobile.enums.Dragon;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -27,14 +28,24 @@ import java.util.List;
 
 public class LorePresets {
 
-    public static void addDragonSkullLore(ItemStack item, int stage, String dragon) {
+    public static void addDragonSkullLore(ItemStack item, int stage, Dragon.Breed breed) {
 
         ItemMeta meta = item.getItemMeta();
         if (!(meta.getLore() == null || meta.getLore().isEmpty())) {
             List<String> lore = meta.getLore();
 
             lore.add(ChatColor.translateAlternateColorCodes('&',""));
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&7" + dragon));
+
+            if (breed.equals(Dragon.Breed.FIRE)) {
+                lore.add(ChatColor.translateAlternateColorCodes('&', "&7Fire"));
+            }
+            else if (breed.equals(Dragon.Breed.ICE)) {
+                lore.add(ChatColor.translateAlternateColorCodes('&', "&7Ice"));
+            }
+            else {
+                lore.add(ChatColor.translateAlternateColorCodes('&', "&7Lightning"));
+            }
+
             lore.add(ChatColor.translateAlternateColorCodes('&', "&7Stage " + stage));
 
             meta.setLore(lore);
@@ -45,7 +56,17 @@ public class LorePresets {
             List<String> lore = new ArrayList<>();
 
             lore.add(ChatColor.translateAlternateColorCodes('&',""));
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&7" + dragon));
+
+            if (breed.equals(Dragon.Breed.FIRE)) {
+                lore.add(ChatColor.translateAlternateColorCodes('&', "&7Fire"));
+            }
+            else if (breed.equals(Dragon.Breed.ICE)) {
+                lore.add(ChatColor.translateAlternateColorCodes('&', "&7Ice"));
+            }
+            else {
+                lore.add(ChatColor.translateAlternateColorCodes('&', "&7Lightning"));
+            }
+
             lore.add(ChatColor.translateAlternateColorCodes('&', "&7Stage " + stage));
 
             meta.setLore(lore);
@@ -545,7 +566,7 @@ public class LorePresets {
             case "QUARTERSTAFF":
                 addQuarterstaffLore(lore);
                 break;
-            case "THROWING_AXE":
+            case "TOMAHAWK":
                 addThrowingAxeLore(lore);
                 break;
             case "THROWING_KNIFE":
@@ -563,13 +584,13 @@ public class LorePresets {
             case "CROSSBOW":
                 addCrossbowLore(lore);
                 break;
-            case "FLAMED_DRAGON_BONE":
+            case "FLAMED_DRAGONBONE":
                 addFlamedDragonBoneLore(lore);
                 break;
-            case "ICED_DRAGON_BONE":
+            case "ICED_DRAGONBONE":
                 addIcedDragonBoneLore(lore);
                 break;
-            case "LIGHTNING_DRAGON_BONE":
+            case "LIGHTNING_DRAGONBONE":
                 addLightningDragonBoneLore(lore);
                 break;
             case "FIRE_DRAGONSTEEL":

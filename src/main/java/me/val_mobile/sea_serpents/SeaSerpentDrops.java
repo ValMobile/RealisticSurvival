@@ -16,6 +16,7 @@
  */
 package me.val_mobile.sea_serpents;
 
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import org.bukkit.Location;
@@ -33,6 +34,11 @@ import java.util.Random;
 
 public class SeaSerpentDrops implements Listener {
 
+    private final CustomItems customItems;
+    public SeaSerpentDrops(RLCraftPlugin instance) {
+        customItems = new CustomItems(instance);
+    }
+    
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
         if (event.getEntityType().equals(EntityType.ELDER_GUARDIAN)) {
@@ -49,43 +55,43 @@ public class SeaSerpentDrops implements Listener {
             int scaleColor = (int) Math.round(r.nextDouble() * 6);
             switch (scaleColor) {
                 case 0: {
-                    ItemStack blueScale = CustomItems.getSeaSerpentScaleBlue();
+                    ItemStack blueScale = customItems.getSeaSerpentScaleBlue();
                     blueScale.setAmount(scaleAmount);
                     drops.add(blueScale);
                     break;
                 }
                 case 1: {
-                    ItemStack bronzeScale = CustomItems.getSeaSerpentScaleBronze();
+                    ItemStack bronzeScale = customItems.getSeaSerpentScaleBronze();
                     bronzeScale.setAmount(scaleAmount);
                     drops.add(bronzeScale);
                     break;
                 }
                 case 2: {
-                    ItemStack deepBlueScale = CustomItems.getSeaSerpentScaleDeepBlue();
+                    ItemStack deepBlueScale = customItems.getSeaSerpentScaleDeepBlue();
                     deepBlueScale.setAmount(scaleAmount);
                     drops.add(deepBlueScale);
                     break;
                 }
                 case 3: {
-                    ItemStack greenScale = CustomItems.getSeaSerpentScaleGreen();
+                    ItemStack greenScale = customItems.getSeaSerpentScaleGreen();
                     greenScale.setAmount(scaleAmount);
                     drops.add(greenScale);
                     break;
                 }
                 case 4: {
-                    ItemStack purpleScale = CustomItems.getSeaSerpentScalePurple();
+                    ItemStack purpleScale = customItems.getSeaSerpentScalePurple();
                     purpleScale.setAmount(scaleAmount);
                     drops.add(purpleScale);
                     break;
                 }
                 case 5: {
-                    ItemStack redScale = CustomItems.getSeaSerpentScaleRed();
+                    ItemStack redScale = customItems.getSeaSerpentScaleRed();
                     redScale.setAmount(scaleAmount);
                     drops.add(redScale);
                     break;
                 }
                 case 6: {
-                    ItemStack tealScale = CustomItems.getSeaSerpentScaleTeal();
+                    ItemStack tealScale = customItems.getSeaSerpentScaleTeal();
                     tealScale.setAmount(scaleAmount);
                     drops.add(tealScale);
                     break;
@@ -108,7 +114,7 @@ public class SeaSerpentDrops implements Listener {
             int scaleAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("SeaSerpents.MaxShinyScales") -
                     CustomConfig.getMobConfig().getInt("SeaSerpents.MinShinyScales"))) + CustomConfig.getMobConfig().getInt("SeaSerpents.MinShinyScales");
 
-            ItemStack shinyScale = CustomItems.getShinyScale();
+            ItemStack shinyScale = customItems.getShinyScale();
             shinyScale.setAmount(scaleAmount);
             drops.add(shinyScale);
 

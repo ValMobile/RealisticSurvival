@@ -16,7 +16,7 @@
  */
 package me.val_mobile.dragons;
 
-import me.val_mobile.rlcraft.RLCraft;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import org.bukkit.Location;
@@ -34,9 +34,9 @@ import java.util.Random;
 
 public class WitherDrops implements Listener {
 
-    private final RLCraft plugin;
-    public WitherDrops(RLCraft instance) {
-        plugin = instance;
+    private final CustomItems customItems;
+    public WitherDrops(RLCraftPlugin instance) {
+        customItems = new CustomItems(instance);
     }
 
     @EventHandler
@@ -53,7 +53,7 @@ public class WitherDrops implements Listener {
             int boneAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("Witherbones.MaxBonesWither") -
                     CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWither"))) + CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWither");
 
-            ItemStack bone = CustomItems.getWitherbone();
+            ItemStack bone = customItems.getWitherbone();
             bone.setAmount(boneAmount);
             drops.add(bone);
 
@@ -74,7 +74,7 @@ public class WitherDrops implements Listener {
             int boneAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("Witherbones.MaxBonesWitherSkeleton") -
                     CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWitherSkeleton"))) + CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWitherSkeleton");
 
-            ItemStack bone = CustomItems.getWitherbone();
+            ItemStack bone = customItems.getWitherbone();
             bone.setAmount(boneAmount);
             drops.add(bone);
 

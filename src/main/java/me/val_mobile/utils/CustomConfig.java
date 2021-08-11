@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.rlcraft.RLCraft;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -35,35 +35,35 @@ public class CustomConfig {
     // initializing class variables to store files and folders
     private static File resourcesFolder;
 
-    private static File baubleConfigFile;
+    private static File baubleFile;
     private static FileConfiguration baubleConfig;
 
-    private static File iceFireGearConfigFile;
+    private static File iceFireGearFile;
     private static FileConfiguration iceFireGearConfig;
 
-    private static File noTreePunchingConfigFile;
+    private static File noTreePunchingFile;
     private static FileConfiguration noTreePunchingConfig;
 
-    private static File spartanWeaponryConfigFile;
+    private static File spartanWeaponryFile;
     private static FileConfiguration spartanWeaponryConfig;
 
-    private static File mobConfigFile;
+    private static File mobFile;
     private static FileConfiguration mobConfig;
 
-    private static File lycanitesMobsConfigFile;
+    private static File lycanitesMobsFile;
     private static FileConfiguration lycanitesMobsConfig;
 
-    private static File itemConfigFile;
+    private static File itemFile;
     private static FileConfiguration itemConfig;
 
-    private static File recipeConfigFile;
+    private static File recipeFile;
     private static FileConfiguration recipeConfig;
 
     // dependency injecting the main class for use
-    private final RLCraft plugin;
+    private final RLCraftPlugin plugin;
 
     // constructing the CustomConfig class
-    public CustomConfig(RLCraft instance) {
+    public CustomConfig(RLCraftPlugin instance) {
         plugin = instance;
     }
 
@@ -71,12 +71,12 @@ public class CustomConfig {
      * Creates the bauble config if one doesn't exist already and loads it in
      */
     public void createBaubleConfig() {
-        baubleConfigFile = new File(plugin.getDataFolder(), "bauble.yml"); // look for a file named "bauble.yml"
+        baubleFile = new File(plugin.getDataFolder(), "bauble.yml"); // look for a file named "bauble.yml"
 
         // if the file "bauble.yml" doesn't exist in the RLCraft plugins folder
-        if (!baubleConfigFile.exists()) {
+        if (!baubleFile.exists()) {
             // create a new yaml file
-            baubleConfigFile.getParentFile().mkdirs();
+            baubleFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
             plugin.saveResource("bauble.yml", false);
         }
@@ -86,7 +86,7 @@ public class CustomConfig {
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            baubleConfig.load(baubleConfigFile);
+            baubleConfig.load(baubleFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -97,12 +97,12 @@ public class CustomConfig {
      * Creates the spartan weaponry config if one doesn't exist already and loads it in
      */
     public void createSpartanWeaponryConfig() {
-        spartanWeaponryConfigFile = new File(plugin.getDataFolder(), "spartanweaponry.yml"); // look for a file named "spartanweaponry.yml"
+        spartanWeaponryFile = new File(plugin.getDataFolder(), "spartanweaponry.yml"); // look for a file named "spartanweaponry.yml"
 
         // if the file "spartanweaponry.yml" doesn't exist in the RLCraft plugins folder
-        if (!spartanWeaponryConfigFile.exists()) {
+        if (!spartanWeaponryFile.exists()) {
             // create a new yaml file
-            spartanWeaponryConfigFile.getParentFile().mkdirs();
+            spartanWeaponryFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
             plugin.saveResource("spartanweaponry.yml", false);
         }
@@ -112,7 +112,7 @@ public class CustomConfig {
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            spartanWeaponryConfig.load(spartanWeaponryConfigFile);
+            spartanWeaponryConfig.load(spartanWeaponryFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -123,12 +123,12 @@ public class CustomConfig {
      * Creates the ice and fire gear config if one doesn't exist already and loads it in
      */
     public void createIceFireGearConfig() {
-        iceFireGearConfigFile = new File(plugin.getDataFolder(), "icefiregear.yml"); // look for a file named "icefiregear.yml"
+        iceFireGearFile = new File(plugin.getDataFolder(), "icefiregear.yml"); // look for a file named "icefiregear.yml"
 
-        // if the file "icefiregear.yml" doesn't exist in the RLCraft plugins folder
-        if (!iceFireGearConfigFile.exists()) {
+        // if the file "spartanweaponry.yml" doesn't exist in the RLCraft plugins folder
+        if (!iceFireGearFile.exists()) {
             // create a new yaml file
-            iceFireGearConfigFile.getParentFile().mkdirs();
+            iceFireGearFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
             plugin.saveResource("icefiregear.yml", false);
         }
@@ -138,7 +138,7 @@ public class CustomConfig {
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            iceFireGearConfig.load(iceFireGearConfigFile);
+            iceFireGearConfig.load(iceFireGearFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -149,12 +149,12 @@ public class CustomConfig {
      * Creates the no tree punching gear config if one doesn't exist already and loads it in
      */
     public void createNoTreePunchingConfig() {
-        noTreePunchingConfigFile = new File(plugin.getDataFolder(), "notreepunching.yml"); // look for a file named "notreepunching.yml"
+        noTreePunchingFile = new File(plugin.getDataFolder(), "notreepunching.yml"); // look for a file named "notreepunching.yml"
 
         // if the file "notreepunching.yml" doesn't exist in the RLCraft plugins folder
-        if (!noTreePunchingConfigFile.exists()) {
+        if (!noTreePunchingFile.exists()) {
             // create a new yaml file
-            noTreePunchingConfigFile.getParentFile().mkdirs();
+            noTreePunchingFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
             plugin.saveResource("notreepunching.yml", false);
         }
@@ -164,7 +164,7 @@ public class CustomConfig {
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            noTreePunchingConfig.load(noTreePunchingConfigFile);
+            noTreePunchingConfig.load(noTreePunchingFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -175,12 +175,12 @@ public class CustomConfig {
      * Creates the mob config if one doesn't exist already and loads it in
      */
     public void createMobConfig() {
-        mobConfigFile = new File(plugin.getDataFolder(), "mobs.yml"); // look for a file named "mobs.yml"
+        mobFile = new File(plugin.getDataFolder(), "mobs.yml"); // look for a file named "mobs.yml"
 
         // if the file "mobs.yml" doesn't exist in the RLCraft plugins folder
-        if (!mobConfigFile.exists()) {
+        if (!mobFile.exists()) {
             // create a new yaml file
-            mobConfigFile.getParentFile().mkdirs();
+            mobFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
             plugin.saveResource("mobs.yml", false);
         }
@@ -190,7 +190,7 @@ public class CustomConfig {
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            mobConfig.load(mobConfigFile);
+            mobConfig.load(mobFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -201,12 +201,12 @@ public class CustomConfig {
      * Creates the lycanite's mobs config if one doesn't exist already and loads it in
      */
     public void createLycanitesMobsConfig() {
-        lycanitesMobsConfigFile = new File(plugin.getDataFolder(), "lycanitesmobs.yml"); // look for a file named "lycanitesmobs.yml"
+        lycanitesMobsFile = new File(plugin.getDataFolder(), "lycanitesmobs.yml"); // look for a file named "lycanitesmobs.yml"
 
         // if the file "lycanitesmobs.yml" doesn't exist in the RLCraft plugins folder
-        if (!lycanitesMobsConfigFile.exists()) {
+        if (!lycanitesMobsFile.exists()) {
             // create a new yaml file
-            lycanitesMobsConfigFile.getParentFile().mkdirs();
+            lycanitesMobsFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
             plugin.saveResource("lycanitesmobs.yml", false);
         }
@@ -216,7 +216,7 @@ public class CustomConfig {
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            lycanitesMobsConfig.load(lycanitesMobsConfigFile);
+            lycanitesMobsConfig.load(lycanitesMobsFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -240,12 +240,12 @@ public class CustomConfig {
      * Creates the item config if one doesn't exist already and loads it in
      */
     public void createItemConfig() {
-        itemConfigFile = new File(plugin.getDataFolder(), "resources/items.yml"); // look for a file named "items.yml" in the resources folder
+        itemFile = new File(plugin.getDataFolder(), "resources/items.yml"); // look for a file named "items.yml" in the resources folder
 
         // if the file "items.yml" doesn't exist in the resources folder
-        if (!itemConfigFile.exists()) {
+        if (!itemFile.exists()) {
             // create a new yaml file
-            itemConfigFile.getParentFile().mkdirs();
+            itemFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
             plugin.saveResource("resources/items.yml", false);
         }
@@ -255,7 +255,7 @@ public class CustomConfig {
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            itemConfig.load(itemConfigFile);
+            itemConfig.load(itemFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -266,12 +266,12 @@ public class CustomConfig {
      * Creates the recipe config if one doesn't exist already and loads it in
      */
     public void createRecipeConfig() {
-        recipeConfigFile = new File(plugin.getDataFolder(), "resources/recipes.yml"); // look for a file named "recipes.yml" in the resources folder
+        recipeFile = new File(plugin.getDataFolder(), "resources/recipes.yml"); // look for a file named "recipes.yml" in the resources folder
 
         // if the file "recipes.yml" doesn't exist in the resources folder
-        if (!recipeConfigFile.exists()) {
+        if (!recipeFile.exists()) {
             // create a new yaml file
-            recipeConfigFile.getParentFile().mkdirs();
+            recipeFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
             plugin.saveResource("resources/recipes.yml", false);
         }
@@ -281,7 +281,7 @@ public class CustomConfig {
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            recipeConfig.load(recipeConfigFile);
+            recipeConfig.load(recipeFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -420,55 +420,55 @@ public class CustomConfig {
      * Reloads the bauble config to use the most recent values
      */
     public void reloadBaubleConfig() {
-        setBaubleConfig(YamlConfiguration.loadConfiguration(baubleConfigFile));
+        setBaubleConfig(YamlConfiguration.loadConfiguration(baubleFile));
     }
 
     /**
      * Reloads the spartan weaponry config to use the most recent values
      */
     public void reloadSpartanWeaponryConfig() {
-        setSpartanWeaponryConfig(YamlConfiguration.loadConfiguration(spartanWeaponryConfigFile));
+        setSpartanWeaponryConfig(YamlConfiguration.loadConfiguration(spartanWeaponryFile));
     }
 
     /**
      * Reloads the ice and fire config to use the most recent values
      */
     public void reloadIceFireGearConfig() {
-        setIceFireGearConfig(YamlConfiguration.loadConfiguration(iceFireGearConfigFile));
+        setIceFireGearConfig(YamlConfiguration.loadConfiguration(iceFireGearFile));
     }
 
     /**
      * Reloads the no tree punching config to use the most recent values
      */
     public void reloadNoTreePunchingConfig() {
-        setNoTreePunchingConfig(YamlConfiguration.loadConfiguration(noTreePunchingConfigFile));
+        setNoTreePunchingConfig(YamlConfiguration.loadConfiguration(noTreePunchingFile));
     }
 
     /**
      * Reloads the mob config to use the most recent values
      */
     public void reloadMobConfig() {
-        setMobConfig(YamlConfiguration.loadConfiguration(mobConfigFile));
+        setMobConfig(YamlConfiguration.loadConfiguration(mobFile));
     }
 
     /**
      * Reloads the lycanite's mobs config to use the most recent values
      */
     public void reloadLycanitesMobsConfig() {
-        setLycanitesMobsConfig(YamlConfiguration.loadConfiguration(lycanitesMobsConfigFile));
+        setLycanitesMobsConfig(YamlConfiguration.loadConfiguration(lycanitesMobsFile));
     }
 
     /**
      * Reloads the items config to use the most recent values
      */
     public void reloadItemConfig() {
-        setItemConfig(YamlConfiguration.loadConfiguration(itemConfigFile));
+        setItemConfig(YamlConfiguration.loadConfiguration(itemFile));
     }
 
     /**
      * Reloads the recipe config to use the most recent values
      */
     public void reloadRecipeConfig() {
-        setItemConfig(YamlConfiguration.loadConfiguration(recipeConfigFile));
+        setItemConfig(YamlConfiguration.loadConfiguration(recipeFile));
     }
 }

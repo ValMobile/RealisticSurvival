@@ -16,7 +16,7 @@
  */
 package me.val_mobile.commands;
 
-import me.val_mobile.utils.Item;
+import me.val_mobile.utils.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -82,7 +82,7 @@ public class Tab implements org.bukkit.command.TabCompleter {
                  *
                  * Add every command name to the third list of arguments.
                  */
-                for (String tabName : Item.getCommandNames()) {
+                for (String tabName : ItemBuilder.getCommandNames()) {
                     thirdArgs.add(tabName);
                 }
             }

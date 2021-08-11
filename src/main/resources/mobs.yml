@@ -13,25 +13,17 @@ Dragons:
     # Chance the vanilla acid ball attack becomes a special attack instead
     # Make sure rates add up to 1.0
     BreathAttack:
-      # LayerBlock - The block that replaces air
-      # BurntBlock - The block which flammable blocks get turned into
-      # CharredBlock - The block which nonflammable blocks get turned into
-      # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
-      # VelocityMultiplier - How much faster the flames travel compared to the speed of a normal acid ball
-      # RadiusConstant - Helps determine the minimum radius of fire and charring
-      # DecayTicks - Determines when the breath attack is removed due to having traveled too far
-      # ImmuneBlocks - Specify which blocks are immune to breath attacks
-      # Endstone, bedrock, and other blocks found in the end are put here to prevent the main end island from being destroyed
       # The following settings already work well for a good dragon fight
-      # You don't need to change them in most cases
       Chance: 1.0
-      LayerBlock: "FIRE"
-      BurntBlock: "BLACKSTONE"
-      CharredBlock: "SMOOTH_BASALT"
-      VelocityMultiplier: 30
-      RadiusConstant: 2
-      DecayTicks: 200
-      ImmuneBlocks:
+      # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+      LayerBlock: "FIRE"            # The block that replaces air
+      BurntBlock: "BLACKSTONE"      # The block which flammable blocks get turned into
+      CharredBlock: "SMOOTH_BASALT" # The block which nonflammable blocks get turned into
+      VelocityMultiplier: 30        # How much faster the flames travel compared to the speed of a normal acid ball
+      RadiusConstant: 2             # Helps determine the minimum radius of fire and charring
+      DecayTicks: 200               # Determines when the breath attack is removed due to having traveled too far
+      ImmuneBlocks:                 # Specify which blocks are immune to breath attacks
+        # Endstone, bedrock, and other blocks found in the end are put here to prevent the main end island from being destroyed
         - "END_STONE"
         - "OBSIDIAN"
         - "IRON_BARS"
@@ -45,15 +37,11 @@ Dragons:
   IceDragon:
     Chance: 0.3
     BreathAttack:
-      # LayerBlock - What block will air be converted into
-      # FrozenBlock - What block will solid blocks be converted into
-      # SolidifiedLavaBlock - What block will lava be converted into
-      # SolidifiedWaterBlock - What block will water be converted into
       Chance: 1.0
-      LayerBlock: "SNOW"
-      FrozenBlock: "PACKED_ICE"
-      SolidifiedLavaBlock: "OBSIDIAN"
-      SolidifiedWaterBlock: "PACKED_ICE"
+      LayerBlock: "SNOW"                  # What block will air be converted into
+      FrozenBlock: "PACKED_ICE"           # What block will solid blocks be converted into
+      SolidifiedLavaBlock: "OBSIDIAN"     # What block will lava be converted into
+      SolidifiedWaterBlock: "PACKED_ICE"  # What block will water be converted into
       VelocityMultiplier: 30.0
       RadiusConstant: 2
       DecayTicks: 200
@@ -72,9 +60,8 @@ Dragons:
     Chance: 0.3
     BreathAttack:
       Chance: 1.0
-      # RadiusConstant determines how far away the lightning can strike
       VelocityMultiplier: 30.0
-      RadiusConstant: 2
+      RadiusConstant: 2         # Determines how far away the lightning can strike
       DecayTicks: 200
     ExplosionAttack:
       Chance: 0.0

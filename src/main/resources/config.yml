@@ -27,13 +27,12 @@ OutdatedVersion:
 #######################################
 
 # Enable and disable features to your liking
+# Set a feature to "false" to disable and "true" to enable
 # There are 6 other configs to customize the individual details of each feature
 # Resource pack is disabled by default to allow for integration of it into
 # your own custom server pack if needed
 # NOTE: You must restart the server after enabling or disabling any feature
-ResourcePack:
-  Enabled: false
-  URL: "https://www.dropbox.com/s/ra53k6zarnm28nq/RLCraft-Addons%20RP.zip?dl=1"
+ResourcePack: false
 UnlockRecipes: true
 NoTreePunching: true
 Dragons: true
@@ -44,4 +43,8 @@ SpartanWeaponry: true
 LycanitesMobs: true
 Waystones: true
 
-BStats: true
+#######################################
+#          Miscellaneous              #
+#######################################
+
+BStats: true  # Do you want non-confidential server data to be recorded for my use?

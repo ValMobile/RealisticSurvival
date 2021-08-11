@@ -16,7 +16,7 @@
  */
 package me.val_mobile.spartan_weaponry;
 
-import de.tr7zw.nbtapi.NBTItem;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Material;
@@ -35,38 +35,41 @@ import static org.bukkit.Material.SPECTRAL_ARROW;
 
 public class SpartanWeaponryEvents implements Listener {
 
+    private final Utils util;
+    public SpartanWeaponryEvents(RLCraftPlugin instance) {
+        util = new Utils(instance);
+    }
+
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onProjectileLaunch(ProjectileLaunchEvent event) {
-        if (!event.isCancelled()) {
-            Projectile projectile = event.getEntity();
-            ProjectileSource shooter = projectile.getShooter();
-            if (projectile != null) {
-                if (shooter != null) {
-                    if (shooter instanceof Player) {
-                        Player player = (Player) shooter;
-                        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-                        if (!(itemMainHand == null || itemMainHand.getType() == Material.AIR)) {
-                            NBTItem item = new NBTItem(itemMainHand);
-                            if (item.hasKey("Spartan's Weapon") && item.hasKey("Material Type")) {
-                                Vector velocity = projectile.getVelocity();
+        Projectile projectile = event.getEntity();
+        ProjectileSource shooter = projectile.getShooter();
+        if (projectile != null) {
+            if (shooter != null) {
+                if (shooter instanceof Player) {
+                    Player player = (Player) shooter;
+                    ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+                    if (Utils.isItemReal(itemMainHand)) {
 
-                                String weaponType = item.getString("Spartan's Weapon");
-                                String materialType = item.getString("Material Type");
+                        if (util.hasNbtTag(itemMainHand, "spartans_weapon") && util.hasNbtTag(itemMainHand, "material_type")) {
+                            Vector velocity = projectile.getVelocity();
 
-                                String configPath = weaponType + "." + materialType + "." + "VelocityMultiplier";
+                            String weaponType = util.getNbtTag(itemMainHand, "spartans_weapon");
+                            String materialType = util.getNbtTag(itemMainHand, "material_type");
 
-                                switch (weaponType) {
-                                    case "Crossbow":
-                                    case "Longbow": {
-                                        double multiplier = CustomConfig.getSpartanWeaponryConfig().getDouble(configPath);
-                                        projectile.setVelocity(velocity.multiply(multiplier));
-                                        break;
-                                    }
-                                    case "Bow": {
-                                        double multiplier = CustomConfig.getIceFireGearConfig().getDouble(configPath);
-                                        projectile.setVelocity(velocity.multiply(multiplier));
-                                        break;
-                                    }
+                            String configPath = weaponType + "." + materialType + "." + "ArrowVelocityMultiplier";
+
+                            switch (weaponType) {
+                                case "Crossbow":
+                                case "Longbow": {
+                                    double multiplier = CustomConfig.getSpartanWeaponryConfig().getDouble(configPath);
+                                    projectile.setVelocity(velocity.multiply(multiplier));
+                                    break;
+                                }
+                                case "Bow": {
+                                    double multiplier = CustomConfig.getIceFireGearConfig().getDouble(configPath);
+                                    projectile.setVelocity(velocity.multiply(multiplier));
+                                    break;
                                 }
                             }
                         }
@@ -78,55 +81,52 @@ public class SpartanWeaponryEvents implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (!event.isCancelled()) {
+        Entity entity = event.getEntity();
+        Entity attacker = event.getDamager();
 
-            Entity entity = event.getEntity();
-            Entity attacker = event.getDamager();
+        if (attacker.getType().equals(ARROW) || attacker.getType().equals(SPECTRAL_ARROW)) {
+            Projectile arrow = (Projectile) event.getDamager();
+            if (arrow.getShooter() != null) {
+                Entity shooter = (Entity) arrow.getShooter();
 
-            if (attacker.getType().equals(ARROW) || attacker.getType().equals(SPECTRAL_ARROW)) {
-                Projectile arrow = (Projectile) event.getDamager();
-                if (arrow.getShooter() != null) {
-                    Entity shooter = (Entity) arrow.getShooter();
+                if (shooter instanceof Player) {
+                    Player player = (Player) shooter;
+                    ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+                    if (!(itemMainHand == null || itemMainHand.getType() == Material.AIR)) {
 
-                    if (shooter instanceof Player) {
-                        Player player = (Player) shooter;
-                        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-                        if (!(itemMainHand == null || itemMainHand.getType() == Material.AIR)) {
-                            NBTItem item = new NBTItem(itemMainHand);
-                            if (item.hasKey("Spartan's Weapon") && item.hasKey("Material Type")) {
-                                String weaponType = item.getString("Spartan's Weapon");
-                                String materialType = item.getString("Material Type");
+                        if (util.hasNbtTag(itemMainHand, "spartans_weapon") && util.hasNbtTag(itemMainHand, "material_type")) {
+                            String weaponType = util.getNbtTag(itemMainHand, "spartans_weapon");
+                            String materialType = util.getNbtTag(itemMainHand, "material_type");
 
-                                String configPath = weaponType + "." + materialType + "." + "AttackDamageMultiplier";
+                            String configPath = weaponType + "." + materialType + "." + "AttackDamageMultiplier";
 
-                                if (weaponType.equals("Crossbow") || weaponType.equals("Longbow")) {
-                                    double multiplier = CustomConfig.getSpartanWeaponryConfig().getDouble(configPath);
-                                    event.setDamage(event.getDamage() * multiplier);
-                                }
+                            if (weaponType.equals("Crossbow") || weaponType.equals("Longbow")) {
+                                double multiplier = CustomConfig.getSpartanWeaponryConfig().getDouble(configPath);
+                                event.setDamage(event.getDamage() * multiplier);
                             }
                         }
                     }
                 }
             }
-            if (attacker.getType().equals(EntityType.PLAYER)) {
-                Player player = (Player) attacker;
+        }
+        if (attacker.getType().equals(EntityType.PLAYER)) {
+            Player player = (Player) attacker;
 
-                ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-                if (!(itemMainHand == null || itemMainHand.getType() == Material.AIR)) {
-                    NBTItem item = new NBTItem(itemMainHand);
-                    if (item.hasKey("Spartan's Weapon")) {
-                        switch (item.getString("Spartan's Weapon")) {
-                            case "Rapier":
-                                if (!Utils.hasArmor((LivingEntity) entity)) {
-                                    event.setDamage(event.getDamage() * 3.0D);
-                                }
-                                break;
-                            case "Katana":
-                                if (!Utils.hasChestplate((LivingEntity) entity)) {
-                                    event.setDamage(event.getDamage() * 2.0D);
-                                }
-                                break;
-                        }
+            ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+            if (!(itemMainHand == null || itemMainHand.getType() == Material.AIR)) {
+
+                if (util.hasNbtTag(itemMainHand, "spartans_weapon")) {
+                    switch (util.getNbtTag(itemMainHand, "spartans_weapon")) {
+                        case "Rapier":
+                            if (!Utils.hasArmor((LivingEntity) entity)) {
+                                event.setDamage(event.getDamage() * 3.0D);
+                            }
+                            break;
+                        case "Katana":
+                            if (!Utils.hasChestplate((LivingEntity) entity)) {
+                                event.setDamage(event.getDamage() * 2.0D);
+                            }
+                            break;
                     }
                 }
             }

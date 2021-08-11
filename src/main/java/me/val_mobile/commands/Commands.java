@@ -16,9 +16,9 @@
  */
 package me.val_mobile.commands;
 
-import me.val_mobile.rlcraft.RLCraft;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.Item;
+import me.val_mobile.utils.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -40,11 +40,11 @@ public class Commands implements CommandExecutor {
      * Dependency injecting the main and custom config class for use
      * The custom config class must be injected because its non-static methods are needed
      */
-    private final RLCraft plugin;
+    private final RLCraftPlugin plugin;
     private final CustomConfig customConfig;
 
     // constructing the Commands class
-    public Commands(RLCraft instance) {
+    public Commands(RLCraftPlugin instance) {
         plugin = instance;
         customConfig = new CustomConfig(instance);
     }
@@ -56,7 +56,7 @@ public class Commands implements CommandExecutor {
      * @param label The word directly after the forward slash
      * @param args An array holding every argument after the label
      * @return A boolean showing if the user successfully executed the appropriate command
-     * @see Item
+     * @see ItemBuilder
      * @see CustomConfig
      */
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -81,7 +81,7 @@ public class Commands implements CommandExecutor {
                     // check if the user is a player
                     if (sender instanceof Player) {
                         // check if the player has the permission to give himself/herself items
-                        if (! (sender.hasPermission("rlcraft.command.give") || sender.isOp())) {
+                        if (! (sender.hasPermission("rlcraft.command.give"))) {
                             // send the player a message explaining that he/she does not have permission to execute the command
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
                             return true;
@@ -111,8 +111,8 @@ public class Commands implements CommandExecutor {
                                     Player player = Bukkit.getPlayer(args[1]); // get the online player
 
                                     // check if the third argument is the command name of an item
-                                    if (Item.getCommandNames().contains(args[2])) {
-                                        ItemStack customItem = Item.getItem(Item.getItemMap().get(args[2])); // get the item from its command name
+                                    if (ItemBuilder.getCommandNames().contains(args[2])) {
+                                        ItemStack customItem = ItemBuilder.getItem(ItemBuilder.getItemMap().get(args[2])); // get the item from its command name
 
                                         // iterate over the player's inventory
                                         for (int i = 0; i < 36; i++) {
@@ -153,7 +153,7 @@ public class Commands implements CommandExecutor {
                         Player player = (Player) sender; // get the player
 
                         // check if the player has the permission to reload the plugin
-                        if (! (sender.hasPermission("rlcraft.command.reload") || sender.isOp())) {
+                        if (! (sender.hasPermission("rlcraft.command.reload"))) {
                             // send the player a message explaining that he/she does not have permission to execute the command
                             player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
                             return true;

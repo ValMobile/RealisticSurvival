@@ -1,9 +1,24 @@
-main: me.val_mobile.rlcraft.RLCraft
+main: me.val_mobile.rlcraft.RLCraftPlugin
 name: RLCraft
 version: ${project.version}
 author: Val_Mobile
 api-version: 1.17
-depend: [NBTAPI, FastAsyncWorldEdit]
+depend: [FastAsyncWorldEdit]
 
 commands:
   RLCraft:
+    description: The RLCraft command
+
+permissions:
+  rlcraft.command.give:
+    description: Allows users to give themselves items from the RLCraft plugin
+    default: op
+  rlcraft.command.reload:
+    description: Allows users to reload the RLCraft plugin
+    default: op
+  rlcraft.command.*:
+    description: Wildcard permission
+    default: op
+    children:
+      rlcraft.command.give: true
+      rlcraft.command.reload: true

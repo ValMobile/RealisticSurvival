@@ -16,7 +16,7 @@
  */
 package me.val_mobile.dragons;
 
-import me.val_mobile.rlcraft.RLCraft;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
@@ -28,75 +28,123 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Collection;
+/**
+ * DragonGearAbilities is a utility class containing methods that
+ * execute special abilities of the fire, ice, and lighting dragon weapons
+ * @author Val_Mobile
+ * @version 1.2
+ * @since 1.0
+ */
 public class DragonGearAbilities {
 
-    private final RLCraft plugin;
-    public DragonGearAbilities(RLCraft instance) {
+    // dependency injecting the main class
+    private final RLCraftPlugin plugin;
+
+    // constructing the DragonGearAbilities class
+    public DragonGearAbilities(RLCraftPlugin instance) {
         plugin = instance;
     }
 
-    private static List<FallingBlock> iceDragonBoneBlocks = new ArrayList<>();
-    private static List<FallingBlock> iceDragonsteelBlocks = new ArrayList<>();
+    // collections to hold all the ice blocks
+    private static Collection<FallingBlock> iceDragonBoneBlocks = new ArrayList<>();
+    private static Collection<FallingBlock> iceDragonsteelBlocks = new ArrayList<>();
 
-    public static List<FallingBlock> getIceDragonBoneBlocks() {
+    /**
+     * Gets all the ice blocks created by using ice dragonbone weapons
+     * @return A collection containing all the ice blocks created by using ice dragonbone weapons
+     */
+    public static Collection<FallingBlock> getIceDragonBoneBlocks() {
         return iceDragonBoneBlocks;
     }
 
-    public static List<FallingBlock> getIceDragonsteelBlocks() {
+    /**
+     * Gets all the ice blocks created by using ice dragonsteel weapons
+     * @return A collection containing all the ice blocks created by using ice dragonsteel weapons
+     */
+    public static Collection<FallingBlock> getIceDragonsteelBlocks() {
         return iceDragonsteelBlocks;
     }
 
+    /**
+     * Burns an entity that was hit by a flamed dragonbone weapon
+     * @param entity The target entity
+     * @see DragonGearAbilities
+     */
     public void FireDragonBoneAbility(LivingEntity entity) {
+        int fireTicks = CustomConfig.getIceFireGearConfig().getInt("Abilities.FlamedDragonBone.FireTicks"); // get the fire ticks
 
-        int fireTicks = CustomConfig.getIceFireGearConfig().getInt("Abilities.FlamedDragonBone.FireTicks");
-
+        // if the entity is going to burn for less than the specified fire ticks
         if (entity.getFireTicks() < fireTicks) {
+            // set the entity on fire
             entity.setFireTicks(fireTicks);
         }
-
     }
 
+    /**
+     * Burns an entity that was hit by a fire dragonsteel weapon
+     * @param entity The target entity
+     * @see DragonGearAbilities
+     */
     public void FireDragonsteelAbility(LivingEntity entity) {
+        int fireTicks = CustomConfig.getIceFireGearConfig().getInt("Abilities.FireDragonsteel.FireTicks"); // get the fire ticks
 
-        int fireTicks = CustomConfig.getIceFireGearConfig().getInt("Abilities.FireDragonsteel.FireTicks");
-
+        // if the entity is going to burn for less than the specified fire ticks
         if (entity.getFireTicks() < fireTicks) {
+            // set the entity on fire
             entity.setFireTicks(fireTicks);
         }
-
     }
 
+    /**
+     * Freezes and applies slowness to an entity that was hit by an ice dragonbone weapon
+     * @param entity The target entity
+     * @see DragonGearAbilities
+     * @see DragonGearRunnables
+     */
     public void IceDragonBoneAbility(LivingEntity entity) {
-
+        // store the duration and amplifier of the slowness effect
         int amplifier = CustomConfig.getIceFireGearConfig().getInt("Abilities.IcedDragonBone.Slowness.Amplifier");
         int duration = CustomConfig.getIceFireGearConfig().getInt("Abilities.IcedDragonBone.Slowness.Duration");
+
+        // create the slowness effect using the duration and amplifier variables
         PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
+
+        // add the slowness effect to the target entity
         Utils.smartAddPotionEffect(slowness, entity);
 
+        // freeze the entity
         DragonGearRunnables.freezeEntity(entity).runTaskLater(plugin, 1);
 
-        Location loc = entity.getLocation();
-        Material material = Material.valueOf(CustomConfig.getIceFireGearConfig().getString("Abilities.IcedDragonBone.Block"));
-        FallingBlock block = entity.getWorld().spawnFallingBlock(loc, material.createBlockData());
+        // encase the entity with ice
+        Location loc = entity.getLocation(); // get the location
+        Material material = Material.valueOf(CustomConfig.getIceFireGearConfig().getString("Abilities.IcedDragonBone.Block")); // get the material
+        FallingBlock block = entity.getWorld().spawnFallingBlock(loc, material.createBlockData()); // create an ice block
+
+        // initialize other temp blocks
         FallingBlock block2;
         FallingBlock block3;
 
+        // make the ice block purely cosmetic and have no effect on entities
         block.setDropItem(false);
         block.setHurtEntities(false);
         block.setGravity(false);
         block.setCustomName("Ice Dragon Bone Block");
 
+        // add the ice block to the collection
         getIceDragonBoneBlocks().add(block);
 
+        // if the entity is taller than 1 block
         if (entity.getHeight() >= 1.5) {
+            // if the entity is taller than 2 blocks
             if (entity.getHeight() >= 2.5) {
+                // create two more ice blocks
                 loc.setY(loc.getY() + 1.0D);
                 block2 = entity.getWorld().spawnFallingBlock(loc, material.createBlockData());
                 loc.setY(loc.getY() + 1.0D);
                 block3 = entity.getWorld().spawnFallingBlock(loc, material.createBlockData());
 
+                // make the ice blocks purely cosmetic and have no effect on entities
                 block2.setDropItem(false);
                 block2.setHurtEntities(false);
                 block2.setGravity(false);
@@ -107,58 +155,84 @@ public class DragonGearAbilities {
                 block3.setGravity(false);
                 block3.setCustomName("Ice Dragon Bone Block");
 
+                // add the ice blocks to the collection
                 getIceDragonBoneBlocks().add(block2);
                 getIceDragonBoneBlocks().add(block3);
             }
+            // if the entity is between 1 and 2 blocks tall
             else {
+                // create one more ice block
                 loc.setY(loc.getY() + 1.0D);
                 block2 = entity.getWorld().spawnFallingBlock(loc, material.createBlockData());
 
+                // make the ice block purely cosmetic and have no effect on entities
                 block2.setDropItem(false);
                 block2.setHurtEntities(false);
                 block2.setGravity(false);
                 block2.setCustomName("Ice Dragon Bone Block");
 
+                // add the ice blocks to the collection
                 getIceDragonBoneBlocks().add(block2);
             }
         }
 
+        // play the ice break sound effect
         entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 1, 1);
-        DragonGearRunnables.removeIceDragonBoneBlocks().runTaskLater(plugin, CustomConfig.getIceFireGearConfig().getInt("Abilities.IcedDragonBone.FrozenDuration"));
 
+        // remove the ice block after some time
+        DragonGearRunnables.removeIceDragonBoneBlocks().runTaskLater(plugin, CustomConfig.getIceFireGearConfig().getInt("Abilities.IcedDragonBone.FrozenDuration"));
     }
 
+    /**
+     * Freezes and applies slowness to an entity that was hit by an ice dragonsteel weapon
+     * @param entity The target entity
+     * @see DragonGearAbilities
+     * @see DragonGearAbilities
+     */
     public void IceDragonsteelAbility(LivingEntity entity) {
-
+        // store the duration and amplifier of the slowness effect
         int amplifier = CustomConfig.getIceFireGearConfig().getInt("Abilities.IceDragonsteel.Slowness.Amplifier");
         int duration = CustomConfig.getIceFireGearConfig().getInt("Abilities.IceDragonsteel.Slowness.Duration");
 
+        // create the slowness effect using the duration and amplifier variables
         PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
+
+        // add the slowness effect to the target entity
         Utils.smartAddPotionEffect(slowness, entity);
 
+        // freeze the entity
         DragonGearRunnables.freezeEntity(entity).runTaskLater(plugin, 1);
 
-        Location loc = entity.getLocation();
-        Material material = Material.valueOf(CustomConfig.getIceFireGearConfig().getString("Abilities.IceDragonsteel.Block"));
+        // encase the entity with ice
+        Location loc = entity.getLocation(); // get the location
+        Material material = Material.valueOf(CustomConfig.getIceFireGearConfig().getString("Abilities.IceDragonsteel.Block")); // get the material
 
-        FallingBlock block = entity.getWorld().spawnFallingBlock(loc, material.createBlockData());
+        FallingBlock block = entity.getWorld().spawnFallingBlock(loc, material.createBlockData()); // create an ice block
+
+        // initialize other temp blocks
         FallingBlock block2;
         FallingBlock block3;
 
+        // make the ice block purely cosmetic and have no effect on entities
         block.setDropItem(false);
         block.setHurtEntities(false);
         block.setGravity(false);
         block.setCustomName("Ice Dragonsteel Block");
 
+        // add the ice block to the collection
         getIceDragonsteelBlocks().add(block);
 
+        // if the entity is taller than 1 block
         if (entity.getHeight() >= 1.5) {
+            // if the entity is taller than 2 blocks
             if (entity.getHeight() >= 2.5) {
+                // create two more ice blocks
                 loc.setY(loc.getY() + 1.0D);
                 block2 = entity.getWorld().spawnFallingBlock(loc, material.createBlockData());
                 loc.setY(loc.getY() + 1.0D);
                 block3 = entity.getWorld().spawnFallingBlock(loc, material.createBlockData());
 
+                // make the ice blocks purely cosmetic and have no effect on entities
                 block2.setDropItem(false);
                 block2.setHurtEntities(false);
                 block2.setGravity(false);
@@ -169,33 +243,61 @@ public class DragonGearAbilities {
                 block3.setGravity(false);
                 block3.setCustomName("Ice Dragonsteel Block");
 
+                // add the ice blocks to the collection
                 getIceDragonsteelBlocks().add(block2);
                 getIceDragonsteelBlocks().add(block3);
             }
+            // if the entity is between 1 and 2 blocks tall
             else {
+                // create one more ice block
                 loc.setY(loc.getY() + 1.0D);
                 block2 = entity.getWorld().spawnFallingBlock(loc, material.createBlockData());
 
+                // make the ice block purely cosmetic and have no effect on entities
                 block2.setDropItem(false);
                 block2.setHurtEntities(false);
                 block2.setGravity(false);
                 block2.setCustomName("Ice Dragonsteel Block");
 
+                // add the ice blocks to the collection
                 getIceDragonsteelBlocks().add(block2);
             }
         }
-        entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 1, 1);
-        DragonGearRunnables.removeIceDragonsteelBlocks().runTaskLater(plugin, CustomConfig.getIceFireGearConfig().getInt("Abilities.IceDragonsteel.FrozenDuration"));
 
+        // play the ice break sound effect
+        entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 1, 1);
+
+        // remove the ice block after some time
+        DragonGearRunnables.removeIceDragonsteelBlocks().runTaskLater(plugin, CustomConfig.getIceFireGearConfig().getInt("Abilities.IceDragonsteel.FrozenDuration"));
     }
 
+    /**
+     * Strikes and shocks an entity that was hit by a lightning dragonbone weapon
+     * @param entity The target entity
+     * @param source The attacker
+     * @see DragonGearAbilities
+     * @see DragonGearRunnables
+     */
     public void LightningDragonBoneAbility(LivingEntity entity, LivingEntity source) {
+        // strike entity with lightning
         entity.getWorld().strikeLightning(entity.getLocation());
+
+        // shock entity
         DragonGearRunnables.shockEntity(entity, source).runTaskTimer(plugin, 0L, 1);
     }
 
+    /**
+     * Strikes and shocks an entity that was hit by a lightning dragonbone weapon
+     * @param entity The target entity
+     * @param source The attacker
+     * @see DragonGearAbilities
+     * @see DragonGearRunnables
+     */
     public void LightningDragonsteelAbility(LivingEntity entity, LivingEntity source) {
+        // strike entity with lightning
         entity.getWorld().strikeLightning(entity.getLocation());
+
+        // shock entity
         DragonGearRunnables.electrocuteEntity(entity, source).runTaskTimer(plugin, 0L, 1);
     }
 }

@@ -16,18 +16,17 @@
  */
 package me.val_mobile.utils;
 
-import de.tr7zw.nbtapi.NBTItem;
-import me.val_mobile.rlcraft.RLCraft;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
@@ -42,8 +41,9 @@ public class Utils {
     public static final double ATTACK_DAMAGE_CONSTANT = -1.0;
     public static final double ATTACK_SPEED_CONSTANT = -4.0;
 
-    private final RLCraft plugin;
-    public Utils(RLCraft instance) {
+    private final RLCraftPlugin plugin;
+
+    public Utils(RLCraftPlugin instance) {
         plugin = instance;
     }
 
@@ -55,75 +55,6 @@ public class Utils {
         newLoc.setZ(newLoc.getZ() + z);
 
         return newLoc;
-    }
-
-    public boolean checkDragonContainers(Entity dragon) {
-
-        PersistentDataContainer container = dragon.getPersistentDataContainer();
-
-        NamespacedKey dragonKey = new NamespacedKey(plugin, "Dragon");
-        NamespacedKey stageKey = new NamespacedKey(plugin, "Stage");
-        NamespacedKey ageKey = new NamespacedKey(plugin, "Age");
-
-        if (container.has(dragonKey, PersistentDataType.STRING) &&
-                container.has(stageKey, PersistentDataType.INTEGER) &&
-                container.has(ageKey, PersistentDataType.INTEGER)) {
-            return true;
-        }
-        return false;
-    }
-
-    public void addDragonContainers(Entity dragon) {
-
-        PersistentDataContainer container = dragon.getPersistentDataContainer();
-
-        NamespacedKey dragonKey = new NamespacedKey(plugin, "Dragon");
-        NamespacedKey stageKey = new NamespacedKey(plugin, "Stage");
-        NamespacedKey ageKey = new NamespacedKey(plugin, "Age");
-
-        Random r = new Random();
-        String dragonType;
-        int stage = (int) Math.round(r.nextDouble() * 4) + 1;
-        int age = stage * 100 + (int) Math.round(r.nextDouble() * 99);
-        double temp = r.nextDouble();
-        if (temp <= CustomConfig.getMobConfig().getDouble("Dragons.FireDragon.Chance")) {
-            dragonType = "Fire";
-        }
-        else if (temp > CustomConfig.getMobConfig().getDouble("Dragons.FireDragon.Chance") &&
-                temp <= (CustomConfig.getMobConfig().getDouble("Dragons.FireDragon.Chance") + CustomConfig.getMobConfig().getDouble("Dragons.IceDragon.Chance"))) {
-            dragonType = "Ice";
-        }
-        else {
-            dragonType = "Lightning";
-        }
-
-        container.set(dragonKey, PersistentDataType.STRING, dragonType);
-        container.set(stageKey, PersistentDataType.INTEGER, stage);
-        container.set(ageKey, PersistentDataType.INTEGER, age);
-    }
-
-    public String getDragonType(Entity dragon) {
-        PersistentDataContainer container = dragon.getPersistentDataContainer();
-
-        NamespacedKey dragonKey = new NamespacedKey(plugin, "Dragon");
-
-        return container.get(dragonKey, PersistentDataType.STRING);
-    }
-
-    public int getDragonStage(Entity dragon) {
-        PersistentDataContainer container = dragon.getPersistentDataContainer();
-
-        NamespacedKey stageKey = new NamespacedKey(plugin, "Stage");
-
-        return container.get(stageKey, PersistentDataType.INTEGER);
-    }
-
-    public int getDragonAge(Entity dragon) {
-        PersistentDataContainer container = dragon.getPersistentDataContainer();
-
-        NamespacedKey ageKey = new NamespacedKey(plugin, "Age");
-
-        return container.get(ageKey, PersistentDataType.INTEGER);
     }
 
     public static Vector randomizeVelocity(Vector velocity) {
@@ -415,13 +346,12 @@ public class Utils {
         return false;
     }
 
-    public static boolean isHoldingKnife(Player player) {
+    public boolean isHoldingKnife(Player player) {
         ItemStack itemMainHand = player.getInventory().getItemInMainHand();
 
         if (isItemReal(itemMainHand)) {
-            NBTItem nbti = new NBTItem(itemMainHand);
-            if (nbti.hasKey("Spartan's Weapon")) {
-                if (nbti.getString("Spartan's Weapon").equals("Dagger") ||  nbti.getString("Spartan's Weapon").equals("Throwing Knife")) {
+            if (hasNbtTag(itemMainHand,"spartans_weapon")) {
+                if (getNbtTag(itemMainHand,"spartans_weapon").equals("Dagger") || getNbtTag(itemMainHand,"spartans_weapon").equals("Throwing Knife")) {
                     return true;
                 }
                 return false;
@@ -449,12 +379,11 @@ public class Utils {
         return false;
     }
 
-    public static boolean isHoldingTwoHandedWeapon(LivingEntity entity) {
+    public boolean isHoldingTwoHandedWeapon(LivingEntity entity) {
         ItemStack item = entity.getEquipment().getItemInMainHand();
         if (isItemReal(item)) {
-            NBTItem nbti = new NBTItem(item);
-            if (nbti.hasKey("Spartan's Weapon")) {
-                switch (nbti.getString("Spartan's Weapon")) {
+            if (hasNbtTag(item,"spartans_weapon")) {
+                switch (getNbtTag(item,"spartans_weapon")) {
                     case "Katana":
                     case "Glaive":
                     case "Quarterstaff":
@@ -474,7 +403,7 @@ public class Utils {
         return false;
     }
 
-    public static boolean checkTwoHandedDebuff(LivingEntity entity) {
+    public boolean checkTwoHandedDebuff(LivingEntity entity) {
         if (isHoldingTwoHandedWeapon(entity)) {
             ItemStack item = entity.getEquipment().getItemInOffHand();
             if (isItemReal(item)) {
@@ -746,8 +675,8 @@ public class Utils {
             String name = raw.substring(0, firstIndex);
             if (firstIndex == lastIndex) {
                 ItemStack item;
-                if (Item.getItemMap().containsKey(name)) {
-                    item = Item.getItem(Item.getItemMap().get(name));
+                if (ItemBuilder.getItemMap().containsKey(name)) {
+                    item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
                 }
                 else {
                     item = new ItemStack(Material.valueOf(name));
@@ -755,8 +684,8 @@ public class Utils {
                 items[0] = item;
 
                 name = raw.substring(firstIndex + 1);
-                if (Item.getItemMap().containsKey(name)) {
-                    item = Item.getItem(Item.getItemMap().get(name));
+                if (ItemBuilder.getItemMap().containsKey(name)) {
+                    item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
                 }
                 else {
                     item = new ItemStack(Material.valueOf(name));
@@ -765,8 +694,8 @@ public class Utils {
             }
             else {
                 ItemStack item;
-                if (Item.getItemMap().containsKey(name)) {
-                    item = Item.getItem(Item.getItemMap().get(name));
+                if (ItemBuilder.getItemMap().containsKey(name)) {
+                    item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
                 }
                 else {
                     item = new ItemStack(Material.valueOf(name));
@@ -774,8 +703,8 @@ public class Utils {
                 items[0] = item;
 
                 name = raw.substring(firstIndex + 1, lastIndex);
-                if (Item.getItemMap().containsKey(name)) {
-                    item = Item.getItem(Item.getItemMap().get(name));
+                if (ItemBuilder.getItemMap().containsKey(name)) {
+                    item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
                 }
                 else {
                     item = new ItemStack(Material.valueOf(name));
@@ -783,8 +712,8 @@ public class Utils {
                 items[1] = item;
 
                 name = raw.substring(lastIndex + 1);
-                if (Item.getItemMap().containsKey(name)) {
-                    item = Item.getItem(Item.getItemMap().get(name));
+                if (ItemBuilder.getItemMap().containsKey(name)) {
+                    item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
                 }
                 else {
                     item = new ItemStack(Material.valueOf(name));
@@ -795,8 +724,8 @@ public class Utils {
         else {
             String name = raw;
             ItemStack item;
-            if (Item.getItemMap().containsKey(name)) {
-                item = Item.getItem(Item.getItemMap().get(name));
+            if (ItemBuilder.getItemMap().containsKey(name)) {
+                item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
             }
             else {
                 item = new ItemStack(Material.valueOf(name));
@@ -834,5 +763,39 @@ public class Utils {
         else {
             entity.addPotionEffect(effect);
         }
+    }
+
+    public void addNbtTag(ItemStack item, String key, String value) {
+
+        NamespacedKey nkey = new NamespacedKey(plugin, key);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.getPersistentDataContainer().set(nkey, PersistentDataType.STRING, value);
+
+        item.setItemMeta(itemMeta);
+    }
+
+    public String getNbtTag(ItemStack item, String key) {
+
+        NamespacedKey nkey = new NamespacedKey(plugin, key);
+        ItemMeta itemMeta = item.getItemMeta();
+        PersistentDataContainer container = itemMeta.getPersistentDataContainer();
+
+        if(container.has(nkey , PersistentDataType.STRING)) {
+            return container.get(nkey, PersistentDataType.STRING);
+        }
+
+        return "";
+    }
+
+    public boolean hasNbtTag(ItemStack item, String key) {
+
+        NamespacedKey nkey = new NamespacedKey(plugin, key);
+        ItemMeta itemMeta = item.getItemMeta();
+
+        if(itemMeta.getPersistentDataContainer().has(nkey , PersistentDataType.STRING)) {
+            return true;
+        }
+
+        return false;
     }
 }

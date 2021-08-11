@@ -16,6 +16,7 @@
  */
 package me.val_mobile.lycanites_mobs;
 
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.Utils;
@@ -29,11 +30,16 @@ import org.bukkit.potion.PotionEffectType;
 
 public class LycanitesMobsEvents implements Listener {
 
+    private final CustomItems customItems;
+    public LycanitesMobsEvents(RLCraftPlugin instance) {
+        customItems = new CustomItems(instance);
+    }
+
     @EventHandler
     public void onConsume(PlayerItemConsumeEvent event) {
         if (!event.isCancelled()) {
             ItemStack item = event.getItem();
-            if (item.getItemMeta().equals(CustomItems.getBattleBurrito().getItemMeta())) {
+            if (item.getItemMeta().equals(customItems.getBattleBurrito().getItemMeta())) {
                 Player player = event.getPlayer();
 
                 int speedAmplifier = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.Speed.Amplifier");

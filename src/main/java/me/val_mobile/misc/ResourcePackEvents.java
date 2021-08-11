@@ -16,7 +16,7 @@
  */
 package me.val_mobile.misc;
 
-import me.val_mobile.rlcraft.RLCraft;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,8 +24,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class ResourcePackEvents implements Listener {
 
-    private final RLCraft plugin;
-    public ResourcePackEvents(RLCraft instance) {
+    private static final String URL = "https://www.dropbox.com/s/rwwtcpfn88bqeg9/RLCraft%20RP.zip?dl=1";
+
+    private final RLCraftPlugin plugin;
+    public ResourcePackEvents(RLCraftPlugin instance) {
         plugin = instance;
     }
 
@@ -33,8 +35,8 @@ public class ResourcePackEvents implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (plugin.getConfig().getBoolean("ResourcePack.Enabled")) {
-            player.setResourcePack(plugin.getConfig().getString("ResourcePack.URL"));
+        if (plugin.getConfig().getBoolean("ResourcePack")) {
+            player.setResourcePack(plugin.getConfig().getString(URL));
         }
 
     }

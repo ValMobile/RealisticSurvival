@@ -21,51 +21,53 @@ import me.val_mobile.commands.Commands;
 import me.val_mobile.commands.Tab;
 import me.val_mobile.dragons.DragonFightEvents;
 import me.val_mobile.dragons.DragonGearEvents;
-import me.val_mobile.dragons.DragonWorldGenEvents;
 import me.val_mobile.dragons.WitherDrops;
 import me.val_mobile.lycanites_mobs.LycanitesMobsEvents;
 import me.val_mobile.misc.BStats;
 import me.val_mobile.misc.UpdateChecker;
-import me.val_mobile.no_tree_punching.NoTreePunching;
+import me.val_mobile.no_tree_punching.NoTreePunchingEvents;
 import me.val_mobile.sea_serpents.SeaSerpentDrops;
 import me.val_mobile.sea_serpents.SeaSerpentGearEvents;
 import me.val_mobile.spartan_weaponry.SpartanWeaponryEvents;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.Recipes;
-import me.val_mobile.utils.Schematics;
 import me.val_mobile.waystones.WaystoneEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class RLCraft extends JavaPlugin {
+public class RLCraftPlugin extends JavaPlugin {
 
-    private final Commands commands = new Commands(this);
+    private Commands commands;
 
-    private final CustomConfig customConfig = new CustomConfig(this);
-    private final Recipes recipes = new Recipes(this);
+    private CustomConfig customConfig;
+    private Recipes recipes;
 
-    private final BStats bStats = new BStats(this);
-    private final Schematics schematics = new Schematics(this);
-    private final NoTreePunching noTreePunching = new NoTreePunching();
-    private final SpartanWeaponryEvents spartanWeaponry = new SpartanWeaponryEvents();
-    private final DragonFightEvents dragonFight = new DragonFightEvents(this);
-    private final DragonGearEvents dragonGear = new DragonGearEvents(this);
-    private final DragonWorldGenEvents dragonWorldGenEvents = new DragonWorldGenEvents();
-    private final SeaSerpentGearEvents seaSerpentGear = new SeaSerpentGearEvents(this);
-    private final SeaSerpentDrops seaSerpentDrops = new SeaSerpentDrops();
-    private final WitherDrops witherDrops = new WitherDrops(this);
-    private final LycanitesMobsEvents lycanitesMobs = new LycanitesMobsEvents();
-    private final BaubleEvents bauble = new BaubleEvents(this);
-    private final WaystoneEvents waystones = new WaystoneEvents();
-    private final UpdateChecker updateChecker = new UpdateChecker(this, 93795);
+    private BStats bStats;
+//    private Schematics schematics;
+    private NoTreePunchingEvents noTreePunchingEvents;
+    private SpartanWeaponryEvents spartanWeaponry;
+    private DragonFightEvents dragonFight;
+    private DragonGearEvents dragonGear;
+//    private DragonWorldGenEvents dragonWorldGenEvents;
+    private SeaSerpentGearEvents seaSerpentGear;
+    private SeaSerpentDrops seaSerpentDrops;
+    private WitherDrops witherDrops;
+    private LycanitesMobsEvents lycanitesMobs;
+    private BaubleEvents bauble;
+    private WaystoneEvents waystones;
+    private UpdateChecker updateChecker;
     
-    private final Tab tab = new Tab();
+    private Tab tab;
 
     @Override
     public void onEnable() {
+
         // Plugin startup logic
+        customConfig = new CustomConfig(this);
+//      schematics = new Schematics(this);
+
         this.saveDefaultConfig();
 
         customConfig.createResourcesFolder();
@@ -78,8 +80,26 @@ public class RLCraft extends JavaPlugin {
         customConfig.createItemConfig();
         customConfig.createRecipeConfig();
 
-        schematics.createSchematicsFolder();
-        schematics.createFireDragonNest();
+//      schematics.createSchematicsFolder();
+//      schematics.createFireDragonNest();
+
+        commands = new Commands(this);
+        recipes = new Recipes(this);
+        bStats = new BStats(this);
+        noTreePunchingEvents = new NoTreePunchingEvents(this);
+        spartanWeaponry = new SpartanWeaponryEvents(this);
+        dragonFight = new DragonFightEvents();
+        dragonGear = new DragonGearEvents(this);
+//      dragonWorldGenEvents = new DragonWorldGenEvents(this);
+        seaSerpentGear = new SeaSerpentGearEvents(this);
+        seaSerpentDrops = new SeaSerpentDrops(this);
+        witherDrops = new WitherDrops(this);
+        lycanitesMobs = new LycanitesMobsEvents(this);
+        bauble = new BaubleEvents(this);
+        waystones = new WaystoneEvents();
+        updateChecker = new UpdateChecker(this, 93795);
+
+        tab = new Tab();
 
         recipes.populateSpartanWeaponryRecipes();
         recipes.populateBaubleRecipes();
@@ -97,7 +117,7 @@ public class RLCraft extends JavaPlugin {
                 Bukkit.addRecipe(r);
             }
 
-            pm.registerEvents(noTreePunching, this);
+            pm.registerEvents(noTreePunchingEvents, this);
         }
 
         if (this.getConfig().getBoolean("Dragons")) {
@@ -108,7 +128,7 @@ public class RLCraft extends JavaPlugin {
 
             pm.registerEvents(dragonFight, this);
             pm.registerEvents(dragonGear, this);
-            pm.registerEvents(dragonWorldGenEvents, this);
+//            pm.registerEvents(dragonWorldGenEvents, this);
         }
         if (this.getConfig().getBoolean("SeaSerpents")) {
             for (Recipe r : Recipes.getSeaSerpentRecipes()) {

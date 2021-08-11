@@ -38,8 +38,8 @@ public class ShapedRecipeCreator extends ShapedRecipe {
         int amount = config.getInt(amountPath);
 
         ItemStack resultingItem;
-        if (Item.getItemMap().containsKey(result)) {
-            resultingItem = Item.getItem(Item.getItemMap().get(result));
+        if (ItemBuilder.getItemMap().containsKey(result)) {
+            resultingItem = ItemBuilder.getItem(ItemBuilder.getItemMap().get(result));
         }
         else {
             resultingItem = new ItemStack(Material.valueOf(result));

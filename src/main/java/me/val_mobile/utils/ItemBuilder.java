@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import de.tr7zw.nbtapi.NBTItem;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -37,7 +37,7 @@ import org.bukkit.potion.PotionType;
 
 import java.util.*;
 
-public class Item extends ItemStack {
+public class ItemBuilder extends ItemStack {
 
     private static final String LOREPRESET = "LOREPRESET";
     public static final String PICKAXE = "Pickaxe";
@@ -67,19 +67,26 @@ public class Item extends ItemStack {
     public static final String MACE = "Mace";
     public static final String PIKE = "Pike";
     public static final String QUARTERSTAFF = "Quarterstaff";
-    public static final String THROWING_AXE = "ThrowingAxe";
+    public static final String TOMAHAWK = "ThrowingAxe";
     public static final String THROWING_KNIFE = "ThrowingKnife";
     public static final String WARHAMMER = "Warhammer";
     public static final String BATTLEAXE = "Battleaxe";
+    public static final String CLUB = "Club";
+
 
     private static Collection<String> commandNames = new ArrayList<>();
+    private static List<ItemBuilder> items = new ArrayList<>();
     private static HashMap<String, Integer> itemMap = new HashMap<>();
-    private ItemStack nmsItem;
     private String configName;
     private String commandName;
+    private String gearType = "";
 
-    public Item(FileConfiguration config, int index)  {
+    private final Utils util;
+
+    public ItemBuilder(FileConfiguration config, int index, RLCraftPlugin instance)  {
         super(Material.valueOf(config.getString(index + ".Material")), config.getInt(index + ".Amount"));
+
+        util = new Utils(instance);
 
         String materialPath = index + ".Material";
         String customModelDataPath = index + ".CustomModelData";
@@ -147,7 +154,7 @@ public class Item extends ItemStack {
         }
 
         if (enchantments != null) {
-            for (String s : enchantments.getKeys(true)) {
+            for (String s : enchantments.getKeys(false)) {
                 String mcName = Utils.getMinecraftEnchName(s).toLowerCase();
                 Enchantment ench = EnchantmentWrapper.getByKey(NamespacedKey.minecraft(mcName));
                 int value = config.getInt(enchantmentsPath + "." + s);
@@ -159,7 +166,7 @@ public class Item extends ItemStack {
 
         if (attributes != null) {
             LorePresets.addGearLore(newLore, material);
-            for (String s : attributes.getKeys(true)) {
+            for (String s : attributes.getKeys(false)) {
                 Attribute atr = Attribute.valueOf(s);
                 String atrName = Utils.toLowercaseAttributeName(s);
                 double displayValue = config.getDouble(attributesPath + "." + s);
@@ -180,22 +187,25 @@ public class Item extends ItemStack {
 
         this.setItemMeta(meta);
 
-        NBTItem nbti = new NBTItem(this);
+
         if (nbtTags != null) {
-            for (String s : nbtTags.getKeys(true)) {
+            for (String s : nbtTags.getKeys(false)) {
                 String key = s;
                 String value = config.getString(nbtTagsPath + "." + s);
-                if (!(key == null || key.isEmpty() || value.isEmpty() || value == null)) {
-                    nbti.setString(key, value);
+                if (!(key == null || key.isEmpty() || value == null || value.isEmpty())) {
+                    util.addNbtTag(this, key, value);
                 }
             }
         }
 
-        nmsItem = nbti.getItem();
+        items.add(this);
     }
 
-    public Item(FileConfiguration config, int index, FileConfiguration extraConfig, String gearType)  {
+    public ItemBuilder(FileConfiguration config, int index, FileConfiguration extraConfig, String gearType, RLCraftPlugin instance)  {
         super(Material.valueOf(config.getString(index + ".Material")), config.getInt(index + ".Amount"));
+
+        util = new Utils(instance);
+        this.gearType = gearType;
 
         String materialPath = index + ".Material";
         String customModelDataPath = index + ".CustomModelData";
@@ -265,7 +275,7 @@ public class Item extends ItemStack {
         }
 
         if (enchantments != null) {
-            for (String s : enchantments.getKeys(true)) {
+            for (String s : enchantments.getKeys(false)) {
                 String mcName = Utils.getMinecraftEnchName(s).toLowerCase();
                 Enchantment ench = EnchantmentWrapper.getByKey(NamespacedKey.minecraft(mcName));
                 int value = config.getInt(enchantmentsPath + "." + s);
@@ -277,7 +287,7 @@ public class Item extends ItemStack {
 
         if (attributes != null) {
             LorePresets.addGearLore(newLore, material);
-            for (String s : attributes.getKeys(true)) {
+            for (String s : attributes.getKeys(false)) {
                 String name = Utils.translateInformalAttributeName(s);
                 Attribute atr = Attribute.valueOf(name);
                 String atrName = Utils.toLowercaseAttributeName(name);
@@ -299,22 +309,17 @@ public class Item extends ItemStack {
 
         this.setItemMeta(meta);
 
-        NBTItem nbti = new NBTItem(this);
         if (nbtTags != null) {
-            for (String s : nbtTags.getKeys(true)) {
+            for (String s : nbtTags.getKeys(false)) {
                 String key = s;
                 String value = config.getString(nbtTagsPath + "." + s);
-                if (!(key == null || key.isEmpty() || value.isEmpty() || value == null)) {
-                    nbti.setString(key, value);
+                if (!(key == null || key.isEmpty() || value == null || value.isEmpty())) {
+                    util.addNbtTag(this, key, value);
                 }
             }
         }
 
-        nmsItem = nbti.getItem();
-    }
-
-    public ItemStack getNmsItem() {
-        return nmsItem;
+        items.add(this);
     }
 
     public String getConfigName() {
@@ -323,6 +328,14 @@ public class Item extends ItemStack {
 
     public String getCommandName() {
         return commandName;
+    }
+
+    public String getGearType() {
+        return gearType;
+    }
+
+    public static List<ItemBuilder> getItems() {
+        return items;
     }
 
     public static Collection<String> getCommandNames() {
@@ -334,6 +347,6 @@ public class Item extends ItemStack {
     }
 
     public static ItemStack getItem(int index) {
-        return new Item(CustomConfig.getItemConfig(), index).getNmsItem();
+        return getItems().get(index);
     }
 }

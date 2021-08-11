@@ -16,8 +16,7 @@
  */
 package me.val_mobile.baubles;
 
-import de.tr7zw.nbtapi.NBTItem;
-import me.val_mobile.rlcraft.RLCraft;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.PlayerRunnable;
@@ -38,11 +37,15 @@ import org.bukkit.util.Vector;
 public class BaubleRunnables {
 
     // dependency injecting the main class
-    private final RLCraft plugin;
+    private final RLCraftPlugin plugin;
+    private final CustomItems customItems;
+    private final Utils util;
 
     // constructing the BaubleRunnables class
-    public BaubleRunnables(RLCraft instance) {
+    public BaubleRunnables(RLCraftPlugin instance) {
         plugin = instance;
+        customItems = new CustomItems(instance);
+        util = new Utils(instance);
     }
     
     /**
@@ -53,8 +56,8 @@ public class BaubleRunnables {
      * @see BaubleAbilities
      * @see Utils
      */
-    public static BukkitRunnable getPotionRingResistanceRunnable(Player player) {
-        String name = CustomItems.getPotionRingResistance().getItemMeta().getDisplayName(); // get the name of the ring of res
+    public BukkitRunnable getPotionRingResistanceRunnable(Player player) {
+        String name = customItems.getPotionRingResistance().getItemMeta().getDisplayName(); // get the name of the ring of res
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
@@ -83,8 +86,8 @@ public class BaubleRunnables {
      * @see BaubleAbilities
      * @see Utils
      */
-    public static BukkitRunnable getPotionRingRegenerationRunnable(Player player) {
-        String name = CustomItems.getPotionRingRegeneration().getItemMeta().getDisplayName(); // get the name of the ring of regen
+    public BukkitRunnable getPotionRingRegenerationRunnable(Player player) {
+        String name = customItems.getPotionRingRegeneration().getItemMeta().getDisplayName(); // get the name of the ring of regen
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
@@ -113,8 +116,8 @@ public class BaubleRunnables {
      * @see BaubleAbilities
      * @see Utils
      */
-    public static BukkitRunnable getPotionRingStrengthRunnable(Player player) {
-        String name = CustomItems.getPotionRingStrength().getItemMeta().getDisplayName(); // get the name of the ring of strength
+    public BukkitRunnable getPotionRingStrengthRunnable(Player player) {
+        String name = customItems.getPotionRingStrength().getItemMeta().getDisplayName(); // get the name of the ring of strength
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
@@ -143,8 +146,8 @@ public class BaubleRunnables {
      * @see BaubleAbilities
      * @see Utils
      */
-    public static BukkitRunnable getPotionRingSpeedRunnable(Player player) {
-        String name = CustomItems.getPotionRingSpeed().getItemMeta().getDisplayName(); // get the name of the ring of speed
+    public BukkitRunnable getPotionRingSpeedRunnable(Player player) {
+        String name = customItems.getPotionRingSpeed().getItemMeta().getDisplayName(); // get the name of the ring of speed
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
@@ -173,8 +176,8 @@ public class BaubleRunnables {
      * @see BaubleAbilities
      * @see Utils
      */
-    public static BukkitRunnable getPotionRingJumpBoostRunnable(Player player) {
-        String name = CustomItems.getPotionRingJumpBoost().getItemMeta().getDisplayName(); // get the name of the ring of jump boost
+    public BukkitRunnable getPotionRingJumpBoostRunnable(Player player) {
+        String name = customItems.getPotionRingJumpBoost().getItemMeta().getDisplayName(); // get the name of the ring of jump boost
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
@@ -203,8 +206,8 @@ public class BaubleRunnables {
      * @see BaubleAbilities
      * @see Utils
      */
-    public static BukkitRunnable getPotionRingHasteRunnable(Player player) {
-        String name = CustomItems.getPotionRingHaste().getItemMeta().getDisplayName(); // get the name of the ring of haste
+    public BukkitRunnable getPotionRingHasteRunnable(Player player) {
+        String name = customItems.getPotionRingHaste().getItemMeta().getDisplayName(); // get the name of the ring of haste
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
@@ -233,8 +236,8 @@ public class BaubleRunnables {
      * @see BaubleAbilities
      * @see Utils
      */
-    public static BukkitRunnable getDragonsEyeRunnable(Player player) {
-        String name = CustomItems.getDragonsEye().getItemMeta().getDisplayName(); // get the name of the dragon's eye
+    public BukkitRunnable getDragonsEyeRunnable(Player player) {
+        String name = customItems.getDragonsEye().getItemMeta().getDisplayName(); // get the name of the dragon's eye
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
@@ -263,8 +266,8 @@ public class BaubleRunnables {
      * @see BaubleAbilities
      * @see Utils
      */
-    public static BukkitRunnable getScarliteRingRunnable(Player player) {
-        String name = CustomItems.getScarliteRing().getItemMeta().getDisplayName(); // get the name of the scarlite ring
+    public BukkitRunnable getScarliteRingRunnable(Player player) {
+        String name = customItems.getScarliteRing().getItemMeta().getDisplayName(); // get the name of the scarlite ring
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
@@ -293,8 +296,8 @@ public class BaubleRunnables {
      * @see BaubleAbilities
      * @see Utils
      */
-    public static BukkitRunnable getMinersRingRunnable(Player player) {
-        String name = CustomItems.getMinersRing().getItemMeta().getDisplayName(); // get the name of the miner's ring
+    public BukkitRunnable getMinersRingRunnable(Player player) {
+        String name = customItems.getMinersRing().getItemMeta().getDisplayName(); // get the name of the miner's ring
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
@@ -323,8 +326,8 @@ public class BaubleRunnables {
      * @see BaubleAbilities
      * @see Utils
      */
-    public static BukkitRunnable getShieldHonorRunnable(Player player) {
-        String name = CustomItems.getShieldHonor().getItemMeta().getDisplayName(); // get the name of the shield of honor
+    public BukkitRunnable getShieldHonorRunnable(Player player) {
+        String name = customItems.getShieldHonor().getItemMeta().getDisplayName(); // get the name of the shield of honor
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
@@ -349,7 +352,7 @@ public class BaubleRunnables {
      * @param entity The target entity who will receive no knockback
      * @return A runnable removing the knockback from an entity
      */
-    public static BukkitRunnable freezeEntity(Entity entity) {
+    public BukkitRunnable freezeEntity(Entity entity) {
         return new BukkitRunnable() {
             public void run() {
                 // set the velocity to zero to mimic anti-kb
@@ -364,7 +367,7 @@ public class BaubleRunnables {
      * @return A runnable removing the player's i-frames
      * @see Utils
      */
-    public static BukkitRunnable removeInvFrames(Player player) {
+    public BukkitRunnable removeInvFrames(Player player) {
         return new BukkitRunnable() {
             public void run() {
                 // remove the i-frames by setting the static hashmap value to false
@@ -379,7 +382,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void updatePrResValues(Player player) {
+    public void updatePrResValues(Player player) {
         String name = player.getName(); // get the player's name
         int prResAmount = 0; // create a variable to store the number of rings of resistance
 
@@ -388,12 +391,11 @@ public class BaubleRunnables {
             // check if the item exists
             if (Utils.isItemReal(item)) {
                 int amount = item.getAmount(); // get the amount of the item
-                NBTItem nbti = new NBTItem(item); // get the nbt version of the item
 
                 // check if item is a bauble
-                if (nbti.hasKey("Bauble")) {
+                if (util.hasNbtTag(item,"Bauble")) {
                     // check if the item is a ring of resistance
-                    if (nbti.getString("Bauble").equals("Potion Ring of Resistance")) {
+                    if (util.getNbtTag(item,"Bauble").equals("Potion Ring of Resistance")) {
                         // add however many potion rings to the total amount
                         prResAmount += amount;
                     }
@@ -410,7 +412,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void updatePrRegenValues(Player player) {
+    public void updatePrRegenValues(Player player) {
         String name = player.getName(); // get the player's name
         int prRegenAmount = 0; // create a variable to store the number of rings of regeneration
 
@@ -419,12 +421,11 @@ public class BaubleRunnables {
             // check if the item exists
             if (Utils.isItemReal(item)) {
                 int amount = item.getAmount(); // get the amount of the item
-                NBTItem nbti = new NBTItem(item); // get the nbt version of the item
 
                 // check if item is a bauble
-                if (nbti.hasKey("Bauble")) {
+                if (util.hasNbtTag(item,"Bauble")) {
                     // check if the item is a ring of regeneration
-                    if (nbti.getString("Bauble").equals("Potion Ring of Regeneration")) {
+                    if (util.getNbtTag(item,"Bauble").equals("Potion Ring of Regeneration")) {
                         // add however many potion rings to the total amount
                         prRegenAmount += amount;
                     }
@@ -441,7 +442,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void updatePrStrengthValues(Player player) {
+    public void updatePrStrengthValues(Player player) {
         String name = player.getName(); // get the player's name
         int prStrengthAmount = 0; // create a variable to store the number of rings of strength
 
@@ -450,12 +451,11 @@ public class BaubleRunnables {
             // check if the item exists
             if (Utils.isItemReal(item)) {
                 int amount = item.getAmount(); // get the amount of the item
-                NBTItem nbti = new NBTItem(item); // get the nbt version of the item
 
                 // check if item is a bauble
-                if (nbti.hasKey("Bauble")) {
+                if (util.hasNbtTag(item,"Bauble")) {
                     // check if the item is a ring of strength
-                    if (nbti.getString("Bauble").equals("Potion Ring of Strength")) {
+                    if (util.getNbtTag(item,"Bauble").equals("Potion Ring of Strength")) {
                         // add however many potion rings to the total amount
                         prStrengthAmount += amount;
                     }
@@ -472,7 +472,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void updatePrSpeedValues(Player player) {
+    public void updatePrSpeedValues(Player player) {
         String name = player.getName(); // get the player's name
         int prSpeedAmount = 0; // create a variable to store the number of rings of speed
 
@@ -481,12 +481,11 @@ public class BaubleRunnables {
             // check if the item exists
             if (Utils.isItemReal(item)) {
                 int amount = item.getAmount(); // get the amount of the item
-                NBTItem nbti = new NBTItem(item); // get the nbt version of the item
 
                 // check if item is a bauble
-                if (nbti.hasKey("Bauble")) {
+                if (util.hasNbtTag(item,"Bauble")) {
                     // check if the item is a ring of speed
-                    if (nbti.getString("Bauble").equals("Potion Ring of Speed")) {
+                    if (util.getNbtTag(item,"Bauble").equals("Potion Ring of Speed")) {
                         // add however many potion rings to the total amount
                         prSpeedAmount += amount;
                     }
@@ -503,7 +502,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void updatePrJumpValues(Player player) {
+    public void updatePrJumpValues(Player player) {
         String name = player.getName(); // get the player's name
         int prJumpAmount = 0; // create a variable to store the number of rings of jump boost
 
@@ -512,12 +511,11 @@ public class BaubleRunnables {
             // check if the item exists
             if (Utils.isItemReal(item)) {
                 int amount = item.getAmount(); // get the amount of the item
-                NBTItem nbti = new NBTItem(item); // get the nbt version of the item
 
                 // check if item is a bauble
-                if (nbti.hasKey("Bauble")) {
+                if (util.hasNbtTag(item,"Bauble")) {
                     // check if the item is a ring of jump boost
-                    if (nbti.getString("Bauble").equals("Potion Ring of Jump Boost")) {
+                    if (util.getNbtTag(item,"Bauble").equals("Potion Ring of Jump Boost")) {
                         // add however many potion rings to the total amount
                         prJumpAmount += amount;
                     }
@@ -534,7 +532,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void updatePrHasteValues(Player player) {
+    public void updatePrHasteValues(Player player) {
         String name = player.getName(); // get the player's name
         int prHasteAmount = 0; // create a variable to store the number of rings of haste
 
@@ -543,12 +541,11 @@ public class BaubleRunnables {
             // check if the item exists
             if (Utils.isItemReal(item)) {
                 int amount = item.getAmount(); // get the amount of the item
-                NBTItem nbti = new NBTItem(item); // get the nbt version of the item
 
                 // check if item is a bauble
-                if (nbti.hasKey("Bauble")) {
+                if (util.hasNbtTag(item,"Bauble")) {
                     // check if the item is a ring of haste
-                    if (nbti.getString("Bauble").equals("Potion Ring of Haste")) {
+                    if (util.getNbtTag(item,"Bauble").equals("Potion Ring of Haste")) {
                         // add however many potion rings to the total amount
                         prHasteAmount += amount;
                     }
@@ -565,7 +562,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void updateDragonsEyeValues(Player player) {
+    public void updateDragonsEyeValues(Player player) {
         String name = player.getName(); // get the player's name
         int dragonsEyeAmount = 0; // create a variable to store the number of dragon's eyes
 
@@ -574,12 +571,11 @@ public class BaubleRunnables {
             // check if the item exists
             if (Utils.isItemReal(item)) {
                 int amount = item.getAmount(); // get the amount of the item
-                NBTItem nbti = new NBTItem(item); // get the nbt version of the item
 
                 // check if item is a bauble
-                if (nbti.hasKey("Bauble")) {
+                if (util.hasNbtTag(item,"Bauble")) {
                     // check if the item is a dragon's eye
-                    if (nbti.getString("Bauble").equals("Dragon's Eye")) {
+                    if (util.getNbtTag(item,"Bauble").equals("Dragon's Eye")) {
                         // add however many dragon's eyes to the total amount
                         dragonsEyeAmount += amount;
                     }
@@ -596,7 +592,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void updateMinersRingValues(Player player) {
+    public void updateMinersRingValues(Player player) {
         String name = player.getName(); // get the player's name
         int minersRingAmount = 0; // create a variable to store the number of miner's rings
 
@@ -605,12 +601,11 @@ public class BaubleRunnables {
             // check if the item exists
             if (Utils.isItemReal(item)) {
                 int amount = item.getAmount(); // get the amount of the item
-                NBTItem nbti = new NBTItem(item); // get the nbt version of the item
 
                 // check if item is a bauble
-                if (nbti.hasKey("Bauble")) {
+                if (util.hasNbtTag(item,"Bauble")) {
                     // check if the item is a miner's ring
-                    if (nbti.getString("Bauble").equals("Miner's Ring")) {
+                    if (util.getNbtTag(item,"Bauble").equals("Miner's Ring")) {
                         // add however many miner's rings to the total amount
                         minersRingAmount += amount;
                     }
@@ -627,7 +622,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void updateScarliteRingValues(Player player) {
+    public void updateScarliteRingValues(Player player) {
         String name = player.getName(); // get the player's name
         int scarliteRingAmount = 0; // create a variable to store the number of scarlite rings
 
@@ -636,12 +631,11 @@ public class BaubleRunnables {
             // check if the item exists
             if (Utils.isItemReal(item)) {
                 int amount = item.getAmount(); // get the amount of the item
-                NBTItem nbti = new NBTItem(item); // get the nbt version of the item
 
                 // check if item is a bauble
-                if (nbti.hasKey("Bauble")) {
+                if (util.hasNbtTag(item,"Bauble")) {
                     // check if the item is a scarlite ring
-                    if (nbti.getString("Bauble").equals("Scarlite Ring")) {
+                    if (util.getNbtTag(item,"Bauble").equals("Scarlite Ring")) {
                         // add however many scarlite rings to the total amount
                         scarliteRingAmount += amount;
                     }
@@ -658,7 +652,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void updateShieldHonorValues(Player player) {
+    public void updateShieldHonorValues(Player player) {
         String name = player.getName(); // get the player's name
         int shieldHonorAmount = 0; // create a variable to store the number of shields of honor
 
@@ -667,12 +661,11 @@ public class BaubleRunnables {
             // check if the item exists
             if (Utils.isItemReal(item)) {
                 int amount = item.getAmount(); // get the amount of the item
-                NBTItem nbti = new NBTItem(item); // get the nbt version of the item
 
                 // check if item is a bauble
-                if (nbti.hasKey("Bauble")) {
+                if (util.hasNbtTag(item,"Bauble")) {
                     // check if the item is a shield of honor
-                    if (nbti.getString("Bauble").equals("Shield of Honor")) {
+                    if (util.getNbtTag(item,"Bauble").equals("Shield of Honor")) {
                         // add however many shields of honor to the total amount
                         shieldHonorAmount += amount;
                     }
@@ -689,7 +682,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void updateBaubleValues(Player player) {
+    public void updateBaubleValues(Player player) {
         String name = player.getName(); // get the player's name
 
         // create variables to store the number of baubles
@@ -709,12 +702,11 @@ public class BaubleRunnables {
             // check if the item exists
             if (Utils.isItemReal(item)) {
                 int amount = item.getAmount(); // get the amount of the item
-                NBTItem nbti = new NBTItem(item); // get the nbt version of the item
 
                 // check if item is a bauble
-                if (nbti.hasKey("Bauble")) {
+                if (util.hasNbtTag(item,"Bauble")) {
                     // increment values based on the type of bauble
-                    switch (nbti.getString("Bauble")) {
+                    switch (util.getNbtTag(item,"Bauble")) {
                         case "Potion Ring of Resistance":
                             prResAmount += amount;
                             break;
@@ -765,7 +757,7 @@ public class BaubleRunnables {
      * @see Utils
      * @see PlayerRunnable
      */
-    public static void resetBaubleMaps(Player player) {
+    public void resetBaubleMaps(Player player) {
         String name = player.getName(); // get the player's name
 
         // reset bauble values to 0
@@ -805,7 +797,7 @@ public class BaubleRunnables {
         int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingResistance.TickTime"); // get the tick speed
 
         // start the runnable
-        BaubleRunnables.getPotionRingResistanceRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        getPotionRingResistanceRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
         // set the runnable value to true since there is an active runnable on the player
         Utils.setOrReplaceEntry(PlayerRunnable.getPrResRunnables(), name, true);
     }
@@ -823,7 +815,7 @@ public class BaubleRunnables {
         int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingRegeneration.TickTime"); // get the tick speed
 
         // start the runnable
-        BaubleRunnables.getPotionRingRegenerationRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        getPotionRingRegenerationRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
         // set the runnable value to true since there is an active runnable on the player
         Utils.setOrReplaceEntry(PlayerRunnable.getPrRegenRunnables(), name, true);
     }
@@ -841,7 +833,7 @@ public class BaubleRunnables {
         int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingStrength.TickTime"); // get the tick speed
 
         // start the runnable
-        BaubleRunnables.getPotionRingStrengthRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        getPotionRingStrengthRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
         // set the runnable value to true since there is an active runnable on the player
         Utils.setOrReplaceEntry(PlayerRunnable.getPrStrengthRunnables(), name, true);
     }
@@ -859,7 +851,7 @@ public class BaubleRunnables {
         int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingSpeed.TickTime"); // get the tick speed
 
         // start the runnable
-        BaubleRunnables.getPotionRingSpeedRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        getPotionRingSpeedRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
         // set the runnable value to true since there is an active runnable on the player
         Utils.setOrReplaceEntry(PlayerRunnable.getPrSpeedRunnables(), name, true);
     }
@@ -877,7 +869,7 @@ public class BaubleRunnables {
         int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingJumpBoost.TickTime"); // get the tick speed
 
         // start the runnable
-        BaubleRunnables.getPotionRingJumpBoostRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        getPotionRingJumpBoostRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
         // set the runnable value to true since there is an active runnable on the player
         Utils.setOrReplaceEntry(PlayerRunnable.getPrJumpRunnables(), name, true);
     }
@@ -895,7 +887,7 @@ public class BaubleRunnables {
         int tickSpeed = CustomConfig.getBaubleConfig().getInt("PotionRingHaste.TickTime"); // get the tick speed
 
         // start the runnable
-        BaubleRunnables.getPotionRingHasteRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        getPotionRingHasteRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
         // set the runnable value to true since there is an active runnable on the player
         Utils.setOrReplaceEntry(PlayerRunnable.getPrHasteRunnables(), name, true);
     }
@@ -913,7 +905,7 @@ public class BaubleRunnables {
         int tickSpeed = CustomConfig.getBaubleConfig().getInt("DragonsEye.TickTime"); // get the tick speed
 
         // start the runnable
-        BaubleRunnables.getDragonsEyeRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        getDragonsEyeRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
         // set the runnable value to true since there is an active runnable on the player
         Utils.setOrReplaceEntry(PlayerRunnable.getDragonsEyeRunnables(), name, true);
     }
@@ -931,7 +923,7 @@ public class BaubleRunnables {
         int tickSpeed = CustomConfig.getBaubleConfig().getInt("ScarliteRing.TickTime"); // get the tick speed
 
         // start the runnable
-        BaubleRunnables.getScarliteRingRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        getScarliteRingRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
         // set the runnable value to true since there is an active runnable on the player
         Utils.setOrReplaceEntry(PlayerRunnable.getScarliteRingRunnables(), name, true);
     }
@@ -949,7 +941,7 @@ public class BaubleRunnables {
         int tickSpeed = CustomConfig.getBaubleConfig().getInt("MinersRing.TickTime"); // get the tick speed
 
         // start the runnable
-        BaubleRunnables.getMinersRingRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        getMinersRingRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
         // set the runnable value to true since there is an active runnable on the player
         Utils.setOrReplaceEntry(PlayerRunnable.getMinersRingRunnables(), name, true);
     }
@@ -967,7 +959,7 @@ public class BaubleRunnables {
         int tickSpeed = CustomConfig.getBaubleConfig().getInt("ShieldHonor.TickTime"); // get the tick speed
 
         // start the runnable
-        BaubleRunnables.getShieldHonorRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
+        getShieldHonorRunnable(player).runTaskTimer(plugin, 0, tickSpeed);
         // set the runnable value to true since there is an active runnable on the player
         Utils.setOrReplaceEntry(PlayerRunnable.getShieldHonorRunnables(), name, true);
     }

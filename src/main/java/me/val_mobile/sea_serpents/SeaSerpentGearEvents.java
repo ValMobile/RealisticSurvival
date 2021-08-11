@@ -16,8 +16,7 @@
  */
 package me.val_mobile.sea_serpents;
 
-import de.tr7zw.nbtapi.NBTItem;
-import me.val_mobile.rlcraft.RLCraft;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.Recipes;
 import me.val_mobile.utils.Utils;
@@ -39,18 +38,20 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class SeaSerpentGearEvents implements Listener {
 
-    private final RLCraft plugin;
+    private final RLCraftPlugin plugin;
     private final SeaSerpentGearRunnables seaSerpentGearRunnables;
-    public SeaSerpentGearEvents(RLCraft instance) {
+    private final Utils util;
+    public SeaSerpentGearEvents(RLCraftPlugin instance) {
         plugin = instance;
         seaSerpentGearRunnables = new SeaSerpentGearRunnables(instance);
+        util = new Utils(instance);
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        SeaSerpentGearRunnables.updateTideGuardianArmor(player);
-        SeaSerpentGearRunnables.getTideGuardianArmorRunnable(player).runTaskTimer(plugin, 0L, CustomConfig.getIceFireGearConfig().getInt("Abilities.TideGuardian.TickTime"));
+        seaSerpentGearRunnables.updateTideGuardianArmor(player);
+        seaSerpentGearRunnables.getTideGuardianArmorRunnable(player).runTaskTimer(plugin, 0L, CustomConfig.getIceFireGearConfig().getInt("Abilities.TideGuardian.TickTime"));
 
         for (Recipe r : Recipes.getSeaSerpentRecipes()) {
             if (r instanceof ShapedRecipe) {
@@ -66,7 +67,7 @@ public class SeaSerpentGearEvents implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
 
-        SeaSerpentGearRunnables.resetArmorMaps(player);
+        seaSerpentGearRunnables.resetArmorMaps(player);
     }
 
     @EventHandler (priority = EventPriority.MONITOR)
@@ -77,12 +78,11 @@ public class SeaSerpentGearEvents implements Listener {
             if (entity instanceof Player) {
                 Player player = (Player) entity;
 
-                NBTItem item = new NBTItem(event.getItem().getItemStack());
-                if (item.hasKey("Tide Guardian Armor")) {
+                if (util.hasNbtTag(event.getItem().getItemStack(),"tide_guardian_armor")) {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            SeaSerpentGearRunnables.updateTideGuardianArmor(player);
+                            seaSerpentGearRunnables.updateTideGuardianArmor(player);
                             seaSerpentGearRunnables.startTideGuardianRunnable(player);
                         }
                     }.runTaskLater(plugin, 1L);
@@ -94,13 +94,12 @@ public class SeaSerpentGearEvents implements Listener {
     @EventHandler (priority = EventPriority.MONITOR)
     public void onItemThrow(PlayerDropItemEvent event) {
         if (!event.isCancelled()) {
-            NBTItem item = new NBTItem(event.getItemDrop().getItemStack());
-            if (item.hasKey("Tide Guardian Armor")) {
+            if (util.hasNbtTag(event.getItemDrop().getItemStack(),"tide_guardian_armor")) {
                 Player player = event.getPlayer();
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        SeaSerpentGearRunnables.updateTideGuardianArmor(player);
+                        seaSerpentGearRunnables.updateTideGuardianArmor(player);
                         seaSerpentGearRunnables.startTideGuardianRunnable(player);
                     }
                 }.runTaskLater(plugin, 1L);
@@ -112,26 +111,24 @@ public class SeaSerpentGearEvents implements Listener {
     public void onClick(InventoryClickEvent event) {
         if (!event.isCancelled()) {
             if (Utils.isItemReal(event.getCurrentItem())) {
-                NBTItem item = new NBTItem(event.getCurrentItem());
-                if (item.hasKey("Tide Guardian Armor")) {
+                if (util.hasNbtTag(event.getCurrentItem(),"tide_guardian_armor")) {
                     Player player = (Player) event.getWhoClicked();
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            SeaSerpentGearRunnables.updateTideGuardianArmor(player);
+                            seaSerpentGearRunnables.updateTideGuardianArmor(player);
                             seaSerpentGearRunnables.startTideGuardianRunnable(player);
                         }
                     }.runTaskLater(plugin, 1L);
                 }
             }
             if (Utils.isItemReal(event.getCursor())) {
-                NBTItem item = new NBTItem(event.getCursor());
-                if (item.hasKey("Tide Guardian Armor")) {
+                if (util.hasNbtTag(event.getCursor(),"tide_guardian_armor")) {
                     Player player = (Player) event.getWhoClicked();
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            SeaSerpentGearRunnables.updateTideGuardianArmor(player);
+                            seaSerpentGearRunnables.updateTideGuardianArmor(player);
                             seaSerpentGearRunnables.startTideGuardianRunnable(player);
                         }
                     }.runTaskLater(plugin, 1L);
@@ -144,13 +141,12 @@ public class SeaSerpentGearEvents implements Listener {
     public void onDragClick(InventoryDragEvent event) {
         if (!event.isCancelled()) {
             if (Utils.isItemReal(event.getCursor())) {
-                NBTItem item = new NBTItem(event.getCursor());
-                if (item.hasKey("Tide Guardian Armor")) {
+                if (util.hasNbtTag(event.getCursor(),"tide_guardian_armor")) {
                     Player player = (Player) event.getWhoClicked();
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            SeaSerpentGearRunnables.updateTideGuardianArmor(player);
+                            seaSerpentGearRunnables.updateTideGuardianArmor(player);
                             seaSerpentGearRunnables.startTideGuardianRunnable(player);
                         }
                     }.runTaskLater(plugin, 1L);

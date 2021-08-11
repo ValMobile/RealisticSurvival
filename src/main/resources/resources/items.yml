@@ -22,7 +22,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Dagger"
+    spartans_weapon: "Dagger"
 2:
   Material: "WOODEN_PICKAXE"
   Amount: 1
@@ -76,7 +76,7 @@
   Amount: 1
   DisplayName: "&fDragon Bone"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone"
+  CommandName: "dragonbone"
   CustomModelData: 83650
 9:
   Material: "BONE"
@@ -90,7 +90,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleBlue"
-  CommandName: "dragon_scale_blue"
+  CommandName: "dragonscale_blue"
   CustomModelData: 83650
   Lore:
     - "LOREPRESET.BLUE_DRAGON_SCALE"
@@ -99,7 +99,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleBronze"
-  CommandName: "dragon_scale_bronze"
+  CommandName: "dragonscale_bronze"
   CustomModelData: 83651
   Lore:
     - "LOREPRESET.BRONZE_DRAGON_SCALE"
@@ -108,7 +108,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleGray"
-  CommandName: "dragon_scale_gray"
+  CommandName: "dragonscale_gray"
   CustomModelData: 83652
   Lore:
     - "LOREPRESET.GRAY_DRAGON_SCALE"
@@ -117,7 +117,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleGreen"
-  CommandName: "dragon_scale_green"
+  CommandName: "dragonscale_green"
   CustomModelData: 83653
   Lore:
     - "LOREPRESET.GREEN_DRAGON_SCALE"
@@ -126,7 +126,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleRed"
-  CommandName: "dragon_scale_red"
+  CommandName: "dragonscale_red"
   CustomModelData: 83654
   Lore:
     - "LOREPRESET.RED_DRAGON_SCALE"
@@ -135,7 +135,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleSapphire"
-  CommandName: "dragon_scale_sapphire"
+  CommandName: "dragonscale_sapphire"
   CustomModelData: 83655
   Lore:
     - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
@@ -144,7 +144,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleSilver"
-  CommandName: "dragon_scale_silver"
+  CommandName: "dragonscale_silver"
   CustomModelData: 83656
   Lore:
     - "LOREPRESET.SILVER_DRAGON_SCALE"
@@ -153,7 +153,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleWhite"
-  CommandName: "dragon_scale_white"
+  CommandName: "dragonscale_white"
   CustomModelData: 83657
   Lore:
     - "LOREPRESET.WHITE_DRAGON_SCALE"
@@ -162,7 +162,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleAmethyst"
-  CommandName: "dragon_scale_amethyst"
+  CommandName: "dragonscale_amethyst"
   CustomModelData: 83658
   Lore:
     - "LOREPRESET.AMETHYST_DRAGON_SCALE"
@@ -171,7 +171,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleBlack"
-  CommandName: "dragon_scale_black"
+  CommandName: "dragonscale_black"
   CustomModelData: 83659
   Lore:
     - "LOREPRESET.BLACK_DRAGON_SCALE"
@@ -180,7 +180,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleCopper"
-  CommandName: "dragon_scale_copper"
+  CommandName: "dragonscale_copper"
   CustomModelData: 83660
   Lore:
     - "LOREPRESET.COPPER_DRAGON_SCALE"
@@ -189,7 +189,7 @@
   Amount: 1
   DisplayName: "&fDragon Scales"
   ConfigName: "DragonScaleElectric"
-  CommandName: "dragon_scale_electric"
+  CommandName: "dragonscale_electric"
   CustomModelData: 83661
   Lore:
     - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
@@ -373,7 +373,7 @@
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_blue"
+  CommandName: "dragonscale_helmet_blue"
   CustomModelData: 83650
   Lore:
     - "LOREPRESET.BLUE_DRAGON_SCALE"
@@ -381,13 +381,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 46:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_blue"
+  CommandName: "dragonscale_chestplate_blue"
   CustomModelData: 83650
   Lore:
     - "LOREPRESET.BLUE_DRAGON_SCALE"
@@ -395,13 +395,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 47:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_blue"
+  CommandName: "dragonscale_leggings_blue"
   CustomModelData: 83650
   Lore:
     - "LOREPRESET.BLUE_DRAGON_SCALE"
@@ -409,13 +409,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 48:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_blue"
+  CommandName: "dragonscale_boots_blue"
   CustomModelData: 83650
   Lore:
     - "LOREPRESET.BLUE_DRAGON_SCALE"
@@ -423,13 +423,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 49:
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_bronze"
+  CommandName: "dragonscale_helmet_bronze"
   CustomModelData: 83651
   Lore:
     - "LOREPRESET.BRONZE_DRAGON_SCALE"
@@ -437,13 +437,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 50:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_bronze"
+  CommandName: "dragonscale_chestplate_bronze"
   CustomModelData: 83651
   Lore:
     - "LOREPRESET.BRONZE_DRAGON_SCALE"
@@ -451,13 +451,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 51:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_bronze"
+  CommandName: "dragonscale_leggings_bronze"
   CustomModelData: 83651
   Lore:
     - "LOREPRESET.BRONZE_DRAGON_SCALE"
@@ -465,13 +465,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 52:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_bronze"
+  CommandName: "dragonscale_boots_bronze"
   CustomModelData: 83651
   Lore:
     - "LOREPRESET.BRONZE_DRAGON_SCALE"
@@ -479,13 +479,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 53:
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_gray"
+  CommandName: "dragonscale_helmet_gray"
   CustomModelData: 83652
   Lore:
     - "LOREPRESET.GRAY_DRAGON_SCALE"
@@ -493,13 +493,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 54:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_gray"
+  CommandName: "dragonscale_chestplate_gray"
   CustomModelData: 83652
   Lore:
     - "LOREPRESET.GRAY_DRAGON_SCALE"
@@ -507,13 +507,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 55:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_gray"
+  CommandName: "dragonscale_leggings_gray"
   CustomModelData: 83652
   Lore:
     - "LOREPRESET.GRAY_DRAGON_SCALE"
@@ -521,13 +521,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 56:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_gray"
+  CommandName: "dragonscale_boots_gray"
   CustomModelData: 83652
   Lore:
     - "LOREPRESET.GRAY_DRAGON_SCALE"
@@ -535,13 +535,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 57:
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_green"
+  CommandName: "dragonscale_helmet_green"
   CustomModelData: 83653
   Lore:
     - "LOREPRESET.GREEN_DRAGON_SCALE"
@@ -549,13 +549,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 58:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_green"
+  CommandName: "dragonscale_chestplate_green"
   CustomModelData: 83653
   Lore:
     - "LOREPRESET.GREEN_DRAGON_SCALE"
@@ -563,13 +563,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 59:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_green"
+  CommandName: "dragonscale_leggings_green"
   CustomModelData: 83653
   Lore:
     - "LOREPRESET.GREEN_DRAGON_SCALE"
@@ -577,13 +577,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 60:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_red"
+  CommandName: "dragonscale_boots_red"
   CustomModelData: 83654
   Lore:
     - "LOREPRESET.RED_DRAGON_SCALE"
@@ -591,13 +591,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 61:
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_red"
+  CommandName: "dragonscale_helmet_red"
   CustomModelData: 83654
   Lore:
     - "LOREPRESET.RED_DRAGON_SCALE"
@@ -605,13 +605,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 62:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_red"
+  CommandName: "dragonscale_chestplate_red"
   CustomModelData: 83654
   Lore:
     - "LOREPRESET.RED_DRAGON_SCALE"
@@ -619,13 +619,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 63:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_red"
+  CommandName: "dragonscale_leggings_red"
   CustomModelData: 83654
   Lore:
     - "LOREPRESET.RED_DRAGON_SCALE"
@@ -633,13 +633,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 64:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_red"
+  CommandName: "dragonscale_boots_red"
   CustomModelData: 83654
   Lore:
     - "LOREPRESET.RED_DRAGON_SCALE"
@@ -647,13 +647,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 65:
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_sapphire"
+  CommandName: "dragonscale_helmet_sapphire"
   CustomModelData: 83655
   Lore:
     - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
@@ -661,13 +661,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 66:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_sapphire"
+  CommandName: "dragonscale_chestplate_sapphire"
   CustomModelData: 83655
   Lore:
     - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
@@ -675,13 +675,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 67:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_sapphire"
+  CommandName: "dragonscale_leggings_sapphire"
   CustomModelData: 83655
   Lore:
     - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
@@ -689,13 +689,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 68:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_sapphire"
+  CommandName: "dragonscale_boots_sapphire"
   CustomModelData: 83655
   Lore:
     - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
@@ -703,13 +703,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 69:
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_silver"
+  CommandName: "dragonscale_helmet_silver"
   CustomModelData: 83656
   Lore:
     - "LOREPRESET.SILVER_DRAGON_SCALE"
@@ -717,13 +717,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 70:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_silver"
+  CommandName: "dragonscale_chestplate_silver"
   CustomModelData: 83656
   Lore:
     - "LOREPRESET.SILVER_DRAGON_SCALE"
@@ -731,13 +731,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 71:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_silver"
+  CommandName: "dragonscale_leggings_silver"
   CustomModelData: 83656
   Lore:
     - "LOREPRESET.SILVER_DRAGON_SCALE"
@@ -745,13 +745,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 72:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_silver"
+  CommandName: "dragonscale_boots_silver"
   CustomModelData: 83656
   Lore:
     - "LOREPRESET.SILVER_DRAGON_SCALE"
@@ -759,13 +759,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 73:
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_white"
+  CommandName: "dragonscale_helmet_white"
   CustomModelData: 83657
   Lore:
     - "LOREPRESET.WHITE_DRAGON_SCALE"
@@ -773,13 +773,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 74:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_white"
+  CommandName: "dragonscale_chestplate_white"
   CustomModelData: 83657
   Lore:
     - "LOREPRESET.WHITE_DRAGON_SCALE"
@@ -787,13 +787,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 75:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_white"
+  CommandName: "dragonscale_leggings_white"
   CustomModelData: 83657
   Lore:
     - "LOREPRESET.WHITE_DRAGON_SCALE"
@@ -801,13 +801,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 76:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_white"
+  CommandName: "dragonscale_boots_white"
   CustomModelData: 83657
   Lore:
     - "LOREPRESET.WHITE_DRAGON_SCALE"
@@ -815,13 +815,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 77:
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_amethyst"
+  CommandName: "dragonscale_helmet_amethyst"
   CustomModelData: 83658
   Lore:
     - "LOREPRESET.AMETHYST_DRAGON_SCALE"
@@ -829,13 +829,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 78:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_amethyst"
+  CommandName: "dragonscale_chestplate_amethyst"
   CustomModelData: 83658
   Lore:
     - "LOREPRESET.AMETHYST_DRAGON_SCALE"
@@ -843,13 +843,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 79:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_amethyst"
+  CommandName: "dragonscale_leggings_amethyst"
   CustomModelData: 83658
   Lore:
     - "LOREPRESET.AMETHYST_DRAGON_SCALE"
@@ -857,13 +857,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 80:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_amethyst"
+  CommandName: "dragonscale_boots_amethyst"
   CustomModelData: 83658
   Lore:
     - "LOREPRESET.AMETHYST_DRAGON_SCALE"
@@ -871,13 +871,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 81:
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_black"
+  CommandName: "dragonscale_helmet_black"
   CustomModelData: 83659
   Lore:
     - "LOREPRESET.BLACK_DRAGON_SCALE"
@@ -885,13 +885,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 82:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_black"
+  CommandName: "dragonscale_chestplate_black"
   CustomModelData: 83659
   Lore:
     - "LOREPRESET.BLACK_DRAGON_SCALE"
@@ -899,13 +899,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 83:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_black"
+  CommandName: "dragonscale_leggings_black"
   CustomModelData: 83659
   Lore:
     - "LOREPRESET.BLACK_DRAGON_SCALE"
@@ -913,13 +913,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 84:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_black"
+  CommandName: "dragonscale_boots_black"
   CustomModelData: 83659
   Lore:
     - "LOREPRESET.BLACK_DRAGON_SCALE"
@@ -927,13 +927,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 85:
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_copper"
+  CommandName: "dragonscale_helmet_copper"
   CustomModelData: 83660
   Lore:
     - "LOREPRESET.COPPER_DRAGON_SCALE"
@@ -941,13 +941,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 86:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_copper"
+  CommandName: "dragonscale_chestplate_copper"
   CustomModelData: 83660
   Lore:
     - "LOREPRESET.COPPER_DRAGON_SCALE"
@@ -955,13 +955,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 87:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_copper"
+  CommandName: "dragonscale_leggings_copper"
   CustomModelData: 83660
   Lore:
     - "LOREPRESET.COPPER_DRAGON_SCALE"
@@ -969,13 +969,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 88:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_copper"
+  CommandName: "dragonscale_boots_copper"
   CustomModelData: 83660
   Lore:
     - "LOREPRESET.COPPER_DRAGON_SCALE"
@@ -983,13 +983,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 89:
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_helmet_electric"
+  CommandName: "dragonscale_helmet_electric"
   CustomModelData: 83661
   Lore:
     - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
@@ -997,13 +997,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Helmet"
+    dragonscale_armor: "Dragon Scale Helmet"
 90:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_chestplate_electric"
+  CommandName: "dragonscale_chestplate_electric"
   CustomModelData: 83661
   Lore:
     - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
@@ -1011,13 +1011,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Chestplate"
+    dragonscale_armor: "Dragon Scale Chestplate"
 91:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_leggings_electric"
+  CommandName: "dragonscale_leggings_electric"
   CustomModelData: 83661
   Lore:
     - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
@@ -1025,13 +1025,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Leggings"
+    dragonscale_armor: "Dragon Scale Leggings"
 92:
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
   ConfigName: "DragonScale"
-  CommandName: "dragon_scale_boots_electric"
+  CommandName: "dragonscale_boots_electric"
   CustomModelData: 83661
   Lore:
     - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
@@ -1039,7 +1039,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragon Scale Armor: "Dragon Scale Boots"
+    dragonscale_armor: "Dragon Scale Boots"
 93:
   Material: "DIAMOND_HELMET"
   Amount: 1
@@ -1053,7 +1053,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Helmet"
+    tide_guardian_armor: "Tide Guardian Helmet"
 94:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
@@ -1067,7 +1067,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Chestplate"
+    tide_guardian_armor: "Tide Guardian Chestplate"
 95:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
@@ -1081,7 +1081,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Leggings"
+    tide_guardian_armor: "Tide Guardian Leggings"
 96:
   Material: "DIAMOND_BOOTS"
   Amount: 1
@@ -1095,7 +1095,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Boots"
+    tide_guardian_armor: "Tide Guardian Boots"
 97:
   Material: "DIAMOND_HELMET"
   Amount: 1
@@ -1109,7 +1109,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Helmet"
+    tide_guardian_armor: "Tide Guardian Helmet"
 98:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
@@ -1123,7 +1123,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Chestplate"
+    tide_guardian_armor: "Tide Guardian Chestplate"
 99:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
@@ -1137,7 +1137,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Leggings"
+    tide_guardian_armor: "Tide Guardian Leggings"
 100:
   Material: "DIAMOND_BOOTS"
   Amount: 1
@@ -1151,7 +1151,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Boots"
+    tide_guardian_armor: "Tide Guardian Boots"
 101:
   Material: "DIAMOND_HELMET"
   Amount: 1
@@ -1165,7 +1165,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Helmet"
+    tide_guardian_armor: "Tide Guardian Helmet"
 102:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
@@ -1179,7 +1179,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Chestplate"
+    tide_guardian_armor: "Tide Guardian Chestplate"
 103:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
@@ -1193,7 +1193,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Leggings"
+    tide_guardian_armor: "Tide Guardian Leggings"
 104:
   Material: "DIAMOND_BOOTS"
   Amount: 1
@@ -1207,7 +1207,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Boots"
+    tide_guardian_armor: "Tide Guardian Boots"
 105:
   Material: "DIAMOND_HELMET"
   Amount: 1
@@ -1221,7 +1221,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Helmet"
+    tide_guardian_armor: "Tide Guardian Helmet"
 106:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
@@ -1235,7 +1235,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Chestplate"
+    tide_guardian_armor: "Tide Guardian Chestplate"
 107:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
@@ -1249,7 +1249,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Leggings"
+    tide_guardian_armor: "Tide Guardian Leggings"
 108:
   Material: "DIAMOND_BOOTS"
   Amount: 1
@@ -1263,7 +1263,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Boots"
+    tide_guardian_armor: "Tide Guardian Boots"
 109:
   Material: "DIAMOND_HELMET"
   Amount: 1
@@ -1277,7 +1277,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Helmet"
+    tide_guardian_armor: "Tide Guardian Helmet"
 110:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
@@ -1291,7 +1291,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Chestplate"
+    tide_guardian_armor: "Tide Guardian Chestplate"
 111:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
@@ -1305,7 +1305,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Leggings"
+    tide_guardian_armor: "Tide Guardian Leggings"
 112:
   Material: "DIAMOND_BOOTS"
   Amount: 1
@@ -1319,7 +1319,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Boots"
+    tide_guardian_armor: "Tide Guardian Boots"
 113:
   Material: "DIAMOND_HELMET"
   Amount: 1
@@ -1333,7 +1333,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Helmet"
+    tide_guardian_armor: "Tide Guardian Helmet"
 114:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
@@ -1347,7 +1347,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Chestplate"
+    tide_guardian_armor: "Tide Guardian Chestplate"
 115:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
@@ -1361,7 +1361,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Leggings"
+    tide_guardian_armor: "Tide Guardian Leggings"
 116:
   Material: "DIAMOND_BOOTS"
   Amount: 1
@@ -1375,7 +1375,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Boots"
+    tide_guardian_armor: "Tide Guardian Boots"
 117:
   Material: "DIAMOND_HELMET"
   Amount: 1
@@ -1389,7 +1389,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Helmet"
+    tide_guardian_armor: "Tide Guardian Helmet"
 118:
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
@@ -1403,7 +1403,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Chestplate"
+    tide_guardian_armor: "Tide Guardian Chestplate"
 119:
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
@@ -1417,7 +1417,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Leggings"
+    tide_guardian_armor: "Tide Guardian Leggings"
 120:
   Material: "DIAMOND_BOOTS"
   Amount: 1
@@ -1431,13 +1431,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Tide Guardian Armor: "Tide Guardian Boots"
+    tide_guardian_armor: "Tide Guardian Boots"
 121:
   Material: "DIAMOND_PICKAXE"
   Amount: 1
   DisplayName: "&fDragon Bone Pickaxe"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_pickaxe"
+  CommandName: "dragonbone_pickaxe"
   CustomModelData: 83650
   ItemFlags:
     - "HIDE_ATTRIBUTES"
@@ -1446,7 +1446,7 @@
   Amount: 1
   DisplayName: "&fDragon Bone Axe"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_axe"
+  CommandName: "dragonbone_axe"
   CustomModelData: 83650
   ItemFlags:
     - "HIDE_ATTRIBUTES"
@@ -1455,7 +1455,7 @@
   Amount: 1
   DisplayName: "&fDragon Bone Shovel"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_shovel"
+  CommandName: "dragonbone_shovel"
   CustomModelData: 83650
   ItemFlags:
     - "HIDE_ATTRIBUTES"
@@ -1464,7 +1464,7 @@
   Amount: 1
   DisplayName: "&fDragon Bone Hoe"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_hoe"
+  CommandName: "dragonbone_hoe"
   CustomModelData: 83650
   ItemFlags:
     - "HIDE_ATTRIBUTES"
@@ -1473,7 +1473,7 @@
   Amount: 1
   DisplayName: "&fDragon Bone Sword"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_sword"
+  CommandName: "dragonbone_sword"
   CustomModelData: 83650
   ItemFlags:
     - "HIDE_ATTRIBUTES"
@@ -1482,19 +1482,19 @@
   Amount: 1
   DisplayName: "&fDragon Bone Bow"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_bow"
+  CommandName: "dragonbone_bow"
   CustomModelData: 83650
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Dragon Bone"
-    Spartan's Weapon: "Bow"
+    material_type: "Dragonbone"
+    spartans_weapon: "Bow"
 127:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragon Bone Sword"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_sword"
+  CommandName: "dragonbone_flamed_sword"
   CustomModelData: 83651
   Lore:
     - "LOREPRESET.LEGENDARY_WEAPON"
@@ -1503,13 +1503,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
+    material_type: "FlamedDragonbone"
 128:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragon Bone Sword"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_sword"
+  CommandName: "dragonbone_iced_sword"
   CustomModelData: 83652
   Lore:
     - "LOREPRESET.LEGENDARY_WEAPON"
@@ -1518,13 +1518,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
+    material_type: "IcedDragonbone"
 129:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragon Bone Sword"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_sword"
+  CommandName: "dragonbone_lightning_sword"
   CustomModelData: 83653
   Lore:
     - "LOREPRESET.LEGENDARY_WEAPON"
@@ -1533,13 +1533,13 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
+    material_type: "LightningDragonbone"
 130:
   Material: "PRISMARINE_SHARD"
   Amount: 1
   DisplayName: "&fDragon's Eye"
   ConfigName: "DragonsEye"
-  CommandName: "bauble_dragons_eye"
+  CommandName: "dragons_eye"
   CustomModelData: 83650
   Lore:
     - "&7Night Vision On"
@@ -1553,7 +1553,7 @@
   Amount: 1
   DisplayName: "&fPoison Stone"
   ConfigName: "PoisonStone"
-  CommandName: "bauble_stone_poison"
+  CommandName: "stone_poison"
   CustomModelData: 83651
   Lore:
     - ""
@@ -1565,7 +1565,7 @@
   Amount: 1
   DisplayName: "&fPotion Ring of Resistance"
   ConfigName: "PotionRingResistance"
-  CommandName: "bauble_potion_ring_resistance"
+  CommandName: "potion_ring_resistance"
   CustomModelData: 83652
   Enchantments:
     DURABILITY: 1
@@ -1579,7 +1579,7 @@
   Amount: 1
   DisplayName: "&fPotion Ring of Regeneration"
   ConfigName: "PotionRingRegneration"
-  CommandName: "bauble_potion_ring_regeneration"
+  CommandName: "potion_ring_regeneration"
   CustomModelData: 83653
   Enchantments:
     DURABILITY: 1
@@ -1593,7 +1593,7 @@
   Amount: 1
   DisplayName: "&fPotion Ring of Haste"
   ConfigName: "PotionRingHaste"
-  CommandName: "bauble_potion_ring_haste"
+  CommandName: "potion_ring_haste"
   CustomModelData: 83654
   Enchantments:
     DURABILITY: 1
@@ -1607,7 +1607,7 @@
   Amount: 1
   DisplayName: "&fPotion Ring of Strength"
   ConfigName: "PotionRingStrength"
-  CommandName: "bauble_potion_ring_strength"
+  CommandName: "potion_ring_strength"
   CustomModelData: 83655
   Enchantments:
     DURABILITY: 1
@@ -1621,7 +1621,7 @@
   Amount: 1
   DisplayName: "&fPotion Ring of Speed"
   ConfigName: "PotionRingSpeed"
-  CommandName: "bauble_potion_ring_speed"
+  CommandName: "potion_ring_speed"
   CustomModelData: 83656
   Enchantments:
     DURABILITY: 1
@@ -1635,7 +1635,7 @@
   Amount: 1
   DisplayName: "&fPotion Ring of Jump Boost"
   ConfigName: "PotionRingJumpBoost"
-  CommandName: "bauble_potion_ring_jump_boost"
+  CommandName: "potion_ring_jump_boost"
   CustomModelData: 83657
   Enchantments:
     DURABILITY: 1
@@ -1649,7 +1649,7 @@
   Amount: 1
   DisplayName: "&bEnder Queen's Crown"
   ConfigName: "EnderQueensCrown"
-  CommandName: "bauble_crown_ender_queens"
+  CommandName: "crown_ender_queens"
   CustomModelData: 83661
   Lore:
     - ""
@@ -1661,7 +1661,7 @@
   Amount: 1
   DisplayName: "&fSunglasses"
   ConfigName: "Sunglasses"
-  CommandName: "bauble_sunglasses"
+  CommandName: "sunglasses"
   CustomModelData: 83650
   Lore:
     - "&9Grants immunity to blindness."
@@ -1675,7 +1675,7 @@
   Amount: 1
   DisplayName: "&fBalloon"
   ConfigName: "Balloon"
-  CommandName: "bauble_balloon"
+  CommandName: "balloon"
   CustomModelData: 83662
   Lore:
     - "&9Increases jump height and negates some fall damage."
@@ -1688,7 +1688,7 @@
   Amount: 1
   DisplayName: "&fCobalt Shield"
   ConfigName: "CobaltShield"
-  CommandName: "bauble_shield_cobalt"
+  CommandName: "shield_cobalt"
   CustomModelData: 83650
   Lore:
     - "&9Grants immunity to knockback when held or equipped in bauble slot."
@@ -1701,7 +1701,7 @@
   Amount: 1
   DisplayName: "&fObsidian Skull"
   ConfigName: "ObsidianSkull"
-  CommandName: "bauble_obsidian_skull"
+  CommandName: "obsidian_skull"
   CustomModelData: 83663
   Lore:
     - "&9Grants immunity to burning and 50% resistance to fire damage. (Does not."
@@ -1716,7 +1716,7 @@
   Amount: 1
   DisplayName: "&fObsidian Shield"
   ConfigName: "ObsidianShield"
-  CommandName: "bauble_shield_obsidian"
+  CommandName: "shield_obsidian"
   CustomModelData: 83651
   Lore:
     - "&9Grants partial fire resistance and immunity to knockback when held or equipped"
@@ -1730,7 +1730,7 @@
   Amount: 1
   DisplayName: "&fForbidden Fruit"
   ConfigName: "ForbiddenFruit"
-  CommandName: "bauble_forbidden_fruit"
+  CommandName: "forbidden_fruit"
   CustomModelData: 83664
   Lore:
     - "&9Grants immunity to hunger status effect, and nausea."
@@ -1743,7 +1743,7 @@
   Amount: 1
   DisplayName: "&fVitamins"
   ConfigName: "Vitamins"
-  CommandName: "bauble_vitamins"
+  CommandName: "vitamins"
   CustomModelData: 83665
   Lore:
     - "&9Grants immunity to weakness and mining fatigue."
@@ -1756,7 +1756,7 @@
   Amount: 1
   DisplayName: "&fRing of Overclocking"
   ConfigName: "RingOverclocking"
-  CommandName: "bauble_ring_overclocking"
+  CommandName: "ring_overclocking"
   CustomModelData: 83666
   Lore:
     - "&9Grants immunity to slowness and +7% move speed."
@@ -1770,7 +1770,7 @@
   Amount: 1
   DisplayName: "&fShulker Heart"
   ConfigName: "ShulkerHeart"
-  CommandName: "bauble_shulker_heart"
+  CommandName: "shulker_heart"
   CustomModelData: 83667
   Lore:
     - "&9Grants immunity to levitation"
@@ -1784,7 +1784,7 @@
   Amount: 1
   DisplayName: "&fRing of Free Action"
   ConfigName: "RingFreeAction"
-  CommandName: "bauble_ring_free_action"
+  CommandName: "ring_free_action"
   CustomModelData: 83668
   Lore:
     - "&9Grants immunity to slowness and levitation and allows free movement through"
@@ -1798,7 +1798,7 @@
   Amount: 1
   DisplayName: "&fBezoar"
   ConfigName: "Bezoar"
-  CommandName: "bauble_bezoar"
+  CommandName: "bezoar"
   CustomModelData: 83669
   Lore:
     - "&9Grants immunity to poison."
@@ -1811,14 +1811,14 @@
   Amount: 1
   DisplayName: "&fEnder Dragon Scale"
   ConfigName: "EnderDragonScale"
-  CommandName: "bauble_dragon_scale_ender"
+  CommandName: "dragonscale_ender"
   CustomModelData: 83670
 151:
   Material: "PRISMARINE_SHARD"
   Amount: 1
   DisplayName: "&fCracked Black Dragon Scale"
   ConfigName: "CrackedBlackDragonScale"
-  CommandName: "bauble_dragon_scale_black_cracked"
+  CommandName: "dragonscale_black_cracked"
   CustomModelData: 83671
   Lore:
     - "&aBlack dragon scales are said to protect against withering. Perhaps this broken one"
@@ -1828,7 +1828,7 @@
   Amount: 1
   DisplayName: "&fBlack Dragon Scale"
   ConfigName: "BlackDragonScale"
-  CommandName: "bauble_dragon_scale_black"
+  CommandName: "dragonscale_black_bauble"
   CustomModelData: 83672
   Lore:
     - "&9Grants immunity to withering."
@@ -1841,7 +1841,7 @@
   Amount: 1
   DisplayName: "&fMixed Color Dragon Scale"
   ConfigName: "MixedColorDragonScale"
-  CommandName: "bauble_dragon_scale_mixed_color"
+  CommandName: "dragonscale_mixed_color"
   CustomModelData: 83673
   Lore:
     - "&9Grants immunity to poison and withering."
@@ -1856,7 +1856,7 @@
   Amount: 1
   DisplayName: "&fAnkh Charm"
   ConfigName: "AnkhCharm"
-  CommandName: "bauble_ankh_charm"
+  CommandName: "ankh_charm"
   CustomModelData: 83674
   Lore:
     - "&9Grants immunity to most negative status effects."
@@ -1869,7 +1869,7 @@
   Amount: 1
   DisplayName: "&fAnkh Shield"
   ConfigName: "AnkhShield"
-  CommandName: "bauble_shield_ankh"
+  CommandName: "shield_ankh"
   CustomModelData: 83652
   Lore:
     - "&9Grants partial fire resistance and immunity to knockback and most negative"
@@ -1883,7 +1883,7 @@
   Amount: 1
   DisplayName: "&fIron Ring"
   ConfigName: "IronRing"
-  CommandName: "bauble_ring_iron"
+  CommandName: "ring_iron"
   CustomModelData: 83675
   Lore:
     - "&9Crafting component"
@@ -1892,7 +1892,7 @@
   Amount: 1
   DisplayName: "&fMagic Mirror"
   ConfigName: "MagicMirror"
-  CommandName: "bauble_mirror_magic"
+  CommandName: "mirror_magic"
   CustomModelData: 83676
   Lore:
     - "&9Teleports you to your spawn point."
@@ -1913,7 +1913,7 @@
   Amount: 1
   DisplayName: "&fWormhole Mirror"
   ConfigName: "WormholeMirror"
-  CommandName: "bauble_mirror_wormhole"
+  CommandName: "mirror_wormhole"
   CustomModelData: 83677
   Lore:
     - "&9Right click to teleport to your spawn point."
@@ -1935,7 +1935,7 @@
   Amount: 1
   DisplayName: "&fLucky Horseshoe"
   ConfigName: "LuckyHorseshoe"
-  CommandName: "bauble_lucky_horseshoe"
+  CommandName: "lucky_horseshoe"
   CustomModelData: 83678
   Lore:
     - "&9Negates fall damage."
@@ -1956,7 +1956,7 @@
   Amount: 1
   DisplayName: "&fScarlite Ring"
   ConfigName: "ScarliteRing"
-  CommandName: "bauble_ring_scarlite"
+  CommandName: "ring_scarlite"
   CustomModelData: 83679
   Lore:
     - "&7Slowly restores health"
@@ -1969,7 +1969,7 @@
   Amount: 1
   DisplayName: "&fSpectral Silt"
   ConfigName: "SpectralSilt"
-  CommandName: "bauble_spectral_silt"
+  CommandName: "spectral_silt"
   CustomModelData: 83680
   Lore:
     - "&9Crafting component"
@@ -1978,7 +1978,7 @@
   Amount: 1
   DisplayName: "&fDisintegration Tablet"
   ConfigName: "DisintegrationTablet"
-  CommandName: "bauble_disintegration_tablet"
+  CommandName: "disintegration_tablet"
   CustomModelData: 83681
   Lore:
     - "&9Craft with dungeon loot to convert it into spectral silt"
@@ -1987,7 +1987,7 @@
   Amount: 1
   DisplayName: "&fBroken Heart"
   ConfigName: "BrokenHeart"
-  CommandName: "bauble_broken_heart"
+  CommandName: "broken_heart"
   CustomModelData: 83650
   Lore:
     - "&9Lethal damage destroys empty heart containers instead."
@@ -2002,7 +2002,7 @@
   Amount: 1
   DisplayName: "&fCross Necklace"
   ConfigName: "CrossNecklace"
-  CommandName: "bauble_cross_necklace"
+  CommandName: "cross_necklace"
   CustomModelData: 83682
   Lore:
     - "&9Increases length of invicibility when damaged."
@@ -2017,7 +2017,7 @@
   Amount: 1
   DisplayName: "&fWrath Pendant"
   ConfigName: "WrathPendant"
-  CommandName: "bauble_pendant_wrath"
+  CommandName: "pendant_wrath"
   CustomModelData: 83683
   Lore:
     - "&9Gives +2 damage."
@@ -2032,7 +2032,7 @@
   Amount: 1
   DisplayName: "&fPride Pendant"
   ConfigName: "PridePendant"
-  CommandName: "bauble_pendant_pride"
+  CommandName: "pendant_pride"
   CustomModelData: 83684
   Lore:
     - "&9Gives sinful buff (+damage, +armor) while at full health."
@@ -2045,7 +2045,7 @@
   Amount: 1
   DisplayName: "&fGolden Crown"
   ConfigName: "GoldenCrown"
-  CommandName: "bauble_crown_golden"
+  CommandName: "crown_golden"
   CustomModelData: 83650
   Attributes:
     GENERIC_ARMOR: 13.0
@@ -2054,7 +2054,7 @@
   Amount: 1
   DisplayName: "&fGluttony Pendant"
   ConfigName: "GluttonyPendant"
-  CommandName: "bauble_pendant_gluttony"
+  CommandName: "pendant_gluttony"
   CustomModelData: 83685
   Lore:
     - "&9Eat faster."
@@ -2068,7 +2068,7 @@
   Amount: 1
   DisplayName: "&fSin Pendant"
   ConfigName: "SinPendant"
-  CommandName: "bauble_pendant_sin"
+  CommandName: "pendant_sin"
   CustomModelData: 83686
   Lore:
     - "&9Crafting Component."
@@ -2081,7 +2081,7 @@
   Amount: 1
   DisplayName: "&fFlare Gun"
   ConfigName: "FlareGun"
-  CommandName: "bauble_flare_gun"
+  CommandName: "flare_gun"
   CustomModelData: 83687
   Lore:
     - "&9Exactly what it sounds like"
@@ -2091,7 +2091,7 @@
   Amount: 1
   DisplayName: "&fFlare"
   ConfigName: "Flare"
-  CommandName: "bauble_flare"
+  CommandName: "flare"
   CustomModelData: 83688
   Lore:
     - "&9Ammo for the Flare Gun."
@@ -2100,7 +2100,7 @@
   Amount: 1
   DisplayName: "&fPhytoprostasia Amulet"
   ConfigName: "PhytoprostasiaAmulet"
-  CommandName: "bauble_amulet_phytoprostasia"
+  CommandName: "amulet_phytoprostasia"
   CustomModelData: 83689
   Lore:
     - "&7Protects from cactus and berry bush damage"
@@ -2111,7 +2111,7 @@
   Amount: 1
   DisplayName: "&fPotion Ring"
   ConfigName: "PotionRing"
-  CommandName: "bauble_potion_ring"
+  CommandName: "potion_ring"
   CustomModelData: 83690
   Lore:
     - ""
@@ -2123,7 +2123,7 @@
   Amount: 1
   DisplayName: "&fEmerald Ring"
   ConfigName: "EmeraldRing"
-  CommandName: "bauble_ring_emerald"
+  CommandName: "ring_emerald"
   CustomModelData: 83691
   Lore:
     - ""
@@ -2135,7 +2135,7 @@
   Amount: 1
   DisplayName: "&fEmerald Amulet"
   ConfigName: "EmeraldAmulet"
-  CommandName: "bauble_amulet_emerald"
+  CommandName: "amulet_emerald"
   CustomModelData: 83692
   Lore:
     - ""
@@ -2147,28 +2147,28 @@
   Amount: 1
   DisplayName: "&fGlowing Ingot"
   ConfigName: "GlowingIngot"
-  CommandName: "bauble_glowing_ingot"
+  CommandName: "glowing_ingot"
   CustomModelData: 83693
 180:
   Material: "PRISMARINE_SHARD"
   Amount: 1
   DisplayName: "&fGlowing Powder"
   ConfigName: "GlowingPowder"
-  CommandName: "bauble_glowing_powder"
+  CommandName: "glowing_powder"
   CustomModelData: 83694
 181:
   Material: "PRISMARINE_SHARD"
   Amount: 1
   DisplayName: "&fGlowing Gem"
   ConfigName: "GlowingGem"
-  CommandName: "bauble_glowing_gem"
+  CommandName: "glowing_gem"
   CustomModelData: 83695
 182:
   Material: "PRISMARINE_SHARD"
   Amount: 1
   DisplayName: "&fDwarf Stout"
   ConfigName: "DwarfStout"
-  CommandName: "bauble_dwarf_stout"
+  CommandName: "dwarf_stout"
   CustomModelData: 83696
   Lore:
     - "&7I might be able to remove the effects"
@@ -2178,7 +2178,7 @@
   Amount: 1
   DisplayName: "&fFairy Dew"
   ConfigName: "FairyDew"
-  CommandName: "bauble_fairy_dew"
+  CommandName: "fairy_dew"
   CustomModelData: 83697
   Lore:
     - "&7I might be able to remove the effects"
@@ -2188,7 +2188,7 @@
   Amount: 1
   DisplayName: "&bStone of Negative Gravity"
   ConfigName: "StoneNegativeGravity"
-  CommandName: "bauble_stone_negative_gravity"
+  CommandName: "stone_negative_gravity"
   CustomModelData: 83698
   Lore:
     - ""
@@ -2200,7 +2200,7 @@
   Amount: 1
   DisplayName: "&bStone of Inertia Null"
   ConfigName: "StoneInertiaNull"
-  CommandName: "bauble_stone_inertia_null"
+  CommandName: "stone_inertia_null"
   CustomModelData: 83699
   Lore:
     - ""
@@ -2212,7 +2212,7 @@
   Amount: 1
   DisplayName: "&bStone of Greater Inertia"
   ConfigName: "StoneGreaterInertia"
-  CommandName: "bauble_stone_greater_inertia"
+  CommandName: "stone_greater_inertia"
   CustomModelData: 83700
   Lore:
     - ""
@@ -2224,7 +2224,7 @@
   Amount: 1
   DisplayName: "&bRing of Enchanted Eyes"
   ConfigName: "RingEnchantedEyes"
-  CommandName: "bauble_ring_enchanted_eyes"
+  CommandName: "ring_enchanted_eyes"
   CustomModelData: 83701
   Lore:
     - ""
@@ -2236,7 +2236,7 @@
   Amount: 1
   DisplayName: "&bStone of the Sea"
   ConfigName: "StoneSea"
-  CommandName: "bauble_stone_sea"
+  CommandName: "stone_sea"
   CustomModelData: 83702
   Lore:
     - ""
@@ -2248,7 +2248,7 @@
   Amount: 1
   DisplayName: "&bPolarized Stone"
   ConfigName: "StonePolarized"
-  CommandName: "bauble_stone_polarized"
+  CommandName: "stone_polarized"
   CustomModelData: 83703
   Lore:
     - "&7Magnetization On"
@@ -2260,7 +2260,7 @@
   Amount: 1
   DisplayName: "&bRing of the Fairies"
   ConfigName: "RingFairies"
-  CommandName: "bauble_ring_fairies"
+  CommandName: "ring_fairies"
   CustomModelData: 83704
   Lore:
     - ""
@@ -2272,7 +2272,7 @@
   Amount: 1
   DisplayName: "&bRing of the Dwarves"
   ConfigName: "RingDwarves"
-  CommandName: "bauble_ring_dwarves"
+  CommandName: "ring_dwarves"
   CustomModelData: 83705
   Lore:
     - ""
@@ -2284,7 +2284,7 @@
   Amount: 1
   DisplayName: "&bWither Ring"
   ConfigName: "RingWither"
-  CommandName: "bauble_ring_wither"
+  CommandName: "ring_wither"
   CustomModelData: 83706
   Lore:
     - ""
@@ -2296,7 +2296,7 @@
   Amount: 1
   DisplayName: "&bShield of Honor"
   ConfigName: "ShieldHonor"
-  CommandName: "bauble_shield_honor"
+  CommandName: "shield_honor"
   CustomModelData: 83707
   Lore:
     - ""
@@ -2308,7 +2308,7 @@
   Amount: 1
   DisplayName: "&bMiner's Ring"
   ConfigName: "RingMiners"
-  CommandName: "bauble_ring_miners"
+  CommandName: "ring_miners"
   CustomModelData: 83708
   Lore:
     - ""
@@ -2320,7 +2320,7 @@
   Amount: 1
   DisplayName: "&fWarped Scroll"
   ConfigName: "WarpedScroll"
-  CommandName: "warped_scroll"
+  CommandName: "scroll_warped"
   CustomModelData: 83709
 196:
   Material: "POTION"
@@ -2341,7 +2341,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
+    material_type: "FireDragonsteel"
 198:
   Material: "NETHERITE_PICKAXE"
   Amount: 1
@@ -2354,7 +2354,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
+    material_type: "FireDragonsteel"
 199:
   Material: "NETHERITE_AXE"
   Amount: 1
@@ -2367,7 +2367,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
+    material_type: "FireDragonsteel"
 200:
   Material: "NETHERITE_SHOVEL"
   Amount: 1
@@ -2380,7 +2380,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
+    material_type: "FireDragonsteel"
 201:
   Material: "NETHERITE_HOE"
   Amount: 1
@@ -2393,7 +2393,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
+    material_type: "FireDragonsteel"
 202:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -2406,7 +2406,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
+    material_type: "IceDragonsteel"
 203:
   Material: "NETHERITE_PICKAXE"
   Amount: 1
@@ -2419,7 +2419,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
+    material_type: "IceDragonsteel"
 204:
   Material: "NETHERITE_AXE"
   Amount: 1
@@ -2432,7 +2432,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
+    material_type: "IceDragonsteel"
 205:
   Material: "NETHERITE_SHOVEL"
   Amount: 1
@@ -2445,7 +2445,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
+    material_type: "IceDragonsteel"
 206:
   Material: "NETHERITE_HOE"
   Amount: 1
@@ -2458,7 +2458,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
+    material_type: "IceDragonsteel"
 207:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -2471,7 +2471,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
+    material_type: "LightningDragonsteel"
 208:
   Material: "NETHERITE_PICKAXE"
   Amount: 1
@@ -2484,7 +2484,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
+    material_type: "LightningDragonsteel"
 209:
   Material: "NETHERITE_AXE"
   Amount: 1
@@ -2497,7 +2497,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
+    material_type: "LightningDragonsteel"
 210:
   Material: "NETHERITE_SHOVEL"
   Amount: 1
@@ -2510,7 +2510,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
+    material_type: "LightningDragonsteel"
 211:
   Material: "NETHERITE_HOE"
   Amount: 1
@@ -2523,7 +2523,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
+    material_type: "LightningDragonsteel"
 212:
   Material: "NETHERITE_HELMET"
   Amount: 1
@@ -2536,7 +2536,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Helmet"
+    dragonsteel_armor: "Dragonsteel Helmet"
 213:
   Material: "NETHERITE_CHESTPLATE"
   Amount: 1
@@ -2549,7 +2549,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Chestplate"
+    dragonsteel_armor: "Dragonsteel Chestplate"
 214:
   Material: "NETHERITE_LEGGINGS"
   Amount: 1
@@ -2562,7 +2562,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Leggings"
+    dragonsteel_armor: "Dragonsteel Leggings"
 215:
   Material: "NETHERITE_BOOTS"
   Amount: 1
@@ -2575,7 +2575,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Boots"
+    dragonsteel_armor: "Dragonsteel Boots"
 216:
   Material: "NETHERITE_HELMET"
   Amount: 1
@@ -2588,7 +2588,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Helmet"
+    dragonsteel_armor: "Dragonsteel Helmet"
 217:
   Material: "NETHERITE_CHESTPLATE"
   Amount: 1
@@ -2601,7 +2601,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Chestplate"
+    dragonsteel_armor: "Dragonsteel Chestplate"
 218:
   Material: "NETHERITE_LEGGINGS"
   Amount: 1
@@ -2614,7 +2614,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Leggings"
+    dragonsteel_armor: "Dragonsteel Leggings"
 219:
   Material: "NETHERITE_BOOTS"
   Amount: 1
@@ -2627,7 +2627,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Boots"
+    dragonsteel_armor: "Dragonsteel Boots"
 220:
   Material: "NETHERITE_HELMET"
   Amount: 1
@@ -2640,7 +2640,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Helmet"
+    dragonsteel_armor: "Dragonsteel Helmet"
 221:
   Material: "NETHERITE_CHESTPLATE"
   Amount: 1
@@ -2653,7 +2653,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Chestplate"
+    dragonsteel_armor: "Dragonsteel Chestplate"
 222:
   Material: "NETHERITE_LEGGINGS"
   Amount: 1
@@ -2666,7 +2666,7 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Leggings"
+    dragonsteel_armor: "Dragonsteel Leggings"
 223:
   Material: "NETHERITE_BOOTS"
   Amount: 1
@@ -2679,1285 +2679,1285 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Dragonsteel Armor: "Dragonsteel Boots"
+    dragonsteel_armor: "Dragonsteel Boots"
 224:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Rapier"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_rapier"
+  CommandName: "dragonbone_rapier"
   CustomModelData: 83654
   Lore:
     - "LOREPRESET.RAPIER"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Rapier"
+    spartans_weapon: "Rapier"
 225:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Katana"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_katana"
+  CommandName: "dragonbone_katana"
   CustomModelData: 83655
   Lore:
     - "LOREPRESET.KATANA"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Katana"
+    spartans_weapon: "Katana"
 226:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Greatsword"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_greatsword"
+  CommandName: "dragonbone_greatsword"
   CustomModelData: 83656
   Lore:
     - "LOREPRESET.GREATSWORD"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Greatsword"
+    spartans_weapon: "Greatsword"
 227:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Longsword"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_longsword"
+  CommandName: "dragonbone_longsword"
   CustomModelData: 83657
   Lore:
     - "LOREPRESET.LONGSWORD"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Longsword"
+    spartans_weapon: "Longsword"
 228:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Spear"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_spear"
+  CommandName: "dragonbone_spear"
   CustomModelData: 83658
   Lore:
     - "LOREPRESET.SPEAR"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Spear"
+    spartans_weapon: "Spear"
 229:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Saber"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_saber"
+  CommandName: "dragonbone_saber"
   CustomModelData: 83659
   Lore:
     - "LOREPRESET.SABER"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Saber"
+    spartans_weapon: "Saber"
 230:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Boomerang"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_boomerang"
+  CommandName: "dragonbone_boomerang"
   CustomModelData: 83660
   Lore:
     - "LOREPRESET.BOOMERANG"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Boomerang"
+    spartans_weapon: "Boomerang"
 231:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Dagger"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_dagger"
+  CommandName: "dragonbone_dagger"
   CustomModelData: 83661
   Lore:
     - "LOREPRESET.DAGGER"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Dagger"
+    spartans_weapon: "Dagger"
 232:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Glaive"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_glaive"
+  CommandName: "dragonbone_glaive"
   CustomModelData: 83662
   Lore:
     - "LOREPRESET.GLAIVE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Glaive"
+    spartans_weapon: "Glaive"
 233:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Halberd"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_halberd"
+  CommandName: "dragonbone_halberd"
   CustomModelData: 83663
   Lore:
     - "LOREPRESET.HALBERD"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Halberd"
+    spartans_weapon: "Halberd"
 234:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Hammer"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_hammer"
+  CommandName: "dragonbone_hammer"
   CustomModelData: 83664
   Lore:
     - "LOREPRESET.HAMMER"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Hammer"
+    spartans_weapon: "Hammer"
 235:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Javelin"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_javelin"
+  CommandName: "dragonbone_javelin"
   CustomModelData: 83665
   Lore:
     - "LOREPRESET.JAVELIN"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Javelin"
+    spartans_weapon: "Javelin"
 236:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Lance"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_lance"
+  CommandName: "dragonbone_lance"
   CustomModelData: 83666
   Lore:
     - "LOREPRESET.LANCE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Lance"
+    spartans_weapon: "Lance"
 237:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Flanged Mace"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_mace"
+  CommandName: "dragonbone_mace"
   CustomModelData: 83667
   Lore:
     - "LOREPRESET.MACE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Mace"
+    spartans_weapon: "Mace"
 238:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Pike"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_pike"
+  CommandName: "dragonbone_pike"
   CustomModelData: 83668
   Lore:
     - "LOREPRESET.PIKE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Pike"
+    spartans_weapon: "Pike"
 239:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Quarterstaff"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_quarterstaff"
+  CommandName: "dragonbone_quarterstaff"
   CustomModelData: 83669
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Quarterstaff"
+    spartans_weapon: "Quarterstaff"
 240:
   Material: "DIAMOND_SWORD"
   Amount: 1
-  DisplayName: "&fDragonbone Throwing Axe"
+  DisplayName: "&fDragonbone Tomahawk"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_throwing_axe"
+  CommandName: "dragonbone_tomahawk"
   CustomModelData: 83670
   Lore:
-    - "LOREPRESET.THROWING_AXE"
+    - "LOREPRESET.TOMAHAWK"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Throwing Axe"
+    spartans_weapon: "Tomahawk"
 241:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Throwing Knife"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_throwing_knife"
+  CommandName: "dragonbone_throwing_knife"
   CustomModelData: 83671
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Throwing Knife"
+    spartans_weapon: "Throwing Knife"
 242:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Warhammer"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_warhammer"
+  CommandName: "dragonbone_warhammer"
   CustomModelData: 83672
   Lore:
     - "LOREPRESET.WARHAMMER"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Warhammer"
+    spartans_weapon: "Warhammer"
 243:
   Material: "DIAMOND_AXE"
   Amount: 1
   DisplayName: "&fDragonbone Battleaxe"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_battleaxe"
+  CommandName: "dragonbone_battleaxe"
   CustomModelData: 83651
   Lore:
     - "LOREPRESET.BATTLEAXE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Spartan's Weapon: "Battleaxe"
+    spartans_weapon: "Battleaxe"
 244:
   Material: "BOW"
   Amount: 1
   DisplayName: "&fDragonbone-Strengthened Longbow"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_longbow"
+  CommandName: "dragonbone_longbow"
   CustomModelData: 83651
   Lore:
     - "LOREPRESET.LONGBOW"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Dragon Bone"
-    Spartan's Weapon: "Longbow"
+    material_type: "Dragonbone"
+    spartans_weapon: "Longbow"
 245:
   Material: "CROSSBOW"
   Amount: 1
   DisplayName: "&fDragonbone-Strengthened Crossbow"
   ConfigName: "DragonBone"
-  CommandName: "dragon_bone_crossbow"
+  CommandName: "dragonbone_crossbow"
   CustomModelData: 83650
   Lore:
     - "LOREPRESET.CROSSBOW"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Dragon Bone"
-    Spartan's Weapon: "Crossbow"
+    material_type: "Dragonbone"
+    spartans_weapon: "Crossbow"
 246:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Rapier"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_rapier"
+  CommandName: "dragonbone_flamed_rapier"
   CustomModelData: 83673
   Lore:
     - "LOREPRESET.RAPIER"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Rapier"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Rapier"
 247:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Katana"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_katana"
+  CommandName: "dragonbone_flamed_katana"
   CustomModelData: 83674
   Lore:
     - "LOREPRESET.KATANA"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Katana"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Katana"
 248:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Greatsword"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_greatsword"
+  CommandName: "dragonbone_flamed_greatsword"
   CustomModelData: 83675
   Lore:
     - "LOREPRESET.GREATSWORD"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Greatsword"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Greatsword"
 249:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Longsword"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_longsword"
+  CommandName: "dragonbone_flamed_longsword"
   CustomModelData: 83676
   Lore:
     - "LOREPRESET.LONGSWORD"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Longsword"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Longsword"
 250:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Spear"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_spear"
+  CommandName: "dragonbone_flamed_spear"
   CustomModelData: 83677
   Lore:
     - "LOREPRESET.SPEAR"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Spear"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Spear"
 251:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Saber"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_saber"
+  CommandName: "dragonbone_flamed_saber"
   CustomModelData: 83678
   Lore:
     - "LOREPRESET.SABER"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Saber"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Saber"
 252:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Boomerang"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_boomerang"
+  CommandName: "dragonbone_flamed_boomerang"
   CustomModelData: 83679
   Lore:
     - "LOREPRESET.BOOMERANG"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Boomerang"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Boomerang"
 253:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Dagger"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_dagger"
+  CommandName: "dragonbone_flamed_dagger"
   CustomModelData: 83680
   Lore:
     - "LOREPRESET.DAGGER"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Dagger"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Dagger"
 254:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Glaive"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_glaive"
+  CommandName: "dragonbone_flamed_glaive"
   CustomModelData: 83681
   Lore:
     - "LOREPRESET.GLAIVE"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Glaive"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Glaive"
 255:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Halberd"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_halberd"
+  CommandName: "dragonbone_flamed_halberd"
   CustomModelData: 83682
   Lore:
     - "LOREPRESET.HALBERD"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Halberd"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Halberd"
 256:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Hammer"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_hammer"
+  CommandName: "dragonbone_flamed_hammer"
   CustomModelData: 83683
   Lore:
     - "LOREPRESET.HAMMER"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Hammer"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Hammer"
 257:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Javelin"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_javelin"
+  CommandName: "dragonbone_flamed_javelin"
   CustomModelData: 83684
   Lore:
     - "LOREPRESET.JAVELIN"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Javelin"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Javelin"
 258:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Lance"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_lance"
+  CommandName: "dragonbone_flamed_lance"
   CustomModelData: 83685
   Lore:
     - "LOREPRESET.LANCE"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Lance"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Lance"
 259:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Flanged Mace"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_mace"
+  CommandName: "dragonbone_flamed_mace"
   CustomModelData: 83686
   Lore:
     - "LOREPRESET.MACE"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Mace"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Mace"
 260:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Pike"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_pike"
+  CommandName: "dragonbone_flamed_pike"
   CustomModelData: 83687
   Lore:
     - "LOREPRESET.PIKE"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Pike"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Pike"
 261:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Quarterstaff"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_quarterstaff"
+  CommandName: "dragonbone_flamed_quarterstaff"
   CustomModelData: 83688
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Quarterstaff"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Quarterstaff"
 262:
   Material: "DIAMOND_SWORD"
   Amount: 1
-  DisplayName: "&fFlamed Dragonbone Throwing Axe"
+  DisplayName: "&fFlamed Dragonbone Tomahawk"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_throwing_axe"
+  CommandName: "dragonbone_flamed_tomahawk"
   CustomModelData: 83689
   Lore:
-    - "LOREPRESET.THROWING_AXE"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.TOMAHAWK"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Throwing Axe"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Tomahawk"
 263:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Throwing Knife"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_throwing_knife"
+  CommandName: "dragonbone_flamed_throwing_knife"
   CustomModelData: 83690
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Throwing Knife"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Throwing Knife"
 264:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Warhammer"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_warhammer"
+  CommandName: "dragonbone_flamed_warhammer"
   CustomModelData: 83691
   Lore:
     - "LOREPRESET.WARHAMMER"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Warhammer"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Warhammer"
 265:
   Material: "DIAMOND_AXE"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Battleaxe"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_battleaxe"
+  CommandName: "dragonbone_flamed_battleaxe"
   CustomModelData: 83652
   Lore:
     - "LOREPRESET.BATTLEAXE"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Battleaxe"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Battleaxe"
 266:
   Material: "BOW"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone-Strengthened Longbow"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_longbow"
+  CommandName: "dragonbone_flamed_longbow"
   CustomModelData: 83652
   Lore:
     - "LOREPRESET.LONGBOW"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Longbow"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Longbow"
 267:
   Material: "CROSSBOW"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone-Strengthened Crossbow"
   ConfigName: "FlamedDragonBone"
-  CommandName: "dragon_bone_flamed_crossbow"
+  CommandName: "dragonbone_flamed_crossbow"
   CustomModelData: 83651
   Lore:
     - "LOREPRESET.CROSSBOW"
-    - "LOREPRESET.FLAMED_DRAGON_BONE"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragon Bone"
-    Spartan's Weapon: "Crossbow"
+    material_type: "FlamedDragonbone"
+    spartans_weapon: "Crossbow"
 268:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Rapier"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_rapier"
+  CommandName: "dragonbone_iced_rapier"
   CustomModelData: 83692
   Lore:
     - "LOREPRESET.RAPIER"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Rapier"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Rapier"
 269:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Katana"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_katana"
+  CommandName: "dragonbone_iced_katana"
   CustomModelData: 83693
   Lore:
     - "LOREPRESET.KATANA"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Katana"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Katana"
 270:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Greatsword"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_greatsword"
+  CommandName: "dragonbone_iced_greatsword"
   CustomModelData: 83694
   Lore:
     - "LOREPRESET.GREATSWORD"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Greatsword"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Greatsword"
 271:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Longsword"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_longsword"
+  CommandName: "dragonbone_iced_longsword"
   CustomModelData: 83695
   Lore:
     - "LOREPRESET.LONGSWORD"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Longsword"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Longsword"
 272:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Spear"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_spear"
+  CommandName: "dragonbone_iced_spear"
   CustomModelData: 83696
   Lore:
     - "LOREPRESET.SPEAR"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Spear"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Spear"
 273:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Saber"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_saber"
+  CommandName: "dragonbone_iced_saber"
   CustomModelData: 83697
   Lore:
     - "LOREPRESET.SABER"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Saber"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Saber"
 274:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Boomerang"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_boomerang"
+  CommandName: "dragonbone_iced_boomerang"
   CustomModelData: 83698
   Lore:
     - "LOREPRESET.BOOMERANG"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Boomerang"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Boomerang"
 275:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Dagger"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_dagger"
+  CommandName: "dragonbone_iced_dagger"
   CustomModelData: 83699
   Lore:
     - "LOREPRESET.DAGGER"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Dagger"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Dagger"
 276:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Glaive"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_glaive"
+  CommandName: "dragonbone_iced_glaive"
   CustomModelData: 83700
   Lore:
     - "LOREPRESET.GLAIVE"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Glaive"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Glaive"
 277:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Halberd"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_halberd"
+  CommandName: "dragonbone_iced_halberd"
   CustomModelData: 83701
   Lore:
     - "LOREPRESET.HALBERD"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Halberd"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Halberd"
 278:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Hammer"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_hammer"
+  CommandName: "dragonbone_iced_hammer"
   CustomModelData: 83702
   Lore:
     - "LOREPRESET.HAMMER"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Hammer"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Hammer"
 279:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Javelin"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_javelin"
+  CommandName: "dragonbone_iced_javelin"
   CustomModelData: 83703
   Lore:
     - "LOREPRESET.JAVELIN"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Javelin"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Javelin"
 280:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Lance"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_lance"
+  CommandName: "dragonbone_iced_lance"
   CustomModelData: 83704
   Lore:
     - "LOREPRESET.LANCE"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Lance"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Lance"
 281:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Flanged Mace"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_mace"
+  CommandName: "dragonbone_iced_mace"
   CustomModelData: 83705
   Lore:
     - "LOREPRESET.MACE"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Mace"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Mace"
 282:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Pike"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_pike"
+  CommandName: "dragonbone_iced_pike"
   CustomModelData: 83706
   Lore:
     - "LOREPRESET.PIKE"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Pike"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Pike"
 283:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Quarterstaff"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_quarterstaff"
+  CommandName: "dragonbone_iced_quarterstaff"
   CustomModelData: 83707
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Quarterstaff"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Quarterstaff"
 284:
   Material: "DIAMOND_SWORD"
   Amount: 1
-  DisplayName: "&fIced Dragonbone Throwing Axe"
+  DisplayName: "&fIced Dragonbone Tomahawk"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_throwing_axe"
+  CommandName: "dragonbone_iced_tomahawk"
   CustomModelData: 83708
   Lore:
-    - "LOREPRESET.THROWING_AXE"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.TOMAHAWK"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Throwing Axe"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Tomahawk"
 285:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Throwing Knife"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_throwing_knife"
+  CommandName: "dragonbone_iced_throwing_knife"
   CustomModelData: 83709
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Throwing Knife"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Throwing Knife"
 286:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Warhammer"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_warhammer"
+  CommandName: "dragonbone_iced_warhammer"
   CustomModelData: 83710
   Lore:
     - "LOREPRESET.WARHAMMER"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Warhammer"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Warhammer"
 287:
   Material: "DIAMOND_AXE"
   Amount: 1
   DisplayName: "&fIced Dragonbone Battleaxe"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_battleaxe"
+  CommandName: "dragonbone_iced_battleaxe"
   CustomModelData: 83653
   Lore:
     - "LOREPRESET.BATTLEAXE"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Battleaxe"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Battleaxe"
 288:
   Material: "BOW"
   Amount: 1
   DisplayName: "&fIced Dragonbone-Strengthened Longbow"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_longbow"
+  CommandName: "dragonbone_iced_longbow"
   CustomModelData: 83653
   Lore:
     - "LOREPRESET.LONGBOW"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Longbow"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Longbow"
 289:
   Material: "CROSSBOW"
   Amount: 1
   DisplayName: "&fIced Dragonbone-Strengthened Crossbow"
   ConfigName: "IcedDragonBone"
-  CommandName: "dragon_bone_iced_crossbow"
+  CommandName: "dragonbone_iced_crossbow"
   CustomModelData: 83652
   Lore:
     - "LOREPRESET.CROSSBOW"
-    - "LOREPRESET.ICED_DRAGON_BONE"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragon Bone"
-    Spartan's Weapon: "Crossbow"
+    material_type: "IcedDragonbone"
+    spartans_weapon: "Crossbow"
 290:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Rapier"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_rapier"
+  CommandName: "dragonbone_lightning_rapier"
   CustomModelData: 83711
   Lore:
     - "LOREPRESET.RAPIER"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Rapier"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Rapier"
 291:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Katana"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_katana"
+  CommandName: "dragonbone_lightning_katana"
   CustomModelData: 83712
   Lore:
     - "LOREPRESET.KATANA"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Katana"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Katana"
 292:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Greatsword"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_greatsword"
+  CommandName: "dragonbone_lightning_greatsword"
   CustomModelData: 83713
   Lore:
     - "LOREPRESET.GREATSWORD"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Greatsword"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Greatsword"
 293:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Longsword"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_longsword"
+  CommandName: "dragonbone_lightning_longsword"
   CustomModelData: 83714
   Lore:
     - "LOREPRESET.LONGSWORD"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Longsword"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Longsword"
 294:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Spear"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_spear"
+  CommandName: "dragonbone_lightning_spear"
   CustomModelData: 83715
   Lore:
     - "LOREPRESET.SPEAR"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Spear"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Spear"
 295:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Saber"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_saber"
+  CommandName: "dragonbone_lightning_saber"
   CustomModelData: 83716
   Lore:
     - "LOREPRESET.SABER"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Saber"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Saber"
 296:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Boomerang"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_boomerang"
+  CommandName: "dragonbone_lightning_boomerang"
   CustomModelData: 83717
   Lore:
     - "LOREPRESET.BOOMERANG"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Boomerang"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Boomerang"
 297:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Dagger"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_dagger"
+  CommandName: "dragonbone_lightning_dagger"
   CustomModelData: 83718
   Lore:
     - "LOREPRESET.DAGGER"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Dagger"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Dagger"
 298:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Glaive"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_glaive"
+  CommandName: "dragonbone_lightning_glaive"
   CustomModelData: 83719
   Lore:
     - "LOREPRESET.GLAIVE"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Glaive"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Glaive"
 299:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Halberd"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_halberd"
+  CommandName: "dragonbone_lightning_halberd"
   CustomModelData: 83720
   Lore:
     - "LOREPRESET.HALBERD"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Halberd"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Halberd"
 300:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Hammer"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_hammer"
+  CommandName: "dragonbone_lightning_hammer"
   CustomModelData: 83721
   Lore:
     - "LOREPRESET.HAMMER"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Hammer"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Hammer"
 301:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Javelin"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_javelin"
+  CommandName: "dragonbone_lightning_javelin"
   CustomModelData: 83722
   Lore:
     - "LOREPRESET.JAVELIN"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Javelin"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Javelin"
 302:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Lance"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_lance"
+  CommandName: "dragonbone_lightning_lance"
   CustomModelData: 83723
   Lore:
     - "LOREPRESET.LANCE"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Lance"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Lance"
 303:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Flanged Mace"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_mace"
+  CommandName: "dragonbone_lightning_mace"
   CustomModelData: 83724
   Lore:
     - "LOREPRESET.MACE"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Mace"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Mace"
 304:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Pike"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_pike"
+  CommandName: "dragonbone_lightning_pike"
   CustomModelData: 83725
   Lore:
     - "LOREPRESET.PIKE"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Pike"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Pike"
 305:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Quarterstaff"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_quarterstaff"
+  CommandName: "dragonbone_lightning_quarterstaff"
   CustomModelData: 83726
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Quarterstaff"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Quarterstaff"
 306:
   Material: "DIAMOND_SWORD"
   Amount: 1
-  DisplayName: "&fLightning Dragonbone Throwing Axe"
+  DisplayName: "&fLightning Dragonbone Tomahawk"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_throwing_axe"
+  CommandName: "dragonbone_lightning_tomahawk"
   CustomModelData: 83727
   Lore:
-    - "LOREPRESET.THROWING_AXE"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.TOMAHAWK"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Throwing Axe"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Tomahawk"
 307:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Throwing Knife"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_throwing_knife"
+  CommandName: "dragonbone_lightning_throwing_knife"
   CustomModelData: 83728
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Throwing Knife"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Throwing Knife"
 308:
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Warhammer"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_warhammer"
+  CommandName: "dragonbone_lightning_warhammer"
   CustomModelData: 83729
   Lore:
     - "LOREPRESET.WARHAMMER"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Warhammer"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Warhammer"
 309:
   Material: "DIAMOND_AXE"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Battleaxe"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_battleaxe"
+  CommandName: "dragonbone_lightning_battleaxe"
   CustomModelData: 83654
   Lore:
     - "LOREPRESET.BATTLEAXE"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Battleaxe"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Battleaxe"
 310:
   Material: "BOW"
   Amount: 1
   DisplayName: "&fLightning Dragonbone-Strengthened Longbow"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_longbow"
+  CommandName: "dragonbone_lightning_longbow"
   CustomModelData: 83654
   Lore:
     - "LOREPRESET.LONGBOW"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Longbow"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Longbow"
 311:
   Material: "CROSSBOW"
   Amount: 1
   DisplayName: "&fLightning Dragonbone-Strengthened Crossbow"
   ConfigName: "LightningDragonBone"
-  CommandName: "dragon_bone_lightning_crossbow"
+  CommandName: "dragonbone_lightning_crossbow"
   CustomModelData: 83653
   Lore:
     - "LOREPRESET.CROSSBOW"
-    - "LOREPRESET.LIGHTNING_DRAGON_BONE"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragon Bone"
-    Spartan's Weapon: "Crossbow"
+    material_type: "LightningDragonbone"
+    spartans_weapon: "Crossbow"
 312:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -3971,8 +3971,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Rapier"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Rapier"
 313:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -3986,8 +3986,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Katana"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Katana"
 314:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4001,8 +4001,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Greatsword"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Greatsword"
 315:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4016,8 +4016,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Longsword"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Longsword"
 316:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4031,8 +4031,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Spear"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Spear"
 317:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4046,8 +4046,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Saber"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Saber"
 318:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4061,8 +4061,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Boomerang"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Boomerang"
 319:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4076,8 +4076,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Dagger"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Dagger"
 320:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4091,8 +4091,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Glaive"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Glaive"
 321:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4106,8 +4106,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Halberd"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Halberd"
 322:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4121,8 +4121,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Hammer"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Hammer"
 323:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4136,8 +4136,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Javelin"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Javelin"
 324:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4151,8 +4151,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Lance"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Lance"
 325:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4166,8 +4166,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Mace"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Mace"
 326:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4181,8 +4181,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Pike"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Pike"
 327:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4196,23 +4196,23 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Quarterstaff"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Quarterstaff"
 328:
   Material: "NETHERITE_SWORD"
   Amount: 1
-  DisplayName: "&fFire Dragonsteel Throwing Axe"
+  DisplayName: "&fFire Dragonsteel Tomahawk"
   ConfigName: "FireDragonsteel"
-  CommandName: "dragonsteel_fire_throwing_axe"
+  CommandName: "dragonsteel_fire_tomahawk"
   CustomModelData: 83669
   Lore:
-    - "LOREPRESET.THROWING_AXE"
+    - "LOREPRESET.TOMAHAWK"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Throwing Axe"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Tomahawk"
 329:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4226,8 +4226,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Throwing Knife"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Throwing Knife"
 330:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4241,8 +4241,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Warhammer"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Warhammer"
 331:
   Material: "NETHERITE_AXE"
   Amount: 1
@@ -4256,8 +4256,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Battleaxe"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Battleaxe"
 332:
   Material: "BOW"
   Amount: 1
@@ -4271,8 +4271,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Longbow"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Longbow"
 333:
   Material: "CROSSBOW"
   Amount: 1
@@ -4286,8 +4286,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Fire Dragonsteel"
-    Spartan's Weapon: "Crossbow"
+    material_type: "FireDragonsteel"
+    spartans_weapon: "Crossbow"
 334:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4301,8 +4301,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Rapier"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Rapier"
 335:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4316,8 +4316,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Katana"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Katana"
 336:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4331,8 +4331,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Greatsword"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Greatsword"
 337:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4346,8 +4346,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Longsword"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Longsword"
 338:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4361,8 +4361,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Spear"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Spear"
 339:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4376,8 +4376,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Saber"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Saber"
 340:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4391,8 +4391,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Boomerang"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Boomerang"
 341:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4406,8 +4406,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Dagger"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Dagger"
 342:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4421,8 +4421,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Glaive"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Glaive"
 343:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4436,8 +4436,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Halberd"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Halberd"
 344:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4451,8 +4451,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Hammer"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Hammer"
 345:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4466,8 +4466,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Javelin"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Javelin"
 346:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4481,8 +4481,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Lance"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Lance"
 347:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4496,8 +4496,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Mace"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Mace"
 348:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4511,8 +4511,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Pike"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Pike"
 349:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4526,23 +4526,23 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Quarterstaff"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Quarterstaff"
 350:
   Material: "NETHERITE_SWORD"
   Amount: 1
-  DisplayName: "&fIce Dragonsteel Throwing Axe"
+  DisplayName: "&fIce Dragonsteel Tomahawk"
   ConfigName: "IceDragonsteel"
-  CommandName: "dragonsteel_ice_throwing_axe"
+  CommandName: "dragonsteel_ice_tomahawk"
   CustomModelData: 83688
   Lore:
-    - "LOREPRESET.THROWING_AXE"
+    - "LOREPRESET.TOMAHAWK"
     - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Throwing Axe"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Tomahawk"
 351:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4556,8 +4556,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Throwing Knife"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Throwing Knife"
 352:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4571,8 +4571,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Warhammer"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Warhammer"
 353:
   Material: "NETHERITE_AXE"
   Amount: 1
@@ -4586,8 +4586,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Battleaxe"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Battleaxe"
 354:
   Material: "BOW"
   Amount: 1
@@ -4601,8 +4601,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Longbow"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Longbow"
 355:
   Material: "CROSSBOW"
   Amount: 1
@@ -4616,8 +4616,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Ice Dragonsteel"
-    Spartan's Weapon: "Crossbow"
+    material_type: "IceDragonsteel"
+    spartans_weapon: "Crossbow"
 356:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4631,8 +4631,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Rapier"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Rapier"
 357:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4646,8 +4646,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Katana"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Katana"
 358:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4661,8 +4661,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Greatsword"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Greatsword"
 359:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4676,8 +4676,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Longsword"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Longsword"
 360:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4691,8 +4691,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Spear"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Spear"
 361:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4706,8 +4706,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Saber"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Saber"
 362:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4721,8 +4721,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Boomerang"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Boomerang"
 363:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4736,8 +4736,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Dagger"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Dagger"
 364:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4751,8 +4751,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Glaive"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Glaive"
 365:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4766,8 +4766,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Halberd"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Halberd"
 366:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4781,8 +4781,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Hammer"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Hammer"
 367:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4796,8 +4796,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Javelin"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Javelin"
 368:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4811,8 +4811,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Lance"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Lance"
 369:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4826,8 +4826,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Mace"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Mace"
 370:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4841,8 +4841,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Pike"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Pike"
 371:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4856,23 +4856,23 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Quarterstaff"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Quarterstaff"
 372:
   Material: "NETHERITE_SWORD"
   Amount: 1
-  DisplayName: "&fLightning Dragonsteel Throwing Axe"
+  DisplayName: "&fLightning Dragonsteel Tomahawk"
   ConfigName: "LightningDragonsteel"
-  CommandName: "dragonsteel_lightning_throwing_axe"
+  CommandName: "dragonsteel_lightning_tomahawk"
   CustomModelData: 83707
   Lore:
-    - "LOREPRESET.THROWING_AXE"
+    - "LOREPRESET.TOMAHAWK"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Throwing Axe"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Tomahawk"
 373:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4886,8 +4886,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Throwing Knife"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Throwing Knife"
 374:
   Material: "NETHERITE_SWORD"
   Amount: 1
@@ -4901,8 +4901,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Warhammer"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Warhammer"
 375:
   Material: "NETHERITE_AXE"
   Amount: 1
@@ -4916,8 +4916,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Battleaxe"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Battleaxe"
 376:
   Material: "BOW"
   Amount: 1
@@ -4931,8 +4931,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Longbow"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Longbow"
 377:
   Material: "CROSSBOW"
   Amount: 1
@@ -4946,8 +4946,8 @@
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
-    Material Type: "Lightning Dragonsteel"
-    Spartan's Weapon: "Crossbow"
+    material_type: "LightningDragonsteel"
+    spartans_weapon: "Crossbow"
 378:
   Material: "PRISMARINE_SHARD"
   Amount: 1
@@ -4969,3 +4969,2215 @@
   ConfigName: "LightningDragonsteelBlock"
   CommandName: "dragonsteel_lightning_block"
   CustomModelData: 83712
+381:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fBound Scroll"
+  ConfigName: "BoundScroll"
+  CommandName: "scroll_bound"
+  CustomModelData: 83713
+382:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fReturn Scroll"
+  ConfigName: "ReturnScroll"
+  CommandName: "scroll_return"
+  CustomModelData: 83714
+383:
+  Material: "STICK"
+  Amount: 1
+  DisplayName: "&fHandle"
+  ConfigName: "Handle"
+  CommandName: "handle"
+  CustomModelData: 83650
+384:
+  Material: "STICK"
+  Amount: 1
+  DisplayName: "&fPole"
+  ConfigName: "Pole"
+  CommandName: "pole"
+  CustomModelData: 83651
+385:
+  Material: "STICK"
+  Amount: 1
+  DisplayName: "&fWitherbone Handle"
+  ConfigName: "WitherboneHandle"
+  CommandName: "handle_witherbone"
+  CustomModelData: 83652
+386:
+  Material: "STICK"
+  Amount: 1
+  DisplayName: "&fWitherbone Pole"
+  ConfigName: "WitherbonePole"
+  CommandName: "pole_witherbone"
+  CustomModelData: 83653
+387:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Rapier"
+  ConfigName: "Netherite"
+  CommandName: "netherite_rapier"
+  CustomModelData: 83710
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Rapier"
+388:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Katana"
+  ConfigName: "Netherite"
+  CommandName: "netherite_katana"
+  CustomModelData: 83711
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Katana"
+389:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Greatsword"
+  ConfigName: "Netherite"
+  CommandName: "netherite_greatsword"
+  CustomModelData: 83712
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Greatsword"
+390:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Longsword"
+  ConfigName: "Netherite"
+  CommandName: "netherite_longsword"
+  CustomModelData: 83713
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Longsword"
+391:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Spear"
+  ConfigName: "Netherite"
+  CommandName: "netherite_spear"
+  CustomModelData: 83714
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Spear"
+392:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Saber"
+  ConfigName: "Netherite"
+  CommandName: "netherite_saber"
+  CustomModelData: 83715
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Saber"
+393:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Boomerang"
+  ConfigName: "Netherite"
+  CommandName: "netherite_boomerang"
+  CustomModelData: 83716
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Boomerang"
+394:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Dagger"
+  ConfigName: "Netherite"
+  CommandName: "netherite_dagger"
+  CustomModelData: 83717
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Dagger"
+395:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Glaive"
+  ConfigName: "Netherite"
+  CommandName: "netherite_glaive"
+  CustomModelData: 83718
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Glaive"
+396:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Halberd"
+  ConfigName: "Netherite"
+  CommandName: "netherite_halberd"
+  CustomModelData: 83719
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Halberd"
+397:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Hammer"
+  ConfigName: "Netherite"
+  CommandName: "netherite_hammer"
+  CustomModelData: 83720
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Hammer"
+398:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Javelin"
+  ConfigName: "Netherite"
+  CommandName: "netherite_javelin"
+  CustomModelData: 83721
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Javelin"
+399:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Lance"
+  ConfigName: "Netherite"
+  CommandName: "netherite_lance"
+  CustomModelData: 83722
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Lance"
+400:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Flanged Mace"
+  ConfigName: "Netherite"
+  CommandName: "netherite_mace"
+  CustomModelData: 83723
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Mace"
+401:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Pike"
+  ConfigName: "Netherite"
+  CommandName: "netherite_pike"
+  CustomModelData: 83724
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Pike"
+402:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Quarterstaff"
+  ConfigName: "Netherite"
+  CommandName: "netherite_quarterstaff"
+  CustomModelData: 83725
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Quarterstaff"
+403:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Tomahawk"
+  ConfigName: "Netherite"
+  CommandName: "netherite_tomahawk"
+  CustomModelData: 83726
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Tomahawk"
+404:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Throwing Knife"
+  ConfigName: "Netherite"
+  CommandName: "netherite_throwing_knife"
+  CustomModelData: 83727
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Throwing Knife"
+405:
+  Material: "NETHERITE_SWORD"
+  Amount: 1
+  DisplayName: "&fNetherite Warhammer"
+  ConfigName: "Netherite"
+  CommandName: "netherite_warhammer"
+  CustomModelData: 83728
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Warhammer"
+406:
+  Material: "NETHERITE_AXE"
+  Amount: 1
+  DisplayName: "&fNetherite Battleaxe"
+  ConfigName: "Netherite"
+  CommandName: "netherite_battleaxe"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Battleaxe"
+407:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fNetherite-Strengthened Longbow"
+  ConfigName: "Netherite"
+  CommandName: "netherite_longbow"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Longbow"
+408:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fNetherite-Strengthened Crossbow"
+  ConfigName: "Netherite"
+  CommandName: "netherite_crossbow"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Netherite"
+    spartans_weapon: "Crossbow"
+409:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Rapier"
+  ConfigName: "Diamond"
+  CommandName: "diamond_rapier"
+  CustomModelData: 83730
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Rapier"
+410:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Katana"
+  ConfigName: "Diamond"
+  CommandName: "diamond_katana"
+  CustomModelData: 83731
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Katana"
+411:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Greatsword"
+  ConfigName: "Diamond"
+  CommandName: "diamond_greatsword"
+  CustomModelData: 83732
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Greatsword"
+412:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Longsword"
+  ConfigName: "Diamond"
+  CommandName: "diamond_longsword"
+  CustomModelData: 83733
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Longsword"
+413:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Spear"
+  ConfigName: "Diamond"
+  CommandName: "diamond_spear"
+  CustomModelData: 83734
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Spear"
+414:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Saber"
+  ConfigName: "Diamond"
+  CommandName: "diamond_saber"
+  CustomModelData: 83735
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Saber"
+415:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Boomerang"
+  ConfigName: "Diamond"
+  CommandName: "diamond_boomerang"
+  CustomModelData: 83736
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Boomerang"
+416:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Dagger"
+  ConfigName: "Diamond"
+  CommandName: "diamond_dagger"
+  CustomModelData: 83737
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Dagger"
+417:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Glaive"
+  ConfigName: "Diamond"
+  CommandName: "diamond_glaive"
+  CustomModelData: 83738
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Glaive"
+418:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Halberd"
+  ConfigName: "Diamond"
+  CommandName: "diamond_halberd"
+  CustomModelData: 83739
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Halberd"
+419:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Hammer"
+  ConfigName: "Diamond"
+  CommandName: "diamond_hammer"
+  CustomModelData: 83740
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Hammer"
+420:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Javelin"
+  ConfigName: "Diamond"
+  CommandName: "diamond_javelin"
+  CustomModelData: 83741
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Javelin"
+421:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Lance"
+  ConfigName: "Diamond"
+  CommandName: "diamond_lance"
+  CustomModelData: 83742
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Lance"
+422:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Flanged Mace"
+  ConfigName: "Diamond"
+  CommandName: "diamond_mace"
+  CustomModelData: 83743
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Mace"
+423:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Pike"
+  ConfigName: "Diamond"
+  CommandName: "diamond_pike"
+  CustomModelData: 83744
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Pike"
+424:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Quarterstaff"
+  ConfigName: "Diamond"
+  CommandName: "diamond_quarterstaff"
+  CustomModelData: 83745
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Quarterstaff"
+425:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Tomahawk"
+  ConfigName: "Diamond"
+  CommandName: "diamond_tomahawk"
+  CustomModelData: 83746
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Tomahawk"
+426:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Throwing Knife"
+  ConfigName: "Diamond"
+  CommandName: "diamond_throwing_knife"
+  CustomModelData: 83747
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Throwing Knife"
+427:
+  Material: "DIAMOND_SWORD"
+  Amount: 1
+  DisplayName: "&fDiamond Warhammer"
+  ConfigName: "Diamond"
+  CommandName: "diamond_warhammer"
+  CustomModelData: 83748
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Warhammer"
+428:
+  Material: "DIAMOND_AXE"
+  Amount: 1
+  DisplayName: "&fDiamond Battleaxe"
+  ConfigName: "Diamond"
+  CommandName: "diamond_battleaxe"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Battleaxe"
+429:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fDiamond-Strengthened Longbow"
+  ConfigName: "Diamond"
+  CommandName: "diamond_longbow"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Longbow"
+430:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fDiamond-Strengthened Crossbow"
+  ConfigName: "Diamond"
+  CommandName: "diamond_crossbow"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Diamond"
+    spartans_weapon: "Crossbow"
+431:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Rapier"
+  ConfigName: "Iron"
+  CommandName: "iron_rapier"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Rapier"
+432:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Katana"
+  ConfigName: "Iron"
+  CommandName: "iron_katana"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Katana"
+433:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Greatsword"
+  ConfigName: "Iron"
+  CommandName: "iron_greatsword"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Greatsword"
+434:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Longsword"
+  ConfigName: "Iron"
+  CommandName: "iron_longsword"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Longsword"
+435:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Spear"
+  ConfigName: "Iron"
+  CommandName: "iron_spear"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Spear"
+436:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Saber"
+  ConfigName: "Iron"
+  CommandName: "iron_saber"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Saber"
+437:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Boomerang"
+  ConfigName: "Iron"
+  CommandName: "iron_boomerang"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Boomerang"
+438:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Dagger"
+  ConfigName: "Iron"
+  CommandName: "iron_dagger"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Dagger"
+439:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Glaive"
+  ConfigName: "Iron"
+  CommandName: "iron_glaive"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Glaive"
+440:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Halberd"
+  ConfigName: "Iron"
+  CommandName: "iron_halberd"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Halberd"
+441:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Hammer"
+  ConfigName: "Iron"
+  CommandName: "iron_hammer"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Hammer"
+442:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Javelin"
+  ConfigName: "Iron"
+  CommandName: "iron_javelin"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Javelin"
+443:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Lance"
+  ConfigName: "Iron"
+  CommandName: "iron_lance"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Lance"
+444:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Flanged Mace"
+  ConfigName: "Iron"
+  CommandName: "iron_mace"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Mace"
+445:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Pike"
+  ConfigName: "Iron"
+  CommandName: "iron_pike"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Pike"
+446:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Quarterstaff"
+  ConfigName: "Iron"
+  CommandName: "iron_quarterstaff"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Quarterstaff"
+447:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Tomahawk"
+  ConfigName: "Iron"
+  CommandName: "iron_tomahawk"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Tomahawk"
+448:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Throwing Knife"
+  ConfigName: "Iron"
+  CommandName: "iron_throwing_knife"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Throwing Knife"
+449:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fIron Warhammer"
+  ConfigName: "Iron"
+  CommandName: "iron_warhammer"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Warhammer"
+450:
+  Material: "IRON_AXE"
+  Amount: 1
+  DisplayName: "&fIron Battleaxe"
+  ConfigName: "Iron"
+  CommandName: "iron_battleaxe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Battleaxe"
+451:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fIron-Strengthened Longbow"
+  ConfigName: "Iron"
+  CommandName: "iron_longbow"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Longbow"
+452:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fIron-Strengthened Crossbow"
+  ConfigName: "Iron"
+  CommandName: "iron_crossbow"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Crossbow"
+453:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Rapier"
+  ConfigName: "Gold"
+  CommandName: "golden_rapier"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Rapier"
+454:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Katana"
+  ConfigName: "Gold"
+  CommandName: "golden_katana"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Katana"
+455:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Greatsword"
+  ConfigName: "Gold"
+  CommandName: "golden_greatsword"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Greatsword"
+456:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Longsword"
+  ConfigName: "Gold"
+  CommandName: "golden_longsword"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Longsword"
+457:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Spear"
+  ConfigName: "Gold"
+  CommandName: "golden_spear"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Spear"
+458:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Saber"
+  ConfigName: "Gold"
+  CommandName: "golden_saber"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Saber"
+459:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Boomerang"
+  ConfigName: "Gold"
+  CommandName: "golden_boomerang"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Boomerang"
+460:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Dagger"
+  ConfigName: "Gold"
+  CommandName: "golden_dagger"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Dagger"
+461:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Glaive"
+  ConfigName: "Gold"
+  CommandName: "golden_glaive"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Glaive"
+462:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Halberd"
+  ConfigName: "Gold"
+  CommandName: "golden_halberd"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Halberd"
+463:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Hammer"
+  ConfigName: "Gold"
+  CommandName: "golden_hammer"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Hammer"
+464:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Javelin"
+  ConfigName: "Gold"
+  CommandName: "golden_javelin"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Javelin"
+465:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Lance"
+  ConfigName: "Gold"
+  CommandName: "golden_lance"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Lance"
+466:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Flanged Mace"
+  ConfigName: "Gold"
+  CommandName: "golden_mace"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Mace"
+467:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Pike"
+  ConfigName: "Gold"
+  CommandName: "golden_pike"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Pike"
+468:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Quarterstaff"
+  ConfigName: "Gold"
+  CommandName: "golden_quarterstaff"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Quarterstaff"
+469:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Tomahawk"
+  ConfigName: "Gold"
+  CommandName: "golden_tomahawk"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Tomahawk"
+470:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Throwing Knife"
+  ConfigName: "Gold"
+  CommandName: "golden_throwing_knife"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Throwing Knife"
+471:
+  Material: "GOLDEN_SWORD"
+  Amount: 1
+  DisplayName: "&fGolden Warhammer"
+  ConfigName: "Gold"
+  CommandName: "golden_warhammer"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Warhammer"
+472:
+  Material: "GOLDEN_AXE"
+  Amount: 1
+  DisplayName: "&fGolden Battleaxe"
+  ConfigName: "Gold"
+  CommandName: "golden_battleaxe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Battleaxe"
+473:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fGolden-Strengthened Longbow"
+  ConfigName: "Gold"
+  CommandName: "golden_longbow"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Longbow"
+474:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fGolden-Strengthened Crossbow"
+  ConfigName: "Gold"
+  CommandName: "golden_crossbow"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Gold"
+    spartans_weapon: "Crossbow"
+475:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Rapier"
+  ConfigName: "Stone"
+  CommandName: "stone_rapier"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Rapier"
+476:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Katana"
+  ConfigName: "Stone"
+  CommandName: "stone_katana"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Katana"
+477:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Greatsword"
+  ConfigName: "Stone"
+  CommandName: "stone_greatsword"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Greatsword"
+478:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Longsword"
+  ConfigName: "Stone"
+  CommandName: "stone_longsword"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Longsword"
+479:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Spear"
+  ConfigName: "Stone"
+  CommandName: "stone_spear"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Spear"
+480:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Saber"
+  ConfigName: "Stone"
+  CommandName: "stone_saber"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Saber"
+481:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Boomerang"
+  ConfigName: "Stone"
+  CommandName: "stone_boomerang"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Boomerang"
+482:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Dagger"
+  ConfigName: "Stone"
+  CommandName: "stone_dagger"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Dagger"
+483:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Glaive"
+  ConfigName: "Stone"
+  CommandName: "stone_glaive"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Glaive"
+484:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Halberd"
+  ConfigName: "Stone"
+  CommandName: "stone_halberd"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Halberd"
+485:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Hammer"
+  ConfigName: "Stone"
+  CommandName: "stone_hammer"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Hammer"
+486:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Javelin"
+  ConfigName: "Stone"
+  CommandName: "stone_javelin"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Javelin"
+487:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Lance"
+  ConfigName: "Stone"
+  CommandName: "stone_lance"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Lance"
+488:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Flanged Mace"
+  ConfigName: "Stone"
+  CommandName: "stone_mace"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Mace"
+489:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Pike"
+  ConfigName: "Stone"
+  CommandName: "stone_pike"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Pike"
+490:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Quarterstaff"
+  ConfigName: "Stone"
+  CommandName: "stone_quarterstaff"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Quarterstaff"
+491:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Tomahawk"
+  ConfigName: "Stone"
+  CommandName: "stone_tomahawk"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Tomahawk"
+492:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Throwing Knife"
+  ConfigName: "Stone"
+  CommandName: "stone_throwing_knife"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Throwing Knife"
+493:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fStone Warhammer"
+  ConfigName: "Stone"
+  CommandName: "stone_warhammer"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Warhammer"
+494:
+  Material: "STONE_AXE"
+  Amount: 1
+  DisplayName: "&fStone Battleaxe"
+  ConfigName: "Stone"
+  CommandName: "stone_battleaxe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Stone"
+    spartans_weapon: "Battleaxe"
+495:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Rapier"
+  ConfigName: "Wood"
+  CommandName: "wooden_rapier"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Rapier"
+496:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Katana"
+  ConfigName: "Wood"
+  CommandName: "wooden_katana"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Katana"
+497:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Greatsword"
+  ConfigName: "Wood"
+  CommandName: "wooden_greatsword"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Greatsword"
+498:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Longsword"
+  ConfigName: "Wood"
+  CommandName: "wooden_longsword"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Longsword"
+499:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Spear"
+  ConfigName: "Wood"
+  CommandName: "wooden_spear"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Spear"
+500:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Saber"
+  ConfigName: "Wood"
+  CommandName: "wooden_saber"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Saber"
+501:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Boomerang"
+  ConfigName: "Wood"
+  CommandName: "wooden_boomerang"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Boomerang"
+502:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Dagger"
+  ConfigName: "Wood"
+  CommandName: "wooden_dagger"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Dagger"
+503:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Glaive"
+  ConfigName: "Wood"
+  CommandName: "wooden_glaive"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Glaive"
+504:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Halberd"
+  ConfigName: "Wood"
+  CommandName: "wooden_halberd"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Halberd"
+505:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Hammer"
+  ConfigName: "Wood"
+  CommandName: "wooden_hammer"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Hammer"
+506:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Javelin"
+  ConfigName: "Wood"
+  CommandName: "wooden_javelin"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Javelin"
+507:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Lance"
+  ConfigName: "Wood"
+  CommandName: "wooden_lance"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Lance"
+508:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Flanged Mace"
+  ConfigName: "Wood"
+  CommandName: "wooden_mace"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Mace"
+509:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Pike"
+  ConfigName: "Wood"
+  CommandName: "wooden_pike"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Pike"
+510:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Quarterstaff"
+  ConfigName: "Wood"
+  CommandName: "wooden_quarterstaff"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Quarterstaff"
+511:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Tomahawk"
+  ConfigName: "Wood"
+  CommandName: "wooden_tomahawk"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Tomahawk"
+512:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Throwing Knife"
+  ConfigName: "Wood"
+  CommandName: "wooden_throwing_knife"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Throwing Knife"
+513:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Warhammer"
+  ConfigName: "Wood"
+  CommandName: "wooden_warhammer"
+  CustomModelData: 83669
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Warhammer"
+514:
+  Material: "WOODEN_AXE"
+  Amount: 1
+  DisplayName: "&fWooden Battleaxe"
+  ConfigName: "Wood"
+  CommandName: "wooden_battleaxe"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Battleaxe"
+515:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fWooden-Strengthened Longbow"
+  ConfigName: "Wood"
+  CommandName: "wooden_longbow"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Longbow"
+516:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fWooden-Strengthened Crossbow"
+  ConfigName: "Wood"
+  CommandName: "wooden_crossbow"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Crossbow"
+517:
+  Material: "WOODEN_SWORD"
+  Amount: 1
+  DisplayName: "&fWooden Club"
+  ConfigName: "Wood"
+  CommandName: "wooden_club"
+  CustomModelData: 83670
+  Lore:
+    - "LOREPRESET.CLUB"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Wood"
+    spartans_weapon: "Club"
+518:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fLeather-Strengthened Longbow"
+  ConfigName: "Leather"
+  CommandName: "leather_longbow"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Leather"
+    spartans_weapon: "Longbow"
+519:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fLeather-Strengthened Crossbow"
+  ConfigName: "Leather"
+  CommandName: "leather_crossbow"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Leather"
+    spartans_weapon: "Crossbow"
+520:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Rapier"
+  ConfigName: "Copper"
+  CommandName: "copper_rapier"
+  CustomModelData: 83669
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Rapier"
+521:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Katana"
+  ConfigName: "Copper"
+  CommandName: "copper_katana"
+  CustomModelData: 83670
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Katana"
+522:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Greatsword"
+  ConfigName: "Copper"
+  CommandName: "copper_greatsword"
+  CustomModelData: 83671
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Greatsword"
+523:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Longsword"
+  ConfigName: "Copper"
+  CommandName: "copper_longsword"
+  CustomModelData: 83672
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Longsword"
+524:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Spear"
+  ConfigName: "Copper"
+  CommandName: "copper_spear"
+  CustomModelData: 83673
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Spear"
+525:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Saber"
+  ConfigName: "Copper"
+  CommandName: "copper_saber"
+  CustomModelData: 83674
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Saber"
+526:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Boomerang"
+  ConfigName: "Copper"
+  CommandName: "copper_boomerang"
+  CustomModelData: 83675
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Boomerang"
+527:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Dagger"
+  ConfigName: "Copper"
+  CommandName: "copper_dagger"
+  CustomModelData: 83676
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Dagger"
+528:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Glaive"
+  ConfigName: "Copper"
+  CommandName: "copper_glaive"
+  CustomModelData: 83677
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Glaive"
+529:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Halberd"
+  ConfigName: "Copper"
+  CommandName: "copper_halberd"
+  CustomModelData: 83678
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Halberd"
+530:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Hammer"
+  ConfigName: "Copper"
+  CommandName: "copper_hammer"
+  CustomModelData: 83679
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Hammer"
+531:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Javelin"
+  ConfigName: "Copper"
+  CommandName: "copper_javelin"
+  CustomModelData: 83680
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Javelin"
+532:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Lance"
+  ConfigName: "Copper"
+  CommandName: "copper_lance"
+  CustomModelData: 83681
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Lance"
+533:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Flanged Mace"
+  ConfigName: "Copper"
+  CommandName: "copper_mace"
+  CustomModelData: 83682
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Mace"
+534:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Pike"
+  ConfigName: "Copper"
+  CommandName: "copper_pike"
+  CustomModelData: 83683
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Pike"
+535:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Quarterstaff"
+  ConfigName: "Copper"
+  CommandName: "copper_quarterstaff"
+  CustomModelData: 83684
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Quarterstaff"
+536:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Tomahawk"
+  ConfigName: "Copper"
+  CommandName: "copper_tomahawk"
+  CustomModelData: 83685
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Tomahawk"
+537:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Throwing Knife"
+  ConfigName: "Copper"
+  CommandName: "copper_throwing_knife"
+  CustomModelData: 83686
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Throwing Knife"
+538:
+  Material: "STONE_SWORD"
+  Amount: 1
+  DisplayName: "&fCopper Warhammer"
+  ConfigName: "Copper"
+  CommandName: "copper_warhammer"
+  CustomModelData: 83687
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Warhammer"
+539:
+  Material: "STONE_AXE"
+  Amount: 1
+  DisplayName: "&fCopper Battleaxe"
+  ConfigName: "Copper"
+  CommandName: "copper_battleaxe"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Battleaxe"
+540:
+  Material: "BOW"
+  Amount: 1
+  DisplayName: "&fCopper-Strengthened Longbow"
+  ConfigName: "Copper"
+  CommandName: "copper_longbow"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Longbow"
+541:
+  Material: "CROSSBOW"
+  Amount: 1
+  DisplayName: "&fCopper-Strengthened Crossbow"
+  ConfigName: "Copper"
+  CommandName: "copper_crossbow"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Copper"
+    spartans_weapon: "Crossbow"

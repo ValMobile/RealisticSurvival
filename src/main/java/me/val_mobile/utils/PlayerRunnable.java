@@ -31,7 +31,7 @@ public class PlayerRunnable extends BukkitRunnable {
     private static final String prJumpName = "Potion Ring of Jump Boost";
     private static final String prHasteName = "Potion Ring of Haste";
     private static final String prSpeedName = "Potion Ring of Speed";
-    private static final String tideArmorName = "Tide Guardian Armor";
+    private static final String tideArmorName = "tide_guardian_armor";
     private static final String dragonsEyeName = "Dragon's Eye";
     private static final String minersRingName = "Miner's Ring";
     private static final String scarliteRingName = "Scarlite Ring";

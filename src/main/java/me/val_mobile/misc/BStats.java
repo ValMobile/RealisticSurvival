@@ -16,7 +16,7 @@
  */
 package me.val_mobile.misc;
 
-import me.val_mobile.rlcraft.RLCraft;
+import me.val_mobile.rlcraft.RLCraftPlugin;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.MultiLineChart;
 import org.bukkit.Bukkit;
@@ -29,7 +29,7 @@ public class BStats {
     private static final int ID = 12158;
     private final Metrics metrics;
 
-    public BStats(RLCraft instance) {
+    public BStats(RLCraftPlugin instance) {
         metrics = new Metrics(instance, ID);
     }
 
