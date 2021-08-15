@@ -76,7 +76,7 @@ public class IceDragon extends Dragon {
         ItemStack scales;
         ItemStack blood = customItems.getIceDragonBlood();
         ItemStack flesh = customItems.getIceDragonFlesh();
-        ItemStack bones = customItems.getDragonBone();
+        ItemStack bones = customItems.getDragonbone();
 
         // initialize the drop amounts of the loot
         int scaleAmount;
@@ -87,13 +87,13 @@ public class IceDragon extends Dragon {
         // get the correct scale color
         switch (getVariant()) {
             case BLUE:
-                scales = customItems.getDragonScaleRed(); // blue
+                scales = customItems.getDragonscaleRed(); // blue
             case SAPPHIRE:
-                scales = customItems.getDragonScaleGreen(); // sapphire
+                scales = customItems.getDragonscaleGreen(); // sapphire
             case SILVER:
-                scales = customItems.getDragonScaleGray(); // silver
+                scales = customItems.getDragonscaleGray(); // silver
             default:
-                scales = customItems.getDragonScaleBronze(); // white
+                scales = customItems.getDragonscaleBronze(); // white
         }
 
         /**

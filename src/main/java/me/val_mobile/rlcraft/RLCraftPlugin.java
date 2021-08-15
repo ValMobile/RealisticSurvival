@@ -30,10 +30,13 @@ import me.val_mobile.sea_serpents.SeaSerpentDrops;
 import me.val_mobile.sea_serpents.SeaSerpentGearEvents;
 import me.val_mobile.spartan_weaponry.SpartanWeaponryEvents;
 import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.Recipes;
+import me.val_mobile.utils.CustomRecipes;
 import me.val_mobile.waystones.WaystoneEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.SmithingRecipe;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -42,7 +45,7 @@ public class RLCraftPlugin extends JavaPlugin {
     private Commands commands;
 
     private CustomConfig customConfig;
-    private Recipes recipes;
+    private CustomRecipes recipes;
 
     private BStats bStats;
 //    private Schematics schematics;
@@ -84,7 +87,7 @@ public class RLCraftPlugin extends JavaPlugin {
 //      schematics.createFireDragonNest();
 
         commands = new Commands(this);
-        recipes = new Recipes(this);
+        recipes = new CustomRecipes(this);
         bStats = new BStats(this);
         noTreePunchingEvents = new NoTreePunchingEvents(this);
         spartanWeaponry = new SpartanWeaponryEvents(this);
@@ -113,16 +116,44 @@ public class RLCraftPlugin extends JavaPlugin {
         PluginManager pm = this.getServer().getPluginManager();
 
         if (this.getConfig().getBoolean("NoTreePunching")) {
-            for (Recipe r : Recipes.getNtrRecipes()) {
-                Bukkit.addRecipe(r);
+            for (Recipe r : CustomRecipes.getNtrRecipes()) {
+                if (r instanceof ShapedRecipe) {
+                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof ShapelessRecipe) {
+                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof SmithingRecipe) {
+                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
             }
 
             pm.registerEvents(noTreePunchingEvents, this);
         }
 
         if (this.getConfig().getBoolean("Dragons")) {
-            for (Recipe r : Recipes.getDragonRecipes()) {
-                Bukkit.addRecipe(r);
+            for (Recipe r : CustomRecipes.getDragonRecipes()) {
+                if (r instanceof ShapedRecipe) {
+                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof ShapelessRecipe) {
+                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof SmithingRecipe) {
+                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
             }
 
 
@@ -131,8 +162,22 @@ public class RLCraftPlugin extends JavaPlugin {
 //            pm.registerEvents(dragonWorldGenEvents, this);
         }
         if (this.getConfig().getBoolean("SeaSerpents")) {
-            for (Recipe r : Recipes.getSeaSerpentRecipes()) {
-                Bukkit.addRecipe(r);
+            for (Recipe r : CustomRecipes.getSeaSerpentRecipes()) {
+                if (r instanceof ShapedRecipe) {
+                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof ShapelessRecipe) {
+                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof SmithingRecipe) {
+                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
             }
 
 
@@ -145,8 +190,22 @@ public class RLCraftPlugin extends JavaPlugin {
         }
 
         if (this.getConfig().getBoolean("Baubles")) {
-            for (Recipe r : Recipes.getBaubleRecipes()) {
-                Bukkit.addRecipe(r);
+            for (Recipe r : CustomRecipes.getBaubleRecipes()) {
+                if (r instanceof ShapedRecipe) {
+                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof ShapelessRecipe) {
+                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof SmithingRecipe) {
+                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
             }
 
             pm.registerEvents(bauble, this);
@@ -157,10 +216,46 @@ public class RLCraftPlugin extends JavaPlugin {
         }
 
         if (this.getConfig().getBoolean("Waystones")) {
+            for (Recipe r : CustomRecipes.getWaystoneRecipes()) {
+                if (r instanceof ShapedRecipe) {
+                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof ShapelessRecipe) {
+                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof SmithingRecipe) {
+                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+            }
+
             pm.registerEvents(waystones, this);
         }
 
         if (this.getConfig().getBoolean("SpartanWeaponry")) {
+            for (Recipe r : CustomRecipes.getSpartanWeaponryRecipes()) {
+                if (r instanceof ShapedRecipe) {
+                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof ShapelessRecipe) {
+                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof SmithingRecipe) {
+                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+            }
+
             pm.registerEvents(spartanWeaponry, this);
         }
 

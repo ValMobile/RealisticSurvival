@@ -18,7 +18,7 @@ package me.val_mobile.dragons;
 
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.Recipes;
+import me.val_mobile.utils.CustomRecipes;
 import me.val_mobile.utils.Utils;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -55,14 +55,14 @@ public class DragonGearEvents implements Listener {
     /**
      * Gives players the recipes to craft dragon gear
      * @param event The event called when a player joins the server
-     * @see Recipes
+     * @see CustomRecipes
      */
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer(); // get the player
 
         // give the player every dragon gear recipe
-        for (Recipe r : Recipes.getDragonRecipes()) {
+        for (Recipe r : CustomRecipes.getDragonRecipes()) {
             // if the recipe has a pre-defined shape
             if (r instanceof ShapedRecipe) {
                 // cast the recipe to a ShapedRecipe and let the player discover it
@@ -100,7 +100,7 @@ public class DragonGearEvents implements Listener {
                         // if the item has the nbt tag, "dragonscale_armor"
                         if (util.hasNbtTag(item, "dragonscale_armor")) {
                             // add some protection
-                            dragonProtection += CustomConfig.getIceFireGearConfig().getDouble("Abilities.DragonScale.DamageReduction");
+                            dragonProtection += CustomConfig.getIceFireGearConfig().getDouble("Abilities.Dragonscale.DamageReduction");
                         }
                         // if the item has the nbt tag, "dragonsteel_armor"
                         else if (util.hasNbtTag(item, "dragonsteel_armor")) {
@@ -145,26 +145,26 @@ public class DragonGearEvents implements Listener {
                                 // if the attacked entity is a dragon
                                 if (entity instanceof Dragon) {
                                     if (!(entity instanceof FireDragon)) {
-                                        event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.FlamedDragonBone.BonusDamage"));
+                                        event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.FlamedDragonbone.BonusDamage"));
                                     }
                                 }
-                                dragonGearAbilities.FireDragonBoneAbility((LivingEntity) entity);
+                                dragonGearAbilities.FireDragonboneAbility((LivingEntity) entity);
                                 break;
                             case "IcedDragonbone":
                                 if (entity instanceof Dragon) {
                                     if (!(entity instanceof IceDragon)) {
-                                        event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.IcedDragonBone.BonusDamage"));
+                                        event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.IcedDragonbone.BonusDamage"));
                                     }
                                 }
-                                dragonGearAbilities.IceDragonBoneAbility((LivingEntity) entity);
+                                dragonGearAbilities.IceDragonboneAbility((LivingEntity) entity);
                                 break;
                             case "LightningDragonbone":
                                 if (entity instanceof Dragon) {
                                     if (!(entity instanceof LightningDragon)) {
-                                        event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.LightningDragonBone.BonusDamage"));
+                                        event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.LightningDragonbone.BonusDamage"));
                                     }
                                 }
-                                dragonGearAbilities.LightningDragonBoneAbility((LivingEntity) entity, player);
+                                dragonGearAbilities.LightningDragonboneAbility((LivingEntity) entity, player);
                                 break;
                             case "FireDragonsteel":
                                 dragonGearAbilities.FireDragonsteelAbility((LivingEntity) entity);
@@ -206,26 +206,26 @@ public class DragonGearEvents implements Listener {
                                     case "FlamedDragonbone":
                                         if (entity instanceof Dragon) {
                                             if (!(entity instanceof FireDragon)) {
-                                                event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.FlamedDragonBone.BonusDamage"));
+                                                event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.FlamedDragonbone.BonusDamage"));
                                             }
                                         }
-                                        dragonGearAbilities.FireDragonBoneAbility((LivingEntity) entity);
+                                        dragonGearAbilities.FireDragonboneAbility((LivingEntity) entity);
                                         break;
                                     case "IcedDragonbone":
                                         if (entity instanceof Dragon) {
                                             if (!(entity instanceof IceDragon)) {
-                                                event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.IcedDragonBone.BonusDamage"));
+                                                event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.IcedDragonbone.BonusDamage"));
                                             }
                                         }
-                                        dragonGearAbilities.IceDragonBoneAbility((LivingEntity) entity);
+                                        dragonGearAbilities.IceDragonboneAbility((LivingEntity) entity);
                                         break;
                                     case "LightningDragonbone":
                                         if (entity instanceof Dragon) {
                                             if (!(entity instanceof LightningDragon)) {
-                                                event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.LightningDragonBone.BonusDamage"));
+                                                event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.LightningDragonbone.BonusDamage"));
                                             }
                                         }
-                                        dragonGearAbilities.LightningDragonBoneAbility((LivingEntity) entity, player);
+                                        dragonGearAbilities.LightningDragonboneAbility((LivingEntity) entity, player);
                                         break;
                                     case "FireDragonsteel":
                                         dragonGearAbilities.FireDragonsteelAbility((LivingEntity) entity);

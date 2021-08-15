@@ -74,8 +74,8 @@
 8:
   Material: "BONE"
   Amount: 1
-  DisplayName: "&fDragon Bone"
-  ConfigName: "DragonBone"
+  DisplayName: "&fDragonbone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone"
   CustomModelData: 83650
 9:
@@ -89,7 +89,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleBlue"
+  ConfigName: "DragonscaleBlue"
   CommandName: "dragonscale_blue"
   CustomModelData: 83650
   Lore:
@@ -98,7 +98,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleBronze"
+  ConfigName: "DragonscaleBronze"
   CommandName: "dragonscale_bronze"
   CustomModelData: 83651
   Lore:
@@ -107,7 +107,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleGray"
+  ConfigName: "DragonscaleGray"
   CommandName: "dragonscale_gray"
   CustomModelData: 83652
   Lore:
@@ -116,7 +116,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleGreen"
+  ConfigName: "DragonscaleGreen"
   CommandName: "dragonscale_green"
   CustomModelData: 83653
   Lore:
@@ -125,7 +125,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleRed"
+  ConfigName: "DragonscaleRed"
   CommandName: "dragonscale_red"
   CustomModelData: 83654
   Lore:
@@ -134,7 +134,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleSapphire"
+  ConfigName: "DragonscaleSapphire"
   CommandName: "dragonscale_sapphire"
   CustomModelData: 83655
   Lore:
@@ -143,7 +143,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleSilver"
+  ConfigName: "DragonscaleSilver"
   CommandName: "dragonscale_silver"
   CustomModelData: 83656
   Lore:
@@ -152,7 +152,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleWhite"
+  ConfigName: "DragonscaleWhite"
   CommandName: "dragonscale_white"
   CustomModelData: 83657
   Lore:
@@ -161,7 +161,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleAmethyst"
+  ConfigName: "DragonscaleAmethyst"
   CommandName: "dragonscale_amethyst"
   CustomModelData: 83658
   Lore:
@@ -170,7 +170,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleBlack"
+  ConfigName: "DragonscaleBlack"
   CommandName: "dragonscale_black"
   CustomModelData: 83659
   Lore:
@@ -179,7 +179,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleCopper"
+  ConfigName: "DragonscaleCopper"
   CommandName: "dragonscale_copper"
   CustomModelData: 83660
   Lore:
@@ -188,7 +188,7 @@
   Material: "IRON_NUGGET"
   Amount: 1
   DisplayName: "&fDragon Scales"
-  ConfigName: "DragonScaleElectric"
+  ConfigName: "DragonscaleElectric"
   CommandName: "dragonscale_electric"
   CustomModelData: 83661
   Lore:
@@ -372,7 +372,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_blue"
   CustomModelData: 83650
   Lore:
@@ -386,7 +386,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_blue"
   CustomModelData: 83650
   Lore:
@@ -400,7 +400,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_blue"
   CustomModelData: 83650
   Lore:
@@ -414,7 +414,7 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_boots_blue"
   CustomModelData: 83650
   Lore:
@@ -428,7 +428,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_bronze"
   CustomModelData: 83651
   Lore:
@@ -442,7 +442,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_bronze"
   CustomModelData: 83651
   Lore:
@@ -456,7 +456,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_bronze"
   CustomModelData: 83651
   Lore:
@@ -470,7 +470,7 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_boots_bronze"
   CustomModelData: 83651
   Lore:
@@ -484,7 +484,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_gray"
   CustomModelData: 83652
   Lore:
@@ -498,7 +498,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_gray"
   CustomModelData: 83652
   Lore:
@@ -512,7 +512,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_gray"
   CustomModelData: 83652
   Lore:
@@ -526,7 +526,7 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_boots_gray"
   CustomModelData: 83652
   Lore:
@@ -540,7 +540,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_green"
   CustomModelData: 83653
   Lore:
@@ -554,7 +554,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_green"
   CustomModelData: 83653
   Lore:
@@ -568,7 +568,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_green"
   CustomModelData: 83653
   Lore:
@@ -582,11 +582,11 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
-  CommandName: "dragonscale_boots_red"
-  CustomModelData: 83654
+  ConfigName: "Dragonscale"
+  CommandName: "dragonscale_boots_green"
+  CustomModelData: 83653
   Lore:
-    - "LOREPRESET.RED_DRAGON_SCALE"
+    - "LOREPRESET.GREEN_DRAGON_SCALE"
     - "LOREPRESET.DRAGON_PROTECTION"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
@@ -596,7 +596,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_red"
   CustomModelData: 83654
   Lore:
@@ -610,7 +610,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_red"
   CustomModelData: 83654
   Lore:
@@ -624,7 +624,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_red"
   CustomModelData: 83654
   Lore:
@@ -638,7 +638,7 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_boots_red"
   CustomModelData: 83654
   Lore:
@@ -652,7 +652,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_sapphire"
   CustomModelData: 83655
   Lore:
@@ -666,7 +666,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_sapphire"
   CustomModelData: 83655
   Lore:
@@ -680,7 +680,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_sapphire"
   CustomModelData: 83655
   Lore:
@@ -694,7 +694,7 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_boots_sapphire"
   CustomModelData: 83655
   Lore:
@@ -708,7 +708,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_silver"
   CustomModelData: 83656
   Lore:
@@ -722,7 +722,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_silver"
   CustomModelData: 83656
   Lore:
@@ -736,7 +736,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_silver"
   CustomModelData: 83656
   Lore:
@@ -750,7 +750,7 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_boots_silver"
   CustomModelData: 83656
   Lore:
@@ -764,7 +764,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_white"
   CustomModelData: 83657
   Lore:
@@ -778,7 +778,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_white"
   CustomModelData: 83657
   Lore:
@@ -792,7 +792,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_white"
   CustomModelData: 83657
   Lore:
@@ -806,7 +806,7 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_boots_white"
   CustomModelData: 83657
   Lore:
@@ -820,7 +820,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_amethyst"
   CustomModelData: 83658
   Lore:
@@ -834,7 +834,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_amethyst"
   CustomModelData: 83658
   Lore:
@@ -848,7 +848,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_amethyst"
   CustomModelData: 83658
   Lore:
@@ -862,7 +862,7 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_boots_amethyst"
   CustomModelData: 83658
   Lore:
@@ -876,7 +876,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_black"
   CustomModelData: 83659
   Lore:
@@ -890,7 +890,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_black"
   CustomModelData: 83659
   Lore:
@@ -904,7 +904,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_black"
   CustomModelData: 83659
   Lore:
@@ -918,7 +918,7 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_boots_black"
   CustomModelData: 83659
   Lore:
@@ -932,7 +932,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_copper"
   CustomModelData: 83660
   Lore:
@@ -946,7 +946,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_copper"
   CustomModelData: 83660
   Lore:
@@ -960,7 +960,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_copper"
   CustomModelData: 83660
   Lore:
@@ -974,7 +974,7 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_boots_copper"
   CustomModelData: 83660
   Lore:
@@ -988,7 +988,7 @@
   Material: "DIAMOND_HELMET"
   Amount: 1
   DisplayName: "&fDragon Scale Helmet"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_helmet_electric"
   CustomModelData: 83661
   Lore:
@@ -1002,7 +1002,7 @@
   Material: "DIAMOND_CHESTPLATE"
   Amount: 1
   DisplayName: "&fDragon Scale Chestplate"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_chestplate_electric"
   CustomModelData: 83661
   Lore:
@@ -1016,7 +1016,7 @@
   Material: "DIAMOND_LEGGINGS"
   Amount: 1
   DisplayName: "&fDragon Scale Leggings"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_leggings_electric"
   CustomModelData: 83661
   Lore:
@@ -1030,7 +1030,7 @@
   Material: "DIAMOND_BOOTS"
   Amount: 1
   DisplayName: "&fDragon Scale Boots"
-  ConfigName: "DragonScale"
+  ConfigName: "Dragonscale"
   CommandName: "dragonscale_boots_electric"
   CustomModelData: 83661
   Lore:
@@ -1435,8 +1435,8 @@
 121:
   Material: "DIAMOND_PICKAXE"
   Amount: 1
-  DisplayName: "&fDragon Bone Pickaxe"
-  ConfigName: "DragonBone"
+  DisplayName: "&fDragonbone Pickaxe"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_pickaxe"
   CustomModelData: 83650
   ItemFlags:
@@ -1444,8 +1444,8 @@
 122:
   Material: "DIAMOND_AXE"
   Amount: 1
-  DisplayName: "&fDragon Bone Axe"
-  ConfigName: "DragonBone"
+  DisplayName: "&fDragonbone Axe"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_axe"
   CustomModelData: 83650
   ItemFlags:
@@ -1453,8 +1453,8 @@
 123:
   Material: "DIAMOND_SHOVEL"
   Amount: 1
-  DisplayName: "&fDragon Bone Shovel"
-  ConfigName: "DragonBone"
+  DisplayName: "&fDragonbone Shovel"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_shovel"
   CustomModelData: 83650
   ItemFlags:
@@ -1462,8 +1462,8 @@
 124:
   Material: "DIAMOND_HOE"
   Amount: 1
-  DisplayName: "&fDragon Bone Hoe"
-  ConfigName: "DragonBone"
+  DisplayName: "&fDragonbone Hoe"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_hoe"
   CustomModelData: 83650
   ItemFlags:
@@ -1471,8 +1471,8 @@
 125:
   Material: "DIAMOND_SWORD"
   Amount: 1
-  DisplayName: "&fDragon Bone Sword"
-  ConfigName: "DragonBone"
+  DisplayName: "&fDragonbone Sword"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_sword"
   CustomModelData: 83650
   ItemFlags:
@@ -1480,8 +1480,8 @@
 126:
   Material: "BOW"
   Amount: 1
-  DisplayName: "&fDragon Bone Bow"
-  ConfigName: "DragonBone"
+  DisplayName: "&fDragonbone Bow"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_bow"
   CustomModelData: 83650
   ItemFlags:
@@ -1492,8 +1492,8 @@
 127:
   Material: "DIAMOND_SWORD"
   Amount: 1
-  DisplayName: "&fFlamed Dragon Bone Sword"
-  ConfigName: "FlamedDragonBone"
+  DisplayName: "&fFlamed Dragonbone Sword"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_sword"
   CustomModelData: 83651
   Lore:
@@ -1507,8 +1507,8 @@
 128:
   Material: "DIAMOND_SWORD"
   Amount: 1
-  DisplayName: "&fIced Dragon Bone Sword"
-  ConfigName: "IcedDragonBone"
+  DisplayName: "&fIced Dragonbone Sword"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_sword"
   CustomModelData: 83652
   Lore:
@@ -1522,8 +1522,8 @@
 129:
   Material: "DIAMOND_SWORD"
   Amount: 1
-  DisplayName: "&fLightning Dragon Bone Sword"
-  ConfigName: "LightningDragonBone"
+  DisplayName: "&fLightning Dragonbone Sword"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_sword"
   CustomModelData: 83653
   Lore:
@@ -1810,14 +1810,14 @@
   Material: "PRISMARINE_SHARD"
   Amount: 1
   DisplayName: "&fEnder Dragon Scale"
-  ConfigName: "EnderDragonScale"
+  ConfigName: "EnderDragonscale"
   CommandName: "dragonscale_ender"
   CustomModelData: 83670
 151:
   Material: "PRISMARINE_SHARD"
   Amount: 1
   DisplayName: "&fCracked Black Dragon Scale"
-  ConfigName: "CrackedBlackDragonScale"
+  ConfigName: "CrackedBlackDragonscale"
   CommandName: "dragonscale_black_cracked"
   CustomModelData: 83671
   Lore:
@@ -1827,7 +1827,7 @@
   Material: "PRISMARINE_SHARD"
   Amount: 1
   DisplayName: "&fBlack Dragon Scale"
-  ConfigName: "BlackDragonScale"
+  ConfigName: "BlackDragonscale"
   CommandName: "dragonscale_black_bauble"
   CustomModelData: 83672
   Lore:
@@ -1840,7 +1840,7 @@
   Material: "PRISMARINE_SHARD"
   Amount: 1
   DisplayName: "&fMixed Color Dragon Scale"
-  ConfigName: "MixedColorDragonScale"
+  ConfigName: "MixedColorDragonscale"
   CommandName: "dragonscale_mixed_color"
   CustomModelData: 83673
   Lore:
@@ -2684,7 +2684,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Rapier"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_rapier"
   CustomModelData: 83654
   Lore:
@@ -2697,7 +2697,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Katana"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_katana"
   CustomModelData: 83655
   Lore:
@@ -2710,7 +2710,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Greatsword"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_greatsword"
   CustomModelData: 83656
   Lore:
@@ -2723,7 +2723,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Longsword"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_longsword"
   CustomModelData: 83657
   Lore:
@@ -2736,7 +2736,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Spear"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_spear"
   CustomModelData: 83658
   Lore:
@@ -2749,7 +2749,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Saber"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_saber"
   CustomModelData: 83659
   Lore:
@@ -2762,7 +2762,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Boomerang"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_boomerang"
   CustomModelData: 83660
   Lore:
@@ -2775,7 +2775,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Dagger"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_dagger"
   CustomModelData: 83661
   Lore:
@@ -2788,7 +2788,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Glaive"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_glaive"
   CustomModelData: 83662
   Lore:
@@ -2801,7 +2801,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Halberd"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_halberd"
   CustomModelData: 83663
   Lore:
@@ -2814,7 +2814,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Hammer"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_hammer"
   CustomModelData: 83664
   Lore:
@@ -2827,7 +2827,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Javelin"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_javelin"
   CustomModelData: 83665
   Lore:
@@ -2840,7 +2840,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Lance"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_lance"
   CustomModelData: 83666
   Lore:
@@ -2853,7 +2853,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Flanged Mace"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_mace"
   CustomModelData: 83667
   Lore:
@@ -2866,7 +2866,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Pike"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_pike"
   CustomModelData: 83668
   Lore:
@@ -2879,7 +2879,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Quarterstaff"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_quarterstaff"
   CustomModelData: 83669
   Lore:
@@ -2892,7 +2892,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Tomahawk"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_tomahawk"
   CustomModelData: 83670
   Lore:
@@ -2905,7 +2905,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Throwing Knife"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_throwing_knife"
   CustomModelData: 83671
   Lore:
@@ -2918,7 +2918,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fDragonbone Warhammer"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_warhammer"
   CustomModelData: 83672
   Lore:
@@ -2931,7 +2931,7 @@
   Material: "DIAMOND_AXE"
   Amount: 1
   DisplayName: "&fDragonbone Battleaxe"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_battleaxe"
   CustomModelData: 83651
   Lore:
@@ -2944,7 +2944,7 @@
   Material: "BOW"
   Amount: 1
   DisplayName: "&fDragonbone-Strengthened Longbow"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_longbow"
   CustomModelData: 83651
   Lore:
@@ -2958,7 +2958,7 @@
   Material: "CROSSBOW"
   Amount: 1
   DisplayName: "&fDragonbone-Strengthened Crossbow"
-  ConfigName: "DragonBone"
+  ConfigName: "Dragonbone"
   CommandName: "dragonbone_crossbow"
   CustomModelData: 83650
   Lore:
@@ -2972,7 +2972,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Rapier"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_rapier"
   CustomModelData: 83673
   Lore:
@@ -2987,7 +2987,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Katana"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_katana"
   CustomModelData: 83674
   Lore:
@@ -3002,7 +3002,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Greatsword"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_greatsword"
   CustomModelData: 83675
   Lore:
@@ -3017,7 +3017,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Longsword"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_longsword"
   CustomModelData: 83676
   Lore:
@@ -3032,7 +3032,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Spear"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_spear"
   CustomModelData: 83677
   Lore:
@@ -3047,7 +3047,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Saber"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_saber"
   CustomModelData: 83678
   Lore:
@@ -3062,7 +3062,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Boomerang"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_boomerang"
   CustomModelData: 83679
   Lore:
@@ -3077,7 +3077,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Dagger"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_dagger"
   CustomModelData: 83680
   Lore:
@@ -3092,7 +3092,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Glaive"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_glaive"
   CustomModelData: 83681
   Lore:
@@ -3107,7 +3107,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Halberd"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_halberd"
   CustomModelData: 83682
   Lore:
@@ -3122,7 +3122,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Hammer"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_hammer"
   CustomModelData: 83683
   Lore:
@@ -3137,7 +3137,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Javelin"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_javelin"
   CustomModelData: 83684
   Lore:
@@ -3152,7 +3152,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Lance"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_lance"
   CustomModelData: 83685
   Lore:
@@ -3167,7 +3167,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Flanged Mace"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_mace"
   CustomModelData: 83686
   Lore:
@@ -3182,7 +3182,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Pike"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_pike"
   CustomModelData: 83687
   Lore:
@@ -3197,7 +3197,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Quarterstaff"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_quarterstaff"
   CustomModelData: 83688
   Lore:
@@ -3212,7 +3212,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Tomahawk"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_tomahawk"
   CustomModelData: 83689
   Lore:
@@ -3227,7 +3227,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Throwing Knife"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_throwing_knife"
   CustomModelData: 83690
   Lore:
@@ -3242,7 +3242,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Warhammer"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_warhammer"
   CustomModelData: 83691
   Lore:
@@ -3257,7 +3257,7 @@
   Material: "DIAMOND_AXE"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone Battleaxe"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_battleaxe"
   CustomModelData: 83652
   Lore:
@@ -3272,7 +3272,7 @@
   Material: "BOW"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone-Strengthened Longbow"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_longbow"
   CustomModelData: 83652
   Lore:
@@ -3287,7 +3287,7 @@
   Material: "CROSSBOW"
   Amount: 1
   DisplayName: "&fFlamed Dragonbone-Strengthened Crossbow"
-  ConfigName: "FlamedDragonBone"
+  ConfigName: "FlamedDragonbone"
   CommandName: "dragonbone_flamed_crossbow"
   CustomModelData: 83651
   Lore:
@@ -3302,7 +3302,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Rapier"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_rapier"
   CustomModelData: 83692
   Lore:
@@ -3317,7 +3317,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Katana"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_katana"
   CustomModelData: 83693
   Lore:
@@ -3332,7 +3332,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Greatsword"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_greatsword"
   CustomModelData: 83694
   Lore:
@@ -3347,7 +3347,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Longsword"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_longsword"
   CustomModelData: 83695
   Lore:
@@ -3362,7 +3362,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Spear"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_spear"
   CustomModelData: 83696
   Lore:
@@ -3377,7 +3377,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Saber"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_saber"
   CustomModelData: 83697
   Lore:
@@ -3392,7 +3392,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Boomerang"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_boomerang"
   CustomModelData: 83698
   Lore:
@@ -3407,7 +3407,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Dagger"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_dagger"
   CustomModelData: 83699
   Lore:
@@ -3422,7 +3422,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Glaive"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_glaive"
   CustomModelData: 83700
   Lore:
@@ -3437,7 +3437,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Halberd"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_halberd"
   CustomModelData: 83701
   Lore:
@@ -3452,7 +3452,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Hammer"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_hammer"
   CustomModelData: 83702
   Lore:
@@ -3467,7 +3467,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Javelin"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_javelin"
   CustomModelData: 83703
   Lore:
@@ -3482,7 +3482,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Lance"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_lance"
   CustomModelData: 83704
   Lore:
@@ -3497,7 +3497,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Flanged Mace"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_mace"
   CustomModelData: 83705
   Lore:
@@ -3512,7 +3512,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Pike"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_pike"
   CustomModelData: 83706
   Lore:
@@ -3527,7 +3527,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Quarterstaff"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_quarterstaff"
   CustomModelData: 83707
   Lore:
@@ -3542,7 +3542,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Tomahawk"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_tomahawk"
   CustomModelData: 83708
   Lore:
@@ -3557,7 +3557,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Throwing Knife"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_throwing_knife"
   CustomModelData: 83709
   Lore:
@@ -3572,7 +3572,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fIced Dragonbone Warhammer"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_warhammer"
   CustomModelData: 83710
   Lore:
@@ -3587,7 +3587,7 @@
   Material: "DIAMOND_AXE"
   Amount: 1
   DisplayName: "&fIced Dragonbone Battleaxe"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_battleaxe"
   CustomModelData: 83653
   Lore:
@@ -3602,7 +3602,7 @@
   Material: "BOW"
   Amount: 1
   DisplayName: "&fIced Dragonbone-Strengthened Longbow"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_longbow"
   CustomModelData: 83653
   Lore:
@@ -3617,7 +3617,7 @@
   Material: "CROSSBOW"
   Amount: 1
   DisplayName: "&fIced Dragonbone-Strengthened Crossbow"
-  ConfigName: "IcedDragonBone"
+  ConfigName: "IcedDragonbone"
   CommandName: "dragonbone_iced_crossbow"
   CustomModelData: 83652
   Lore:
@@ -3632,7 +3632,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Rapier"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_rapier"
   CustomModelData: 83711
   Lore:
@@ -3647,7 +3647,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Katana"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_katana"
   CustomModelData: 83712
   Lore:
@@ -3662,7 +3662,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Greatsword"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_greatsword"
   CustomModelData: 83713
   Lore:
@@ -3677,7 +3677,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Longsword"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_longsword"
   CustomModelData: 83714
   Lore:
@@ -3692,7 +3692,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Spear"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_spear"
   CustomModelData: 83715
   Lore:
@@ -3707,7 +3707,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Saber"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_saber"
   CustomModelData: 83716
   Lore:
@@ -3722,7 +3722,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Boomerang"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_boomerang"
   CustomModelData: 83717
   Lore:
@@ -3737,7 +3737,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Dagger"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_dagger"
   CustomModelData: 83718
   Lore:
@@ -3752,7 +3752,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Glaive"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_glaive"
   CustomModelData: 83719
   Lore:
@@ -3767,7 +3767,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Halberd"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_halberd"
   CustomModelData: 83720
   Lore:
@@ -3782,7 +3782,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Hammer"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_hammer"
   CustomModelData: 83721
   Lore:
@@ -3797,7 +3797,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Javelin"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_javelin"
   CustomModelData: 83722
   Lore:
@@ -3812,7 +3812,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Lance"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_lance"
   CustomModelData: 83723
   Lore:
@@ -3827,7 +3827,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Flanged Mace"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_mace"
   CustomModelData: 83724
   Lore:
@@ -3842,7 +3842,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Pike"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_pike"
   CustomModelData: 83725
   Lore:
@@ -3857,7 +3857,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Quarterstaff"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_quarterstaff"
   CustomModelData: 83726
   Lore:
@@ -3872,7 +3872,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Tomahawk"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_tomahawk"
   CustomModelData: 83727
   Lore:
@@ -3887,7 +3887,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Throwing Knife"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_throwing_knife"
   CustomModelData: 83728
   Lore:
@@ -3902,7 +3902,7 @@
   Material: "DIAMOND_SWORD"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Warhammer"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_warhammer"
   CustomModelData: 83729
   Lore:
@@ -3917,7 +3917,7 @@
   Material: "DIAMOND_AXE"
   Amount: 1
   DisplayName: "&fLightning Dragonbone Battleaxe"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_battleaxe"
   CustomModelData: 83654
   Lore:
@@ -3932,7 +3932,7 @@
   Material: "BOW"
   Amount: 1
   DisplayName: "&fLightning Dragonbone-Strengthened Longbow"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_longbow"
   CustomModelData: 83654
   Lore:
@@ -3947,7 +3947,7 @@
   Material: "CROSSBOW"
   Amount: 1
   DisplayName: "&fLightning Dragonbone-Strengthened Crossbow"
-  ConfigName: "LightningDragonBone"
+  ConfigName: "LightningDragonbone"
   CommandName: "dragonbone_lightning_crossbow"
   CustomModelData: 83653
   Lore:
@@ -5940,7 +5940,7 @@
   Amount: 1
   DisplayName: "&fGolden Rapier"
   ConfigName: "Gold"
-  CommandName: "golden_rapier"
+  CommandName: "gold_rapier"
   CustomModelData: 83650
   Lore:
     - "LOREPRESET.RAPIER"
@@ -5954,7 +5954,7 @@
   Amount: 1
   DisplayName: "&fGolden Katana"
   ConfigName: "Gold"
-  CommandName: "golden_katana"
+  CommandName: "gold_katana"
   CustomModelData: 83651
   Lore:
     - "LOREPRESET.KATANA"
@@ -5968,7 +5968,7 @@
   Amount: 1
   DisplayName: "&fGolden Greatsword"
   ConfigName: "Gold"
-  CommandName: "golden_greatsword"
+  CommandName: "gold_greatsword"
   CustomModelData: 83652
   Lore:
     - "LOREPRESET.GREATSWORD"
@@ -5982,7 +5982,7 @@
   Amount: 1
   DisplayName: "&fGolden Longsword"
   ConfigName: "Gold"
-  CommandName: "golden_longsword"
+  CommandName: "gold_longsword"
   CustomModelData: 83653
   Lore:
     - "LOREPRESET.LONGSWORD"
@@ -5996,7 +5996,7 @@
   Amount: 1
   DisplayName: "&fGolden Spear"
   ConfigName: "Gold"
-  CommandName: "golden_spear"
+  CommandName: "gold_spear"
   CustomModelData: 83654
   Lore:
     - "LOREPRESET.SPEAR"
@@ -6010,7 +6010,7 @@
   Amount: 1
   DisplayName: "&fGolden Saber"
   ConfigName: "Gold"
-  CommandName: "golden_saber"
+  CommandName: "gold_saber"
   CustomModelData: 83655
   Lore:
     - "LOREPRESET.SABER"
@@ -6024,7 +6024,7 @@
   Amount: 1
   DisplayName: "&fGolden Boomerang"
   ConfigName: "Gold"
-  CommandName: "golden_boomerang"
+  CommandName: "gold_boomerang"
   CustomModelData: 83656
   Lore:
     - "LOREPRESET.BOOMERANG"
@@ -6038,7 +6038,7 @@
   Amount: 1
   DisplayName: "&fGolden Dagger"
   ConfigName: "Gold"
-  CommandName: "golden_dagger"
+  CommandName: "gold_dagger"
   CustomModelData: 83657
   Lore:
     - "LOREPRESET.DAGGER"
@@ -6052,7 +6052,7 @@
   Amount: 1
   DisplayName: "&fGolden Glaive"
   ConfigName: "Gold"
-  CommandName: "golden_glaive"
+  CommandName: "gold_glaive"
   CustomModelData: 83658
   Lore:
     - "LOREPRESET.GLAIVE"
@@ -6066,7 +6066,7 @@
   Amount: 1
   DisplayName: "&fGolden Halberd"
   ConfigName: "Gold"
-  CommandName: "golden_halberd"
+  CommandName: "gold_halberd"
   CustomModelData: 83659
   Lore:
     - "LOREPRESET.HALBERD"
@@ -6080,7 +6080,7 @@
   Amount: 1
   DisplayName: "&fGolden Hammer"
   ConfigName: "Gold"
-  CommandName: "golden_hammer"
+  CommandName: "gold_hammer"
   CustomModelData: 83660
   Lore:
     - "LOREPRESET.HAMMER"
@@ -6094,7 +6094,7 @@
   Amount: 1
   DisplayName: "&fGolden Javelin"
   ConfigName: "Gold"
-  CommandName: "golden_javelin"
+  CommandName: "gold_javelin"
   CustomModelData: 83661
   Lore:
     - "LOREPRESET.JAVELIN"
@@ -6108,7 +6108,7 @@
   Amount: 1
   DisplayName: "&fGolden Lance"
   ConfigName: "Gold"
-  CommandName: "golden_lance"
+  CommandName: "gold_lance"
   CustomModelData: 83662
   Lore:
     - "LOREPRESET.LANCE"
@@ -6122,7 +6122,7 @@
   Amount: 1
   DisplayName: "&fGolden Flanged Mace"
   ConfigName: "Gold"
-  CommandName: "golden_mace"
+  CommandName: "gold_mace"
   CustomModelData: 83663
   Lore:
     - "LOREPRESET.MACE"
@@ -6136,7 +6136,7 @@
   Amount: 1
   DisplayName: "&fGolden Pike"
   ConfigName: "Gold"
-  CommandName: "golden_pike"
+  CommandName: "gold_pike"
   CustomModelData: 83664
   Lore:
     - "LOREPRESET.PIKE"
@@ -6150,7 +6150,7 @@
   Amount: 1
   DisplayName: "&fGolden Quarterstaff"
   ConfigName: "Gold"
-  CommandName: "golden_quarterstaff"
+  CommandName: "gold_quarterstaff"
   CustomModelData: 83665
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
@@ -6164,7 +6164,7 @@
   Amount: 1
   DisplayName: "&fGolden Tomahawk"
   ConfigName: "Gold"
-  CommandName: "golden_tomahawk"
+  CommandName: "gold_tomahawk"
   CustomModelData: 83666
   Lore:
     - "LOREPRESET.TOMAHAWK"
@@ -6178,7 +6178,7 @@
   Amount: 1
   DisplayName: "&fGolden Throwing Knife"
   ConfigName: "Gold"
-  CommandName: "golden_throwing_knife"
+  CommandName: "gold_throwing_knife"
   CustomModelData: 83667
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
@@ -6192,7 +6192,7 @@
   Amount: 1
   DisplayName: "&fGolden Warhammer"
   ConfigName: "Gold"
-  CommandName: "golden_warhammer"
+  CommandName: "gold_warhammer"
   CustomModelData: 83668
   Lore:
     - "LOREPRESET.WARHAMMER"
@@ -6206,7 +6206,7 @@
   Amount: 1
   DisplayName: "&fGolden Battleaxe"
   ConfigName: "Gold"
-  CommandName: "golden_battleaxe"
+  CommandName: "gold_battleaxe"
   CustomModelData: 83650
   Lore:
     - "LOREPRESET.BATTLEAXE"
@@ -6220,7 +6220,7 @@
   Amount: 1
   DisplayName: "&fGolden-Strengthened Longbow"
   ConfigName: "Gold"
-  CommandName: "golden_longbow"
+  CommandName: "gold_longbow"
   CustomModelData: 83661
   Lore:
     - "LOREPRESET.LONGBOW"
@@ -6234,7 +6234,7 @@
   Amount: 1
   DisplayName: "&fGolden-Strengthened Crossbow"
   ConfigName: "Gold"
-  CommandName: "golden_crossbow"
+  CommandName: "gold_crossbow"
   CustomModelData: 83660
   Lore:
     - "LOREPRESET.CROSSBOW"
@@ -7181,3 +7181,17 @@
   NBTTags:
     material_type: "Copper"
     spartans_weapon: "Crossbow"
+542:
+  Material: "IRON_SWORD"
+  Amount: 1
+  DisplayName: "&fStudded Club"
+  ConfigName: "Iron"
+  CommandName: "studded_club"
+  CustomModelData: 83669
+  Lore:
+    - "LOREPRESET.CLUB"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    material_type: "Iron"
+    spartans_weapon: "Club"

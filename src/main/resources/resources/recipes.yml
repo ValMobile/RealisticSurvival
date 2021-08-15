@@ -1,7 +1,3881 @@
 0:
+  Key: "flint_axe"
   Result:
     Item: "flint_axe"
     Amount: 1
   Ingredients:
     - "STRING|flint_shard"
     - "STICK"
+1:
+  Key: "flint_knife"
+  Result:
+    Item: "flint_knife"
+    Amount: 1
+  Ingredients:
+    - "|flint_shard"
+    - "STICK"
+2:
+  Key: "flint_pickaxe"
+  Result:
+    Item: "flint_pickaxe"
+    Amount: 1
+  Ingredients:
+    - "flint_shard|flint_shard|flint_shard"
+    - "|STICK"
+    - "|STICK"
+3:
+  Key: "flint_shovel"
+  Result:
+    Item: "flint_shovel"
+    Amount: 1
+  Ingredients:
+    - "|flint_shard"
+    - "|STICK"
+    - "|STICK"
+4:
+  Key: "flint_hoe"
+  Result:
+    Item: "flint_hoe"
+    Amount: 1
+  Ingredients:
+    - "flint_shard|flint_shard"
+    - "|STICK"
+    - "|STICK"
+5:
+  Key: "cobblestone"
+  Result:
+    Item: "COBBLESTONE"
+    Amount: 1
+  Ingredients:
+    - "STONE_BUTTON|STONE_BUTTON"
+    - "STONE_BUTTON|STONE_BUTTON"
+6:
+  Key: "plant_string"
+  Result:
+    Item: "plant_string"
+    Amount: 1
+  Ingredients:
+    - "plant_fiber|plant_fiber"
+    - "plant_fiber"
+7:
+  Key: "dragonsteel_fire_ingot"
+  Result:
+    Item: "dragonsteel_fire_ingot"
+    Amount: 1
+  Ingredients:
+    - "dragon_blood_fire"
+    - "IRON_INGOT"
+    - "NETHERITE_SCRAP"
+8:
+  Key: "dragonsteel_ice_ingot"
+  Result:
+    Item: "dragonsteel_ice_ingot"
+    Amount: 1
+  Ingredients:
+    - "dragon_blood_ice"
+    - "IRON_INGOT"
+    - "NETHERITE_SCRAP"
+9:
+  Key: "dragonsteel_lightning_ingot"
+  Result:
+    Item: "dragonsteel_lightning_ingot"
+    Amount: 1
+  Ingredients:
+    - "dragon_blood_lightning"
+    - "IRON_INGOT"
+    - "NETHERITE_SCRAP"
+10:
+  Key: "dragonscale_helmet_blue"
+  Result:
+    Item: "dragonscale_helmet_blue"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_blue|dragonscale_blue|dragonscale_blue"
+    - "dragonscale_blue||dragonscale_blue"
+11:
+  Key: "dragonscale_chestplate_blue"
+  Result:
+    Item: "dragonscale_chestplate_blue"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_blue||dragonscale_blue"
+    - "dragonscale_blue|dragonscale_blue|dragonscale_blue"
+    - "dragonscale_blue|dragonscale_blue|dragonscale_blue"
+12:
+  Key: "dragonscale_leggings_blue"
+  Result:
+    Item: "dragonscale_leggings_blue"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_blue|dragonscale_blue|dragonscale_blue"
+    - "dragonscale_blue||dragonscale_blue"
+    - "dragonscale_blue||dragonscale_blue"
+13:
+  Key: "dragonscale_boots_blue"
+  Result:
+    Item: "dragonscale_boots_blue"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_blue||dragonscale_blue"
+    - "dragonscale_blue||dragonscale_blue"
+14:
+  Key: "dragonscale_helmet_bronze"
+  Result:
+    Item: "dragonscale_helmet_bronze"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_bronze|dragonscale_bronze|dragonscale_bronze"
+    - "dragonscale_bronze||dragonscale_bronze"
+15:
+  Key: "dragonscale_chestplate_bronze"
+  Result:
+    Item: "dragonscale_chestplate_bronze"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_bronze||dragonscale_bronze"
+    - "dragonscale_bronze|dragonscale_bronze|dragonscale_bronze"
+    - "dragonscale_bronze|dragonscale_bronze|dragonscale_bronze"
+16:
+  Key: "dragonscale_leggings_bronze"
+  Result:
+    Item: "dragonscale_leggings_bronze"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_bronze|dragonscale_bronze|dragonscale_bronze"
+    - "dragonscale_bronze||dragonscale_bronze"
+    - "dragonscale_bronze||dragonscale_bronze"
+17:
+  Key: "dragonscale_boots_bronze"
+  Result:
+    Item: "dragonscale_boots_bronze"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_bronze||dragonscale_bronze"
+    - "dragonscale_bronze||dragonscale_bronze"
+18:
+  Key: "dragonscale_helmet_gray"
+  Result:
+    Item: "dragonscale_helmet_gray"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_gray|dragonscale_gray|dragonscale_gray"
+    - "dragonscale_gray||dragonscale_gray"
+19:
+  Key: "dragonscale_chestplate_gray"
+  Result:
+    Item: "dragonscale_chestplate_gray"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_gray||dragonscale_gray"
+    - "dragonscale_gray|dragonscale_gray|dragonscale_gray"
+    - "dragonscale_gray|dragonscale_gray|dragonscale_gray"
+20:
+  Key: "dragonscale_leggings_gray"
+  Result:
+    Item: "dragonscale_leggings_gray"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_gray|dragonscale_gray|dragonscale_gray"
+    - "dragonscale_gray||dragonscale_gray"
+    - "dragonscale_gray||dragonscale_gray"
+21:
+  Key: "dragonscale_boots_gray"
+  Result:
+    Item: "dragonscale_boots_gray"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_gray||dragonscale_gray"
+    - "dragonscale_gray||dragonscale_gray"
+22:
+  Key: "dragonscale_helmet_green"
+  Result:
+    Item: "dragonscale_helmet_green"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_green|dragonscale_green|dragonscale_green"
+    - "dragonscale_green||dragonscale_green"
+23:
+  Key: "dragonscale_chestplate_green"
+  Result:
+    Item: "dragonscale_chestplate_green"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_green||dragonscale_green"
+    - "dragonscale_green|dragonscale_green|dragonscale_green"
+    - "dragonscale_green|dragonscale_green|dragonscale_green"
+24:
+  Key: "dragonscale_leggings_green"
+  Result:
+    Item: "dragonscale_leggings_green"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_green|dragonscale_green|dragonscale_green"
+    - "dragonscale_green||dragonscale_green"
+    - "dragonscale_green||dragonscale_green"
+25:
+  Key: "dragonscale_boots_green"
+  Result:
+    Item: "dragonscale_boots_green"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_green||dragonscale_green"
+    - "dragonscale_green||dragonscale_green"
+26:
+  Key: "dragonscale_helmet_red"
+  Result:
+    Item: "dragonscale_helmet_red"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_red|dragonscale_red|dragonscale_red"
+    - "dragonscale_red||dragonscale_red"
+27:
+  Key: "dragonscale_chestplate_red"
+  Result:
+    Item: "dragonscale_chestplate_red"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_red||dragonscale_red"
+    - "dragonscale_red|dragonscale_red|dragonscale_red"
+    - "dragonscale_red|dragonscale_red|dragonscale_red"
+28:
+  Key: "dragonscale_leggings_red"
+  Result:
+    Item: "dragonscale_leggings_red"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_red|dragonscale_red|dragonscale_red"
+    - "dragonscale_red||dragonscale_red"
+    - "dragonscale_red||dragonscale_red"
+29:
+  Key: "dragonscale_boots_red"
+  Result:
+    Item: "dragonscale_boots_red"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_red||dragonscale_red"
+    - "dragonscale_red||dragonscale_red"
+30:
+  Key: "dragonscale_helmet_sapphire"
+  Result:
+    Item: "dragonscale_helmet_sapphire"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_sapphire|dragonscale_sapphire|dragonscale_sapphire"
+    - "dragonscale_sapphire||dragonscale_sapphire"
+31:
+  Key: "dragonscale_chestplate_sapphire"
+  Result:
+    Item: "dragonscale_chestplate_sapphire"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_sapphire||dragonscale_sapphire"
+    - "dragonscale_sapphire|dragonscale_sapphire|dragonscale_sapphire"
+    - "dragonscale_sapphire|dragonscale_sapphire|dragonscale_sapphire"
+32:
+  Key: "dragonscale_leggings_sapphire"
+  Result:
+    Item: "dragonscale_leggings_sapphire"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_sapphire|dragonscale_sapphire|dragonscale_sapphire"
+    - "dragonscale_sapphire||dragonscale_sapphire"
+    - "dragonscale_sapphire||dragonscale_sapphire"
+33:
+  Key: "dragonscale_boots_sapphire"
+  Result:
+    Item: "dragonscale_boots_sapphire"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_sapphire||dragonscale_sapphire"
+    - "dragonscale_sapphire||dragonscale_sapphire"
+34:
+  Key: "dragonscale_helmet_silver"
+  Result:
+    Item: "dragonscale_helmet_silver"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_silver|dragonscale_silver|dragonscale_silver"
+    - "dragonscale_silver||dragonscale_silver"
+35:
+  Key: "dragonscale_chestplate_silver"
+  Result:
+    Item: "dragonscale_chestplate_silver"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_silver||dragonscale_silver"
+    - "dragonscale_silver|dragonscale_silver|dragonscale_silver"
+    - "dragonscale_silver|dragonscale_silver|dragonscale_silver"
+36:
+  Key: "dragonscale_leggings_silver"
+  Result:
+    Item: "dragonscale_leggings_silver"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_silver|dragonscale_silver|dragonscale_silver"
+    - "dragonscale_silver||dragonscale_silver"
+    - "dragonscale_silver||dragonscale_silver"
+37:
+  Key: "dragonscale_boots_silver"
+  Result:
+    Item: "dragonscale_boots_silver"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_silver||dragonscale_silver"
+    - "dragonscale_silver||dragonscale_silver"
+38:
+  Key: "dragonscale_helmet_white"
+  Result:
+    Item: "dragonscale_helmet_white"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_white|dragonscale_white|dragonscale_white"
+    - "dragonscale_white||dragonscale_white"
+39:
+  Key: "dragonscale_chestplate_white"
+  Result:
+    Item: "dragonscale_chestplate_white"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_white||dragonscale_white"
+    - "dragonscale_white|dragonscale_white|dragonscale_white"
+    - "dragonscale_white|dragonscale_white|dragonscale_white"
+40:
+  Key: "dragonscale_leggings_white"
+  Result:
+    Item: "dragonscale_leggings_white"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_white|dragonscale_white|dragonscale_white"
+    - "dragonscale_white||dragonscale_white"
+    - "dragonscale_white||dragonscale_white"
+41:
+  Key: "dragonscale_boots_white"
+  Result:
+    Item: "dragonscale_boots_white"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_white||dragonscale_white"
+    - "dragonscale_white||dragonscale_white"
+42:
+  Key: "dragonscale_helmet_amethyst"
+  Result:
+    Item: "dragonscale_helmet_amethyst"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_amethyst|dragonscale_amethyst|dragonscale_amethyst"
+    - "dragonscale_amethyst||dragonscale_amethyst"
+43:
+  Key: "dragonscale_chestplate_amethyst"
+  Result:
+    Item: "dragonscale_chestplate_amethyst"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_amethyst||dragonscale_amethyst"
+    - "dragonscale_amethyst|dragonscale_amethyst|dragonscale_amethyst"
+    - "dragonscale_amethyst|dragonscale_amethyst|dragonscale_amethyst"
+44:
+  Key: "dragonscale_leggings_amethyst"
+  Result:
+    Item: "dragonscale_leggings_amethyst"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_amethyst|dragonscale_amethyst|dragonscale_amethyst"
+    - "dragonscale_amethyst||dragonscale_amethyst"
+    - "dragonscale_amethyst||dragonscale_amethyst"
+45:
+  Key: "dragonscale_boots_amethyst"
+  Result:
+    Item: "dragonscale_boots_amethyst"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_amethyst||dragonscale_amethyst"
+    - "dragonscale_amethyst||dragonscale_amethyst"
+46:
+  Key: "dragonscale_helmet_black"
+  Result:
+    Item: "dragonscale_helmet_black"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_black|dragonscale_black|dragonscale_black"
+    - "dragonscale_black||dragonscale_black"
+47:
+  Key: "dragonscale_chestplate_black"
+  Result:
+    Item: "dragonscale_chestplate_black"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_black||dragonscale_black"
+    - "dragonscale_black|dragonscale_black|dragonscale_black"
+    - "dragonscale_black|dragonscale_black|dragonscale_black"
+48:
+  Key: "dragonscale_leggings_black"
+  Result:
+    Item: "dragonscale_leggings_black"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_black|dragonscale_black|dragonscale_black"
+    - "dragonscale_black||dragonscale_black"
+    - "dragonscale_black||dragonscale_black"
+49:
+  Key: "dragonscale_boots_black"
+  Result:
+    Item: "dragonscale_boots_black"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_black||dragonscale_black"
+    - "dragonscale_black||dragonscale_black"
+50:
+  Key: "dragonscale_helmet_copper"
+  Result:
+    Item: "dragonscale_helmet_copper"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_copper|dragonscale_copper|dragonscale_copper"
+    - "dragonscale_copper||dragonscale_copper"
+51:
+  Key: "dragonscale_chestplate_copper"
+  Result:
+    Item: "dragonscale_chestplate_copper"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_copper||dragonscale_copper"
+    - "dragonscale_copper|dragonscale_copper|dragonscale_copper"
+    - "dragonscale_copper|dragonscale_copper|dragonscale_copper"
+52:
+  Key: "dragonscale_leggings_copper"
+  Result:
+    Item: "dragonscale_leggings_copper"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_copper|dragonscale_copper|dragonscale_copper"
+    - "dragonscale_copper||dragonscale_copper"
+    - "dragonscale_copper||dragonscale_copper"
+53:
+  Key: "dragonscale_boots_copper"
+  Result:
+    Item: "dragonscale_boots_copper"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_copper||dragonscale_copper"
+    - "dragonscale_copper||dragonscale_copper"
+54:
+  Key: "dragonscale_helmet_electric"
+  Result:
+    Item: "dragonscale_helmet_electric"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_electric|dragonscale_electric|dragonscale_electric"
+    - "dragonscale_electric||dragonscale_electric"
+55:
+  Key: "dragonscale_chestplate_electric"
+  Result:
+    Item: "dragonscale_chestplate_electric"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_electric||dragonscale_electric"
+    - "dragonscale_electric|dragonscale_electric|dragonscale_electric"
+    - "dragonscale_electric|dragonscale_electric|dragonscale_electric"
+56:
+  Key: "dragonscale_leggings_electric"
+  Result:
+    Item: "dragonscale_leggings_electric"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_electric|dragonscale_electric|dragonscale_electric"
+    - "dragonscale_electric||dragonscale_electric"
+    - "dragonscale_electric||dragonscale_electric"
+57:
+  Key: "dragonscale_boots_electric"
+  Result:
+    Item: "dragonscale_boots_electric"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_electric||dragonscale_electric"
+    - "dragonscale_electric||dragonscale_electric"
+58:
+  Key: "tide_guardian_helmet_blue"
+  Result:
+    Item: "tide_guardian_helmet_blue"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_blue|sea_serpent_scale_blue|sea_serpent_scale_blue"
+    - "sea_serpent_scale_blue||sea_serpent_scale_blue"
+59:
+  Key: "tide_guardian_chestplate_blue"
+  Result:
+    Item: "tide_guardian_chestplate_blue"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_blue||sea_serpent_scale_blue"
+    - "sea_serpent_scale_blue|sea_serpent_scale_blue|sea_serpent_scale_blue"
+    - "shiny_scale|sea_serpent_scale_blue|shiny_scale"
+60:
+  Key: "tide_guardian_leggings_blue"
+  Result:
+    Item: "tide_guardian_leggings_blue"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_blue|sea_serpent_scale_blue|sea_serpent_scale_blue"
+    - "sea_serpent_scale_blue||sea_serpent_scale_blue"
+    - "shiny_scale||shiny_scale"
+61:
+  Key: "tide_guardian_boots_blue"
+  Result:
+    Item: "tide_guardian_boots_blue"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_blue||sea_serpent_scale_blue"
+    - "sea_serpent_scale_blue||sea_serpent_scale_blue"
+62:
+  Key: "tide_guardian_helmet_bronze"
+  Result:
+    Item: "tide_guardian_helmet_bronze"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_bronze|sea_serpent_scale_bronze|sea_serpent_scale_bronze"
+    - "sea_serpent_scale_bronze||sea_serpent_scale_bronze"
+63:
+  Key: "tide_guardian_chestplate_bronze"
+  Result:
+    Item: "tide_guardian_chestplate_bronze"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_bronze||sea_serpent_scale_bronze"
+    - "sea_serpent_scale_bronze|sea_serpent_scale_bronze|sea_serpent_scale_bronze"
+    - "shiny_scale|sea_serpent_scale_bronze|shiny_scale"
+64:
+  Key: "tide_guardian_leggings_bronze"
+  Result:
+    Item: "tide_guardian_leggings_bronze"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_bronze|sea_serpent_scale_bronze|sea_serpent_scale_bronze"
+    - "sea_serpent_scale_bronze||sea_serpent_scale_bronze"
+    - "shiny_scale||shiny_scale"
+65:
+  Key: "tide_guardian_boots_bronze"
+  Result:
+    Item: "tide_guardian_boots_bronze"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_bronze||sea_serpent_scale_bronze"
+    - "sea_serpent_scale_bronze||sea_serpent_scale_bronze"
+66:
+  Key: "tide_guardian_helmet_deepblue"
+  Result:
+    Item: "tide_guardian_helmet_deepblue"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_deepblue|sea_serpent_scale_deepblue|sea_serpent_scale_deepblue"
+    - "sea_serpent_scale_deepblue||sea_serpent_scale_deepblue"
+67:
+  Key: "tide_guardian_chestplate_deepblue"
+  Result:
+    Item: "tide_guardian_chestplate_deepblue"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_deepblue||sea_serpent_scale_deepblue"
+    - "sea_serpent_scale_deepblue|sea_serpent_scale_deepblue|sea_serpent_scale_deepblue"
+    - "shiny_scale|sea_serpent_scale_deepblue|shiny_scale"
+68:
+  Key: "tide_guardian_leggings_deepblue"
+  Result:
+    Item: "tide_guardian_leggings_deepblue"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_deepblue|sea_serpent_scale_deepblue|sea_serpent_scale_deepblue"
+    - "sea_serpent_scale_deepblue||sea_serpent_scale_deepblue"
+    - "shiny_scale||shiny_scale"
+69:
+  Key: "tide_guardian_boots_deepblue"
+  Result:
+    Item: "tide_guardian_boots_deepblue"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_deepblue||sea_serpent_scale_deepblue"
+    - "sea_serpent_scale_deepblue||sea_serpent_scale_deepblue"
+70:
+  Key: "tide_guardian_helmet_green"
+  Result:
+    Item: "tide_guardian_helmet_green"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_green|sea_serpent_scale_green|sea_serpent_scale_green"
+    - "sea_serpent_scale_green||sea_serpent_scale_green"
+71:
+  Key: "tide_guardian_chestplate_green"
+  Result:
+    Item: "tide_guardian_chestplate_green"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_green||sea_serpent_scale_green"
+    - "sea_serpent_scale_green|sea_serpent_scale_green|sea_serpent_scale_green"
+    - "shiny_scale|sea_serpent_scale_green|shiny_scale"
+72:
+  Key: "tide_guardian_leggings_green"
+  Result:
+    Item: "tide_guardian_leggings_green"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_green|sea_serpent_scale_green|sea_serpent_scale_green"
+    - "sea_serpent_scale_green||sea_serpent_scale_green"
+    - "shiny_scale||shiny_scale"
+73:
+  Key: "tide_guardian_boots_green"
+  Result:
+    Item: "tide_guardian_boots_green"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_green||sea_serpent_scale_green"
+    - "sea_serpent_scale_green||sea_serpent_scale_green"
+74:
+  Key: "tide_guardian_helmet_purple"
+  Result:
+    Item: "tide_guardian_helmet_purple"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_purple|sea_serpent_scale_purple|sea_serpent_scale_purple"
+    - "sea_serpent_scale_purple||sea_serpent_scale_purple"
+75:
+  Key: "tide_guardian_chestplate_purple"
+  Result:
+    Item: "tide_guardian_chestplate_purple"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_purple||sea_serpent_scale_purple"
+    - "sea_serpent_scale_purple|sea_serpent_scale_purple|sea_serpent_scale_purple"
+    - "shiny_scale|sea_serpent_scale_purple|shiny_scale"
+76:
+  Key: "tide_guardian_leggings_purple"
+  Result:
+    Item: "tide_guardian_leggings_purple"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_purple|sea_serpent_scale_purple|sea_serpent_scale_purple"
+    - "sea_serpent_scale_purple||sea_serpent_scale_purple"
+    - "shiny_scale||shiny_scale"
+77:
+  Key: "tide_guardian_boots_purple"
+  Result:
+    Item: "tide_guardian_boots_purple"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_purple||sea_serpent_scale_purple"
+    - "sea_serpent_scale_purple||sea_serpent_scale_purple"
+78:
+  Key: "tide_guardian_helmet_red"
+  Result:
+    Item: "tide_guardian_helmet_red"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_red|sea_serpent_scale_red|sea_serpent_scale_red"
+    - "sea_serpent_scale_red||sea_serpent_scale_red"
+79:
+  Key: "tide_guardian_chestplate_red"
+  Result:
+    Item: "tide_guardian_chestplate_red"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_red||sea_serpent_scale_red"
+    - "sea_serpent_scale_red|sea_serpent_scale_red|sea_serpent_scale_red"
+    - "shiny_scale|sea_serpent_scale_red|shiny_scale"
+80:
+  Key: "tide_guardian_leggings_red"
+  Result:
+    Item: "tide_guardian_leggings_red"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_red|sea_serpent_scale_red|sea_serpent_scale_red"
+    - "sea_serpent_scale_red||sea_serpent_scale_red"
+    - "shiny_scale||shiny_scale"
+81:
+  Key: "tide_guardian_boots_red"
+  Result:
+    Item: "tide_guardian_boots_red"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_red||sea_serpent_scale_red"
+    - "sea_serpent_scale_red||sea_serpent_scale_red"
+82:
+  Key: "tide_guardian_helmet_teal"
+  Result:
+    Item: "tide_guardian_helmet_teal"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_teal|sea_serpent_scale_teal|sea_serpent_scale_teal"
+    - "sea_serpent_scale_teal||sea_serpent_scale_teal"
+83:
+  Key: "tide_guardian_chestplate_teal"
+  Result:
+    Item: "tide_guardian_chestplate_teal"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_teal||sea_serpent_scale_teal"
+    - "sea_serpent_scale_teal|sea_serpent_scale_teal|sea_serpent_scale_teal"
+    - "shiny_scale|sea_serpent_scale_teal|shiny_scale"
+84:
+  Key: "tide_guardian_leggings_teal"
+  Result:
+    Item: "tide_guardian_leggings_teal"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_teal|sea_serpent_scale_teal|sea_serpent_scale_teal"
+    - "sea_serpent_scale_teal||sea_serpent_scale_teal"
+    - "shiny_scale||shiny_scale"
+85:
+  Key: "tide_guardian_boots_teal"
+  Result:
+    Item: "tide_guardian_boots_teal"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_teal||sea_serpent_scale_teal"
+    - "sea_serpent_scale_teal||sea_serpent_scale_teal"
+86:
+  Key: "dragonbone_pickaxe"
+  Result:
+    Item: "dragonbone_pickaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone|dragonbone"
+    - "|witherbone"
+    - "|witherbone"
+87:
+  Key: "dragonbone_axe"
+  Result:
+    Item: "dragonbone_axe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone"
+    - "dragonbone|witherbone"
+    - "|witherbone"
+88:
+  Key: "dragonbone_shovel"
+  Result:
+    Item: "dragonbone_shovel"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|witherbone"
+    - "|witherbone"
+89:
+  Key: "dragonbone_hoe"
+  Result:
+    Item: "dragonbone_hoe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone"
+    - "|witherbone"
+    - "|witherbone"
+90:
+  Key: "dragonbone_sword"
+  Result:
+    Item: "dragonbone_sword"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|dragonbone"
+    - "|witherbone"
+91:
+  Key: "dragonbone_bow"
+  Result:
+    Item: "dragonbone_bow"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone|STRING"
+    - "witherbone||STRING"
+    - "|dragonbone|STRING"
+92:
+  Key: "dragonbone_flamed_sword"
+  Result:
+    Item: "dragonbone_flamed_sword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_sword"
+    - "dragon_blood_fire"
+93:
+  Key: "dragonbone_iced_sword"
+  Result:
+    Item: "dragonbone_iced_sword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_sword"
+    - "dragon_blood_ice"
+94:
+  Key: "dragonbone_lightning_sword"
+  Result:
+    Item: "dragonbone_lightning_sword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_sword"
+    - "dragon_blood_lightning"
+95:
+  Key: "dragonsteel_fire_sword"
+  Result:
+    Item: "dragonsteel_fire_sword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+    - "|witherbone"
+96:
+  Key: "dragonsteel_fire_pickaxe"
+  Result:
+    Item: "dragonsteel_fire_pickaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "|witherbone"
+    - "|witherbone"
+97:
+  Key: "dragonsteel_fire_axe"
+  Result:
+    Item: "dragonsteel_fire_axe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "witherbone|dragonsteel_fire_ingot"
+    - "witherbone"
+98:
+  Key: "dragonsteel_fire_shovel"
+  Result:
+    Item: "dragonsteel_fire_shovel"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|witherbone"
+    - "|witherbone"
+99:
+  Key: "dragonsteel_fire_hoe"
+  Result:
+    Item: "dragonsteel_fire_hoe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "witherbone"
+    - "witherbone"
+100:
+  Key: "dragonsteel_fire_helmet"
+  Result:
+    Item: "dragonsteel_fire_helmet"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+101:
+  Key: "dragonsteel_fire_chestplate"
+  Result:
+    Item: "dragonsteel_fire_chestplate"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+102:
+  Key: "dragonsteel_fire_leggings"
+  Result:
+    Item: "dragonsteel_fire_leggings"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+103:
+  Key: "dragonsteel_fire_boots"
+  Result:
+    Item: "dragonsteel_fire_boots"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+104:
+  Key: "dragonsteel_ice_sword"
+  Result:
+    Item: "dragonsteel_ice_sword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+    - "|witherbone"
+105:
+  Key: "dragonsteel_ice_pickaxe"
+  Result:
+    Item: "dragonsteel_ice_pickaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "|witherbone"
+    - "|witherbone"
+106:
+  Key: "dragonsteel_ice_axe"
+  Result:
+    Item: "dragonsteel_ice_axe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "witherbone|dragonsteel_ice_ingot"
+    - "witherbone"
+107:
+  Key: "dragonsteel_ice_shovel"
+  Result:
+    Item: "dragonsteel_ice_shovel"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|witherbone"
+    - "|witherbone"
+108:
+  Key: "dragonsteel_ice_hoe"
+  Result:
+    Item: "dragonsteel_ice_hoe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "witherbone"
+    - "witherbone"
+109:
+  Key: "dragonsteel_ice_helmet"
+  Result:
+    Item: "dragonsteel_ice_helmet"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+110:
+  Key: "dragonsteel_ice_chestplate"
+  Result:
+    Item: "dragonsteel_ice_chestplate"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+111:
+  Key: "dragonsteel_ice_leggings"
+  Result:
+    Item: "dragonsteel_ice_leggings"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+112:
+  Key: "dragonsteel_ice_boots"
+  Result:
+    Item: "dragonsteel_ice_boots"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+113:
+  Key: "dragonsteel_lightning_sword"
+  Result:
+    Item: "dragonsteel_lightning_sword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+    - "|witherbone"
+114:
+  Key: "dragonsteel_lightning_pickaxe"
+  Result:
+    Item: "dragonsteel_lightning_pickaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "|witherbone"
+    - "|witherbone"
+115:
+  Key: "dragonsteel_lightning_axe"
+  Result:
+    Item: "dragonsteel_lightning_axe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "witherbone|dragonsteel_lightning_ingot"
+    - "witherbone"
+116:
+  Key: "dragonsteel_lightning_shovel"
+  Result:
+    Item: "dragonsteel_lightning_shovel"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|witherbone"
+    - "|witherbone"
+117:
+  Key: "dragonsteel_lightning_hoe"
+  Result:
+    Item: "dragonsteel_lightning_hoe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "witherbone"
+    - "witherbone"
+118:
+  Key: "dragonsteel_lightning_helmet"
+  Result:
+    Item: "dragonsteel_lightning_helmet"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+119:
+  Key: "dragonsteel_lightning_chestplate"
+  Result:
+    Item: "dragonsteel_lightning_chestplate"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+120:
+  Key: "dragonsteel_lightning_leggings"
+  Result:
+    Item: "dragonsteel_lightning_leggings"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+121:
+  Key: "dragonsteel_lightning_boots"
+  Result:
+    Item: "dragonsteel_lightning_boots"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+122:
+  Key: "dragonbone_rapier"
+  Result:
+    Item: "dragonbone_rapier"
+    Amount: 1
+  Ingredients:
+    - "||dragonbone"
+    - "dragonbone|dragonbone"
+    - "handle_witherbone|dragonbone"
+123:
+  Key: "dragonbone_katana"
+  Result:
+    Item: "dragonbone_katana"
+    Amount: 1
+  Ingredients:
+    - "||dragonbone"
+    - "|dragonbone"
+    - "handle_witherbone"
+124:
+  Key: "dragonbone_greatsword"
+  Result:
+    Item: "dragonbone_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "dragonbone|dragonbone|dragonbone"
+    - "dragonbone|handle_witherbone|dragonbone"
+125:
+  Key: "dragonbone_longsword"
+  Result:
+    Item: "dragonbone_longsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|dragonbone"
+    - "dragonbone|handle_witherbone|dragonbone"
+126:
+  Key: "dragonbone_spear"
+  Result:
+    Item: "dragonbone_spear"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|pole_witherbone"
+127:
+  Key: "dragonbone_saber"
+  Result:
+    Item: "dragonbone_saber"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|dragonbone"
+    - "dragonbone|handle_witherbone"
+128:
+  Key: "dragonbone_boomerang"
+  Result:
+    Item: "dragonbone_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone|dragonbone"
+    - "dragonbone"
+    - "dragonbone"
+129:
+  Key: "dragonbone_dagger"
+  Result:
+    Item: "dragonbone_dagger"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|handle_witherbone"
+130:
+  Key: "dragonbone_glaive"
+  Result:
+    Item: "dragonbone_glaive"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|dragonbone"
+    - "|pole_witherbone"
+131:
+  Key: "dragonbone_halberd"
+  Result:
+    Item: "dragonbone_halberd"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "dragonbone|dragonbone"
+    - "dragonbone|pole_witherbone"
+132:
+  Key: "dragonbone_hammer"
+  Result:
+    Item: "dragonbone_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone|dragonbone"
+    - "dragonbone|dragonbone|dragonbone"
+    - "|handle_witherbone"
+133:
+  Key: "dragonbone_javelin"
+  Result:
+    Item: "dragonbone_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole_witherbone|dragonbone"
+134:
+  Key: "dragonbone_lance"
+  Result:
+    Item: "dragonbone_lance"
+    Amount: 1
+  Ingredients:
+    - "||dragonbone"
+    - "dragonbone|pole_witherbone"
+    - "handle_witherbone|dragonbone"
+135:
+  Key: "dragonbone_mace"
+  Result:
+    Item: "dragonbone_mace"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone|dragonbone"
+    - "|STICK|dragonbone"
+    - "handle_witherbone"
+136:
+  Key: "dragonbone_pike"
+  Result:
+    Item: "dragonbone_pike"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|pole_witherbone"
+    - "|pole_witherbone"
+137:
+  Key: "dragonbone_quarterstaff"
+  Result:
+    Item: "dragonbone_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole_witherbone"
+    - "|dragonbone"
+138:
+  Key: "dragonbone_tomahawk"
+  Result:
+    Item: "dragonbone_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle_witherbone|dragonbone"
+    - "|dragonbone"
+139:
+  Key: "dragonbone_throwing_knife"
+  Result:
+    Item: "dragonbone_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle_witherbone|dragonbone"
+140:
+  Key: "dragonbone_warhammer"
+  Result:
+    Item: "dragonbone_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "dragonbone|dragonbone"
+    - "|handle_witherbone"
+141:
+  Key: "dragonbone_battleaxe"
+  Result:
+    Item: "dragonbone_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone|dragonbone"
+    - "dragonbone|STICK|dragonbone"
+    - "|handle_witherbone"
+142:
+  Key: "dragonbone_longbow"
+  Result:
+    Item: "dragonbone_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle_witherbone|STICK|dragonbone"
+    - "STICK||STRING"
+    - "dragonbone|STRING|STRING"
+143:
+  Key: "dragonbone_crossbow"
+  Result:
+    Item: "dragonbone_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|BOW|dragonbone"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle_witherbone"
+144:
+  Key: "dragonbone_flamed_rapier"
+  Result:
+    Item: "dragonbone_flamed_rapier"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_rapier"
+    - "dragon_blood_fire"
+145:
+  Key: "dragonbone_flamed_katana"
+  Result:
+    Item: "dragonbone_flamed_katana"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_katana"
+    - "dragon_blood_fire"
+146:
+  Key: "dragonbone_flamed_greatsword"
+  Result:
+    Item: "dragonbone_flamed_greatsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_greatsword"
+    - "dragon_blood_fire"
+147:
+  Key: "dragonbone_flamed_longsword"
+  Result:
+    Item: "dragonbone_flamed_longsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longsword"
+    - "dragon_blood_fire"
+148:
+  Key: "dragonbone_flamed_spear"
+  Result:
+    Item: "dragonbone_flamed_spear"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_spear"
+    - "dragon_blood_fire"
+149:
+  Key: "dragonbone_flamed_saber"
+  Result:
+    Item: "dragonbone_flamed_saber"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_saber"
+    - "dragon_blood_fire"
+150:
+  Key: "dragonbone_flamed_boomerang"
+  Result:
+    Item: "dragonbone_flamed_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_boomerang"
+    - "dragon_blood_fire"
+151:
+  Key: "dragonbone_flamed_dagger"
+  Result:
+    Item: "dragonbone_flamed_dagger"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_dagger"
+    - "dragon_blood_fire"
+152:
+  Key: "dragonbone_flamed_glaive"
+  Result:
+    Item: "dragonbone_flamed_glaive"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_glaive"
+    - "dragon_blood_fire"
+153:
+  Key: "dragonbone_flamed_halberd"
+  Result:
+    Item: "dragonbone_flamed_halberd"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_halberd"
+    - "dragon_blood_fire"
+154:
+  Key: "dragonbone_flamed_hammer"
+  Result:
+    Item: "dragonbone_flamed_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_hammer"
+    - "dragon_blood_fire"
+155:
+  Key: "dragonbone_flamed_javelin"
+  Result:
+    Item: "dragonbone_flamed_javelin"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_javelin"
+    - "dragon_blood_fire"
+156:
+  Key: "dragonbone_flamed_lance"
+  Result:
+    Item: "dragonbone_flamed_lance"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_lance"
+    - "dragon_blood_fire"
+157:
+  Key: "dragonbone_flamed_mace"
+  Result:
+    Item: "dragonbone_flamed_mace"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_mace"
+    - "dragon_blood_fire"
+158:
+  Key: "dragonbone_flamed_pike"
+  Result:
+    Item: "dragonbone_flamed_pike"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_pike"
+    - "dragon_blood_fire"
+159:
+  Key: "dragonbone_flamed_quarterstaff"
+  Result:
+    Item: "dragonbone_flamed_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_quarterstaff"
+    - "dragon_blood_fire"
+160:
+  Key: "dragonbone_flamed_tomahawk"
+  Result:
+    Item: "dragonbone_flamed_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_tomahawk"
+    - "dragon_blood_fire"
+161:
+  Key: "dragonbone_flamed_throwing_knife"
+  Result:
+    Item: "dragonbone_flamed_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_throwing_knife"
+    - "dragon_blood_fire"
+162:
+  Key: "dragonbone_flamed_warhammer"
+  Result:
+    Item: "dragonbone_flamed_warhammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_warhammer"
+    - "dragon_blood_fire"
+163:
+  Key: "dragonbone_flamed_battleaxe"
+  Result:
+    Item: "dragonbone_flamed_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_battleaxe"
+    - "dragon_blood_fire"
+164:
+  Key: "dragonbone_flamed_longbow"
+  Result:
+    Item: "dragonbone_flamed_longbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longbow"
+    - "dragon_blood_fire"
+165:
+  Key: "dragonbone_flamed_crossbow"
+  Result:
+    Item: "dragonbone_flamed_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_crossbow"
+    - "dragon_blood_fire"
+166:
+  Key: "dragonbone_iced_rapier"
+  Result:
+    Item: "dragonbone_iced_rapier"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_rapier"
+    - "dragon_blood_ice"
+167:
+  Key: "dragonbone_iced_katana"
+  Result:
+    Item: "dragonbone_iced_katana"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_katana"
+    - "dragon_blood_ice"
+168:
+  Key: "dragonbone_iced_greatsword"
+  Result:
+    Item: "dragonbone_iced_greatsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_greatsword"
+    - "dragon_blood_ice"
+169:
+  Key: "dragonbone_iced_longsword"
+  Result:
+    Item: "dragonbone_iced_longsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longsword"
+    - "dragon_blood_ice"
+170:
+  Key: "dragonbone_iced_spear"
+  Result:
+    Item: "dragonbone_iced_spear"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_spear"
+    - "dragon_blood_ice"
+171:
+  Key: "dragonbone_iced_saber"
+  Result:
+    Item: "dragonbone_iced_saber"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_saber"
+    - "dragon_blood_ice"
+172:
+  Key: "dragonbone_iced_boomerang"
+  Result:
+    Item: "dragonbone_iced_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_boomerang"
+    - "dragon_blood_ice"
+173:
+  Key: "dragonbone_iced_dagger"
+  Result:
+    Item: "dragonbone_iced_dagger"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_dagger"
+    - "dragon_blood_ice"
+174:
+  Key: "dragonbone_iced_glaive"
+  Result:
+    Item: "dragonbone_iced_glaive"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_glaive"
+    - "dragon_blood_ice"
+175:
+  Key: "dragonbone_iced_halberd"
+  Result:
+    Item: "dragonbone_iced_halberd"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_halberd"
+    - "dragon_blood_ice"
+176:
+  Key: "dragonbone_iced_hammer"
+  Result:
+    Item: "dragonbone_iced_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_hammer"
+    - "dragon_blood_ice"
+177:
+  Key: "dragonbone_iced_javelin"
+  Result:
+    Item: "dragonbone_iced_javelin"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_javelin"
+    - "dragon_blood_ice"
+178:
+  Key: "dragonbone_iced_lance"
+  Result:
+    Item: "dragonbone_iced_lance"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_lance"
+    - "dragon_blood_ice"
+179:
+  Key: "dragonbone_iced_mace"
+  Result:
+    Item: "dragonbone_iced_mace"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_mace"
+    - "dragon_blood_ice"
+180:
+  Key: "dragonbone_iced_pike"
+  Result:
+    Item: "dragonbone_iced_pike"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_pike"
+    - "dragon_blood_ice"
+181:
+  Key: "dragonbone_iced_quarterstaff"
+  Result:
+    Item: "dragonbone_iced_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_quarterstaff"
+    - "dragon_blood_ice"
+182:
+  Key: "dragonbone_iced_tomahawk"
+  Result:
+    Item: "dragonbone_iced_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_tomahawk"
+    - "dragon_blood_ice"
+183:
+  Key: "dragonbone_iced_throwing_knife"
+  Result:
+    Item: "dragonbone_iced_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_throwing_knife"
+    - "dragon_blood_ice"
+184:
+  Key: "dragonbone_iced_warhammer"
+  Result:
+    Item: "dragonbone_iced_warhammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_warhammer"
+    - "dragon_blood_ice"
+185:
+  Key: "dragonbone_iced_battleaxe"
+  Result:
+    Item: "dragonbone_iced_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_battleaxe"
+    - "dragon_blood_ice"
+186:
+  Key: "dragonbone_iced_longbow"
+  Result:
+    Item: "dragonbone_iced_longbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longbow"
+    - "dragon_blood_ice"
+187:
+  Key: "dragonbone_iced_crossbow"
+  Result:
+    Item: "dragonbone_iced_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_crossbow"
+    - "dragon_blood_ice"
+188:
+  Key: "dragonbone_lightning_rapier"
+  Result:
+    Item: "dragonbone_lightning_rapier"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_rapier"
+    - "dragon_blood_lightning"
+189:
+  Key: "dragonbone_lightning_katana"
+  Result:
+    Item: "dragonbone_lightning_katana"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_katana"
+    - "dragon_blood_lightning"
+190:
+  Key: "dragonbone_lightning_greatsword"
+  Result:
+    Item: "dragonbone_lightning_greatsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_greatsword"
+    - "dragon_blood_lightning"
+191:
+  Key: "dragonbone_lightning_longsword"
+  Result:
+    Item: "dragonbone_lightning_longsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longsword"
+    - "dragon_blood_lightning"
+192:
+  Key: "dragonbone_lightning_spear"
+  Result:
+    Item: "dragonbone_lightning_spear"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_spear"
+    - "dragon_blood_lightning"
+193:
+  Key: "dragonbone_lightning_saber"
+  Result:
+    Item: "dragonbone_lightning_saber"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_saber"
+    - "dragon_blood_lightning"
+194:
+  Key: "dragonbone_lightning_boomerang"
+  Result:
+    Item: "dragonbone_lightning_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_boomerang"
+    - "dragon_blood_lightning"
+195:
+  Key: "dragonbone_lightning_dagger"
+  Result:
+    Item: "dragonbone_lightning_dagger"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_dagger"
+    - "dragon_blood_lightning"
+196:
+  Key: "dragonbone_lightning_glaive"
+  Result:
+    Item: "dragonbone_lightning_glaive"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_glaive"
+    - "dragon_blood_lightning"
+197:
+  Key: "dragonbone_lightning_halberd"
+  Result:
+    Item: "dragonbone_lightning_halberd"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_halberd"
+    - "dragon_blood_lightning"
+198:
+  Key: "dragonbone_lightning_hammer"
+  Result:
+    Item: "dragonbone_lightning_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_hammer"
+    - "dragon_blood_lightning"
+199:
+  Key: "dragonbone_lightning_javelin"
+  Result:
+    Item: "dragonbone_lightning_javelin"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_javelin"
+    - "dragon_blood_lightning"
+200:
+  Key: "dragonbone_lightning_lance"
+  Result:
+    Item: "dragonbone_lightning_lance"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_lance"
+    - "dragon_blood_lightning"
+201:
+  Key: "dragonbone_lightning_mace"
+  Result:
+    Item: "dragonbone_lightning_mace"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_mace"
+    - "dragon_blood_lightning"
+202:
+  Key: "dragonbone_lightning_pike"
+  Result:
+    Item: "dragonbone_lightning_pike"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_pike"
+    - "dragon_blood_lightning"
+203:
+  Key: "dragonbone_lightning_quarterstaff"
+  Result:
+    Item: "dragonbone_lightning_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_quarterstaff"
+    - "dragon_blood_lightning"
+204:
+  Key: "dragonbone_lightning_tomahawk"
+  Result:
+    Item: "dragonbone_lightning_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_tomahawk"
+    - "dragon_blood_lightning"
+205:
+  Key: "dragonbone_lightning_throwing_knife"
+  Result:
+    Item: "dragonbone_lightning_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_throwing_knife"
+    - "dragon_blood_lightning"
+206:
+  Key: "dragonbone_lightning_warhammer"
+  Result:
+    Item: "dragonbone_lightning_warhammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_warhammer"
+    - "dragon_blood_lightning"
+207:
+  Key: "dragonbone_lightning_battleaxe"
+  Result:
+    Item: "dragonbone_lightning_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_battleaxe"
+    - "dragon_blood_lightning"
+208:
+  Key: "dragonbone_lightning_longbow"
+  Result:
+    Item: "dragonbone_lightning_longbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longbow"
+    - "dragon_blood_lightning"
+209:
+  Key: "dragonbone_lightning_crossbow"
+  Result:
+    Item: "dragonbone_lightning_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_crossbow"
+    - "dragon_blood_lightning"
+210:
+  Key: "dragonsteel_fire_rapier"
+  Result:
+    Item: "dragonsteel_fire_rapier"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "handle_witherbone|dragonsteel_fire_ingot"
+211:
+  Key: "dragonsteel_fire_katana"
+  Result:
+    Item: "dragonsteel_fire_katana"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+    - "handle_witherbone"
+212:
+  Key: "dragonsteel_fire_greatsword"
+  Result:
+    Item: "dragonsteel_fire_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|handle_witherbone|dragonsteel_fire_ingot"
+213:
+  Key: "dragonsteel_fire_longsword"
+  Result:
+    Item: "dragonsteel_fire_longsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|handle_witherbone|dragonsteel_fire_ingot"
+214:
+  Key: "dragonsteel_fire_spear"
+  Result:
+    Item: "dragonsteel_fire_spear"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|pole_witherbone"
+215:
+  Key: "dragonsteel_fire_saber"
+  Result:
+    Item: "dragonsteel_fire_saber"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|handle_witherbone"
+216:
+  Key: "dragonsteel_fire_boomerang"
+  Result:
+    Item: "dragonsteel_fire_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot"
+217:
+  Key: "dragonsteel_fire_dagger"
+  Result:
+    Item: "dragonsteel_fire_dagger"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|handle_witherbone"
+218:
+  Key: "dragonsteel_fire_glaive"
+  Result:
+    Item: "dragonsteel_fire_glaive"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+    - "|pole_witherbone"
+219:
+  Key: "dragonsteel_fire_halberd"
+  Result:
+    Item: "dragonsteel_fire_halberd"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|pole_witherbone"
+220:
+  Key: "dragonsteel_fire_hammer"
+  Result:
+    Item: "dragonsteel_fire_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "|handle_witherbone"
+221:
+  Key: "dragonsteel_fire_javelin"
+  Result:
+    Item: "dragonsteel_fire_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole_witherbone|dragonsteel_fire_ingot"
+222:
+  Key: "dragonsteel_fire_lance"
+  Result:
+    Item: "dragonsteel_fire_lance"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|pole_witherbone"
+    - "handle_witherbone|dragonsteel_fire_ingot"
+223:
+  Key: "dragonsteel_fire_mace"
+  Result:
+    Item: "dragonsteel_fire_mace"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "|STICK|dragonsteel_fire_ingot"
+    - "handle_witherbone"
+224:
+  Key: "dragonsteel_fire_pike"
+  Result:
+    Item: "dragonsteel_fire_pike"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|pole_witherbone"
+    - "|pole_witherbone"
+225:
+  Key: "dragonsteel_fire_quarterstaff"
+  Result:
+    Item: "dragonsteel_fire_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole_witherbone"
+    - "|dragonsteel_fire_ingot"
+226:
+  Key: "dragonsteel_fire_tomahawk"
+  Result:
+    Item: "dragonsteel_fire_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle_witherbone|dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+227:
+  Key: "dragonsteel_fire_throwing_knife"
+  Result:
+    Item: "dragonsteel_fire_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle_witherbone|dragonsteel_fire_ingot"
+228:
+  Key: "dragonsteel_fire_warhammer"
+  Result:
+    Item: "dragonsteel_fire_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "|handle_witherbone"
+229:
+  Key: "dragonsteel_fire_battleaxe"
+  Result:
+    Item: "dragonsteel_fire_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|STICK|dragonsteel_fire_ingot"
+    - "|handle_witherbone"
+230:
+  Key: "dragonsteel_fire_longbow"
+  Result:
+    Item: "dragonsteel_fire_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle_witherbone|STICK|dragonsteel_fire_ingot"
+    - "STICK||STRING"
+    - "dragonsteel_fire_ingot|STRING|STRING"
+231:
+  Key: "dragonsteel_fire_crossbow"
+  Result:
+    Item: "dragonsteel_fire_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|BOW|dragonsteel_fire_ingot"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle_witherbone"
+232:
+  Key: "dragonsteel_ice_rapier"
+  Result:
+    Item: "dragonsteel_ice_rapier"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "handle_witherbone|dragonsteel_ice_ingot"
+233:
+  Key: "dragonsteel_ice_katana"
+  Result:
+    Item: "dragonsteel_ice_katana"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+    - "handle_witherbone"
+234:
+  Key: "dragonsteel_ice_greatsword"
+  Result:
+    Item: "dragonsteel_ice_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|handle_witherbone|dragonsteel_ice_ingot"
+235:
+  Key: "dragonsteel_ice_longsword"
+  Result:
+    Item: "dragonsteel_ice_longsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|handle_witherbone|dragonsteel_ice_ingot"
+236:
+  Key: "dragonsteel_ice_spear"
+  Result:
+    Item: "dragonsteel_ice_spear"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|pole_witherbone"
+237:
+  Key: "dragonsteel_ice_saber"
+  Result:
+    Item: "dragonsteel_ice_saber"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|handle_witherbone"
+238:
+  Key: "dragonsteel_ice_boomerang"
+  Result:
+    Item: "dragonsteel_ice_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot"
+239:
+  Key: "dragonsteel_ice_dagger"
+  Result:
+    Item: "dragonsteel_ice_dagger"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|handle_witherbone"
+240:
+  Key: "dragonsteel_ice_glaive"
+  Result:
+    Item: "dragonsteel_ice_glaive"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+    - "|pole_witherbone"
+241:
+  Key: "dragonsteel_ice_halberd"
+  Result:
+    Item: "dragonsteel_ice_halberd"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|pole_witherbone"
+242:
+  Key: "dragonsteel_ice_hammer"
+  Result:
+    Item: "dragonsteel_ice_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "|handle_witherbone"
+243:
+  Key: "dragonsteel_ice_javelin"
+  Result:
+    Item: "dragonsteel_ice_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole_witherbone|dragonsteel_ice_ingot"
+244:
+  Key: "dragonsteel_ice_lance"
+  Result:
+    Item: "dragonsteel_ice_lance"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|pole_witherbone"
+    - "handle_witherbone|dragonsteel_ice_ingot"
+245:
+  Key: "dragonsteel_ice_mace"
+  Result:
+    Item: "dragonsteel_ice_mace"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "|STICK|dragonsteel_ice_ingot"
+    - "handle_witherbone"
+246:
+  Key: "dragonsteel_ice_pike"
+  Result:
+    Item: "dragonsteel_ice_pike"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|pole_witherbone"
+    - "|pole_witherbone"
+247:
+  Key: "dragonsteel_ice_quarterstaff"
+  Result:
+    Item: "dragonsteel_ice_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole_witherbone"
+    - "|dragonsteel_ice_ingot"
+248:
+  Key: "dragonsteel_ice_tomahawk"
+  Result:
+    Item: "dragonsteel_ice_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle_witherbone|dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+249:
+  Key: "dragonsteel_ice_throwing_knife"
+  Result:
+    Item: "dragonsteel_ice_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle_witherbone|dragonsteel_ice_ingot"
+250:
+  Key: "dragonsteel_ice_warhammer"
+  Result:
+    Item: "dragonsteel_ice_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "|handle_witherbone"
+251:
+  Key: "dragonsteel_ice_battleaxe"
+  Result:
+    Item: "dragonsteel_ice_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|STICK|dragonsteel_ice_ingot"
+    - "|handle_witherbone"
+252:
+  Key: "dragonsteel_ice_longbow"
+  Result:
+    Item: "dragonsteel_ice_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle_witherbone|STICK|dragonsteel_ice_ingot"
+    - "STICK||STRING"
+    - "dragonsteel_ice_ingot|STRING|STRING"
+253:
+  Key: "dragonsteel_ice_crossbow"
+  Result:
+    Item: "dragonsteel_ice_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|BOW|dragonsteel_ice_ingot"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle_witherbone"
+254:
+  Key: "dragonsteel_lightning_rapier"
+  Result:
+    Item: "dragonsteel_lightning_rapier"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "handle_witherbone|dragonsteel_lightning_ingot"
+255:
+  Key: "dragonsteel_lightning_katana"
+  Result:
+    Item: "dragonsteel_lightning_katana"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+    - "handle_witherbone"
+256:
+  Key: "dragonsteel_lightning_greatsword"
+  Result:
+    Item: "dragonsteel_lightning_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|handle_witherbone|dragonsteel_lightning_ingot"
+257:
+  Key: "dragonsteel_lightning_longsword"
+  Result:
+    Item: "dragonsteel_lightning_longsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|handle_witherbone|dragonsteel_lightning_ingot"
+258:
+  Key: "dragonsteel_lightning_spear"
+  Result:
+    Item: "dragonsteel_lightning_spear"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|pole_witherbone"
+259:
+  Key: "dragonsteel_lightning_saber"
+  Result:
+    Item: "dragonsteel_lightning_saber"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|handle_witherbone"
+260:
+  Key: "dragonsteel_lightning_boomerang"
+  Result:
+    Item: "dragonsteel_lightning_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot"
+261:
+  Key: "dragonsteel_lightning_dagger"
+  Result:
+    Item: "dragonsteel_lightning_dagger"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|handle_witherbone"
+262:
+  Key: "dragonsteel_lightning_glaive"
+  Result:
+    Item: "dragonsteel_lightning_glaive"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+    - "|pole_witherbone"
+263:
+  Key: "dragonsteel_lightning_halberd"
+  Result:
+    Item: "dragonsteel_lightning_halberd"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|pole_witherbone"
+264:
+  Key: "dragonsteel_lightning_hammer"
+  Result:
+    Item: "dragonsteel_lightning_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "|handle_witherbone"
+265:
+  Key: "dragonsteel_lightning_javelin"
+  Result:
+    Item: "dragonsteel_lightning_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole_witherbone|dragonsteel_lightning_ingot"
+266:
+  Key: "dragonsteel_lightning_lance"
+  Result:
+    Item: "dragonsteel_lightning_lance"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|pole_witherbone"
+    - "handle_witherbone|dragonsteel_lightning_ingot"
+267:
+  Key: "dragonsteel_lightning_mace"
+  Result:
+    Item: "dragonsteel_lightning_mace"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "|STICK|dragonsteel_lightning_ingot"
+    - "handle_witherbone"
+268:
+  Key: "dragonsteel_lightning_pike"
+  Result:
+    Item: "dragonsteel_lightning_pike"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|pole_witherbone"
+    - "|pole_witherbone"
+269:
+  Key: "dragonsteel_lightning_quarterstaff"
+  Result:
+    Item: "dragonsteel_lightning_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole_witherbone"
+    - "|dragonsteel_lightning_ingot"
+270:
+  Key: "dragonsteel_lightning_tomahawk"
+  Result:
+    Item: "dragonsteel_lightning_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle_witherbone|dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+271:
+  Key: "dragonsteel_lightning_throwing_knife"
+  Result:
+    Item: "dragonsteel_lightning_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle_witherbone|dragonsteel_lightning_ingot"
+272:
+  Key: "dragonsteel_lightning_warhammer"
+  Result:
+    Item: "dragonsteel_lightning_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "|handle_witherbone"
+273:
+  Key: "dragonsteel_lightning_battleaxe"
+  Result:
+    Item: "dragonsteel_lightning_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|STICK|dragonsteel_lightning_ingot"
+    - "|handle_witherbone"
+274:
+  Key: "dragonsteel_lightning_longbow"
+  Result:
+    Item: "dragonsteel_lightning_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle_witherbone|STICK|dragonsteel_lightning_ingot"
+    - "STICK||STRING"
+    - "dragonsteel_lightning_ingot|STRING|STRING"
+275:
+  Key: "dragonsteel_lightning_crossbow"
+  Result:
+    Item: "dragonsteel_lightning_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|BOW|dragonsteel_lightning_ingot"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle_witherbone"
+276:
+  Key: "netherite_rapier"
+  Result:
+    Item: "netherite_rapier"
+    Amount: 1
+  Base: "diamond_rapier"
+  Addition: "NETHERITE_SCRAP"
+277:
+  Key: "netherite_katana"
+  Result:
+    Item: "netherite_katana"
+    Amount: 1
+  Base: "diamond_katana"
+  Addition: "NETHERITE_SCRAP"
+278:
+  Key: "netherite_greatsword"
+  Result:
+    Item: "netherite_greatsword"
+    Amount: 1
+  Base: "diamond_greatsword"
+  Addition: "NETHERITE_SCRAP"
+279:
+  Key: "netherite_longsword"
+  Result:
+    Item: "netherite_longsword"
+    Amount: 1
+  Base: "diamond_longsword"
+  Addition: "NETHERITE_SCRAP"
+280:
+  Key: "netherite_spear"
+  Result:
+    Item: "netherite_spear"
+    Amount: 1
+  Base: "diamond_spear"
+  Addition: "NETHERITE_SCRAP"
+281:
+  Key: "netherite_saber"
+  Result:
+    Item: "netherite_saber"
+    Amount: 1
+  Base: "diamond_saber"
+  Addition: "NETHERITE_SCRAP"
+282:
+  Key: "netherite_boomerang"
+  Result:
+    Item: "netherite_boomerang"
+    Amount: 1
+  Base: "diamond_boomerang"
+  Addition: "NETHERITE_SCRAP"
+283:
+  Key: "netherite_dagger"
+  Result:
+    Item: "netherite_dagger"
+    Amount: 1
+  Base: "diamond_dagger"
+  Addition: "NETHERITE_SCRAP"
+284:
+  Key: "netherite_glaive"
+  Result:
+    Item: "netherite_glaive"
+    Amount: 1
+  Base: "diamond_glaive"
+  Addition: "NETHERITE_SCRAP"
+285:
+  Key: "netherite_halberd"
+  Result:
+    Item: "netherite_halberd"
+    Amount: 1
+  Base: "diamond_halberd"
+  Addition: "NETHERITE_SCRAP"
+286:
+  Key: "netherite_hammer"
+  Result:
+    Item: "netherite_hammer"
+    Amount: 1
+  Base: "diamond_hammer"
+  Addition: "NETHERITE_SCRAP"
+287:
+  Key: "netherite_javelin"
+  Result:
+    Item: "netherite_javelin"
+    Amount: 1
+  Base: "diamond_javelin"
+  Addition: "NETHERITE_SCRAP"
+288:
+  Key: "netherite_lance"
+  Result:
+    Item: "netherite_lance"
+    Amount: 1
+  Base: "diamond_lance"
+  Addition: "NETHERITE_SCRAP"
+289:
+  Key: "netherite_mace"
+  Result:
+    Item: "netherite_mace"
+    Amount: 1
+  Base: "diamond_mace"
+  Addition: "NETHERITE_SCRAP"
+290:
+  Key: "netherite_pike"
+  Result:
+    Item: "netherite_pike"
+    Amount: 1
+  Base: "diamond_pike"
+  Addition: "NETHERITE_SCRAP"
+291:
+  Key: "netherite_quarterstaff"
+  Result:
+    Item: "netherite_quarterstaff"
+    Amount: 1
+  Base: "diamond_quarterstaff"
+  Addition: "NETHERITE_SCRAP"
+292:
+  Key: "netherite_tomahawk"
+  Result:
+    Item: "netherite_tomahawk"
+    Amount: 1
+  Base: "diamond_tomahawk"
+  Addition: "NETHERITE_SCRAP"
+293:
+  Key: "netherite_throwing_knife"
+  Result:
+    Item: "netherite_throwing_knife"
+    Amount: 1
+  Base: "diamond_throwing_knife"
+  Addition: "NETHERITE_SCRAP"
+294:
+  Key: "netherite_warhammer"
+  Result:
+    Item: "netherite_warhammer"
+    Amount: 1
+  Base: "diamond_warhammer"
+  Addition: "NETHERITE_SCRAP"
+295:
+  Key: "netherite_battleaxe"
+  Result:
+    Item: "netherite_battleaxe"
+    Amount: 1
+  Base: "diamond_battleaxe"
+  Addition: "NETHERITE_SCRAP"
+296:
+  Key: "netherite_longbow"
+  Result:
+    Item: "netherite_longbow"
+    Amount: 1
+  Base: "diamond_longbow"
+  Addition: "NETHERITE_SCRAP"
+297:
+  Key: "netherite_crossbow"
+  Result:
+    Item: "netherite_crossbow"
+    Amount: 1
+  Base: "diamond_crossbow"
+  Addition: "NETHERITE_SCRAP"
+298:
+  Key: "diamond_rapier"
+  Result:
+    Item: "diamond_rapier"
+    Amount: 1
+  Ingredients:
+    - "||DIAMOND"
+    - "DIAMOND|DIAMOND"
+    - "handle|DIAMOND"
+299:
+  Key: "diamond_katana"
+  Result:
+    Item: "diamond_katana"
+    Amount: 1
+  Ingredients:
+    - "||DIAMOND"
+    - "|DIAMOND"
+    - "handle"
+300:
+  Key: "diamond_greatsword"
+  Result:
+    Item: "diamond_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "DIAMOND|DIAMOND|DIAMOND"
+    - "DIAMOND|handle|DIAMOND"
+301:
+  Key: "diamond_longsword"
+  Result:
+    Item: "diamond_longsword"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|DIAMOND"
+    - "DIAMOND|handle|DIAMOND"
+302:
+  Key: "diamond_spear"
+  Result:
+    Item: "diamond_spear"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|pole"
+303:
+  Key: "diamond_saber"
+  Result:
+    Item: "diamond_saber"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|DIAMOND"
+    - "DIAMOND|handle"
+304:
+  Key: "diamond_boomerang"
+  Result:
+    Item: "diamond_boomerang"
+    Amount: 1
+  Ingredients:
+    - "DIAMOND|DIAMOND|DIAMOND"
+    - "DIAMOND"
+    - "DIAMOND"
+305:
+  Key: "diamond_dagger"
+  Result:
+    Item: "diamond_dagger"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|handle"
+306:
+  Key: "diamond_glaive"
+  Result:
+    Item: "diamond_glaive"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|DIAMOND"
+    - "|pole"
+307:
+  Key: "diamond_halberd"
+  Result:
+    Item: "diamond_halberd"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "DIAMOND|DIAMOND"
+    - "DIAMOND|pole"
+308:
+  Key: "diamond_hammer"
+  Result:
+    Item: "diamond_hammer"
+    Amount: 1
+  Ingredients:
+    - "DIAMOND|DIAMOND|DIAMOND"
+    - "DIAMOND|DIAMOND|DIAMOND"
+    - "|handle"
+309:
+  Key: "diamond_javelin"
+  Result:
+    Item: "diamond_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|DIAMOND"
+310:
+  Key: "diamond_lance"
+  Result:
+    Item: "diamond_lance"
+    Amount: 1
+  Ingredients:
+    - "||DIAMOND"
+    - "DIAMOND|pole"
+    - "handle|DIAMOND"
+311:
+  Key: "diamond_mace"
+  Result:
+    Item: "diamond_mace"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND|DIAMOND"
+    - "|STICK|DIAMOND"
+    - "handle"
+312:
+  Key: "diamond_pike"
+  Result:
+    Item: "diamond_pike"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|pole"
+    - "|pole"
+313:
+  Key: "diamond_quarterstaff"
+  Result:
+    Item: "diamond_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|DIAMOND"
+314:
+  Key: "diamond_tomahawk"
+  Result:
+    Item: "diamond_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|DIAMOND"
+    - "|DIAMOND"
+315:
+  Key: "diamond_throwing_knife"
+  Result:
+    Item: "diamond_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|DIAMOND"
+316:
+  Key: "diamond_warhammer"
+  Result:
+    Item: "diamond_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "DIAMOND|DIAMOND"
+    - "|handle"
+317:
+  Key: "diamond_battleaxe"
+  Result:
+    Item: "diamond_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "DIAMOND|DIAMOND|DIAMOND"
+    - "DIAMOND|STICK|DIAMOND"
+    - "|handle"
+318:
+  Key: "diamond_longbow"
+  Result:
+    Item: "diamond_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|DIAMOND"
+    - "STICK||STRING"
+    - "DIAMOND|STRING|STRING"
+319:
+  Key: "diamond_crossbow"
+  Result:
+    Item: "diamond_crossbow"
+    Amount: 1
+  Ingredients:
+    - "DIAMOND|BOW|DIAMOND"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle"
+320:
+  Key: "iron_rapier"
+  Result:
+    Item: "iron_rapier"
+    Amount: 1
+  Ingredients:
+    - "||IRON_INGOT"
+    - "IRON_INGOT|IRON_INGOT"
+    - "handle|IRON_INGOT"
+321:
+  Key: "iron_katana"
+  Result:
+    Item: "iron_katana"
+    Amount: 1
+  Ingredients:
+    - "||IRON_INGOT"
+    - "|IRON_INGOT"
+    - "handle"
+322:
+  Key: "iron_greatsword"
+  Result:
+    Item: "iron_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "IRON_INGOT|IRON_INGOT|IRON_INGOT"
+    - "IRON_INGOT|handle|IRON_INGOT"
+323:
+  Key: "iron_longsword"
+  Result:
+    Item: "iron_longsword"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|IRON_INGOT"
+    - "IRON_INGOT|handle|IRON_INGOT"
+324:
+  Key: "iron_spear"
+  Result:
+    Item: "iron_spear"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|pole"
+325:
+  Key: "iron_saber"
+  Result:
+    Item: "iron_saber"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|IRON_INGOT"
+    - "IRON_INGOT|handle"
+326:
+  Key: "iron_boomerang"
+  Result:
+    Item: "iron_boomerang"
+    Amount: 1
+  Ingredients:
+    - "IRON_INGOT|IRON_INGOT|IRON_INGOT"
+    - "IRON_INGOT"
+    - "IRON_INGOT"
+327:
+  Key: "iron_dagger"
+  Result:
+    Item: "iron_dagger"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|handle"
+328:
+  Key: "iron_glaive"
+  Result:
+    Item: "iron_glaive"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|IRON_INGOT"
+    - "|pole"
+329:
+  Key: "iron_halberd"
+  Result:
+    Item: "iron_halberd"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "IRON_INGOT|IRON_INGOT"
+    - "IRON_INGOT|pole"
+330:
+  Key: "iron_hammer"
+  Result:
+    Item: "iron_hammer"
+    Amount: 1
+  Ingredients:
+    - "IRON_INGOT|IRON_INGOT|IRON_INGOT"
+    - "IRON_INGOT|IRON_INGOT|IRON_INGOT"
+    - "|handle"
+331:
+  Key: "iron_javelin"
+  Result:
+    Item: "iron_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|IRON_INGOT"
+332:
+  Key: "iron_lance"
+  Result:
+    Item: "iron_lance"
+    Amount: 1
+  Ingredients:
+    - "||IRON_INGOT"
+    - "IRON_INGOT|pole"
+    - "handle|IRON_INGOT"
+333:
+  Key: "iron_mace"
+  Result:
+    Item: "iron_mace"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT|IRON_INGOT"
+    - "|STICK|IRON_INGOT"
+    - "handle"
+334:
+  Key: "iron_pike"
+  Result:
+    Item: "iron_pike"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|pole"
+    - "|pole"
+335:
+  Key: "iron_quarterstaff"
+  Result:
+    Item: "iron_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|IRON_INGOT"
+336:
+  Key: "iron_tomahawk"
+  Result:
+    Item: "iron_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|IRON_INGOT"
+    - "|IRON_INGOT"
+337:
+  Key: "iron_throwing_knife"
+  Result:
+    Item: "iron_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|IRON_INGOT"
+338:
+  Key: "iron_warhammer"
+  Result:
+    Item: "iron_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "IRON_INGOT|IRON_INGOT"
+    - "|handle"
+339:
+  Key: "iron_battleaxe"
+  Result:
+    Item: "iron_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "IRON_INGOT|IRON_INGOT|IRON_INGOT"
+    - "IRON_INGOT|STICK|IRON_INGOT"
+    - "|handle"
+340:
+  Key: "iron_longbow"
+  Result:
+    Item: "iron_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|IRON_INGOT"
+    - "STICK||STRING"
+    - "IRON_INGOT|STRING|STRING"
+341:
+  Key: "iron_crossbow"
+  Result:
+    Item: "iron_crossbow"
+    Amount: 1
+  Ingredients:
+    - "IRON_INGOT|BOW|IRON_INGOT"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle"
+342:
+  Key: "gold_rapier"
+  Result:
+    Item: "gold_rapier"
+    Amount: 1
+  Ingredients:
+    - "||GOLD_INGOT"
+    - "GOLD_INGOT|GOLD_INGOT"
+    - "handle|GOLD_INGOT"
+343:
+  Key: "gold_katana"
+  Result:
+    Item: "gold_katana"
+    Amount: 1
+  Ingredients:
+    - "||GOLD_INGOT"
+    - "|GOLD_INGOT"
+    - "handle"
+344:
+  Key: "gold_greatsword"
+  Result:
+    Item: "gold_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "GOLD_INGOT|handle|GOLD_INGOT"
+345:
+  Key: "gold_longsword"
+  Result:
+    Item: "gold_longsword"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|GOLD_INGOT"
+    - "GOLD_INGOT|handle|GOLD_INGOT"
+346:
+  Key: "gold_spear"
+  Result:
+    Item: "gold_spear"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|pole"
+347:
+  Key: "gold_saber"
+  Result:
+    Item: "gold_saber"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|GOLD_INGOT"
+    - "GOLD_INGOT|handle"
+348:
+  Key: "gold_boomerang"
+  Result:
+    Item: "gold_boomerang"
+    Amount: 1
+  Ingredients:
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "GOLD_INGOT"
+    - "GOLD_INGOT"
+349:
+  Key: "gold_dagger"
+  Result:
+    Item: "gold_dagger"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|handle"
+350:
+  Key: "gold_glaive"
+  Result:
+    Item: "gold_glaive"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|GOLD_INGOT"
+    - "|pole"
+351:
+  Key: "gold_halberd"
+  Result:
+    Item: "gold_halberd"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "GOLD_INGOT|GOLD_INGOT"
+    - "GOLD_INGOT|pole"
+352:
+  Key: "gold_hammer"
+  Result:
+    Item: "gold_hammer"
+    Amount: 1
+  Ingredients:
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "|handle"
+353:
+  Key: "gold_javelin"
+  Result:
+    Item: "gold_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|GOLD_INGOT"
+354:
+  Key: "gold_lance"
+  Result:
+    Item: "gold_lance"
+    Amount: 1
+  Ingredients:
+    - "||GOLD_INGOT"
+    - "GOLD_INGOT|pole"
+    - "handle|GOLD_INGOT"
+355:
+  Key: "gold_mace"
+  Result:
+    Item: "gold_mace"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT|GOLD_INGOT"
+    - "|STICK|GOLD_INGOT"
+    - "handle"
+356:
+  Key: "gold_pike"
+  Result:
+    Item: "gold_pike"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|pole"
+    - "|pole"
+357:
+  Key: "gold_quarterstaff"
+  Result:
+    Item: "gold_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|GOLD_INGOT"
+358:
+  Key: "gold_tomahawk"
+  Result:
+    Item: "gold_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|GOLD_INGOT"
+    - "|GOLD_INGOT"
+359:
+  Key: "gold_throwing_knife"
+  Result:
+    Item: "gold_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|GOLD_INGOT"
+360:
+  Key: "gold_warhammer"
+  Result:
+    Item: "gold_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "GOLD_INGOT|GOLD_INGOT"
+    - "|handle"
+361:
+  Key: "gold_battleaxe"
+  Result:
+    Item: "gold_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "GOLD_INGOT|STICK|GOLD_INGOT"
+    - "|handle"
+362:
+  Key: "gold_longbow"
+  Result:
+    Item: "gold_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|GOLD_INGOT"
+    - "STICK||STRING"
+    - "GOLD_INGOT|STRING|STRING"
+363:
+  Key: "gold_crossbow"
+  Result:
+    Item: "gold_crossbow"
+    Amount: 1
+  Ingredients:
+    - "GOLD_INGOT|BOW|GOLD_INGOT"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle"
+364:
+  Key: "stone_rapier"
+  Result:
+    Item: "stone_rapier"
+    Amount: 1
+  Ingredients:
+    - "||COBBLESTONE"
+    - "COBBLESTONE|COBBLESTONE"
+    - "handle|COBBLESTONE"
+365:
+  Key: "stone_katana"
+  Result:
+    Item: "stone_katana"
+    Amount: 1
+  Ingredients:
+    - "||COBBLESTONE"
+    - "|COBBLESTONE"
+    - "handle"
+366:
+  Key: "stone_greatsword"
+  Result:
+    Item: "stone_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "COBBLESTONE|COBBLESTONE|COBBLESTONE"
+    - "COBBLESTONE|handle|COBBLESTONE"
+367:
+  Key: "stone_longsword"
+  Result:
+    Item: "stone_longsword"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|COBBLESTONE"
+    - "COBBLESTONE|handle|COBBLESTONE"
+368:
+  Key: "stone_spear"
+  Result:
+    Item: "stone_spear"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|pole"
+369:
+  Key: "stone_saber"
+  Result:
+    Item: "stone_saber"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|COBBLESTONE"
+    - "COBBLESTONE|handle"
+370:
+  Key: "stone_boomerang"
+  Result:
+    Item: "stone_boomerang"
+    Amount: 1
+  Ingredients:
+    - "COBBLESTONE|COBBLESTONE|COBBLESTONE"
+    - "COBBLESTONE"
+    - "COBBLESTONE"
+371:
+  Key: "stone_dagger"
+  Result:
+    Item: "stone_dagger"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|handle"
+372:
+  Key: "stone_glaive"
+  Result:
+    Item: "stone_glaive"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|COBBLESTONE"
+    - "|pole"
+373:
+  Key: "stone_halberd"
+  Result:
+    Item: "stone_halberd"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "COBBLESTONE|COBBLESTONE"
+    - "COBBLESTONE|pole"
+374:
+  Key: "stone_hammer"
+  Result:
+    Item: "stone_hammer"
+    Amount: 1
+  Ingredients:
+    - "COBBLESTONE|COBBLESTONE|COBBLESTONE"
+    - "COBBLESTONE|COBBLESTONE|COBBLESTONE"
+    - "|handle"
+375:
+  Key: "stone_javelin"
+  Result:
+    Item: "stone_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|COBBLESTONE"
+376:
+  Key: "stone_lance"
+  Result:
+    Item: "stone_lance"
+    Amount: 1
+  Ingredients:
+    - "||COBBLESTONE"
+    - "COBBLESTONE|pole"
+    - "handle|COBBLESTONE"
+377:
+  Key: "stone_mace"
+  Result:
+    Item: "stone_mace"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE|COBBLESTONE"
+    - "|STICK|COBBLESTONE"
+    - "handle"
+378:
+  Key: "stone_pike"
+  Result:
+    Item: "stone_pike"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|pole"
+    - "|pole"
+379:
+  Key: "stone_quarterstaff"
+  Result:
+    Item: "stone_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|COBBLESTONE"
+380:
+  Key: "stone_tomahawk"
+  Result:
+    Item: "stone_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|COBBLESTONE"
+    - "|COBBLESTONE"
+381:
+  Key: "stone_throwing_knife"
+  Result:
+    Item: "stone_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|COBBLESTONE"
+382:
+  Key: "stone_warhammer"
+  Result:
+    Item: "stone_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "COBBLESTONE|COBBLESTONE"
+    - "|handle"
+383:
+  Key: "stone_battleaxe"
+  Result:
+    Item: "stone_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "COBBLESTONE|COBBLESTONE|COBBLESTONE"
+    - "COBBLESTONE|STICK|COBBLESTONE"
+    - "|handle"
+384:
+  Key: "leather_longbow"
+  Result:
+    Item: "leather_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|COBBLESTONE"
+    - "STICK||STRING"
+    - "COBBLESTONE|STRING|STRING"
+385:
+  Key: "leather_crossbow"
+  Result:
+    Item: "leather_crossbow"
+    Amount: 1
+  Ingredients:
+    - "COBBLESTONE|BOW|COBBLESTONE"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle"
+386:
+  Key: "wooden_rapier"
+  Result:
+    Item: "wooden_rapier"
+    Amount: 1
+  Ingredients:
+    - "||PLANKS"
+    - "PLANKS|PLANKS"
+    - "handle|PLANKS"
+387:
+  Key: "wooden_katana"
+  Result:
+    Item: "wooden_katana"
+    Amount: 1
+  Ingredients:
+    - "||PLANKS"
+    - "|PLANKS"
+    - "handle"
+388:
+  Key: "wooden_greatsword"
+  Result:
+    Item: "wooden_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "PLANKS|PLANKS|PLANKS"
+    - "PLANKS|handle|PLANKS"
+389:
+  Key: "wooden_longsword"
+  Result:
+    Item: "wooden_longsword"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|PLANKS"
+    - "PLANKS|handle|PLANKS"
+390:
+  Key: "wooden_spear"
+  Result:
+    Item: "wooden_spear"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|pole"
+391:
+  Key: "wooden_saber"
+  Result:
+    Item: "wooden_saber"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|PLANKS"
+    - "PLANKS|handle"
+392:
+  Key: "wooden_boomerang"
+  Result:
+    Item: "wooden_boomerang"
+    Amount: 1
+  Ingredients:
+    - "PLANKS|PLANKS|PLANKS"
+    - "PLANKS"
+    - "PLANKS"
+393:
+  Key: "wooden_dagger"
+  Result:
+    Item: "wooden_dagger"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|handle"
+394:
+  Key: "wooden_glaive"
+  Result:
+    Item: "wooden_glaive"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|PLANKS"
+    - "|pole"
+395:
+  Key: "wooden_halberd"
+  Result:
+    Item: "wooden_halberd"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "PLANKS|PLANKS"
+    - "PLANKS|pole"
+396:
+  Key: "wooden_hammer"
+  Result:
+    Item: "wooden_hammer"
+    Amount: 1
+  Ingredients:
+    - "PLANKS|PLANKS|PLANKS"
+    - "PLANKS|PLANKS|PLANKS"
+    - "|handle"
+397:
+  Key: "wooden_javelin"
+  Result:
+    Item: "wooden_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|PLANKS"
+398:
+  Key: "wooden_lance"
+  Result:
+    Item: "wooden_lance"
+    Amount: 1
+  Ingredients:
+    - "||PLANKS"
+    - "PLANKS|pole"
+    - "handle|PLANKS"
+399:
+  Key: "wooden_mace"
+  Result:
+    Item: "wooden_mace"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS|PLANKS"
+    - "|STICK|PLANKS"
+    - "handle"
+400:
+  Key: "wooden_pike"
+  Result:
+    Item: "wooden_pike"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|pole"
+    - "|pole"
+401:
+  Key: "wooden_quarterstaff"
+  Result:
+    Item: "wooden_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|PLANKS"
+402:
+  Key: "wooden_tomahawk"
+  Result:
+    Item: "wooden_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|PLANKS"
+    - "|PLANKS"
+403:
+  Key: "wooden_throwing_knife"
+  Result:
+    Item: "wooden_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|PLANKS"
+404:
+  Key: "wooden_warhammer"
+  Result:
+    Item: "wooden_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "PLANKS|PLANKS"
+    - "|handle"
+405:
+  Key: "wooden_battleaxe"
+  Result:
+    Item: "wooden_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "PLANKS|PLANKS|PLANKS"
+    - "PLANKS|STICK|PLANKS"
+    - "|handle"
+406:
+  Key: "wooden_longbow"
+  Result:
+    Item: "wooden_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|PLANKS"
+    - "STICK||STRING"
+    - "PLANKS|STRING|STRING"
+407:
+  Key: "wooden_crossbow"
+  Result:
+    Item: "wooden_crossbow"
+    Amount: 1
+  Ingredients:
+    - "PLANKS|BOW|PLANKS"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle"
+408:
+  Key: "copper_rapier"
+  Result:
+    Item: "copper_rapier"
+    Amount: 1
+  Ingredients:
+    - "||COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT"
+    - "handle|COPPER_INGOT"
+409:
+  Key: "copper_katana"
+  Result:
+    Item: "copper_katana"
+    Amount: 1
+  Ingredients:
+    - "||COPPER_INGOT"
+    - "|COPPER_INGOT"
+    - "handle"
+410:
+  Key: "copper_greatsword"
+  Result:
+    Item: "copper_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT|handle|COPPER_INGOT"
+411:
+  Key: "copper_longsword"
+  Result:
+    Item: "copper_longsword"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|COPPER_INGOT"
+    - "COPPER_INGOT|handle|COPPER_INGOT"
+412:
+  Key: "copper_spear"
+  Result:
+    Item: "copper_spear"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|pole"
+413:
+  Key: "copper_saber"
+  Result:
+    Item: "copper_saber"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|COPPER_INGOT"
+    - "COPPER_INGOT|handle"
+414:
+  Key: "copper_boomerang"
+  Result:
+    Item: "copper_boomerang"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT"
+    - "COPPER_INGOT"
+415:
+  Key: "copper_dagger"
+  Result:
+    Item: "copper_dagger"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|handle"
+416:
+  Key: "copper_glaive"
+  Result:
+    Item: "copper_glaive"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|COPPER_INGOT"
+    - "|pole"
+417:
+  Key: "copper_halberd"
+  Result:
+    Item: "copper_halberd"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT|pole"
+418:
+  Key: "copper_hammer"
+  Result:
+    Item: "copper_hammer"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "|handle"
+419:
+  Key: "copper_javelin"
+  Result:
+    Item: "copper_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|COPPER_INGOT"
+420:
+  Key: "copper_lance"
+  Result:
+    Item: "copper_lance"
+    Amount: 1
+  Ingredients:
+    - "||COPPER_INGOT"
+    - "COPPER_INGOT|pole"
+    - "handle|COPPER_INGOT"
+421:
+  Key: "copper_mace"
+  Result:
+    Item: "copper_mace"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT|COPPER_INGOT"
+    - "|STICK|COPPER_INGOT"
+    - "handle"
+422:
+  Key: "copper_pike"
+  Result:
+    Item: "copper_pike"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|pole"
+    - "|pole"
+423:
+  Key: "copper_quarterstaff"
+  Result:
+    Item: "copper_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|COPPER_INGOT"
+424:
+  Key: "copper_tomahawk"
+  Result:
+    Item: "copper_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|COPPER_INGOT"
+    - "|COPPER_INGOT"
+425:
+  Key: "copper_throwing_knife"
+  Result:
+    Item: "copper_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|COPPER_INGOT"
+426:
+  Key: "copper_warhammer"
+  Result:
+    Item: "copper_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT"
+    - "|handle"
+427:
+  Key: "copper_battleaxe"
+  Result:
+    Item: "copper_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT|STICK|COPPER_INGOT"
+    - "|handle"
+428:
+  Key: "copper_longbow"
+  Result:
+    Item: "copper_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|COPPER_INGOT"
+    - "STICK||STRING"
+    - "COPPER_INGOT|STRING|STRING"
+429:
+  Key: "copper_crossbow"
+  Result:
+    Item: "copper_crossbow"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|BOW|COPPER_INGOT"
+    - "COPPER_INGOT|TRIPWIRE_HOOK|COPPER_INGOT"
+    - "|handle"
+430:
+  Key: "handle_0"
+  Result:
+    Item: "handle"
+    Amount: 1
+  Ingredients:
+    - "STICK"
+    - "STRING"
+431:
+  Key: "handle_1"
+  Result:
+    Item: "handle"
+    Amount: 4
+  Ingredients:
+    - "STICK|STICK|STICK"
+    - "STICK|WOOL"
+432:
+  Key: "handle_2"
+  Result:
+    Item: "handle"
+    Amount: 4
+  Ingredients:
+    - "STICK|STICK|STICK"
+    - "STICK|LEATHER"
+433:
+  Key: "pole_0"
+  Result:
+    Item: "pole"
+    Amount: 1
+  Ingredients:
+    - "STICK"
+    - "STICK|STRING"
+    - "STICK"
+434:
+  Key: "pole_1"
+  Result:
+    Item: "pole"
+    Amount: 4
+  Ingredients:
+    - "STICK|STICK|STICK"
+    - "STICK|STICK|STICK"
+    - "STICK|STICK|WOOL"
+435:
+  Key: "pole_2"
+  Result:
+    Item: "pole"
+    Amount: 4
+  Ingredients:
+    - "STICK|STICK|STICK"
+    - "STICK|STICK|STICK"
+    - "STICK|STICK|LEATHER"
+436:
+  Key: "handle_witherbone"
+  Result:
+    Item: "handle_witherbone"
+    Amount: 1
+  Ingredients:
+    - "handle"
+    - "witherbone"
+437:
+  Key: "pole_witherbone"
+  Result:
+    Item: "pole_witherbone"
+    Amount: 1
+  Ingredients:
+    - "pole"
+    - "witherbone"
+438:
+  Key: "balloon"
+  Result:
+    Item: "balloon"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt|WOOL|spectral_silt"
+    - "WOOL|spectral_silt|WOOL"
+    - "spectral_silt|WOOL|spectral_silt"
+439:
+  Key: "shield_cobalt"
+  Result:
+    Item: "shield_cobalt"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt|spectral_silt|spectral_silt"
+    - "spectral_silt|SHIELD|spectral_silt"
+    - "spectral_silt|spectral_silt|spectral_silt"
+440:
+  Key: "obsidian_skull"
+  Result:
+    Item: "obsidian_skull"
+    Amount: 1
+  Ingredients:
+    - "OBSIDIAN|BLAZE_POWDER|OBSIDIAN"
+    - "potion_fire_resistance|WITHER_SKELETON_SKULL|potion_fire_resistance"
+    - "OBSIDIAN|BLAZE_POWDER|OBSIDIAN"
+441:
+  Key: "sunglasses"
+  Result:
+    Item: "sunglasses"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt||spectral_silt"
+    - "GLASS|STICK|GLASS"
+    - "spectral_silt||spectral_silt"
+442:
+  Key: "dragonscale_black_cracked"
+  Result:
+    Item: "dragonscale_black_cracked"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt|spectral_silt|spectral_silt"
+    - "spectral_silt|dragonscale_ender|spectral_silt"
+    - "spectral_silt|spectral_silt|spectral_silt"
+443:
+  Key: "dragonscale_black_bauble"
+  Result:
+    Item: "dragonscale_black_bauble"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "NETHER_STAR|dragonscale_ender|dragonscale_black_cracked"
+    - ""
+444:
+  Key: "ankh_charm"
+  Result:
+    Item: "ankh_charm"
+    Amount: 1
+  Ingredients:
+    - "GOLD_INGOT|sunglasses|GOLD_INGOT"
+    - "ring_free_action|dragonscale_mixed_color|forbidden_fruit"
+    - "GOLD_INGOT|vitamins|GOLD_INGOT"
+445:
+  Key: "scroll_warped"
+  Result:
+    Item: "scroll_warped"
+    Amount: 3
+  Ingredients:
+    - "ENDER_PEARL|PURPLE_DYE|ENDER_PEARL"
+    - "PAPER|PAPER|PAPER"
+    - "GOLD_NUGGET|PURPLE_DYE|GOLD_NUGGET"
+446:
+  Key: "dragonsteel_fire_block"
+  Result:
+    Item: "dragonsteel_fire_block"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+447:
+  Key: "dragonsteel_ice_block"
+  Result:
+    Item: "dragonsteel_ice_block"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+448:
+  Key: "dragonsteel_lightning_block"
+  Result:
+    Item: "dragonsteel_lightning_block"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+449:
+  Key: "dragonsteel_fire_ingot_block"
+  Result:
+    Item: "dragonsteel_fire_ingot"
+    Amount: 9
+  Ingredients:
+    - "dragonsteel_fire_block"
+450:
+  Key: "dragonsteel_ice_ingot_block"
+  Result:
+    Item: "dragonsteel_ice_ingot"
+    Amount: 9
+  Ingredients:
+    - "dragonsteel_ice_block"
+451:
+  Key: "dragonsteel_lightning_ingot_block"
+  Result:
+    Item: "dragonsteel_lightning_ingot"
+    Amount: 9
+  Ingredients:
+    - "dragonsteel_lightning_block"
+452:
+  Key: "wooden_club"
+  Result:
+    Item: "wooden_club"
+    Amount: 1
+  Ingredients:
+    - "|LOGS"
+    - "LOGS"
+453:
+  Key: "studded_club"
+  Result:
+    Item: "studded_club"
+    Amount: 1
+  Ingredients:
+    - "wooden_club"
+    - "IRON_INGOT"

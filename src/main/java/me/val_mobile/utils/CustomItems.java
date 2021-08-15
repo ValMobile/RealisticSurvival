@@ -17,7 +17,7 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.rlcraft.RLCraftPlugin;
-import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 /**
  * CustomItems is a utility class creating and storing every custom item
@@ -26,6 +26,11 @@ import org.bukkit.inventory.ItemStack;
  * @since 1.0
  */
 public class CustomItems {
+
+    private final FileConfiguration config = CustomConfig.getItemConfig();
+    private final FileConfiguration noTreePunching = CustomConfig.getNoTreePunchingConfig();
+    private final FileConfiguration iceFire = CustomConfig.getIceFireGearConfig();
+    private final FileConfiguration spartanWeaponry = CustomConfig.getSpartanWeaponryConfig();
 
     private ItemStack flintAxe;
     private ItemStack flintKnife;
@@ -37,18 +42,18 @@ public class CustomItems {
     private ItemStack flintShard;
     private ItemStack dragonBone;
     private ItemStack witherbone;
-    private ItemStack blueDragonScales;
-    private ItemStack bronzeDragonScales;
-    private ItemStack grayDragonScales;
-    private ItemStack greenDragonScales;
-    private ItemStack redDragonScales;
-    private ItemStack sapphireDragonScales;
-    private ItemStack silverDragonScales;
-    private ItemStack whiteDragonScales;
-    private ItemStack amethystDragonScales;
-    private ItemStack blackDragonScales;
-    private ItemStack copperDragonScales;
-    private ItemStack electricDragonScales;
+    private ItemStack blueDragonscales;
+    private ItemStack bronzeDragonscales;
+    private ItemStack grayDragonscales;
+    private ItemStack greenDragonscales;
+    private ItemStack redDragonscales;
+    private ItemStack sapphireDragonscales;
+    private ItemStack silverDragonscales;
+    private ItemStack whiteDragonscales;
+    private ItemStack amethystDragonscales;
+    private ItemStack blackDragonscales;
+    private ItemStack copperDragonscales;
+    private ItemStack electricDragonscales;
     private ItemStack blueSeaSerpentScales;
     private ItemStack bronzeSeaSerpentScales;
     private ItemStack deepBlueSeaSerpentScales;
@@ -72,54 +77,54 @@ public class CustomItems {
     private ItemStack fireDragonsteelIngot;
     private ItemStack iceDragonsteelIngot;
     private ItemStack lightningDragonsteelIngot;
-    private ItemStack blueDragonScaleHelmet;
-    private ItemStack blueDragonScaleChestplate;
-    private ItemStack blueDragonScaleLeggings;
-    private ItemStack blueDragonScaleBoots;
-    private ItemStack bronzeDragonScaleHelmet;
-    private ItemStack bronzeDragonScaleChestplate;
-    private ItemStack bronzeDragonScaleLeggings;
-    private ItemStack bronzeDragonScaleBoots;
-    private ItemStack grayDragonScaleHelmet;
-    private ItemStack grayDragonScaleChestplate;
-    private ItemStack grayDragonScaleLeggings;
-    private ItemStack grayDragonScaleBoots;
-    private ItemStack greenDragonScaleHelmet;
-    private ItemStack greenDragonScaleChestplate;
-    private ItemStack greenDragonScaleLeggings;
-    private ItemStack greenDragonScaleBoots;
-    private ItemStack redDragonScaleHelmet;
-    private ItemStack redDragonScaleChestplate;
-    private ItemStack redDragonScaleLeggings;
-    private ItemStack redDragonScaleBoots;
-    private ItemStack sapphireDragonScaleHelmet;
-    private ItemStack sapphireDragonScaleChestplate;
-    private ItemStack sapphireDragonScaleLeggings;
-    private ItemStack sapphireDragonScaleBoots;
-    private ItemStack silverDragonScaleHelmet;
-    private ItemStack silverDragonScaleChestplate;
-    private ItemStack silverDragonScaleLeggings;
-    private ItemStack silverDragonScaleBoots;
-    private ItemStack whiteDragonScaleHelmet;
-    private ItemStack whiteDragonScaleChestplate;
-    private ItemStack whiteDragonScaleLeggings;
-    private ItemStack whiteDragonScaleBoots;
-    private ItemStack amethystDragonScaleHelmet;
-    private ItemStack amethystDragonScaleChestplate;
-    private ItemStack amethystDragonScaleLeggings;
-    private ItemStack amethystDragonScaleBoots;
-    private ItemStack blackDragonScaleHelmet;
-    private ItemStack blackDragonScaleChestplate;
-    private ItemStack blackDragonScaleLeggings;
-    private ItemStack blackDragonScaleBoots;
-    private ItemStack copperDragonScaleHelmet;
-    private ItemStack copperDragonScaleChestplate;
-    private ItemStack copperDragonScaleLeggings;
-    private ItemStack copperDragonScaleBoots;
-    private ItemStack electricDragonScaleHelmet;
-    private ItemStack electricDragonScaleChestplate;
-    private ItemStack electricDragonScaleLeggings;
-    private ItemStack electricDragonScaleBoots;
+    private ItemStack blueDragonscaleHelmet;
+    private ItemStack blueDragonscaleChestplate;
+    private ItemStack blueDragonscaleLeggings;
+    private ItemStack blueDragonscaleBoots;
+    private ItemStack bronzeDragonscaleHelmet;
+    private ItemStack bronzeDragonscaleChestplate;
+    private ItemStack bronzeDragonscaleLeggings;
+    private ItemStack bronzeDragonscaleBoots;
+    private ItemStack grayDragonscaleHelmet;
+    private ItemStack grayDragonscaleChestplate;
+    private ItemStack grayDragonscaleLeggings;
+    private ItemStack grayDragonscaleBoots;
+    private ItemStack greenDragonscaleHelmet;
+    private ItemStack greenDragonscaleChestplate;
+    private ItemStack greenDragonscaleLeggings;
+    private ItemStack greenDragonscaleBoots;
+    private ItemStack redDragonscaleHelmet;
+    private ItemStack redDragonscaleChestplate;
+    private ItemStack redDragonscaleLeggings;
+    private ItemStack redDragonscaleBoots;
+    private ItemStack sapphireDragonscaleHelmet;
+    private ItemStack sapphireDragonscaleChestplate;
+    private ItemStack sapphireDragonscaleLeggings;
+    private ItemStack sapphireDragonscaleBoots;
+    private ItemStack silverDragonscaleHelmet;
+    private ItemStack silverDragonscaleChestplate;
+    private ItemStack silverDragonscaleLeggings;
+    private ItemStack silverDragonscaleBoots;
+    private ItemStack whiteDragonscaleHelmet;
+    private ItemStack whiteDragonscaleChestplate;
+    private ItemStack whiteDragonscaleLeggings;
+    private ItemStack whiteDragonscaleBoots;
+    private ItemStack amethystDragonscaleHelmet;
+    private ItemStack amethystDragonscaleChestplate;
+    private ItemStack amethystDragonscaleLeggings;
+    private ItemStack amethystDragonscaleBoots;
+    private ItemStack blackDragonscaleHelmet;
+    private ItemStack blackDragonscaleChestplate;
+    private ItemStack blackDragonscaleLeggings;
+    private ItemStack blackDragonscaleBoots;
+    private ItemStack copperDragonscaleHelmet;
+    private ItemStack copperDragonscaleChestplate;
+    private ItemStack copperDragonscaleLeggings;
+    private ItemStack copperDragonscaleBoots;
+    private ItemStack electricDragonscaleHelmet;
+    private ItemStack electricDragonscaleChestplate;
+    private ItemStack electricDragonscaleLeggings;
+    private ItemStack electricDragonscaleBoots;
     private ItemStack blueTideGuardianHelmet;
     private ItemStack blueTideGuardianChestplate;
     private ItemStack blueTideGuardianLeggings;
@@ -154,9 +159,9 @@ public class CustomItems {
     private ItemStack dragonBoneHoe;
     private ItemStack dragonBoneSword;
     private ItemStack dragonBoneBow;
-    private ItemStack flamedDragonBoneSword;
-    private ItemStack icedDragonBoneSword;
-    private ItemStack lightningDragonBoneSword;
+    private ItemStack flamedDragonboneSword;
+    private ItemStack icedDragonboneSword;
+    private ItemStack lightningDragonboneSword;
     private ItemStack dragonsEye;
     private ItemStack poisonStone;
     private ItemStack potionRingResistance;
@@ -177,10 +182,10 @@ public class CustomItems {
     private ItemStack shulkerHeart;
     private ItemStack ringFreeAction;
     private ItemStack bezoar;
-    private ItemStack enderDragonScale;
-    private ItemStack crackedBlackDragonScale;
-    private ItemStack blackDragonScale;
-    private ItemStack mixedColorDragonScale;
+    private ItemStack enderDragonscale;
+    private ItemStack crackedBlackDragonscale;
+    private ItemStack blackDragonscale;
+    private ItemStack mixedColorDragonscale;
     private ItemStack ankhCharm;
     private ItemStack ankhShield;
     private ItemStack ironRing;
@@ -273,72 +278,72 @@ public class CustomItems {
     private ItemStack dragonBoneBattleaxe;
     private ItemStack dragonBoneLongbow;
     private ItemStack dragonBoneCrossbow;
-    private ItemStack flamedDragonBoneRapier;
-    private ItemStack flamedDragonBoneKatana;
-    private ItemStack flamedDragonBoneGreatsword;
-    private ItemStack flamedDragonBoneLongsword;
-    private ItemStack flamedDragonBoneSpear;
-    private ItemStack flamedDragonBoneSaber;
-    private ItemStack flamedDragonBoneBoomerang;
-    private ItemStack flamedDragonBoneDagger;
-    private ItemStack flamedDragonBoneGlaive;
-    private ItemStack flamedDragonBoneHalberd;
-    private ItemStack flamedDragonBoneHammer;
-    private ItemStack flamedDragonBoneJavelin;
-    private ItemStack flamedDragonBoneLance;
-    private ItemStack flamedDragonBoneMace;
-    private ItemStack flamedDragonBonePike;
-    private ItemStack flamedDragonBoneQuarterstaff;
-    private ItemStack flamedDragonBoneThrowingAxe;
-    private ItemStack flamedDragonBoneThrowingKnife;
-    private ItemStack flamedDragonBoneWarhammer;
-    private ItemStack flamedDragonBoneBattleaxe;
-    private ItemStack flamedDragonBoneLongbow;
-    private ItemStack flamedDragonBoneCrossbow;
-    private ItemStack icedDragonBoneRapier;
-    private ItemStack icedDragonBoneKatana;
-    private ItemStack icedDragonBoneGreatsword;
-    private ItemStack icedDragonBoneLongsword;
-    private ItemStack icedDragonBoneSpear;
-    private ItemStack icedDragonBoneSaber;
-    private ItemStack icedDragonBoneBoomerang;
-    private ItemStack icedDragonBoneDagger;
-    private ItemStack icedDragonBoneGlaive;
-    private ItemStack icedDragonBoneHalberd;
-    private ItemStack icedDragonBoneHammer;
-    private ItemStack icedDragonBoneJavelin;
-    private ItemStack icedDragonBoneLance;
-    private ItemStack icedDragonBoneMace;
-    private ItemStack icedDragonBonePike;
-    private ItemStack icedDragonBoneQuarterstaff;
-    private ItemStack icedDragonBoneThrowingAxe;
-    private ItemStack icedDragonBoneThrowingKnife;
-    private ItemStack icedDragonBoneWarhammer;
-    private ItemStack icedDragonBoneBattleaxe;
-    private ItemStack icedDragonBoneLongbow;
-    private ItemStack icedDragonBoneCrossbow;
-    private ItemStack lightningDragonBoneRapier;
-    private ItemStack lightningDragonBoneKatana;
-    private ItemStack lightningDragonBoneGreatsword;
-    private ItemStack lightningDragonBoneLongsword;
-    private ItemStack lightningDragonBoneSpear;
-    private ItemStack lightningDragonBoneSaber;
-    private ItemStack lightningDragonBoneBoomerang;
-    private ItemStack lightningDragonBoneDagger;
-    private ItemStack lightningDragonBoneGlaive;
-    private ItemStack lightningDragonBoneHalberd;
-    private ItemStack lightningDragonBoneHammer;
-    private ItemStack lightningDragonBoneJavelin;
-    private ItemStack lightningDragonBoneLance;
-    private ItemStack lightningDragonBoneMace;
-    private ItemStack lightningDragonBonePike;
-    private ItemStack lightningDragonBoneQuarterstaff;
-    private ItemStack lightningDragonBoneThrowingAxe;
-    private ItemStack lightningDragonBoneThrowingKnife;
-    private ItemStack lightningDragonBoneWarhammer;
-    private ItemStack lightningDragonBoneBattleaxe;
-    private ItemStack lightningDragonBoneLongbow;
-    private ItemStack lightningDragonBoneCrossbow;
+    private ItemStack flamedDragonboneRapier;
+    private ItemStack flamedDragonboneKatana;
+    private ItemStack flamedDragonboneGreatsword;
+    private ItemStack flamedDragonboneLongsword;
+    private ItemStack flamedDragonboneSpear;
+    private ItemStack flamedDragonboneSaber;
+    private ItemStack flamedDragonboneBoomerang;
+    private ItemStack flamedDragonboneDagger;
+    private ItemStack flamedDragonboneGlaive;
+    private ItemStack flamedDragonboneHalberd;
+    private ItemStack flamedDragonboneHammer;
+    private ItemStack flamedDragonboneJavelin;
+    private ItemStack flamedDragonboneLance;
+    private ItemStack flamedDragonboneMace;
+    private ItemStack flamedDragonbonePike;
+    private ItemStack flamedDragonboneQuarterstaff;
+    private ItemStack flamedDragonboneThrowingAxe;
+    private ItemStack flamedDragonboneThrowingKnife;
+    private ItemStack flamedDragonboneWarhammer;
+    private ItemStack flamedDragonboneBattleaxe;
+    private ItemStack flamedDragonboneLongbow;
+    private ItemStack flamedDragonboneCrossbow;
+    private ItemStack icedDragonboneRapier;
+    private ItemStack icedDragonboneKatana;
+    private ItemStack icedDragonboneGreatsword;
+    private ItemStack icedDragonboneLongsword;
+    private ItemStack icedDragonboneSpear;
+    private ItemStack icedDragonboneSaber;
+    private ItemStack icedDragonboneBoomerang;
+    private ItemStack icedDragonboneDagger;
+    private ItemStack icedDragonboneGlaive;
+    private ItemStack icedDragonboneHalberd;
+    private ItemStack icedDragonboneHammer;
+    private ItemStack icedDragonboneJavelin;
+    private ItemStack icedDragonboneLance;
+    private ItemStack icedDragonboneMace;
+    private ItemStack icedDragonbonePike;
+    private ItemStack icedDragonboneQuarterstaff;
+    private ItemStack icedDragonboneThrowingAxe;
+    private ItemStack icedDragonboneThrowingKnife;
+    private ItemStack icedDragonboneWarhammer;
+    private ItemStack icedDragonboneBattleaxe;
+    private ItemStack icedDragonboneLongbow;
+    private ItemStack icedDragonboneCrossbow;
+    private ItemStack lightningDragonboneRapier;
+    private ItemStack lightningDragonboneKatana;
+    private ItemStack lightningDragonboneGreatsword;
+    private ItemStack lightningDragonboneLongsword;
+    private ItemStack lightningDragonboneSpear;
+    private ItemStack lightningDragonboneSaber;
+    private ItemStack lightningDragonboneBoomerang;
+    private ItemStack lightningDragonboneDagger;
+    private ItemStack lightningDragonboneGlaive;
+    private ItemStack lightningDragonboneHalberd;
+    private ItemStack lightningDragonboneHammer;
+    private ItemStack lightningDragonboneJavelin;
+    private ItemStack lightningDragonboneLance;
+    private ItemStack lightningDragonboneMace;
+    private ItemStack lightningDragonbonePike;
+    private ItemStack lightningDragonboneQuarterstaff;
+    private ItemStack lightningDragonboneThrowingAxe;
+    private ItemStack lightningDragonboneThrowingKnife;
+    private ItemStack lightningDragonboneWarhammer;
+    private ItemStack lightningDragonboneBattleaxe;
+    private ItemStack lightningDragonboneLongbow;
+    private ItemStack lightningDragonboneCrossbow;
     private ItemStack fireDragonsteelRapier;
     private ItemStack fireDragonsteelKatana;
     private ItemStack fireDragonsteelGreatsword;
@@ -569,551 +574,553 @@ public class CustomItems {
     private ItemStack copperBattleaxe;
     private ItemStack copperLongbow;
     private ItemStack copperCrossbow;
+    private ItemStack studdedClub;
 
     public CustomItems(RLCraftPlugin instance) {
 
-        flintAxe = new ItemBuilder(CustomConfig.getItemConfig(), 0, CustomConfig.getNoTreePunchingConfig(), ItemBuilder.AXE, instance);
-        flintKnife = new ItemBuilder(CustomConfig.getItemConfig(), 1, CustomConfig.getNoTreePunchingConfig(), ItemBuilder.KNIFE, instance);
-        flintPickaxe = new ItemBuilder(CustomConfig.getItemConfig(), 2, CustomConfig.getNoTreePunchingConfig(), ItemBuilder.PICKAXE, instance);
-        flintShovel = new ItemBuilder(CustomConfig.getItemConfig(), 3, CustomConfig.getNoTreePunchingConfig(), ItemBuilder.SHOVEL, instance);
-        flintHoe = new ItemBuilder(CustomConfig.getItemConfig(), 4, CustomConfig.getNoTreePunchingConfig(), ItemBuilder.HOE, instance);
-        plantFiber = new ItemBuilder(CustomConfig.getItemConfig(), 5, instance);
-        plantString = new ItemBuilder(CustomConfig.getItemConfig(), 6, instance);
-        flintShard = new ItemBuilder(CustomConfig.getItemConfig(), 7, instance);
-        dragonBone = new ItemBuilder(CustomConfig.getItemConfig(), 8, instance);
-        witherbone = new ItemBuilder(CustomConfig.getItemConfig(), 9, instance);
-        blueDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 10, instance);
-        bronzeDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 11, instance);
-        grayDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 12, instance);
-        greenDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 13, instance);
-        redDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 14, instance);
-        sapphireDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 15, instance);
-        silverDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 16, instance);
-        whiteDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 17, instance);
-        amethystDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 18, instance);
-        blackDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 19, instance);
-        copperDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 20, instance);
-        electricDragonScales = new ItemBuilder(CustomConfig.getItemConfig(), 21, instance);
-        blueSeaSerpentScales = new ItemBuilder(CustomConfig.getItemConfig(), 22, instance);
-        bronzeSeaSerpentScales = new ItemBuilder(CustomConfig.getItemConfig(), 23, instance);
-        deepBlueSeaSerpentScales = new ItemBuilder(CustomConfig.getItemConfig(), 24, instance);
-        greenSeaSerpentScales = new ItemBuilder(CustomConfig.getItemConfig(), 25, instance);
-        purpleSeaSerpentScales = new ItemBuilder(CustomConfig.getItemConfig(), 26, instance);
-        redSeaSerpentScales = new ItemBuilder(CustomConfig.getItemConfig(), 27, instance);
-        tealSeaSerpentScales = new ItemBuilder(CustomConfig.getItemConfig(), 28, instance);
-        shinyScales = new ItemBuilder(CustomConfig.getItemConfig(), 29, instance);
-        fireDragonBlood = new ItemBuilder(CustomConfig.getItemConfig(), 30, instance);
-        iceDragonBlood = new ItemBuilder(CustomConfig.getItemConfig(), 31, instance);
-        lightningDragonBlood = new ItemBuilder(CustomConfig.getItemConfig(), 32, instance);
-        fireDragonHeart = new ItemBuilder(CustomConfig.getItemConfig(), 33, instance);
-        iceDragonHeart = new ItemBuilder(CustomConfig.getItemConfig(), 34, instance);
-        lightningDragonHeart = new ItemBuilder(CustomConfig.getItemConfig(), 35, instance);
-        fireDragonSkull = new ItemBuilder(CustomConfig.getItemConfig(), 36, instance);
-        iceDragonSkull = new ItemBuilder(CustomConfig.getItemConfig(), 37, instance);
-        lightningDragonSkull = new ItemBuilder(CustomConfig.getItemConfig(), 38, instance);
-        fireDragonFlesh = new ItemBuilder(CustomConfig.getItemConfig(), 39, instance);
-        iceDragonFlesh = new ItemBuilder(CustomConfig.getItemConfig(), 40, instance);
-        lightningDragonFlesh = new ItemBuilder(CustomConfig.getItemConfig(), 41, instance);
-        fireDragonsteelIngot = new ItemBuilder(CustomConfig.getItemConfig(), 42, instance);
-        iceDragonsteelIngot = new ItemBuilder(CustomConfig.getItemConfig(), 43, instance);
-        lightningDragonsteelIngot = new ItemBuilder(CustomConfig.getItemConfig(), 44, instance);
-        blueDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 45, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        blueDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 46, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        blueDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 47, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        blueDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 48, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        bronzeDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 49, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        bronzeDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 50, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        bronzeDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 51, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        bronzeDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 52, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        grayDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 53, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        grayDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 54, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        grayDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 55, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        grayDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 56, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        greenDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 57, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        greenDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 58, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        greenDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 59, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        greenDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 60, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        redDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 61, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        redDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 62, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        redDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 63, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        redDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 64, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        sapphireDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 65, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        sapphireDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 66, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        sapphireDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 67, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        sapphireDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 68, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        silverDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 69, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        silverDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 70, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        silverDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 71, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        silverDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 72, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        whiteDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 73, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        whiteDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 74, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        whiteDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 75, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        whiteDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 76, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        amethystDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 77, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        amethystDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 78, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        amethystDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 79, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        amethystDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 80, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        blackDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 81, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        blackDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 82, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        blackDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 83, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        blackDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 84, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        copperDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 85, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        copperDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 86, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        copperDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 87, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        copperDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 88, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        electricDragonScaleHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 89, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        electricDragonScaleChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 90, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        electricDragonScaleLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 91, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        electricDragonScaleBoots = new ItemBuilder(CustomConfig.getItemConfig(), 92, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        blueTideGuardianHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 93, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        blueTideGuardianChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 94, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        blueTideGuardianLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 95, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        blueTideGuardianBoots = new ItemBuilder(CustomConfig.getItemConfig(), 96, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        bronzeTideGuardianHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 97, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        bronzeTideGuardianChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 98, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        bronzeTideGuardianLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 99, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        bronzeTideGuardianBoots = new ItemBuilder(CustomConfig.getItemConfig(), 100, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        deepBlueTideGuardianHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 101, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        deepBlueTideGuardianChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 102, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        deepBlueTideGuardianLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 103, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        deepBlueTideGuardianBoots = new ItemBuilder(CustomConfig.getItemConfig(), 104, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        greenTideGuardianHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 105, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        greenTideGuardianChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 106, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        greenTideGuardianLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 107, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        greenTideGuardianBoots = new ItemBuilder(CustomConfig.getItemConfig(), 108, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        purpleTideGuardianHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 109, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        purpleTideGuardianChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 110, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        purpleTideGuardianLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 111, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        purpleTideGuardianBoots = new ItemBuilder(CustomConfig.getItemConfig(), 112, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        redTideGuardianHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 113, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        redTideGuardianChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 114, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        redTideGuardianLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 115, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        redTideGuardianBoots = new ItemBuilder(CustomConfig.getItemConfig(), 116, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        tealTideGuardianHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 117, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        tealTideGuardianChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 118, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        tealTideGuardianLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 119, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        tealTideGuardianBoots = new ItemBuilder(CustomConfig.getItemConfig(), 120, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        dragonBonePickaxe = new ItemBuilder(CustomConfig.getItemConfig(), 121, CustomConfig.getIceFireGearConfig(), ItemBuilder.PICKAXE, instance);
-        dragonBoneAxe = new ItemBuilder(CustomConfig.getItemConfig(), 122, CustomConfig.getIceFireGearConfig(), ItemBuilder.AXE, instance);
-        dragonBoneShovel = new ItemBuilder(CustomConfig.getItemConfig(), 123, CustomConfig.getIceFireGearConfig(), ItemBuilder.SHOVEL, instance);
-        dragonBoneHoe = new ItemBuilder(CustomConfig.getItemConfig(), 124, CustomConfig.getIceFireGearConfig(), ItemBuilder.HOE, instance);
-        dragonBoneSword = new ItemBuilder(CustomConfig.getItemConfig(), 125, CustomConfig.getIceFireGearConfig(), ItemBuilder.SWORD, instance);
-        dragonBoneBow = new ItemBuilder(CustomConfig.getItemConfig(), 126, instance);
-        flamedDragonBoneSword = new ItemBuilder(CustomConfig.getItemConfig(), 127, CustomConfig.getIceFireGearConfig(), ItemBuilder.SWORD, instance);
-        icedDragonBoneSword = new ItemBuilder(CustomConfig.getItemConfig(), 128, CustomConfig.getIceFireGearConfig(), ItemBuilder.SWORD, instance);
-        lightningDragonBoneSword = new ItemBuilder(CustomConfig.getItemConfig(), 129, CustomConfig.getIceFireGearConfig(), ItemBuilder.SWORD, instance);
-        dragonsEye = new ItemBuilder(CustomConfig.getItemConfig(), 130, instance);
-        poisonStone = new ItemBuilder(CustomConfig.getItemConfig(), 131, instance);
-        potionRingResistance = new ItemBuilder(CustomConfig.getItemConfig(), 132, instance);
-        potionRingRegeneration = new ItemBuilder(CustomConfig.getItemConfig(), 133, instance);
-        potionRingHaste = new ItemBuilder(CustomConfig.getItemConfig(), 134, instance);
-        potionRingStrength = new ItemBuilder(CustomConfig.getItemConfig(), 135, instance);
-        potionRingSpeed = new ItemBuilder(CustomConfig.getItemConfig(), 136, instance);
-        potionRingJumpBoost = new ItemBuilder(CustomConfig.getItemConfig(), 137, instance);
-        enderQueensCrown = new ItemBuilder(CustomConfig.getItemConfig(), 138, instance);
-        sunglasses = new ItemBuilder(CustomConfig.getItemConfig(), 139, instance);
-        balloon = new ItemBuilder(CustomConfig.getItemConfig(), 140, instance);
-        cobaltShield = new ItemBuilder(CustomConfig.getItemConfig(), 141, instance);
-        obsidianSkull = new ItemBuilder(CustomConfig.getItemConfig(), 142, instance);
-        obsidianShield = new ItemBuilder(CustomConfig.getItemConfig(), 143, instance);
-        forbiddenFruit = new ItemBuilder(CustomConfig.getItemConfig(), 144, instance);
-        vitamins = new ItemBuilder(CustomConfig.getItemConfig(), 145, instance);
-        ringOverclocking = new ItemBuilder(CustomConfig.getItemConfig(), 146, instance);
-        shulkerHeart = new ItemBuilder(CustomConfig.getItemConfig(), 147, instance);
-        ringFreeAction = new ItemBuilder(CustomConfig.getItemConfig(), 148, instance);
-        bezoar = new ItemBuilder(CustomConfig.getItemConfig(), 149, instance);
-        enderDragonScale = new ItemBuilder(CustomConfig.getItemConfig(), 150, instance);
-        crackedBlackDragonScale = new ItemBuilder(CustomConfig.getItemConfig(), 151, instance);
-        blackDragonScale = new ItemBuilder(CustomConfig.getItemConfig(), 152, instance);
-        mixedColorDragonScale = new ItemBuilder(CustomConfig.getItemConfig(), 153, instance);
-        ankhCharm = new ItemBuilder(CustomConfig.getItemConfig(), 154, instance);
-        ankhShield = new ItemBuilder(CustomConfig.getItemConfig(), 155, instance);
-        ironRing = new ItemBuilder(CustomConfig.getItemConfig(), 156, instance);
-        magicMirror = new ItemBuilder(CustomConfig.getItemConfig(), 157, instance);
-        recallPotion = new ItemBuilder(CustomConfig.getItemConfig(), 158, instance);
-        wormholeMirror = new ItemBuilder(CustomConfig.getItemConfig(), 159, instance);
-        wormholePotion = new ItemBuilder(CustomConfig.getItemConfig(), 160, instance);
-        luckyHorseshoe = new ItemBuilder(CustomConfig.getItemConfig(), 161, instance);
-        battleBurrito = new ItemBuilder(CustomConfig.getItemConfig(), 162, instance);
-        scarliteRing = new ItemBuilder(CustomConfig.getItemConfig(), 163, instance);
-        spectralSilt = new ItemBuilder(CustomConfig.getItemConfig(), 164, instance);
-        disintegrationTablet = new ItemBuilder(CustomConfig.getItemConfig(), 165, instance);
-        brokenHeart = new ItemBuilder(CustomConfig.getItemConfig(), 166, instance);
-        crossNecklace = new ItemBuilder(CustomConfig.getItemConfig(), 167, instance);
-        wrathPendant = new ItemBuilder(CustomConfig.getItemConfig(), 168, instance);
-        pridePendant = new ItemBuilder(CustomConfig.getItemConfig(), 169, instance);
-        goldenCrown = new ItemBuilder(CustomConfig.getItemConfig(), 170, instance);
-        gluttonyPendant = new ItemBuilder(CustomConfig.getItemConfig(), 171, instance);
-        sinPendant = new ItemBuilder(CustomConfig.getItemConfig(), 172, instance);
-        flareGun = new ItemBuilder(CustomConfig.getItemConfig(), 173, instance);
-        flare = new ItemBuilder(CustomConfig.getItemConfig(), 174, instance);
-        phytoprotostasiaAmulet = new ItemBuilder(CustomConfig.getItemConfig(), 175, instance);
-        potionRing = new ItemBuilder(CustomConfig.getItemConfig(), 176, instance);
-        emeraldRing = new ItemBuilder(CustomConfig.getItemConfig(), 177, instance);
-        emeraldAmulet = new ItemBuilder(CustomConfig.getItemConfig(), 178, instance);
-        glowingIngot = new ItemBuilder(CustomConfig.getItemConfig(), 179, instance);
-        glowingPowder = new ItemBuilder(CustomConfig.getItemConfig(), 180, instance);
-        glowingGem = new ItemBuilder(CustomConfig.getItemConfig(), 181, instance);
-        dwarfStout = new ItemBuilder(CustomConfig.getItemConfig(), 182, instance);
-        fairyDew = new ItemBuilder(CustomConfig.getItemConfig(), 183, instance);
-        stoneNegativeGravity = new ItemBuilder(CustomConfig.getItemConfig(), 184, instance);
-        stoneInertiaNull = new ItemBuilder(CustomConfig.getItemConfig(), 185, instance);
-        stoneGreaterInertia = new ItemBuilder(CustomConfig.getItemConfig(), 186, instance);
-        ringEnchantedEyes = new ItemBuilder(CustomConfig.getItemConfig(), 187, instance);
-        stoneSea = new ItemBuilder(CustomConfig.getItemConfig(), 188, instance);
-        polarizedStone = new ItemBuilder(CustomConfig.getItemConfig(), 189, instance);
-        ringFairies = new ItemBuilder(CustomConfig.getItemConfig(), 190, instance);
-        ringDwarves = new ItemBuilder(CustomConfig.getItemConfig(), 191, instance);
-        witherRing = new ItemBuilder(CustomConfig.getItemConfig(), 192, instance);
-        shieldHonor = new ItemBuilder(CustomConfig.getItemConfig(), 193, instance);
-        minersRing = new ItemBuilder(CustomConfig.getItemConfig(), 194, instance);
-        warpedScroll = new ItemBuilder(CustomConfig.getItemConfig(), 195, instance);
-        fireResistancePotion = new ItemBuilder(CustomConfig.getItemConfig(), 196, instance);
-        fireDragonsteelSword = new ItemBuilder(CustomConfig.getItemConfig(), 197, CustomConfig.getIceFireGearConfig(), ItemBuilder.SWORD, instance);
-        fireDragonsteelPickaxe = new ItemBuilder(CustomConfig.getItemConfig(), 198, CustomConfig.getIceFireGearConfig(), ItemBuilder.PICKAXE, instance);
-        fireDragonsteelAxe = new ItemBuilder(CustomConfig.getItemConfig(), 199, CustomConfig.getIceFireGearConfig(), ItemBuilder.AXE, instance);
-        fireDragonsteelShovel = new ItemBuilder(CustomConfig.getItemConfig(), 200, CustomConfig.getIceFireGearConfig(), ItemBuilder.SHOVEL, instance);
-        fireDragonsteelHoe = new ItemBuilder(CustomConfig.getItemConfig(), 201, CustomConfig.getIceFireGearConfig(), ItemBuilder.HOE, instance);
-        iceDragonsteelSword = new ItemBuilder(CustomConfig.getItemConfig(), 202, CustomConfig.getIceFireGearConfig(), ItemBuilder.SWORD, instance);
-        iceDragonsteelPickaxe = new ItemBuilder(CustomConfig.getItemConfig(), 203, CustomConfig.getIceFireGearConfig(), ItemBuilder.PICKAXE, instance);
-        iceDragonsteelAxe = new ItemBuilder(CustomConfig.getItemConfig(), 204, CustomConfig.getIceFireGearConfig(), ItemBuilder.AXE, instance);
-        iceDragonsteelShovel = new ItemBuilder(CustomConfig.getItemConfig(), 205, CustomConfig.getIceFireGearConfig(), ItemBuilder.SHOVEL, instance);
-        iceDragonsteelHoe = new ItemBuilder(CustomConfig.getItemConfig(), 206, CustomConfig.getIceFireGearConfig(), ItemBuilder.HOE, instance);
-        lightningDragonsteelSword = new ItemBuilder(CustomConfig.getItemConfig(), 207, CustomConfig.getIceFireGearConfig(), ItemBuilder.SWORD, instance);
-        lightningDragonsteelPickaxe = new ItemBuilder(CustomConfig.getItemConfig(), 208, CustomConfig.getIceFireGearConfig(), ItemBuilder.PICKAXE, instance);
-        lightningDragonsteelAxe = new ItemBuilder(CustomConfig.getItemConfig(), 209, CustomConfig.getIceFireGearConfig(), ItemBuilder.AXE, instance);
-        lightningDragonsteelShovel = new ItemBuilder(CustomConfig.getItemConfig(), 210, CustomConfig.getIceFireGearConfig(), ItemBuilder.SHOVEL, instance);
-        lightningDragonsteelHoe = new ItemBuilder(CustomConfig.getItemConfig(), 211, CustomConfig.getIceFireGearConfig(), ItemBuilder.HOE, instance);
-        fireDragonsteelHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 212, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        fireDragonsteelChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 213, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        fireDragonsteelLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 214, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        fireDragonsteelBoots = new ItemBuilder(CustomConfig.getItemConfig(), 215, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        iceDragonsteelHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 216, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        iceDragonsteelChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 217, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        iceDragonsteelLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 218, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        iceDragonsteelBoots = new ItemBuilder(CustomConfig.getItemConfig(), 219, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        lightningDragonsteelHelmet = new ItemBuilder(CustomConfig.getItemConfig(), 220, CustomConfig.getIceFireGearConfig(), ItemBuilder.HELMET, instance);
-        lightningDragonsteelChestplate = new ItemBuilder(CustomConfig.getItemConfig(), 221, CustomConfig.getIceFireGearConfig(), ItemBuilder.CHESTPLATE, instance);
-        lightningDragonsteelLeggings = new ItemBuilder(CustomConfig.getItemConfig(), 222, CustomConfig.getIceFireGearConfig(), ItemBuilder.LEGGINGS, instance);
-        lightningDragonsteelBoots = new ItemBuilder(CustomConfig.getItemConfig(), 223, CustomConfig.getIceFireGearConfig(), ItemBuilder.BOOTS, instance);
-        dragonBoneRapier = new ItemBuilder(CustomConfig.getItemConfig(), 224, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        dragonBoneKatana = new ItemBuilder(CustomConfig.getItemConfig(), 225, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        dragonBoneGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 226, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        dragonBoneLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 227, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        dragonBoneSpear = new ItemBuilder(CustomConfig.getItemConfig(), 228, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        dragonBoneSaber = new ItemBuilder(CustomConfig.getItemConfig(), 229, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        dragonBoneBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 230, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        dragonBoneDagger = new ItemBuilder(CustomConfig.getItemConfig(), 231, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        dragonBoneGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 232, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        dragonBoneHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 233, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        dragonBoneHammer = new ItemBuilder(CustomConfig.getItemConfig(), 234, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        dragonBoneJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 235, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        dragonBoneLance = new ItemBuilder(CustomConfig.getItemConfig(), 236, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        dragonBoneMace = new ItemBuilder(CustomConfig.getItemConfig(), 237, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        dragonBonePike = new ItemBuilder(CustomConfig.getItemConfig(), 238, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        dragonBoneQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 239, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        dragonBoneThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 240, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        dragonBoneThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 241, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        dragonBoneWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 242, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        dragonBoneBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 243, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        dragonBoneLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 244, instance);
-        dragonBoneCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 245, instance);
-        flamedDragonBoneRapier = new ItemBuilder(CustomConfig.getItemConfig(), 246, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        flamedDragonBoneKatana = new ItemBuilder(CustomConfig.getItemConfig(), 247, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        flamedDragonBoneGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 248, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        flamedDragonBoneLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 249, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        flamedDragonBoneSpear = new ItemBuilder(CustomConfig.getItemConfig(), 250, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        flamedDragonBoneSaber = new ItemBuilder(CustomConfig.getItemConfig(), 251, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        flamedDragonBoneBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 252, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        flamedDragonBoneDagger = new ItemBuilder(CustomConfig.getItemConfig(), 253, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        flamedDragonBoneGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 254, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        flamedDragonBoneHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 255, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        flamedDragonBoneHammer = new ItemBuilder(CustomConfig.getItemConfig(), 256, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        flamedDragonBoneJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 257, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        flamedDragonBoneLance = new ItemBuilder(CustomConfig.getItemConfig(), 258, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        flamedDragonBoneMace = new ItemBuilder(CustomConfig.getItemConfig(), 259, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        flamedDragonBonePike = new ItemBuilder(CustomConfig.getItemConfig(), 260, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        flamedDragonBoneQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 261, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        flamedDragonBoneThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 262, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        flamedDragonBoneThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 263, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        flamedDragonBoneWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 264, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        flamedDragonBoneBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 265, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        flamedDragonBoneLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 266, instance);
-        flamedDragonBoneCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 267, instance);
-        icedDragonBoneRapier = new ItemBuilder(CustomConfig.getItemConfig(), 268, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        icedDragonBoneKatana = new ItemBuilder(CustomConfig.getItemConfig(), 269, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        icedDragonBoneGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 270, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        icedDragonBoneLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 271, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        icedDragonBoneSpear = new ItemBuilder(CustomConfig.getItemConfig(), 272, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        icedDragonBoneSaber = new ItemBuilder(CustomConfig.getItemConfig(), 273, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        icedDragonBoneBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 274, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        icedDragonBoneDagger = new ItemBuilder(CustomConfig.getItemConfig(), 275, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        icedDragonBoneGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 276, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        icedDragonBoneHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 277, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        icedDragonBoneHammer = new ItemBuilder(CustomConfig.getItemConfig(), 278, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        icedDragonBoneJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 279, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        icedDragonBoneLance = new ItemBuilder(CustomConfig.getItemConfig(), 280, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        icedDragonBoneMace = new ItemBuilder(CustomConfig.getItemConfig(), 281, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        icedDragonBonePike = new ItemBuilder(CustomConfig.getItemConfig(), 282, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        icedDragonBoneQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 283, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        icedDragonBoneThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 284, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        icedDragonBoneThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 285, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        icedDragonBoneWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 286, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        icedDragonBoneBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 287, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        icedDragonBoneLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 288, instance);
-        icedDragonBoneCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 289, instance);
-        lightningDragonBoneRapier = new ItemBuilder(CustomConfig.getItemConfig(), 290, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        lightningDragonBoneKatana = new ItemBuilder(CustomConfig.getItemConfig(), 291, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        lightningDragonBoneGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 292, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        lightningDragonBoneLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 293, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        lightningDragonBoneSpear = new ItemBuilder(CustomConfig.getItemConfig(), 294, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        lightningDragonBoneSaber = new ItemBuilder(CustomConfig.getItemConfig(), 295, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        lightningDragonBoneBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 296, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        lightningDragonBoneDagger = new ItemBuilder(CustomConfig.getItemConfig(), 297, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        lightningDragonBoneGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 298, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        lightningDragonBoneHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 299, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        lightningDragonBoneHammer = new ItemBuilder(CustomConfig.getItemConfig(), 300, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        lightningDragonBoneJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 301, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        lightningDragonBoneLance = new ItemBuilder(CustomConfig.getItemConfig(), 302, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        lightningDragonBoneMace = new ItemBuilder(CustomConfig.getItemConfig(), 303, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        lightningDragonBonePike = new ItemBuilder(CustomConfig.getItemConfig(), 304, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        lightningDragonBoneQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 305, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        lightningDragonBoneThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 306, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        lightningDragonBoneThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 307, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        lightningDragonBoneWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 308, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        lightningDragonBoneBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 309, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        lightningDragonBoneLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 310, instance);
-        lightningDragonBoneCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 311, instance);
-        fireDragonsteelRapier = new ItemBuilder(CustomConfig.getItemConfig(), 312, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        fireDragonsteelKatana = new ItemBuilder(CustomConfig.getItemConfig(), 313, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        fireDragonsteelGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 314, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        fireDragonsteelLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 315, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        fireDragonsteelSpear = new ItemBuilder(CustomConfig.getItemConfig(), 316, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        fireDragonsteelSaber = new ItemBuilder(CustomConfig.getItemConfig(), 317, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        fireDragonsteelBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 318, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        fireDragonsteelDagger = new ItemBuilder(CustomConfig.getItemConfig(), 319, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        fireDragonsteelGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 320, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        fireDragonsteelHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 321, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        fireDragonsteelHammer = new ItemBuilder(CustomConfig.getItemConfig(), 322, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        fireDragonsteelJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 323, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        fireDragonsteelLance = new ItemBuilder(CustomConfig.getItemConfig(), 324, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        fireDragonsteelMace = new ItemBuilder(CustomConfig.getItemConfig(), 325, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        fireDragonsteelPike = new ItemBuilder(CustomConfig.getItemConfig(), 326, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        fireDragonsteelQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 327, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        fireDragonsteelThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 328, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        fireDragonsteelThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 329, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        fireDragonsteelWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 330, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        fireDragonsteelBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 331, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        fireDragonsteelLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 332, instance);
-        fireDragonsteelCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 333, instance);
-        iceDragonsteelRapier = new ItemBuilder(CustomConfig.getItemConfig(), 334, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        iceDragonsteelKatana = new ItemBuilder(CustomConfig.getItemConfig(), 335, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        iceDragonsteelGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 336, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        iceDragonsteelLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 337, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        iceDragonsteelSpear = new ItemBuilder(CustomConfig.getItemConfig(), 338, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        iceDragonsteelSaber = new ItemBuilder(CustomConfig.getItemConfig(), 339, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        iceDragonsteelBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 340, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        iceDragonsteelDagger = new ItemBuilder(CustomConfig.getItemConfig(), 341, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        iceDragonsteelGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 342, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        iceDragonsteelHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 343, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        iceDragonsteelHammer = new ItemBuilder(CustomConfig.getItemConfig(), 344, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        iceDragonsteelJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 345, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        iceDragonsteelLance = new ItemBuilder(CustomConfig.getItemConfig(), 346, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        iceDragonsteelMace = new ItemBuilder(CustomConfig.getItemConfig(), 347, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        iceDragonsteelPike = new ItemBuilder(CustomConfig.getItemConfig(), 348, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        iceDragonsteelQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 349, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        iceDragonsteelThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 350, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        iceDragonsteelThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 351, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        iceDragonsteelWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 352, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        iceDragonsteelBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 353, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        iceDragonsteelLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 354, instance);
-        iceDragonsteelCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 355, instance);
-        lightningDragonsteelRapier = new ItemBuilder(CustomConfig.getItemConfig(), 356, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        lightningDragonsteelKatana = new ItemBuilder(CustomConfig.getItemConfig(), 357, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        lightningDragonsteelGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 358, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        lightningDragonsteelLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 359, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        lightningDragonsteelSpear = new ItemBuilder(CustomConfig.getItemConfig(), 360, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        lightningDragonsteelSaber = new ItemBuilder(CustomConfig.getItemConfig(), 361, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        lightningDragonsteelBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 362, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        lightningDragonsteelDagger = new ItemBuilder(CustomConfig.getItemConfig(), 363, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        lightningDragonsteelGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 364, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        lightningDragonsteelHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 365, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        lightningDragonsteelHammer = new ItemBuilder(CustomConfig.getItemConfig(), 366, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        lightningDragonsteelJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 367, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        lightningDragonsteelLance = new ItemBuilder(CustomConfig.getItemConfig(), 368, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        lightningDragonsteelMace = new ItemBuilder(CustomConfig.getItemConfig(), 369, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        lightningDragonsteelPike = new ItemBuilder(CustomConfig.getItemConfig(), 370, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        lightningDragonsteelQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 371, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        lightningDragonsteelThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 372, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        lightningDragonsteelThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 373, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        lightningDragonsteelWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 374, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        lightningDragonsteelBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 375, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        lightningDragonsteelLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 376, instance);
-        lightningDragonsteelCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 377, instance);
-        fireDragonsteelBlock = new ItemBuilder(CustomConfig.getItemConfig(), 378, instance);
-        iceDragonsteelBlock = new ItemBuilder(CustomConfig.getItemConfig(), 379, instance);
-        lightningDragonsteelBlock = new ItemBuilder(CustomConfig.getItemConfig(), 380, instance);
-        boundScroll = new ItemBuilder(CustomConfig.getItemConfig(), 381, instance);
-        returnScroll = new ItemBuilder(CustomConfig.getItemConfig(), 382, instance);
-        handle = new ItemBuilder(CustomConfig.getItemConfig(), 383, instance);
-        pole = new ItemBuilder(CustomConfig.getItemConfig(), 384, instance);
-        witherboneHandle = new ItemBuilder(CustomConfig.getItemConfig(), 385, instance);
-        witherbonePole = new ItemBuilder(CustomConfig.getItemConfig(), 386, instance);
-        netheriteRapier = new ItemBuilder(CustomConfig.getItemConfig(), 387, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        netheriteKatana = new ItemBuilder(CustomConfig.getItemConfig(), 388, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        netheriteGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 389, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        netheriteLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 390, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        netheriteSpear = new ItemBuilder(CustomConfig.getItemConfig(), 391, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        netheriteSaber = new ItemBuilder(CustomConfig.getItemConfig(), 392, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        netheriteBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 393, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        netheriteDagger = new ItemBuilder(CustomConfig.getItemConfig(), 394, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        netheriteGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 395, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        netheriteHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 396, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        netheriteHammer = new ItemBuilder(CustomConfig.getItemConfig(), 397, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        netheriteJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 398, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        netheriteLance = new ItemBuilder(CustomConfig.getItemConfig(), 399, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        netheriteMace = new ItemBuilder(CustomConfig.getItemConfig(), 400, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        netheritePike = new ItemBuilder(CustomConfig.getItemConfig(), 401, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        netheriteQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 402, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        netheriteThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 403, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        netheriteThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 404, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        netheriteWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 405, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        netheriteBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 406, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        netheriteLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 407, instance);
-        netheriteCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 408, instance);
-        diamondRapier = new ItemBuilder(CustomConfig.getItemConfig(), 409, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        diamondKatana = new ItemBuilder(CustomConfig.getItemConfig(), 410, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        diamondGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 411, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        diamondLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 412, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        diamondSpear = new ItemBuilder(CustomConfig.getItemConfig(), 413, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        diamondSaber = new ItemBuilder(CustomConfig.getItemConfig(), 414, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        diamondBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 415, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        diamondDagger = new ItemBuilder(CustomConfig.getItemConfig(), 416, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        diamondGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 417, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        diamondHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 418, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        diamondHammer = new ItemBuilder(CustomConfig.getItemConfig(), 419, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        diamondJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 420, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        diamondLance = new ItemBuilder(CustomConfig.getItemConfig(), 421, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        diamondMace = new ItemBuilder(CustomConfig.getItemConfig(), 422, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        diamondPike = new ItemBuilder(CustomConfig.getItemConfig(), 423, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        diamondQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 424, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        diamondThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 425, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        diamondThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 426, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        diamondWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 427, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        diamondBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 428, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        diamondLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 429, instance);
-        diamondCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 430, instance);
-        ironRapier = new ItemBuilder(CustomConfig.getItemConfig(), 431, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        ironKatana = new ItemBuilder(CustomConfig.getItemConfig(), 432, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        ironGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 433, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        ironLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 434, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        ironSpear = new ItemBuilder(CustomConfig.getItemConfig(), 435, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        ironSaber = new ItemBuilder(CustomConfig.getItemConfig(), 436, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        ironBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 437, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        ironDagger = new ItemBuilder(CustomConfig.getItemConfig(), 438, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        ironGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 439, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        ironHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 440, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        ironHammer = new ItemBuilder(CustomConfig.getItemConfig(), 441, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        ironJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 442, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        ironLance = new ItemBuilder(CustomConfig.getItemConfig(), 443, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        ironMace = new ItemBuilder(CustomConfig.getItemConfig(), 444, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        ironPike = new ItemBuilder(CustomConfig.getItemConfig(), 445, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        ironQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 446, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        ironThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 447, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        ironThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 448, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        ironWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 449, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        ironBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 450, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        ironLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 451, instance);
-        ironCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 452, instance);
-        goldenRapier = new ItemBuilder(CustomConfig.getItemConfig(), 453, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        goldenKatana = new ItemBuilder(CustomConfig.getItemConfig(), 454, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        goldenGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 455, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        goldenLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 456, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        goldenSpear = new ItemBuilder(CustomConfig.getItemConfig(), 457, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        goldenSaber = new ItemBuilder(CustomConfig.getItemConfig(), 458, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        goldenBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 459, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        goldenDagger = new ItemBuilder(CustomConfig.getItemConfig(), 460, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        goldenGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 461, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        goldenHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 462, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        goldenHammer = new ItemBuilder(CustomConfig.getItemConfig(), 463, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        goldenJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 464, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        goldenLance = new ItemBuilder(CustomConfig.getItemConfig(), 465, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        goldenMace = new ItemBuilder(CustomConfig.getItemConfig(), 466, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        goldenPike = new ItemBuilder(CustomConfig.getItemConfig(), 467, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        goldenQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 468, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        goldenThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 469, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        goldenThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 470, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        goldenWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 471, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        goldenBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 472, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        goldenLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 473, instance);
-        goldenCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 474, instance);
-        stoneRapier = new ItemBuilder(CustomConfig.getItemConfig(), 475, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        stoneKatana = new ItemBuilder(CustomConfig.getItemConfig(), 476, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        stoneGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 477, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        stoneLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 478, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        stoneSpear = new ItemBuilder(CustomConfig.getItemConfig(), 479, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        stoneSaber = new ItemBuilder(CustomConfig.getItemConfig(), 480, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        stoneBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 481, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        stoneDagger = new ItemBuilder(CustomConfig.getItemConfig(), 482, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        stoneGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 483, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        stoneHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 484, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        stoneHammer = new ItemBuilder(CustomConfig.getItemConfig(), 485, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        stoneJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 486, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        stoneLance = new ItemBuilder(CustomConfig.getItemConfig(), 487, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        stoneMace = new ItemBuilder(CustomConfig.getItemConfig(), 488, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        stonePike = new ItemBuilder(CustomConfig.getItemConfig(), 489, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        stoneQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 490, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        stoneThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 491, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        stoneThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 492, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        stoneWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 493, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        stoneBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 494, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        woodenRapier = new ItemBuilder(CustomConfig.getItemConfig(), 495, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        woodenKatana = new ItemBuilder(CustomConfig.getItemConfig(), 496, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        woodenGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 497, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        woodenLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 498, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        woodenSpear = new ItemBuilder(CustomConfig.getItemConfig(), 499, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        woodenSaber = new ItemBuilder(CustomConfig.getItemConfig(), 500, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        woodenBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 501, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        woodenDagger = new ItemBuilder(CustomConfig.getItemConfig(), 502, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        woodenGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 503, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        woodenHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 504, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        woodenHammer = new ItemBuilder(CustomConfig.getItemConfig(), 505, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        woodenJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 506, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        woodenLance = new ItemBuilder(CustomConfig.getItemConfig(), 507, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        woodenMace = new ItemBuilder(CustomConfig.getItemConfig(), 508, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        woodenPike = new ItemBuilder(CustomConfig.getItemConfig(), 509, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        woodenQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 510, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        woodenThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 511, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        woodenThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 512, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        woodenWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 513, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        woodenBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 514, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        woodenLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 515, instance);
-        woodenCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 516, instance);
-        woodenClub = new ItemBuilder(CustomConfig.getItemConfig(), 517, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.CLUB, instance);
-        leatherLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 518, instance);
-        leatherCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 519, instance);
-        copperRapier = new ItemBuilder(CustomConfig.getItemConfig(), 520, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.RAPIER, instance);
-        copperKatana = new ItemBuilder(CustomConfig.getItemConfig(), 521, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.KATANA, instance);
-        copperGreatsword = new ItemBuilder(CustomConfig.getItemConfig(), 522, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GREATSWORD, instance);
-        copperLongsword = new ItemBuilder(CustomConfig.getItemConfig(), 523, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LONGSWORD, instance);
-        copperSpear = new ItemBuilder(CustomConfig.getItemConfig(), 524, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SPEAR, instance);
-        copperSaber = new ItemBuilder(CustomConfig.getItemConfig(), 525, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.SABER, instance);
-        copperBoomerang = new ItemBuilder(CustomConfig.getItemConfig(), 526, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BOOMERANG, instance);
-        copperDagger = new ItemBuilder(CustomConfig.getItemConfig(), 527, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.DAGGER, instance);
-        copperGlaive = new ItemBuilder(CustomConfig.getItemConfig(), 528, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.GLAIVE, instance);
-        copperHalberd = new ItemBuilder(CustomConfig.getItemConfig(), 529, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HALBERD, instance);
-        copperHammer = new ItemBuilder(CustomConfig.getItemConfig(), 530, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.HAMMER, instance);
-        copperJavelin = new ItemBuilder(CustomConfig.getItemConfig(), 531, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.JAVELIN, instance);
-        copperLance = new ItemBuilder(CustomConfig.getItemConfig(), 532, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.LANCE, instance);
-        copperMace = new ItemBuilder(CustomConfig.getItemConfig(), 533, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.MACE, instance);
-        copperPike = new ItemBuilder(CustomConfig.getItemConfig(), 534, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.PIKE, instance);
-        copperQuarterstaff = new ItemBuilder(CustomConfig.getItemConfig(), 535, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.QUARTERSTAFF, instance);
-        copperThrowingAxe = new ItemBuilder(CustomConfig.getItemConfig(), 536, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.TOMAHAWK, instance);
-        copperThrowingKnife = new ItemBuilder(CustomConfig.getItemConfig(), 537, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.THROWING_KNIFE, instance);
-        copperWarhammer = new ItemBuilder(CustomConfig.getItemConfig(), 538, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.WARHAMMER, instance);
-        copperBattleaxe = new ItemBuilder(CustomConfig.getItemConfig(), 539, CustomConfig.getSpartanWeaponryConfig(), ItemBuilder.BATTLEAXE, instance);
-        copperLongbow = new ItemBuilder(CustomConfig.getItemConfig(), 540, instance);
-        copperCrossbow = new ItemBuilder(CustomConfig.getItemConfig(), 541, instance);
+        flintAxe = new ItemBuilder(config, 0, noTreePunching, ItemBuilder.AXE, instance);
+        flintKnife = new ItemBuilder(config, 1, noTreePunching, ItemBuilder.KNIFE, instance);
+        flintPickaxe = new ItemBuilder(config, 2, noTreePunching, ItemBuilder.PICKAXE, instance);
+        flintShovel = new ItemBuilder(config, 3, noTreePunching, ItemBuilder.SHOVEL, instance);
+        flintHoe = new ItemBuilder(config, 4, noTreePunching, ItemBuilder.HOE, instance);
+        plantFiber = new ItemBuilder(config, 5, instance);
+        plantString = new ItemBuilder(config, 6, instance);
+        flintShard = new ItemBuilder(config, 7, instance);
+        dragonBone = new ItemBuilder(config, 8, instance);
+        witherbone = new ItemBuilder(config, 9, instance);
+        blueDragonscales = new ItemBuilder(config, 10, instance);
+        bronzeDragonscales = new ItemBuilder(config, 11, instance);
+        grayDragonscales = new ItemBuilder(config, 12, instance);
+        greenDragonscales = new ItemBuilder(config, 13, instance);
+        redDragonscales = new ItemBuilder(config, 14, instance);
+        sapphireDragonscales = new ItemBuilder(config, 15, instance);
+        silverDragonscales = new ItemBuilder(config, 16, instance);
+        whiteDragonscales = new ItemBuilder(config, 17, instance);
+        amethystDragonscales = new ItemBuilder(config, 18, instance);
+        blackDragonscales = new ItemBuilder(config, 19, instance);
+        copperDragonscales = new ItemBuilder(config, 20, instance);
+        electricDragonscales = new ItemBuilder(config, 21, instance);
+        blueSeaSerpentScales = new ItemBuilder(config, 22, instance);
+        bronzeSeaSerpentScales = new ItemBuilder(config, 23, instance);
+        deepBlueSeaSerpentScales = new ItemBuilder(config, 24, instance);
+        greenSeaSerpentScales = new ItemBuilder(config, 25, instance);
+        purpleSeaSerpentScales = new ItemBuilder(config, 26, instance);
+        redSeaSerpentScales = new ItemBuilder(config, 27, instance);
+        tealSeaSerpentScales = new ItemBuilder(config, 28, instance);
+        shinyScales = new ItemBuilder(config, 29, instance);
+        fireDragonBlood = new ItemBuilder(config, 30, instance);
+        iceDragonBlood = new ItemBuilder(config, 31, instance);
+        lightningDragonBlood = new ItemBuilder(config, 32, instance);
+        fireDragonHeart = new ItemBuilder(config, 33, instance);
+        iceDragonHeart = new ItemBuilder(config, 34, instance);
+        lightningDragonHeart = new ItemBuilder(config, 35, instance);
+        fireDragonSkull = new ItemBuilder(config, 36, instance);
+        iceDragonSkull = new ItemBuilder(config, 37, instance);
+        lightningDragonSkull = new ItemBuilder(config, 38, instance);
+        fireDragonFlesh = new ItemBuilder(config, 39, instance);
+        iceDragonFlesh = new ItemBuilder(config, 40, instance);
+        lightningDragonFlesh = new ItemBuilder(config, 41, instance);
+        fireDragonsteelIngot = new ItemBuilder(config, 42, instance);
+        iceDragonsteelIngot = new ItemBuilder(config, 43, instance);
+        lightningDragonsteelIngot = new ItemBuilder(config, 44, instance);
+        blueDragonscaleHelmet = new ItemBuilder(config, 45, iceFire, ItemBuilder.HELMET, instance);
+        blueDragonscaleChestplate = new ItemBuilder(config, 46, iceFire, ItemBuilder.CHESTPLATE, instance);
+        blueDragonscaleLeggings = new ItemBuilder(config, 47, iceFire, ItemBuilder.LEGGINGS, instance);
+        blueDragonscaleBoots = new ItemBuilder(config, 48, iceFire, ItemBuilder.BOOTS, instance);
+        bronzeDragonscaleHelmet = new ItemBuilder(config, 49, iceFire, ItemBuilder.HELMET, instance);
+        bronzeDragonscaleChestplate = new ItemBuilder(config, 50, iceFire, ItemBuilder.CHESTPLATE, instance);
+        bronzeDragonscaleLeggings = new ItemBuilder(config, 51, iceFire, ItemBuilder.LEGGINGS, instance);
+        bronzeDragonscaleBoots = new ItemBuilder(config, 52, iceFire, ItemBuilder.BOOTS, instance);
+        grayDragonscaleHelmet = new ItemBuilder(config, 53, iceFire, ItemBuilder.HELMET, instance);
+        grayDragonscaleChestplate = new ItemBuilder(config, 54, iceFire, ItemBuilder.CHESTPLATE, instance);
+        grayDragonscaleLeggings = new ItemBuilder(config, 55, iceFire, ItemBuilder.LEGGINGS, instance);
+        grayDragonscaleBoots = new ItemBuilder(config, 56, iceFire, ItemBuilder.BOOTS, instance);
+        greenDragonscaleHelmet = new ItemBuilder(config, 57, iceFire, ItemBuilder.HELMET, instance);
+        greenDragonscaleChestplate = new ItemBuilder(config, 58, iceFire, ItemBuilder.CHESTPLATE, instance);
+        greenDragonscaleLeggings = new ItemBuilder(config, 59, iceFire, ItemBuilder.LEGGINGS, instance);
+        greenDragonscaleBoots = new ItemBuilder(config, 60, iceFire, ItemBuilder.BOOTS, instance);
+        redDragonscaleHelmet = new ItemBuilder(config, 61, iceFire, ItemBuilder.HELMET, instance);
+        redDragonscaleChestplate = new ItemBuilder(config, 62, iceFire, ItemBuilder.CHESTPLATE, instance);
+        redDragonscaleLeggings = new ItemBuilder(config, 63, iceFire, ItemBuilder.LEGGINGS, instance);
+        redDragonscaleBoots = new ItemBuilder(config, 64, iceFire, ItemBuilder.BOOTS, instance);
+        sapphireDragonscaleHelmet = new ItemBuilder(config, 65, iceFire, ItemBuilder.HELMET, instance);
+        sapphireDragonscaleChestplate = new ItemBuilder(config, 66, iceFire, ItemBuilder.CHESTPLATE, instance);
+        sapphireDragonscaleLeggings = new ItemBuilder(config, 67, iceFire, ItemBuilder.LEGGINGS, instance);
+        sapphireDragonscaleBoots = new ItemBuilder(config, 68, iceFire, ItemBuilder.BOOTS, instance);
+        silverDragonscaleHelmet = new ItemBuilder(config, 69, iceFire, ItemBuilder.HELMET, instance);
+        silverDragonscaleChestplate = new ItemBuilder(config, 70, iceFire, ItemBuilder.CHESTPLATE, instance);
+        silverDragonscaleLeggings = new ItemBuilder(config, 71, iceFire, ItemBuilder.LEGGINGS, instance);
+        silverDragonscaleBoots = new ItemBuilder(config, 72, iceFire, ItemBuilder.BOOTS, instance);
+        whiteDragonscaleHelmet = new ItemBuilder(config, 73, iceFire, ItemBuilder.HELMET, instance);
+        whiteDragonscaleChestplate = new ItemBuilder(config, 74, iceFire, ItemBuilder.CHESTPLATE, instance);
+        whiteDragonscaleLeggings = new ItemBuilder(config, 75, iceFire, ItemBuilder.LEGGINGS, instance);
+        whiteDragonscaleBoots = new ItemBuilder(config, 76, iceFire, ItemBuilder.BOOTS, instance);
+        amethystDragonscaleHelmet = new ItemBuilder(config, 77, iceFire, ItemBuilder.HELMET, instance);
+        amethystDragonscaleChestplate = new ItemBuilder(config, 78, iceFire, ItemBuilder.CHESTPLATE, instance);
+        amethystDragonscaleLeggings = new ItemBuilder(config, 79, iceFire, ItemBuilder.LEGGINGS, instance);
+        amethystDragonscaleBoots = new ItemBuilder(config, 80, iceFire, ItemBuilder.BOOTS, instance);
+        blackDragonscaleHelmet = new ItemBuilder(config, 81, iceFire, ItemBuilder.HELMET, instance);
+        blackDragonscaleChestplate = new ItemBuilder(config, 82, iceFire, ItemBuilder.CHESTPLATE, instance);
+        blackDragonscaleLeggings = new ItemBuilder(config, 83, iceFire, ItemBuilder.LEGGINGS, instance);
+        blackDragonscaleBoots = new ItemBuilder(config, 84, iceFire, ItemBuilder.BOOTS, instance);
+        copperDragonscaleHelmet = new ItemBuilder(config, 85, iceFire, ItemBuilder.HELMET, instance);
+        copperDragonscaleChestplate = new ItemBuilder(config, 86, iceFire, ItemBuilder.CHESTPLATE, instance);
+        copperDragonscaleLeggings = new ItemBuilder(config, 87, iceFire, ItemBuilder.LEGGINGS, instance);
+        copperDragonscaleBoots = new ItemBuilder(config, 88, iceFire, ItemBuilder.BOOTS, instance);
+        electricDragonscaleHelmet = new ItemBuilder(config, 89, iceFire, ItemBuilder.HELMET, instance);
+        electricDragonscaleChestplate = new ItemBuilder(config, 90, iceFire, ItemBuilder.CHESTPLATE, instance);
+        electricDragonscaleLeggings = new ItemBuilder(config, 91, iceFire, ItemBuilder.LEGGINGS, instance);
+        electricDragonscaleBoots = new ItemBuilder(config, 92, iceFire, ItemBuilder.BOOTS, instance);
+        blueTideGuardianHelmet = new ItemBuilder(config, 93, iceFire, ItemBuilder.HELMET, instance);
+        blueTideGuardianChestplate = new ItemBuilder(config, 94, iceFire, ItemBuilder.CHESTPLATE, instance);
+        blueTideGuardianLeggings = new ItemBuilder(config, 95, iceFire, ItemBuilder.LEGGINGS, instance);
+        blueTideGuardianBoots = new ItemBuilder(config, 96, iceFire, ItemBuilder.BOOTS, instance);
+        bronzeTideGuardianHelmet = new ItemBuilder(config, 97, iceFire, ItemBuilder.HELMET, instance);
+        bronzeTideGuardianChestplate = new ItemBuilder(config, 98, iceFire, ItemBuilder.CHESTPLATE, instance);
+        bronzeTideGuardianLeggings = new ItemBuilder(config, 99, iceFire, ItemBuilder.LEGGINGS, instance);
+        bronzeTideGuardianBoots = new ItemBuilder(config, 100, iceFire, ItemBuilder.BOOTS, instance);
+        deepBlueTideGuardianHelmet = new ItemBuilder(config, 101, iceFire, ItemBuilder.HELMET, instance);
+        deepBlueTideGuardianChestplate = new ItemBuilder(config, 102, iceFire, ItemBuilder.CHESTPLATE, instance);
+        deepBlueTideGuardianLeggings = new ItemBuilder(config, 103, iceFire, ItemBuilder.LEGGINGS, instance);
+        deepBlueTideGuardianBoots = new ItemBuilder(config, 104, iceFire, ItemBuilder.BOOTS, instance);
+        greenTideGuardianHelmet = new ItemBuilder(config, 105, iceFire, ItemBuilder.HELMET, instance);
+        greenTideGuardianChestplate = new ItemBuilder(config, 106, iceFire, ItemBuilder.CHESTPLATE, instance);
+        greenTideGuardianLeggings = new ItemBuilder(config, 107, iceFire, ItemBuilder.LEGGINGS, instance);
+        greenTideGuardianBoots = new ItemBuilder(config, 108, iceFire, ItemBuilder.BOOTS, instance);
+        purpleTideGuardianHelmet = new ItemBuilder(config, 109, iceFire, ItemBuilder.HELMET, instance);
+        purpleTideGuardianChestplate = new ItemBuilder(config, 110, iceFire, ItemBuilder.CHESTPLATE, instance);
+        purpleTideGuardianLeggings = new ItemBuilder(config, 111, iceFire, ItemBuilder.LEGGINGS, instance);
+        purpleTideGuardianBoots = new ItemBuilder(config, 112, iceFire, ItemBuilder.BOOTS, instance);
+        redTideGuardianHelmet = new ItemBuilder(config, 113, iceFire, ItemBuilder.HELMET, instance);
+        redTideGuardianChestplate = new ItemBuilder(config, 114, iceFire, ItemBuilder.CHESTPLATE, instance);
+        redTideGuardianLeggings = new ItemBuilder(config, 115, iceFire, ItemBuilder.LEGGINGS, instance);
+        redTideGuardianBoots = new ItemBuilder(config, 116, iceFire, ItemBuilder.BOOTS, instance);
+        tealTideGuardianHelmet = new ItemBuilder(config, 117, iceFire, ItemBuilder.HELMET, instance);
+        tealTideGuardianChestplate = new ItemBuilder(config, 118, iceFire, ItemBuilder.CHESTPLATE, instance);
+        tealTideGuardianLeggings = new ItemBuilder(config, 119, iceFire, ItemBuilder.LEGGINGS, instance);
+        tealTideGuardianBoots = new ItemBuilder(config, 120, iceFire, ItemBuilder.BOOTS, instance);
+        dragonBonePickaxe = new ItemBuilder(config, 121, iceFire, ItemBuilder.PICKAXE, instance);
+        dragonBoneAxe = new ItemBuilder(config, 122, iceFire, ItemBuilder.AXE, instance);
+        dragonBoneShovel = new ItemBuilder(config, 123, iceFire, ItemBuilder.SHOVEL, instance);
+        dragonBoneHoe = new ItemBuilder(config, 124, iceFire, ItemBuilder.HOE, instance);
+        dragonBoneSword = new ItemBuilder(config, 125, iceFire, ItemBuilder.SWORD, instance);
+        dragonBoneBow = new ItemBuilder(config, 126, instance);
+        flamedDragonboneSword = new ItemBuilder(config, 127, iceFire, ItemBuilder.SWORD, instance);
+        icedDragonboneSword = new ItemBuilder(config, 128, iceFire, ItemBuilder.SWORD, instance);
+        lightningDragonboneSword = new ItemBuilder(config, 129, iceFire, ItemBuilder.SWORD, instance);
+        dragonsEye = new ItemBuilder(config, 130, instance);
+        poisonStone = new ItemBuilder(config, 131, instance);
+        potionRingResistance = new ItemBuilder(config, 132, instance);
+        potionRingRegeneration = new ItemBuilder(config, 133, instance);
+        potionRingHaste = new ItemBuilder(config, 134, instance);
+        potionRingStrength = new ItemBuilder(config, 135, instance);
+        potionRingSpeed = new ItemBuilder(config, 136, instance);
+        potionRingJumpBoost = new ItemBuilder(config, 137, instance);
+        enderQueensCrown = new ItemBuilder(config, 138, instance);
+        sunglasses = new ItemBuilder(config, 139, instance);
+        balloon = new ItemBuilder(config, 140, instance);
+        cobaltShield = new ItemBuilder(config, 141, instance);
+        obsidianSkull = new ItemBuilder(config, 142, instance);
+        obsidianShield = new ItemBuilder(config, 143, instance);
+        forbiddenFruit = new ItemBuilder(config, 144, instance);
+        vitamins = new ItemBuilder(config, 145, instance);
+        ringOverclocking = new ItemBuilder(config, 146, instance);
+        shulkerHeart = new ItemBuilder(config, 147, instance);
+        ringFreeAction = new ItemBuilder(config, 148, instance);
+        bezoar = new ItemBuilder(config, 149, instance);
+        enderDragonscale = new ItemBuilder(config, 150, instance);
+        crackedBlackDragonscale = new ItemBuilder(config, 151, instance);
+        blackDragonscale = new ItemBuilder(config, 152, instance);
+        mixedColorDragonscale = new ItemBuilder(config, 153, instance);
+        ankhCharm = new ItemBuilder(config, 154, instance);
+        ankhShield = new ItemBuilder(config, 155, instance);
+        ironRing = new ItemBuilder(config, 156, instance);
+        magicMirror = new ItemBuilder(config, 157, instance);
+        recallPotion = new ItemBuilder(config, 158, instance);
+        wormholeMirror = new ItemBuilder(config, 159, instance);
+        wormholePotion = new ItemBuilder(config, 160, instance);
+        luckyHorseshoe = new ItemBuilder(config, 161, instance);
+        battleBurrito = new ItemBuilder(config, 162, instance);
+        scarliteRing = new ItemBuilder(config, 163, instance);
+        spectralSilt = new ItemBuilder(config, 164, instance);
+        disintegrationTablet = new ItemBuilder(config, 165, instance);
+        brokenHeart = new ItemBuilder(config, 166, instance);
+        crossNecklace = new ItemBuilder(config, 167, instance);
+        wrathPendant = new ItemBuilder(config, 168, instance);
+        pridePendant = new ItemBuilder(config, 169, instance);
+        goldenCrown = new ItemBuilder(config, 170, instance);
+        gluttonyPendant = new ItemBuilder(config, 171, instance);
+        sinPendant = new ItemBuilder(config, 172, instance);
+        flareGun = new ItemBuilder(config, 173, instance);
+        flare = new ItemBuilder(config, 174, instance);
+        phytoprotostasiaAmulet = new ItemBuilder(config, 175, instance);
+        potionRing = new ItemBuilder(config, 176, instance);
+        emeraldRing = new ItemBuilder(config, 177, instance);
+        emeraldAmulet = new ItemBuilder(config, 178, instance);
+        glowingIngot = new ItemBuilder(config, 179, instance);
+        glowingPowder = new ItemBuilder(config, 180, instance);
+        glowingGem = new ItemBuilder(config, 181, instance);
+        dwarfStout = new ItemBuilder(config, 182, instance);
+        fairyDew = new ItemBuilder(config, 183, instance);
+        stoneNegativeGravity = new ItemBuilder(config, 184, instance);
+        stoneInertiaNull = new ItemBuilder(config, 185, instance);
+        stoneGreaterInertia = new ItemBuilder(config, 186, instance);
+        ringEnchantedEyes = new ItemBuilder(config, 187, instance);
+        stoneSea = new ItemBuilder(config, 188, instance);
+        polarizedStone = new ItemBuilder(config, 189, instance);
+        ringFairies = new ItemBuilder(config, 190, instance);
+        ringDwarves = new ItemBuilder(config, 191, instance);
+        witherRing = new ItemBuilder(config, 192, instance);
+        shieldHonor = new ItemBuilder(config, 193, instance);
+        minersRing = new ItemBuilder(config, 194, instance);
+        warpedScroll = new ItemBuilder(config, 195, instance);
+        fireResistancePotion = new ItemBuilder(config, 196, instance);
+        fireDragonsteelSword = new ItemBuilder(config, 197, iceFire, ItemBuilder.SWORD, instance);
+        fireDragonsteelPickaxe = new ItemBuilder(config, 198, iceFire, ItemBuilder.PICKAXE, instance);
+        fireDragonsteelAxe = new ItemBuilder(config, 199, iceFire, ItemBuilder.AXE, instance);
+        fireDragonsteelShovel = new ItemBuilder(config, 200, iceFire, ItemBuilder.SHOVEL, instance);
+        fireDragonsteelHoe = new ItemBuilder(config, 201, iceFire, ItemBuilder.HOE, instance);
+        iceDragonsteelSword = new ItemBuilder(config, 202, iceFire, ItemBuilder.SWORD, instance);
+        iceDragonsteelPickaxe = new ItemBuilder(config, 203, iceFire, ItemBuilder.PICKAXE, instance);
+        iceDragonsteelAxe = new ItemBuilder(config, 204, iceFire, ItemBuilder.AXE, instance);
+        iceDragonsteelShovel = new ItemBuilder(config, 205, iceFire, ItemBuilder.SHOVEL, instance);
+        iceDragonsteelHoe = new ItemBuilder(config, 206, iceFire, ItemBuilder.HOE, instance);
+        lightningDragonsteelSword = new ItemBuilder(config, 207, iceFire, ItemBuilder.SWORD, instance);
+        lightningDragonsteelPickaxe = new ItemBuilder(config, 208, iceFire, ItemBuilder.PICKAXE, instance);
+        lightningDragonsteelAxe = new ItemBuilder(config, 209, iceFire, ItemBuilder.AXE, instance);
+        lightningDragonsteelShovel = new ItemBuilder(config, 210, iceFire, ItemBuilder.SHOVEL, instance);
+        lightningDragonsteelHoe = new ItemBuilder(config, 211, iceFire, ItemBuilder.HOE, instance);
+        fireDragonsteelHelmet = new ItemBuilder(config, 212, iceFire, ItemBuilder.HELMET, instance);
+        fireDragonsteelChestplate = new ItemBuilder(config, 213, iceFire, ItemBuilder.CHESTPLATE, instance);
+        fireDragonsteelLeggings = new ItemBuilder(config, 214, iceFire, ItemBuilder.LEGGINGS, instance);
+        fireDragonsteelBoots = new ItemBuilder(config, 215, iceFire, ItemBuilder.BOOTS, instance);
+        iceDragonsteelHelmet = new ItemBuilder(config, 216, iceFire, ItemBuilder.HELMET, instance);
+        iceDragonsteelChestplate = new ItemBuilder(config, 217, iceFire, ItemBuilder.CHESTPLATE, instance);
+        iceDragonsteelLeggings = new ItemBuilder(config, 218, iceFire, ItemBuilder.LEGGINGS, instance);
+        iceDragonsteelBoots = new ItemBuilder(config, 219, iceFire, ItemBuilder.BOOTS, instance);
+        lightningDragonsteelHelmet = new ItemBuilder(config, 220, iceFire, ItemBuilder.HELMET, instance);
+        lightningDragonsteelChestplate = new ItemBuilder(config, 221, iceFire, ItemBuilder.CHESTPLATE, instance);
+        lightningDragonsteelLeggings = new ItemBuilder(config, 222, iceFire, ItemBuilder.LEGGINGS, instance);
+        lightningDragonsteelBoots = new ItemBuilder(config, 223, iceFire, ItemBuilder.BOOTS, instance);
+        dragonBoneRapier = new ItemBuilder(config, 224, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        dragonBoneKatana = new ItemBuilder(config, 225, spartanWeaponry, ItemBuilder.KATANA, instance);
+        dragonBoneGreatsword = new ItemBuilder(config, 226, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        dragonBoneLongsword = new ItemBuilder(config, 227, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        dragonBoneSpear = new ItemBuilder(config, 228, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        dragonBoneSaber = new ItemBuilder(config, 229, spartanWeaponry, ItemBuilder.SABER, instance);
+        dragonBoneBoomerang = new ItemBuilder(config, 230, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        dragonBoneDagger = new ItemBuilder(config, 231, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        dragonBoneGlaive = new ItemBuilder(config, 232, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        dragonBoneHalberd = new ItemBuilder(config, 233, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        dragonBoneHammer = new ItemBuilder(config, 234, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        dragonBoneJavelin = new ItemBuilder(config, 235, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        dragonBoneLance = new ItemBuilder(config, 236, spartanWeaponry, ItemBuilder.LANCE, instance);
+        dragonBoneMace = new ItemBuilder(config, 237, spartanWeaponry, ItemBuilder.MACE, instance);
+        dragonBonePike = new ItemBuilder(config, 238, spartanWeaponry, ItemBuilder.PIKE, instance);
+        dragonBoneQuarterstaff = new ItemBuilder(config, 239, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        dragonBoneThrowingAxe = new ItemBuilder(config, 240, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        dragonBoneThrowingKnife = new ItemBuilder(config, 241, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        dragonBoneWarhammer = new ItemBuilder(config, 242, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        dragonBoneBattleaxe = new ItemBuilder(config, 243, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        dragonBoneLongbow = new ItemBuilder(config, 244, instance);
+        dragonBoneCrossbow = new ItemBuilder(config, 245, instance);
+        flamedDragonboneRapier = new ItemBuilder(config, 246, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        flamedDragonboneKatana = new ItemBuilder(config, 247, spartanWeaponry, ItemBuilder.KATANA, instance);
+        flamedDragonboneGreatsword = new ItemBuilder(config, 248, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        flamedDragonboneLongsword = new ItemBuilder(config, 249, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        flamedDragonboneSpear = new ItemBuilder(config, 250, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        flamedDragonboneSaber = new ItemBuilder(config, 251, spartanWeaponry, ItemBuilder.SABER, instance);
+        flamedDragonboneBoomerang = new ItemBuilder(config, 252, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        flamedDragonboneDagger = new ItemBuilder(config, 253, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        flamedDragonboneGlaive = new ItemBuilder(config, 254, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        flamedDragonboneHalberd = new ItemBuilder(config, 255, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        flamedDragonboneHammer = new ItemBuilder(config, 256, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        flamedDragonboneJavelin = new ItemBuilder(config, 257, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        flamedDragonboneLance = new ItemBuilder(config, 258, spartanWeaponry, ItemBuilder.LANCE, instance);
+        flamedDragonboneMace = new ItemBuilder(config, 259, spartanWeaponry, ItemBuilder.MACE, instance);
+        flamedDragonbonePike = new ItemBuilder(config, 260, spartanWeaponry, ItemBuilder.PIKE, instance);
+        flamedDragonboneQuarterstaff = new ItemBuilder(config, 261, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        flamedDragonboneThrowingAxe = new ItemBuilder(config, 262, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        flamedDragonboneThrowingKnife = new ItemBuilder(config, 263, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        flamedDragonboneWarhammer = new ItemBuilder(config, 264, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        flamedDragonboneBattleaxe = new ItemBuilder(config, 265, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        flamedDragonboneLongbow = new ItemBuilder(config, 266, instance);
+        flamedDragonboneCrossbow = new ItemBuilder(config, 267, instance);
+        icedDragonboneRapier = new ItemBuilder(config, 268, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        icedDragonboneKatana = new ItemBuilder(config, 269, spartanWeaponry, ItemBuilder.KATANA, instance);
+        icedDragonboneGreatsword = new ItemBuilder(config, 270, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        icedDragonboneLongsword = new ItemBuilder(config, 271, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        icedDragonboneSpear = new ItemBuilder(config, 272, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        icedDragonboneSaber = new ItemBuilder(config, 273, spartanWeaponry, ItemBuilder.SABER, instance);
+        icedDragonboneBoomerang = new ItemBuilder(config, 274, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        icedDragonboneDagger = new ItemBuilder(config, 275, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        icedDragonboneGlaive = new ItemBuilder(config, 276, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        icedDragonboneHalberd = new ItemBuilder(config, 277, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        icedDragonboneHammer = new ItemBuilder(config, 278, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        icedDragonboneJavelin = new ItemBuilder(config, 279, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        icedDragonboneLance = new ItemBuilder(config, 280, spartanWeaponry, ItemBuilder.LANCE, instance);
+        icedDragonboneMace = new ItemBuilder(config, 281, spartanWeaponry, ItemBuilder.MACE, instance);
+        icedDragonbonePike = new ItemBuilder(config, 282, spartanWeaponry, ItemBuilder.PIKE, instance);
+        icedDragonboneQuarterstaff = new ItemBuilder(config, 283, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        icedDragonboneThrowingAxe = new ItemBuilder(config, 284, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        icedDragonboneThrowingKnife = new ItemBuilder(config, 285, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        icedDragonboneWarhammer = new ItemBuilder(config, 286, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        icedDragonboneBattleaxe = new ItemBuilder(config, 287, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        icedDragonboneLongbow = new ItemBuilder(config, 288, instance);
+        icedDragonboneCrossbow = new ItemBuilder(config, 289, instance);
+        lightningDragonboneRapier = new ItemBuilder(config, 290, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        lightningDragonboneKatana = new ItemBuilder(config, 291, spartanWeaponry, ItemBuilder.KATANA, instance);
+        lightningDragonboneGreatsword = new ItemBuilder(config, 292, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        lightningDragonboneLongsword = new ItemBuilder(config, 293, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        lightningDragonboneSpear = new ItemBuilder(config, 294, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        lightningDragonboneSaber = new ItemBuilder(config, 295, spartanWeaponry, ItemBuilder.SABER, instance);
+        lightningDragonboneBoomerang = new ItemBuilder(config, 296, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        lightningDragonboneDagger = new ItemBuilder(config, 297, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        lightningDragonboneGlaive = new ItemBuilder(config, 298, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        lightningDragonboneHalberd = new ItemBuilder(config, 299, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        lightningDragonboneHammer = new ItemBuilder(config, 300, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        lightningDragonboneJavelin = new ItemBuilder(config, 301, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        lightningDragonboneLance = new ItemBuilder(config, 302, spartanWeaponry, ItemBuilder.LANCE, instance);
+        lightningDragonboneMace = new ItemBuilder(config, 303, spartanWeaponry, ItemBuilder.MACE, instance);
+        lightningDragonbonePike = new ItemBuilder(config, 304, spartanWeaponry, ItemBuilder.PIKE, instance);
+        lightningDragonboneQuarterstaff = new ItemBuilder(config, 305, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        lightningDragonboneThrowingAxe = new ItemBuilder(config, 306, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        lightningDragonboneThrowingKnife = new ItemBuilder(config, 307, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        lightningDragonboneWarhammer = new ItemBuilder(config, 308, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        lightningDragonboneBattleaxe = new ItemBuilder(config, 309, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        lightningDragonboneLongbow = new ItemBuilder(config, 310, instance);
+        lightningDragonboneCrossbow = new ItemBuilder(config, 311, instance);
+        fireDragonsteelRapier = new ItemBuilder(config, 312, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        fireDragonsteelKatana = new ItemBuilder(config, 313, spartanWeaponry, ItemBuilder.KATANA, instance);
+        fireDragonsteelGreatsword = new ItemBuilder(config, 314, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        fireDragonsteelLongsword = new ItemBuilder(config, 315, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        fireDragonsteelSpear = new ItemBuilder(config, 316, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        fireDragonsteelSaber = new ItemBuilder(config, 317, spartanWeaponry, ItemBuilder.SABER, instance);
+        fireDragonsteelBoomerang = new ItemBuilder(config, 318, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        fireDragonsteelDagger = new ItemBuilder(config, 319, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        fireDragonsteelGlaive = new ItemBuilder(config, 320, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        fireDragonsteelHalberd = new ItemBuilder(config, 321, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        fireDragonsteelHammer = new ItemBuilder(config, 322, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        fireDragonsteelJavelin = new ItemBuilder(config, 323, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        fireDragonsteelLance = new ItemBuilder(config, 324, spartanWeaponry, ItemBuilder.LANCE, instance);
+        fireDragonsteelMace = new ItemBuilder(config, 325, spartanWeaponry, ItemBuilder.MACE, instance);
+        fireDragonsteelPike = new ItemBuilder(config, 326, spartanWeaponry, ItemBuilder.PIKE, instance);
+        fireDragonsteelQuarterstaff = new ItemBuilder(config, 327, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        fireDragonsteelThrowingAxe = new ItemBuilder(config, 328, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        fireDragonsteelThrowingKnife = new ItemBuilder(config, 329, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        fireDragonsteelWarhammer = new ItemBuilder(config, 330, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        fireDragonsteelBattleaxe = new ItemBuilder(config, 331, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        fireDragonsteelLongbow = new ItemBuilder(config, 332, instance);
+        fireDragonsteelCrossbow = new ItemBuilder(config, 333, instance);
+        iceDragonsteelRapier = new ItemBuilder(config, 334, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        iceDragonsteelKatana = new ItemBuilder(config, 335, spartanWeaponry, ItemBuilder.KATANA, instance);
+        iceDragonsteelGreatsword = new ItemBuilder(config, 336, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        iceDragonsteelLongsword = new ItemBuilder(config, 337, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        iceDragonsteelSpear = new ItemBuilder(config, 338, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        iceDragonsteelSaber = new ItemBuilder(config, 339, spartanWeaponry, ItemBuilder.SABER, instance);
+        iceDragonsteelBoomerang = new ItemBuilder(config, 340, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        iceDragonsteelDagger = new ItemBuilder(config, 341, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        iceDragonsteelGlaive = new ItemBuilder(config, 342, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        iceDragonsteelHalberd = new ItemBuilder(config, 343, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        iceDragonsteelHammer = new ItemBuilder(config, 344, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        iceDragonsteelJavelin = new ItemBuilder(config, 345, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        iceDragonsteelLance = new ItemBuilder(config, 346, spartanWeaponry, ItemBuilder.LANCE, instance);
+        iceDragonsteelMace = new ItemBuilder(config, 347, spartanWeaponry, ItemBuilder.MACE, instance);
+        iceDragonsteelPike = new ItemBuilder(config, 348, spartanWeaponry, ItemBuilder.PIKE, instance);
+        iceDragonsteelQuarterstaff = new ItemBuilder(config, 349, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        iceDragonsteelThrowingAxe = new ItemBuilder(config, 350, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        iceDragonsteelThrowingKnife = new ItemBuilder(config, 351, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        iceDragonsteelWarhammer = new ItemBuilder(config, 352, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        iceDragonsteelBattleaxe = new ItemBuilder(config, 353, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        iceDragonsteelLongbow = new ItemBuilder(config, 354, instance);
+        iceDragonsteelCrossbow = new ItemBuilder(config, 355, instance);
+        lightningDragonsteelRapier = new ItemBuilder(config, 356, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        lightningDragonsteelKatana = new ItemBuilder(config, 357, spartanWeaponry, ItemBuilder.KATANA, instance);
+        lightningDragonsteelGreatsword = new ItemBuilder(config, 358, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        lightningDragonsteelLongsword = new ItemBuilder(config, 359, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        lightningDragonsteelSpear = new ItemBuilder(config, 360, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        lightningDragonsteelSaber = new ItemBuilder(config, 361, spartanWeaponry, ItemBuilder.SABER, instance);
+        lightningDragonsteelBoomerang = new ItemBuilder(config, 362, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        lightningDragonsteelDagger = new ItemBuilder(config, 363, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        lightningDragonsteelGlaive = new ItemBuilder(config, 364, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        lightningDragonsteelHalberd = new ItemBuilder(config, 365, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        lightningDragonsteelHammer = new ItemBuilder(config, 366, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        lightningDragonsteelJavelin = new ItemBuilder(config, 367, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        lightningDragonsteelLance = new ItemBuilder(config, 368, spartanWeaponry, ItemBuilder.LANCE, instance);
+        lightningDragonsteelMace = new ItemBuilder(config, 369, spartanWeaponry, ItemBuilder.MACE, instance);
+        lightningDragonsteelPike = new ItemBuilder(config, 370, spartanWeaponry, ItemBuilder.PIKE, instance);
+        lightningDragonsteelQuarterstaff = new ItemBuilder(config, 371, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        lightningDragonsteelThrowingAxe = new ItemBuilder(config, 372, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        lightningDragonsteelThrowingKnife = new ItemBuilder(config, 373, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        lightningDragonsteelWarhammer = new ItemBuilder(config, 374, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        lightningDragonsteelBattleaxe = new ItemBuilder(config, 375, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        lightningDragonsteelLongbow = new ItemBuilder(config, 376, instance);
+        lightningDragonsteelCrossbow = new ItemBuilder(config, 377, instance);
+        fireDragonsteelBlock = new ItemBuilder(config, 378, instance);
+        iceDragonsteelBlock = new ItemBuilder(config, 379, instance);
+        lightningDragonsteelBlock = new ItemBuilder(config, 380, instance);
+        boundScroll = new ItemBuilder(config, 381, instance);
+        returnScroll = new ItemBuilder(config, 382, instance);
+        handle = new ItemBuilder(config, 383, instance);
+        pole = new ItemBuilder(config, 384, instance);
+        witherboneHandle = new ItemBuilder(config, 385, instance);
+        witherbonePole = new ItemBuilder(config, 386, instance);
+        netheriteRapier = new ItemBuilder(config, 387, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        netheriteKatana = new ItemBuilder(config, 388, spartanWeaponry, ItemBuilder.KATANA, instance);
+        netheriteGreatsword = new ItemBuilder(config, 389, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        netheriteLongsword = new ItemBuilder(config, 390, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        netheriteSpear = new ItemBuilder(config, 391, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        netheriteSaber = new ItemBuilder(config, 392, spartanWeaponry, ItemBuilder.SABER, instance);
+        netheriteBoomerang = new ItemBuilder(config, 393, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        netheriteDagger = new ItemBuilder(config, 394, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        netheriteGlaive = new ItemBuilder(config, 395, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        netheriteHalberd = new ItemBuilder(config, 396, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        netheriteHammer = new ItemBuilder(config, 397, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        netheriteJavelin = new ItemBuilder(config, 398, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        netheriteLance = new ItemBuilder(config, 399, spartanWeaponry, ItemBuilder.LANCE, instance);
+        netheriteMace = new ItemBuilder(config, 400, spartanWeaponry, ItemBuilder.MACE, instance);
+        netheritePike = new ItemBuilder(config, 401, spartanWeaponry, ItemBuilder.PIKE, instance);
+        netheriteQuarterstaff = new ItemBuilder(config, 402, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        netheriteThrowingAxe = new ItemBuilder(config, 403, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        netheriteThrowingKnife = new ItemBuilder(config, 404, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        netheriteWarhammer = new ItemBuilder(config, 405, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        netheriteBattleaxe = new ItemBuilder(config, 406, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        netheriteLongbow = new ItemBuilder(config, 407, instance);
+        netheriteCrossbow = new ItemBuilder(config, 408, instance);
+        diamondRapier = new ItemBuilder(config, 409, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        diamondKatana = new ItemBuilder(config, 410, spartanWeaponry, ItemBuilder.KATANA, instance);
+        diamondGreatsword = new ItemBuilder(config, 411, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        diamondLongsword = new ItemBuilder(config, 412, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        diamondSpear = new ItemBuilder(config, 413, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        diamondSaber = new ItemBuilder(config, 414, spartanWeaponry, ItemBuilder.SABER, instance);
+        diamondBoomerang = new ItemBuilder(config, 415, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        diamondDagger = new ItemBuilder(config, 416, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        diamondGlaive = new ItemBuilder(config, 417, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        diamondHalberd = new ItemBuilder(config, 418, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        diamondHammer = new ItemBuilder(config, 419, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        diamondJavelin = new ItemBuilder(config, 420, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        diamondLance = new ItemBuilder(config, 421, spartanWeaponry, ItemBuilder.LANCE, instance);
+        diamondMace = new ItemBuilder(config, 422, spartanWeaponry, ItemBuilder.MACE, instance);
+        diamondPike = new ItemBuilder(config, 423, spartanWeaponry, ItemBuilder.PIKE, instance);
+        diamondQuarterstaff = new ItemBuilder(config, 424, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        diamondThrowingAxe = new ItemBuilder(config, 425, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        diamondThrowingKnife = new ItemBuilder(config, 426, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        diamondWarhammer = new ItemBuilder(config, 427, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        diamondBattleaxe = new ItemBuilder(config, 428, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        diamondLongbow = new ItemBuilder(config, 429, instance);
+        diamondCrossbow = new ItemBuilder(config, 430, instance);
+        ironRapier = new ItemBuilder(config, 431, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        ironKatana = new ItemBuilder(config, 432, spartanWeaponry, ItemBuilder.KATANA, instance);
+        ironGreatsword = new ItemBuilder(config, 433, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        ironLongsword = new ItemBuilder(config, 434, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        ironSpear = new ItemBuilder(config, 435, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        ironSaber = new ItemBuilder(config, 436, spartanWeaponry, ItemBuilder.SABER, instance);
+        ironBoomerang = new ItemBuilder(config, 437, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        ironDagger = new ItemBuilder(config, 438, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        ironGlaive = new ItemBuilder(config, 439, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        ironHalberd = new ItemBuilder(config, 440, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        ironHammer = new ItemBuilder(config, 441, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        ironJavelin = new ItemBuilder(config, 442, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        ironLance = new ItemBuilder(config, 443, spartanWeaponry, ItemBuilder.LANCE, instance);
+        ironMace = new ItemBuilder(config, 444, spartanWeaponry, ItemBuilder.MACE, instance);
+        ironPike = new ItemBuilder(config, 445, spartanWeaponry, ItemBuilder.PIKE, instance);
+        ironQuarterstaff = new ItemBuilder(config, 446, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        ironThrowingAxe = new ItemBuilder(config, 447, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        ironThrowingKnife = new ItemBuilder(config, 448, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        ironWarhammer = new ItemBuilder(config, 449, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        ironBattleaxe = new ItemBuilder(config, 450, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        ironLongbow = new ItemBuilder(config, 451, instance);
+        ironCrossbow = new ItemBuilder(config, 452, instance);
+        goldenRapier = new ItemBuilder(config, 453, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        goldenKatana = new ItemBuilder(config, 454, spartanWeaponry, ItemBuilder.KATANA, instance);
+        goldenGreatsword = new ItemBuilder(config, 455, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        goldenLongsword = new ItemBuilder(config, 456, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        goldenSpear = new ItemBuilder(config, 457, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        goldenSaber = new ItemBuilder(config, 458, spartanWeaponry, ItemBuilder.SABER, instance);
+        goldenBoomerang = new ItemBuilder(config, 459, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        goldenDagger = new ItemBuilder(config, 460, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        goldenGlaive = new ItemBuilder(config, 461, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        goldenHalberd = new ItemBuilder(config, 462, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        goldenHammer = new ItemBuilder(config, 463, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        goldenJavelin = new ItemBuilder(config, 464, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        goldenLance = new ItemBuilder(config, 465, spartanWeaponry, ItemBuilder.LANCE, instance);
+        goldenMace = new ItemBuilder(config, 466, spartanWeaponry, ItemBuilder.MACE, instance);
+        goldenPike = new ItemBuilder(config, 467, spartanWeaponry, ItemBuilder.PIKE, instance);
+        goldenQuarterstaff = new ItemBuilder(config, 468, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        goldenThrowingAxe = new ItemBuilder(config, 469, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        goldenThrowingKnife = new ItemBuilder(config, 470, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        goldenWarhammer = new ItemBuilder(config, 471, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        goldenBattleaxe = new ItemBuilder(config, 472, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        goldenLongbow = new ItemBuilder(config, 473, instance);
+        goldenCrossbow = new ItemBuilder(config, 474, instance);
+        stoneRapier = new ItemBuilder(config, 475, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        stoneKatana = new ItemBuilder(config, 476, spartanWeaponry, ItemBuilder.KATANA, instance);
+        stoneGreatsword = new ItemBuilder(config, 477, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        stoneLongsword = new ItemBuilder(config, 478, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        stoneSpear = new ItemBuilder(config, 479, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        stoneSaber = new ItemBuilder(config, 480, spartanWeaponry, ItemBuilder.SABER, instance);
+        stoneBoomerang = new ItemBuilder(config, 481, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        stoneDagger = new ItemBuilder(config, 482, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        stoneGlaive = new ItemBuilder(config, 483, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        stoneHalberd = new ItemBuilder(config, 484, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        stoneHammer = new ItemBuilder(config, 485, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        stoneJavelin = new ItemBuilder(config, 486, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        stoneLance = new ItemBuilder(config, 487, spartanWeaponry, ItemBuilder.LANCE, instance);
+        stoneMace = new ItemBuilder(config, 488, spartanWeaponry, ItemBuilder.MACE, instance);
+        stonePike = new ItemBuilder(config, 489, spartanWeaponry, ItemBuilder.PIKE, instance);
+        stoneQuarterstaff = new ItemBuilder(config, 490, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        stoneThrowingAxe = new ItemBuilder(config, 491, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        stoneThrowingKnife = new ItemBuilder(config, 492, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        stoneWarhammer = new ItemBuilder(config, 493, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        stoneBattleaxe = new ItemBuilder(config, 494, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        woodenRapier = new ItemBuilder(config, 495, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        woodenKatana = new ItemBuilder(config, 496, spartanWeaponry, ItemBuilder.KATANA, instance);
+        woodenGreatsword = new ItemBuilder(config, 497, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        woodenLongsword = new ItemBuilder(config, 498, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        woodenSpear = new ItemBuilder(config, 499, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        woodenSaber = new ItemBuilder(config, 500, spartanWeaponry, ItemBuilder.SABER, instance);
+        woodenBoomerang = new ItemBuilder(config, 501, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        woodenDagger = new ItemBuilder(config, 502, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        woodenGlaive = new ItemBuilder(config, 503, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        woodenHalberd = new ItemBuilder(config, 504, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        woodenHammer = new ItemBuilder(config, 505, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        woodenJavelin = new ItemBuilder(config, 506, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        woodenLance = new ItemBuilder(config, 507, spartanWeaponry, ItemBuilder.LANCE, instance);
+        woodenMace = new ItemBuilder(config, 508, spartanWeaponry, ItemBuilder.MACE, instance);
+        woodenPike = new ItemBuilder(config, 509, spartanWeaponry, ItemBuilder.PIKE, instance);
+        woodenQuarterstaff = new ItemBuilder(config, 510, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        woodenThrowingAxe = new ItemBuilder(config, 511, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        woodenThrowingKnife = new ItemBuilder(config, 512, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        woodenWarhammer = new ItemBuilder(config, 513, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        woodenBattleaxe = new ItemBuilder(config, 514, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        woodenLongbow = new ItemBuilder(config, 515, instance);
+        woodenCrossbow = new ItemBuilder(config, 516, instance);
+        woodenClub = new ItemBuilder(config, 517, spartanWeaponry, ItemBuilder.CLUB, instance);
+        leatherLongbow = new ItemBuilder(config, 518, instance);
+        leatherCrossbow = new ItemBuilder(config, 519, instance);
+        copperRapier = new ItemBuilder(config, 520, spartanWeaponry, ItemBuilder.RAPIER, instance);
+        copperKatana = new ItemBuilder(config, 521, spartanWeaponry, ItemBuilder.KATANA, instance);
+        copperGreatsword = new ItemBuilder(config, 522, spartanWeaponry, ItemBuilder.GREATSWORD, instance);
+        copperLongsword = new ItemBuilder(config, 523, spartanWeaponry, ItemBuilder.LONGSWORD, instance);
+        copperSpear = new ItemBuilder(config, 524, spartanWeaponry, ItemBuilder.SPEAR, instance);
+        copperSaber = new ItemBuilder(config, 525, spartanWeaponry, ItemBuilder.SABER, instance);
+        copperBoomerang = new ItemBuilder(config, 526, spartanWeaponry, ItemBuilder.BOOMERANG, instance);
+        copperDagger = new ItemBuilder(config, 527, spartanWeaponry, ItemBuilder.DAGGER, instance);
+        copperGlaive = new ItemBuilder(config, 528, spartanWeaponry, ItemBuilder.GLAIVE, instance);
+        copperHalberd = new ItemBuilder(config, 529, spartanWeaponry, ItemBuilder.HALBERD, instance);
+        copperHammer = new ItemBuilder(config, 530, spartanWeaponry, ItemBuilder.HAMMER, instance);
+        copperJavelin = new ItemBuilder(config, 531, spartanWeaponry, ItemBuilder.JAVELIN, instance);
+        copperLance = new ItemBuilder(config, 532, spartanWeaponry, ItemBuilder.LANCE, instance);
+        copperMace = new ItemBuilder(config, 533, spartanWeaponry, ItemBuilder.MACE, instance);
+        copperPike = new ItemBuilder(config, 534, spartanWeaponry, ItemBuilder.PIKE, instance);
+        copperQuarterstaff = new ItemBuilder(config, 535, spartanWeaponry, ItemBuilder.QUARTERSTAFF, instance);
+        copperThrowingAxe = new ItemBuilder(config, 536, spartanWeaponry, ItemBuilder.TOMAHAWK, instance);
+        copperThrowingKnife = new ItemBuilder(config, 537, spartanWeaponry, ItemBuilder.THROWING_KNIFE, instance);
+        copperWarhammer = new ItemBuilder(config, 538, spartanWeaponry, ItemBuilder.WARHAMMER, instance);
+        copperBattleaxe = new ItemBuilder(config, 539, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
+        copperLongbow = new ItemBuilder(config, 540, instance);
+        copperCrossbow = new ItemBuilder(config, 541, instance);
+        studdedClub = new ItemBuilder(config, 542, instance);
     }
 
     /**
@@ -1142,10 +1149,6 @@ public class CustomItems {
         return flintHoe;
     }
 
-    public ItemStack getCobblestone() {
-        return new ItemStack(Material.COBBLESTONE);
-    }
-
     public ItemStack getPlantFiber() {
         return plantFiber;
     }
@@ -1154,15 +1157,11 @@ public class CustomItems {
         return plantString;
     }
 
-    public ItemStack getString() {
-        return new ItemStack(Material.STRING);
-    }
-
     public ItemStack getFlintShard() {
         return flintShard;
     }
 
-    public ItemStack getDragonBone() {
+    public ItemStack getDragonbone() {
         return dragonBone;
     }
 
@@ -1170,52 +1169,52 @@ public class CustomItems {
         return witherbone;
     }
 
-    public ItemStack getDragonScaleBlue() {
-        return blueDragonScales;
+    public ItemStack getDragonscaleBlue() {
+        return blueDragonscales;
     }
 
-    public ItemStack getDragonScaleBronze() {
-        return bronzeDragonScales;
+    public ItemStack getDragonscaleBronze() {
+        return bronzeDragonscales;
     }
 
-    public ItemStack getDragonScaleGray() {
-        return grayDragonScales;
+    public ItemStack getDragonscaleGray() {
+        return grayDragonscales;
     }
 
-    public ItemStack getDragonScaleGreen() {
-        return greenDragonScales;
+    public ItemStack getDragonscaleGreen() {
+        return greenDragonscales;
     }
 
-    public ItemStack getDragonScaleRed() {
-        return redDragonScales;
+    public ItemStack getDragonscaleRed() {
+        return redDragonscales;
     }
 
-    public ItemStack getDragonScaleSapphire() {
-        return sapphireDragonScales;
+    public ItemStack getDragonscaleSapphire() {
+        return sapphireDragonscales;
     }
 
-    public ItemStack getDragonScaleSilver() {
-        return silverDragonScales;
+    public ItemStack getDragonscaleSilver() {
+        return silverDragonscales;
     }
 
-    public ItemStack getDragonScaleWhite() {
-        return whiteDragonScales;
+    public ItemStack getDragonscaleWhite() {
+        return whiteDragonscales;
     }
 
-    public ItemStack getDragonScaleAmethyst() {
-        return amethystDragonScales;
+    public ItemStack getDragonscaleAmethyst() {
+        return amethystDragonscales;
     }
 
-    public ItemStack getDragonScaleBlack() {
-        return blackDragonScales;
+    public ItemStack getDragonscaleBlack() {
+        return blackDragonscales;
     }
 
-    public ItemStack getDragonScaleCopper() {
-        return copperDragonScales;
+    public ItemStack getDragonscaleCopper() {
+        return copperDragonscales;
     }
 
-    public ItemStack getDragonScaleElectric() {
-        return electricDragonScales;
+    public ItemStack getDragonscaleElectric() {
+        return electricDragonscales;
     }
 
     public ItemStack getSeaSerpentScaleBlue() {
@@ -1226,7 +1225,7 @@ public class CustomItems {
         return bronzeSeaSerpentScales;
     }
 
-    public ItemStack getSeaSerpentScaleDeepBlue() {
+    public ItemStack getSeaSerpentScaleDeepblue() {
         return deepBlueSeaSerpentScales;
     }
 
@@ -1310,196 +1309,196 @@ public class CustomItems {
         return lightningDragonsteelIngot;
     }
 
-    public ItemStack getDragonScaleHelmetBlue() {
-        return blueDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetBlue() {
+        return blueDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateBlue() {
-        return blueDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateBlue() {
+        return blueDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsBlue() {
-        return blueDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsBlue() {
+        return blueDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsBlue() {
-        return blueDragonScaleBoots;
+    public ItemStack getDragonscaleBootsBlue() {
+        return blueDragonscaleBoots;
     }
 
-    public ItemStack getDragonScaleHelmetBronze() {
-        return bronzeDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetBronze() {
+        return bronzeDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateBronze() {
-        return bronzeDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateBronze() {
+        return bronzeDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsBronze() {
-        return bronzeDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsBronze() {
+        return bronzeDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsBronze() {
-        return bronzeDragonScaleBoots;
+    public ItemStack getDragonscaleBootsBronze() {
+        return bronzeDragonscaleBoots;
     }
 
-    public ItemStack getDragonScaleHelmetGray() {
-        return grayDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetGray() {
+        return grayDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateGray() {
-        return grayDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateGray() {
+        return grayDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsGray() {
-        return grayDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsGray() {
+        return grayDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsGray() {
-        return grayDragonScaleBoots;
+    public ItemStack getDragonscaleBootsGray() {
+        return grayDragonscaleBoots;
     }
 
-    public ItemStack getDragonScaleHelmetGreen() {
-        return greenDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetGreen() {
+        return greenDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateGreen() {
-        return greenDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateGreen() {
+        return greenDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsGreen() {
-        return greenDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsGreen() {
+        return greenDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsGreen() {
-        return greenDragonScaleBoots;
+    public ItemStack getDragonscaleBootsGreen() {
+        return greenDragonscaleBoots;
     }
 
-    public ItemStack getDragonScaleHelmetRed() {
-        return redDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetRed() {
+        return redDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateRed() {
-        return redDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateRed() {
+        return redDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsRed() {
-        return redDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsRed() {
+        return redDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsRed() {
-        return redDragonScaleBoots;
+    public ItemStack getDragonscaleBootsRed() {
+        return redDragonscaleBoots;
     }
 
-    public ItemStack getDragonScaleHelmetSapphire() {
-        return sapphireDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetSapphire() {
+        return sapphireDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateSapphire() {
-        return sapphireDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateSapphire() {
+        return sapphireDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsSapphire() {
-        return sapphireDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsSapphire() {
+        return sapphireDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsSapphire() {
-        return sapphireDragonScaleBoots;
+    public ItemStack getDragonscaleBootsSapphire() {
+        return sapphireDragonscaleBoots;
     }
 
-    public ItemStack getDragonScaleHelmetSilver() {
-        return silverDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetSilver() {
+        return silverDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateSilver() {
-        return silverDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateSilver() {
+        return silverDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsSilver() {
-        return silverDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsSilver() {
+        return silverDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsSilver() {
-        return silverDragonScaleBoots;
+    public ItemStack getDragonscaleBootsSilver() {
+        return silverDragonscaleBoots;
     }
 
-    public ItemStack getDragonScaleHelmetWhite() {
-        return whiteDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetWhite() {
+        return whiteDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateWhite() {
-        return whiteDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateWhite() {
+        return whiteDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsWhite() {
-        return whiteDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsWhite() {
+        return whiteDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsWhite() {
-        return whiteDragonScaleBoots;
+    public ItemStack getDragonscaleBootsWhite() {
+        return whiteDragonscaleBoots;
     }
 
-    public ItemStack getDragonScaleHelmetAmethyst() {
-        return amethystDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetAmethyst() {
+        return amethystDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateAmethyst() {
-        return amethystDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateAmethyst() {
+        return amethystDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsAmethyst() {
-        return amethystDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsAmethyst() {
+        return amethystDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsAmethyst() {
-        return amethystDragonScaleBoots;
+    public ItemStack getDragonscaleBootsAmethyst() {
+        return amethystDragonscaleBoots;
     }
 
-    public ItemStack getDragonScaleHelmetBlack() {
-        return blackDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetBlack() {
+        return blackDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateBlack() {
-        return blackDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateBlack() {
+        return blackDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsBlack() {
-        return blackDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsBlack() {
+        return blackDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsBlack() {
-        return blackDragonScaleBoots;
+    public ItemStack getDragonscaleBootsBlack() {
+        return blackDragonscaleBoots;
     }
 
-    public ItemStack getDragonScaleHelmetCopper() {
-        return copperDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetCopper() {
+        return copperDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateCopper() {
-        return copperDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateCopper() {
+        return copperDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsCopper() {
-        return copperDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsCopper() {
+        return copperDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsCopper() {
-        return copperDragonScaleBoots;
+    public ItemStack getDragonscaleBootsCopper() {
+        return copperDragonscaleBoots;
     }
 
-    public ItemStack getDragonScaleHelmetElectric() {
-        return electricDragonScaleHelmet;
+    public ItemStack getDragonscaleHelmetElectric() {
+        return electricDragonscaleHelmet;
     }
 
-    public ItemStack getDragonScaleChestplateElectric() {
-        return electricDragonScaleChestplate;
+    public ItemStack getDragonscaleChestplateElectric() {
+        return electricDragonscaleChestplate;
     }
 
-    public ItemStack getDragonScaleLeggingsElectric() {
-        return electricDragonScaleLeggings;
+    public ItemStack getDragonscaleLeggingsElectric() {
+        return electricDragonscaleLeggings;
     }
 
-    public ItemStack getDragonScaleBootsElectric() {
-        return electricDragonScaleBoots;
+    public ItemStack getDragonscaleBootsElectric() {
+        return electricDragonscaleBoots;
     }
 
     public ItemStack getTideGuardianHelmetBlue() {
@@ -1534,19 +1533,19 @@ public class CustomItems {
         return bronzeTideGuardianBoots;
     }
 
-    public ItemStack getTideGuardianHelmetDeepBlue() {
+    public ItemStack getTideGuardianHelmetDeepblue() {
         return deepBlueTideGuardianHelmet;
     }
 
-    public ItemStack getTideGuardianChestplateDeepBlue() {
+    public ItemStack getTideGuardianChestplateDeepblue() {
         return deepBlueTideGuardianChestplate;
     }
 
-    public ItemStack getTideGuardianLeggingsDeepBlue() {
+    public ItemStack getTideGuardianLeggingsDeepblue() {
         return deepBlueTideGuardianLeggings;
     }
 
-    public ItemStack getTideGuardianBootsDeepBlue() {
+    public ItemStack getTideGuardianBootsDeepblue() {
         return deepBlueTideGuardianBoots;
     }
 
@@ -1614,40 +1613,40 @@ public class CustomItems {
         return tealTideGuardianBoots;
     }
 
-    public ItemStack getDragonBonePickaxe() {
+    public ItemStack getDragonbonePickaxe() {
         return dragonBonePickaxe;
     }
 
-    public ItemStack getDragonBoneAxe() {
+    public ItemStack getDragonboneAxe() {
         return dragonBoneAxe;
     }
 
-    public ItemStack getDragonBoneShovel() {
+    public ItemStack getDragonboneShovel() {
         return dragonBoneShovel;
     }
 
-    public ItemStack getDragonBoneHoe() {
+    public ItemStack getDragonboneHoe() {
         return dragonBoneHoe;
     }
 
-    public ItemStack getDragonBoneSword() {
+    public ItemStack getDragonboneSword() {
         return dragonBoneSword;
     }
 
-    public ItemStack getDragonBoneBow() {
+    public ItemStack getDragonboneBow() {
         return dragonBoneBow;
     }
 
-    public ItemStack getFlamedDragonBoneSword() {
-        return flamedDragonBoneSword;
+    public ItemStack getFlamedDragonboneSword() {
+        return flamedDragonboneSword;
     }
 
-    public ItemStack getIcedDragonBoneSword() {
-        return icedDragonBoneSword;
+    public ItemStack getIcedDragonboneSword() {
+        return icedDragonboneSword;
     }
 
-    public ItemStack getLightningDragonBoneSword() {
-        return lightningDragonBoneSword;
+    public ItemStack getLightningDragonboneSword() {
+        return lightningDragonboneSword;
     }
 
     public ItemStack getDragonsEye() {
@@ -1730,20 +1729,20 @@ public class CustomItems {
         return bezoar;
     }
 
-    public ItemStack getEnderDragonScale() {
-        return enderDragonScale;
+    public ItemStack getEnderDragonscale() {
+        return enderDragonscale;
     }
 
-    public ItemStack getCrackedBlackDragonScale() {
-        return crackedBlackDragonScale;
+    public ItemStack getCrackedBlackDragonscale() {
+        return crackedBlackDragonscale;
     }
 
-    public ItemStack getBlackDragonScale() {
-        return blackDragonScale;
+    public ItemStack getBlackDragonscale() {
+        return blackDragonscale;
     }
 
-    public ItemStack getMixedColorDragonScale() {
-        return mixedColorDragonScale;
+    public ItemStack getMixedColorDragonscale() {
+        return mixedColorDragonscale;
     }
 
     public ItemStack getAnkhCharm() {
@@ -2026,356 +2025,356 @@ public class CustomItems {
         return lightningDragonsteelBoots;
     }
 
-    public ItemStack getDragonBoneRapier() {
+    public ItemStack getDragonboneRapier() {
         return dragonBoneRapier;
     }
 
-    public ItemStack getDragonBoneKatana() {
+    public ItemStack getDragonboneKatana() {
         return dragonBoneKatana;
     }
 
-    public ItemStack getDragonBoneGreatsword() {
+    public ItemStack getDragonboneGreatsword() {
         return dragonBoneGreatsword;
     }
 
-    public ItemStack getDragonBoneLongsword() {
+    public ItemStack getDragonboneLongsword() {
         return dragonBoneLongsword;
     }
 
-    public ItemStack getDragonBoneSpear() {
+    public ItemStack getDragonboneSpear() {
         return dragonBoneSpear;
     }
 
-    public ItemStack getDragonBoneSaber() {
+    public ItemStack getDragonboneSaber() {
         return dragonBoneSaber;
     }
 
-    public ItemStack getDragonBoneBoomerang() {
+    public ItemStack getDragonboneBoomerang() {
         return dragonBoneBoomerang;
     }
 
-    public ItemStack getDragonBoneDagger() {
+    public ItemStack getDragonboneDagger() {
         return dragonBoneDagger;
     }
 
-    public ItemStack getDragonBoneGlaive() {
+    public ItemStack getDragonboneGlaive() {
         return dragonBoneGlaive;
     }
 
-    public ItemStack getDragonBoneHalberd() {
+    public ItemStack getDragonboneHalberd() {
         return dragonBoneHalberd;
     }
 
-    public ItemStack getDragonBoneHammer() {
+    public ItemStack getDragonboneHammer() {
         return dragonBoneHammer;
     }
 
-    public ItemStack getDragonBoneJavelin() {
+    public ItemStack getDragonboneJavelin() {
         return dragonBoneJavelin;
     }
 
-    public ItemStack getDragonBoneLance() {
+    public ItemStack getDragonboneLance() {
         return dragonBoneLance;
     }
 
-    public ItemStack getDragonBoneMace() {
+    public ItemStack getDragonboneMace() {
         return dragonBoneMace;
     }
 
-    public ItemStack getDragonBonePike() {
+    public ItemStack getDragonbonePike() {
         return dragonBonePike;
     }
 
-    public ItemStack getDragonBoneQuarterstaff() {
+    public ItemStack getDragonboneQuarterstaff() {
         return dragonBoneQuarterstaff;
     }
 
-    public ItemStack getDragonBoneThrowingAxe() {
+    public ItemStack getDragonboneThrowingAxe() {
         return dragonBoneThrowingAxe;
     }
 
-    public ItemStack getDragonBoneThrowingKnife() {
+    public ItemStack getDragonboneThrowingKnife() {
         return dragonBoneThrowingKnife;
     }
 
-    public ItemStack getDragonBoneWarhammer() {
+    public ItemStack getDragonboneWarhammer() {
         return dragonBoneWarhammer;
     }
 
-    public ItemStack getDragonBoneBattleaxe() {
+    public ItemStack getDragonboneBattleaxe() {
         return dragonBoneBattleaxe;
     }
 
-    public ItemStack getDragonBoneLongbow() {
+    public ItemStack getDragonboneLongbow() {
         return dragonBoneLongbow;
     }
 
-    public ItemStack getDragonBoneCrossbow() {
+    public ItemStack getDragonboneCrossbow() {
         return dragonBoneCrossbow;
     }
 
-    public ItemStack getFlamedDragonBoneRapier() {
-        return flamedDragonBoneRapier;
+    public ItemStack getFlamedDragonboneRapier() {
+        return flamedDragonboneRapier;
     }
 
-    public ItemStack getFlamedDragonBoneKatana() {
-        return flamedDragonBoneKatana;
+    public ItemStack getFlamedDragonboneKatana() {
+        return flamedDragonboneKatana;
     }
 
-    public ItemStack getFlamedDragonBoneGreatsword() {
-        return flamedDragonBoneGreatsword;
+    public ItemStack getFlamedDragonboneGreatsword() {
+        return flamedDragonboneGreatsword;
     }
 
-    public ItemStack getFlamedDragonBoneLongsword() {
-        return flamedDragonBoneLongsword;
+    public ItemStack getFlamedDragonboneLongsword() {
+        return flamedDragonboneLongsword;
     }
 
-    public ItemStack getFlamedDragonBoneSpear() {
-        return flamedDragonBoneSpear;
+    public ItemStack getFlamedDragonboneSpear() {
+        return flamedDragonboneSpear;
     }
 
-    public ItemStack getFlamedDragonBoneSaber() {
-        return flamedDragonBoneSaber;
+    public ItemStack getFlamedDragonboneSaber() {
+        return flamedDragonboneSaber;
     }
 
-    public ItemStack getFlamedDragonBoneBoomerang() {
-        return flamedDragonBoneBoomerang;
+    public ItemStack getFlamedDragonboneBoomerang() {
+        return flamedDragonboneBoomerang;
     }
 
-    public ItemStack getFlamedDragonBoneDagger() {
-        return flamedDragonBoneDagger;
+    public ItemStack getFlamedDragonboneDagger() {
+        return flamedDragonboneDagger;
     }
 
-    public ItemStack getFlamedDragonBoneGlaive() {
-        return flamedDragonBoneGlaive;
+    public ItemStack getFlamedDragonboneGlaive() {
+        return flamedDragonboneGlaive;
     }
 
-    public ItemStack getFlamedDragonBoneHalberd() {
-        return flamedDragonBoneHalberd;
+    public ItemStack getFlamedDragonboneHalberd() {
+        return flamedDragonboneHalberd;
     }
 
-    public ItemStack getFlamedDragonBoneHammer() {
-        return flamedDragonBoneHammer;
+    public ItemStack getFlamedDragonboneHammer() {
+        return flamedDragonboneHammer;
     }
 
-    public ItemStack getFlamedDragonBoneJavelin() {
-        return flamedDragonBoneJavelin;
+    public ItemStack getFlamedDragonboneJavelin() {
+        return flamedDragonboneJavelin;
     }
 
-    public ItemStack getFlamedDragonBoneLance() {
-        return flamedDragonBoneLance;
+    public ItemStack getFlamedDragonboneLance() {
+        return flamedDragonboneLance;
     }
 
-    public ItemStack getFlamedDragonBoneMace() {
-        return flamedDragonBoneMace;
+    public ItemStack getFlamedDragonboneMace() {
+        return flamedDragonboneMace;
     }
 
-    public ItemStack getFlamedDragonBonePike() {
-        return flamedDragonBonePike;
+    public ItemStack getFlamedDragonbonePike() {
+        return flamedDragonbonePike;
     }
 
-    public ItemStack getFlamedDragonBoneQuarterstaff() {
-        return flamedDragonBoneQuarterstaff;
+    public ItemStack getFlamedDragonboneQuarterstaff() {
+        return flamedDragonboneQuarterstaff;
     }
 
-    public ItemStack getFlamedDragonBoneThrowingAxe() {
-        return flamedDragonBoneThrowingAxe;
+    public ItemStack getFlamedDragonboneThrowingAxe() {
+        return flamedDragonboneThrowingAxe;
     }
 
-    public ItemStack getFlamedDragonBoneThrowingKnife() {
-        return flamedDragonBoneThrowingKnife;
+    public ItemStack getFlamedDragonboneThrowingKnife() {
+        return flamedDragonboneThrowingKnife;
     }
 
-    public ItemStack getFlamedDragonBoneWarhammer() {
-        return flamedDragonBoneWarhammer;
+    public ItemStack getFlamedDragonboneWarhammer() {
+        return flamedDragonboneWarhammer;
     }
 
-    public ItemStack getFlamedDragonBoneBattleaxe() {
-        return flamedDragonBoneBattleaxe;
+    public ItemStack getFlamedDragonboneBattleaxe() {
+        return flamedDragonboneBattleaxe;
     }
 
-    public ItemStack getFlamedDragonBoneLongbow() {
-        return flamedDragonBoneLongbow;
+    public ItemStack getFlamedDragonboneLongbow() {
+        return flamedDragonboneLongbow;
     }
 
-    public ItemStack getFlamedDragonBoneCrossbow() {
-        return flamedDragonBoneCrossbow;
+    public ItemStack getFlamedDragonboneCrossbow() {
+        return flamedDragonboneCrossbow;
     }
 
-    public ItemStack getIcedDragonBoneRapier() {
-        return icedDragonBoneRapier;
+    public ItemStack getIcedDragonboneRapier() {
+        return icedDragonboneRapier;
     }
 
-    public ItemStack getIcedDragonBoneKatana() {
-        return icedDragonBoneKatana;
+    public ItemStack getIcedDragonboneKatana() {
+        return icedDragonboneKatana;
     }
 
-    public ItemStack getIcedDragonBoneGreatsword() {
-        return icedDragonBoneGreatsword;
+    public ItemStack getIcedDragonboneGreatsword() {
+        return icedDragonboneGreatsword;
     }
 
-    public ItemStack getIcedDragonBoneLongsword() {
-        return icedDragonBoneLongsword;
+    public ItemStack getIcedDragonboneLongsword() {
+        return icedDragonboneLongsword;
     }
 
-    public ItemStack getIcedDragonBoneSpear() {
-        return icedDragonBoneSpear;
+    public ItemStack getIcedDragonboneSpear() {
+        return icedDragonboneSpear;
     }
 
-    public ItemStack getIcedDragonBoneSaber() {
-        return icedDragonBoneSaber;
+    public ItemStack getIcedDragonboneSaber() {
+        return icedDragonboneSaber;
     }
 
-    public ItemStack getIcedDragonBoneBoomerang() {
-        return icedDragonBoneBoomerang;
+    public ItemStack getIcedDragonboneBoomerang() {
+        return icedDragonboneBoomerang;
     }
 
-    public ItemStack getIcedDragonBoneDagger() {
-        return icedDragonBoneDagger;
+    public ItemStack getIcedDragonboneDagger() {
+        return icedDragonboneDagger;
     }
 
-    public ItemStack getIcedDragonBoneGlaive() {
-        return icedDragonBoneGlaive;
+    public ItemStack getIcedDragonboneGlaive() {
+        return icedDragonboneGlaive;
     }
 
-    public ItemStack getIcedDragonBoneHalberd() {
-        return icedDragonBoneHalberd;
+    public ItemStack getIcedDragonboneHalberd() {
+        return icedDragonboneHalberd;
     }
 
-    public ItemStack getIcedDragonBoneHammer() {
-        return icedDragonBoneHammer;
+    public ItemStack getIcedDragonboneHammer() {
+        return icedDragonboneHammer;
     }
 
-    public ItemStack getIcedDragonBoneJavelin() {
-        return icedDragonBoneJavelin;
+    public ItemStack getIcedDragonboneJavelin() {
+        return icedDragonboneJavelin;
     }
 
-    public ItemStack getIcedDragonBoneLance() {
-        return icedDragonBoneLance;
+    public ItemStack getIcedDragonboneLance() {
+        return icedDragonboneLance;
     }
 
-    public ItemStack getIcedDragonBoneMace() {
-        return icedDragonBoneMace;
+    public ItemStack getIcedDragonboneMace() {
+        return icedDragonboneMace;
     }
 
-    public ItemStack getIcedDragonBonePike() {
-        return icedDragonBonePike;
+    public ItemStack getIcedDragonbonePike() {
+        return icedDragonbonePike;
     }
 
-    public ItemStack getIcedDragonBoneQuarterstaff() {
-        return icedDragonBoneQuarterstaff;
+    public ItemStack getIcedDragonboneQuarterstaff() {
+        return icedDragonboneQuarterstaff;
     }
 
-    public ItemStack getIcedDragonBoneThrowingAxe() {
-        return icedDragonBoneThrowingAxe;
+    public ItemStack getIcedDragonboneThrowingAxe() {
+        return icedDragonboneThrowingAxe;
     }
 
-    public ItemStack getIcedDragonBoneThrowingKnife() {
-        return icedDragonBoneThrowingKnife;
+    public ItemStack getIcedDragonboneThrowingKnife() {
+        return icedDragonboneThrowingKnife;
     }
 
-    public ItemStack getIcedDragonBoneWarhammer() {
-        return icedDragonBoneWarhammer;
+    public ItemStack getIcedDragonboneWarhammer() {
+        return icedDragonboneWarhammer;
     }
 
-    public ItemStack getIcedDragonBoneBattleaxe() {
-        return icedDragonBoneBattleaxe;
+    public ItemStack getIcedDragonboneBattleaxe() {
+        return icedDragonboneBattleaxe;
     }
 
-    public ItemStack getIcedDragonBoneLongbow() {
-        return icedDragonBoneLongbow;
+    public ItemStack getIcedDragonboneLongbow() {
+        return icedDragonboneLongbow;
     }
 
-    public ItemStack getIcedDragonBoneCrossbow() {
-        return icedDragonBoneCrossbow;
+    public ItemStack getIcedDragonboneCrossbow() {
+        return icedDragonboneCrossbow;
     }
 
-    public ItemStack getLightningDragonBoneRapier() {
-        return lightningDragonBoneRapier;
+    public ItemStack getLightningDragonboneRapier() {
+        return lightningDragonboneRapier;
     }
 
-    public ItemStack getLightningDragonBoneKatana() {
-        return lightningDragonBoneKatana;
+    public ItemStack getLightningDragonboneKatana() {
+        return lightningDragonboneKatana;
     }
 
-    public ItemStack getLightningDragonBoneGreatsword() {
-        return lightningDragonBoneGreatsword;
+    public ItemStack getLightningDragonboneGreatsword() {
+        return lightningDragonboneGreatsword;
     }
 
-    public ItemStack getLightningDragonBoneLongsword() {
-        return lightningDragonBoneLongsword;
+    public ItemStack getLightningDragonboneLongsword() {
+        return lightningDragonboneLongsword;
     }
 
-    public ItemStack getLightningDragonBoneSpear() {
-        return lightningDragonBoneSpear;
+    public ItemStack getLightningDragonboneSpear() {
+        return lightningDragonboneSpear;
     }
 
-    public ItemStack getLightningDragonBoneSaber() {
-        return lightningDragonBoneSaber;
+    public ItemStack getLightningDragonboneSaber() {
+        return lightningDragonboneSaber;
     }
 
-    public ItemStack getLightningDragonBoneBoomerang() {
-        return lightningDragonBoneBoomerang;
+    public ItemStack getLightningDragonboneBoomerang() {
+        return lightningDragonboneBoomerang;
     }
 
-    public ItemStack getLightningDragonBoneDagger() {
-        return lightningDragonBoneDagger;
+    public ItemStack getLightningDragonboneDagger() {
+        return lightningDragonboneDagger;
     }
 
-    public ItemStack getLightningDragonBoneGlaive() {
-        return lightningDragonBoneGlaive;
+    public ItemStack getLightningDragonboneGlaive() {
+        return lightningDragonboneGlaive;
     }
 
-    public ItemStack getLightningDragonBoneHalberd() {
-        return lightningDragonBoneHalberd;
+    public ItemStack getLightningDragonboneHalberd() {
+        return lightningDragonboneHalberd;
     }
 
-    public ItemStack getLightningDragonBoneHammer() {
-        return lightningDragonBoneHammer;
+    public ItemStack getLightningDragonboneHammer() {
+        return lightningDragonboneHammer;
     }
 
-    public ItemStack getLightningDragonBoneJavelin() {
-        return lightningDragonBoneJavelin;
+    public ItemStack getLightningDragonboneJavelin() {
+        return lightningDragonboneJavelin;
     }
 
-    public ItemStack getLightningDragonBoneLance() {
-        return lightningDragonBoneLance;
+    public ItemStack getLightningDragonboneLance() {
+        return lightningDragonboneLance;
     }
 
-    public ItemStack getLightningDragonBoneMace() {
-        return lightningDragonBoneMace;
+    public ItemStack getLightningDragonboneMace() {
+        return lightningDragonboneMace;
     }
 
-    public ItemStack getLightningDragonBonePike() {
-        return lightningDragonBonePike;
+    public ItemStack getLightningDragonbonePike() {
+        return lightningDragonbonePike;
     }
 
-    public ItemStack getLightningDragonBoneQuarterstaff() {
-        return lightningDragonBoneQuarterstaff;
+    public ItemStack getLightningDragonboneQuarterstaff() {
+        return lightningDragonboneQuarterstaff;
     }
 
-    public ItemStack getLightningDragonBoneThrowingAxe() {
-        return lightningDragonBoneThrowingAxe;
+    public ItemStack getLightningDragonboneThrowingAxe() {
+        return lightningDragonboneThrowingAxe;
     }
 
-    public ItemStack getLightningDragonBoneThrowingKnife() {
-        return lightningDragonBoneThrowingKnife;
+    public ItemStack getLightningDragonboneThrowingKnife() {
+        return lightningDragonboneThrowingKnife;
     }
 
-    public ItemStack getLightningDragonBoneWarhammer() {
-        return lightningDragonBoneWarhammer;
+    public ItemStack getLightningDragonboneWarhammer() {
+        return lightningDragonboneWarhammer;
     }
 
-    public ItemStack getLightningDragonBoneBattleaxe() {
-        return lightningDragonBoneBattleaxe;
+    public ItemStack getLightningDragonboneBattleaxe() {
+        return lightningDragonboneBattleaxe;
     }
 
-    public ItemStack getLightningDragonBoneLongbow() {
-        return lightningDragonBoneLongbow;
+    public ItemStack getLightningDragonboneLongbow() {
+        return lightningDragonboneLongbow;
     }
 
-    public ItemStack getLightningDragonBoneCrossbow() {
-        return lightningDragonBoneCrossbow;
+    public ItemStack getLightningDragonboneCrossbow() {
+        return lightningDragonboneCrossbow;
     }
 
     public ItemStack getFireDragonsteelRapier() {
@@ -3296,5 +3295,9 @@ public class CustomItems {
 
     public ItemStack getCopperCrossbow() {
         return copperCrossbow;
+    }
+
+    public ItemStack getStuddedClub() {
+        return studdedClub;
     }
 }

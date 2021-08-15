@@ -1,5 +1,5 @@
 # RLCraft
-*Looking for the download link? **[Click here](https://www.spigotmc.org/resources/rlcraft-1-17-baubles-dragons-sea-serpents.93795/history)***
+*Looking for the download link? **[Click here](https://www.spigotmc.org/resources/rlcraft-1-17-dragons-baubles-sea-serpents.93795/history)***
 
 RLCraft is a plugin that which aims to recreate many of the 
 gameplay mechanics and features from the well-known modpack by the same name.

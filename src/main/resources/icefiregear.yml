@@ -10,10 +10,10 @@ Abilities:
   # NOTE: Flamed dragon bone weapons do 8.0 extra damage to ice dragons and vice versa, and
   # lighting dragon bone weapons do 4.0 extra damage to both fire and ice dragons in the official Ice and Fire mod.
   # NOTE: BonusDamage also affects extra damage for appropriate spartan's weapons
-  FlamedDragonBone:
+  FlamedDragonbone:
     FireTicks: 200
     BonusDamage: 8.0
-  IcedDragonBone:
+  IcedDragonbone:
     # Amplifier - Potency of the potion effect
     # Amplifiers are 1 value stronger than they appear
     # Ex: An amplifier of 0 corresponds to Slowness I
@@ -25,7 +25,7 @@ Abilities:
     BonusDamage: 8.0      # What block the mob is encased in, default is ice
     # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
     Block: "ICE"
-  LightningDragonBone:
+  LightningDragonbone:
     ShockDamage: 0.2
     ShockAmount: 10
     BonusDamage: 4.0
@@ -44,7 +44,7 @@ Abilities:
     # DamageReduction - How much is the damage of dragon attacks reduced per each piece of armor
     # 1.0 = full damage reduction
     DamageReduction: 0.2
-  DragonScale:
+  Dragonscale:
     DamageReduction: 0.1
   TideGuardian:
     WaterBreathing:
@@ -56,7 +56,7 @@ Abilities:
     TickTime: 20
 
 Pickaxe:
-  DragonBone:
+  Dragonbone:
     AttackDamage: 6.0
     AttackSpeed: 1.2
   FireDragonsteel:
@@ -69,7 +69,7 @@ Pickaxe:
     AttackDamage: 26.0
     AttackSpeed: 1.2
 Axe:
-  DragonBone:
+  Dragonbone:
     AttackDamage: 10.0
     AttackSpeed: 1.0
   FireDragonsteel:
@@ -82,7 +82,7 @@ Axe:
     AttackDamage: 30.0
     AttackSpeed: 1.0
 Shovel:
-  DragonBone:
+  Dragonbone:
     AttackDamage: 6.5
     AttackSpeed: 1.0
   FireDragonsteel:
@@ -95,7 +95,7 @@ Shovel:
     AttackDamage: 26.5
     AttackSpeed: 1.0
 Hoe:
-  DragonBone:
+  Dragonbone:
     AttackDamage: 1.0
     AttackSpeed: 1.0
   FireDragonsteel:
@@ -108,16 +108,16 @@ Hoe:
     AttackDamage: 2.0
     AttackSpeed: 1.0
 Sword:
-  DragonBone:
+  Dragonbone:
     AttackDamage: 8.0
     AttackSpeed: 1.6
-  FlamedDragonBone:
+  FlamedDragonbone:
     AttackDamage: 9.5
     AttackSpeed: 1.6
-  IcedDragonBone:
+  IcedDragonbone:
     AttackDamage: 9.5
     AttackSpeed: 1.6
-  LightningDragonBone:
+  LightningDragonbone:
     AttackDamage: 9.5
     AttackSpeed: 1.6
   FireDragonsteel:
@@ -130,11 +130,11 @@ Sword:
     AttackDamage: 25.0
     AttackSpeed: 1.6
 Bow:
-  DragonBone:
+  Dragonbone:
     AttackDamageMultiplier: 1.75
     ArrowVelocityMultiplier: 1.75
 Helmet:
-  DragonScale:
+  Dragonscale:
     Armor: 5.0
     Toughness: 2.0
   TideGuardian:
@@ -150,7 +150,7 @@ Helmet:
     Armor: 7.0
     Toughness: 6.0
 Chestplate:
-  DragonScale:
+  Dragonscale:
     Armor: 9.0
     Toughness: 2.0
   TideGuardian:
@@ -166,7 +166,7 @@ Chestplate:
     Armor: 12.0
     Toughness: 6.0
 Leggings:
-  DragonScale:
+  Dragonscale:
     Armor: 7.0
     Toughness: 2.0
   TideGuardian:
@@ -182,7 +182,7 @@ Leggings:
     Armor: 9.0
     Toughness: 6.0
 Boots:
-  DragonScale:
+  Dragonscale:
     Armor: 5.0
     Toughness: 2.0
   TideGuardian:

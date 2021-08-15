@@ -34,11 +34,11 @@ public class DragonGearRunnables {
         };
     }
 
-    public static BukkitRunnable removeIceDragonBoneBlocks() {
+    public static BukkitRunnable removeIceDragonboneBlocks() {
         return new BukkitRunnable() {
             @Override
             public void run() {
-                for (FallingBlock b : DragonGearAbilities.getIceDragonBoneBlocks()) {
+                for (FallingBlock b : DragonGearAbilities.getIceDragonboneBlocks()) {
                     b.remove();
                 }
             }
@@ -62,9 +62,9 @@ public class DragonGearRunnables {
             @Override
             public void run() {
                 entity.setVelocity(new Vector());
-                entity.damage(CustomConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonBone.ShockDamage"), source);
+                entity.damage(CustomConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonbone.ShockDamage"), source);
                 iteration++;
-                if (iteration > CustomConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonBone.ShockAmount")) {
+                if (iteration > CustomConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonbone.ShockAmount")) {
                     cancel();
                 }
             }

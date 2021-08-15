@@ -17,10 +17,7 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.rlcraft.RLCraftPlugin;
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -116,93 +113,26 @@ public class Utils {
     }
 
     public static boolean isHelmet(Material material) {
-        switch (material) {
-            case LEATHER_HELMET:
-            case CHAINMAIL_HELMET:
-            case IRON_HELMET:
-            case GOLDEN_HELMET:
-            case DIAMOND_HELMET:
-            case NETHERITE_HELMET:
-            case TURTLE_HELMET:
-                return true;
-            default:
-                return false;
-        }
+        return (material.toString().contains("HELMET"));
     }
 
     public static boolean isChestplate(Material material) {
-        switch (material) {
-            case LEATHER_CHESTPLATE:
-            case CHAINMAIL_CHESTPLATE:
-            case IRON_CHESTPLATE:
-            case GOLDEN_CHESTPLATE:
-            case DIAMOND_CHESTPLATE:
-            case NETHERITE_CHESTPLATE:
-                return true;
-            default:
-                return false;
-        }
+        return (material.toString().contains("CHESTPLATE"));
     }
 
     public static boolean isLeggings(Material material) {
-        switch (material) {
-            case LEATHER_LEGGINGS:
-            case CHAINMAIL_LEGGINGS:
-            case IRON_LEGGINGS:
-            case GOLDEN_LEGGINGS:
-            case DIAMOND_LEGGINGS:
-            case NETHERITE_LEGGINGS:
-                return true;
-            default:
-                return false;
-        }
+        return (material.toString().contains("LEGGINGS"));
     }
 
     public static boolean isBoots(Material material) {
-        switch (material) {
-            case LEATHER_BOOTS:
-            case CHAINMAIL_BOOTS:
-            case IRON_BOOTS:
-            case GOLDEN_BOOTS:
-            case DIAMOND_BOOTS:
-            case NETHERITE_BOOTS:
-                return true;
-            default:
-                return false;
-        }
+        return (material.toString().contains("BOOTS"));
     }
 
     public static boolean isArmor(Material material) {
-        switch (material) {
-            case LEATHER_HELMET:
-            case CHAINMAIL_HELMET:
-            case IRON_HELMET:
-            case GOLDEN_HELMET:
-            case DIAMOND_HELMET:
-            case NETHERITE_HELMET:
-            case TURTLE_HELMET:
-            case LEATHER_CHESTPLATE:
-            case CHAINMAIL_CHESTPLATE:
-            case IRON_CHESTPLATE:
-            case GOLDEN_CHESTPLATE:
-            case DIAMOND_CHESTPLATE:
-            case NETHERITE_CHESTPLATE:
-            case LEATHER_LEGGINGS:
-            case CHAINMAIL_LEGGINGS:
-            case IRON_LEGGINGS:
-            case GOLDEN_LEGGINGS:
-            case DIAMOND_LEGGINGS:
-            case NETHERITE_LEGGINGS:
-            case LEATHER_BOOTS:
-            case CHAINMAIL_BOOTS:
-            case IRON_BOOTS:
-            case GOLDEN_BOOTS:
-            case DIAMOND_BOOTS:
-            case NETHERITE_BOOTS:
-                return true;
-            default:
-                return false;
-        }
+        return (material.toString().contains("HELMET") ||
+                material.toString().contains("CHESTPLATE") ||
+                material.toString().contains("LEGGINGS") ||
+                material.toString().contains("BOOTS"));
     }
 
     public static EquipmentSlot getCorrectEquipmentSlot(Attribute attribute, Material material) {
@@ -331,16 +261,8 @@ public class Utils {
     public static boolean isHoldingAxe(Player player) {
         ItemStack itemMainHand = player.getInventory().getItemInMainHand();
         if (isItemReal(itemMainHand)) {
-            switch (itemMainHand.getType()) {
-                case WOODEN_AXE:
-                case STONE_AXE:
-                case IRON_AXE:
-                case GOLDEN_AXE:
-                case DIAMOND_AXE:
-                case NETHERITE_AXE:
-                    return true;
-                default:
-                    return false;
+            if (itemMainHand.getType().toString().contains("AXE")) {
+                return true;
             }
         }
         return false;
@@ -553,189 +475,6 @@ public class Utils {
         }
     }
 
-    public static void getNextChar(Character character) {
-        switch (character) {
-            case 'A':
-                character = 'B';
-            case 'B':
-                character = 'C';
-            case 'C':
-                character = 'D';
-            case 'D':
-                character = 'E';
-            case 'E':
-                character = 'F';
-            case 'F':
-                character = 'G';
-            case 'G':
-                character = 'H';
-            case 'H':
-                character = 'I';
-            case 'I':
-                character = 'J';
-            case 'J':
-                character = 'K';
-            case 'K':
-                character = 'L';
-            case 'L':
-                character = 'M';
-            case 'M':
-                character = 'N';
-            case 'N':
-                character = 'O';
-            case 'O':
-                character = 'P';
-            case 'P':
-                character = 'Q';
-            case 'Q':
-                character = 'R';
-            case 'R':
-                character = 'S';
-            case 'S':
-                character = 'T';
-            case 'T':
-                character = 'U';
-            case 'U':
-                character = 'V';
-            case 'V':
-                character = 'W';
-            case 'W':
-                character = 'X';
-            case 'X':
-                character = 'Y';
-            case 'Y':
-                character = 'Z';
-            case 'Z':
-                character = 'A';
-            case 'a':
-                character = 'b';
-            case 'b':
-                character = 'c';
-            case 'c':
-                character = 'd';
-            case 'd':
-                character = 'e';
-            case 'e':
-                character = 'f';
-            case 'f':
-                character = 'g';
-            case 'g':
-                character = 'h';
-            case 'h':
-                character = 'i';
-            case 'i':
-                character = 'j';
-            case 'j':
-                character = 'k';
-            case 'k':
-                character = 'l';
-            case 'l':
-                character = 'm';
-            case 'm':
-                character = 'n';
-            case 'n':
-                character = 'o';
-            case 'o':
-                character = 'p';
-            case 'p':
-                character = 'q';
-            case 'q':
-                character = 'r';
-            case 'r':
-                character = 's';
-            case 's':
-                character = 't';
-            case 't':
-                character = 'u';
-            case 'u':
-                character = 'v';
-            case 'v':
-                character = 'w';
-            case 'w':
-                character = 'x';
-            case 'x':
-                character = 'y';
-            case 'y':
-                character = 'z';
-            case 'z':
-                character = 'a';
-        }
-    }
-
-    public static ItemStack[] getItemsFromString(String raw) {
-        ItemStack[] items = new ItemStack[3];
-
-        int firstIndex;
-        int lastIndex;
-
-        firstIndex = raw.indexOf("|");
-        lastIndex = raw.lastIndexOf("|");
-
-        if (firstIndex != -1) {
-            String name = raw.substring(0, firstIndex);
-            if (firstIndex == lastIndex) {
-                ItemStack item;
-                if (ItemBuilder.getItemMap().containsKey(name)) {
-                    item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
-                }
-                else {
-                    item = new ItemStack(Material.valueOf(name));
-                }
-                items[0] = item;
-
-                name = raw.substring(firstIndex + 1);
-                if (ItemBuilder.getItemMap().containsKey(name)) {
-                    item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
-                }
-                else {
-                    item = new ItemStack(Material.valueOf(name));
-                }
-                items[1] = item;
-            }
-            else {
-                ItemStack item;
-                if (ItemBuilder.getItemMap().containsKey(name)) {
-                    item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
-                }
-                else {
-                    item = new ItemStack(Material.valueOf(name));
-                }
-                items[0] = item;
-
-                name = raw.substring(firstIndex + 1, lastIndex);
-                if (ItemBuilder.getItemMap().containsKey(name)) {
-                    item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
-                }
-                else {
-                    item = new ItemStack(Material.valueOf(name));
-                }
-                items[1] = item;
-
-                name = raw.substring(lastIndex + 1);
-                if (ItemBuilder.getItemMap().containsKey(name)) {
-                    item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
-                }
-                else {
-                    item = new ItemStack(Material.valueOf(name));
-                }
-                items[2] = item;
-            }
-        }
-        else {
-            String name = raw;
-            ItemStack item;
-            if (ItemBuilder.getItemMap().containsKey(name)) {
-                item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(name));
-            }
-            else {
-                item = new ItemStack(Material.valueOf(name));
-            }
-            items[0] = item;
-        }
-
-        return items;
-    }
-
     public static boolean isItemReal(ItemStack item) {
         if (! (item == null || item.getType() == Material.AIR) ) {
             return true;
@@ -797,5 +536,15 @@ public class Utils {
         }
 
         return false;
+    }
+
+    public static HashMap<String, Tag> getTags() {
+        HashMap<String, Tag> tags = new HashMap<>();
+
+        tags.put("PLANKS", Tag.PLANKS);
+        tags.put("WOOL", Tag.WOOL);
+        tags.put("LOGS", Tag.LOGS);
+
+        return tags;
     }
 }

@@ -60,7 +60,7 @@ ScarliteRing:
   HealAmount: 1.0
   TickTime: 300
 # Note 1.00 = 100%
-EnderDragonScale:
+EnderDragonscale:
   DropChance: 1.00
   CheckLooting: true
 ForbiddenFruit:
@@ -101,7 +101,7 @@ AnkhShield:
   HeatDamageMultiplier: 0.25
 RingFreeAction:
   AnvilCost: 10
-MixedColorDragonScale:
+MixedColorDragonscale:
   AnvilCost: 10
 ShieldHonor:
   Amplifier: 0

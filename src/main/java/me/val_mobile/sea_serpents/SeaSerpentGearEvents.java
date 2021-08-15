@@ -18,7 +18,7 @@ package me.val_mobile.sea_serpents;
 
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.Recipes;
+import me.val_mobile.utils.CustomRecipes;
 import me.val_mobile.utils.Utils;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -53,7 +53,7 @@ public class SeaSerpentGearEvents implements Listener {
         seaSerpentGearRunnables.updateTideGuardianArmor(player);
         seaSerpentGearRunnables.getTideGuardianArmorRunnable(player).runTaskTimer(plugin, 0L, CustomConfig.getIceFireGearConfig().getInt("Abilities.TideGuardian.TickTime"));
 
-        for (Recipe r : Recipes.getSeaSerpentRecipes()) {
+        for (Recipe r : CustomRecipes.getSeaSerpentRecipes()) {
             if (r instanceof ShapedRecipe) {
                 player.discoverRecipe(((ShapedRecipe) r).getKey());
             }

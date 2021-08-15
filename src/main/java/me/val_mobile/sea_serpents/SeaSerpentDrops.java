@@ -67,7 +67,7 @@ public class SeaSerpentDrops implements Listener {
                     break;
                 }
                 case 2: {
-                    ItemStack deepBlueScale = customItems.getSeaSerpentScaleDeepBlue();
+                    ItemStack deepBlueScale = customItems.getSeaSerpentScaleDeepblue();
                     deepBlueScale.setAmount(scaleAmount);
                     drops.add(deepBlueScale);
                     break;

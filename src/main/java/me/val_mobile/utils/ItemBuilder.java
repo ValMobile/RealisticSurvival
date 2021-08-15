@@ -67,7 +67,7 @@ public class ItemBuilder extends ItemStack {
     public static final String MACE = "Mace";
     public static final String PIKE = "Pike";
     public static final String QUARTERSTAFF = "Quarterstaff";
-    public static final String TOMAHAWK = "ThrowingAxe";
+    public static final String TOMAHAWK = "Tomahawk";
     public static final String THROWING_KNIFE = "ThrowingKnife";
     public static final String WARHAMMER = "Warhammer";
     public static final String BATTLEAXE = "Battleaxe";
@@ -322,6 +322,11 @@ public class ItemBuilder extends ItemStack {
         items.add(this);
     }
 
+    public ItemBuilder resize(int amount) {
+        this.setAmount(amount);
+        return this;
+    }
+
     public String getConfigName() {
         return configName;
     }
@@ -346,7 +351,7 @@ public class ItemBuilder extends ItemStack {
         return itemMap;
     }
 
-    public static ItemStack getItem(int index) {
+    public static ItemBuilder getItem(int index) {
         return getItems().get(index);
     }
 }

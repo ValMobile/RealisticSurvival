@@ -288,15 +288,15 @@ public class LorePresets {
 
     }
 
-    public static void addFlamedDragonBoneLore(List<String> lore) {
+    public static void addFlamedDragonboneLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Ignites and knocks back targets, deals extra damage to ice dragons"));
     }
 
-    public static void addIcedDragonBoneLore(List<String> lore) {
+    public static void addIcedDragonboneLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Slows and knocks back targets, deals extra damage to fire dragons"));
     }
 
-    public static void addLightningDragonBoneLore(List<String> lore) {
+    public static void addLightningDragonboneLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Strikes targets with lightning, deals extra damage to fire and ice dragons"));
     }
 
@@ -312,51 +312,51 @@ public class LorePresets {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Strikes targets with lightning"));
     }
 
-    public static void addBlueDragonScaleLore(List<String> lore) {
+    public static void addBlueDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&bBlue"));
     }
 
-    public static void addBronzeDragonScaleLore(List<String> lore) {
+    public static void addBronzeDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Bronze"));
     }
 
-    public static void addGrayDragonScaleLore(List<String> lore) {
+    public static void addGrayDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7Gray"));
     }
 
-    public static void addGreenDragonScaleLore(List<String> lore) {
+    public static void addGreenDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&2Emerald"));
     }
 
-    public static void addRedDragonScaleLore(List<String> lore) {
+    public static void addRedDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&4Red"));
     }
 
-    public static void addSapphireDragonScaleLore(List<String> lore) {
+    public static void addSapphireDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&9Sapphire"));
     }
 
-    public static void addSilverDragonScaleLore(List<String> lore) {
+    public static void addSilverDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&8Silver"));
     }
 
-    public static void addWhiteDragonScaleLore(List<String> lore) {
+    public static void addWhiteDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&fWhite"));
     }
 
-    public static void addAmethystDragonScaleLore(List<String> lore) {
+    public static void addAmethystDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&dAmethyst"));
     }
 
-    public static void addBlackDragonScaleLore(List<String> lore) {
+    public static void addBlackDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&8Black"));
     }
 
-    public static void addCopperDragonScaleLore(List<String> lore) {
+    public static void addCopperDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Copper"));
     }
 
-    public static void addElectricDragonScaleLore(List<String> lore) {
+    public static void addElectricDragonscaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&1Electric Blue"));
     }
 
@@ -368,7 +368,7 @@ public class LorePresets {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Bronze"));
     }
 
-    public static void addDeepBlueSeaSerpentScaleLore(List<String> lore) {
+    public static void addDeepblueSeaSerpentScaleLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&1Deep Blue"));
     }
 
@@ -585,13 +585,13 @@ public class LorePresets {
                 addCrossbowLore(lore);
                 break;
             case "FLAMED_DRAGONBONE":
-                addFlamedDragonBoneLore(lore);
+                addFlamedDragonboneLore(lore);
                 break;
             case "ICED_DRAGONBONE":
-                addIcedDragonBoneLore(lore);
+                addIcedDragonboneLore(lore);
                 break;
             case "LIGHTNING_DRAGONBONE":
-                addLightningDragonBoneLore(lore);
+                addLightningDragonboneLore(lore);
                 break;
             case "FIRE_DRAGONSTEEL":
                 addFireDragonsteelLore(lore);
@@ -603,40 +603,40 @@ public class LorePresets {
                 addLightningDragonsteelLore(lore);
                 break;
             case "BLUE_DRAGON_SCALE":
-                addBlueDragonScaleLore(lore);
+                addBlueDragonscaleLore(lore);
                 break;
             case "BRONZE_DRAGON_SCALE":
-                addBronzeDragonScaleLore(lore);
+                addBronzeDragonscaleLore(lore);
                 break;
             case "GRAY_DRAGON_SCALE":
-                addGrayDragonScaleLore(lore);
+                addGrayDragonscaleLore(lore);
                 break;
             case "GREEN_DRAGON_SCALE":
-                addGreenDragonScaleLore(lore);
+                addGreenDragonscaleLore(lore);
                 break;
             case "RED_DRAGON_SCALE":
-                addRedDragonScaleLore(lore);
+                addRedDragonscaleLore(lore);
                 break;
             case "SAPPHIRE_DRAGON_SCALE":
-                addSapphireDragonScaleLore(lore);
+                addSapphireDragonscaleLore(lore);
                 break;
             case "SILVER_DRAGON_SCALE":
-                addSilverDragonScaleLore(lore);
+                addSilverDragonscaleLore(lore);
                 break;
             case "WHITE_DRAGON_SCALE":
-                addWhiteDragonScaleLore(lore);
+                addWhiteDragonscaleLore(lore);
                 break;
             case "AMETHYST_DRAGON_SCALE":
-                addAmethystDragonScaleLore(lore);
+                addAmethystDragonscaleLore(lore);
                 break;
             case "BLACK_DRAGON_SCALE":
-                addBlackDragonScaleLore(lore);
+                addBlackDragonscaleLore(lore);
                 break;
             case "COPPER_DRAGON_SCALE":
-                addCopperDragonScaleLore(lore);
+                addCopperDragonscaleLore(lore);
                 break;
             case "ELECTRIC_DRAGON_SCALE":
-                addElectricDragonScaleLore(lore);
+                addElectricDragonscaleLore(lore);
                 break;
             case "BLUE_SEA_SERPENT_SCALE":
                 addBlueSeaSerpentScaleLore(lore);
@@ -645,7 +645,7 @@ public class LorePresets {
                 addBronzeSeaSerpentScaleLore(lore);
                 break;
             case "DEEPBLUE_SEA_SERPENT_SCALE":
-                addDeepBlueSeaSerpentScaleLore(lore);
+                addDeepblueSeaSerpentScaleLore(lore);
                 break;
             case "GREEN_SEA_SERPENT_SCALE":
                 addGreenSeaSerpentScaleLore(lore);

@@ -76,7 +76,7 @@ public class BaubleEvents implements Listener {
      * @param event The event called when a player joins the server
      * @see PlayerRunnable
      * @see Utils
-     * @see Recipes
+     * @see CustomRecipes
      */
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -100,7 +100,7 @@ public class BaubleEvents implements Listener {
         baubleRunnables.startShieldHonorRunnable(player);
 
         // give the player every bauble recipe
-        for (Recipe r : Recipes.getBaubleRecipes()) {
+        for (Recipe r : CustomRecipes.getBaubleRecipes()) {
             // if the recipe has a pre-defined shape
             if (r instanceof ShapedRecipe) {
                 // cast the recipe to a ShapedRecipe and let the player discover it
@@ -486,9 +486,9 @@ public class BaubleEvents implements Listener {
                 if (Utils.isItemReal(currentItem)) {
 
                     // if the item has an nbt tag called "Bauble"
-                    if (util.hasNbtTag(cursorItem,"Bauble")) {
+                    if (util.hasNbtTag(currentItem,"Bauble")) {
                         // check the string value of the tag and update accordingly
-                        switch (util.getNbtTag(cursorItem,"Bauble")) {
+                        switch (util.getNbtTag(currentItem,"Bauble")) {
                             case "Potion Ring of Resistance":
                                 new BukkitRunnable() {
                                     @Override
@@ -966,10 +966,10 @@ public class BaubleEvents implements Listener {
             // if the entity is an ender dragon
             case ENDER_DRAGON: {
                 Random r = new Random(); // create a random variable to perform calculations
-                double chance = CustomConfig.getBaubleConfig().getDouble("EnderDragonScale.DropChance"); // store the chance
+                double chance = CustomConfig.getBaubleConfig().getDouble("EnderDragonscale.DropChance"); // store the chance
 
                 // if looting is enabled
-                if (CustomConfig.getBaubleConfig().getBoolean("EnderDragonScale.CheckLooting")) {
+                if (CustomConfig.getBaubleConfig().getBoolean("EnderDragonscale.CheckLooting")) {
                     // check if the killer exists
                     if (event.getEntity().getKiller() != null) {
                         Player player = event.getEntity().getKiller(); // get the player
@@ -993,7 +993,7 @@ public class BaubleEvents implements Listener {
                 // if the ender dragon scale should drop
                 if (r.nextDouble() <= chance)
                     // drop the ender dragon scale
-                    event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), customItems.getEnderDragonScale());
+                    event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), customItems.getEnderDragonscale());
                 break;
             }
             // if the entity is a husk
@@ -1193,7 +1193,7 @@ public class BaubleEvents implements Listener {
                     case "POISON":
                         // if the player has a bezoar or any of its derivatives
                         if (player.getInventory().containsAtLeast(customItems.getBezoar(), 1) ||
-                                player.getInventory().containsAtLeast(customItems.getMixedColorDragonScale(), 1) ||
+                                player.getInventory().containsAtLeast(customItems.getMixedColorDragonscale(), 1) ||
                                 player.getInventory().containsAtLeast(customItems.getAnkhCharm(), 1)) {
                             // cancel the event to stop the effect from being added
                             event.setCancelled(true);
@@ -1213,8 +1213,8 @@ public class BaubleEvents implements Listener {
                     // if the potion effect is wither
                     case "WITHER":
                         // if the player has a black dragon scale or any of its derivatives
-                        if (player.getInventory().containsAtLeast(customItems.getBlackDragonScale(), 1) ||
-                                player.getInventory().containsAtLeast(customItems.getMixedColorDragonScale(), 1) ||
+                        if (player.getInventory().containsAtLeast(customItems.getBlackDragonscale(), 1) ||
+                                player.getInventory().containsAtLeast(customItems.getMixedColorDragonscale(), 1) ||
                                 player.getInventory().containsAtLeast(customItems.getAnkhCharm(), 1)) {
                             // cancel the event to stop the effect from being added
                             event.setCancelled(true);
@@ -1343,12 +1343,12 @@ public class BaubleEvents implements Listener {
                     inv.setMaximumRepairCost(CustomConfig.getBaubleConfig().getInt("RingFreeAction.AnvilCost"));
                 }
                 // if the first item is a bezoar and the second item is a black dragon scale
-                else if (firstMeta.equals(customItems.getBezoar().getItemMeta()) && secondMeta.equals(customItems.getBlackDragonScale().getItemMeta())) {
+                else if (firstMeta.equals(customItems.getBezoar().getItemMeta()) && secondMeta.equals(customItems.getBlackDragonscale().getItemMeta())) {
                     // set the combined item to a mixed color dragon scale
-                    event.setResult(customItems.getMixedColorDragonScale());
+                    event.setResult(customItems.getMixedColorDragonscale());
                     // set the repair and max repair costs to their specified amounts
-                    inv.setRepairCost(CustomConfig.getBaubleConfig().getInt("MixedColorDragonScale.AnvilCost"));
-                    inv.setMaximumRepairCost(CustomConfig.getBaubleConfig().getInt("MixedColorDragonScale.AnvilCost"));
+                    inv.setRepairCost(CustomConfig.getBaubleConfig().getInt("MixedColorDragonscale.AnvilCost"));
+                    inv.setMaximumRepairCost(CustomConfig.getBaubleConfig().getInt("MixedColorDragonscale.AnvilCost"));
                 }
                 // if the first item is an obsidian shield and the second item is an ankh charm
                 else if (firstMeta.equals(customItems.getObsidianShield().getItemMeta()) && secondMeta.equals(customItems.getAnkhCharm().getItemMeta())) {

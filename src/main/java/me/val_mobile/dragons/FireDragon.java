@@ -75,7 +75,7 @@ public class FireDragon extends Dragon {
         ItemStack scales;
         ItemStack blood = customItems.getFireDragonBlood();
         ItemStack flesh = customItems.getFireDragonFlesh();
-        ItemStack bones = customItems.getDragonBone();
+        ItemStack bones = customItems.getDragonbone();
 
         // initialize the drop amounts of the loot
         int scaleAmount;
@@ -86,13 +86,13 @@ public class FireDragon extends Dragon {
         // get the correct scale color
         switch (getVariant()) {
             case RED:
-                scales = customItems.getDragonScaleRed(); // red
+                scales = customItems.getDragonscaleRed(); // red
             case EMERALD:
-                scales = customItems.getDragonScaleGreen(); // green
+                scales = customItems.getDragonscaleGreen(); // green
             case GRAY:
-                scales = customItems.getDragonScaleGray(); // gray
+                scales = customItems.getDragonscaleGray(); // gray
             default:
-                scales = customItems.getDragonScaleBronze(); // bronze
+                scales = customItems.getDragonscaleBronze(); // bronze
         }
 
         /**

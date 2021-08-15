@@ -19,7 +19,7 @@ package me.val_mobile.no_tree_punching;
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
-import me.val_mobile.utils.Recipes;
+import me.val_mobile.utils.CustomRecipes;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -32,13 +32,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
-import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Random;
@@ -56,7 +54,7 @@ public class NoTreePunchingEvents implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        for (Recipe r : Recipes.getNtrRecipes()) {
+        for (Recipe r : CustomRecipes.getNtrRecipes()) {
             if (r instanceof ShapedRecipe) {
                 player.discoverRecipe(((ShapedRecipe) r).getKey());
             }
@@ -68,32 +66,30 @@ public class NoTreePunchingEvents implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onBlockBreak(BlockBreakEvent event) {
-        if (!event.isCancelled()) {
-            Player player = event.getPlayer();
-            ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-            Block block = event.getBlock();
-            Material material = block.getType();
+        Player player = event.getPlayer();
+        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+        Block block = event.getBlock();
+        Material material = block.getType();
 
-            if (CustomConfig.getNoTreePunchingConfig().getStringList("WoodBlocks").contains(material.toString())) {
-                if (!Utils.isHoldingAxe(player)) {
-                    event.setDropItems(false);
-                }
+        if (CustomConfig.getNoTreePunchingConfig().getStringList("WoodBlocks").contains(material.toString())) {
+            if (!Utils.isHoldingAxe(player)) {
+                event.setDropItems(false);
             }
+        }
 
-            if (CustomConfig.getNoTreePunchingConfig().getStringList("GrassBlocks").contains(material.toString())) {
-                if (util.isHoldingKnife(player)) {
-                    Random r = new Random();
-                    double chance = CustomConfig.getNoTreePunchingConfig().getDouble("PlantFiber.DropChance");
-                    if (CustomConfig.getNoTreePunchingConfig().getBoolean("PlantFiber.CheckLooting")) {
-                        ItemMeta meta = itemMainHand.getItemMeta();
-                        if (meta.hasEnchant(Enchantment.LOOT_BONUS_MOBS)) {
-                            int lootingLvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_MOBS);
-                            chance += lootingLvl * 0.01;
-                        }
+        if (CustomConfig.getNoTreePunchingConfig().getStringList("GrassBlocks").contains(material.toString())) {
+            if (util.isHoldingKnife(player)) {
+                Random r = new Random();
+                double chance = CustomConfig.getNoTreePunchingConfig().getDouble("PlantFiber.DropChance");
+                if (CustomConfig.getNoTreePunchingConfig().getBoolean("PlantFiber.CheckLooting")) {
+                    ItemMeta meta = itemMainHand.getItemMeta();
+                    if (meta.hasEnchant(Enchantment.LOOT_BONUS_MOBS)) {
+                        int lootingLvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_MOBS);
+                        chance += lootingLvl * 0.01;
                     }
-                    if (r.nextDouble() <= chance) {
-                        block.getWorld().dropItemNaturally(block.getLocation(), customItems.getPlantFiber());
-                    }
+                }
+                if (r.nextDouble() <= chance) {
+                    block.getDrops().add(customItems.getPlantFiber());
                 }
             }
         }
@@ -125,23 +121,6 @@ public class NoTreePunchingEvents implements Listener {
                     }
                 }
             }
-        }
-    }
-
-    @EventHandler
-    public void onItemDurabilityDamage(PlayerItemDamageEvent event) {
-        ItemStack item = event.getItem();
-        ItemMeta meta = item.getItemMeta();
-
-        ((Damageable) meta).setDamage(0);
-
-        if (meta.equals(customItems.getFlintAxe().getItemMeta()) ||
-                meta.equals(customItems.getFlintKnife().getItemMeta()) ||
-                meta.equals(customItems.getFlintHoe().getItemMeta()) ||
-                meta.equals(customItems.getFlintShovel().getItemMeta())) {
-            int newDamage = (int) Math.round(event.getDamage() * CustomConfig.getNoTreePunchingConfig().getDouble("DurabilityDamageMultiplier"));
-
-            event.setDamage(newDamage);
         }
     }
 }

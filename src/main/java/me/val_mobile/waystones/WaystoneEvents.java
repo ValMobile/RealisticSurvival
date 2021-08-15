@@ -16,7 +16,7 @@
  */
 package me.val_mobile.waystones;
 
-import me.val_mobile.utils.Recipes;
+import me.val_mobile.utils.CustomRecipes;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,7 +31,7 @@ public class WaystoneEvents implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        for (Recipe r : Recipes.getWaystoneRecipes()) {
+        for (Recipe r : CustomRecipes.getWaystoneRecipes()) {
             if (r instanceof ShapedRecipe) {
                 player.discoverRecipe(((ShapedRecipe) r).getKey());
             }
