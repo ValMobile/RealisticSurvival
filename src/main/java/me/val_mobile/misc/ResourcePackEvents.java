@@ -24,8 +24,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class ResourcePackEvents implements Listener {
 
-    private static final String URL = "https://www.dropbox.com/s/w52laj4xfys3hgn/RLCraft%20RP.zip?dl=1";
-
     private final RLCraftPlugin plugin;
     public ResourcePackEvents(RLCraftPlugin instance) {
         plugin = instance;
@@ -35,9 +33,7 @@ public class ResourcePackEvents implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (plugin.getConfig().getBoolean("ResourcePack")) {
-            player.setResourcePack(plugin.getConfig().getString(URL));
-        }
+        player.setResourcePack(plugin.getConfig().getString("ResourcePack.Url"));
 
     }
 

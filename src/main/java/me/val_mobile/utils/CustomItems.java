@@ -1120,7 +1120,7 @@ public class CustomItems {
         copperBattleaxe = new ItemBuilder(config, 539, spartanWeaponry, ItemBuilder.BATTLEAXE, instance);
         copperLongbow = new ItemBuilder(config, 540, instance);
         copperCrossbow = new ItemBuilder(config, 541, instance);
-        studdedClub = new ItemBuilder(config, 542, instance);
+        studdedClub = new ItemBuilder(config, 542, spartanWeaponry, ItemBuilder.CLUB, instance);
     }
 
     /**

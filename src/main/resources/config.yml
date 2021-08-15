@@ -32,7 +32,11 @@ OutdatedVersion:
 # Resource pack is disabled by default to allow for integration of it into
 # your own custom server pack if needed
 # NOTE: You must restart the server after enabling or disabling any feature
-ResourcePack: false
+ResourcePack:
+  Enabled: false
+  # If you upgrade to newer versions, the URL will need to be manually updated to the newest one,
+  # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
+  Url: "https://www.dropbox.com/s/0caz3txiudxkch3/RLCraft%20RP.zip?dl=1"
 UnlockRecipes: true
 NoTreePunching: true
 Dragons: true

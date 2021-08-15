@@ -36,33 +36,9 @@ public class ShapelessRecipeBuilder extends ShapelessRecipe {
 
     public ShapelessRecipeBuilder(FileConfiguration config, int index, RLCraftPlugin instance) {
         super(new NamespacedKey(instance, config.getString(index + ".Key")),
-                ItemBuilder.getItem(ItemBuilder.getItemMap().get(config.getString(index + ".Result.Item"))).resize(config.getInt(index + ".Result.Amount")));
-
-        String ingredientsPath = index + ".Ingredients";
-
-        List<String> ingredients = config.getStringList(ingredientsPath);
-
-        for (String text : ingredients) {
-            this.ingredients.add(getItem(text));
-        }
-
-        for (Object item : this.ingredients) {
-            if (item instanceof Material) {
-                this.addIngredient((Material) item);
-            }
-            else if (item instanceof Tag) {
-                this.addIngredient(new RecipeChoice.MaterialChoice((Tag) item));
-            }
-            else {
-                this.addIngredient(new RecipeChoice.ExactChoice((ItemStack) item));
-            }
-        }
-    }
-
-    public ShapelessRecipeBuilder(FileConfiguration config, int index, RLCraftPlugin instance, boolean result) {
-        super(new NamespacedKey(instance, config.getString(index + ".Key")),
-                new ItemStack(Material.valueOf(config.getString(index + ".Result.Item")),
-                        config.getInt(index + ".Result.Amount")));
+                Objects.equals(config.getString(index + ".Result.Item"), config.getString(index + ".Result.Item").toUpperCase())
+                        ? new ItemStack(Material.valueOf(config.getString(index + ".Result.Item")), config.getInt(index + ".Result.Amount")) :
+                        ItemBuilder.getItem(ItemBuilder.getItemMap().get(config.getString(index + ".Result.Item"))).resize(config.getInt(index + ".Result.Amount")));
 
         String ingredientsPath = index + ".Ingredients";
 

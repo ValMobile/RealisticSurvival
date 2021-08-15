@@ -29,70 +29,15 @@ import java.util.*;
 
 public class ShapedRecipeBuilder extends ShapedRecipe {
 
-    private final static List<Character> CHARS = new ArrayList<>(Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'));
+    private final static List<Character> CHARS = Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I');
 
     private HashMap<Character, Object> ingredients = new HashMap<>();
 
     public ShapedRecipeBuilder(FileConfiguration config, int index, RLCraftPlugin instance) {
         super(new NamespacedKey(instance, config.getString(index + ".Key")),
-                ItemBuilder.getItem(ItemBuilder.getItemMap().get(config.getString(index + ".Result.Item"))).resize(config.getInt(index + ".Result.Amount")));
-
-        String ingredientsPath = index + ".Ingredients";
-
-        List<String> ingredients = config.getStringList(ingredientsPath);
-
-        Object[][] grid = new Object[3][3];
-        Character[][] chars;
-
-        for (int i = 0; i < ingredients.size(); i++) {
-            String raw = ingredients.get(i);
-            Object[] items = getItems(raw);
-
-            for (int j = 0; j < items.length; j++) {
-                if (items[j] != null) {
-                    grid[i][j] = items[j];
-                }
-            }
-        }
-
-        // grid is 3x3
-        if (grid[0][2] != null || grid[1][2] != null || grid[2][2] != null
-                || grid[2][0] != null || grid[2][1] != null) {
-            chars = getChars(grid, 3);
-
-            this.shape(chars[0][0].toString() + chars[0][1] + chars[0][2], chars[1][0].toString() + chars[1][1] + chars[1][2], chars[2][0].toString() + chars[2][1] + chars[2][2]);
-        }
-        else {
-            // grid is 2x2
-            if (grid[0][1] != null || grid[1][0] != null || grid[1][1] != null) {
-                chars = getChars(grid, 2);
-
-                this.shape(chars[0][0].toString() + chars[0][1], chars[1][0].toString() + chars[1][1]);
-            }
-            // grid is 1x1
-            else {
-                chars = getChars(grid, 1);
-                this.shape(chars[0][0].toString());
-            }
-        }
-
-        for (Map.Entry<Character, Object> entry : this.ingredients.entrySet()) {
-            if (entry.getValue() instanceof Material) {
-                this.setIngredient(entry.getKey(), (Material) entry.getValue());
-            }
-            else if (entry.getValue() instanceof Tag) {
-                this.setIngredient(entry.getKey(), new RecipeChoice.MaterialChoice((Tag) entry.getValue()));
-            }
-            else {
-                this.setIngredient(entry.getKey(), new RecipeChoice.ExactChoice((ItemStack) entry.getValue()));
-            }
-        }
-    }
-
-    public ShapedRecipeBuilder(FileConfiguration config, int index, RLCraftPlugin instance, boolean result) {
-        super(new NamespacedKey(instance, config.getString(index + ".Key")),
-                new ItemStack(Material.valueOf(config.getString(index + ".Result.Item")),
-                        config.getInt(index + ".Result.Amount")));
+                Objects.equals(config.getString(index + ".Result.Item"), config.getString(index + ".Result.Item").toUpperCase())
+                        ? new ItemStack(Material.valueOf(config.getString(index + ".Result.Item")), config.getInt(index + ".Result.Amount")) :
+                        ItemBuilder.getItem(ItemBuilder.getItemMap().get(config.getString(index + ".Result.Item"))).resize(config.getInt(index + ".Result.Amount")));
 
         String ingredientsPath = index + ".Ingredients";
 

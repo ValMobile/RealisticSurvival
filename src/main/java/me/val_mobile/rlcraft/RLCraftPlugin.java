@@ -24,6 +24,7 @@ import me.val_mobile.dragons.DragonGearEvents;
 import me.val_mobile.dragons.WitherDrops;
 import me.val_mobile.lycanites_mobs.LycanitesMobsEvents;
 import me.val_mobile.misc.BStats;
+import me.val_mobile.misc.ResourcePackEvents;
 import me.val_mobile.misc.UpdateChecker;
 import me.val_mobile.no_tree_punching.NoTreePunchingEvents;
 import me.val_mobile.sea_serpents.SeaSerpentDrops;
@@ -33,6 +34,7 @@ import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomRecipes;
 import me.val_mobile.waystones.WaystoneEvents;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
@@ -53,6 +55,7 @@ public class RLCraftPlugin extends JavaPlugin {
     private SpartanWeaponryEvents spartanWeaponry;
     private DragonFightEvents dragonFight;
     private DragonGearEvents dragonGear;
+    private ResourcePackEvents resourcePack;
 //    private DragonWorldGenEvents dragonWorldGenEvents;
     private SeaSerpentGearEvents seaSerpentGear;
     private SeaSerpentDrops seaSerpentDrops;
@@ -101,6 +104,7 @@ public class RLCraftPlugin extends JavaPlugin {
         bauble = new BaubleEvents(this);
         waystones = new WaystoneEvents();
         updateChecker = new UpdateChecker(this, 93795);
+        resourcePack = new ResourcePackEvents(this);
 
         tab = new Tab();
 
@@ -114,8 +118,9 @@ public class RLCraftPlugin extends JavaPlugin {
         updateChecker.checkUpdate();
 
         PluginManager pm = this.getServer().getPluginManager();
+        FileConfiguration config = this.getConfig();
 
-        if (this.getConfig().getBoolean("NoTreePunching")) {
+        if (config.getBoolean("NoTreePunching")) {
             for (Recipe r : CustomRecipes.getNtrRecipes()) {
                 if (r instanceof ShapedRecipe) {
                     if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
@@ -137,7 +142,7 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(noTreePunchingEvents, this);
         }
 
-        if (this.getConfig().getBoolean("Dragons")) {
+        if (config.getBoolean("Dragons")) {
             for (Recipe r : CustomRecipes.getDragonRecipes()) {
                 if (r instanceof ShapedRecipe) {
                     if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
@@ -161,7 +166,7 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(dragonGear, this);
 //            pm.registerEvents(dragonWorldGenEvents, this);
         }
-        if (this.getConfig().getBoolean("SeaSerpents")) {
+        if (config.getBoolean("SeaSerpents")) {
             for (Recipe r : CustomRecipes.getSeaSerpentRecipes()) {
                 if (r instanceof ShapedRecipe) {
                     if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
@@ -185,11 +190,11 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(seaSerpentGear, this);
         }
 
-        if (this.getConfig().getBoolean("Witherbones")) {
+        if (config.getBoolean("Witherbones")) {
             pm.registerEvents(witherDrops, this);
         }
 
-        if (this.getConfig().getBoolean("Baubles")) {
+        if (config.getBoolean("Baubles")) {
             for (Recipe r : CustomRecipes.getBaubleRecipes()) {
                 if (r instanceof ShapedRecipe) {
                     if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
@@ -211,11 +216,11 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(bauble, this);
         }
 
-        if (this.getConfig().getBoolean("LycanitesMobs")) {
+        if (config.getBoolean("LycanitesMobs")) {
             pm.registerEvents(lycanitesMobs, this);
         }
 
-        if (this.getConfig().getBoolean("Waystones")) {
+        if (config.getBoolean("Waystones")) {
             for (Recipe r : CustomRecipes.getWaystoneRecipes()) {
                 if (r instanceof ShapedRecipe) {
                     if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
@@ -237,7 +242,7 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(waystones, this);
         }
 
-        if (this.getConfig().getBoolean("SpartanWeaponry")) {
+        if (config.getBoolean("SpartanWeaponry")) {
             for (Recipe r : CustomRecipes.getSpartanWeaponryRecipes()) {
                 if (r instanceof ShapedRecipe) {
                     if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
@@ -259,7 +264,11 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(spartanWeaponry, this);
         }
 
-        if (this.getConfig().getBoolean("BStats")) {
+        if (config.getBoolean("ResourcePack.Enabled")) {
+            pm.registerEvents(resourcePack, this);
+        }
+
+        if (config.getBoolean("BStats")) {
             bStats.recordData();
         }
 

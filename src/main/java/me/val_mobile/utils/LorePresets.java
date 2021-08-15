@@ -288,6 +288,14 @@ public class LorePresets {
 
     }
 
+    public static void addClubLore(List<String> lore) {
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Nauseous Blow"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Inflicts Nausea II (5.0s) on hit,"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7unless the foe is wearing a Helmet"));
+
+    }
+
     public static void addFlamedDragonboneLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Ignites and knocks back targets, deals extra damage to ice dragons"));
     }
@@ -577,6 +585,9 @@ public class LorePresets {
                 break;
             case "BATTLEAXE":
                 addBattleaxeLore(lore);
+                break;
+            case "CLUB":
+                addClubLore(lore);
                 break;
             case "LONGBOW":
                 addLongbowLore(lore);
