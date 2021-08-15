@@ -18,7 +18,7 @@ feel free to discuss it in my [Discord server](https://discord.gg/mMt3f4usqK).
 
 To report bugs, open a [new issue](https://github.com/ValMobile/RLCraft/issues/new).
 
-###**Quick Navigation**
+**Quick Navigation**
 - [💻Download RLCraft](https://github.com/ValMobile/RLCraft#-download-rlcraft)
 - [📷Screenshots](https://github.com/ValMobile/RLCraft#-screenshots)
 - [🎧Discord](https://github.com/ValMobile/RLCraft#-discord)
