@@ -18,6 +18,13 @@ feel free to discuss it in my [Discord server](https://discord.gg/mMt3f4usqK).
 
 To report bugs, open a [new issue](https://github.com/ValMobile/RLCraft/issues/new).
 
+###**Quick Navigation**
+- [💻Download RLCraft](https://github.com/ValMobile/RLCraft#-download-rlcraft)
+- [📷Screenshots](https://github.com/ValMobile/RLCraft#-screenshots)
+- [🎧Discord](https://github.com/ValMobile/RLCraft#-discord)
+- [🤝Contributing to this project](https://github.com/ValMobile/RLCraft#-contributing-to-this-project)
+- [❗Disclaimers](https://github.com/ValMobile/RLCraft#-disclaimers)
+
 ## 💻 Download RLCraft
 RLCraft requires your Minecraft server to be running on [Spigot](https://www.spigotmc.org/) or any
 its forks like [Paper](https://papermc.io/) and [Purpur](https://purpur.pl3x.net/).
@@ -45,13 +52,15 @@ Click the image below to join us!
 [![Discord logo](https://th.bing.com/th/id/OIP.nmHobRJPgkH-7YQqXsbCqwHaEK?pid=ImgDet&rs=1)](https://discord.gg/mMt3f4usqK)
 
 ## 🤝 Contributing to this project
-As RLCraft is an open-source project and licensed under [GNU GPLv3](https://www.gnu.org/licenses/#GPL).  
+RLCraft is an open-source project and licensed under the terms and conditions of the
+[GNU General Public License v3](https://github.com/ValMobile/RLCraft/blob/master/LICENSE.md).  
 Please consider helping me maintain this project, your dedication helps keep this project alive!  
 
 Here are some ways you can help support RLCraft:
  - Creating bug reports 
- - Suggesting features or optionally,   
-   forking this repository and creating a pull request
+ - Suggesting features or optionally
+ - Coding in features by forking this repo and creating a pull request
+ - Answering the polls in my Discord server
  - Answering frequently-asked-questions (FAQs) in my Discord server
  - Donating to my [Patreon](https://www.patreon.com/val_mobile)
 
@@ -62,8 +71,7 @@ information to be collected, set BStats to false in the config.yml file.
 
 Because RLCraft is currently in its infancy, many features will be buggy and
 not work properly. There is currently no support for protection plugins like GriefProtection
-or WorldGuard. I am not responsible for any damage caused by RLCraft to your server.  
-
+or WorldGuard. I am not responsible for any damage caused by RLCraft to your server.
 
 RLCraft uses source textures and ideas from many mods.  
 All credits go to the following people:
