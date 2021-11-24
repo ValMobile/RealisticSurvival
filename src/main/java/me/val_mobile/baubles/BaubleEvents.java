@@ -17,7 +17,10 @@
 package me.val_mobile.baubles;
 
 import me.val_mobile.rlcraft.RLCraftPlugin;
-import me.val_mobile.utils.*;
+import me.val_mobile.utils.CustomConfig;
+import me.val_mobile.utils.CustomItems;
+import me.val_mobile.utils.PlayerRunnable;
+import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -34,9 +37,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.AnvilInventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
@@ -69,61 +73,6 @@ public class BaubleEvents implements Listener {
         baubleRunnables = new BaubleRunnables(instance);
         customItems = new CustomItems(instance);
         util = new Utils(instance);
-    }
-
-    /**
-     * Inputs data into static fields and gives players the recipes to craft baubles
-     * @param event The event called when a player joins the server
-     * @see PlayerRunnable
-     * @see Utils
-     * @see CustomRecipes
-     */
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer(); // get the player
-
-        // create new values in the static hashmaps
-        baubleRunnables.resetBaubleMaps(player);
-        baubleRunnables.updateBaubleValues(player);
-
-        // start every bauble runnable
-        baubleRunnables.startPrResRunnable(player);
-        baubleRunnables.startPrStrengthRunnable(player);
-        baubleRunnables.startPrSpeedRunnable(player);
-        baubleRunnables.startPrJumpRunnable(player);
-        baubleRunnables.startPrHasteRunnable(player);
-        baubleRunnables.startPrRegenRunnable(player);
-
-        baubleRunnables.startScarliteRingRunnable(player);
-        baubleRunnables.startDragonsEyeRunnable(player);
-        baubleRunnables.startMinersRingRunnable(player);
-        baubleRunnables.startShieldHonorRunnable(player);
-
-        // give the player every bauble recipe
-        for (Recipe r : CustomRecipes.getBaubleRecipes()) {
-            // if the recipe has a pre-defined shape
-            if (r instanceof ShapedRecipe) {
-                // cast the recipe to a ShapedRecipe and let the player discover it
-                player.discoverRecipe(((ShapedRecipe) r).getKey());
-            }
-            // if the recipe has no shape
-            else if (r instanceof ShapelessRecipe) {
-                // cast the recipe to a ShapelessRecipe and let the player discover it
-                player.discoverRecipe(((ShapelessRecipe) r).getKey());
-            }
-        }
-    }
-
-    /**
-     * Sets the amount of baubles in the static hashmaps to 0 when he/she dies
-     * @param event The event called when a player dies
-     * @see PlayerRunnable
-     * @see Utils
-     */
-    @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
-        // set all the bauble values of the target player to 0
-        baubleRunnables.resetBaubleMaps(event.getEntity());
     }
 
     /**

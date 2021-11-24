@@ -24,12 +24,14 @@ import me.val_mobile.dragons.DragonGearEvents;
 import me.val_mobile.dragons.WitherDrops;
 import me.val_mobile.lycanites_mobs.LycanitesMobsEvents;
 import me.val_mobile.misc.BStats;
+import me.val_mobile.misc.PlayerInitializer;
 import me.val_mobile.misc.ResourcePackEvents;
 import me.val_mobile.misc.UpdateChecker;
 import me.val_mobile.no_tree_punching.NoTreePunchingEvents;
 import me.val_mobile.sea_serpents.SeaSerpentDrops;
 import me.val_mobile.sea_serpents.SeaSerpentGearEvents;
 import me.val_mobile.spartan_weaponry.SpartanWeaponryEvents;
+import me.val_mobile.toughasnails.ToughAsNailsEvents;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomRecipes;
 import me.val_mobile.waystones.WaystoneEvents;
@@ -63,6 +65,8 @@ public class RLCraftPlugin extends JavaPlugin {
     private LycanitesMobsEvents lycanitesMobs;
     private BaubleEvents bauble;
     private WaystoneEvents waystones;
+    private ToughAsNailsEvents toughAsNailsEvents;
+    private PlayerInitializer playerInitializer;
     private UpdateChecker updateChecker;
     
     private Tab tab;
@@ -85,6 +89,7 @@ public class RLCraftPlugin extends JavaPlugin {
         customConfig.createLycanitesMobsConfig();
         customConfig.createItemConfig();
         customConfig.createRecipeConfig();
+        customConfig.createToughAsNailsConfig();
 
 //      schematics.createSchematicsFolder();
 //      schematics.createFireDragonNest();
@@ -103,8 +108,10 @@ public class RLCraftPlugin extends JavaPlugin {
         lycanitesMobs = new LycanitesMobsEvents(this);
         bauble = new BaubleEvents(this);
         waystones = new WaystoneEvents();
+        toughAsNailsEvents = new ToughAsNailsEvents(this);
         updateChecker = new UpdateChecker(this, 93795);
         resourcePack = new ResourcePackEvents(this);
+        playerInitializer = new PlayerInitializer(this);
 
         tab = new Tab();
 
@@ -271,6 +278,9 @@ public class RLCraftPlugin extends JavaPlugin {
         if (config.getBoolean("BStats")) {
             bStats.recordData();
         }
+
+        pm.registerEvents(toughAsNailsEvents, this);
+        pm.registerEvents(playerInitializer, this);
 
         this.getCommand("RLCraft").setExecutor(commands);
         this.getCommand("RLCraft").setTabCompleter(tab);

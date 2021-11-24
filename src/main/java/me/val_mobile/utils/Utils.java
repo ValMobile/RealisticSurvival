@@ -19,6 +19,7 @@ package me.val_mobile.utils;
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
@@ -546,5 +547,36 @@ public class Utils {
         tags.put("LOGS", Tag.LOGS);
 
         return tags;
+    }
+
+    public static double getDamage(ItemStack item) {
+
+        double damage = 0D;
+
+        for (AttributeModifier atrMod : item.getItemMeta().getAttributeModifiers().get(Attribute.GENERIC_ATTACK_DAMAGE)) {
+            damage += (atrMod.getAmount() - ATTACK_DAMAGE_CONSTANT);
+        }
+
+        return damage;
+    }
+
+    public static boolean isLookingAt(Player player, LivingEntity entity)
+    {
+        Location eye = player.getEyeLocation();
+        Vector toEntity = entity.getEyeLocation().toVector().subtract(eye.toVector());
+        double dot = toEntity.normalize().dot(eye.getDirection());
+
+        return dot > 0.99D;
+    }
+
+    public static boolean isInRange(Player player, LivingEntity entity, double maxDistance) {
+        if (isLookingAt(player, entity)) {
+            double distance = player.getLocation().distance(entity.getLocation());
+            if (distance > 3 && distance < maxDistance) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

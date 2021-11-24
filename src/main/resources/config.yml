@@ -16,6 +16,7 @@ NoPermission: "&cYou do not have permission to do this!"
 NoOnlinePlayer: "&cThe specified player is not online!"
 MisspelledPlayer: "&cThe specified player's name was misspelled"
 MisspelledItemName: "&cYou mispelled the item!"
+InvalidArguments: "&cYou are using the invalid arguments!"
 CorrectVersion:
   - "&fYou are running the latest version"
 OutdatedVersion:
@@ -36,7 +37,7 @@ ResourcePack:
   Enabled: false
   # If you upgrade to newer versions, the URL will need to be manually updated to the newest one,
   # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
-  Url: "https://www.dropbox.com/s/0caz3txiudxkch3/RLCraft%20RP.zip?dl=1"
+  Url: "https://www.dropbox.com/s/gi344wmzjnv8j18/RLCraft%20RP%20Beta.zip?dl=1"
 UnlockRecipes: true
 NoTreePunching: true
 Dragons: true
@@ -46,6 +47,7 @@ Baubles: true
 SpartanWeaponry: true
 LycanitesMobs: true
 Waystones: true
+ToughAsNails: true
 
 #######################################
 #          Miscellaneous              #

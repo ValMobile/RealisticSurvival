@@ -48,6 +48,8 @@ public class PlayerRunnable extends BukkitRunnable {
     private static HashMap<String, Boolean> minersRingRunnables = new HashMap<>();
     private static HashMap<String, Boolean> scarliteRingRunnables = new HashMap<>();
     private static HashMap<String, Boolean> shieldHonorRunnables = new HashMap<>();
+    private static HashMap<String, Boolean> temperatureRunnables = new HashMap<>();
+    private static HashMap<String, Boolean> thirstRunnables = new HashMap<>();
 
     // Hashmaps for saving player and potion effect bauble amounts
     private static HashMap<String, Integer> prRes = new HashMap<>();
@@ -62,20 +64,21 @@ public class PlayerRunnable extends BukkitRunnable {
     private static HashMap<String, Integer> scarliteRing = new HashMap<>();
     private static HashMap<String, Integer> minersRing = new HashMap<>();
     private static HashMap<String, Integer> shieldHonor = new HashMap<>();
+    private static HashMap<String, Integer> temperature = new HashMap<>();
+    private static HashMap<String, Integer> thirst = new HashMap<>();
 
     private static HashMap<String, Boolean> crossNecklace = new HashMap<>();
 
-    private final Player player;
-    private final String type;
+    private String name;
+    private String type;
 
     public PlayerRunnable(Player player, String type) {
-        this.player = player;
+        this.name = player.getName();
         this.type = type;
     }
 
     @Override
     public synchronized BukkitTask runTaskTimer(Plugin plugin, long delay, long period) throws IllegalArgumentException, IllegalStateException {
-        String name = player.getName();
         switch (type) {
             case prResName:
                 Utils.setOrReplaceEntry(prResRunnables, name, true);
@@ -152,6 +155,14 @@ public class PlayerRunnable extends BukkitRunnable {
         return crossNecklace;
     }
 
+    public static HashMap<String, Integer> getTemperature() {
+        return temperature;
+    }
+
+    public static HashMap<String, Integer> getThirst() {
+        return thirst;
+    }
+
     public static HashMap<String, Integer> getShieldHonor() {
         return shieldHonor;
     }
@@ -198,5 +209,13 @@ public class PlayerRunnable extends BukkitRunnable {
 
     public static HashMap<String, Boolean> getShieldHonorRunnables() {
         return shieldHonorRunnables;
+    }
+
+    public static HashMap<String, Boolean> getTemperatureRunnables() {
+        return temperatureRunnables;
+    }
+
+    public static HashMap<String, Boolean> getThirstRunnables() {
+        return thirstRunnables;
     }
 }

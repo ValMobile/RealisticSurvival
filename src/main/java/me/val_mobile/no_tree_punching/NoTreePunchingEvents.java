@@ -19,7 +19,6 @@ package me.val_mobile.no_tree_punching;
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
-import me.val_mobile.utils.CustomRecipes;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -32,11 +31,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Random;
@@ -48,20 +43,6 @@ public class NoTreePunchingEvents implements Listener {
     public NoTreePunchingEvents(RLCraftPlugin instance) {
         customItems = new CustomItems(instance);
         util = new Utils(instance);
-    }
-    
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-
-        for (Recipe r : CustomRecipes.getNtrRecipes()) {
-            if (r instanceof ShapedRecipe) {
-                player.discoverRecipe(((ShapedRecipe) r).getKey());
-            }
-            else if (r instanceof ShapelessRecipe) {
-                player.discoverRecipe(((ShapelessRecipe) r).getKey());
-            }
-        }
     }
 
     @EventHandler (priority = EventPriority.HIGHEST)

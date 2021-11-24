@@ -17,8 +17,6 @@
 package me.val_mobile.sea_serpents;
 
 import me.val_mobile.rlcraft.RLCraftPlugin;
-import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.CustomRecipes;
 import me.val_mobile.utils.Utils;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -26,14 +24,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class SeaSerpentGearEvents implements Listener {
@@ -45,29 +38,6 @@ public class SeaSerpentGearEvents implements Listener {
         plugin = instance;
         seaSerpentGearRunnables = new SeaSerpentGearRunnables(instance);
         util = new Utils(instance);
-    }
-
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        seaSerpentGearRunnables.updateTideGuardianArmor(player);
-        seaSerpentGearRunnables.getTideGuardianArmorRunnable(player).runTaskTimer(plugin, 0L, CustomConfig.getIceFireGearConfig().getInt("Abilities.TideGuardian.TickTime"));
-
-        for (Recipe r : CustomRecipes.getSeaSerpentRecipes()) {
-            if (r instanceof ShapedRecipe) {
-                player.discoverRecipe(((ShapedRecipe) r).getKey());
-            }
-            else if (r instanceof ShapelessRecipe) {
-                player.discoverRecipe(((ShapelessRecipe) r).getKey());
-            }
-        }
-    }
-
-    @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
-        Player player = event.getEntity();
-
-        seaSerpentGearRunnables.resetArmorMaps(player);
     }
 
     @EventHandler (priority = EventPriority.MONITOR)

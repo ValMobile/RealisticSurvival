@@ -59,6 +59,9 @@ public class CustomConfig {
     private static File recipeFile;
     private static FileConfiguration recipeConfig;
 
+    private static File toughasnailsFile;
+    private static FileConfiguration toughasnailsConfig;
+
     // dependency injecting the main class for use
     private final RLCraftPlugin plugin;
 
@@ -289,6 +292,32 @@ public class CustomConfig {
     }
 
     /**
+     * Creates the toughasnails config if one doesn't exist already and loads it in
+     */
+    public void createToughAsNailsConfig() {
+        toughasnailsFile = new File(plugin.getDataFolder(), "toughasnails.yml"); // look for a file named "toughasnails.yml"
+
+        // if the file "toughasnails.yml" doesn't exist in the resources folder
+        if (!toughasnailsFile.exists()) {
+            // create a new yaml file
+            toughasnailsFile.getParentFile().mkdirs();
+            // save the yaml file to the plugin resources
+            plugin.saveResource("toughasnails.yml", false);
+        }
+
+        toughasnailsConfig = new YamlConfiguration(); // create a temporary empty config
+
+        // catch and print any exceptions while loading config
+        try {
+            // load the file into the config
+            toughasnailsConfig.load(toughasnailsFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            // print any exceptions that are thrown
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Gets the bauble config
      * @return The config holding values for the baubles
      */
@@ -350,6 +379,14 @@ public class CustomConfig {
      */
     public static FileConfiguration getRecipeConfig() {
         return recipeConfig;
+    }
+
+    /**
+     * Gets the toughasnails config
+     * @return The config holding toughasnails information
+     */
+    public static FileConfiguration getToughasNailsConfig() {
+        return toughasnailsConfig;
     }
 
     /**
@@ -417,6 +454,14 @@ public class CustomConfig {
     }
 
     /**
+     * Assigns the current toughasnails config to a new one
+     * @param config The new config which the current toughasnails config should be set to
+     */
+    public void setToughAsNailsConfig(FileConfiguration config) {
+        toughasnailsConfig = config;
+    }
+
+    /**
      * Reloads the bauble config to use the most recent values
      */
     public void reloadBaubleConfig() {
@@ -470,5 +515,12 @@ public class CustomConfig {
      */
     public void reloadRecipeConfig() {
         setItemConfig(YamlConfiguration.loadConfiguration(recipeFile));
+    }
+
+    /**
+     * Reloads the recipe config to use the most recent values
+     */
+    public void reloadToughAsNailsConfig() {
+        setItemConfig(YamlConfiguration.loadConfiguration(toughasnailsFile));
     }
 }

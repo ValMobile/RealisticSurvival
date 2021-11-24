@@ -16,9 +16,17 @@ permissions:
   rlcraft.command.reload:
     description: Allows users to reload the RLCraft plugin
     default: op
+  rlcraft.command.thirst:
+    description: Allows users to change the thirst level of other players
+    default: op
+  rlcraft.command.temperature:
+    description: Allows users to change the temperature level of other players
+    default: op
   rlcraft.command.*:
     description: Wildcard permission
     default: op
     children:
       rlcraft.command.give: true
       rlcraft.command.reload: true
+      rlcraft.command.thirst: true
+      rlcraft.command.temperature: true

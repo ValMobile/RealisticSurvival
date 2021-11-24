@@ -19,6 +19,8 @@ package me.val_mobile.commands;
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.ItemBuilder;
+import me.val_mobile.utils.PlayerRunnable;
+import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -190,6 +192,95 @@ public class Commands implements CommandExecutor {
                     customConfig.reloadLycanitesMobsConfig();
                     customConfig.reloadItemConfig();
                     customConfig.reloadRecipeConfig();
+                    customConfig.reloadToughAsNailsConfig();
+                    return true;
+                }
+                // if the user typed /rlcraft thirst, case-insensitive
+                else if (args[0].equalsIgnoreCase("thirst")) {
+                    // check if the user is a player
+                    if (sender instanceof Player) {
+                        // check if the player has the permission to change thirst
+                        if (! (sender.hasPermission("rlcraft.command.thirst"))) {
+                            // send the player a message explaining that he/she does not have permission to execute the command
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
+                            return true;
+                        }
+
+                        // check if the user typed more than 2 arguments
+                        if (args.length > 2) {
+                            /**
+                             * Check if the second argument is a player's name
+                             * example: /rlcraft ^~%1t --> invalid player name
+                             *          /rlcraft Notch --> valid player name
+                             */
+                            if (!(Bukkit.getPlayer(args[1]) == null)) {
+                                // check if the player to change thirst to is online
+                                if (Bukkit.getPlayer(args[1]).isOnline()) {
+                                    Player player = Bukkit.getPlayer(args[1]); // get the online player
+
+                                    try {
+                                        Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), Integer.parseInt(args[2]));
+                                        return true;
+                                    }
+                                    catch (Exception e) {
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
+                                    }
+                                    return true;
+                                }
+                                // send the user a message showing how that the specified player is offline
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoOnlinePlayer")));
+                                return true;
+                            }
+                            // send the user a message showing how they misspelled the specified player's name
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("MisspelledPlayer")));
+                            return true;
+                        }
+                        return true;
+                    }
+                    return true;
+                }
+                // if the user typed /rlcraft temperature, case-insensitive
+                else if (args[0].equalsIgnoreCase("temperature")) {
+                    // check if the user is a player
+                    if (sender instanceof Player) {
+                        // check if the player has the permission to change temperature
+                        if (! (sender.hasPermission("rlcraft.command.temperature"))) {
+                            // send the player a message explaining that he/she does not have permission to execute the command
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
+                            return true;
+                        }
+
+                        // check if the user typed more than 2 arguments
+                        if (args.length > 2) {
+                            /**
+                             * Check if the second argument is a player's name
+                             * example: /rlcraft ^~%1t --> invalid player name
+                             *          /rlcraft Notch --> valid player name
+                             */
+                            if (!(Bukkit.getPlayer(args[1]) == null)) {
+                                // check if the player to change temperature to is online
+                                if (Bukkit.getPlayer(args[1]).isOnline()) {
+                                    Player player = Bukkit.getPlayer(args[1]); // get the online player
+
+                                    try {
+                                        Utils.setOrReplaceEntry(PlayerRunnable.getTemperature(), player.getName(), Integer.parseInt(args[2]));
+                                        return true;
+                                    }
+                                    catch (Exception e) {
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
+                                    }
+                                    return true;
+                                }
+                                // send the user a message showing how that the specified player is offline
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoOnlinePlayer")));
+                                return true;
+                            }
+                            // send the user a message showing how they misspelled the specified player's name
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("MisspelledPlayer")));
+                            return true;
+                        }
+                        return true;
+                    }
                     return true;
                 }
                 // send the user a message explaining how to use the rlcraft command

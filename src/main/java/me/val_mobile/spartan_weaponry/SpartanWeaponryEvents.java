@@ -18,19 +18,21 @@ package me.val_mobile.spartan_weaponry;
 
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.CustomRecipes;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
+
+import java.util.List;
 
 import static org.bukkit.Material.ARROW;
 import static org.bukkit.Material.SPECTRAL_ARROW;
@@ -40,30 +42,6 @@ public class SpartanWeaponryEvents implements Listener {
     private final Utils util;
     public SpartanWeaponryEvents(RLCraftPlugin instance) {
         util = new Utils(instance);
-    }
-
-    @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-
-        // give the player every spartan weaponry recipe
-        for (Recipe r : CustomRecipes.getBaubleRecipes()) {
-            // if the recipe has a pre-defined shape
-            if (r instanceof ShapedRecipe) {
-                // cast the recipe to a ShapedRecipe and let the player discover it
-                player.discoverRecipe(((ShapedRecipe) r).getKey());
-            }
-            // if the recipe has no shape
-            else if (r instanceof ShapelessRecipe) {
-                // cast the recipe to a ShapelessRecipe and let the player discover it
-                player.discoverRecipe(((ShapelessRecipe) r).getKey());
-            }
-            // if the recipe is in a smithing table
-            else if (r instanceof SmithingRecipe) {
-                // cast the recipe to a ShapelessRecipe and let the player discover it
-                player.discoverRecipe(((SmithingRecipe) r).getKey());
-            }
-        }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -139,7 +117,7 @@ public class SpartanWeaponryEvents implements Listener {
             Player player = (Player) attacker;
 
             ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-            if (!(itemMainHand == null || itemMainHand.getType() == Material.AIR)) {
+            if (Utils.isItemReal(itemMainHand)) {
 
                 if (util.hasNbtTag(itemMainHand, "spartans_weapon")) {
                     switch (util.getNbtTag(itemMainHand, "spartans_weapon")) {
@@ -151,6 +129,60 @@ public class SpartanWeaponryEvents implements Listener {
                         case "Katana":
                             if (!Utils.hasChestplate((LivingEntity) entity)) {
                                 event.setDamage(event.getDamage() * 2.0D);
+                            }
+                            break;
+                        case "Glaive":
+                        case "Greatsword":
+                        case "Halberd":
+                        case "Lance":
+                        case "Spear":
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent event) {
+        if (event.getAction().equals(Action.LEFT_CLICK_AIR)) {
+            Player player = event.getPlayer();
+
+            ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+            if (Utils.isItemReal(itemMainHand)) {
+                if (util.hasNbtTag(itemMainHand, "spartans_weapon")) {
+                    switch (util.getNbtTag(itemMainHand, "spartans_weapon")) {
+                        case "Glaive":
+                        case "Greatsword":
+                        case "Halberd":
+                        case "Lance":
+                        case "Spear": {
+                            List<Entity> entities = player.getNearbyEntities(7, 7, 7);
+
+                            if (entities.size() > 1) {
+                                for (Entity e : entities) {
+                                    if (e instanceof LivingEntity) {
+                                        if (Utils.isInRange(player, (LivingEntity) e, 7)) {
+                                            ((LivingEntity) e).damage(Utils.getDamage(itemMainHand), player);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                        case "Pike":
+                            List<Entity> entities = player.getNearbyEntities(8, 8, 8);
+
+                            if (entities.size() > 1) {
+                                for (Entity e : entities) {
+                                    if (e instanceof LivingEntity) {
+                                        if (Utils.isInRange(player, (LivingEntity) e, 8)) {
+                                            ((LivingEntity) e).damage(Utils.getDamage(itemMainHand), player);
+                                            break;
+                                        }
+                                    }
+                                }
                             }
                             break;
                     }

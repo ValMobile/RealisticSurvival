@@ -18,7 +18,6 @@ package me.val_mobile.dragons;
 
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.CustomRecipes;
 import me.val_mobile.utils.Utils;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -28,11 +27,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
 /**
  * DragonGearEvents is a class containing listener methods
  * that activate fire, ice, and lighting dragon weapon abilities
@@ -50,30 +45,6 @@ public class DragonGearEvents implements Listener {
     public DragonGearEvents(RLCraftPlugin instance) {
         dragonGearAbilities = new DragonGearAbilities(instance);
         util = new Utils(instance);
-    }
-
-    /**
-     * Gives players the recipes to craft dragon gear
-     * @param event The event called when a player joins the server
-     * @see CustomRecipes
-     */
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer(); // get the player
-
-        // give the player every dragon gear recipe
-        for (Recipe r : CustomRecipes.getDragonRecipes()) {
-            // if the recipe has a pre-defined shape
-            if (r instanceof ShapedRecipe) {
-                // cast the recipe to a ShapedRecipe and let the player discover it
-                player.discoverRecipe(((ShapedRecipe) r).getKey());
-            }
-            // if the recipe has no shape
-            else if (r instanceof ShapelessRecipe) {
-                // cast the recipe to a ShapelessRecipe and let the player discover it
-                player.discoverRecipe(((ShapelessRecipe) r).getKey());
-            }
-        }
     }
 
     /**

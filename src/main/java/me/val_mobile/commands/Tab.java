@@ -34,8 +34,10 @@ import java.util.List;
 public class Tab implements org.bukkit.command.TabCompleter {
     // create lists to store strings that will appear in the tab completer
     List<String> firstArgs = new ArrayList<String>();
-    List<String> secondArgs = new ArrayList<String>();
-    List<String> thirdArgs = new ArrayList<String>();
+    List<String> players = new ArrayList<String>();
+    List<String> items = new ArrayList<String>();
+    List<String> temperature = new ArrayList<String>(26);
+    List<String> thirst = new ArrayList<String>(21);
 
     /**
      * Creates a tab completer depending on what the user types
@@ -59,10 +61,12 @@ public class Tab implements org.bukkit.command.TabCompleter {
                 // add the appropriate strings
                 firstArgs.add("reload");
                 firstArgs.add("give");
+                firstArgs.add("thirst");
+                firstArgs.add("temperature");
             }
 
-            // if the second list of arguments is empty
-            if (secondArgs.isEmpty()) {
+            // if the list of players is empty
+            if (players.isEmpty()) {
                 /**
                  * Add strings that correspond to the appropriate arguments.
                  * Only an online player's name is an appropriate argument.
@@ -70,12 +74,12 @@ public class Tab implements org.bukkit.command.TabCompleter {
                  * Add every online player's name to the second list of arguments.
                  */
                 for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-                    secondArgs.add(player.getName());
+                    players.add(player.getName());
                 }
             }
 
-            // if the third list of arguments is empty
-            if (thirdArgs.isEmpty()) {
+            // if the list of item arguments is empty
+            if (items.isEmpty()) {
                 /**
                  * Add strings that correspond to the appropriate arguments.
                  * Only the command name is an appropriate argument.
@@ -83,7 +87,23 @@ public class Tab implements org.bukkit.command.TabCompleter {
                  * Add every command name to the third list of arguments.
                  */
                 for (String tabName : ItemBuilder.getCommandNames()) {
-                    thirdArgs.add(tabName);
+                    items.add(tabName);
+                }
+            }
+
+            // if the list of temperature arguments is empty
+            if (temperature.isEmpty()) {
+                // Add strings that correspond to the appropriate arguments.
+                for (int i = 0; i < 26; i++) {
+                    temperature.add(String.valueOf(i));
+                }
+            }
+
+            // if the list of thirst arguments is empty
+            if (thirst.isEmpty()) {
+                // Add strings that correspond to the appropriate arguments.
+                for (int i = 0; i < 21; i++) {
+                    thirst.add(String.valueOf(i));
                 }
             }
 
@@ -103,9 +123,10 @@ public class Tab implements org.bukkit.command.TabCompleter {
             else if (args.length == 2) {
 
                 // if the user is trying to use the give command
-                if (args[0].equalsIgnoreCase("give")) {
+                if (args[0].equalsIgnoreCase("give") || args[0].equalsIgnoreCase("thirst") ||
+                        args[0].equalsIgnoreCase("temperature")) {
                     // add all the names of the online players to the tab completer
-                    for (String a : secondArgs) {
+                    for (String a : players) {
                         if (a.toLowerCase().startsWith(args[1].toLowerCase()))
                             result.add(a);
                     }
@@ -119,11 +140,28 @@ public class Tab implements org.bukkit.command.TabCompleter {
                 // if the user is trying to use the give command
                 if (args[0].equalsIgnoreCase("give")) {
                     // add all the names of the custom items to the tab completer
-                    for (String a : thirdArgs) {
+                    for (String a : items) {
                         if (a.toLowerCase().startsWith(args[2].toLowerCase()))
                             result.add(a);
                     }
                 }
+                // if the user is trying to use the temperature command
+                else if (args[0].equalsIgnoreCase("temperature")) {
+                    // add all the integers to the tab completer
+                    for (String a : temperature) {
+                        if (a.toLowerCase().startsWith(args[2].toLowerCase()))
+                            result.add(a);
+                    }
+                }
+                // if the user is trying to use the thirst command
+                else if (args[0].equalsIgnoreCase("thirst")) {
+                    // add all the integers to the tab completer
+                    for (String a : thirst) {
+                        if (a.toLowerCase().startsWith(args[2].toLowerCase()))
+                            result.add(a);
+                    }
+                }
+
                 // return the tab completer
                 return result;
             }
