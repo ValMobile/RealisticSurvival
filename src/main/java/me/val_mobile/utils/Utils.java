@@ -20,6 +20,9 @@ import me.val_mobile.rlcraft.RLCraftPlugin;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Levelled;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
@@ -64,6 +67,15 @@ public class Utils {
         newVelocity.setZ((newVelocity.getZ() * r.nextDouble()) + 0.5);
 
         return newVelocity;
+    }
+
+    public static void setOrReplaceEntry(HashMap<String, Double> map, String key, Double value) {
+        if (map.containsKey(key)) {
+            map.replace(key, value);
+        }
+        else {
+            map.put(key, value);
+        }
     }
 
     public static void setOrReplaceEntry(HashMap<String, Integer> map, String key, Integer value) {
@@ -545,6 +557,12 @@ public class Utils {
         tags.put("PLANKS", Tag.PLANKS);
         tags.put("WOOL", Tag.WOOL);
         tags.put("LOGS", Tag.LOGS);
+        tags.put("CANDLES", Tag.CANDLES);
+        tags.put("CANDLE_CAKES", Tag.CANDLE_CAKES);
+        tags.put("FIRE", Tag.FIRE);
+        tags.put("SNOW", Tag.SNOW);
+        tags.put("FLUIDS_LAVA", Tag.FLUIDS_LAVA);
+        tags.put("FLUIDS_WATER", Tag.FLUIDS_WATER);
 
         return tags;
     }
@@ -578,5 +596,23 @@ public class Utils {
             return false;
         }
         return false;
+    }
+
+    public static boolean isSourceLiquid(Block block) {
+        BlockData blockData = block.getBlockData();
+
+        if (blockData instanceof Levelled)
+            if (((Levelled) blockData).getLevel() == 0)
+                return true;
+        return false;
+    }
+
+    public static double getDayMultiplier(World world, double temperature) {
+        long time = world.getTime();
+
+        if (temperature > 0) {
+            return -Math.abs(time - 6500D)/6500D + 1D;
+        }
+        return Math.abs(time - 6500D)/6500D + 0.5D;
     }
 }

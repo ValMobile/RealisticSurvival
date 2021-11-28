@@ -64,8 +64,8 @@ public class PlayerRunnable extends BukkitRunnable {
     private static HashMap<String, Integer> scarliteRing = new HashMap<>();
     private static HashMap<String, Integer> minersRing = new HashMap<>();
     private static HashMap<String, Integer> shieldHonor = new HashMap<>();
-    private static HashMap<String, Integer> temperature = new HashMap<>();
-    private static HashMap<String, Integer> thirst = new HashMap<>();
+    private static HashMap<String, Double> temperature = new HashMap<>();
+    private static HashMap<String, Double> thirst = new HashMap<>();
 
     private static HashMap<String, Boolean> crossNecklace = new HashMap<>();
 
@@ -155,11 +155,11 @@ public class PlayerRunnable extends BukkitRunnable {
         return crossNecklace;
     }
 
-    public static HashMap<String, Integer> getTemperature() {
+    public static HashMap<String, Double> getTemperature() {
         return temperature;
     }
 
-    public static HashMap<String, Integer> getThirst() {
+    public static HashMap<String, Double> getThirst() {
         return thirst;
     }
 

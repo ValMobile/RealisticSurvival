@@ -197,9 +197,8 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(seaSerpentGear, this);
         }
 
-        if (config.getBoolean("Witherbones")) {
+        if (config.getBoolean("Witherbones"))
             pm.registerEvents(witherDrops, this);
-        }
 
         if (config.getBoolean("Baubles")) {
             for (Recipe r : CustomRecipes.getBaubleRecipes()) {
@@ -223,9 +222,8 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(bauble, this);
         }
 
-        if (config.getBoolean("LycanitesMobs")) {
+        if (config.getBoolean("LycanitesMobs"))
             pm.registerEvents(lycanitesMobs, this);
-        }
 
         if (config.getBoolean("Waystones")) {
             for (Recipe r : CustomRecipes.getWaystoneRecipes()) {
@@ -271,15 +269,15 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(spartanWeaponry, this);
         }
 
-        if (config.getBoolean("ResourcePack.Enabled")) {
+        if (config.getBoolean("ResourcePack.Enabled"))
             pm.registerEvents(resourcePack, this);
-        }
 
-        if (config.getBoolean("BStats")) {
+        if (config.getBoolean("BStats"))
             bStats.recordData();
-        }
 
-        pm.registerEvents(toughAsNailsEvents, this);
+        if (config.getBoolean("ToughAsNails"))
+            pm.registerEvents(toughAsNailsEvents, this);
+
         pm.registerEvents(playerInitializer, this);
 
         this.getCommand("RLCraft").setExecutor(commands);

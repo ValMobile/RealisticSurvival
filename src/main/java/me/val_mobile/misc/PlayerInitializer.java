@@ -147,7 +147,6 @@ public class PlayerInitializer implements Listener {
 
             // create new values in the static hashmaps
             toughAsNailsRunnables.resetTemperatureThirstMaps(player);
-            toughAsNailsRunnables.updateTemperatureThirstValues(player);
 
             // start every bauble runnable
             toughAsNailsRunnables.startTemperatureThirstRunnable(player);

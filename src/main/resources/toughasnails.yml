@@ -2,7 +2,132 @@
 #          Tough As Nails             #
 #######################################
 
-TickTime: 5
-Temperature:
-Thirst:
+# Customize various aspects of the temperature and thirst systems
 
+# Time in ticks that the game will check, don't recommend changing unless
+# the server is lagging severely
+VisualTickTime: 5 # Responsible for temperature and thirst HUDs
+CheckTickTime: 100 # Responsible for temperature and thirst logic calculations
+
+Temperature:
+  Hypothermia:
+    Limit: 1.0 # Minimum temperature for player to be in hypothermia and take damage
+    Damage: 0.5 # How much damage the player takes while in hypothermia per "CheckTickTime" number of ticks
+  Hyperthermia:
+    Limit: 24.0 # Minimum temperature for player to be in hyperthermia and take damage
+    Damage: 0.5 # How much damage the player takes while in hyperthermia per "CheckTickTime" number of ticks
+  MaxChange: 0.5 # By how much can a player's temperature change per "CheckTickTime" number of ticks
+  # List blocks that should affect a player's temperature
+  # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+  Blocks:
+    # 1 temperature bar = 1.0 units
+    CAMPFIRE: 1.0
+    TORCH: 0.5
+    WALL_TORCH: 0.5
+    JACK_O_LANTERN: 0.5
+    LANTERN: 0.5
+    FIRE: 2.0
+    LAVA: 0.5
+    LAVA_CAULDRON: 0.5
+    WATER: -0.1
+    WATER_CAULDRON: -0.1
+    SNOW: -0.3
+    SNOW_BLOCK: -0.3
+    POWDER_SNOW: -0.3
+    POWDER_SNOW_CAULDRON: -0.3
+    ICE: -0.5
+    PACKED_ICE: -1.0
+    BLUE_ICE: -2.0
+    FROSTED_ICE: -0.5
+    SOUL_CAMPFIRE: -1.0
+    SOUL_TORCH: -0.5
+    SOUL_WALL_TORCH: -0.5
+    SOUL_LANTERN: 0.5
+    SOUL_FIRE: -2.0
+    MAGMA_BLOCK: 0.25
+    WHITE_WOOL: 0.3
+    WHITE_CARPET: 0.3
+    WHITE_CANDLE: 0.5
+    WHITE_CANDLE_CAKE: 0.5
+    ORANGE_WOOL: 0.3
+    ORANGE_CARPET: 0.3
+    ORANGE_CANDLE: 0.5
+    ORANGE_CANDLE_CAKE: 0.5
+    PINK_WOOL: 0.3
+    PINK_CARPET: 0.3
+    PINK_CANDLE: 0.5
+    PINK_CANDLE_CAKE: 0.5
+    CYAN_WOOL: 0.3
+    CYAN_CARPET: 0.3
+    CYAN_CANDLE: 0.5
+    CYAN_CANDLE_CAKE: 0.5
+    YELLOW_WOOL: 0.3
+    YELLOW_CARPET: 0.3
+    YELLOW_CANDLE: 0.5
+    YELLOW_CANDLE_CAKE: 0.5
+    LIME_WOOL: 0.3
+    LIME_CARPET: 0.3
+    LIME_CANDLE: 0.5
+    LIME_CANDLE_CAKE: 0.5
+    MAGENTA_WOOL: 0.3
+    MAGENTA_CARPET: 0.3
+    MAGENTA_CANDLE: 0.5
+    MAGENTA_CANDLE_CAKE: 0.5
+    GRAY_WOOL: 0.3
+    GRAY_CARPET: 0.3
+    GRAY_CANDLE: 0.5
+    GRAY_CANDLE_CAKE: 0.5
+    LIGHT_GRAY_WOOL: 0.3
+    LIGHT_GRAY_CARPET: 0.3
+    LIGHT_GRAY_CANDLE: 0.5
+    LIGHT_GRAY_CANDLE_CAKE: 0.5
+    LIGHT_BLUE_WOOL: 0.3
+    LIGHT_BLUE_CARPET: 0.3
+    LIGHT_BLUE_CANDLE: 0.5
+    LIGHT_BLUE_CANDLE_CAKE: 0.5
+    PURPLE_WOOL: 0.3
+    PURPLE_CARPET: 0.3
+    PURPLE_CANDLE: 0.5
+    PURPLE_CANDLE_CAKE: 0.5
+    BLUE_WOOL: 0.3
+    BLUE_CARPET: 0.3
+    BLUE_CANDLE: 0.5
+    BLUE_CANDLE_CAKE: 0.5
+    BROWN_WOOL: 0.3
+    BROWN_CARPET: 0.3
+    BROWN_CANDLE: 0.5
+    BROWN_CANDLE_CAKE: 0.5
+    GREEN_WOOL: 0.3
+    GREEN_CARPET: 0.3
+    GREEN_CANDLE: 0.5
+    GREEN_CANDLE_CAKE: 0.5
+    RED_WOOL: 0.3
+    RED_CARPET: 0.3
+    RED_CANDLE: 0.5
+    RED_CANDLE_CAKE: 0.5
+    BLACK_WOOL: 0.3
+    BLACK_CARPET: 0.3
+    BLACK_CANDLE: 0.5
+    BLACK_CANDLE_CAKE: 0.5
+  Housed: 2.0 # If a player is under a roof
+  SubmergedWater: -2.0 # If a player is in water
+  SubmergedLava: 3.0 # If a player is in lava
+Thirst:
+  Dehydration:
+    Limit: 1.0 # Minimum thirst for player to be dehydrated and take damage
+    Damage: 0.5 # How much damage the player takes while dehydrated per "CheckTickTime" number of ticks
+  Supplements:
+    # 1 thirst bar = 2.0 units
+    WaterBottle: 6.0
+    GoldenCarrotJuice: 10.0
+    Drinking:
+      # Customize aspects of the sound made when a player drinks from a source block of water
+      # Volume ranges from 0.0 to 1.0, any values greater than 1.0 just increase the distance at which the sound can be heard
+      # Pitch ranges from 0.5 to 2.0 where 1.0 is normal play speed
+      # For more info regarding sounds, see https://bukkit.org/threads/playsound-parameters-volume-and-pitch.151517/
+      # No need to change settings, already sound decent
+      Amount: 1.0
+      Sound: "ENTITY_GENERIC_DRINK"
+      Volume: 0.1 # Set to -1.0 to disable
+      Pitch: 1.0
+      MaxDistance: 2.0 # Maximum distance at which a player can drink a water source from

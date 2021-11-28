@@ -218,13 +218,20 @@ public class Commands implements CommandExecutor {
                                 if (Bukkit.getPlayer(args[1]).isOnline()) {
                                     Player player = Bukkit.getPlayer(args[1]); // get the online player
 
+                                    int thirst = -1;
                                     try {
-                                        Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), Integer.parseInt(args[2]));
-                                        return true;
+                                        thirst = Integer.parseInt(args[2]);
                                     }
                                     catch (Exception e) {
                                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
+                                        return true;
                                     }
+
+                                    if (thirst < 0 || thirst > 20) {
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
+                                        return true;
+                                    }
+                                    Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), (double) thirst);
                                     return true;
                                 }
                                 // send the user a message showing how that the specified player is offline
@@ -262,13 +269,20 @@ public class Commands implements CommandExecutor {
                                 if (Bukkit.getPlayer(args[1]).isOnline()) {
                                     Player player = Bukkit.getPlayer(args[1]); // get the online player
 
+                                    int temperature = -1;
                                     try {
-                                        Utils.setOrReplaceEntry(PlayerRunnable.getTemperature(), player.getName(), Integer.parseInt(args[2]));
-                                        return true;
+                                        temperature = Integer.parseInt(args[2]);
                                     }
                                     catch (Exception e) {
                                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
+                                        return true;
                                     }
+
+                                    if (temperature < 0 || temperature > 25) {
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
+                                        return true;
+                                    }
+                                    Utils.setOrReplaceEntry(PlayerRunnable.getTemperature(), player.getName(), (double) temperature);
                                     return true;
                                 }
                                 // send the user a message showing how that the specified player is offline

@@ -54,21 +54,21 @@ public class UpdateChecker {
         Logger logger = plugin.getLogger();
 
         getVersion(latestVersion -> {
-            String currentVersion = plugin.getDescription().getVersion();
+            double currentVersion = Double.parseDouble(plugin.getDescription().getVersion());
 
-            if (currentVersion.equalsIgnoreCase(latestVersion)) {
-                List<String> messages = plugin.getConfig().getStringList("CorrectVersion");
+            double spigotVersion = Double.parseDouble(latestVersion);
 
-                for (String message : messages) {
-                    logger.info(ChatColor.translateAlternateColorCodes('&', message));
-                }
-            }
-            else {
-                List<String> messages = plugin.getConfig().getStringList("OutdatedVersion");
+            List<String> messages;
 
-                for (String message : messages) {
-                    logger.info(ChatColor.translateAlternateColorCodes('&', message));
-                }
+            if (Math.abs(currentVersion - spigotVersion) <= 0.01)
+                messages = plugin.getConfig().getStringList("CorrectVersion");
+            else if (currentVersion > spigotVersion)
+                messages = plugin.getConfig().getStringList("DeveloperBuildVersion");
+            else
+                messages = plugin.getConfig().getStringList("OutdatedVersion");
+
+            for (String message : messages) {
+                logger.info(ChatColor.translateAlternateColorCodes('&', message));
             }
         });
     }

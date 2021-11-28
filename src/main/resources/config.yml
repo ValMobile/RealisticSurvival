@@ -20,8 +20,12 @@ InvalidArguments: "&cYou are using the invalid arguments!"
 CorrectVersion:
   - "&fYou are running the latest version"
 OutdatedVersion:
-  - "&7You are running on an outdated version"
-  - "&7Update to receive the latest features! https://www.spigotmc.org/resources/rlcraft-1-17-baubles-dragons-sea-serpents.93795/history"
+  - "&cYou are running on an outdated version"
+  - "&cUpdate to receive the latest features! https://www.spigotmc.org/resources/rlcraft-1-17-baubles-dragons-sea-serpents.93795/history"
+DeveloperBuildVersion:
+  - "&eYou are running on a developer build"
+  - "&eNote that there might be bugs or glitches! Please report any bugs, issues, or glitches"
+  - "&ein the plugin support Discord server: https://discord.gg/mMt3f4usqK"
 
 #######################################
 #          Gameplay Features          #
