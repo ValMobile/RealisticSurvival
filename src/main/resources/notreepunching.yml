@@ -7,7 +7,7 @@
 # 25% = 0.25
 PlantFiber:
   DropChance: 0.25
-  CheckLooting: true
+  CheckFortune: true
 FlintShard:
   DropChance: 0.3
 Pickaxe:

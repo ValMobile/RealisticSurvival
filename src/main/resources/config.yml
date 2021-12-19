@@ -10,13 +10,14 @@
 #          Messages                   #
 #######################################
 
-Usage: "&cUsage: /rlcraft [reload, give [player] [item] ]"
+Usage: "&cUsage: /rlcraft [reload, give, temperature, thirst] [player] [item, amount]"
 Reload: "&6[RLCRAFT] &aPlugin reloaded!"
 NoPermission: "&cYou do not have permission to do this!"
 NoOnlinePlayer: "&cThe specified player is not online!"
 MisspelledPlayer: "&cThe specified player's name was misspelled"
 MisspelledItemName: "&cYou mispelled the item!"
 InvalidArguments: "&cYou are using the invalid arguments!"
+RegisteredEnchant: "&7Registered &e%enchant% &7enchant!"
 CorrectVersion:
   - "&fYou are running the latest version"
 OutdatedVersion:
@@ -38,10 +39,10 @@ DeveloperBuildVersion:
 # your own custom server pack if needed
 # NOTE: You must restart the server after enabling or disabling any feature
 ResourcePack:
-  Enabled: false
+  Enabled: true
   # If you upgrade to newer versions, the URL will need to be manually updated to the newest one,
   # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
-  Url: "https://www.dropbox.com/s/gi344wmzjnv8j18/RLCraft%20RP%20Beta.zip?dl=1"
+  Url: "https://www.dropbox.com/s/mr0upexofo9ca3d/RLCraft%20RP%201.2.1.zip?dl=1"
 UnlockRecipes: true
 NoTreePunching: true
 Dragons: true

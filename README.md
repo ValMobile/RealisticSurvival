@@ -1,17 +1,18 @@
 # RLCraft
-*Looking for the download link? **[Click here](https://www.spigotmc.org/resources/rlcraft-1-17-dragons-baubles-sea-serpents.93795/history)***
+*Looking for the download link? **[Click here](https://www.spigotmc.org/resources/rlcraft-1-17-dragons-baubles-temperature.93795/)***
 
 RLCraft is a plugin that which aims to recreate many of the 
 gameplay mechanics and features from the well-known modpack by the same name.
 
 The plugin is organized into several modules which can be configured at will:
 - Dragons
- - Sea Serpents  
- - Baubles
- - Spartan Weaponry
- - No Tree Punching
- - Waystones
- - Lycanite's Mobs
+- Sea Serpents  
+- Baubles
+- Spartan Weaponry
+- No Tree Punching
+- Waystones
+- Tough As Nails
+- Lycanite's Mobs
 
 If you have any questions or suggestions,
 feel free to discuss it in my [Discord server](https://discord.gg/mMt3f4usqK).  
@@ -44,6 +45,7 @@ of RLCraft yourself, feel free to post them in the [Discord server](https://disc
 and I'll add them here.
 
 ![A player holding an ankh shield and an enchanted flamed dragon bone sword](https://i.imgur.com/GtbXi8g.png)
+![A player holding a cobalt shield](https://i.imgur.com/hZrfDS6.png)
 
 ## 🎧 Discord
 You can find the RLCraft community on Discord and connect with users of RLCraft from all over the world.  
@@ -83,6 +85,7 @@ All credits go to the following people:
  - XzeroAir and sonicx8000 of [Trinkets and Baubles](https://www.curseforge.com/minecraft/mc-mods/trinkets-and-baubles)
  - Tmtravlr of [Quality Tools](https://www.curseforge.com/minecraft/mc-mods/quality-tools)
  - AlcatrazEscape of [No Tree Punching](https://www.curseforge.com/minecraft/mc-mods/no-tree-punching)
+ - TheAdubbz of [Tough As Nails](https://www.curseforge.com/minecraft/mc-mods/tough-as-nails)
 
 *Note that RLCraft is not affiliated with Mojang Studios, Minecraft, 
 or Shivaxi, the creator of the official RLCraft modpack.*

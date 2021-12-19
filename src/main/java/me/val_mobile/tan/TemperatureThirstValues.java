@@ -1,4 +1,4 @@
-package me.val_mobile.toughasnails;
+package me.val_mobile.tan;
 
 public enum TemperatureThirstValues {
 

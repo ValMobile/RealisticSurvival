@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.no_tree_punching;
+package me.val_mobile.ntr;
 
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
@@ -23,7 +23,6 @@ import me.val_mobile.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -32,15 +31,16 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Random;
 
-public class NoTreePunchingEvents implements Listener {
+public class NtrEvents implements Listener {
 
     private final CustomItems customItems;
     private final Utils util;
-    public NoTreePunchingEvents(RLCraftPlugin instance) {
+    public NtrEvents(RLCraftPlugin instance) {
         customItems = new CustomItems(instance);
         util = new Utils(instance);
     }
@@ -50,7 +50,7 @@ public class NoTreePunchingEvents implements Listener {
         Player player = event.getPlayer();
         ItemStack itemMainHand = player.getInventory().getItemInMainHand();
         Block block = event.getBlock();
-        Material material = block.getType();
+        Material material = block.getBlockData().getMaterial();
 
         if (CustomConfig.getNoTreePunchingConfig().getStringList("WoodBlocks").contains(material.toString())) {
             if (!Utils.isHoldingAxe(player)) {
@@ -61,17 +61,18 @@ public class NoTreePunchingEvents implements Listener {
         if (CustomConfig.getNoTreePunchingConfig().getStringList("GrassBlocks").contains(material.toString())) {
             if (util.isHoldingKnife(player)) {
                 Random r = new Random();
+                ItemMeta meta = itemMainHand.getItemMeta();
+
                 double chance = CustomConfig.getNoTreePunchingConfig().getDouble("PlantFiber.DropChance");
-                if (CustomConfig.getNoTreePunchingConfig().getBoolean("PlantFiber.CheckLooting")) {
-                    ItemMeta meta = itemMainHand.getItemMeta();
-                    if (meta.hasEnchant(Enchantment.LOOT_BONUS_MOBS)) {
-                        int lootingLvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_MOBS);
-                        chance += lootingLvl * 0.01;
-                    }
+                if (CustomConfig.getNoTreePunchingConfig().getBoolean("PlantFiber.CheckFortune")) {
+                    chance = Utils.getFortuneChance(chance, itemMainHand);
                 }
                 if (r.nextDouble() <= chance) {
-                    block.getDrops().add(customItems.getPlantFiber());
+                    block.getWorld().dropItemNaturally(block.getLocation(), customItems.getPlantFiber());
                 }
+
+                ((Damageable) meta).setDamage(((Damageable) meta).getDamage() + 1);
+                itemMainHand.setItemMeta(meta);
             }
         }
     }
@@ -81,7 +82,7 @@ public class NoTreePunchingEvents implements Listener {
         if (Utils.isItemReal(event.getItem())) {
             if (event.getItem().isSimilar(new ItemStack(Material.FLINT))) {
                 if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
-                    if (event.getClickedBlock().getType() == Material.STONE) {
+                    if (event.getClickedBlock().getBlockData().getMaterial() == Material.STONE) {
 
                         Player player = event.getPlayer();
                         Block block = event.getClickedBlock();

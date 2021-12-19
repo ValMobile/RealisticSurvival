@@ -31,6 +31,7 @@ public class CustomItems {
     private final FileConfiguration noTreePunching = CustomConfig.getNoTreePunchingConfig();
     private final FileConfiguration iceFire = CustomConfig.getIceFireGearConfig();
     private final FileConfiguration spartanWeaponry = CustomConfig.getSpartanWeaponryConfig();
+    private final FileConfiguration toughasNails = CustomConfig.getToughasNailsConfig();
 
     private ItemStack flintAxe;
     private ItemStack flintKnife;
@@ -575,6 +576,31 @@ public class CustomItems {
     private ItemStack copperLongbow;
     private ItemStack copperCrossbow;
     private ItemStack studdedClub;
+    private ItemStack appleJuice;
+    private ItemStack beetrootJuice;
+    private ItemStack cactusJuice;
+    private ItemStack carrotJuice;
+    private ItemStack chorusFruitJuice;
+    private ItemStack glisteringMelonJuice;
+    private ItemStack goldenAppleJuice;
+    private ItemStack goldenCarrotJuice;
+    private ItemStack melonJuice;
+    private ItemStack pumpkinJuice;
+    private ItemStack purifiedWaterBottle;
+    private ItemStack waterBottle;
+    private ItemStack charcoalFilter;
+    private ItemStack iceCube;
+    private ItemStack magmaShard;
+    private ItemStack jelledSlime;
+    private ItemStack thermometer;
+    private ItemStack woolHood;
+    private ItemStack woolJacket;
+    private ItemStack woolPants;
+    private ItemStack woolBoots;
+    private ItemStack jelledSlimeHelmet;
+    private ItemStack jelledSlimeChestplate;
+    private ItemStack jelledSlimeLeggings;
+    private ItemStack jelledSlimeBoots;
 
     public CustomItems(RLCraftPlugin instance) {
 
@@ -1121,6 +1147,31 @@ public class CustomItems {
         copperLongbow = new ItemBuilder(config, 540, instance);
         copperCrossbow = new ItemBuilder(config, 541, instance);
         studdedClub = new ItemBuilder(config, 542, spartanWeaponry, ItemBuilder.CLUB, instance);
+        appleJuice = new ItemBuilder(config, 543, instance);
+        beetrootJuice = new ItemBuilder(config, 544, instance);
+        cactusJuice = new ItemBuilder(config, 545, instance);
+        carrotJuice = new ItemBuilder(config, 546, instance);
+        chorusFruitJuice = new ItemBuilder(config, 547, instance);
+        glisteringMelonJuice = new ItemBuilder(config, 548, instance);
+        goldenAppleJuice = new ItemBuilder(config, 549, instance);
+        goldenCarrotJuice = new ItemBuilder(config, 550, instance);
+        melonJuice = new ItemBuilder(config, 551, instance);
+        pumpkinJuice = new ItemBuilder(config, 552, instance);
+        purifiedWaterBottle = new ItemBuilder(config, 553, instance);
+        waterBottle = new ItemBuilder(config, 554, instance);
+        charcoalFilter = new ItemBuilder(config, 555, instance);
+        iceCube = new ItemBuilder(config, 556, instance);
+        magmaShard = new ItemBuilder(config, 557, instance);
+        jelledSlime = new ItemBuilder(config, 558, instance);
+        thermometer = new ItemBuilder(config, 559, instance);
+        woolHood = new ItemBuilder(config, 560, toughasNails, ItemBuilder.HELMET, instance);
+        woolJacket = new ItemBuilder(config, 561, toughasNails, ItemBuilder.CHESTPLATE, instance);
+        woolPants = new ItemBuilder(config, 562, toughasNails, ItemBuilder.LEGGINGS, instance);
+        woolBoots = new ItemBuilder(config, 563, toughasNails, ItemBuilder.BOOTS, instance);
+        jelledSlimeHelmet = new ItemBuilder(config, 564, toughasNails, ItemBuilder.HELMET, instance);
+        jelledSlimeChestplate = new ItemBuilder(config, 565, toughasNails, ItemBuilder.CHESTPLATE, instance);
+        jelledSlimeLeggings = new ItemBuilder(config, 566, toughasNails, ItemBuilder.LEGGINGS, instance);
+        jelledSlimeBoots = new ItemBuilder(config, 567, toughasNails, ItemBuilder.BOOTS, instance);
     }
 
     /**
@@ -3300,4 +3351,106 @@ public class CustomItems {
     public ItemStack getStuddedClub() {
         return studdedClub;
     }
+
+    public ItemStack getAppleJuice() {
+        return appleJuice;
+    }
+
+    public ItemStack getBeetrootJuice() {
+        return beetrootJuice;
+    }
+
+    public ItemStack getCactusJuice() {
+        return cactusJuice;
+    }
+
+    public ItemStack getCarrotJuice() {
+        return carrotJuice;
+    }
+
+    public ItemStack getChorusFruitJuice() {
+        return chorusFruitJuice;
+    }
+
+    public ItemStack getGlisteringMelonJuice() {
+        return glisteringMelonJuice;
+    }
+
+    public ItemStack getGoldenAppleJuice() {
+        return goldenAppleJuice;
+    }
+
+    public ItemStack getGoldenCarrotJuice() {
+        return goldenCarrotJuice;
+    }
+
+    public ItemStack getMelonJuice() {
+        return melonJuice;
+    }
+
+    public ItemStack getPumpkinJuice() {
+        return pumpkinJuice;
+    }
+
+    public ItemStack getPurifiedWaterBottle() {
+        return purifiedWaterBottle;
+    }
+
+    public ItemStack getWaterBottle() {
+        return waterBottle;
+    }
+
+    public ItemStack getCharcoalFilter() {
+        return charcoalFilter;
+    }
+
+    public ItemStack getIceCube() {
+        return iceCube;
+    }
+
+    public ItemStack getMagmaShard() {
+        return magmaShard;
+    }
+
+    public ItemStack getJelledSlime() {
+        return jelledSlime;
+    }
+
+    public ItemStack getThermometer() {
+        return thermometer;
+    }
+
+    public ItemStack getWoolHood() {
+        return woolHood;
+    }
+
+    public ItemStack getWoolJacket() {
+        return woolJacket;
+    }
+
+    public ItemStack getWoolPants() {
+        return woolPants;
+    }
+
+    public ItemStack getWoolBoots() {
+        return woolBoots;
+    }
+
+    public ItemStack getJelledSlimeHelmet() {
+        return jelledSlimeHelmet;
+    }
+
+    public ItemStack getJelledSlimeChestplate() {
+        return jelledSlimeChestplate;
+    }
+
+    public ItemStack getJelledSlimeLeggings() {
+        return jelledSlimeLeggings;
+    }
+
+    public ItemStack getJelledSlimeBoots() {
+        return jelledSlimeBoots;
+    }
+
+
 }

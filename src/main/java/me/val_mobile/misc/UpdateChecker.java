@@ -16,6 +16,7 @@
  */
 package me.val_mobile.misc;
 
+import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -54,9 +55,9 @@ public class UpdateChecker {
         Logger logger = plugin.getLogger();
 
         getVersion(latestVersion -> {
-            double currentVersion = Double.parseDouble(plugin.getDescription().getVersion());
+            double currentVersion = Utils.getNumberFromUpdate(plugin.getDescription().getVersion());
 
-            double spigotVersion = Double.parseDouble(latestVersion);
+            double spigotVersion = Utils.getNumberFromUpdate((latestVersion));
 
             List<String> messages;
 

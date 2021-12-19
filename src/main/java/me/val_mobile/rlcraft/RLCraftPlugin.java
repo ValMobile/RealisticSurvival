@@ -21,22 +21,26 @@ import me.val_mobile.commands.Commands;
 import me.val_mobile.commands.Tab;
 import me.val_mobile.dragons.DragonFightEvents;
 import me.val_mobile.dragons.DragonGearEvents;
+import me.val_mobile.dragons.DragonWorldGenEvents;
 import me.val_mobile.dragons.WitherDrops;
 import me.val_mobile.lycanites_mobs.LycanitesMobsEvents;
 import me.val_mobile.misc.BStats;
 import me.val_mobile.misc.PlayerInitializer;
 import me.val_mobile.misc.ResourcePackEvents;
 import me.val_mobile.misc.UpdateChecker;
-import me.val_mobile.no_tree_punching.NoTreePunchingEvents;
+import me.val_mobile.ntr.NtrEvents;
 import me.val_mobile.sea_serpents.SeaSerpentDrops;
 import me.val_mobile.sea_serpents.SeaSerpentGearEvents;
 import me.val_mobile.spartan_weaponry.SpartanWeaponryEvents;
-import me.val_mobile.toughasnails.ToughAsNailsEvents;
+import me.val_mobile.tan.TanEnchants;
+import me.val_mobile.tan.TanEvents;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomRecipes;
+import me.val_mobile.utils.Schematics;
 import me.val_mobile.waystones.WaystoneEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
@@ -52,20 +56,21 @@ public class RLCraftPlugin extends JavaPlugin {
     private CustomRecipes recipes;
 
     private BStats bStats;
-//    private Schematics schematics;
-    private NoTreePunchingEvents noTreePunchingEvents;
+    private Schematics schematics;
+    private NtrEvents ntrEvents;
     private SpartanWeaponryEvents spartanWeaponry;
     private DragonFightEvents dragonFight;
     private DragonGearEvents dragonGear;
     private ResourcePackEvents resourcePack;
-//    private DragonWorldGenEvents dragonWorldGenEvents;
+    private DragonWorldGenEvents dragonWorldGenEvents;
     private SeaSerpentGearEvents seaSerpentGear;
     private SeaSerpentDrops seaSerpentDrops;
     private WitherDrops witherDrops;
     private LycanitesMobsEvents lycanitesMobs;
     private BaubleEvents bauble;
     private WaystoneEvents waystones;
-    private ToughAsNailsEvents toughAsNailsEvents;
+    private TanEvents tanEvents;
+    private TanEnchants tanEnchants;
     private PlayerInitializer playerInitializer;
     private UpdateChecker updateChecker;
     
@@ -76,7 +81,7 @@ public class RLCraftPlugin extends JavaPlugin {
 
         // Plugin startup logic
         customConfig = new CustomConfig(this);
-//      schematics = new Schematics(this);
+        schematics = new Schematics(this);
 
         this.saveDefaultConfig();
 
@@ -91,24 +96,25 @@ public class RLCraftPlugin extends JavaPlugin {
         customConfig.createRecipeConfig();
         customConfig.createToughAsNailsConfig();
 
-//      schematics.createSchematicsFolder();
-//      schematics.createFireDragonNest();
+//        schematics.createSchematicsFolder();
+//        schematics.createFireDragonNest();
 
         commands = new Commands(this);
         recipes = new CustomRecipes(this);
         bStats = new BStats(this);
-        noTreePunchingEvents = new NoTreePunchingEvents(this);
+        ntrEvents = new NtrEvents(this);
         spartanWeaponry = new SpartanWeaponryEvents(this);
         dragonFight = new DragonFightEvents();
         dragonGear = new DragonGearEvents(this);
-//      dragonWorldGenEvents = new DragonWorldGenEvents(this);
+        dragonWorldGenEvents = new DragonWorldGenEvents(this);
         seaSerpentGear = new SeaSerpentGearEvents(this);
         seaSerpentDrops = new SeaSerpentDrops(this);
         witherDrops = new WitherDrops(this);
         lycanitesMobs = new LycanitesMobsEvents(this);
         bauble = new BaubleEvents(this);
         waystones = new WaystoneEvents();
-        toughAsNailsEvents = new ToughAsNailsEvents(this);
+        tanEnchants = new TanEnchants(this);
+        tanEvents = new TanEvents(this);
         updateChecker = new UpdateChecker(this, 93795);
         resourcePack = new ResourcePackEvents(this);
         playerInitializer = new PlayerInitializer(this);
@@ -121,6 +127,9 @@ public class RLCraftPlugin extends JavaPlugin {
         recipes.populateNtrRecipes();
         recipes.populateSeaSerpentRecipes();
         recipes.populateWaystoneRecipes();
+        recipes.populateTanRecipes();
+
+        tanEnchants.populateEnchants();
 
         updateChecker.checkUpdate();
 
@@ -146,7 +155,7 @@ public class RLCraftPlugin extends JavaPlugin {
                 }
             }
 
-            pm.registerEvents(noTreePunchingEvents, this);
+            pm.registerEvents(ntrEvents, this);
         }
 
         if (config.getBoolean("Dragons")) {
@@ -275,8 +284,31 @@ public class RLCraftPlugin extends JavaPlugin {
         if (config.getBoolean("BStats"))
             bStats.recordData();
 
-        if (config.getBoolean("ToughAsNails"))
-            pm.registerEvents(toughAsNailsEvents, this);
+        if (config.getBoolean("ToughAsNails")) {
+            pm.registerEvents(tanEvents, this);
+
+            for (Recipe r : CustomRecipes.getTanRecipes()) {
+                if (r instanceof ShapedRecipe) {
+                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof ShapelessRecipe) {
+                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+                else if (r instanceof SmithingRecipe) {
+                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
+                        Bukkit.addRecipe(r);
+                    }
+                }
+            }
+
+            for (Enchantment e : tanEnchants.getEnchants()) {
+                tanEnchants.register(e);
+            }
+        }
 
         pm.registerEvents(playerInitializer, this);
 

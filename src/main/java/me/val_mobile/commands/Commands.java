@@ -218,7 +218,7 @@ public class Commands implements CommandExecutor {
                                 if (Bukkit.getPlayer(args[1]).isOnline()) {
                                     Player player = Bukkit.getPlayer(args[1]); // get the online player
 
-                                    int thirst = -1;
+                                    int thirst;
                                     try {
                                         thirst = Integer.parseInt(args[2]);
                                     }
@@ -227,10 +227,6 @@ public class Commands implements CommandExecutor {
                                         return true;
                                     }
 
-                                    if (thirst < 0 || thirst > 20) {
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
-                                        return true;
-                                    }
                                     Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), (double) thirst);
                                     return true;
                                 }
@@ -269,7 +265,7 @@ public class Commands implements CommandExecutor {
                                 if (Bukkit.getPlayer(args[1]).isOnline()) {
                                     Player player = Bukkit.getPlayer(args[1]); // get the online player
 
-                                    int temperature = -1;
+                                    int temperature;
                                     try {
                                         temperature = Integer.parseInt(args[2]);
                                     }
@@ -278,10 +274,6 @@ public class Commands implements CommandExecutor {
                                         return true;
                                     }
 
-                                    if (temperature < 0 || temperature > 25) {
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
-                                        return true;
-                                    }
                                     Utils.setOrReplaceEntry(PlayerRunnable.getTemperature(), player.getName(), (double) temperature);
                                     return true;
                                 }

@@ -3,7 +3,7 @@ name: RLCraft
 version: ${project.version}
 author: Val_Mobile
 api-version: 1.17
-depend: [FastAsyncWorldEdit]
+#depend: [FastAsyncWorldEdit]
 
 commands:
   RLCraft:

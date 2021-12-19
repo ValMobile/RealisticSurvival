@@ -23,6 +23,7 @@ import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
@@ -139,6 +140,57 @@ public class Utils {
 
     public static boolean isBoots(Material material) {
         return (material.toString().contains("BOOTS"));
+    }
+    public static boolean isPickaxe(Material material) {
+        return (material.toString().contains("PICKAXE"));
+    }
+
+    public static boolean isAxe(Material material) {
+        return (material.toString().contains("AXE"));
+    }
+
+    public static boolean isShovel(Material material) {
+        return (material.toString().contains("SHOVEL"));
+    }
+
+    public static boolean isHoe(Material material) {
+        return (material.toString().contains("HOE"));
+    }
+
+    public static boolean isSword(Material material) {
+        return (material.toString().contains("SWORD"));
+    }
+
+    public static boolean isChainmail(Material material) {
+        return (material.toString().contains("CHAINMAIL"));
+    }
+
+    public static boolean isIron(Material material) {
+        return (material.toString().contains("IRON"));
+    }
+
+    public static boolean isGolden(Material material) {
+        return (material.toString().contains("GOLDEN"));
+    }
+
+    public static boolean isLeather(Material material) {
+        return (material.toString().contains("LEATHER"));
+    }
+
+    public static boolean isDiamond(Material material) {
+        return (material.toString().contains("DIAMOND"));
+    }
+
+    public static boolean isNetherite(Material material) {
+        return (material.toString().contains("NETHERITE"));
+    }
+
+    public static boolean isStone(Material material) {
+        return (material.toString().contains("STONE"));
+    }
+
+    public static boolean isWooden(Material material) {
+        return (material.toString().contains("WOODEN"));
     }
 
     public static boolean isArmor(Material material) {
@@ -615,4 +667,45 @@ public class Utils {
         }
         return Math.abs(time - 6500D)/6500D + 0.5D;
     }
+
+    public static boolean isExposedToSky(Player player) {
+        Location loc = player.getLocation().clone();
+
+        int highestY = loc.getWorld().getHighestBlockYAt(loc);
+
+        return loc.getY() > highestY;
+    }
+
+    public static boolean isHoused(Player player) {
+        Location loc = player.getLocation().clone();
+
+        for (int i = 0; i < 11; i++) {
+            loc.setY(loc.getY() + i);
+            if (loc.getBlock().getType() != Material.AIR) {
+                if (loc.getBlock().getType().isOccluding()) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static double getNumberFromUpdate(String text) {
+        while (text.indexOf(".") != text.lastIndexOf(".")) {
+            text = text.substring(0, text.lastIndexOf(".")) + text.substring(text.lastIndexOf(".") + 1);
+        }
+        return Double.valueOf(text);
+    }
+
+    public static double getFortuneChance(double rawChance, ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+
+        if (meta.hasEnchant(Enchantment.LOOT_BONUS_BLOCKS)) {
+            int lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
+            return (rawChance + lvl * 0.01);
+        }
+        return rawChance;
+    }
+
 }

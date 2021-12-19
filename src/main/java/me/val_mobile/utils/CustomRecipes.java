@@ -19,8 +19,6 @@ package me.val_mobile.utils;
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
 
 import java.util.HashSet;
 
@@ -37,6 +35,8 @@ public class CustomRecipes {
     private static HashSet<Recipe> seaSerpentRecipes = new HashSet<>();
     private static HashSet<Recipe> spartanWeaponryRecipes = new HashSet<>();
     private static HashSet<Recipe> waystoneRecipes = new HashSet<>();
+    private static HashSet<Recipe> tanRecipes = new HashSet<>();
+
 
     public static HashSet<Recipe> getNtrRecipes() {
         return ntrRecipes;
@@ -54,7 +54,10 @@ public class CustomRecipes {
         return spartanWeaponryRecipes;
     }
     public static HashSet<Recipe> getWaystoneRecipes() {
-        return spartanWeaponryRecipes;
+        return waystoneRecipes;
+    }
+    public static HashSet<Recipe> getTanRecipes() {
+        return tanRecipes;
     }
 
     private final ShapedRecipeBuilder flintAxe;
@@ -511,11 +514,33 @@ public class CustomRecipes {
     private final ShapelessRecipeBuilder lightningDragonsteelIngot1;
     private final ShapedRecipeBuilder woodenClub;
     private final ShapelessRecipeBuilder studdedClub;
+    private final ShapedRecipeBuilder jelledSlime;
+    private final ShapedRecipeBuilder jelledSlimeHelmet;
+    private final ShapedRecipeBuilder jelledSlimeChestplate;
+    private final ShapedRecipeBuilder jelledSlimeLeggings;
+    private final ShapedRecipeBuilder jelledSlimeBoots;
+    private final ShapedRecipeBuilder woolHood;
+    private final ShapedRecipeBuilder woolJacket;
+    private final ShapedRecipeBuilder woolPants;
+    private final ShapedRecipeBuilder woolBoots;
+    private final ShapedRecipeBuilder charcoalFilter;
+    private final ShapelessRecipeBuilder purifiedWaterBottle;
+    private final ShapedRecipeBuilder thermometer;
+    private final ShapelessRecipeBuilder appleJuice;
+    private final ShapelessRecipeBuilder beetrootJuice;
+    private final ShapelessRecipeBuilder cactusJuice;
+    private final ShapelessRecipeBuilder carrotJuice;
+    private final ShapelessRecipeBuilder chorusFruitJuice;
+    private final ShapelessRecipeBuilder glisteringMelonJuice;
+    private final ShapelessRecipeBuilder goldenAppleJuice;
+    private final ShapelessRecipeBuilder goldenCarrotJuice;
+    private final ShapelessRecipeBuilder melonJuice;
+    private final ShapelessRecipeBuilder pumpkinJuice;
 
     public CustomRecipes(RLCraftPlugin instance) {
         plugin = instance;
         customItems = new CustomItems(instance);
-        
+
         flintAxe = new ShapedRecipeBuilder(config, 0, instance);
         flintKnife = new ShapedRecipeBuilder(config, 1, instance);
         flintPickaxe = new ShapedRecipeBuilder(config, 2, instance);
@@ -970,6 +995,28 @@ public class CustomRecipes {
         lightningDragonsteelIngot1 = new ShapelessRecipeBuilder(config, 451, instance);
         woodenClub = new ShapedRecipeBuilder(config, 452, instance);
         studdedClub = new ShapelessRecipeBuilder(config, 453, instance);
+        jelledSlime = new ShapedRecipeBuilder(config, 454, instance);
+        jelledSlimeHelmet = new ShapedRecipeBuilder(config, 455, instance);
+        jelledSlimeChestplate = new ShapedRecipeBuilder(config, 456, instance);
+        jelledSlimeLeggings = new ShapedRecipeBuilder(config, 457, instance);
+        jelledSlimeBoots = new ShapedRecipeBuilder(config, 458, instance);
+        woolHood = new ShapedRecipeBuilder(config, 459, instance);
+        woolJacket = new ShapedRecipeBuilder(config, 460, instance);
+        woolPants = new ShapedRecipeBuilder(config, 461, instance);
+        woolBoots = new ShapedRecipeBuilder(config, 462, instance);
+        charcoalFilter = new ShapedRecipeBuilder(config, 463, instance);
+        purifiedWaterBottle = new ShapelessRecipeBuilder(config, 464, instance);
+        thermometer = new ShapedRecipeBuilder(config, 465, instance);
+        appleJuice = new ShapelessRecipeBuilder(config, 466, instance);
+        beetrootJuice = new ShapelessRecipeBuilder(config, 467, instance);
+        cactusJuice = new ShapelessRecipeBuilder(config, 468, instance);
+        carrotJuice = new ShapelessRecipeBuilder(config, 469, instance);
+        chorusFruitJuice = new ShapelessRecipeBuilder(config, 470, instance);
+        glisteringMelonJuice = new ShapelessRecipeBuilder(config, 471, instance);
+        goldenAppleJuice = new ShapelessRecipeBuilder(config, 472, instance);
+        goldenCarrotJuice = new ShapelessRecipeBuilder(config, 473, instance);
+        melonJuice = new ShapelessRecipeBuilder(config, 474, instance);
+        pumpkinJuice = new ShapelessRecipeBuilder(config, 475, instance);
 
     }
 
@@ -1438,415 +1485,29 @@ public class CustomRecipes {
         waystoneRecipes.add(warpedScroll);
     }
 
-    public ShapedRecipe getFlintAxe() {
-        return flintAxe;
-    }
+    public void populateTanRecipes() {
+        tanRecipes.add(jelledSlime);
+        tanRecipes.add(jelledSlimeHelmet);
+        tanRecipes.add(jelledSlimeChestplate);
+        tanRecipes.add(jelledSlimeLeggings);
+        tanRecipes.add(jelledSlimeBoots);
+        tanRecipes.add(woolHood);
+        tanRecipes.add(woolJacket);
+        tanRecipes.add(woolPants);
+        tanRecipes.add(woolBoots);
+        tanRecipes.add(charcoalFilter);
+        tanRecipes.add(purifiedWaterBottle);
+        tanRecipes.add(thermometer);
+        tanRecipes.add(appleJuice);
+        tanRecipes.add(beetrootJuice);
+        tanRecipes.add(cactusJuice);
+        tanRecipes.add(carrotJuice);
+        tanRecipes.add(chorusFruitJuice);
+        tanRecipes.add(glisteringMelonJuice);
+        tanRecipes.add(goldenAppleJuice);
+        tanRecipes.add(goldenCarrotJuice);
+        tanRecipes.add(melonJuice);
+        tanRecipes.add(pumpkinJuice);
 
-    public ShapedRecipe getFlintKnife() {
-        return flintKnife;
-    }
-
-    public ShapedRecipe getFlintPickaxe() {
-        return flintPickaxe;
-    }
-
-    public ShapedRecipe getFlintShovel() {
-        return flintShovel;
-    }
-
-    public ShapedRecipe getFlintHoe() {
-        return flintHoe;
-    }
-
-    public ShapedRecipe getCobblestone() {
-        return cobblestone;
-    }
-
-    public ShapedRecipe getPlantString() {
-        return plantString;
-    }
-
-    public ShapelessRecipe getFireDragonsteelIngot0() {
-        return fireDragonsteelIngot0;
-    }
-
-    public ShapelessRecipe getIceDragonsteelIngot0() {
-        return iceDragonsteelIngot0;
-    }
-
-    public ShapelessRecipe getLightningDragonsteelIngot0() {
-        return lightningDragonsteelIngot0;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetBlue() {
-        return blueDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateBlue() {
-        return blueDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsBlue() {
-        return blueDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsBlue() {
-        return blueDragonscaleBoots;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetBronze() {
-        return bronzeDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateBronze() {
-        return bronzeDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsBronze() {
-        return bronzeDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsBronze() {
-        return bronzeDragonscaleBoots;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetGray() {
-        return grayDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateGray() {
-        return grayDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsGray() {
-        return grayDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsGray() {
-        return grayDragonscaleBoots;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetGreen() {
-        return greenDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateGreen() {
-        return greenDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsGreen() {
-        return greenDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsGreen() {
-        return greenDragonscaleBoots;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetRed() {
-        return redDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateRed() {
-        return redDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsRed() {
-        return redDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsRed() {
-        return redDragonscaleBoots;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetSapphire() {
-        return sapphireDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateSapphire() {
-        return sapphireDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsSapphire() {
-        return sapphireDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsSapphire() {
-        return sapphireDragonscaleBoots;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetSilver() {
-        return silverDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateSilver() {
-        return silverDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsSilver() {
-        return silverDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsSilver() {
-        return silverDragonscaleBoots;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetWhite() {
-        return whiteDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateWhite() {
-        return whiteDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsWhite() {
-        return whiteDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsWhite() {
-        return whiteDragonscaleBoots;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetAmethyst() {
-        return amethystDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateAmethyst() {
-        return amethystDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsAmethyst() {
-        return amethystDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsAmethyst() {
-        return amethystDragonscaleBoots;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetBlack() {
-        return blackDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateBlack() {
-        return blackDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsBlack() {
-        return blackDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsBlack() {
-        return blackDragonscaleBoots;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetCopper() {
-        return copperDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateCopper() {
-        return copperDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsCopper() {
-        return copperDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsCopper() {
-        return copperDragonscaleBoots;
-    }
-
-    public ShapedRecipe getDragonscaleHelmetElectric() {
-        return electricDragonscaleHelmet;
-    }
-
-    public ShapedRecipe getDragonscaleChestplateElectric() {
-        return electricDragonscaleChestplate;
-    }
-
-    public ShapedRecipe getDragonscaleLeggingsElectric() {
-        return electricDragonscaleLeggings;
-    }
-
-    public ShapedRecipe getDragonscaleBootsElectric() {
-        return electricDragonscaleBoots;
-    }
-
-    public ShapedRecipe getTideGuardianHelmetBlue() {
-        return blueTideGuardianHelmet;
-    }
-
-    public ShapedRecipe getTideGuardianChestplateBlue() {
-        return blueTideGuardianChestplate;
-    }
-
-    public ShapedRecipe getTideGuardianLeggingsBlue() {
-        return blueTideGuardianLeggings;
-    }
-
-    public ShapedRecipe getTideGuardianBootsBlue() {
-        return blueTideGuardianBoots;
-    }
-
-    public ShapedRecipe getTideGuardianHelmetBronze() {
-        return bronzeTideGuardianHelmet;
-    }
-
-    public ShapedRecipe getTideGuardianChestplateBronze() {
-        return bronzeTideGuardianChestplate;
-    }
-
-    public ShapedRecipe getTideGuardianLeggingsBronze() {
-        return bronzeTideGuardianLeggings;
-    }
-
-    public ShapedRecipe getTideGuardianBootsBronze() {
-        return bronzeTideGuardianBoots;
-    }
-
-    public ShapedRecipe getTideGuardianHelmetDeepblue() {
-        return deepblueTideGuardianHelmet;
-    }
-
-    public ShapedRecipe getTideGuardianChestplateDeepblue() {
-        return deepblueTideGuardianChestplate;
-    }
-
-    public ShapedRecipe getTideGuardianLeggingsDeepblue() {
-        return deepblueTideGuardianLeggings;
-    }
-
-    public ShapedRecipe getTideGuardianBootsDeepblue() {
-        return deepblueTideGuardianBoots;
-    }
-
-    public ShapedRecipe getTideGuardianHelmetGreen() {
-        return greenTideGuardianHelmet;
-    }
-
-    public ShapedRecipe getTideGuardianChestplateGreen() {
-        return greenTideGuardianChestplate;
-    }
-
-    public ShapedRecipe getTideGuardianLeggingsGreen() {
-        return greenTideGuardianLeggings;
-    }
-
-    public ShapedRecipe getideGuardianBootsGreen() {
-        return greenDragonscaleBoots;
-    }
-
-    public ShapedRecipe getTideGuardianHelmetPurple() {
-        return purpleTideGuardianHelmet;
-    }
-
-    public ShapedRecipe getTideGuardianChestplatePurple() {
-        return purpleTideGuardianChestplate;
-    }
-
-    public ShapedRecipe getTideGuardianLeggingsPurple() {
-        return purpleTideGuardianLeggings;
-    }
-
-    public ShapedRecipe getTideGuardianBootsPurple() {
-        return purpleTideGuardianBoots;
-    }
-
-    public ShapedRecipe getTideGuardianHelmetRed() {
-        return redTideGuardianHelmet;
-    }
-
-    public ShapedRecipe getTideGuardianChestplateRed() {
-        return redTideGuardianChestplate;
-    }
-
-    public ShapedRecipe getTideGuardianLeggingsRed() {
-        return redTideGuardianLeggings;
-    }
-
-    public ShapedRecipe getTideGuardianBootsRed() {
-        return redTideGuardianBoots;
-    }
-
-    public ShapedRecipe getTideGuardianHelmetTeal() {
-        return tealTideGuardianHelmet;
-    }
-
-    public ShapedRecipe getTideGuardianChestplateTeal() {
-        return tealTideGuardianChestplate;
-    }
-
-    public ShapedRecipe getTideGuardianLeggingsTeal() {
-        return tealTideGuardianLeggings;
-    }
-
-    public ShapedRecipe getTideGuardianBootsTeal() {
-        return tealTideGuardianBoots;
-    }
-
-    public ShapedRecipe getDragonbonePickaxe() {
-        return dragonbonePickaxe;
-    }
-
-    public ShapedRecipe getDragonboneAxe() {
-        return dragonboneAxe;
-    }
-
-    public ShapedRecipe getDragonboneShovel() {
-        return dragonboneShovel;
-    }
-
-    public ShapedRecipe getDragonboneHoe() {
-        return dragonboneHoe;
-    }
-
-    public ShapedRecipe getDragonboneSword() {
-        return dragonboneSword;
-    }
-
-    public ShapedRecipe getDragonboneBow() {
-        return dragonboneBow;
-    }
-
-    public ShapelessRecipe getFlamedDragonboneSword() {
-        return flamedDragonboneSword;
-    }
-
-    public ShapelessRecipe getIcedDragonboneSword() {
-        return icedDragonboneSword;
-    }
-
-    public ShapelessRecipe getLightningDragonboneSword() {
-        return lightningDragonboneSword;
-    }
-
-    public ShapedRecipe getBalloon() {
-        return balloon;
-    }
-
-    public ShapedRecipe getCobaltShield() {
-        return cobaltShield;
-    }
-
-    public ShapedRecipe getObsidianSkull() {
-        return obsidianSkull;
-    }
-
-    public ShapedRecipe getSunglasses() {
-        return sunglasses;
-    }
-
-    public ShapedRecipe getCrackedBlackDragonscale() {
-        return crackedBlackDragonscale;
-    }
-
-    public ShapedRecipe getBlackDragonscale() {
-        return blackDragonscale;
-    }
-
-    public ShapedRecipe getAnkhCharm() {
-        return ankhCharm;
-    }
-
-    public ShapedRecipe getWarpedScroll() {
-        return warpedScroll;
     }
 }

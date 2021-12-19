@@ -1,4 +1,4 @@
-package me.val_mobile.toughasnails;
+package me.val_mobile.tan;
 
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
@@ -6,6 +6,7 @@ import me.val_mobile.utils.PlayerRunnable;
 import me.val_mobile.utils.Utils;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -13,11 +14,13 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Random;
 
-public class ToughAsNailsRunnables {
+public class TanRunnables {
 
     public static final double NEUTRAL_TEMPERATURE = 13.0;
     public static final double HIGHEST_TEMPERATURE = 25.0;
@@ -27,9 +30,11 @@ public class ToughAsNailsRunnables {
     public static final double HIGHEST_THIRST = 0.0;
 
     private final RLCraftPlugin plugin;
+    private final Utils util;
 
-    public ToughAsNailsRunnables(RLCraftPlugin instance) {
+    public TanRunnables(RLCraftPlugin instance) {
         plugin = instance;
+        util = new Utils(instance);
     }
 
     public BukkitRunnable getVisualRunnable(Player player) {
@@ -42,6 +47,15 @@ public class ToughAsNailsRunnables {
                     int temperature = (int) Math.round(PlayerRunnable.getTemperature().get(name));
                     int thirst = (int) Math.round(PlayerRunnable.getThirst().get(name));
                     int isHoldingBreath = player.getRemainingAir() < 300 ? 1 : 0;
+
+                    if (temperature > 25)
+                        temperature = 20;
+                    if (temperature < 0)
+                        temperature = 0;
+                    if (thirst > 20)
+                        thirst = 20;
+                    if (thirst < 0)
+                        thirst = 0;
 
                     TemperatureThirstValues val = TemperatureThirstValues.valueOf("TEMP" + temperature + "_THIRST" + thirst + "_BREATH" + isHoldingBreath);
 
@@ -144,6 +158,7 @@ public class ToughAsNailsRunnables {
         double normalTemp = NEUTRAL_TEMPERATURE + biomeTemp * 5.0 * Utils.getDayMultiplier(pWorld, biomeTemp);
 
         double environment = 0;
+        double regulation = 0;
 
         Random r = new Random();
 
@@ -176,8 +191,39 @@ public class ToughAsNailsRunnables {
             environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.SubmergedWater");
         }
         if (player.getLocation().getBlock() != null) {
-            if (player.getLocation().getBlock().getType() == Material.LAVA) {
+            if (player.getLocation().getBlock().getBlockData().getMaterial() == Material.LAVA) {
                 environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.SubmergedLava");
+            }
+        }
+
+        for (ItemStack item : player.getInventory().getArmorContents()) {
+            if (Utils.isItemReal(item)) {
+                ItemMeta meta = item.getItemMeta();
+
+                Material mat = item.getType();
+                String s = mat.toString();
+
+                switch (mat) {
+                    case LEATHER_HELMET:
+                    case LEATHER_CHESTPLATE:
+                    case LEATHER_LEGGINGS:
+                    case LEATHER_BOOTS:
+                        if (util.hasNbtTag(item, "tan_materials")) {
+                            if (util.getNbtTag(item, "tan_materials").equals("Wool")) {
+                                environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.WoolArmor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
+                            }
+                            else if (util.getNbtTag(item, "tan_materials").equals("Jelled Slime")) {
+                                environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.JelledSlimeArmor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
+                            }
+                        }
+                }
+
+                if (meta.hasEnchant(TanEnchants.COOLING)) {
+                    environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.Cooling");
+                }
+                if (meta.hasEnchant(TanEnchants.WARMING)) {
+                    environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.Warming");
+                }
             }
         }
 
@@ -192,6 +238,96 @@ public class ToughAsNailsRunnables {
             else {
                 if (temp + CustomConfig.getToughasNailsConfig().getDouble("Temperature.MaxChange") >= LOWEST_TEMPERATURE) {
                     temp += CustomConfig.getToughasNailsConfig().getDouble("Temperature.MaxChange");
+                }
+            }
+        }
+
+        if (temp > NEUTRAL_TEMPERATURE) {
+            if (Utils.isHoused(player)) {
+                regulation -= CustomConfig.getToughasNailsConfig().getDouble("Temperature.Housed");
+            }
+
+            for (ItemStack item : player.getInventory().getArmorContents()) {
+                if (Utils.isItemReal(item)) {
+                    Material mat = item.getType();
+                    String s = mat.toString();
+
+                    switch (mat) {
+                        case LEATHER_HELMET:
+                        case LEATHER_CHESTPLATE:
+                        case LEATHER_LEGGINGS:
+                        case LEATHER_BOOTS:
+                        case GOLDEN_HELMET:
+                        case GOLDEN_CHESTPLATE:
+                        case GOLDEN_LEGGINGS:
+                        case GOLDEN_BOOTS:
+                        case IRON_HELMET:
+                        case IRON_CHESTPLATE:
+                        case IRON_LEGGINGS:
+                        case IRON_BOOTS:
+                        case DIAMOND_HELMET:
+                        case DIAMOND_CHESTPLATE:
+                        case DIAMOND_LEGGINGS:
+                        case DIAMOND_BOOTS:
+                        case CHAINMAIL_HELMET:
+                        case CHAINMAIL_CHESTPLATE:
+                        case CHAINMAIL_LEGGINGS:
+                        case CHAINMAIL_BOOTS:
+                        case NETHERITE_HELMET:
+                        case NETHERITE_CHESTPLATE:
+                        case NETHERITE_LEGGINGS:
+                        case NETHERITE_BOOTS:
+                        case TURTLE_HELMET:
+                            regulation -= CustomConfig.getToughasNailsConfig().getDouble("Temperature.Regulation." + WordUtils.capitalizeFully(s.substring(0, s.indexOf('_'))) + "Armor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
+
+                            if (item.getItemMeta().hasEnchant(TanEnchants.OZZY_LINER)) {
+                                regulation -= CustomConfig.getToughasNailsConfig().getDouble("Temperature.Regulation.OzzyLiner");
+                            }
+                    }
+                }
+            }
+        }
+        else if (temp < NEUTRAL_TEMPERATURE) {
+            if (Utils.isHoused(player)) {
+                regulation += CustomConfig.getToughasNailsConfig().getDouble("Temperature.Housed");
+            }
+            for (ItemStack item : player.getInventory().getArmorContents()) {
+                if (Utils.isItemReal(item)) {
+                    Material mat = item.getType();
+                    String s = mat.toString();
+
+                    switch (mat) {
+                        case LEATHER_HELMET:
+                        case LEATHER_CHESTPLATE:
+                        case LEATHER_LEGGINGS:
+                        case LEATHER_BOOTS:
+                        case GOLDEN_HELMET:
+                        case GOLDEN_CHESTPLATE:
+                        case GOLDEN_LEGGINGS:
+                        case GOLDEN_BOOTS:
+                        case IRON_HELMET:
+                        case IRON_CHESTPLATE:
+                        case IRON_LEGGINGS:
+                        case IRON_BOOTS:
+                        case DIAMOND_HELMET:
+                        case DIAMOND_CHESTPLATE:
+                        case DIAMOND_LEGGINGS:
+                        case DIAMOND_BOOTS:
+                        case CHAINMAIL_HELMET:
+                        case CHAINMAIL_CHESTPLATE:
+                        case CHAINMAIL_LEGGINGS:
+                        case CHAINMAIL_BOOTS:
+                        case NETHERITE_HELMET:
+                        case NETHERITE_CHESTPLATE:
+                        case NETHERITE_LEGGINGS:
+                        case NETHERITE_BOOTS:
+                        case TURTLE_HELMET:
+                            regulation += CustomConfig.getToughasNailsConfig().getDouble("Temperature.Regulation." + WordUtils.capitalizeFully(s.substring(0, s.indexOf('_'))) + "Armor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
+
+                            if (item.getItemMeta().hasEnchant(TanEnchants.OZZY_LINER)) {
+                                regulation -= CustomConfig.getToughasNailsConfig().getDouble("Temperature.Regulation.OzzyLiner");
+                            }
+                        }
                 }
             }
         }

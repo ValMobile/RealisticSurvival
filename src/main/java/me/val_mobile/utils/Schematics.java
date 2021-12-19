@@ -20,7 +20,9 @@ import com.fastasyncworldedit.core.FaweAPI;
 import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.extent.clipboard.Clipboard;
-import com.sk89q.worldedit.extent.clipboard.io.*;
+import com.sk89q.worldedit.extent.clipboard.io.ClipboardFormat;
+import com.sk89q.worldedit.extent.clipboard.io.ClipboardFormats;
+import com.sk89q.worldedit.extent.clipboard.io.ClipboardReader;
 import com.sk89q.worldedit.function.operation.Operation;
 import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.math.BlockVector3;
@@ -29,7 +31,10 @@ import com.sk89q.worldedit.world.World;
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import org.bukkit.Location;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 /**
  * Schematics is a class that creates and stores schematic files
  * for world generation use
@@ -69,33 +74,6 @@ public class Schematics {
      */
     public void createFireDragonNest() {
         fireDragonNest = new File(plugin.getDataFolder(), "schematics/fire_dragon_nest.schem");  // look for a file named "fire_dragon_nest.schem" in the schematics folder
-
-        // if the file "fire_dragon_nest.schem" doesn't exist in the schematics folder
-        if (!fireDragonNest.exists()) {
-            // create the file
-
-            Clipboard clipboard = null;
-
-            ClipboardFormat format = ClipboardFormats.findByFile(fireDragonNest);
-            try (ClipboardReader reader = format.getReader(new FileInputStream(fireDragonNest))) {
-                clipboard = reader.read();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            try (ClipboardWriter writer = BuiltInClipboardFormat.SPONGE_SCHEMATIC.getWriter(new FileOutputStream(fireDragonNest))) {
-                writer.write(clipboard);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            // save the file to the plugin resources, overwriting any previous schematic files
-            plugin.saveResource(fireDragonNest.getPath(), true);
-        }
     }
 
     /**

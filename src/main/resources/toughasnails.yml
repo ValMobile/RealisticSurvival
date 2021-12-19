@@ -109,7 +109,54 @@ Temperature:
     BLACK_CARPET: 0.3
     BLACK_CANDLE: 0.5
     BLACK_CANDLE_CAKE: 0.5
-  Housed: 2.0 # If a player is under a roof
+  WoolArmor:
+    Helmet: 2.0
+    Chestplate: 2.0
+    Leggings: 1.75
+    Boots: 1.5
+  JelledSlimeArmor:
+    Helmet: -2.0
+    Chestplate: -2.0
+    Leggings: -1.75
+    Boots: -1.5
+  Warming: 3.0
+  Cooling: -3.0
+  # Any conditions that will stabilize a player's temperature to normal
+  Regulation:
+    Housed: 2.0 # If a player is under a roof
+    OzzyLiner: 5.0
+    LeatherArmor:
+      Helmet: 1.5
+      Chestplate: 1.5
+      Leggings: 1.25
+      Boots: 1.0
+    ChainmailArmor:
+      Helmet: 0.5
+      Chestplate: 0.5
+      Leggings: 0.25
+      Boots: 0.2
+    IronArmor:
+      Helmet: 0.5
+      Chestplate: 0.5
+      Leggings: 0.25
+      Boots: 0.2
+    GoldenArmor:
+      Helmet: 0.5
+      Chestplate: 0.5
+      Leggings: 0.25
+      Boots: 0.2
+    DiamondArmor:
+      Helmet: 0.75
+      Chestplate: 0.75
+      Leggings: 0.5
+      Boots: 0.25
+    NetheriteArmor:
+      Helmet: 0.75
+      Chestplate: 0.5
+      Leggings: 0.25
+      Boots: 0.2
+    TurtleArmor:
+      Helmet: 1.0
   SubmergedWater: -2.0 # If a player is in water
   SubmergedLava: 3.0 # If a player is in lava
 Thirst:
@@ -118,8 +165,42 @@ Thirst:
     Damage: 0.5 # How much damage the player takes while dehydrated per "CheckTickTime" number of ticks
   Supplements:
     # 1 thirst bar = 2.0 units
-    WaterBottle: 6.0
-    GoldenCarrotJuice: 10.0
+    WaterBottle:
+      Amount: 6.0
+      OverrideLimit: false
+    PurifiedWaterBottle:
+      Amount: 8.0
+      OverrideLimit: false
+    AppleJuice:
+      Amount: 8.0
+      OverrideLimit: false
+    BeetrootJuice:
+      Amount: 10.0
+      OverrideLimit: false
+    CactusJuice:
+      Amount: 10.0
+      OverrideLimit: false
+    ChorusFruitJuice:
+      Amount: 12.0
+      OverrideLimit: false
+      Teleport:
+        Enabled: true
+        MaxRadius: 7.0
+    GlisteringMelonJuice:
+      Amount: 16.0
+      OverrideLimit: true
+    GoldenAppleJuice:
+      Amount: 20.0
+      OverrideLimit: true
+    GoldenCarrotJuice:
+      Amount: 30.0
+      OverrideLimit: true
+    MelonJuice:
+      Amount: 10.0
+      OverrideLimit: false
+    PumpkinJuice:
+      Amount: 10.0
+      OverrideLimit: false
     Drinking:
       # Customize aspects of the sound made when a player drinks from a source block of water
       # Volume ranges from 0.0 to 1.0, any values greater than 1.0 just increase the distance at which the sound can be heard
@@ -131,3 +212,39 @@ Thirst:
       Volume: 0.1 # Set to -1.0 to disable
       Pitch: 1.0
       MaxDistance: 2.0 # Maximum distance at which a player can drink a water source from
+      OverrideLimit: false
+    Raining:
+      Amount: 1.0
+      Sound: "ENTITY_GENERIC_DRINK"
+      Volume: 0.1 # Set to -1.0 to disable
+      Pitch: 1.0
+      OverrideLimit: false
+
+Helmet:
+  Wool:
+    Armor: 1.0
+    Toughness: 0.5
+  JelledSlime:
+    Armor: 2.0
+    Toughness: 0.5
+Chestplate:
+  Wool:
+    Armor: 3.0
+    Toughness: 0.5
+  JelledSlime:
+    Armor: 5.0
+    Toughness: 0.5
+Leggings:
+  Wool:
+    Armor: 2.0
+    Toughness: 0.5
+  JelledSlime:
+    Armor: 4.0
+    Toughness: 0.5
+Boots:
+  Wool:
+    Armor: 1.0
+    Toughness: 0.5
+  JelledSlime:
+    Armor: 1.0
+    Toughness: 0.5

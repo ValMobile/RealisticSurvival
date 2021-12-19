@@ -1905,7 +1905,6 @@
   ConfigName: "RecallPotion"
   CommandName: "potion_recall"
   CustomModelData: 83650
-  Color: "AQUA"
   Lore:
     - "&9Teleports you to your spawn point."
 159:
@@ -1926,7 +1925,6 @@
   ConfigName: "WormholePotion"
   CommandName: "potion_wormhole"
   CustomModelData: 83651
-  Color: "BLUE"
   Lore:
     - "&9Teleports you to other players."
     - "&aYou suddenly feel very alone."
@@ -7195,3 +7193,228 @@
   NBTTags:
     material_type: "Iron"
     spartans_weapon: "Club"
+543:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fApple Juice"
+  ConfigName: "AppleJuice"
+  CommandName: "juice_apple"
+  CustomModelData: 83652
+  NBTTags:
+    tan_drinks: "AppleJuice"
+544:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fBeetroot Juice"
+  ConfigName: "BeetrootJuice"
+  CommandName: "juice_beetroot"
+  CustomModelData: 83653
+  NBTTags:
+    tan_drinks: "BeetrootJuice"
+545:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fCactus Juice"
+  ConfigName: "CactusJuice"
+  CommandName: "juice_cactus"
+  CustomModelData: 83654
+  NBTTags:
+    tan_drinks: "CactusJuice"
+546:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fCarrot Juice"
+  ConfigName: "CarrotJuice"
+  CommandName: "juice_carrot"
+  CustomModelData: 83655
+  NBTTags:
+    tan_drinks: "CarrotJuice"
+547:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fChorus Fruit Juice"
+  ConfigName: "ChorusFruitJuice"
+  CommandName: "juice_chorus_fruit"
+  CustomModelData: 83656
+  NBTTags:
+    tan_drinks: "ChorusFruitJuice"
+548:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fGlistering Melon Juice"
+  ConfigName: "GlisteringMelonJuice"
+  CommandName: "juice_melon_glistering"
+  CustomModelData: 83657
+  Enchantments:
+    DURABILITY: 1
+  ItemFlags:
+    - "HIDE_ENCHANTS"
+  NBTTags:
+    tan_drinks: "GlisteringMelonJuice"
+549:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fGolden Apple Juice"
+  ConfigName: "GoldenAppleJuice"
+  CommandName: "juice_apple_golden"
+  CustomModelData: 83658
+  Enchantments:
+    DURABILITY: 1
+  ItemFlags:
+    - "HIDE_ENCHANTS"
+  NBTTags:
+    tan_drinks: "GoldenAppleJuice"
+550:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fGolden Carrot Juice"
+  ConfigName: "GoldenCarrotJuice"
+  CommandName: "juice_carrot_golden"
+  CustomModelData: 83659
+  Enchantments:
+    DURABILITY: 1
+  ItemFlags:
+    - "HIDE_ENCHANTS"
+  NBTTags:
+    tan_drinks: "GoldenCarrotJuice"
+551:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fMelon Juice"
+  ConfigName: "MelonJuice"
+  CommandName: "juice_melon"
+  CustomModelData: 83660
+  NBTTags:
+    tan_drinks: "MelonJuice"
+552:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fPumpkin Juice"
+  ConfigName: "PumpkinJuice"
+  CommandName: "juice_pumpkin"
+  CustomModelData: 83661
+  NBTTags:
+    tan_drinks: "PumpkinJuice"
+553:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fPurified Water Bottle"
+  ConfigName: "PurifiedWaterBottle"
+  CommandName: "purified_water_bottle"
+  CustomModelData: 83662
+  NBTTags:
+    tan_drinks: "PurifiedWaterBottle"
+554:
+  Material: "POTION"
+  Amount: 1
+  DisplayName: "&fWater Bottle"
+  ConfigName: "WaterBottle"
+  CommandName: "water_bottle"
+  Color: "BLUE"
+555:
+  Material: "PAPER"
+  Amount: 1
+  DisplayName: "&fCharcoal Filter"
+  ConfigName: "CharcoalFilter"
+  CommandName: "charcoal_filter"
+  CustomModelData: 83650
+556:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fIce Cube"
+  ConfigName: "IceCube"
+  CommandName: "ice_cube"
+  CustomModelData: 83715
+557:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fMagma Shard"
+  ConfigName: "MagmaShard"
+  CommandName: "magma_shard"
+  CustomModelData: 83716
+558:
+  Material: "PRISMARINE_SHARD"
+  Amount: 1
+  DisplayName: "&fJelled Slime"
+  ConfigName: "JelledSlime"
+  CommandName: "jelled_slime"
+  CustomModelData: 83717
+559:
+  Material: "COMPASS"
+  Amount: 1
+  DisplayName: "&fThermometer"
+  ConfigName: "Thermometer"
+  CommandName: "thermometer"
+  CustomModelData: 83650
+560:
+  Material: "LEATHER_HELMET"
+  Amount: 1
+  DisplayName: "&fWool Hood"
+  ConfigName: "Wool"
+  CommandName: "wool_hood"
+  CustomModelData: 83651
+  NBTTags:
+    tan_materials: "Wool"
+561:
+  Material: "LEATHER_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fWool Jacket"
+  ConfigName: "Wool"
+  CommandName: "wool_jacket"
+  CustomModelData: 83650
+  NBTTags:
+    tan_materials: "Wool"
+562:
+  Material: "LEATHER_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fWool Pants"
+  ConfigName: "Wool"
+  CommandName: "wool_pants"
+  CustomModelData: 83650
+  NBTTags:
+    tan_materials: "Wool"
+563:
+  Material: "LEATHER_BOOTS"
+  Amount: 1
+  DisplayName: "&fWool Boots"
+  ConfigName: "Wool"
+  CommandName: "wool_boots"
+  CustomModelData: 83650
+  NBTTags:
+    tan_materials: "Wool"
+564:
+  Material: "LEATHER_HELMET"
+  Amount: 1
+  DisplayName: "&fJelled Slime Helmet"
+  ConfigName: "JelledSlime"
+  CommandName: "jelled_slime_helmet"
+  CustomModelData: 83652
+  NBTTags:
+    tan_materials: "Jelled Slime"
+565:
+  Material: "LEATHER_CHESTPLATE"
+  Amount: 1
+  DisplayName: "&fJelled Slime Chestplate"
+  ConfigName: "JelledSlime"
+  CommandName: "jelled_slime_chestplate"
+  CustomModelData: 83651
+  NBTTags:
+    tan_materials: "Jelled Slime"
+566:
+  Material: "LEATHER_LEGGINGS"
+  Amount: 1
+  DisplayName: "&fJelled Slime Leggings"
+  ConfigName: "JelledSlime"
+  CommandName: "jelled_slime_leggings"
+  CustomModelData: 83651
+  NBTTags:
+    tan_materials: "Jelled Slime"
+567:
+  Material: "LEATHER_BOOTS"
+  Amount: 1
+  DisplayName: "&fJelled Slime Boots"
+  ConfigName: "JelledSlime"
+  CommandName: "jelled_slime_boots"
+  CustomModelData: 83651
+  NBTTags:
+    tan_materials: "Jelled Slime"

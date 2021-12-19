@@ -3879,3 +3879,196 @@
   Ingredients:
     - "wooden_club"
     - "IRON_INGOT"
+454:
+  Key: "jelled_slime"
+  Result:
+    Item: "jelled_slime"
+    Amount: 3
+  Ingredients:
+    - "ice_cube|ice_cube|ice_cube"
+    - "ice_cube|SLIME_BALL|ice_cube"
+    - "ice_cube|ice_cube|ice_cube"
+455:
+  Key: "jelled_slime_helmet"
+  Result:
+    Item: "jelled_slime_helmet"
+    Amount: 1
+  Ingredients:
+    - "jelled_slime|jelled_slime|jelled_slime"
+    - "jelled_slime||jelled_slime"
+456:
+  Key: "jelled_slime_chestplate"
+  Result:
+    Item: "jelled_slime_chestplate"
+    Amount: 1
+  Ingredients:
+    - "jelled_slime||jelled_slime"
+    - "jelled_slime|jelled_slime|jelled_slime"
+    - "jelled_slime|jelled_slime|jelled_slime"
+457:
+  Key: "jelled_slime_leggings"
+  Result:
+    Item: "jelled_slime_leggings"
+    Amount: 1
+  Ingredients:
+    - "jelled_slime|jelled_slime|jelled_slime"
+    - "jelled_slime||jelled_slime"
+    - "jelled_slime||jelled_slime"
+458:
+  Key: "jelled_slime_boots"
+  Result:
+    Item: "jelled_slime_boots"
+    Amount: 1
+  Ingredients:
+    - "jelled_slime||jelled_slime"
+    - "jelled_slime||jelled_slime"
+459:
+  Key: "wool_hood"
+  Result:
+    Item: "wool_hood"
+    Amount: 1
+  Ingredients:
+    - "WOOL|WOOL|WOOL"
+    - "WOOL||WOOL"
+460:
+  Key: "wool_jacket"
+  Result:
+    Item: "wool_jacket"
+    Amount: 1
+  Ingredients:
+    - "WOOL||WOOL"
+    - "WOOL|WOOL|WOOL"
+    - "WOOL|WOOL|WOOL"
+461:
+  Key: "wool_pants"
+  Result:
+    Item: "wool_pants"
+    Amount: 1
+  Ingredients:
+    - "WOOL|WOOL|WOOL"
+    - "WOOL||WOOL"
+    - "WOOL||WOOL"
+462:
+  Key: "wool_boots"
+  Result:
+    Item: "wool_boots"
+    Amount: 1
+  Ingredients:
+    - "WOOL||WOOL"
+    - "WOOL||WOOL"
+463:
+  Key: "charcoal_filter"
+  Result:
+    Item: "charcoal_filter"
+    Amount: 3
+  Ingredients:
+    - "|PAPER"
+    - "|CHARCOAL"
+    - "|PAPER"
+464:
+  Key: "purified_water_bottle"
+  Result:
+    Item: "purified_water_bottle"
+    Amount: 1
+  Ingredients:
+    - "POTION"
+    - "charcoal_filter"
+465:
+  Key: "thermometer"
+  Result:
+    Item: "thermometer"
+    Amount: 1
+  Ingredients:
+    - "|GLASS"
+    - "GLASS|REDSTONE|GLASS"
+    - "|GLASS"
+466:
+  Key: "juice_apple"
+  Result:
+    Item: "juice_apple"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "APPLE"
+467:
+  Key: "juice_beetroot"
+  Result:
+    Item: "juice_beetroot"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "BEETROOT"
+468:
+  Key: "juice_cactus"
+  Result:
+    Item: "juice_cactus"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "CACTUS"
+469:
+  Key: "juice_carrot"
+  Result:
+    Item: "juice_carrot"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "CARROT"
+470:
+  Key: "juice_chorus_fruit"
+  Result:
+    Item: "juice_chorus_fruit"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "CHORUS_FRUIT"
+471:
+  Key: "juice_melon_glistering"
+  Result:
+    Item: "juice_melon_glistering"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "GLISTERING_MELON_SLICE"
+472:
+  Key: "juice_apple_golden"
+  Result:
+    Item: "juice_apple_golden"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "GOLDEN_APPLE"
+473:
+  Key: "juice_carrot_golden"
+  Result:
+    Item: "juice_carrot_golden"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "GOLDEN_CARROT"
+474:
+  Key: "juice_melon"
+  Result:
+    Item: "juice_melon"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "MELON_SLICE"
+475:
+  Key: "juice_pumpkin"
+  Result:
+    Item: "juice_pumpkin"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "PUMPKIN"
