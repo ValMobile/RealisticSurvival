@@ -16,99 +16,99 @@ Temperature:
   Hyperthermia:
     Limit: 24.0 # Minimum temperature for player to be in hyperthermia and take damage
     Damage: 0.5 # How much damage the player takes while in hyperthermia per "CheckTickTime" number of ticks
-  MaxChange: 0.5 # By how much can a player's temperature change per "CheckTickTime" number of ticks
+  MaxChange: 0.75 # By how much can a player's temperature change per "CheckTickTime" number of ticks
   # List blocks that should affect a player's temperature
   # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
   Blocks:
     # 1 temperature bar = 1.0 units
-    CAMPFIRE: 1.0
-    TORCH: 0.5
-    WALL_TORCH: 0.5
-    JACK_O_LANTERN: 0.5
-    LANTERN: 0.5
-    FIRE: 2.0
-    LAVA: 0.5
-    LAVA_CAULDRON: 0.5
-    WATER: -0.1
-    WATER_CAULDRON: -0.1
-    SNOW: -0.3
-    SNOW_BLOCK: -0.3
-    POWDER_SNOW: -0.3
-    POWDER_SNOW_CAULDRON: -0.3
-    ICE: -0.5
-    PACKED_ICE: -1.0
-    BLUE_ICE: -2.0
-    FROSTED_ICE: -0.5
-    SOUL_CAMPFIRE: -1.0
-    SOUL_TORCH: -0.5
-    SOUL_WALL_TORCH: -0.5
-    SOUL_LANTERN: 0.5
-    SOUL_FIRE: -2.0
-    MAGMA_BLOCK: 0.25
-    WHITE_WOOL: 0.3
-    WHITE_CARPET: 0.3
-    WHITE_CANDLE: 0.5
-    WHITE_CANDLE_CAKE: 0.5
-    ORANGE_WOOL: 0.3
-    ORANGE_CARPET: 0.3
-    ORANGE_CANDLE: 0.5
-    ORANGE_CANDLE_CAKE: 0.5
-    PINK_WOOL: 0.3
-    PINK_CARPET: 0.3
-    PINK_CANDLE: 0.5
-    PINK_CANDLE_CAKE: 0.5
-    CYAN_WOOL: 0.3
-    CYAN_CARPET: 0.3
-    CYAN_CANDLE: 0.5
-    CYAN_CANDLE_CAKE: 0.5
-    YELLOW_WOOL: 0.3
-    YELLOW_CARPET: 0.3
+    CAMPFIRE: 2.0
+    TORCH: 0.1
+    WALL_TORCH: 0.1
+    JACK_O_LANTERN: 0.1
+    LANTERN: 0.1
+    FIRE: 0.2
+    LAVA: 0.1
+    LAVA_CAULDRON: 0.1
+    WATER: -0.005
+    WATER_CAULDRON: -0.005
+    SNOW: -0.01
+    SNOW_BLOCK: -0.01
+    POWDER_SNOW: -0.01
+    POWDER_SNOW_CAULDRON: -0.01
+    ICE: -0.01
+    PACKED_ICE: -0.02
+    BLUE_ICE: -0.1
+    FROSTED_ICE: -0.01
+    SOUL_CAMPFIRE: -2.0
+    SOUL_TORCH: -0.1
+    SOUL_WALL_TORCH: -0.1
+    SOUL_LANTERN: -0.1
+    SOUL_FIRE: -0.2
+    MAGMA_BLOCK: 0.03
+    WHITE_WOOL: 0.03
+    WHITE_CARPET: 0.03
+    WHITE_CANDLE: 0.05
+    WHITE_CANDLE_CAKE: 0.05
+    ORANGE_WOOL: 0.03
+    ORANGE_CARPET: 0.03
+    ORANGE_CANDLE: 0.05
+    ORANGE_CANDLE_CAKE: 0.05
+    PINK_WOOL: 0.03
+    PINK_CARPET: 0.03
+    PINK_CANDLE: 0.05
+    PINK_CANDLE_CAKE: 0.05
+    CYAN_WOOL: 0.03
+    CYAN_CARPET: 0.03
+    CYAN_CANDLE: 0.05
+    CYAN_CANDLE_CAKE: 0.05
+    YELLOW_WOOL: 0.03
+    YELLOW_CARPET: 0.03
     YELLOW_CANDLE: 0.5
-    YELLOW_CANDLE_CAKE: 0.5
-    LIME_WOOL: 0.3
-    LIME_CARPET: 0.3
-    LIME_CANDLE: 0.5
-    LIME_CANDLE_CAKE: 0.5
-    MAGENTA_WOOL: 0.3
-    MAGENTA_CARPET: 0.3
-    MAGENTA_CANDLE: 0.5
-    MAGENTA_CANDLE_CAKE: 0.5
-    GRAY_WOOL: 0.3
-    GRAY_CARPET: 0.3
-    GRAY_CANDLE: 0.5
-    GRAY_CANDLE_CAKE: 0.5
-    LIGHT_GRAY_WOOL: 0.3
-    LIGHT_GRAY_CARPET: 0.3
-    LIGHT_GRAY_CANDLE: 0.5
-    LIGHT_GRAY_CANDLE_CAKE: 0.5
-    LIGHT_BLUE_WOOL: 0.3
-    LIGHT_BLUE_CARPET: 0.3
-    LIGHT_BLUE_CANDLE: 0.5
-    LIGHT_BLUE_CANDLE_CAKE: 0.5
-    PURPLE_WOOL: 0.3
-    PURPLE_CARPET: 0.3
-    PURPLE_CANDLE: 0.5
-    PURPLE_CANDLE_CAKE: 0.5
-    BLUE_WOOL: 0.3
-    BLUE_CARPET: 0.3
-    BLUE_CANDLE: 0.5
-    BLUE_CANDLE_CAKE: 0.5
-    BROWN_WOOL: 0.3
-    BROWN_CARPET: 0.3
-    BROWN_CANDLE: 0.5
-    BROWN_CANDLE_CAKE: 0.5
-    GREEN_WOOL: 0.3
-    GREEN_CARPET: 0.3
-    GREEN_CANDLE: 0.5
-    GREEN_CANDLE_CAKE: 0.5
-    RED_WOOL: 0.3
-    RED_CARPET: 0.3
-    RED_CANDLE: 0.5
-    RED_CANDLE_CAKE: 0.5
-    BLACK_WOOL: 0.3
-    BLACK_CARPET: 0.3
-    BLACK_CANDLE: 0.5
-    BLACK_CANDLE_CAKE: 0.5
+    YELLOW_CANDLE_CAKE: 0.05
+    LIME_WOOL: 0.03
+    LIME_CARPET: 0.03
+    LIME_CANDLE: 0.05
+    LIME_CANDLE_CAKE: 0.05
+    MAGENTA_WOOL: 0.03
+    MAGENTA_CARPET: 0.03
+    MAGENTA_CANDLE: 0.05
+    MAGENTA_CANDLE_CAKE: 0.05
+    GRAY_WOOL: 0.03
+    GRAY_CARPET: 0.03
+    GRAY_CANDLE: 0.05
+    GRAY_CANDLE_CAKE: 0.05
+    LIGHT_GRAY_WOOL: 0.03
+    LIGHT_GRAY_CARPET: 0.03
+    LIGHT_GRAY_CANDLE: 0.05
+    LIGHT_GRAY_CANDLE_CAKE: 0.05
+    LIGHT_BLUE_WOOL: 0.03
+    LIGHT_BLUE_CARPET: 0.03
+    LIGHT_BLUE_CANDLE: 0.05
+    LIGHT_BLUE_CANDLE_CAKE: 0.05
+    PURPLE_WOOL: 0.03
+    PURPLE_CARPET: 0.03
+    PURPLE_CANDLE: 0.05
+    PURPLE_CANDLE_CAKE: 0.05
+    BLUE_WOOL: 0.03
+    BLUE_CARPET: 0.03
+    BLUE_CANDLE: 0.05
+    BLUE_CANDLE_CAKE: 0.05
+    BROWN_WOOL: 0.03
+    BROWN_CARPET: 0.03
+    BROWN_CANDLE: 0.05
+    BROWN_CANDLE_CAKE: 0.05
+    GREEN_WOOL: 0.03
+    GREEN_CARPET: 0.03
+    GREEN_CANDLE: 0.05
+    GREEN_CANDLE_CAKE: 0.05
+    RED_WOOL: 0.03
+    RED_CARPET: 0.03
+    RED_CANDLE: 0.05
+    RED_CANDLE_CAKE: 0.05
+    BLACK_WOOL: 0.03
+    BLACK_CARPET: 0.03
+    BLACK_CANDLE: 0.05
+    BLACK_CANDLE_CAKE: 0.05
   WoolArmor:
     Helmet: 2.0
     Chestplate: 2.0
@@ -159,6 +159,7 @@ Temperature:
       Helmet: 1.0
   SubmergedWater: -2.0 # If a player is in water
   SubmergedLava: 3.0 # If a player is in lava
+  Storming: -2.0 # If it is raining or thundering, and the player is outside
 Thirst:
   Dehydration:
     Limit: 1.0 # Minimum thirst for player to be dehydrated and take damage

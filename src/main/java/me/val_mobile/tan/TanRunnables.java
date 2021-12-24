@@ -155,7 +155,20 @@ public class TanRunnables {
 
         double biomeTemp = pWorld.getTemperature((int) px, (int) py, (int) pz); // create a variable to store the temperature
 
-        double normalTemp = NEUTRAL_TEMPERATURE + biomeTemp * 5.0 * Utils.getDayMultiplier(pWorld, biomeTemp);
+        if (biomeTemp <= 0.30) {
+            if (biomeTemp < -0.01) {
+                biomeTemp *= 30;
+            }
+            else if (biomeTemp > 0.01) {
+                biomeTemp *= -20;
+            }
+            else {
+                biomeTemp -= 0.1;
+                biomeTemp *= 20;
+            }
+        }
+
+        double normalTemp = NEUTRAL_TEMPERATURE + 3 * (biomeTemp + Utils.getDayMultiplier(pWorld));
 
         double environment = 0;
         double regulation = 0;
@@ -168,9 +181,9 @@ public class TanRunnables {
             }
         }
 
-        for (int x = -5; x < 6; x++) {
-            for (int y = -1; y < 6; y++) {
-                for (int z = -5; z < 6; z++) {
+        for (int x = -3; x < 4; x++) {
+            for (int y = -3; y < 4; y++) {
+                for (int z = -3; z < 4; z++) {
                     Location loc = new Location(player.getWorld(), px + x, py + y, pz + z);
                     Block block = loc.getBlock();
 
@@ -178,8 +191,8 @@ public class TanRunnables {
                         String path = "Temperature.Blocks";
                         ConfigurationSection section = CustomConfig.getToughasNailsConfig().getConfigurationSection(path);
 
-                        String material = block.getType().toString();
-                        if (section.getKeys(false).contains(material)) {
+                        String material = block.getBlockData().getMaterial().toString();
+                        if (section.getKeys(true).contains(material)) {
                             environment += CustomConfig.getToughasNailsConfig().getDouble(path + "." + material);
                         }
                     }
@@ -190,9 +203,15 @@ public class TanRunnables {
         if (player.isInWater()) {
             environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.SubmergedWater");
         }
-        if (player.getLocation().getBlock() != null) {
-            if (player.getLocation().getBlock().getBlockData().getMaterial() == Material.LAVA) {
+        if (pLoc.getBlock() != null) {
+            if (pLoc.getBlock().getBlockData().getMaterial() == Material.LAVA) {
                 environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.SubmergedLava");
+            }
+        }
+
+        if (!pWorld.isClearWeather()) {
+            if (Utils.isExposedToSky(player)) {
+                environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.Storming");
             }
         }
 
@@ -203,19 +222,13 @@ public class TanRunnables {
                 Material mat = item.getType();
                 String s = mat.toString();
 
-                switch (mat) {
-                    case LEATHER_HELMET:
-                    case LEATHER_CHESTPLATE:
-                    case LEATHER_LEGGINGS:
-                    case LEATHER_BOOTS:
-                        if (util.hasNbtTag(item, "tan_materials")) {
-                            if (util.getNbtTag(item, "tan_materials").equals("Wool")) {
-                                environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.WoolArmor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
-                            }
-                            else if (util.getNbtTag(item, "tan_materials").equals("Jelled Slime")) {
-                                environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.JelledSlimeArmor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
-                            }
-                        }
+                if (util.hasNbtTag(item, "tan_materials")) {
+                    if (util.getNbtTag(item, "tan_materials").equals("Wool")) {
+                        environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.WoolArmor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
+                    }
+                    else if (util.getNbtTag(item, "tan_materials").equals("Jelled Slime")) {
+                        environment += CustomConfig.getToughasNailsConfig().getDouble("Temperature.JelledSlimeArmor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
+                    }
                 }
 
                 if (meta.hasEnchant(TanEnchants.COOLING)) {
@@ -227,24 +240,25 @@ public class TanRunnables {
             }
         }
 
+        double dif = Math.abs(temp - (normalTemp + environment));
+
         // if not equal
-        if (Math.abs(temp - (normalTemp + environment)) > 0.01) {
-            if (temp > normalTemp + environment) {
-                if (temp - CustomConfig.getToughasNailsConfig().getDouble("Temperature.MaxChange") >= LOWEST_TEMPERATURE) {
-                    temp -= CustomConfig.getToughasNailsConfig().getDouble("Temperature.MaxChange");
-                }
+        if (dif > 0.01) {
+            int sign = (temp > normalTemp + environment) ? -1 : 1;
+
+            if (dif < CustomConfig.getToughasNailsConfig().getDouble("Temperature.MaxChange")) {
+                temp += dif * sign;
             }
-            // less
             else {
-                if (temp + CustomConfig.getToughasNailsConfig().getDouble("Temperature.MaxChange") >= LOWEST_TEMPERATURE) {
-                    temp += CustomConfig.getToughasNailsConfig().getDouble("Temperature.MaxChange");
-                }
+                temp += CustomConfig.getToughasNailsConfig().getDouble("Temperature.MaxChange") * sign;
             }
         }
 
-        if (temp > NEUTRAL_TEMPERATURE) {
-            if (Utils.isHoused(player)) {
-                regulation -= CustomConfig.getToughasNailsConfig().getDouble("Temperature.Housed");
+        if (temp != NEUTRAL_TEMPERATURE) {
+            int sign = (temp > NEUTRAL_TEMPERATURE) ? -1 : 1;
+
+            if (!Utils.isExposedToSky(player)) {
+                regulation += CustomConfig.getToughasNailsConfig().getDouble("Temperature.Housed") * sign;
             }
 
             for (ItemStack item : player.getInventory().getArmorContents()) {
@@ -278,65 +292,36 @@ public class TanRunnables {
                         case NETHERITE_LEGGINGS:
                         case NETHERITE_BOOTS:
                         case TURTLE_HELMET:
-                            regulation -= CustomConfig.getToughasNailsConfig().getDouble("Temperature.Regulation." + WordUtils.capitalizeFully(s.substring(0, s.indexOf('_'))) + "Armor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
+                            if (!util.hasNbtTag(item, "tan_materials")) {
+                                regulation += CustomConfig.getToughasNailsConfig().getDouble("Temperature.Regulation." + WordUtils.capitalizeFully(s.substring(0, s.indexOf('_'))) + "Armor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1))) * sign;
 
-                            if (item.getItemMeta().hasEnchant(TanEnchants.OZZY_LINER)) {
-                                regulation -= CustomConfig.getToughasNailsConfig().getDouble("Temperature.Regulation.OzzyLiner");
+                                if (item.getItemMeta().hasEnchant(TanEnchants.OZZY_LINER)) {
+                                    regulation += CustomConfig.getToughasNailsConfig().getDouble("Temperature.Regulation.OzzyLiner") * sign;
+                                }
                             }
                     }
                 }
             }
-        }
-        else if (temp < NEUTRAL_TEMPERATURE) {
-            if (Utils.isHoused(player)) {
-                regulation += CustomConfig.getToughasNailsConfig().getDouble("Temperature.Housed");
-            }
-            for (ItemStack item : player.getInventory().getArmorContents()) {
-                if (Utils.isItemReal(item)) {
-                    Material mat = item.getType();
-                    String s = mat.toString();
 
-                    switch (mat) {
-                        case LEATHER_HELMET:
-                        case LEATHER_CHESTPLATE:
-                        case LEATHER_LEGGINGS:
-                        case LEATHER_BOOTS:
-                        case GOLDEN_HELMET:
-                        case GOLDEN_CHESTPLATE:
-                        case GOLDEN_LEGGINGS:
-                        case GOLDEN_BOOTS:
-                        case IRON_HELMET:
-                        case IRON_CHESTPLATE:
-                        case IRON_LEGGINGS:
-                        case IRON_BOOTS:
-                        case DIAMOND_HELMET:
-                        case DIAMOND_CHESTPLATE:
-                        case DIAMOND_LEGGINGS:
-                        case DIAMOND_BOOTS:
-                        case CHAINMAIL_HELMET:
-                        case CHAINMAIL_CHESTPLATE:
-                        case CHAINMAIL_LEGGINGS:
-                        case CHAINMAIL_BOOTS:
-                        case NETHERITE_HELMET:
-                        case NETHERITE_CHESTPLATE:
-                        case NETHERITE_LEGGINGS:
-                        case NETHERITE_BOOTS:
-                        case TURTLE_HELMET:
-                            regulation += CustomConfig.getToughasNailsConfig().getDouble("Temperature.Regulation." + WordUtils.capitalizeFully(s.substring(0, s.indexOf('_'))) + "Armor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
-
-                            if (item.getItemMeta().hasEnchant(TanEnchants.OZZY_LINER)) {
-                                regulation -= CustomConfig.getToughasNailsConfig().getDouble("Temperature.Regulation.OzzyLiner");
-                            }
-                        }
+            // negative regulation
+            if (sign == -1) {
+                if (temp + regulation * sign <= NEUTRAL_TEMPERATURE) {
+                    temp = NEUTRAL_TEMPERATURE;
+                }
+                else {
+                    temp += regulation * sign;
                 }
             }
-        }
+            // positive regulation
+            else {
+                if (temp + regulation * sign >= NEUTRAL_TEMPERATURE) {
+                    temp = NEUTRAL_TEMPERATURE;
+                }
+                else {
+                    temp += regulation * sign;
+                }
+            }
 
-        if (temp < LOWEST_TEMPERATURE) {
-            temp = LOWEST_TEMPERATURE;
-        }
-        else if (temp > HIGHEST_TEMPERATURE) {
-            temp = HIGHEST_TEMPERATURE;
         }
 
         // update hashmap values

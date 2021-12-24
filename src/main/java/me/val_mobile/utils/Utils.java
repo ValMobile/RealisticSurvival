@@ -659,13 +659,8 @@ public class Utils {
         return false;
     }
 
-    public static double getDayMultiplier(World world, double temperature) {
-        long time = world.getTime();
-
-        if (temperature > 0) {
-            return -Math.abs(time - 6500D)/6500D + 1D;
-        }
-        return Math.abs(time - 6500D)/6500D + 0.5D;
+    public static double getDayMultiplier(World world) {
+        return (world.getEnvironment() == World.Environment.NORMAL ? Math.sin(2 * Math.PI / 24000 * world.getTime() - 3500) : 1D);
     }
 
     public static boolean isExposedToSky(Player player) {
@@ -674,21 +669,6 @@ public class Utils {
         int highestY = loc.getWorld().getHighestBlockYAt(loc);
 
         return loc.getY() > highestY;
-    }
-
-    public static boolean isHoused(Player player) {
-        Location loc = player.getLocation().clone();
-
-        for (int i = 0; i < 11; i++) {
-            loc.setY(loc.getY() + i);
-            if (loc.getBlock().getType() != Material.AIR) {
-                if (loc.getBlock().getType().isOccluding()) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     public static double getNumberFromUpdate(String text) {

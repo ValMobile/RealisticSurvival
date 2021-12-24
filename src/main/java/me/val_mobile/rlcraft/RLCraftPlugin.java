@@ -21,7 +21,6 @@ import me.val_mobile.commands.Commands;
 import me.val_mobile.commands.Tab;
 import me.val_mobile.dragons.DragonFightEvents;
 import me.val_mobile.dragons.DragonGearEvents;
-import me.val_mobile.dragons.DragonWorldGenEvents;
 import me.val_mobile.dragons.WitherDrops;
 import me.val_mobile.lycanites_mobs.LycanitesMobsEvents;
 import me.val_mobile.misc.BStats;
@@ -36,7 +35,6 @@ import me.val_mobile.tan.TanEnchants;
 import me.val_mobile.tan.TanEvents;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomRecipes;
-import me.val_mobile.utils.Schematics;
 import me.val_mobile.waystones.WaystoneEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -56,13 +54,13 @@ public class RLCraftPlugin extends JavaPlugin {
     private CustomRecipes recipes;
 
     private BStats bStats;
-    private Schematics schematics;
+//    private Schematics schematics;
     private NtrEvents ntrEvents;
     private SpartanWeaponryEvents spartanWeaponry;
     private DragonFightEvents dragonFight;
     private DragonGearEvents dragonGear;
     private ResourcePackEvents resourcePack;
-    private DragonWorldGenEvents dragonWorldGenEvents;
+//    private DragonWorldGenEvents dragonWorldGenEvents;
     private SeaSerpentGearEvents seaSerpentGear;
     private SeaSerpentDrops seaSerpentDrops;
     private WitherDrops witherDrops;
@@ -81,7 +79,7 @@ public class RLCraftPlugin extends JavaPlugin {
 
         // Plugin startup logic
         customConfig = new CustomConfig(this);
-        schematics = new Schematics(this);
+//        schematics = new Schematics(this);
 
         this.saveDefaultConfig();
 
@@ -106,7 +104,7 @@ public class RLCraftPlugin extends JavaPlugin {
         spartanWeaponry = new SpartanWeaponryEvents(this);
         dragonFight = new DragonFightEvents();
         dragonGear = new DragonGearEvents(this);
-        dragonWorldGenEvents = new DragonWorldGenEvents(this);
+//        dragonWorldGenEvents = new DragonWorldGenEvents(this);
         seaSerpentGear = new SeaSerpentGearEvents(this);
         seaSerpentDrops = new SeaSerpentDrops(this);
         witherDrops = new WitherDrops(this);
