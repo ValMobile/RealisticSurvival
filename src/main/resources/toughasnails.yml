@@ -9,6 +9,17 @@
 VisualTickTime: 5 # Responsible for temperature and thirst HUDs
 CheckTickTime: 100 # Responsible for temperature and thirst logic calculations
 
+IceCube:
+  DropChance: 0.33
+  Blocks:
+    - "ICE"
+    - "PACKED_ICE"
+    - "BLUE_ICE"
+MagmaShard:
+  DropChance: 0.33
+  Blocks:
+    - "MAGMA_BLOCK"
+
 Temperature:
   Hypothermia:
     Limit: 1.0 # Minimum temperature for player to be in hypothermia and take damage

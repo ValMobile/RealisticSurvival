@@ -27,8 +27,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
@@ -40,8 +42,10 @@ import static org.bukkit.Material.SPECTRAL_ARROW;
 public class SpartanWeaponryEvents implements Listener {
 
     private final Utils util;
+    private final RLCraftPlugin plugin;
     public SpartanWeaponryEvents(RLCraftPlugin instance) {
         util = new Utils(instance);
+        plugin = instance;
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -185,6 +189,22 @@ public class SpartanWeaponryEvents implements Listener {
                                 }
                             }
                             break;
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onSmithing(PrepareSmithingEvent event) {
+        if (!(event.getInventory().getRecipe() == null || event.getResult() == null)) {
+            if (event.getResult().getType() == Material.NETHERITE_SWORD) {
+                if (!util.hasNbtTag(event.getResult(), "spartans_weapon")) {
+                    for (ItemStack i : event.getInventory().getContents()) {
+                        if (util.hasNbtTag(i, "spartans_weapon")) {
+                            event.setResult(null);
+                            break;
+                        }
                     }
                 }
             }

@@ -35,14 +35,11 @@ import me.val_mobile.tan.TanEnchants;
 import me.val_mobile.tan.TanEvents;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomRecipes;
+import me.val_mobile.utils.Utils;
 import me.val_mobile.waystones.WaystoneEvents;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
-import org.bukkit.inventory.SmithingRecipe;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -136,21 +133,7 @@ public class RLCraftPlugin extends JavaPlugin {
 
         if (config.getBoolean("NoTreePunching")) {
             for (Recipe r : CustomRecipes.getNtrRecipes()) {
-                if (r instanceof ShapedRecipe) {
-                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof ShapelessRecipe) {
-                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof SmithingRecipe) {
-                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
+                Utils.addRecipe(r);
             }
 
             pm.registerEvents(ntrEvents, this);
@@ -158,21 +141,7 @@ public class RLCraftPlugin extends JavaPlugin {
 
         if (config.getBoolean("Dragons")) {
             for (Recipe r : CustomRecipes.getDragonRecipes()) {
-                if (r instanceof ShapedRecipe) {
-                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof ShapelessRecipe) {
-                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof SmithingRecipe) {
-                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
+                Utils.addRecipe(r);
             }
 
 
@@ -182,21 +151,7 @@ public class RLCraftPlugin extends JavaPlugin {
         }
         if (config.getBoolean("SeaSerpents")) {
             for (Recipe r : CustomRecipes.getSeaSerpentRecipes()) {
-                if (r instanceof ShapedRecipe) {
-                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof ShapelessRecipe) {
-                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof SmithingRecipe) {
-                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
+                Utils.addRecipe(r);
             }
 
 
@@ -209,21 +164,7 @@ public class RLCraftPlugin extends JavaPlugin {
 
         if (config.getBoolean("Baubles")) {
             for (Recipe r : CustomRecipes.getBaubleRecipes()) {
-                if (r instanceof ShapedRecipe) {
-                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof ShapelessRecipe) {
-                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof SmithingRecipe) {
-                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
+                Utils.addRecipe(r);
             }
 
             pm.registerEvents(bauble, this);
@@ -234,21 +175,7 @@ public class RLCraftPlugin extends JavaPlugin {
 
         if (config.getBoolean("Waystones")) {
             for (Recipe r : CustomRecipes.getWaystoneRecipes()) {
-                if (r instanceof ShapedRecipe) {
-                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof ShapelessRecipe) {
-                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof SmithingRecipe) {
-                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
+                Utils.addRecipe(r);
             }
 
             pm.registerEvents(waystones, this);
@@ -256,21 +183,7 @@ public class RLCraftPlugin extends JavaPlugin {
 
         if (config.getBoolean("SpartanWeaponry")) {
             for (Recipe r : CustomRecipes.getSpartanWeaponryRecipes()) {
-                if (r instanceof ShapedRecipe) {
-                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof ShapelessRecipe) {
-                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof SmithingRecipe) {
-                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
+                Utils.addRecipe(r);
             }
 
             pm.registerEvents(spartanWeaponry, this);
@@ -286,21 +199,7 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(tanEvents, this);
 
             for (Recipe r : CustomRecipes.getTanRecipes()) {
-                if (r instanceof ShapedRecipe) {
-                    if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof ShapelessRecipe) {
-                    if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
-                else if (r instanceof SmithingRecipe) {
-                    if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
-                        Bukkit.addRecipe(r);
-                    }
-                }
+                Utils.addRecipe(r);
             }
 
             for (Enchantment e : tanEnchants.getEnchants()) {

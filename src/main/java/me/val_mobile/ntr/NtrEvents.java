@@ -23,6 +23,7 @@ import me.val_mobile.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -39,8 +40,10 @@ import java.util.Random;
 public class NtrEvents implements Listener {
 
     private final CustomItems customItems;
+    private final RLCraftPlugin plugin;
     private final Utils util;
     public NtrEvents(RLCraftPlugin instance) {
+        plugin = instance;
         customItems = new CustomItems(instance);
         util = new Utils(instance);
     }
@@ -58,21 +61,15 @@ public class NtrEvents implements Listener {
             }
         }
 
-        if (CustomConfig.getNoTreePunchingConfig().getStringList("GrassBlocks").contains(material.toString())) {
+        if (CustomConfig.getNoTreePunchingConfig().getStringList("PlantFiber.Blocks").contains(material.toString())) {
             if (util.isHoldingKnife(player)) {
-                Random r = new Random();
-                ItemMeta meta = itemMainHand.getItemMeta();
+                if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                    double chance = CustomConfig.getNoTreePunchingConfig().getDouble("PlantFiber.DropChance");
+                    Utils.harvestLooting(chance, customItems.getPlantFiber(), false, itemMainHand, block.getLocation());
 
-                double chance = CustomConfig.getNoTreePunchingConfig().getDouble("PlantFiber.DropChance");
-                if (CustomConfig.getNoTreePunchingConfig().getBoolean("PlantFiber.CheckFortune")) {
-                    chance = Utils.getFortuneChance(chance, itemMainHand);
+                    if (Utils.decrementDurability(itemMainHand))
+                        player.getInventory().setItemInMainHand(null);
                 }
-                if (r.nextDouble() <= chance) {
-                    block.getWorld().dropItemNaturally(block.getLocation(), customItems.getPlantFiber());
-                }
-
-                ((Damageable) meta).setDamage(((Damageable) meta).getDamage() + 1);
-                itemMainHand.setItemMeta(meta);
             }
         }
     }

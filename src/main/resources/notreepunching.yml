@@ -7,7 +7,9 @@
 # 25% = 0.25
 PlantFiber:
   DropChance: 0.25
-  CheckFortune: true
+  Blocks:  # What blocks should be counted as grass
+    - "TALL_GRASS"
+    - "GRASS"
 FlintShard:
   DropChance: 0.3
 Pickaxe:
@@ -66,8 +68,3 @@ WoodBlocks:
   - "WARPED_HYPHAE"
   - "STRIPPED_WARPED_STEM"
   - "STRIPPED_WARPED_HYPHAE"
-
-# What blocks should be counted as grass
-GrassBlocks:
-  - "TALL_GRASS"
-  - "GRASS"

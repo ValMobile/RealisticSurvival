@@ -2376,154 +2376,154 @@
     Item: "netherite_rapier"
     Amount: 1
   Base: "diamond_rapier"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 277:
   Key: "netherite_katana"
   Result:
     Item: "netherite_katana"
     Amount: 1
   Base: "diamond_katana"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 278:
   Key: "netherite_greatsword"
   Result:
     Item: "netherite_greatsword"
     Amount: 1
   Base: "diamond_greatsword"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 279:
   Key: "netherite_longsword"
   Result:
     Item: "netherite_longsword"
     Amount: 1
   Base: "diamond_longsword"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 280:
   Key: "netherite_spear"
   Result:
     Item: "netherite_spear"
     Amount: 1
   Base: "diamond_spear"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 281:
   Key: "netherite_saber"
   Result:
     Item: "netherite_saber"
     Amount: 1
   Base: "diamond_saber"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 282:
   Key: "netherite_boomerang"
   Result:
     Item: "netherite_boomerang"
     Amount: 1
   Base: "diamond_boomerang"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 283:
   Key: "netherite_dagger"
   Result:
     Item: "netherite_dagger"
     Amount: 1
   Base: "diamond_dagger"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 284:
   Key: "netherite_glaive"
   Result:
     Item: "netherite_glaive"
     Amount: 1
   Base: "diamond_glaive"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 285:
   Key: "netherite_halberd"
   Result:
     Item: "netherite_halberd"
     Amount: 1
   Base: "diamond_halberd"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 286:
   Key: "netherite_hammer"
   Result:
     Item: "netherite_hammer"
     Amount: 1
   Base: "diamond_hammer"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 287:
   Key: "netherite_javelin"
   Result:
     Item: "netherite_javelin"
     Amount: 1
   Base: "diamond_javelin"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 288:
   Key: "netherite_lance"
   Result:
     Item: "netherite_lance"
     Amount: 1
   Base: "diamond_lance"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 289:
   Key: "netherite_mace"
   Result:
     Item: "netherite_mace"
     Amount: 1
   Base: "diamond_mace"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 290:
   Key: "netherite_pike"
   Result:
     Item: "netherite_pike"
     Amount: 1
   Base: "diamond_pike"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 291:
   Key: "netherite_quarterstaff"
   Result:
     Item: "netherite_quarterstaff"
     Amount: 1
   Base: "diamond_quarterstaff"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 292:
   Key: "netherite_tomahawk"
   Result:
     Item: "netherite_tomahawk"
     Amount: 1
   Base: "diamond_tomahawk"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 293:
   Key: "netherite_throwing_knife"
   Result:
     Item: "netherite_throwing_knife"
     Amount: 1
   Base: "diamond_throwing_knife"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 294:
   Key: "netherite_warhammer"
   Result:
     Item: "netherite_warhammer"
     Amount: 1
   Base: "diamond_warhammer"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 295:
   Key: "netherite_battleaxe"
   Result:
     Item: "netherite_battleaxe"
     Amount: 1
   Base: "diamond_battleaxe"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 296:
   Key: "netherite_longbow"
   Result:
     Item: "netherite_longbow"
     Amount: 1
   Base: "diamond_longbow"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 297:
   Key: "netherite_crossbow"
   Result:
     Item: "netherite_crossbow"
     Amount: 1
   Base: "diamond_crossbow"
-  Addition: "NETHERITE_SCRAP"
+  Addition: "NETHERITE_INGOT"
 298:
   Key: "diamond_rapier"
   Result:
@@ -4072,3 +4072,35 @@
     - "purified_water_bottle"
     - "SUGAR"
     - "PUMPKIN"
+476:
+  Key: "purified_water_bottle_2"
+  Result:
+    Item: "purified_water_bottle"
+    Amount: 1
+  Input: "POTION"
+  Experience: 1.0
+  CookingTime: 160
+477:
+  Key: "purified_water_bottle_3"
+  Result:
+    Item: "purified_water_bottle"
+    Amount: 1
+  Input: "POTION"
+  Experience: 1.0
+  CookingTime: 160
+478:
+  Key: "purified_water_bottle_4"
+  Result:
+    Item: "purified_water_bottle"
+    Amount: 1
+  Input: "POTION"
+  Experience: 1.0
+  CookingTime: 80
+479:
+  Key: "magma_block"
+  Result:
+    Item: "MAGMA_BLOCK"
+    Amount: 1
+  Ingredients:
+    - "magma_shard|magma_shard"
+    - "magma_shard|magma_shard"

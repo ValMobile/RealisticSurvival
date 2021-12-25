@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2021  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.misc;
 
 import me.val_mobile.baubles.BaubleRunnables;
@@ -6,6 +22,7 @@ import me.val_mobile.sea_serpents.SeaSerpentGearRunnables;
 import me.val_mobile.tan.TanRunnables;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomRecipes;
+import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,9 +30,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
-import org.bukkit.inventory.SmithingRecipe;
 
 public class PlayerInitializer implements Listener {
 
@@ -40,21 +54,7 @@ public class PlayerInitializer implements Listener {
         if (config.getBoolean("NoTreePunching")) {
             if (config.getBoolean("UnlockRecipes")) {
                 for (Recipe r : CustomRecipes.getNtrRecipes()) {
-                    // if the recipe has a pre-defined shape
-                    if (r instanceof ShapedRecipe) {
-                        // cast the recipe to a ShapedRecipe and let the player discover it
-                        player.discoverRecipe(((ShapedRecipe) r).getKey());
-                    }
-                    // if the recipe has no shape
-                    else if (r instanceof ShapelessRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((ShapelessRecipe) r).getKey());
-                    }
-                    // if the recipe is in a smithing table
-                    else if (r instanceof SmithingRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((SmithingRecipe) r).getKey());
-                    }
+                    Utils.discoverRecipe(player, r);
                 }
             }
         }
@@ -63,21 +63,7 @@ public class PlayerInitializer implements Listener {
             if (config.getBoolean("UnlockRecipes")) {
                 // give the player every dragon gear recipe
                 for (Recipe r : CustomRecipes.getDragonRecipes()) {
-                    // if the recipe has a pre-defined shape
-                    if (r instanceof ShapedRecipe) {
-                        // cast the recipe to a ShapedRecipe and let the player discover it
-                        player.discoverRecipe(((ShapedRecipe) r).getKey());
-                    }
-                    // if the recipe has no shape
-                    else if (r instanceof ShapelessRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((ShapelessRecipe) r).getKey());
-                    }
-                    // if the recipe is in a smithing table
-                    else if (r instanceof SmithingRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((SmithingRecipe) r).getKey());
-                    }
+                    Utils.discoverRecipe(player, r);
                 }
             }
 
@@ -89,21 +75,7 @@ public class PlayerInitializer implements Listener {
 
             if (config.getBoolean("UnlockRecipes")) {
                 for (Recipe r : CustomRecipes.getSeaSerpentRecipes()) {
-                    // if the recipe has a pre-defined shape
-                    if (r instanceof ShapedRecipe) {
-                        // cast the recipe to a ShapedRecipe and let the player discover it
-                        player.discoverRecipe(((ShapedRecipe) r).getKey());
-                    }
-                    // if the recipe has no shape
-                    else if (r instanceof ShapelessRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((ShapelessRecipe) r).getKey());
-                    }
-                    // if the recipe is in a smithing table
-                    else if (r instanceof SmithingRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((SmithingRecipe) r).getKey());
-                    }
+                    Utils.discoverRecipe(player, r);
                 }
             }
         }
@@ -129,21 +101,7 @@ public class PlayerInitializer implements Listener {
             if (config.getBoolean("UnlockRecipes")) {
                 // give the player every bauble recipe
                 for (Recipe r : CustomRecipes.getBaubleRecipes()) {
-                    // if the recipe has a pre-defined shape
-                    if (r instanceof ShapedRecipe) {
-                        // cast the recipe to a ShapedRecipe and let the player discover it
-                        player.discoverRecipe(((ShapedRecipe) r).getKey());
-                    }
-                    // if the recipe has no shape
-                    else if (r instanceof ShapelessRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((ShapelessRecipe) r).getKey());
-                    }
-                    // if the recipe is in a smithing table
-                    else if (r instanceof SmithingRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((SmithingRecipe) r).getKey());
-                    }
+                    Utils.discoverRecipe(player, r);
                 }
             }
 
@@ -153,21 +111,7 @@ public class PlayerInitializer implements Listener {
             if (config.getBoolean("UnlockRecipes")) {
                 // give the player every spartan weaponry recipe
                 for (Recipe r : CustomRecipes.getSpartanWeaponryRecipes()) {
-                    // if the recipe has a pre-defined shape
-                    if (r instanceof ShapedRecipe) {
-                        // cast the recipe to a ShapedRecipe and let the player discover it
-                        player.discoverRecipe(((ShapedRecipe) r).getKey());
-                    }
-                    // if the recipe has no shape
-                    else if (r instanceof ShapelessRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((ShapelessRecipe) r).getKey());
-                    }
-                    // if the recipe is in a smithing table
-                    else if (r instanceof SmithingRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((SmithingRecipe) r).getKey());
-                    }
+                    Utils.discoverRecipe(player, r);
                 }
             }
 
@@ -176,21 +120,7 @@ public class PlayerInitializer implements Listener {
         if (config.getBoolean("Waystones")) {
             if (config.getBoolean("UnlockRecipes")) {
                 for (Recipe r : CustomRecipes.getWaystoneRecipes()) {
-                    // if the recipe has a pre-defined shape
-                    if (r instanceof ShapedRecipe) {
-                        // cast the recipe to a ShapedRecipe and let the player discover it
-                        player.discoverRecipe(((ShapedRecipe) r).getKey());
-                    }
-                    // if the recipe has no shape
-                    else if (r instanceof ShapelessRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((ShapelessRecipe) r).getKey());
-                    }
-                    // if the recipe is in a smithing table
-                    else if (r instanceof SmithingRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((SmithingRecipe) r).getKey());
-                    }
+                    Utils.discoverRecipe(player, r);
                 }
             }
         }
@@ -198,21 +128,7 @@ public class PlayerInitializer implements Listener {
         if (config.getBoolean("ToughAsNails")) {
             if (config.getBoolean("UnlockRecipes")) {
                 for (Recipe r : CustomRecipes.getTanRecipes()) {
-                    // if the recipe has a pre-defined shape
-                    if (r instanceof ShapedRecipe) {
-                        // cast the recipe to a ShapedRecipe and let the player discover it
-                        player.discoverRecipe(((ShapedRecipe) r).getKey());
-                    }
-                    // if the recipe has no shape
-                    else if (r instanceof ShapelessRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((ShapelessRecipe) r).getKey());
-                    }
-                    // if the recipe is in a smithing table
-                    else if (r instanceof SmithingRecipe) {
-                        // cast the recipe to a ShapelessRecipe and let the player discover it
-                        player.discoverRecipe(((SmithingRecipe) r).getKey());
-                    }
+                    Utils.discoverRecipe(player, r);
                 }
             }
             // create new values in the static hashmaps

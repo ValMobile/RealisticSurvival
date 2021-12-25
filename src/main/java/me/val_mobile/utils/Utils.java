@@ -26,8 +26,8 @@ import org.bukkit.block.data.Levelled;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -327,6 +327,16 @@ public class Utils {
         ItemStack itemMainHand = player.getInventory().getItemInMainHand();
         if (isItemReal(itemMainHand)) {
             if (itemMainHand.getType().toString().contains("AXE")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isHoldingPickaxe(Player player) {
+        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+        if (isItemReal(itemMainHand)) {
+            if (itemMainHand.getType().toString().contains("PICKAXE")) {
                 return true;
             }
         }
@@ -671,6 +681,84 @@ public class Utils {
         return loc.getY() > highestY;
     }
 
+    public static void addRecipe(Recipe r) {
+        if (r instanceof ShapedRecipe) {
+            if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
+                Bukkit.addRecipe(r);
+            }
+        }
+        else if (r instanceof ShapelessRecipe) {
+            if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
+                Bukkit.addRecipe(r);
+            }
+        }
+        else if (r instanceof SmithingRecipe) {
+            if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
+                Bukkit.addRecipe(r);
+            }
+        }
+        else if (r instanceof FurnaceRecipe) {
+            if (Bukkit.getRecipe(((FurnaceRecipe) r).getKey()) == null) {
+                Bukkit.addRecipe(r);
+            }
+        }
+        else if (r instanceof CampfireRecipe) {
+            if (Bukkit.getRecipe(((CampfireRecipe) r).getKey()) == null) {
+                Bukkit.addRecipe(r);
+            }
+        }
+        else if (r instanceof BlastingRecipe) {
+            if (Bukkit.getRecipe(((BlastingRecipe) r).getKey()) == null) {
+                Bukkit.addRecipe(r);
+            }
+        }
+        else if (r instanceof SmokingRecipe) {
+            if (Bukkit.getRecipe(((SmokingRecipe) r).getKey()) == null) {
+                Bukkit.addRecipe(r);
+            }
+        }
+        else if (r instanceof StonecuttingRecipe) {
+            if (Bukkit.getRecipe(((StonecuttingRecipe) r).getKey()) == null) {
+                Bukkit.addRecipe(r);
+            }
+        }
+    }
+
+    public static void discoverRecipe(Player p, Recipe r) {
+        if (r instanceof ShapedRecipe) {
+            if (!p.hasDiscoveredRecipe(((ShapedRecipe) r).getKey()))
+                p.discoverRecipe(((ShapedRecipe) r).getKey());
+        }
+        else if (r instanceof ShapelessRecipe) {
+            if (!p.hasDiscoveredRecipe(((ShapelessRecipe) r).getKey()))
+                p.discoverRecipe(((ShapelessRecipe) r).getKey());
+        }
+        else if (r instanceof SmithingRecipe) {
+            if (!p.hasDiscoveredRecipe(((SmithingRecipe) r).getKey()))
+                p.discoverRecipe(((SmithingRecipe) r).getKey());
+        }
+        else if (r instanceof FurnaceRecipe) {
+            if (!p.hasDiscoveredRecipe(((FurnaceRecipe) r).getKey()))
+                p.discoverRecipe(((FurnaceRecipe) r).getKey());
+        }
+        else if (r instanceof CampfireRecipe) {
+            if (!p.hasDiscoveredRecipe(((CampfireRecipe) r).getKey()))
+                p.discoverRecipe(((CampfireRecipe) r).getKey());
+        }
+        else if (r instanceof BlastingRecipe) {
+            if (!p.hasDiscoveredRecipe(((BlastingRecipe) r).getKey()))
+                p.discoverRecipe(((BlastingRecipe) r).getKey());
+        }
+        else if (r instanceof SmokingRecipe) {
+            if (!p.hasDiscoveredRecipe(((SmokingRecipe) r).getKey()))
+                p.discoverRecipe(((SmokingRecipe) r).getKey());
+        }
+        else if (r instanceof StonecuttingRecipe) {
+            if (!p.hasDiscoveredRecipe(((StonecuttingRecipe) r).getKey()))
+                p.discoverRecipe(((StonecuttingRecipe) r).getKey());
+        }
+    }
+
     public static double getNumberFromUpdate(String text) {
         while (text.indexOf(".") != text.lastIndexOf(".")) {
             text = text.substring(0, text.lastIndexOf(".")) + text.substring(text.lastIndexOf(".") + 1);
@@ -678,14 +766,82 @@ public class Utils {
         return Double.valueOf(text);
     }
 
-    public static double getFortuneChance(double rawChance, ItemStack item) {
-        ItemMeta meta = item.getItemMeta();
+    public static void harvestFortune(double chance, ItemStack drop, ItemStack tool, Location loc) {
+        Random r = new Random();
 
-        if (meta.hasEnchant(Enchantment.LOOT_BONUS_BLOCKS)) {
-            int lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
-            return (rawChance + lvl * 0.01);
+        ItemMeta meta = tool.getItemMeta();
+        int lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
+
+        double rawAmount = (1D / (lvl + 2D) + (lvl + 1D) / 2D) * chance;
+        int actualAmount = (int) Math.floor(rawAmount);
+        double dif = rawAmount - actualAmount;
+
+        if (r.nextDouble() <= dif)
+            actualAmount++;
+
+        if (actualAmount > 0) {
+            drop.setAmount(actualAmount);
+
+            loc.getWorld().dropItemNaturally(loc, drop);
         }
-        return rawChance;
     }
 
+    public static void harvestLooting(double chance, ItemStack drop, boolean rare, ItemStack tool, Location loc) {
+        Random r = new Random();
+
+        ItemMeta meta = tool.getItemMeta();
+        int lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_MOBS);
+
+        // rare drops
+        if (rare) {
+            if (r.nextDouble() <= chance + lvl * 0.01) {
+                loc.getWorld().dropItemNaturally(loc, drop);
+            }
+            else {
+                if (r.nextDouble() <= (lvl / (lvl + 1D)))
+                    loc.getWorld().dropItemNaturally(loc, drop);
+            }
+        }
+        // common drops
+        else {
+            if (r.nextDouble() <= chance + lvl * 0.01) {
+                int maxAmount = lvl + 1;
+
+                double rawAmount = chance * maxAmount;
+                int actualAmount = (int) Math.floor(rawAmount);
+
+                double dif = rawAmount - actualAmount;
+
+                if (r.nextDouble() <= dif)
+                    actualAmount++;
+
+                if (actualAmount > 0) {
+                    drop.setAmount(actualAmount);
+
+                    loc.getWorld().dropItemNaturally(loc, drop);
+                }
+            }
+        }
+    }
+
+    public static boolean decrementDurability(ItemStack tool) {
+        ItemMeta meta = tool.getItemMeta();
+        int lvl = meta.getEnchantLevel(Enchantment.DURABILITY);
+
+        Random r = new Random();
+
+        if (r.nextDouble() <= (1D / (lvl + 1D))) {
+            if (((Damageable) meta).getDamage() + 1 >= tool.getType().getMaxDurability()) {
+                return true;
+            }
+            else {
+                ((Damageable) meta).setDamage(((Damageable) meta).getDamage() + 1);
+
+                tool.setItemMeta(meta);
+
+                return false;
+            }
+        }
+        return false;
+    }
 }

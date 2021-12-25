@@ -536,6 +536,10 @@ public class CustomRecipes {
     private final ShapelessRecipeBuilder goldenCarrotJuice;
     private final ShapelessRecipeBuilder melonJuice;
     private final ShapelessRecipeBuilder pumpkinJuice;
+    private final FurnaceRecipeBuilder purifiedWaterBottle2;
+    private final CampfireRecipeBuilder purifiedWaterBottle3;
+    private final SmokingRecipeBuilder purifiedWaterBottle4;
+    private final ShapedRecipeBuilder magmaBlock;
 
     public CustomRecipes(RLCraftPlugin instance) {
         plugin = instance;
@@ -1017,6 +1021,10 @@ public class CustomRecipes {
         goldenCarrotJuice = new ShapelessRecipeBuilder(config, 473, instance);
         melonJuice = new ShapelessRecipeBuilder(config, 474, instance);
         pumpkinJuice = new ShapelessRecipeBuilder(config, 475, instance);
+        purifiedWaterBottle2 = new FurnaceRecipeBuilder(config, 476, instance);
+        purifiedWaterBottle3 = new CampfireRecipeBuilder(config, 477, instance);
+        purifiedWaterBottle4 = new SmokingRecipeBuilder(config, 478, instance);
+        magmaBlock = new ShapedRecipeBuilder(config, 479, instance);
 
     }
 
@@ -1508,6 +1516,10 @@ public class CustomRecipes {
         tanRecipes.add(goldenCarrotJuice);
         tanRecipes.add(melonJuice);
         tanRecipes.add(pumpkinJuice);
+        tanRecipes.add(purifiedWaterBottle2);
+        tanRecipes.add(purifiedWaterBottle3);
+        tanRecipes.add(purifiedWaterBottle4);
+        tanRecipes.add(magmaBlock);
 
     }
 }

@@ -7200,6 +7200,8 @@
   ConfigName: "AppleJuice"
   CommandName: "juice_apple"
   CustomModelData: 83652
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     tan_drinks: "AppleJuice"
 544:
@@ -7209,6 +7211,8 @@
   ConfigName: "BeetrootJuice"
   CommandName: "juice_beetroot"
   CustomModelData: 83653
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     tan_drinks: "BeetrootJuice"
 545:
@@ -7218,6 +7222,8 @@
   ConfigName: "CactusJuice"
   CommandName: "juice_cactus"
   CustomModelData: 83654
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     tan_drinks: "CactusJuice"
 546:
@@ -7227,6 +7233,8 @@
   ConfigName: "CarrotJuice"
   CommandName: "juice_carrot"
   CustomModelData: 83655
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     tan_drinks: "CarrotJuice"
 547:
@@ -7236,6 +7244,8 @@
   ConfigName: "ChorusFruitJuice"
   CommandName: "juice_chorus_fruit"
   CustomModelData: 83656
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     tan_drinks: "ChorusFruitJuice"
 548:
@@ -7249,6 +7259,7 @@
     DURABILITY: 1
   ItemFlags:
     - "HIDE_ENCHANTS"
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     tan_drinks: "GlisteringMelonJuice"
 549:
@@ -7262,6 +7273,7 @@
     DURABILITY: 1
   ItemFlags:
     - "HIDE_ENCHANTS"
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     tan_drinks: "GoldenAppleJuice"
 550:
@@ -7275,6 +7287,7 @@
     DURABILITY: 1
   ItemFlags:
     - "HIDE_ENCHANTS"
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     tan_drinks: "GoldenCarrotJuice"
 551:
@@ -7284,6 +7297,8 @@
   ConfigName: "MelonJuice"
   CommandName: "juice_melon"
   CustomModelData: 83660
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     tan_drinks: "MelonJuice"
 552:
@@ -7293,6 +7308,8 @@
   ConfigName: "PumpkinJuice"
   CommandName: "juice_pumpkin"
   CustomModelData: 83661
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     tan_drinks: "PumpkinJuice"
 553:
@@ -7302,6 +7319,8 @@
   ConfigName: "PurifiedWaterBottle"
   CommandName: "purified_water_bottle"
   CustomModelData: 83662
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     tan_drinks: "PurifiedWaterBottle"
 554:
@@ -7353,6 +7372,8 @@
   ConfigName: "Wool"
   CommandName: "wool_hood"
   CustomModelData: 83651
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
   NBTTags:
     tan_materials: "Wool"
 561:
@@ -7362,6 +7383,8 @@
   ConfigName: "Wool"
   CommandName: "wool_jacket"
   CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
   NBTTags:
     tan_materials: "Wool"
 562:
@@ -7371,6 +7394,8 @@
   ConfigName: "Wool"
   CommandName: "wool_pants"
   CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
   NBTTags:
     tan_materials: "Wool"
 563:
@@ -7380,6 +7405,8 @@
   ConfigName: "Wool"
   CommandName: "wool_boots"
   CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
   NBTTags:
     tan_materials: "Wool"
 564:
@@ -7389,6 +7416,8 @@
   ConfigName: "JelledSlime"
   CommandName: "jelled_slime_helmet"
   CustomModelData: 83652
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
   NBTTags:
     tan_materials: "Jelled Slime"
 565:
@@ -7398,6 +7427,8 @@
   ConfigName: "JelledSlime"
   CommandName: "jelled_slime_chestplate"
   CustomModelData: 83651
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
   NBTTags:
     tan_materials: "Jelled Slime"
 566:
@@ -7407,6 +7438,8 @@
   ConfigName: "JelledSlime"
   CommandName: "jelled_slime_leggings"
   CustomModelData: 83651
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
   NBTTags:
     tan_materials: "Jelled Slime"
 567:
@@ -7416,5 +7449,7 @@
   ConfigName: "JelledSlime"
   CommandName: "jelled_slime_boots"
   CustomModelData: 83651
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
   NBTTags:
     tan_materials: "Jelled Slime"

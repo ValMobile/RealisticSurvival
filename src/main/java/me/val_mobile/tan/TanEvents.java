@@ -1,25 +1,46 @@
+/*
+    Copyright (C) 2021  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.tan;
 
 import me.val_mobile.rlcraft.RLCraftPlugin;
-import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.PlayerRunnable;
-import me.val_mobile.utils.Utils;
+import me.val_mobile.utils.*;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import static me.val_mobile.tan.TanRunnables.LOWEST_THIRST;
@@ -29,11 +50,13 @@ public class TanEvents implements Listener {
     private final TanRunnables tanRunnables;
     private final RLCraftPlugin plugin;
     private final Utils util;
+    private final CustomItems customItems;
 
     public TanEvents(RLCraftPlugin instance) {
         tanRunnables = new TanRunnables(instance);
         plugin = instance;
         util = new Utils(instance);
+        customItems = new CustomItems(instance);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -199,6 +222,56 @@ public class TanEvents implements Listener {
 
                         Location newLoc = new Location(loc.getWorld(), x, loc.getWorld().getHighestBlockYAt((int) Math.round(x), (int) Math.round(z)), z, loc.getYaw(), loc.getPitch());
                         player.teleport(newLoc);
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler (priority = EventPriority.HIGHEST)
+    public void onBlockBreak(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+        Block block = event.getBlock();
+        Material material = block.getBlockData().getMaterial();
+
+        if (CustomConfig.getToughasNailsConfig().getStringList("IceCube.Blocks").contains(material.toString())) {
+            if (Utils.isHoldingPickaxe(player)) {
+                if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                    double chance = CustomConfig.getToughasNailsConfig().getDouble("IceCube.DropChance");
+                    Utils.harvestFortune(chance, customItems.getIceCube(), itemMainHand, block.getLocation());
+
+                    if (Utils.decrementDurability(itemMainHand))
+                        player.getInventory().setItemInMainHand(null);
+                }
+            }
+        }
+        if (CustomConfig.getToughasNailsConfig().getStringList("MagmaShard.Blocks").contains(material.toString())) {
+            if (Utils.isHoldingPickaxe(player)) {
+                if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                    event.setDropItems(false);
+
+                    double chance = CustomConfig.getToughasNailsConfig().getDouble("MagmaShard.DropChance");
+                    Utils.harvestFortune(chance, customItems.getMagmaShard(), itemMainHand, block.getLocation());
+                    if (Utils.decrementDurability(itemMainHand))
+                        player.getInventory().setItemInMainHand(null);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onCraft(PrepareItemCraftEvent event) {
+        if (event.getRecipe() != null) {
+            if (event.getRecipe().getResult().isSimilar(new ItemStack(Material.PRISMARINE))) {
+                for (ItemStack i : event.getInventory().getContents()) {
+                    ItemMeta meta = i.getItemMeta();
+
+                    if (meta.hasCustomModelData()) {
+                        if (meta.getCustomModelData() >= 83650 && meta.getCustomModelData() <= 84000) {
+                            event.getInventory().setResult(null);
+                            break;
+                        }
                     }
                 }
             }
