@@ -32,8 +32,14 @@
  */
 package me.val_mobile.dragons;
 
+import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EnderDragon;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -47,6 +53,13 @@ import org.bukkit.inventory.ItemStack;
  */
 public class DragonFightEvents implements Listener {
 
+    private final RLCraftPlugin plugin;
+    private final Utils util;
+    public DragonFightEvents(RLCraftPlugin instance) {
+        plugin = instance;
+        util = new Utils(instance);
+    }
+
     /**
      * Drops Ice and Fire loot upon dragon, elder guardian, and wither death
      * @param event The event called when an entity dies
@@ -54,16 +67,20 @@ public class DragonFightEvents implements Listener {
      */
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
-        // if the entity that died was a dragon
-        if (event.getEntity() instanceof Dragon) {
-            Dragon dragon = (Dragon) event.getEntity();
-            Location loc = dragon.getBukkitEntity().getLocation();
-            World world = dragon.getBukkitEntity().getWorld();
+        LivingEntity entity = event.getEntity();
 
-            dragon.generateLoot();
+        if (util.shouldEventBeRan(entity, "Dragons")) {
+            // if the entity that died was a dragon
+            if (event.getEntity() instanceof EnderDragon) {
+                Dragon dragon = (Dragon) entity;
+                Location loc = dragon.getBukkitEntity().getLocation();
+                World world = dragon.getBukkitEntity().getWorld();
 
-            for (ItemStack loot: dragon.getLoot()) {
-                world.dropItemNaturally(loc, loot);
+                dragon.generateLoot();
+
+                for (ItemStack loot: dragon.getLoot()) {
+                    world.dropItemNaturally(loc, loot);
+                }
             }
         }
     }

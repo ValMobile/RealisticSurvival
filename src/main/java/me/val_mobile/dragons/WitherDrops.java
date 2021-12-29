@@ -19,6 +19,7 @@ package me.val_mobile.dragons;
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
+import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
@@ -35,53 +36,57 @@ import java.util.Random;
 public class WitherDrops implements Listener {
 
     private final CustomItems customItems;
+    private final Utils util;
     public WitherDrops(RLCraftPlugin instance) {
         customItems = new CustomItems(instance);
+        util = new Utils(instance);
     }
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
-        if (event.getEntityType().equals(EntityType.WITHER)) {
+        Entity entity = event.getEntity();
 
-            Entity entity = event.getEntity();
-            World world = entity.getWorld();
-            Location loc = entity.getLocation();
+        if (util.shouldEventBeRan(entity, "Witherbones")) {
+            if (event.getEntityType().equals(EntityType.WITHER)) {
 
-            List<ItemStack> drops = new ArrayList<>();
+                World world = entity.getWorld();
+                Location loc = entity.getLocation();
 
-            Random r = new Random();
-            int boneAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("Witherbones.MaxBonesWither") -
-                    CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWither"))) + CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWither");
+                List<ItemStack> drops = new ArrayList<>();
 
-            ItemStack bone = customItems.getWitherbone();
-            bone.setAmount(boneAmount);
-            drops.add(bone);
+                Random r = new Random();
+                int boneAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("Witherbones.MaxBonesWither") -
+                        CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWither"))) + CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWither");
 
-            for (ItemStack item : drops) {
-                world.dropItemNaturally(loc, item);
+                ItemStack bone = customItems.getWitherbone();
+                bone.setAmount(boneAmount);
+                drops.add(bone);
+
+                for (ItemStack item : drops) {
+                    world.dropItemNaturally(loc, item);
+                }
+
             }
+            else if (event.getEntityType().equals(EntityType.WITHER_SKELETON)) {
 
-        }
-        else if (event.getEntityType().equals(EntityType.WITHER_SKELETON)) {
+                World world = entity.getWorld();
+                Location loc = entity.getLocation();
 
-            Entity entity = event.getEntity();
-            World world = entity.getWorld();
-            Location loc = entity.getLocation();
+                List<ItemStack> drops = new ArrayList<>();
 
-            List<ItemStack> drops = new ArrayList<>();
+                Random r = new Random();
+                int boneAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("Witherbones.MaxBonesWitherSkeleton") -
+                        CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWitherSkeleton"))) + CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWitherSkeleton");
 
-            Random r = new Random();
-            int boneAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("Witherbones.MaxBonesWitherSkeleton") -
-                    CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWitherSkeleton"))) + CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWitherSkeleton");
+                ItemStack bone = customItems.getWitherbone();
+                bone.setAmount(boneAmount);
+                drops.add(bone);
 
-            ItemStack bone = customItems.getWitherbone();
-            bone.setAmount(boneAmount);
-            drops.add(bone);
+                for (ItemStack item : drops) {
+                    world.dropItemNaturally(loc, item);
+                }
 
-            for (ItemStack item : drops) {
-                world.dropItemNaturally(loc, item);
             }
-
         }
     }
 }

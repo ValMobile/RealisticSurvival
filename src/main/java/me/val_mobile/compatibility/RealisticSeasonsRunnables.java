@@ -1,22 +1,9 @@
-/*
-    Copyright (C) 2021  Val_Mobile
+package me.val_mobile.compatibility;
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-package me.val_mobile.tan;
-
+import me.casperge.realisticseasons.api.SeasonsAPI;
 import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.tan.TanEnchants;
+import me.val_mobile.tan.TemperatureThirstValues;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.PlayerRunnable;
 import me.val_mobile.utils.Utils;
@@ -36,7 +23,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Random;
 
-public class TanRunnables {
+public class RealisticSeasonsRunnables {
 
     public static final double NEUTRAL_TEMPERATURE = 13.0;
     public static final double HIGHEST_TEMPERATURE = 25.0;
@@ -48,7 +35,7 @@ public class TanRunnables {
     private final RLCraftPlugin plugin;
     private final Utils util;
 
-    public TanRunnables(RLCraftPlugin instance) {
+    public RealisticSeasonsRunnables(RLCraftPlugin instance) {
         plugin = instance;
         util = new Utils(instance);
     }

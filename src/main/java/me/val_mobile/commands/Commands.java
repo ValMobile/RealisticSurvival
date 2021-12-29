@@ -83,7 +83,7 @@ public class Commands implements CommandExecutor {
                     // check if the user is a player
                     if (sender instanceof Player) {
                         // check if the player has the permission to give himself/herself items
-                        if (! (sender.hasPermission("rlcraft.command.give"))) {
+                        if (! (sender.hasPermission("rlcraft.command.give") || sender.hasPermission("rlcraft.command.*"))) {
                             // send the player a message explaining that he/she does not have permission to execute the command
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
                             return true;
@@ -155,7 +155,7 @@ public class Commands implements CommandExecutor {
                         Player player = (Player) sender; // get the player
 
                         // check if the player has the permission to reload the plugin
-                        if (! (sender.hasPermission("rlcraft.command.reload"))) {
+                        if (! (sender.hasPermission("rlcraft.command.reload") || sender.hasPermission("rlcraft.command.*"))) {
                             // send the player a message explaining that he/she does not have permission to execute the command
                             player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
                             return true;
@@ -171,10 +171,11 @@ public class Commands implements CommandExecutor {
                         customConfig.reloadSpartanWeaponryConfig();
                         customConfig.reloadIceFireGearConfig();
                         customConfig.reloadMobConfig();
-                        customConfig.reloadNoTreePunchingConfig();
+                        customConfig.reloadNtrConfig();
                         customConfig.reloadLycanitesMobsConfig();
                         customConfig.reloadItemConfig();
                         customConfig.reloadRecipeConfig();
+                        customConfig.reloadTanConfig();
                         return true;
                     }
 
@@ -188,11 +189,11 @@ public class Commands implements CommandExecutor {
                     customConfig.reloadSpartanWeaponryConfig();
                     customConfig.reloadIceFireGearConfig();
                     customConfig.reloadMobConfig();
-                    customConfig.reloadNoTreePunchingConfig();
+                    customConfig.reloadNtrConfig();
                     customConfig.reloadLycanitesMobsConfig();
                     customConfig.reloadItemConfig();
                     customConfig.reloadRecipeConfig();
-                    customConfig.reloadToughAsNailsConfig();
+                    customConfig.reloadTanConfig();
                     return true;
                 }
                 // if the user typed /rlcraft thirst, case-insensitive
@@ -200,7 +201,7 @@ public class Commands implements CommandExecutor {
                     // check if the user is a player
                     if (sender instanceof Player) {
                         // check if the player has the permission to change thirst
-                        if (! (sender.hasPermission("rlcraft.command.thirst"))) {
+                        if (! (sender.hasPermission("rlcraft.command.thirst") || sender.hasPermission("rlcraft.command.*"))) {
                             // send the player a message explaining that he/she does not have permission to execute the command
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
                             return true;
@@ -247,7 +248,7 @@ public class Commands implements CommandExecutor {
                     // check if the user is a player
                     if (sender instanceof Player) {
                         // check if the player has the permission to change temperature
-                        if (! (sender.hasPermission("rlcraft.command.temperature"))) {
+                        if (! (sender.hasPermission("rlcraft.command.temperature") || sender.hasPermission("rlcraft.command.*"))) {
                             // send the player a message explaining that he/she does not have permission to execute the command
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
                             return true;
@@ -289,9 +290,11 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 }
-                // send the user a message explaining how to use the rlcraft command
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("usage")));
-                return true;
+                else {
+                    // send the user a message explaining how to use the rlcraft command
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("usage")));
+                    return true;
+                }
             }
             return true;
         }

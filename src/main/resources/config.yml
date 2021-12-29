@@ -1,7 +1,7 @@
 #################################################################################################################################
 #																																#
 #	RLCraft Plugin	            MC 1.17 - 1.18																			        #
-#	Version 1.2.1	            Made by: Val_Mobile											                                    #
+#	Version 1.2.2	            Made by: Val_Mobile											                                    #
 #																																#
 #################################################################################################################################
 
@@ -44,15 +44,60 @@ ResourcePack:
   # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
   Url: "https://www.dropbox.com/s/mr0upexofo9ca3d/RLCraft%20RP%201.2.1.zip?dl=1"
 UnlockRecipes: true
-NoTreePunching: true
-Dragons: true
-SeaSerpents: true
-Witherbones: true
-Baubles: true
-SpartanWeaponry: true
-LycanitesMobs: true
-Waystones: true
-ToughAsNails: true
+NoTreePunching:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+Dragons:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+SeaSerpents:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+Witherbones:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+Baubles:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+SpartanWeaponry:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+LycanitesMobs:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+Waystones:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+ToughAsNails:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
 
 #######################################
 #          Miscellaneous              #

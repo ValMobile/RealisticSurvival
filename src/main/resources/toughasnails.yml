@@ -6,7 +6,7 @@
 
 # Time in ticks that the game will check, don't recommend changing unless
 # the server is lagging severely
-VisualTickTime: 5 # Responsible for temperature and thirst HUDs
+VisualTickTime: 5  # Responsible for temperature and thirst HUDs
 CheckTickTime: 100 # Responsible for temperature and thirst logic calculations
 
 IceCube:
@@ -22,12 +22,12 @@ MagmaShard:
 
 Temperature:
   Hypothermia:
-    Limit: 1.0 # Minimum temperature for player to be in hypothermia and take damage
-    Damage: 0.5 # How much damage the player takes while in hypothermia per "CheckTickTime" number of ticks
+    Limit: 1.0    # Minimum temperature for player to be in hypothermia and take damage
+    Damage: 0.5   # How much damage the player takes while in hypothermia per "CheckTickTime" number of ticks
   Hyperthermia:
-    Limit: 24.0 # Minimum temperature for player to be in hyperthermia and take damage
-    Damage: 0.5 # How much damage the player takes while in hyperthermia per "CheckTickTime" number of ticks
-  MaxChange: 0.75 # By how much can a player's temperature change per "CheckTickTime" number of ticks
+    Limit: 24.0   # Minimum temperature for player to be in hyperthermia and take damage
+    Damage: 0.5   # How much damage the player takes while in hyperthermia per "CheckTickTime" number of ticks
+  MaxChange: 0.75  # By how much can a player's temperature change per "CheckTickTime" number of ticks
   # List blocks that should affect a player's temperature
   # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
   Blocks:
@@ -130,8 +130,12 @@ Temperature:
     Chestplate: -2.0
     Leggings: -1.75
     Boots: -1.5
-  Warming: 3.0
-  Cooling: -3.0
+  Warming: 3.0         # Warming enchant
+  Cooling: -3.0        # Cooling enchant
+  Burning: 3.0
+  SubmergedWater: -2.0 # If a player is in water
+  SubmergedLava: 3.0   # If a player is in lava
+  Storming: -2.0       # If it is raining or thundering, and the player is outside
   # Any conditions that will stabilize a player's temperature to normal
   Regulation:
     Housed: 2.0 # If a player is under a roof
@@ -168,12 +172,9 @@ Temperature:
       Boots: 0.2
     TurtleArmor:
       Helmet: 1.0
-  SubmergedWater: -2.0 # If a player is in water
-  SubmergedLava: 3.0 # If a player is in lava
-  Storming: -2.0 # If it is raining or thundering, and the player is outside
 Thirst:
   Dehydration:
-    Limit: 1.0 # Minimum thirst for player to be dehydrated and take damage
+    Limit: 1.0  # Minimum thirst for player to be dehydrated and take damage
     Damage: 0.5 # How much damage the player takes while dehydrated per "CheckTickTime" number of ticks
   Supplements:
     # 1 thirst bar = 2.0 units
@@ -198,6 +199,9 @@ Thirst:
       Teleport:
         Enabled: true
         MaxRadius: 7.0
+        Sound: "ITEM_CHORUS_FRUIT_TELEPORT"
+        Volume: 0.5 # Set to -1.0 to disable
+        Pitch: 1.0
     GlisteringMelonJuice:
       Amount: 16.0
       OverrideLimit: true
@@ -221,14 +225,14 @@ Thirst:
       # No need to change settings, already sound decent
       Amount: 1.0
       Sound: "ENTITY_GENERIC_DRINK"
-      Volume: 0.1 # Set to -1.0 to disable
+      Volume: 0.1      # Set to -1.0 to disable
       Pitch: 1.0
       MaxDistance: 2.0 # Maximum distance at which a player can drink a water source from
       OverrideLimit: false
     Raining:
       Amount: 1.0
       Sound: "ENTITY_GENERIC_DRINK"
-      Volume: 0.1 # Set to -1.0 to disable
+      Volume: 0.1      # Set to -1.0 to disable
       Pitch: 1.0
       OverrideLimit: false
 

@@ -21,6 +21,7 @@ import me.val_mobile.commands.Commands;
 import me.val_mobile.commands.Tab;
 import me.val_mobile.dragons.DragonFightEvents;
 import me.val_mobile.dragons.DragonGearEvents;
+import me.val_mobile.dragons.DragonWorldGenEvents;
 import me.val_mobile.dragons.WitherDrops;
 import me.val_mobile.lycanites_mobs.LycanitesMobsEvents;
 import me.val_mobile.misc.BStats;
@@ -35,8 +36,10 @@ import me.val_mobile.tan.TanEnchants;
 import me.val_mobile.tan.TanEvents;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomRecipes;
+import me.val_mobile.utils.Schematics;
 import me.val_mobile.utils.Utils;
 import me.val_mobile.waystones.WaystoneEvents;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Recipe;
@@ -51,13 +54,13 @@ public class RLCraftPlugin extends JavaPlugin {
     private CustomRecipes recipes;
 
     private BStats bStats;
-//    private Schematics schematics;
+    private Schematics schematics;
     private NtrEvents ntrEvents;
     private SpartanWeaponryEvents spartanWeaponry;
     private DragonFightEvents dragonFight;
     private DragonGearEvents dragonGear;
     private ResourcePackEvents resourcePack;
-//    private DragonWorldGenEvents dragonWorldGenEvents;
+    private DragonWorldGenEvents dragonWorldGenEvents;
     private SeaSerpentGearEvents seaSerpentGear;
     private SeaSerpentDrops seaSerpentDrops;
     private WitherDrops witherDrops;
@@ -68,6 +71,7 @@ public class RLCraftPlugin extends JavaPlugin {
     private TanEnchants tanEnchants;
     private PlayerInitializer playerInitializer;
     private UpdateChecker updateChecker;
+    private Utils util;
     
     private Tab tab;
 
@@ -86,10 +90,10 @@ public class RLCraftPlugin extends JavaPlugin {
         customConfig.createIceFireGearConfig();
         customConfig.createMobConfig();
         customConfig.createNoTreePunchingConfig();
-        customConfig.createLycanitesMobsConfig();
+        customConfig.createLMobsConfig();
         customConfig.createItemConfig();
         customConfig.createRecipeConfig();
-        customConfig.createToughAsNailsConfig();
+        customConfig.createTanConfig();
 
 //        schematics.createSchematicsFolder();
 //        schematics.createFireDragonNest();
@@ -99,7 +103,7 @@ public class RLCraftPlugin extends JavaPlugin {
         bStats = new BStats(this);
         ntrEvents = new NtrEvents(this);
         spartanWeaponry = new SpartanWeaponryEvents(this);
-        dragonFight = new DragonFightEvents();
+        dragonFight = new DragonFightEvents(this);
         dragonGear = new DragonGearEvents(this);
 //        dragonWorldGenEvents = new DragonWorldGenEvents(this);
         seaSerpentGear = new SeaSerpentGearEvents(this);
@@ -113,6 +117,7 @@ public class RLCraftPlugin extends JavaPlugin {
         updateChecker = new UpdateChecker(this, 93795);
         resourcePack = new ResourcePackEvents(this);
         playerInitializer = new PlayerInitializer(this);
+        util = new Utils(this);
 
         tab = new Tab();
 
@@ -131,7 +136,7 @@ public class RLCraftPlugin extends JavaPlugin {
         PluginManager pm = this.getServer().getPluginManager();
         FileConfiguration config = this.getConfig();
 
-        if (config.getBoolean("NoTreePunching")) {
+        if (util.shouldEventBeRan("NoTreePunching")) {
             for (Recipe r : CustomRecipes.getNtrRecipes()) {
                 Utils.addRecipe(r);
             }
@@ -139,7 +144,7 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(ntrEvents, this);
         }
 
-        if (config.getBoolean("Dragons")) {
+        if (util.shouldEventBeRan("Dragons")) {
             for (Recipe r : CustomRecipes.getDragonRecipes()) {
                 Utils.addRecipe(r);
             }
@@ -147,9 +152,12 @@ public class RLCraftPlugin extends JavaPlugin {
 
             pm.registerEvents(dragonFight, this);
             pm.registerEvents(dragonGear, this);
-//            pm.registerEvents(dragonWorldGenEvents, this);
+
+            if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null) {
+//                pm.registerEvents(dragonWorldGenEvents, this);
+            }
         }
-        if (config.getBoolean("SeaSerpents")) {
+        if (util.shouldEventBeRan("SeaSerpents")) {
             for (Recipe r : CustomRecipes.getSeaSerpentRecipes()) {
                 Utils.addRecipe(r);
             }
@@ -159,10 +167,10 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(seaSerpentGear, this);
         }
 
-        if (config.getBoolean("Witherbones"))
+        if (util.shouldEventBeRan("Witherbones"))
             pm.registerEvents(witherDrops, this);
 
-        if (config.getBoolean("Baubles")) {
+        if (util.shouldEventBeRan("Baubles")) {
             for (Recipe r : CustomRecipes.getBaubleRecipes()) {
                 Utils.addRecipe(r);
             }
@@ -170,10 +178,10 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(bauble, this);
         }
 
-        if (config.getBoolean("LycanitesMobs"))
+        if (util.shouldEventBeRan("LycanitesMobs"))
             pm.registerEvents(lycanitesMobs, this);
 
-        if (config.getBoolean("Waystones")) {
+        if (util.shouldEventBeRan("Waystones")) {
             for (Recipe r : CustomRecipes.getWaystoneRecipes()) {
                 Utils.addRecipe(r);
             }
@@ -181,7 +189,7 @@ public class RLCraftPlugin extends JavaPlugin {
             pm.registerEvents(waystones, this);
         }
 
-        if (config.getBoolean("SpartanWeaponry")) {
+        if (util.shouldEventBeRan("SpartanWeaponry")) {
             for (Recipe r : CustomRecipes.getSpartanWeaponryRecipes()) {
                 Utils.addRecipe(r);
             }
@@ -195,7 +203,7 @@ public class RLCraftPlugin extends JavaPlugin {
         if (config.getBoolean("BStats"))
             bStats.recordData();
 
-        if (config.getBoolean("ToughAsNails")) {
+        if (util.shouldEventBeRan("ToughAsNails")) {
             pm.registerEvents(tanEvents, this);
 
             for (Recipe r : CustomRecipes.getTanRecipes()) {

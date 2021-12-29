@@ -37,12 +37,14 @@ public class PlayerInitializer implements Listener {
     private final SeaSerpentGearRunnables seaSerpentGearRunnables;
     private final BaubleRunnables baubleRunnables;
     private final TanRunnables tanRunnables;
+    private final Utils util;
 
     public PlayerInitializer(RLCraftPlugin instance) {
         plugin = instance;
         seaSerpentGearRunnables = new SeaSerpentGearRunnables(instance);
         baubleRunnables = new BaubleRunnables(instance);
         tanRunnables = new TanRunnables(instance);
+        util = new Utils(instance);
     }
 
     @EventHandler
@@ -51,7 +53,7 @@ public class PlayerInitializer implements Listener {
 
         FileConfiguration config = plugin.getConfig();
 
-        if (config.getBoolean("NoTreePunching")) {
+        if (util.shouldEventBeRan(player, "NoTreePunching")) {
             if (config.getBoolean("UnlockRecipes")) {
                 for (Recipe r : CustomRecipes.getNtrRecipes()) {
                     Utils.discoverRecipe(player, r);
@@ -59,7 +61,7 @@ public class PlayerInitializer implements Listener {
             }
         }
 
-        if (config.getBoolean("Dragons")) {
+        if (util.shouldEventBeRan(player, "Dragons")) {
             if (config.getBoolean("UnlockRecipes")) {
                 // give the player every dragon gear recipe
                 for (Recipe r : CustomRecipes.getDragonRecipes()) {
@@ -69,7 +71,7 @@ public class PlayerInitializer implements Listener {
 
         }
 
-        if (config.getBoolean("SeaSerpents")) {
+        if (util.shouldEventBeRan(player, "SeaSerpents")) {
             seaSerpentGearRunnables.updateTideGuardianArmor(player);
             seaSerpentGearRunnables.getTideGuardianArmorRunnable(player).runTaskTimer(plugin, 0L, CustomConfig.getIceFireGearConfig().getInt("Abilities.TideGuardian.TickTime"));
 
@@ -80,7 +82,7 @@ public class PlayerInitializer implements Listener {
             }
         }
 
-        if (config.getBoolean("Baubles")) {
+        if (util.shouldEventBeRan(player, "Baubles")) {
             // create new values in the static hashmaps
             baubleRunnables.resetBaubleMaps(player);
             baubleRunnables.updateBaubleValues(player);
@@ -107,7 +109,7 @@ public class PlayerInitializer implements Listener {
 
         }
 
-        if (config.getBoolean("SpartanWeaponry")) {
+        if (util.shouldEventBeRan(player, "SpartanWeaponry")) {
             if (config.getBoolean("UnlockRecipes")) {
                 // give the player every spartan weaponry recipe
                 for (Recipe r : CustomRecipes.getSpartanWeaponryRecipes()) {
@@ -117,7 +119,7 @@ public class PlayerInitializer implements Listener {
 
         }
 
-        if (config.getBoolean("Waystones")) {
+        if (util.shouldEventBeRan(player, "Waystones")) {
             if (config.getBoolean("UnlockRecipes")) {
                 for (Recipe r : CustomRecipes.getWaystoneRecipes()) {
                     Utils.discoverRecipe(player, r);
@@ -125,7 +127,7 @@ public class PlayerInitializer implements Listener {
             }
         }
 
-        if (config.getBoolean("ToughAsNails")) {
+        if (util.shouldEventBeRan(player, "ToughAsNails")) {
             if (config.getBoolean("UnlockRecipes")) {
                 for (Recipe r : CustomRecipes.getTanRecipes()) {
                     Utils.discoverRecipe(player, r);
@@ -146,13 +148,13 @@ public class PlayerInitializer implements Listener {
         FileConfiguration config = plugin.getConfig();
         Player player = event.getEntity();
 
-        if (config.getBoolean("Baubles"))
+        if (util.shouldEventBeRan(player, "Baubles"))
             baubleRunnables.resetBaubleMaps(player);
 
-        if (config.getBoolean("SeaSerpents"))
+        if (util.shouldEventBeRan(player, "SeaSerpents"))
             seaSerpentGearRunnables.resetArmorMaps(player);
 
-        if (config.getBoolean("ToughAsNails"))
+        if (util.shouldEventBeRan(player, "ToughAsNails"))
             tanRunnables.resetTemperatureThirstMaps(player);
     }
 

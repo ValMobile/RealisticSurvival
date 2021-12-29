@@ -3,13 +3,45 @@ name: RLCraft
 version: ${project.version}
 author: Val_Mobile
 api-version: 1.17
-#depend: [FastAsyncWorldEdit]
+softdepend: [RealisticSeasons]
 
 commands:
   RLCraft:
     description: The RLCraft command
 
 permissions:
+  rlcraft.toughasnails.resistance.cold:
+    description: Grants the player immunity from getting cold
+    default: op
+  rlcraft.toughasnails.resistance.hot:
+    description: Grants the player immunity from getting hot
+    default: op
+  rlcraft.toughasnails.resistance.dehydration:
+    description: Grants the player immunity to the health effects of dehydration
+    default: op
+  rlcraft.toughasnails.resistance.hypothermia:
+    description: Grants the player immunity to the health effects of cold temperature
+    default: op
+  rlcraft.toughasnails.resistance.hyperthermia:
+    description: Grants the player immunity to health effects of high temperature
+    default: op
+  rlcraft.toughasnails.resistance.burning:
+    description: Grants the player immunity to the visual effects of high temperature
+    default: op
+  rlcraft.toughasnails.resistance.freezing:
+    description: Grants the player immunity to the visual effects of cold temperature
+    default: op
+  rlcraft.toughasnails.resistance.*:
+    description: Wildcard permission
+    default: op
+    children:
+      rlcraft.toughasnails.resistance.thirst: true
+      rlcraft.toughasnails.resistance.cold: true
+      rlcraft.toughasnails.resistance.hot: true
+      rlcraft.toughasnails.resistance.hypothermia: true
+      rlcraft.toughasnails.resistance.hyperthermia: true
+      rlcraft.toughasnails.resistance.burning: true
+      rlcraft.toughasnails.resistance.freezing: true
   rlcraft.command.give:
     description: Allows users to give themselves items from the RLCraft plugin
     default: op

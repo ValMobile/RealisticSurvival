@@ -19,10 +19,13 @@ package me.val_mobile.sea_serpents;
 import me.val_mobile.rlcraft.RLCraftPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
+import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -35,91 +38,95 @@ import java.util.Random;
 public class SeaSerpentDrops implements Listener {
 
     private final CustomItems customItems;
+    private final Utils util;
     public SeaSerpentDrops(RLCraftPlugin instance) {
         customItems = new CustomItems(instance);
+        util = new Utils(instance);
     }
     
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
-        if (event.getEntityType().equals(EntityType.ELDER_GUARDIAN)) {
+        LivingEntity entity = event.getEntity();
 
-            Entity entity = event.getEntity();
-            World world = entity.getWorld();
-            Location loc = entity.getLocation();
+        if (util.shouldEventBeRan(entity, "SeaSerpents")) {
+            if (event.getEntityType().equals(EntityType.ELDER_GUARDIAN)) {
 
-            List<ItemStack> drops = new ArrayList<>();
+                World world = entity.getWorld();
+                Location loc = entity.getLocation();
 
-            Random r = new Random();
-            int scaleAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("SeaSerpents.MaxSerpentScales") -
-                    CustomConfig.getMobConfig().getInt("SeaSerpents.MinSerpentScales") )) + CustomConfig.getMobConfig().getInt("SeaSerpents.MinSerpentScales");
-            int scaleColor = (int) Math.round(r.nextDouble() * 6);
-            switch (scaleColor) {
-                case 0: {
-                    ItemStack blueScale = customItems.getSeaSerpentScaleBlue();
-                    blueScale.setAmount(scaleAmount);
-                    drops.add(blueScale);
-                    break;
+                List<ItemStack> drops = new ArrayList<>();
+
+                Random r = new Random();
+                int scaleAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("SeaSerpents.MaxSerpentScales") -
+                        CustomConfig.getMobConfig().getInt("SeaSerpents.MinSerpentScales") )) + CustomConfig.getMobConfig().getInt("SeaSerpents.MinSerpentScales");
+                int scaleColor = (int) Math.round(r.nextDouble() * 6);
+                switch (scaleColor) {
+                    case 0: {
+                        ItemStack blueScale = customItems.getSeaSerpentScaleBlue();
+                        blueScale.setAmount(scaleAmount);
+                        drops.add(blueScale);
+                        break;
+                    }
+                    case 1: {
+                        ItemStack bronzeScale = customItems.getSeaSerpentScaleBronze();
+                        bronzeScale.setAmount(scaleAmount);
+                        drops.add(bronzeScale);
+                        break;
+                    }
+                    case 2: {
+                        ItemStack deepBlueScale = customItems.getSeaSerpentScaleDeepblue();
+                        deepBlueScale.setAmount(scaleAmount);
+                        drops.add(deepBlueScale);
+                        break;
+                    }
+                    case 3: {
+                        ItemStack greenScale = customItems.getSeaSerpentScaleGreen();
+                        greenScale.setAmount(scaleAmount);
+                        drops.add(greenScale);
+                        break;
+                    }
+                    case 4: {
+                        ItemStack purpleScale = customItems.getSeaSerpentScalePurple();
+                        purpleScale.setAmount(scaleAmount);
+                        drops.add(purpleScale);
+                        break;
+                    }
+                    case 5: {
+                        ItemStack redScale = customItems.getSeaSerpentScaleRed();
+                        redScale.setAmount(scaleAmount);
+                        drops.add(redScale);
+                        break;
+                    }
+                    case 6: {
+                        ItemStack tealScale = customItems.getSeaSerpentScaleTeal();
+                        tealScale.setAmount(scaleAmount);
+                        drops.add(tealScale);
+                        break;
+                    }
                 }
-                case 1: {
-                    ItemStack bronzeScale = customItems.getSeaSerpentScaleBronze();
-                    bronzeScale.setAmount(scaleAmount);
-                    drops.add(bronzeScale);
-                    break;
-                }
-                case 2: {
-                    ItemStack deepBlueScale = customItems.getSeaSerpentScaleDeepblue();
-                    deepBlueScale.setAmount(scaleAmount);
-                    drops.add(deepBlueScale);
-                    break;
-                }
-                case 3: {
-                    ItemStack greenScale = customItems.getSeaSerpentScaleGreen();
-                    greenScale.setAmount(scaleAmount);
-                    drops.add(greenScale);
-                    break;
-                }
-                case 4: {
-                    ItemStack purpleScale = customItems.getSeaSerpentScalePurple();
-                    purpleScale.setAmount(scaleAmount);
-                    drops.add(purpleScale);
-                    break;
-                }
-                case 5: {
-                    ItemStack redScale = customItems.getSeaSerpentScaleRed();
-                    redScale.setAmount(scaleAmount);
-                    drops.add(redScale);
-                    break;
-                }
-                case 6: {
-                    ItemStack tealScale = customItems.getSeaSerpentScaleTeal();
-                    tealScale.setAmount(scaleAmount);
-                    drops.add(tealScale);
-                    break;
+
+                for (ItemStack item : drops) {
+                    world.dropItemNaturally(loc, item);
                 }
             }
+            else if (event.getEntityType().equals(EntityType.GUARDIAN)) {
 
-            for (ItemStack item : drops) {
-                world.dropItemNaturally(loc, item);
-            }
-        }
-        else if (event.getEntityType().equals(EntityType.GUARDIAN)) {
+                World world = entity.getWorld();
+                Location loc = entity.getLocation();
 
-            Entity entity = event.getEntity();
-            World world = entity.getWorld();
-            Location loc = entity.getLocation();
+                List<ItemStack> drops = new ArrayList<>();
 
-            List<ItemStack> drops = new ArrayList<>();
+                Random r = new Random();
+                int scaleAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("SeaSerpents.MaxShinyScales") -
+                        CustomConfig.getMobConfig().getInt("SeaSerpents.MinShinyScales"))) + CustomConfig.getMobConfig().getInt("SeaSerpents.MinShinyScales");
 
-            Random r = new Random();
-            int scaleAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("SeaSerpents.MaxShinyScales") -
-                    CustomConfig.getMobConfig().getInt("SeaSerpents.MinShinyScales"))) + CustomConfig.getMobConfig().getInt("SeaSerpents.MinShinyScales");
+                ItemStack shinyScale = customItems.getShinyScale();
+                shinyScale.setAmount(scaleAmount);
+                drops.add(shinyScale);
 
-            ItemStack shinyScale = customItems.getShinyScale();
-            shinyScale.setAmount(scaleAmount);
-            drops.add(shinyScale);
-
-            for (ItemStack item : drops) {
-                world.dropItemNaturally(loc, item);
+                for (ItemStack item : drops) {
+                    world.dropItemNaturally(loc, item);
+                }
             }
         }
     }

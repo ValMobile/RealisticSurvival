@@ -52,32 +52,36 @@ public class SpartanWeaponryEvents implements Listener {
     public void onProjectileLaunch(ProjectileLaunchEvent event) {
         Projectile projectile = event.getEntity();
         ProjectileSource shooter = projectile.getShooter();
+
         if (projectile != null) {
             if (shooter != null) {
                 if (shooter instanceof Player) {
                     Player player = (Player) shooter;
-                    ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-                    if (Utils.isItemReal(itemMainHand)) {
 
-                        if (util.hasNbtTag(itemMainHand, "spartans_weapon") && util.hasNbtTag(itemMainHand, "material_type")) {
-                            Vector velocity = projectile.getVelocity();
+                    if (util.shouldEventBeRan(player, "SpartanWeaponry")) {
+                        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+                        if (Utils.isItemReal(itemMainHand)) {
 
-                            String weaponType = util.getNbtTag(itemMainHand, "spartans_weapon");
-                            String materialType = util.getNbtTag(itemMainHand, "material_type");
+                            if (util.hasNbtTag(itemMainHand, "spartans_weapon") && util.hasNbtTag(itemMainHand, "material_type")) {
+                                Vector velocity = projectile.getVelocity();
 
-                            String configPath = weaponType + "." + materialType + "." + "ArrowVelocityMultiplier";
+                                String weaponType = util.getNbtTag(itemMainHand, "spartans_weapon");
+                                String materialType = util.getNbtTag(itemMainHand, "material_type");
 
-                            switch (weaponType) {
-                                case "Crossbow":
-                                case "Longbow": {
-                                    double multiplier = CustomConfig.getSpartanWeaponryConfig().getDouble(configPath);
-                                    projectile.setVelocity(velocity.multiply(multiplier));
-                                    break;
-                                }
-                                case "Bow": {
-                                    double multiplier = CustomConfig.getIceFireGearConfig().getDouble(configPath);
-                                    projectile.setVelocity(velocity.multiply(multiplier));
-                                    break;
+                                String configPath = weaponType + "." + materialType + "." + "ArrowVelocityMultiplier";
+
+                                switch (weaponType) {
+                                    case "Crossbow":
+                                    case "Longbow": {
+                                        double multiplier = CustomConfig.getSpartanWeaponryConfig().getDouble(configPath);
+                                        projectile.setVelocity(velocity.multiply(multiplier));
+                                        break;
+                                    }
+                                    case "Bow": {
+                                        double multiplier = CustomConfig.getIceFireGearConfig().getDouble(configPath);
+                                        projectile.setVelocity(velocity.multiply(multiplier));
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -99,18 +103,21 @@ public class SpartanWeaponryEvents implements Listener {
 
                 if (shooter instanceof Player) {
                     Player player = (Player) shooter;
-                    ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-                    if (!(itemMainHand == null || itemMainHand.getType() == Material.AIR)) {
 
-                        if (util.hasNbtTag(itemMainHand, "spartans_weapon") && util.hasNbtTag(itemMainHand, "material_type")) {
-                            String weaponType = util.getNbtTag(itemMainHand, "spartans_weapon");
-                            String materialType = util.getNbtTag(itemMainHand, "material_type");
+                    if (util.shouldEventBeRan(player, "SpartanWeaponry")) {
+                        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+                        if (!(itemMainHand == null || itemMainHand.getType() == Material.AIR)) {
 
-                            String configPath = weaponType + "." + materialType + "." + "AttackDamageMultiplier";
+                            if (util.hasNbtTag(itemMainHand, "spartans_weapon") && util.hasNbtTag(itemMainHand, "material_type")) {
+                                String weaponType = util.getNbtTag(itemMainHand, "spartans_weapon");
+                                String materialType = util.getNbtTag(itemMainHand, "material_type");
 
-                            if (weaponType.equals("Crossbow") || weaponType.equals("Longbow")) {
-                                double multiplier = CustomConfig.getSpartanWeaponryConfig().getDouble(configPath);
-                                event.setDamage(event.getDamage() * multiplier);
+                                String configPath = weaponType + "." + materialType + "." + "AttackDamageMultiplier";
+
+                                if (weaponType.equals("Crossbow") || weaponType.equals("Longbow")) {
+                                    double multiplier = CustomConfig.getSpartanWeaponryConfig().getDouble(configPath);
+                                    event.setDamage(event.getDamage() * multiplier);
+                                }
                             }
                         }
                     }
@@ -120,75 +127,81 @@ public class SpartanWeaponryEvents implements Listener {
         if (attacker.getType().equals(EntityType.PLAYER)) {
             Player player = (Player) attacker;
 
-            ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-            if (Utils.isItemReal(itemMainHand)) {
+            if (util.shouldEventBeRan(player, "SpartanWeaponry")) {
+                ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+                if (Utils.isItemReal(itemMainHand)) {
 
-                if (util.hasNbtTag(itemMainHand, "spartans_weapon")) {
-                    switch (util.getNbtTag(itemMainHand, "spartans_weapon")) {
-                        case "Rapier":
-                            if (!Utils.hasArmor((LivingEntity) entity)) {
-                                event.setDamage(event.getDamage() * 3.0D);
-                            }
-                            break;
-                        case "Katana":
-                            if (!Utils.hasChestplate((LivingEntity) entity)) {
-                                event.setDamage(event.getDamage() * 2.0D);
-                            }
-                            break;
-                        case "Glaive":
-                        case "Greatsword":
-                        case "Halberd":
-                        case "Lance":
-                        case "Spear":
-                            break;
+                    if (util.hasNbtTag(itemMainHand, "spartans_weapon")) {
+                        switch (util.getNbtTag(itemMainHand, "spartans_weapon")) {
+                            case "Rapier":
+                                if (!Utils.hasArmor((LivingEntity) entity)) {
+                                    event.setDamage(event.getDamage() * 3.0D);
+                                }
+                                break;
+                            case "Katana":
+                                if (!Utils.hasChestplate((LivingEntity) entity)) {
+                                    event.setDamage(event.getDamage() * 2.0D);
+                                }
+                                break;
+                            case "Glaive":
+                            case "Greatsword":
+                            case "Halberd":
+                            case "Lance":
+                            case "Spear":
+                                break;
+                        }
                     }
                 }
             }
+
         }
     }
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
-        if (event.getAction().equals(Action.LEFT_CLICK_AIR)) {
-            Player player = event.getPlayer();
+        Player player = event.getPlayer();
 
-            ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-            if (Utils.isItemReal(itemMainHand)) {
-                if (util.hasNbtTag(itemMainHand, "spartans_weapon")) {
-                    switch (util.getNbtTag(itemMainHand, "spartans_weapon")) {
-                        case "Glaive":
-                        case "Greatsword":
-                        case "Halberd":
-                        case "Lance":
-                        case "Spear": {
-                            List<Entity> entities = player.getNearbyEntities(7, 7, 7);
+        if (util.shouldEventBeRan(player, "SpartanWeaponry")) {
+            if (event.getAction().equals(Action.LEFT_CLICK_AIR)) {
 
-                            if (entities.size() > 1) {
-                                for (Entity e : entities) {
-                                    if (e instanceof LivingEntity) {
-                                        if (Utils.isInRange(player, (LivingEntity) e, 7)) {
-                                            ((LivingEntity) e).damage(Utils.getDamage(itemMainHand), player);
-                                            break;
+                ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+                if (Utils.isItemReal(itemMainHand)) {
+                    if (util.hasNbtTag(itemMainHand, "spartans_weapon")) {
+                        switch (util.getNbtTag(itemMainHand, "spartans_weapon")) {
+                            case "Glaive":
+                            case "Greatsword":
+                            case "Halberd":
+                            case "Lance":
+                            case "Spear": {
+                                List<Entity> entities = player.getNearbyEntities(7, 7, 7);
+
+                                if (entities.size() > 1) {
+                                    for (Entity e : entities) {
+                                        if (e instanceof LivingEntity) {
+                                            if (Utils.isInRange(player, (LivingEntity) e, 7)) {
+                                                ((LivingEntity) e).damage(Utils.getDamage(itemMainHand), player);
+                                                break;
+                                            }
                                         }
                                     }
                                 }
+                                break;
                             }
-                            break;
+                            case "Pike":
+                                List<Entity> entities = player.getNearbyEntities(8, 8, 8);
+
+                                if (entities.size() > 1) {
+                                    for (Entity e : entities) {
+                                        if (e instanceof LivingEntity) {
+                                            if (Utils.isInRange(player, (LivingEntity) e, 8)) {
+                                                ((LivingEntity) e).damage(Utils.getDamage(itemMainHand), player);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                break;
                         }
-                        case "Pike":
-                            List<Entity> entities = player.getNearbyEntities(8, 8, 8);
-
-                            if (entities.size() > 1) {
-                                for (Entity e : entities) {
-                                    if (e instanceof LivingEntity) {
-                                        if (Utils.isInRange(player, (LivingEntity) e, 8)) {
-                                            ((LivingEntity) e).damage(Utils.getDamage(itemMainHand), player);
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            break;
                     }
                 }
             }

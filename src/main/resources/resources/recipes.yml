@@ -4,7 +4,7 @@
     Item: "flint_axe"
     Amount: 1
   Ingredients:
-    - "STRING|flint_shard"
+    - "plant_string|flint_shard"
     - "STICK"
 1:
   Key: "flint_knife"

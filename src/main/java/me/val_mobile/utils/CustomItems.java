@@ -28,10 +28,10 @@ import org.bukkit.inventory.ItemStack;
 public class CustomItems {
 
     private final FileConfiguration config = CustomConfig.getItemConfig();
-    private final FileConfiguration noTreePunching = CustomConfig.getNoTreePunchingConfig();
+    private final FileConfiguration noTreePunching = CustomConfig.getNtrConfig();
     private final FileConfiguration iceFire = CustomConfig.getIceFireGearConfig();
     private final FileConfiguration spartanWeaponry = CustomConfig.getSpartanWeaponryConfig();
-    private final FileConfiguration toughasNails = CustomConfig.getToughasNailsConfig();
+    private final FileConfiguration toughasNails = CustomConfig.getTanConfig();
 
     private ItemStack flintAxe;
     private ItemStack flintKnife;

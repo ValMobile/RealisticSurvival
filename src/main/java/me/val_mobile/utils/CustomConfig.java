@@ -41,8 +41,8 @@ public class CustomConfig {
     private static File iceFireGearFile;
     private static FileConfiguration iceFireGearConfig;
 
-    private static File noTreePunchingFile;
-    private static FileConfiguration noTreePunchingConfig;
+    private static File ntrFile;
+    private static FileConfiguration ntrConfig;
 
     private static File spartanWeaponryFile;
     private static FileConfiguration spartanWeaponryConfig;
@@ -50,8 +50,8 @@ public class CustomConfig {
     private static File mobFile;
     private static FileConfiguration mobConfig;
 
-    private static File lycanitesMobsFile;
-    private static FileConfiguration lycanitesMobsConfig;
+    private static File lMobsFile;
+    private static FileConfiguration lMobsConfig;
 
     private static File itemFile;
     private static FileConfiguration itemConfig;
@@ -59,8 +59,8 @@ public class CustomConfig {
     private static File recipeFile;
     private static FileConfiguration recipeConfig;
 
-    private static File toughasnailsFile;
-    private static FileConfiguration toughasnailsConfig;
+    private static File tanFile;
+    private static FileConfiguration tanConfig;
 
     // dependency injecting the main class for use
     private final RLCraftPlugin plugin;
@@ -152,22 +152,22 @@ public class CustomConfig {
      * Creates the no tree punching gear config if one doesn't exist already and loads it in
      */
     public void createNoTreePunchingConfig() {
-        noTreePunchingFile = new File(plugin.getDataFolder(), "notreepunching.yml"); // look for a file named "notreepunching.yml"
+        ntrFile = new File(plugin.getDataFolder(), "notreepunching.yml"); // look for a file named "notreepunching.yml"
 
         // if the file "notreepunching.yml" doesn't exist in the RLCraft plugins folder
-        if (!noTreePunchingFile.exists()) {
+        if (!ntrFile.exists()) {
             // create a new yaml file
-            noTreePunchingFile.getParentFile().mkdirs();
+            ntrFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
             plugin.saveResource("notreepunching.yml", false);
         }
 
-        noTreePunchingConfig = new YamlConfiguration(); // create a temporary empty config
+        ntrConfig = new YamlConfiguration(); // create a temporary empty config
 
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            noTreePunchingConfig.load(noTreePunchingFile);
+            ntrConfig.load(ntrFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -203,23 +203,23 @@ public class CustomConfig {
     /**
      * Creates the lycanite's mobs config if one doesn't exist already and loads it in
      */
-    public void createLycanitesMobsConfig() {
-        lycanitesMobsFile = new File(plugin.getDataFolder(), "lycanitesmobs.yml"); // look for a file named "lycanitesmobs.yml"
+    public void createLMobsConfig() {
+        lMobsFile = new File(plugin.getDataFolder(), "lycanitesmobs.yml"); // look for a file named "lycanitesmobs.yml"
 
         // if the file "lycanitesmobs.yml" doesn't exist in the RLCraft plugins folder
-        if (!lycanitesMobsFile.exists()) {
+        if (!lMobsFile.exists()) {
             // create a new yaml file
-            lycanitesMobsFile.getParentFile().mkdirs();
+            lMobsFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
             plugin.saveResource("lycanitesmobs.yml", false);
         }
 
-        lycanitesMobsConfig = new YamlConfiguration(); // create a temporary empty config
+        lMobsConfig = new YamlConfiguration(); // create a temporary empty config
 
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            lycanitesMobsConfig.load(lycanitesMobsFile);
+            lMobsConfig.load(lMobsFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -294,23 +294,23 @@ public class CustomConfig {
     /**
      * Creates the toughasnails config if one doesn't exist already and loads it in
      */
-    public void createToughAsNailsConfig() {
-        toughasnailsFile = new File(plugin.getDataFolder(), "toughasnails.yml"); // look for a file named "toughasnails.yml"
+    public void createTanConfig() {
+        tanFile = new File(plugin.getDataFolder(), "toughasnails.yml"); // look for a file named "toughasnails.yml"
 
         // if the file "toughasnails.yml" doesn't exist in the resources folder
-        if (!toughasnailsFile.exists()) {
+        if (!tanFile.exists()) {
             // create a new yaml file
-            toughasnailsFile.getParentFile().mkdirs();
+            tanFile.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
             plugin.saveResource("toughasnails.yml", false);
         }
 
-        toughasnailsConfig = new YamlConfiguration(); // create a temporary empty config
+        tanConfig = new YamlConfiguration(); // create a temporary empty config
 
         // catch and print any exceptions while loading config
         try {
             // load the file into the config
-            toughasnailsConfig.load(toughasnailsFile);
+            tanConfig.load(tanFile);
         } catch (IOException | InvalidConfigurationException e) {
             // print any exceptions that are thrown
             e.printStackTrace();
@@ -345,8 +345,8 @@ public class CustomConfig {
      * Gets the no tree punching config
      * @return The config holding values for the no tree punching mechanics
      */
-    public static FileConfiguration getNoTreePunchingConfig() {
-        return noTreePunchingConfig;
+    public static FileConfiguration getNtrConfig() {
+        return ntrConfig;
     }
 
     /**
@@ -361,8 +361,8 @@ public class CustomConfig {
      * Gets the lycanite's mobs config
      * @return The config holding values for the lycanite's mobs mechanics
      */
-    public static FileConfiguration getLycanitesMobsConfig() {
-        return lycanitesMobsConfig;
+    public static FileConfiguration getlMobsConfig() {
+        return lMobsConfig;
     }
 
     /**
@@ -385,8 +385,8 @@ public class CustomConfig {
      * Gets the toughasnails config
      * @return The config holding toughasnails information
      */
-    public static FileConfiguration getToughasNailsConfig() {
-        return toughasnailsConfig;
+    public static FileConfiguration getTanConfig() {
+        return tanConfig;
     }
 
     /**
@@ -417,8 +417,8 @@ public class CustomConfig {
      * Assigns the current no tree punching config to a new one
      * @param config The new config which the current no tree punching config should be set to
      */
-    public void setNoTreePunchingConfig(FileConfiguration config) {
-        noTreePunchingConfig = config;
+    public void setNtrConfig(FileConfiguration config) {
+        ntrConfig = config;
     }
 
     /**
@@ -433,8 +433,8 @@ public class CustomConfig {
      * Assigns the current lycanite's mobs config to a new one
      * @param config The new config which the current lycanite's mobs config should be set to
      */
-    public void setLycanitesMobsConfig(FileConfiguration config) {
-        lycanitesMobsConfig = config;
+    public void setLMobsConfig(FileConfiguration config) {
+        lMobsConfig = config;
     }
 
     /**
@@ -457,8 +457,8 @@ public class CustomConfig {
      * Assigns the current toughasnails config to a new one
      * @param config The new config which the current toughasnails config should be set to
      */
-    public void setToughAsNailsConfig(FileConfiguration config) {
-        toughasnailsConfig = config;
+    public void setTanConfig(FileConfiguration config) {
+        tanConfig = config;
     }
 
     /**
@@ -485,8 +485,8 @@ public class CustomConfig {
     /**
      * Reloads the no tree punching config to use the most recent values
      */
-    public void reloadNoTreePunchingConfig() {
-        setNoTreePunchingConfig(YamlConfiguration.loadConfiguration(noTreePunchingFile));
+    public void reloadNtrConfig() {
+        setNtrConfig(YamlConfiguration.loadConfiguration(ntrFile));
     }
 
     /**
@@ -500,7 +500,7 @@ public class CustomConfig {
      * Reloads the lycanite's mobs config to use the most recent values
      */
     public void reloadLycanitesMobsConfig() {
-        setLycanitesMobsConfig(YamlConfiguration.loadConfiguration(lycanitesMobsFile));
+        setLMobsConfig(YamlConfiguration.loadConfiguration(lMobsFile));
     }
 
     /**
@@ -520,7 +520,7 @@ public class CustomConfig {
     /**
      * Reloads the recipe config to use the most recent values
      */
-    public void reloadToughAsNailsConfig() {
-        setItemConfig(YamlConfiguration.loadConfiguration(toughasnailsFile));
+    public void reloadTanConfig() {
+        setItemConfig(YamlConfiguration.loadConfiguration(tanFile));
     }
 }

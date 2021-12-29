@@ -31,48 +31,53 @@ import org.bukkit.potion.PotionEffectType;
 public class LycanitesMobsEvents implements Listener {
 
     private final CustomItems customItems;
+    private final Utils util;
     public LycanitesMobsEvents(RLCraftPlugin instance) {
         customItems = new CustomItems(instance);
+        util = new Utils(instance);
     }
 
     @EventHandler
     public void onConsume(PlayerItemConsumeEvent event) {
-        if (!event.isCancelled()) {
-            ItemStack item = event.getItem();
-            if (item.getItemMeta().equals(customItems.getBattleBurrito().getItemMeta())) {
-                Player player = event.getPlayer();
+        Player player = event.getPlayer();
 
-                int speedAmplifier = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.Speed.Amplifier");
-                int speedDuration = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.Speed.Duration");
+        if (util.shouldEventBeRan(player, "LycanitesMobs")) {
+            if (!event.isCancelled()) {
+                ItemStack item = event.getItem();
+                if (item.getItemMeta().equals(customItems.getBattleBurrito().getItemMeta())) {
 
-                int regenAmplifier = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.Regeneration.Amplifier");
-                int regenDuration = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.Regeneration.Duration");
+                    int speedAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Speed.Amplifier");
+                    int speedDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Speed.Duration");
 
-                int strengthAmplifier = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.Strength.Amplifier");
-                int strengthDuration = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.Strength.Duration");
+                    int regenAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Regeneration.Amplifier");
+                    int regenDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Regeneration.Duration");
 
-                int resAmplifier = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.Resistance.Amplifier");
-                int resDuration = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.Resistance.Duration");
+                    int strengthAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Strength.Amplifier");
+                    int strengthDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Strength.Duration");
 
-                int absorptionAmplifier = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.Absorption.Amplifier");
-                int absorptionDuration = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.Absorption.Duration");
+                    int resAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Resistance.Amplifier");
+                    int resDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Resistance.Duration");
 
-                int fireResAmplifier = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.FireResistance.Amplifier");
-                int fireResDuration = CustomConfig.getLycanitesMobsConfig().getInt("BattleBurrito.FireResistance.Duration");
+                    int absorptionAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Absorption.Amplifier");
+                    int absorptionDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Absorption.Duration");
 
-                PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, speedDuration, speedAmplifier);
-                PotionEffect regen = new PotionEffect(PotionEffectType.REGENERATION, regenDuration, regenAmplifier);
-                PotionEffect strength = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, strengthDuration, strengthAmplifier);
-                PotionEffect res = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, resDuration, resAmplifier);
-                PotionEffect absorption = new PotionEffect(PotionEffectType.ABSORPTION, absorptionDuration, absorptionAmplifier);
-                PotionEffect fireRes = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, fireResDuration, fireResAmplifier);
+                    int fireResAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.FireResistance.Amplifier");
+                    int fireResDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.FireResistance.Duration");
 
-                Utils.smartAddPotionEffect(speed, player);
-                Utils.smartAddPotionEffect(regen, player);
-                Utils.smartAddPotionEffect(strength, player);
-                Utils.smartAddPotionEffect(res, player);
-                Utils.smartAddPotionEffect(absorption, player);
-                Utils.smartAddPotionEffect(fireRes, player);
+                    PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, speedDuration, speedAmplifier);
+                    PotionEffect regen = new PotionEffect(PotionEffectType.REGENERATION, regenDuration, regenAmplifier);
+                    PotionEffect strength = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, strengthDuration, strengthAmplifier);
+                    PotionEffect res = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, resDuration, resAmplifier);
+                    PotionEffect absorption = new PotionEffect(PotionEffectType.ABSORPTION, absorptionDuration, absorptionAmplifier);
+                    PotionEffect fireRes = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, fireResDuration, fireResAmplifier);
+
+                    Utils.smartAddPotionEffect(speed, player);
+                    Utils.smartAddPotionEffect(regen, player);
+                    Utils.smartAddPotionEffect(strength, player);
+                    Utils.smartAddPotionEffect(res, player);
+                    Utils.smartAddPotionEffect(absorption, player);
+                    Utils.smartAddPotionEffect(fireRes, player);
+                }
             }
         }
     }

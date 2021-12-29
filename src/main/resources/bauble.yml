@@ -62,19 +62,14 @@ ScarliteRing:
 # Note 1.00 = 100%
 EnderDragonscale:
   DropChance: 1.00
-  CheckLooting: true
 ForbiddenFruit:
   DropChance: 0.025
-  CheckLooting: true
 RingOverclocking:
   DropChance: 0.03
-  CheckLooting: true
 Bezoar:
   DropChance: 0.05
-  CheckLooting: true
 Vitamins:
   DropChance: 1.00
-  CheckLooting: true
 # Length of the invincibility frame the cross necklace gives you in ticks (20 ticks = 1 second)
 # Vanilla i-frames are 10 ticks long
 CrossNecklace:

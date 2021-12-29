@@ -216,7 +216,7 @@
   Amount: 1
   DisplayName: "&fSea Serpent Scales"
   ConfigName: "SeaSerpentScaleDeepblue"
-  CommandName: "sea_serpent_scale_Deepblue"
+  CommandName: "sea_serpent_scale_deepblue"
   CustomModelData: 83664
   Lore:
     - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"

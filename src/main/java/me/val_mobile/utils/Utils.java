@@ -23,9 +23,13 @@ import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.world.ChunkPopulateEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -769,8 +773,12 @@ public class Utils {
     public static void harvestFortune(double chance, ItemStack drop, ItemStack tool, Location loc) {
         Random r = new Random();
 
-        ItemMeta meta = tool.getItemMeta();
-        int lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
+        int lvl = 0;
+
+        if (tool != null) {
+            ItemMeta meta = tool.getItemMeta();
+            lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
+        }
 
         double rawAmount = (1D / (lvl + 2D) + (lvl + 1D) / 2D) * chance;
         int actualAmount = (int) Math.floor(rawAmount);
@@ -789,8 +797,12 @@ public class Utils {
     public static void harvestLooting(double chance, ItemStack drop, boolean rare, ItemStack tool, Location loc) {
         Random r = new Random();
 
-        ItemMeta meta = tool.getItemMeta();
-        int lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_MOBS);
+        int lvl = 0;
+
+        if (tool != null) {
+            ItemMeta meta = tool.getItemMeta();
+            lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
+        }
 
         // rare drops
         if (rare) {
@@ -841,6 +853,63 @@ public class Utils {
 
                 return false;
             }
+        }
+        return false;
+    }
+
+    public boolean shouldEventBeRan(LivingEntity entity, String module) {
+        FileConfiguration config = plugin.getConfig();
+
+        if (config.getBoolean(module + ".Enabled")) {
+            String worldName = entity.getWorld().getName();
+
+            ConfigurationSection allowedWorlds = config.getConfigurationSection(module + ".Worlds");
+            if (allowedWorlds.getKeys(true).contains(worldName)) {
+                if (allowedWorlds.getBoolean(worldName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean shouldEventBeRan(Entity entity, String module) {
+        FileConfiguration config = plugin.getConfig();
+
+        if (config.getBoolean(module + ".Enabled")) {
+            String worldName = entity.getWorld().getName();
+
+            ConfigurationSection allowedWorlds = config.getConfigurationSection(module + ".Worlds");
+            if (allowedWorlds.getKeys(true).contains(worldName)) {
+                if (allowedWorlds.getBoolean(worldName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean shouldEventBeRan(ChunkPopulateEvent event, String module) {
+        FileConfiguration config = plugin.getConfig();
+
+        if (config.getBoolean(module + ".Enabled")) {
+            String worldName = event.getWorld().getName();
+
+            ConfigurationSection allowedWorlds = config.getConfigurationSection(module + ".Worlds");
+            if (allowedWorlds.getKeys(true).contains(worldName)) {
+                if (allowedWorlds.getBoolean(worldName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean shouldEventBeRan(String module) {
+        FileConfiguration config = plugin.getConfig();
+
+        if (config.getBoolean(module + ".Enabled")) {
+            return true;
         }
         return false;
     }
