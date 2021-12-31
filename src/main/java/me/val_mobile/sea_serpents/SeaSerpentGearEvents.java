@@ -16,7 +16,7 @@
  */
 package me.val_mobile.sea_serpents;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -31,10 +31,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class SeaSerpentGearEvents implements Listener {
 
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final SeaSerpentGearRunnables seaSerpentGearRunnables;
     private final Utils util;
-    public SeaSerpentGearEvents(RLCraftPlugin instance) {
+    public SeaSerpentGearEvents(RealisticSurvivalPlugin instance) {
         plugin = instance;
         seaSerpentGearRunnables = new SeaSerpentGearRunnables(instance);
         util = new Utils(instance);

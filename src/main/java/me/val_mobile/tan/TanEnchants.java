@@ -16,7 +16,7 @@
  */
 package me.val_mobile.tan;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.EnchantmentWrapper;
 import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
@@ -34,9 +34,9 @@ public class TanEnchants {
     public static final Enchantment COOLING = new EnchantmentWrapper("cooling", "Cooling", 1);
     public static final Enchantment OZZY_LINER = new EnchantmentWrapper("ozzy_liner", "Ozzy Liner", 1);
 
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
 
-    public TanEnchants(RLCraftPlugin instance) {
+    public TanEnchants(RealisticSurvivalPlugin instance) {
         plugin = instance;
     }
 

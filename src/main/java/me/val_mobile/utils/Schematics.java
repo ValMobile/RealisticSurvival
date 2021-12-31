@@ -28,7 +28,7 @@ import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.world.World;
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
 
 import java.io.File;
@@ -49,10 +49,10 @@ public class Schematics {
     private static File fireDragonNest;
 
     // dependency injecting the main class for use
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
 
     // constructing the Schematics class
-    public Schematics(RLCraftPlugin instance) {
+    public Schematics(RealisticSurvivalPlugin instance) {
         plugin = instance;
     }
 
@@ -62,7 +62,7 @@ public class Schematics {
     public void createSchematicsFolder() {
         schematicsFolder = new File(plugin.getDataFolder(), "schematics"); // look for a folder named "schematics"
 
-        // if the folder "schematics" doesn't exist in the RLCraft plugins folder
+        // if the folder "schematics" doesn't exist in the Realistic-Survival plugins folder
         if (!schematicsFolder.exists()) {
             // create the folder
             schematicsFolder.getParentFile().mkdirs();

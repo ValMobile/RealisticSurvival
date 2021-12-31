@@ -16,7 +16,7 @@
  */
 package me.val_mobile.sea_serpents;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.Utils;
@@ -39,7 +39,7 @@ public class SeaSerpentDrops implements Listener {
 
     private final CustomItems customItems;
     private final Utils util;
-    public SeaSerpentDrops(RLCraftPlugin instance) {
+    public SeaSerpentDrops(RealisticSurvivalPlugin instance) {
         customItems = new CustomItems(instance);
         util = new Utils(instance);
     }

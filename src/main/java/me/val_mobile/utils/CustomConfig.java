@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -63,10 +63,10 @@ public class CustomConfig {
     private static FileConfiguration tanConfig;
 
     // dependency injecting the main class for use
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
 
     // constructing the CustomConfig class
-    public CustomConfig(RLCraftPlugin instance) {
+    public CustomConfig(RealisticSurvivalPlugin instance) {
         plugin = instance;
     }
 
@@ -76,7 +76,7 @@ public class CustomConfig {
     public void createBaubleConfig() {
         baubleFile = new File(plugin.getDataFolder(), "bauble.yml"); // look for a file named "bauble.yml"
 
-        // if the file "bauble.yml" doesn't exist in the RLCraft plugins folder
+        // if the file "bauble.yml" doesn't exist in the Realistic-Survival plugins folder
         if (!baubleFile.exists()) {
             // create a new yaml file
             baubleFile.getParentFile().mkdirs();
@@ -102,7 +102,7 @@ public class CustomConfig {
     public void createSpartanWeaponryConfig() {
         spartanWeaponryFile = new File(plugin.getDataFolder(), "spartanweaponry.yml"); // look for a file named "spartanweaponry.yml"
 
-        // if the file "spartanweaponry.yml" doesn't exist in the RLCraft plugins folder
+        // if the file "spartanweaponry.yml" doesn't exist in the Realistic-Survival plugins folder
         if (!spartanWeaponryFile.exists()) {
             // create a new yaml file
             spartanWeaponryFile.getParentFile().mkdirs();
@@ -128,7 +128,7 @@ public class CustomConfig {
     public void createIceFireGearConfig() {
         iceFireGearFile = new File(plugin.getDataFolder(), "icefiregear.yml"); // look for a file named "icefiregear.yml"
 
-        // if the file "spartanweaponry.yml" doesn't exist in the RLCraft plugins folder
+        // if the file "spartanweaponry.yml" doesn't exist in the Realistic-Survival plugins folder
         if (!iceFireGearFile.exists()) {
             // create a new yaml file
             iceFireGearFile.getParentFile().mkdirs();
@@ -154,7 +154,7 @@ public class CustomConfig {
     public void createNoTreePunchingConfig() {
         ntrFile = new File(plugin.getDataFolder(), "notreepunching.yml"); // look for a file named "notreepunching.yml"
 
-        // if the file "notreepunching.yml" doesn't exist in the RLCraft plugins folder
+        // if the file "notreepunching.yml" doesn't exist in the Realistic-Survival plugins folder
         if (!ntrFile.exists()) {
             // create a new yaml file
             ntrFile.getParentFile().mkdirs();
@@ -180,7 +180,7 @@ public class CustomConfig {
     public void createMobConfig() {
         mobFile = new File(plugin.getDataFolder(), "mobs.yml"); // look for a file named "mobs.yml"
 
-        // if the file "mobs.yml" doesn't exist in the RLCraft plugins folder
+        // if the file "mobs.yml" doesn't exist in the Realistic-Survival plugins folder
         if (!mobFile.exists()) {
             // create a new yaml file
             mobFile.getParentFile().mkdirs();
@@ -206,7 +206,7 @@ public class CustomConfig {
     public void createLMobsConfig() {
         lMobsFile = new File(plugin.getDataFolder(), "lycanitesmobs.yml"); // look for a file named "lycanitesmobs.yml"
 
-        // if the file "lycanitesmobs.yml" doesn't exist in the RLCraft plugins folder
+        // if the file "lycanitesmobs.yml" doesn't exist in the Realistic-Survival plugins folder
         if (!lMobsFile.exists()) {
             // create a new yaml file
             lMobsFile.getParentFile().mkdirs();
@@ -232,7 +232,7 @@ public class CustomConfig {
     public void createResourcesFolder() {
         resourcesFolder = new File(plugin.getDataFolder(), "resources"); // look for a folder named "resources"
 
-        // if the folder "resources" doesn't exist in the RLCraft plugins folder
+        // if the folder "resources" doesn't exist in the Realistic-Survival plugins folder
         if (!resourcesFolder.exists()) {
             // create the folder
             resourcesFolder.getParentFile().mkdirs();

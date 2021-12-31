@@ -16,7 +16,7 @@
  */
 package me.val_mobile.dragons;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.Utils;
 import org.bukkit.entity.Entity;
@@ -42,7 +42,7 @@ public class DragonGearEvents implements Listener {
     private final Utils util;
 
     // constructing the DragonGearEvents class
-    public DragonGearEvents(RLCraftPlugin instance) {
+    public DragonGearEvents(RealisticSurvivalPlugin instance) {
         dragonGearAbilities = new DragonGearAbilities(instance);
         util = new Utils(instance);
     }

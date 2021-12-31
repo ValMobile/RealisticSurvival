@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -83,7 +83,7 @@ public class ItemBuilder extends ItemStack {
 
     private final Utils util;
 
-    public ItemBuilder(FileConfiguration config, int index, RLCraftPlugin instance)  {
+    public ItemBuilder(FileConfiguration config, int index, RealisticSurvivalPlugin instance)  {
         super(Material.valueOf(config.getString(index + ".Material")), config.getInt(index + ".Amount"));
 
         util = new Utils(instance);
@@ -201,7 +201,7 @@ public class ItemBuilder extends ItemStack {
         items.add(this);
     }
 
-    public ItemBuilder(FileConfiguration config, int index, FileConfiguration extraConfig, String gearType, RLCraftPlugin instance)  {
+    public ItemBuilder(FileConfiguration config, int index, FileConfiguration extraConfig, String gearType, RealisticSurvivalPlugin instance)  {
         super(Material.valueOf(config.getString(index + ".Material")), config.getInt(index + ".Amount"));
 
         util = new Utils(instance);

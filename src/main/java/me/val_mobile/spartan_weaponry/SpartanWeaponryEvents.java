@@ -16,7 +16,7 @@
  */
 package me.val_mobile.spartan_weaponry;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Material;
@@ -42,8 +42,8 @@ import static org.bukkit.Material.SPECTRAL_ARROW;
 public class SpartanWeaponryEvents implements Listener {
 
     private final Utils util;
-    private final RLCraftPlugin plugin;
-    public SpartanWeaponryEvents(RLCraftPlugin instance) {
+    private final RealisticSurvivalPlugin plugin;
+    public SpartanWeaponryEvents(RealisticSurvivalPlugin instance) {
         util = new Utils(instance);
         plugin = instance;
     }

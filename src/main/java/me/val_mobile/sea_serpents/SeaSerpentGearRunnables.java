@@ -16,7 +16,7 @@
  */
 package me.val_mobile.sea_serpents;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.PlayerRunnable;
 import me.val_mobile.utils.Utils;
@@ -27,9 +27,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class SeaSerpentGearRunnables {
 
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final Utils util;
-    public SeaSerpentGearRunnables(RLCraftPlugin instance) {
+    public SeaSerpentGearRunnables(RealisticSurvivalPlugin instance) {
         plugin = instance;
         util = new Utils(instance);
     }

@@ -1,7 +1,7 @@
 package me.val_mobile.compatibility;
 
 import me.casperge.realisticseasons.api.SeasonsAPI;
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.tan.TanEnchants;
 import me.val_mobile.tan.TemperatureThirstValues;
 import me.val_mobile.utils.CustomConfig;
@@ -32,10 +32,10 @@ public class RealisticSeasonsRunnables {
     public static final double LOWEST_THIRST = 20.0;
     public static final double HIGHEST_THIRST = 0.0;
 
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final Utils util;
 
-    public RealisticSeasonsRunnables(RLCraftPlugin instance) {
+    public RealisticSeasonsRunnables(RealisticSurvivalPlugin instance) {
         plugin = instance;
         util = new Utils(instance);
     }
@@ -64,10 +64,10 @@ public class RealisticSeasonsRunnables {
 
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(val.getActionbarText()));
 
-                    if (!(player.isOp() || player.hasPermission("rlcraft.toughasnails.resistance.*"))) {
+                    if (!(player.isOp() || player.hasPermission("realisticsurvival.toughasnails.resistance.*"))) {
                         String text = "";
 
-                        if (!player.hasPermission("rlcraft.toughasnails.resistance.freezing")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.freezing")) {
                             if (temperature < 4.0) {
                                 switch (temperature) {
                                     case 0:
@@ -86,7 +86,7 @@ public class RealisticSeasonsRunnables {
                             }
                         }
 
-                        if (!player.hasPermission("rlcraft.toughasnails.resistance.burning")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.burning")) {
                             if (temperature > 19.0) {
                                 switch (temperature) {
                                     case 20:
@@ -112,18 +112,18 @@ public class RealisticSeasonsRunnables {
                         if (!text.equals(""))
                             player.sendTitle(text, "", 0, 70, 0);
 
-                        if (!player.hasPermission("rlcraft.toughasnails.resistance.dehydration")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.dehydration")) {
                             if (thirst <= CustomConfig.getTanConfig().getDouble("Thirst.Dehydration.Limit"))
                                 player.damage(CustomConfig.getTanConfig().getDouble("Thirst.Dehydration.Damage"));
                         }
 
-                        if (!player.hasPermission("rlcraft.toughasnails.resistance.hypothermia")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hypothermia")) {
                             // if the player's temperature is too low
                             if (temperature <= CustomConfig.getTanConfig().getDouble("Temperature.Hypothermia.Limit"))
                                 player.damage(CustomConfig.getTanConfig().getDouble("Temperature.Hypothermia.Damage"));
                         }
 
-                        if (!player.hasPermission("rlcraft.toughasnails.resistance.hyperthermia")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hyperthermia")) {
                             // if the player's temperature is too high
                             if (temperature >= CustomConfig.getTanConfig().getDouble("Temperature.Hyperthermia.Limit"))
                                 player.damage(CustomConfig.getTanConfig().getDouble("Temperature.Hyperthermia.Damage"));
@@ -350,12 +350,12 @@ public class RealisticSeasonsRunnables {
 
 
         if (temp < NEUTRAL_TEMPERATURE) {
-            if (player.hasPermission("rlcraft.toughasnails.resistance.cold") || player.isOp()) {
+            if (player.hasPermission("realisticsurvival.toughasnails.resistance.cold") || player.isOp()) {
                 temp = NEUTRAL_TEMPERATURE;
             }
         }
         if (temp > NEUTRAL_TEMPERATURE) {
-            if (player.hasPermission("rlcraft.toughasnails.resistance.hot") || player.isOp()) {
+            if (player.hasPermission("realisticsurvival.toughasnails.resistance.hot") || player.isOp()) {
                 temp = NEUTRAL_TEMPERATURE;
             }
         }

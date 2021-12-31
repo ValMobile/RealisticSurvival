@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -47,9 +47,9 @@ public class Utils {
     public static final double ATTACK_DAMAGE_CONSTANT = -1.0;
     public static final double ATTACK_SPEED_CONSTANT = -4.0;
 
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
 
-    public Utils(RLCraftPlugin instance) {
+    public Utils(RealisticSurvivalPlugin instance) {
         plugin = instance;
     }
 

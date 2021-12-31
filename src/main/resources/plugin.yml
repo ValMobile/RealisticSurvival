@@ -1,64 +1,64 @@
-main: me.val_mobile.rlcraft.RLCraftPlugin
-name: RLCraft
+main: me.val_mobile.realisticsurvival.RealisticSurvivalPlugin
+name: RealisticSurvival
 version: ${project.version}
 author: Val_Mobile
 api-version: 1.17
 softdepend: [RealisticSeasons]
 
 commands:
-  RLCraft:
-    description: The RLCraft command
+  RealisticSurvival:
+    description: The RealisticSurvival command
 
 permissions:
-  rlcraft.toughasnails.resistance.cold:
+  realisticsurvival.toughasnails.resistance.cold:
     description: Grants the player immunity from getting cold
     default: op
-  rlcraft.toughasnails.resistance.hot:
+  realisticsurvival.toughasnails.resistance.hot:
     description: Grants the player immunity from getting hot
     default: op
-  rlcraft.toughasnails.resistance.dehydration:
+  realisticsurvival.toughasnails.resistance.dehydration:
     description: Grants the player immunity to the health effects of dehydration
     default: op
-  rlcraft.toughasnails.resistance.hypothermia:
+  realisticsurvival.toughasnails.resistance.hypothermia:
     description: Grants the player immunity to the health effects of cold temperature
     default: op
-  rlcraft.toughasnails.resistance.hyperthermia:
+  realisticsurvival.toughasnails.resistance.hyperthermia:
     description: Grants the player immunity to health effects of high temperature
     default: op
-  rlcraft.toughasnails.resistance.burning:
+  realisticsurvival.toughasnails.resistance.burning:
     description: Grants the player immunity to the visual effects of high temperature
     default: op
-  rlcraft.toughasnails.resistance.freezing:
+  realisticsurvival.toughasnails.resistance.freezing:
     description: Grants the player immunity to the visual effects of cold temperature
     default: op
-  rlcraft.toughasnails.resistance.*:
+  realisticsurvival.toughasnails.resistance.*:
     description: Wildcard permission
     default: op
     children:
-      rlcraft.toughasnails.resistance.thirst: true
-      rlcraft.toughasnails.resistance.cold: true
-      rlcraft.toughasnails.resistance.hot: true
-      rlcraft.toughasnails.resistance.hypothermia: true
-      rlcraft.toughasnails.resistance.hyperthermia: true
-      rlcraft.toughasnails.resistance.burning: true
-      rlcraft.toughasnails.resistance.freezing: true
-  rlcraft.command.give:
-    description: Allows users to give themselves items from the RLCraft plugin
+      realisticsurvival.toughasnails.resistance.thirst: true
+      realisticsurvival.toughasnails.resistance.cold: true
+      realisticsurvival.toughasnails.resistance.hot: true
+      realisticsurvival.toughasnails.resistance.hypothermia: true
+      realisticsurvival.toughasnails.resistance.hyperthermia: true
+      realisticsurvival.toughasnails.resistance.burning: true
+      realisticsurvival.toughasnails.resistance.freezing: true
+  realisticsurvival.command.give:
+    description: Allows users to give themselves items from the Realistic-Survival plugin
     default: op
-  rlcraft.command.reload:
-    description: Allows users to reload the RLCraft plugin
+  realisticsurvival.command.reload:
+    description: Allows users to reload the Realistic-Survival plugin
     default: op
-  rlcraft.command.thirst:
+  realisticsurvival.command.thirst:
     description: Allows users to change the thirst level of other players
     default: op
-  rlcraft.command.temperature:
+  realisticsurvival.command.temperature:
     description: Allows users to change the temperature level of other players
     default: op
-  rlcraft.command.*:
+  realisticsurvival.command.*:
     description: Wildcard permission
     default: op
     children:
-      rlcraft.command.give: true
-      rlcraft.command.reload: true
-      rlcraft.command.thirst: true
-      rlcraft.command.temperature: true
+      realisticsurvival.command.give: true
+      realisticsurvival.command.reload: true
+      realisticsurvival.command.thirst: true
+      realisticsurvival.command.temperature: true

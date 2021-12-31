@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 /**
@@ -602,7 +602,7 @@ public class CustomItems {
     private ItemStack jelledSlimeLeggings;
     private ItemStack jelledSlimeBoots;
 
-    public CustomItems(RLCraftPlugin instance) {
+    public CustomItems(RealisticSurvivalPlugin instance) {
 
         flintAxe = new ItemBuilder(config, 0, noTreePunching, ItemBuilder.AXE, instance);
         flintKnife = new ItemBuilder(config, 1, noTreePunching, ItemBuilder.KNIFE, instance);

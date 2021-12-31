@@ -1,6 +1,6 @@
 package me.val_mobile.compatibility;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.tan.TanRunnables;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
@@ -33,11 +33,11 @@ import static me.val_mobile.tan.TanRunnables.LOWEST_THIRST;
 public class RealisticSeasonsEvents implements Listener {
 
     private final RealisticSeasonsRunnables tanRunnables;
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final Utils util;
     private final CustomItems customItems;
 
-    public RealisticSeasonsEvents(RLCraftPlugin instance) {
+    public RealisticSeasonsEvents(RealisticSurvivalPlugin instance) {
         tanRunnables = new RealisticSeasonsRunnables(instance);
         plugin = instance;
         util = new Utils(instance);

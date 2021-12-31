@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.Recipe;
 
@@ -26,7 +26,7 @@ public class CustomRecipes {
 
     private final FileConfiguration config = CustomConfig.getRecipeConfig();
 
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final CustomItems customItems;
 
     private static HashSet<Recipe> ntrRecipes = new HashSet<>();
@@ -541,7 +541,7 @@ public class CustomRecipes {
     private final SmokingRecipeBuilder purifiedWaterBottle4;
     private final ShapedRecipeBuilder magmaBlock;
 
-    public CustomRecipes(RLCraftPlugin instance) {
+    public CustomRecipes(RealisticSurvivalPlugin instance) {
         plugin = instance;
         customItems = new CustomItems(instance);
 

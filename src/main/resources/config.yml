@@ -1,6 +1,6 @@
 #################################################################################################################################
 #																																#
-#	RLCraft Plugin	            MC 1.17 - 1.18																			        #
+#	Realistic-Survival Plugin	            MC 1.17 - 1.18																			        #
 #	Version 1.2.2	            Made by: Val_Mobile											                                    #
 #																																#
 #################################################################################################################################
@@ -10,7 +10,7 @@
 #          Messages                   #
 #######################################
 
-Usage: "&cUsage: /rlcraft [reload, give, temperature, thirst] [player] [item, amount]"
+Usage: "&cUsage: /realisticsurvival [reload, give, temperature, thirst] [player] [item, amount]"
 Reload: "&6[RLCRAFT] &aPlugin reloaded!"
 NoPermission: "&cYou do not have permission to do this!"
 NoOnlinePlayer: "&cThe specified player is not online!"
@@ -22,7 +22,7 @@ CorrectVersion:
   - "&fYou are running the latest version"
 OutdatedVersion:
   - "&cYou are running on an outdated version"
-  - "&cUpdate to receive the latest features! https://www.spigotmc.org/resources/rlcraft-1-17-baubles-dragons-sea-serpents.93795/history"
+  - "&cUpdate to receive the latest features! https://www.spigotmc.org/resources/realisticsurvival-1-17-baubles-dragons-sea-serpents.93795/history"
 DeveloperBuildVersion:
   - "&eYou are running on a developer build"
   - "&eNote that there might be bugs or glitches! Please report any bugs, issues, or glitches"
@@ -42,7 +42,7 @@ ResourcePack:
   Enabled: true
   # If you upgrade to newer versions, the URL will need to be manually updated to the newest one,
   # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
-  Url: "https://www.dropbox.com/s/mr0upexofo9ca3d/RLCraft%20RP%201.2.1.zip?dl=1"
+  Url: "https://www.dropbox.com/s/mr0upexofo9ca3d/Realistic-Survival%20RP%201.2.1.zip?dl=1"
 UnlockRecipes: true
 NoTreePunching:
   Enabled: true

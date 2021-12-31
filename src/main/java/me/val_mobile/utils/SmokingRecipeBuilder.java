@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -29,7 +29,7 @@ import java.util.Objects;
 
 public class SmokingRecipeBuilder extends SmokingRecipe {
 
-    public SmokingRecipeBuilder(FileConfiguration config, int index, RLCraftPlugin instance) {
+    public SmokingRecipeBuilder(FileConfiguration config, int index, RealisticSurvivalPlugin instance) {
         super(new NamespacedKey(instance, config.getString(index + ".Key")),
                 Objects.equals(config.getString(index + ".Result.Item"), config.getString(index + ".Result.Item").toUpperCase())
                         ? new ItemStack(Material.valueOf(config.getString(index + ".Result.Item")), config.getInt(index + ".Result.Amount")) :

@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.rlcraft;
+package me.val_mobile.realisticsurvival;
 
 import me.val_mobile.baubles.BaubleEvents;
 import me.val_mobile.commands.Commands;
@@ -46,7 +46,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class RLCraftPlugin extends JavaPlugin {
+public class RealisticSurvivalPlugin extends JavaPlugin {
 
     private Commands commands;
 
@@ -217,8 +217,8 @@ public class RLCraftPlugin extends JavaPlugin {
 
         pm.registerEvents(playerInitializer, this);
 
-        this.getCommand("RLCraft").setExecutor(commands);
-        this.getCommand("RLCraft").setTabCompleter(tab);
+        this.getCommand("Realistic-Survival").setExecutor(commands);
+        this.getCommand("Realistic-Survival").setTabCompleter(tab);
     }
 
     @Override

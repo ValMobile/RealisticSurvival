@@ -17,7 +17,7 @@
 package me.val_mobile.misc;
 
 import me.val_mobile.baubles.BaubleRunnables;
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.sea_serpents.SeaSerpentGearRunnables;
 import me.val_mobile.tan.TanRunnables;
 import me.val_mobile.utils.CustomConfig;
@@ -33,13 +33,13 @@ import org.bukkit.inventory.Recipe;
 
 public class PlayerInitializer implements Listener {
 
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final SeaSerpentGearRunnables seaSerpentGearRunnables;
     private final BaubleRunnables baubleRunnables;
     private final TanRunnables tanRunnables;
     private final Utils util;
 
-    public PlayerInitializer(RLCraftPlugin instance) {
+    public PlayerInitializer(RealisticSurvivalPlugin instance) {
         plugin = instance;
         seaSerpentGearRunnables = new SeaSerpentGearRunnables(instance);
         baubleRunnables = new BaubleRunnables(instance);

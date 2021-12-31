@@ -16,7 +16,7 @@
  */
 package me.val_mobile.dragons;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.LorePresets;
@@ -41,11 +41,11 @@ import java.util.Random;
 
 public class FireDragon extends Dragon {
 
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final DragonGearAbilities dragonGearAbilities;
     private final CustomItems customItems;
 
-    public FireDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, World world, Random random, RLCraftPlugin instance) {
+    public FireDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, World world, Random random, RealisticSurvivalPlugin instance) {
         super(entitytypes, world, random, me.val_mobile.enums.Dragon.Breed.FIRE);
 
         plugin = instance;
@@ -53,7 +53,7 @@ public class FireDragon extends Dragon {
         customItems = new CustomItems(instance);
     }
 
-    public FireDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, World world, Random random, int stage, RLCraftPlugin instance) {
+    public FireDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, World world, Random random, int stage, RealisticSurvivalPlugin instance) {
         super(entitytypes, world, random, me.val_mobile.enums.Dragon.Breed.FIRE, stage);
 
         plugin = instance;

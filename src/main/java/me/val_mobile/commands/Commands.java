@@ -16,7 +16,7 @@
  */
 package me.val_mobile.commands;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.ItemBuilder;
 import me.val_mobile.utils.PlayerRunnable;
@@ -42,11 +42,11 @@ public class Commands implements CommandExecutor {
      * Dependency injecting the main and custom config class for use
      * The custom config class must be injected because its non-static methods are needed
      */
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final CustomConfig customConfig;
 
     // constructing the Commands class
-    public Commands(RLCraftPlugin instance) {
+    public Commands(RealisticSurvivalPlugin instance) {
         plugin = instance;
         customConfig = new CustomConfig(instance);
     }
@@ -62,11 +62,11 @@ public class Commands implements CommandExecutor {
      * @see CustomConfig
      */
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        // check if the user typed /rlcraft, case-insensitive
-        if (label.equalsIgnoreCase("rlcraft")) {
-            // check if the user only typed /rlcraft with no arguments
+        // check if the user typed /realisticsurvival, case-insensitive
+        if (label.equalsIgnoreCase("realisticsurvival")) {
+            // check if the user only typed /realisticsurvival with no arguments
             if (args.length == 0) {
-                // send the user a message explaining how to use the rlcraft command
+                // send the user a message explaining how to use the realisticsurvival command
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Usage")));
                 return true;
             }
@@ -74,16 +74,16 @@ public class Commands implements CommandExecutor {
             else if (args.length > 0) {
                 // if the first argument is just a space
                 if (args[0].isEmpty()) {
-                    // send the user a message explaining how to use the rlcraft command
+                    // send the user a message explaining how to use the realisticsurvival command
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Usage")));
                     return true;
                 }
-                // if the user typed /rlcraft give, case-insensitive
+                // if the user typed /realisticsurvival give, case-insensitive
                 if (args[0].equalsIgnoreCase("give")) {
                     // check if the user is a player
                     if (sender instanceof Player) {
                         // check if the player has the permission to give himself/herself items
-                        if (! (sender.hasPermission("rlcraft.command.give") || sender.hasPermission("rlcraft.command.*"))) {
+                        if (! (sender.hasPermission("realisticsurvival.command.give") || sender.hasPermission("realisticsurvival.command.*"))) {
                             // send the player a message explaining that he/she does not have permission to execute the command
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
                             return true;
@@ -96,7 +96,7 @@ public class Commands implements CommandExecutor {
                     if (args.length > 1) {
                         // if the second argument is just a space
                         if (args[1].isEmpty()) {
-                            // send the user a message explaining how to use the rlcraft command
+                            // send the user a message explaining how to use the realisticsurvival command
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Usage")));
                             return true;
                         }
@@ -104,8 +104,8 @@ public class Commands implements CommandExecutor {
                         if (args.length > 2) {
                             /**
                              * Check if the second argument is a player's name
-                             * example: /rlcraft ^~%1t --> invalid player name
-                             *          /rlcraft Notch --> valid player name
+                             * example: /realisticsurvival ^~%1t --> invalid player name
+                             *          /realisticsurvival Notch --> valid player name
                              */
                             if (!(Bukkit.getPlayer(args[1]) == null)) {
                                 // check if the player to give items to is online
@@ -140,22 +140,22 @@ public class Commands implements CommandExecutor {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("MisspelledPlayer")));
                             return true;
                         }
-                        // send the user a message explaining how to use the rlcraft command
+                        // send the user a message explaining how to use the realisticsurvival command
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Usage")));
                         return true;
                     }
-                    // send the user a message explaining how to use the rlcraft command
+                    // send the user a message explaining how to use the realisticsurvival command
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Usage")));
                     return true;
                 }
-                // if the user typed /rlcraft reload, case-insensitive
+                // if the user typed /realisticsurvival reload, case-insensitive
                 else if (args[0].equalsIgnoreCase("reload")) {
                     // check if the user is a player
                     if (sender instanceof Player) {
                         Player player = (Player) sender; // get the player
 
                         // check if the player has the permission to reload the plugin
-                        if (! (sender.hasPermission("rlcraft.command.reload") || sender.hasPermission("rlcraft.command.*"))) {
+                        if (! (sender.hasPermission("realisticsurvival.command.reload") || sender.hasPermission("realisticsurvival.command.*"))) {
                             // send the player a message explaining that he/she does not have permission to execute the command
                             player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
                             return true;
@@ -196,12 +196,12 @@ public class Commands implements CommandExecutor {
                     customConfig.reloadTanConfig();
                     return true;
                 }
-                // if the user typed /rlcraft thirst, case-insensitive
+                // if the user typed /realisticsurvival thirst, case-insensitive
                 else if (args[0].equalsIgnoreCase("thirst")) {
                     // check if the user is a player
                     if (sender instanceof Player) {
                         // check if the player has the permission to change thirst
-                        if (! (sender.hasPermission("rlcraft.command.thirst") || sender.hasPermission("rlcraft.command.*"))) {
+                        if (! (sender.hasPermission("realisticsurvival.command.thirst") || sender.hasPermission("realisticsurvival.command.*"))) {
                             // send the player a message explaining that he/she does not have permission to execute the command
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
                             return true;
@@ -211,8 +211,8 @@ public class Commands implements CommandExecutor {
                         if (args.length > 2) {
                             /**
                              * Check if the second argument is a player's name
-                             * example: /rlcraft ^~%1t --> invalid player name
-                             *          /rlcraft Notch --> valid player name
+                             * example: /realisticsurvival ^~%1t --> invalid player name
+                             *          /realisticsurvival Notch --> valid player name
                              */
                             if (!(Bukkit.getPlayer(args[1]) == null)) {
                                 // check if the player to change thirst to is online
@@ -243,12 +243,12 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 }
-                // if the user typed /rlcraft temperature, case-insensitive
+                // if the user typed /realisticsurvival temperature, case-insensitive
                 else if (args[0].equalsIgnoreCase("temperature")) {
                     // check if the user is a player
                     if (sender instanceof Player) {
                         // check if the player has the permission to change temperature
-                        if (! (sender.hasPermission("rlcraft.command.temperature") || sender.hasPermission("rlcraft.command.*"))) {
+                        if (! (sender.hasPermission("realisticsurvival.command.temperature") || sender.hasPermission("realisticsurvival.command.*"))) {
                             // send the player a message explaining that he/she does not have permission to execute the command
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
                             return true;
@@ -258,8 +258,8 @@ public class Commands implements CommandExecutor {
                         if (args.length > 2) {
                             /**
                              * Check if the second argument is a player's name
-                             * example: /rlcraft ^~%1t --> invalid player name
-                             *          /rlcraft Notch --> valid player name
+                             * example: /realisticsurvival ^~%1t --> invalid player name
+                             *          /realisticsurvival Notch --> valid player name
                              */
                             if (!(Bukkit.getPlayer(args[1]) == null)) {
                                 // check if the player to change temperature to is online
@@ -291,7 +291,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 else {
-                    // send the user a message explaining how to use the rlcraft command
+                    // send the user a message explaining how to use the realisticsurvival command
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("usage")));
                     return true;
                 }

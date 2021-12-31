@@ -16,7 +16,7 @@
  */
 package me.val_mobile.dragons;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
@@ -39,10 +39,10 @@ import java.util.Collection;
 public class DragonGearAbilities {
 
     // dependency injecting the main class
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
 
     // constructing the DragonGearAbilities class
-    public DragonGearAbilities(RLCraftPlugin instance) {
+    public DragonGearAbilities(RealisticSurvivalPlugin instance) {
         plugin = instance;
     }
 

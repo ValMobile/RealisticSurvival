@@ -16,7 +16,7 @@
  */
 package me.val_mobile.misc;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,8 +24,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class ResourcePackEvents implements Listener {
 
-    private final RLCraftPlugin plugin;
-    public ResourcePackEvents(RLCraftPlugin instance) {
+    private final RealisticSurvivalPlugin plugin;
+    public ResourcePackEvents(RealisticSurvivalPlugin instance) {
         plugin = instance;
     }
 

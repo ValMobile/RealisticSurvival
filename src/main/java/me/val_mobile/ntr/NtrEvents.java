@@ -16,7 +16,7 @@
  */
 package me.val_mobile.ntr;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.Utils;
@@ -38,9 +38,9 @@ import java.util.Random;
 public class NtrEvents implements Listener {
 
     private final CustomItems customItems;
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final Utils util;
-    public NtrEvents(RLCraftPlugin instance) {
+    public NtrEvents(RealisticSurvivalPlugin instance) {
         plugin = instance;
         customItems = new CustomItems(instance);
         util = new Utils(instance);

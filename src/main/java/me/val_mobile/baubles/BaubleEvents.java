@@ -16,7 +16,7 @@
  */
 package me.val_mobile.baubles;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.PlayerRunnable;
@@ -63,13 +63,13 @@ public class BaubleEvents implements Listener {
      * Dependency injecting the main and util class for use
      * The util class must be injected because its non-static methods are needed
      */
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final BaubleRunnables baubleRunnables;
     private final CustomItems customItems;
     private final Utils util;
 
     // constructing the BaubleEvents class
-    public BaubleEvents(RLCraftPlugin instance) {
+    public BaubleEvents(RealisticSurvivalPlugin instance) {
         plugin = instance;
         baubleRunnables = new BaubleRunnables(instance);
         customItems = new CustomItems(instance);

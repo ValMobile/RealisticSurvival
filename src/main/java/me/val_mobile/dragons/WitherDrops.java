@@ -16,7 +16,7 @@
  */
 package me.val_mobile.dragons;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.Utils;
@@ -37,7 +37,7 @@ public class WitherDrops implements Listener {
 
     private final CustomItems customItems;
     private final Utils util;
-    public WitherDrops(RLCraftPlugin instance) {
+    public WitherDrops(RealisticSurvivalPlugin instance) {
         customItems = new CustomItems(instance);
         util = new Utils(instance);
     }

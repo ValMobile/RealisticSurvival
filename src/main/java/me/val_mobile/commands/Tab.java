@@ -49,8 +49,8 @@ public class Tab implements org.bukkit.command.TabCompleter {
      * @see Commands
      */
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
-        // check if the user typed /rlcraft, case-insensitive
-        if (label.equalsIgnoreCase("rlcraft")) {
+        // check if the user typed /realisticsurvival, case-insensitive
+        if (label.equalsIgnoreCase("realisticsurvival")) {
 
             // if the first list of arguments is empty
             if (firstArgs.isEmpty()) {

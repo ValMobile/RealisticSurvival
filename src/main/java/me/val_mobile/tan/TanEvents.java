@@ -16,7 +16,7 @@
  */
 package me.val_mobile.tan;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.*;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -47,11 +47,11 @@ import static me.val_mobile.tan.TanRunnables.LOWEST_THIRST;
 public class TanEvents implements Listener {
 
     private final TanRunnables tanRunnables;
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final Utils util;
     private final CustomItems customItems;
 
-    public TanEvents(RLCraftPlugin instance) {
+    public TanEvents(RealisticSurvivalPlugin instance) {
         tanRunnables = new TanRunnables(instance);
         plugin = instance;
         util = new Utils(instance);

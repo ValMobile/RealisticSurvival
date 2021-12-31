@@ -16,7 +16,7 @@
  */
 package me.val_mobile.lycanites_mobs;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.Utils;
@@ -32,7 +32,7 @@ public class LycanitesMobsEvents implements Listener {
 
     private final CustomItems customItems;
     private final Utils util;
-    public LycanitesMobsEvents(RLCraftPlugin instance) {
+    public LycanitesMobsEvents(RealisticSurvivalPlugin instance) {
         customItems = new CustomItems(instance);
         util = new Utils(instance);
     }

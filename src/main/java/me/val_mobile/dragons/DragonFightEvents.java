@@ -32,7 +32,7 @@
  */
 package me.val_mobile.dragons;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -53,9 +53,9 @@ import org.bukkit.inventory.ItemStack;
  */
 public class DragonFightEvents implements Listener {
 
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final Utils util;
-    public DragonFightEvents(RLCraftPlugin instance) {
+    public DragonFightEvents(RealisticSurvivalPlugin instance) {
         plugin = instance;
         util = new Utils(instance);
     }

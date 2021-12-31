@@ -16,7 +16,7 @@
  */
 package me.val_mobile.baubles;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.PlayerRunnable;
@@ -37,12 +37,12 @@ import org.bukkit.util.Vector;
 public class BaubleRunnables {
 
     // dependency injecting the main class
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final CustomItems customItems;
     private final Utils util;
 
     // constructing the BaubleRunnables class
-    public BaubleRunnables(RLCraftPlugin instance) {
+    public BaubleRunnables(RealisticSurvivalPlugin instance) {
         plugin = instance;
         customItems = new CustomItems(instance);
         util = new Utils(instance);

@@ -16,7 +16,7 @@
  */
 package me.val_mobile.dragons;
 
-import me.val_mobile.rlcraft.RLCraftPlugin;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Schematics;
 import me.val_mobile.utils.Utils;
 import net.minecraft.world.entity.EntityTypes;
@@ -36,10 +36,10 @@ import java.util.Random;
 
 public class DragonWorldGenEvents implements Listener {
 
-    private final RLCraftPlugin plugin;
+    private final RealisticSurvivalPlugin plugin;
     private final Utils util;
 
-    public DragonWorldGenEvents(RLCraftPlugin instance) {
+    public DragonWorldGenEvents(RealisticSurvivalPlugin instance) {
         plugin = instance;
         util = new Utils(instance);
     }
