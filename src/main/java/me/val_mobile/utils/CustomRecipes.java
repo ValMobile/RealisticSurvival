@@ -29,13 +29,13 @@ public class CustomRecipes {
     private final RealisticSurvivalPlugin plugin;
     private final CustomItems customItems;
 
-    private static HashSet<Recipe> ntrRecipes = new HashSet<>();
-    private static HashSet<Recipe> baubleRecipes = new HashSet<>();
-    private static HashSet<Recipe> dragonRecipes = new HashSet<>();
-    private static HashSet<Recipe> seaSerpentRecipes = new HashSet<>();
-    private static HashSet<Recipe> spartanWeaponryRecipes = new HashSet<>();
-    private static HashSet<Recipe> waystoneRecipes = new HashSet<>();
-    private static HashSet<Recipe> tanRecipes = new HashSet<>();
+    private static final HashSet<Recipe> ntrRecipes = new HashSet<>();
+    private static final HashSet<Recipe> baubleRecipes = new HashSet<>();
+    private static final HashSet<Recipe> dragonRecipes = new HashSet<>();
+    private static final HashSet<Recipe> seaSerpentRecipes = new HashSet<>();
+    private static final HashSet<Recipe> spartanWeaponryRecipes = new HashSet<>();
+    private static final HashSet<Recipe> waystoneRecipes = new HashSet<>();
+    private static final HashSet<Recipe> tanRecipes = new HashSet<>();
 
 
     public static HashSet<Recipe> getNtrRecipes() {

@@ -23,11 +23,13 @@ import me.val_mobile.utils.LorePresets;
 import me.val_mobile.utils.Utils;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.boss.enderdragon.EntityEnderDragon;
-import net.minecraft.world.level.World;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.entity.DragonFireball;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -45,16 +47,16 @@ public class IceDragon extends Dragon {
     private final DragonGearAbilities dragonGearAbilities;
     private final CustomItems customItems;
 
-    public IceDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, World world, Random random, RealisticSurvivalPlugin instance) {
-        super(entitytypes, world, random, me.val_mobile.enums.Dragon.Breed.ICE);
+    public IceDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, Location loc, RealisticSurvivalPlugin instance) {
+        super(entitytypes, loc, me.val_mobile.enums.Dragon.Breed.ICE, instance);
 
         plugin = instance;
         dragonGearAbilities = new DragonGearAbilities(instance);
         customItems = new CustomItems(instance);
     }
 
-    public IceDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, World world, Random random, int stage, RealisticSurvivalPlugin instance) {
-        super(entitytypes, world, random, me.val_mobile.enums.Dragon.Breed.ICE, stage);
+    public IceDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, Location loc, int stage, RealisticSurvivalPlugin instance) {
+        super(entitytypes, loc, me.val_mobile.enums.Dragon.Breed.ICE, stage, instance);
 
         plugin = instance;
         dragonGearAbilities = new DragonGearAbilities(instance);
@@ -64,6 +66,7 @@ public class IceDragon extends Dragon {
     @Override
     public void generateLoot() {
         Collection<ItemStack> loot = getLoot();
+        FileConfiguration config = CustomConfig.getMobConfig();
 
         // empty current loot table
         loot.clear();
@@ -102,7 +105,7 @@ public class IceDragon extends Dragon {
          * less bones will drop and vice versa. This drop algorithm is more consistent with what is used
          * in the canonical Ice and Fire mod.
          */
-        if (CustomConfig.getMobConfig().getBoolean("Dragons.RecursiveDropRates.Enabled")) {
+        if (config.getBoolean("Dragons.RecursiveDropRates.Enabled")) {
             /**
              * Scale amount is between the minimum and maximum specified values.
              * Bone amount is calculated by subtracting the scale amount and adding a minimum bone amount.
@@ -111,11 +114,11 @@ public class IceDragon extends Dragon {
              * by a specified multiplier.
              */
             scaleAmount = (int) Math.round(r.nextDouble() *
-                    (CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MaxScales") - CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MinScales")))
-                    + CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MinScales");
-            boneAmount = CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MaxScales") - scaleAmount + CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MinBones");
-            bloodAmount = (int) Math.round(scaleAmount * CustomConfig.getMobConfig().getDouble("Dragons.RecursiveDropRates.BloodMultiplier"));
-            fleshAmount = (int) Math.round(scaleAmount * CustomConfig.getMobConfig().getDouble("Dragons.RecursiveDropRates.FleshMultiplier"));
+                    (config.getInt("Dragons.RecursiveDropRates.MaxScales") - config.getInt("Dragons.RecursiveDropRates.MinScales")))
+                    + config.getInt("Dragons.RecursiveDropRates.MinScales");
+            boneAmount = config.getInt("Dragons.RecursiveDropRates.MaxScales") - scaleAmount + config.getInt("Dragons.RecursiveDropRates.MinBones");
+            bloodAmount = (int) Math.round(scaleAmount * config.getDouble("Dragons.RecursiveDropRates.BloodMultiplier"));
+            fleshAmount = (int) Math.round(scaleAmount * config.getDouble("Dragons.RecursiveDropRates.FleshMultiplier"));
         }
         // if recursive drop rates are disabled
         else {
@@ -168,15 +171,17 @@ public class IceDragon extends Dragon {
     @Override
     public void triggerBreathAttack() {
         if (this instanceof LivingEntity) {
-            Projectile projectile = ((LivingEntity) this).launchProjectile(DragonFireball.class);
+            final Projectile projectile = ((LivingEntity) Bukkit.getEntity(getUuid())).launchProjectile(DragonFireball.class);
+            FileConfiguration config = CustomConfig.getMobConfig();
+
             new BukkitRunnable() {
-                org.bukkit.World world = projectile.getWorld(); // get the world
-                Location loc = projectile.getLocation(); // get the location
+                final org.bukkit.World world = projectile.getWorld(); // get the world
+                final Location loc = projectile.getLocation(); // get the location
 
                 // create constants used in calculations
-                final double velocityMultiplier = CustomConfig.getMobConfig().getDouble("Dragons.IceDragon.BreathAttack.VelocityMultiplier");
-                final int radiusConstant = CustomConfig.getMobConfig().getInt("Dragons.IceDragon.BreathAttack.RadiusConstant");
-                final int decayTicks = CustomConfig.getMobConfig().getInt("Dragons.IceDragon.BreathAttack.DecayTicks");
+                final double velocityMultiplier = config.getDouble("Dragons.IceDragon.BreathAttack.VelocityMultiplier");
+                final int radiusConstant = config.getInt("Dragons.IceDragon.BreathAttack.RadiusConstant");
+                final int decayTicks = config.getInt("Dragons.IceDragon.BreathAttack.DecayTicks");
 
                 final Vector velocity = projectile.getVelocity().multiply(velocityMultiplier * getStage()); // determine the velocity of the ice trail
                 final int radius = getStage() + radiusConstant; // determine the radius of freezing
@@ -223,28 +228,28 @@ public class IceDragon extends Dragon {
                                                 // if the lower block is solid
                                                 if (!secondBlock.isEmpty()) {
                                                     // freeze the upper block
-                                                    world.getBlockAt(loc).setType(Material.valueOf(CustomConfig.getMobConfig().getString("Dragons.IceDragon.BreathAttack.LayerBlock")));
+                                                    world.getBlockAt(loc).setType(Material.valueOf(config.getString("Dragons.IceDragon.BreathAttack.LayerBlock")));
                                                 }
                                             }
                                         }
                                         // if the upper block is solid
                                         else {
                                             // check if the upper block is immune to ice breath attacks
-                                            if (!CustomConfig.getMobConfig().getStringList("Dragons.IceDragon.BreathAttack.ImmuneBlocks").contains(blockMaterial.toString())) {
+                                            if (!config.getStringList("Dragons.IceDragon.BreathAttack.ImmuneBlocks").contains(blockMaterial.toString())) {
                                                 // if the upper block is solid
                                                 if (!block.isLiquid()) {
                                                     // freeze the upper block
-                                                    world.getBlockAt(loc).setType(Material.valueOf(CustomConfig.getMobConfig().getString("Dragons.IceDragon.BreathAttack.FrozenBlock")));
+                                                    world.getBlockAt(loc).setType(Material.valueOf(config.getString("Dragons.IceDragon.BreathAttack.FrozenBlock")));
                                                 }
                                                 // if the upper block is water
                                                 else if (blockMaterial == Material.WATER) {
                                                     // freeze water
-                                                    world.getBlockAt(loc).setType(Material.valueOf(CustomConfig.getMobConfig().getString("Dragons.IceDragon.BreathAttack.SolidifiedWaterBlock")));
+                                                    world.getBlockAt(loc).setType(Material.valueOf(config.getString("Dragons.IceDragon.BreathAttack.SolidifiedWaterBlock")));
                                                 }
                                                 // if the upper block is lava
                                                 else if (blockMaterial == Material.LAVA) {
                                                     // solidify lava
-                                                    world.getBlockAt(loc).setType(Material.valueOf(CustomConfig.getMobConfig().getString("Dragons.IceDragon.BreathAttack.SolidifiedLavaBlock")));
+                                                    world.getBlockAt(loc).setType(Material.valueOf(config.getString("Dragons.IceDragon.BreathAttack.SolidifiedLavaBlock")));
                                                 }
                                             }
                                         }
@@ -292,7 +297,7 @@ public class IceDragon extends Dragon {
                                 // if the entity can be hurt
                                 if (e instanceof LivingEntity) {
                                     // check if entity is not an ice dragon
-                                    if (!(e instanceof IceDragon)) {
+                                    if (!( ((CraftEntity)e).getHandle() instanceof IceDragon)) {
                                         // set entity on fire
                                         ability((LivingEntity) e);
                                     }

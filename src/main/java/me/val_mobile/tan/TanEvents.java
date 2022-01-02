@@ -17,13 +17,15 @@
 package me.val_mobile.tan;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.*;
+import me.val_mobile.utils.CustomConfig;
+import me.val_mobile.utils.CustomItems;
+import me.val_mobile.utils.PlayerRunnable;
+import me.val_mobile.utils.Utils;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -33,13 +35,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
-import org.bukkit.event.player.PlayerGameModeChangeEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.HashMap;
 import java.util.Random;
 
 import static me.val_mobile.tan.TanRunnables.LOWEST_THIRST;
@@ -279,6 +279,29 @@ public class TanEvents implements Listener {
                         if (Utils.decrementDurability(itemMainHand))
                             player.getInventory().setItemInMainHand(null);
                     }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onWorldChange(PlayerChangedWorldEvent event) {
+
+        Player player = event.getPlayer();
+
+        if (util.shouldEventBeRan(player, "ToughAsNails")) {
+            String name = player.getName();
+
+            HashMap<String, Boolean> tempRunMap = PlayerRunnable.getTemperatureRunnables();
+            HashMap<String, Boolean> thirstRunMap = PlayerRunnable.getThirstRunnables();
+
+            if (tempRunMap.containsKey(name) && thirstRunMap.containsKey(name)) {
+                if (!(tempRunMap.get(name) || thirstRunMap.get(name))) {
+                    // start every bauble runnable
+                    tanRunnables.startTemperatureThirstRunnable(player);
+
+                    Utils.setOrReplaceEntry(tempRunMap, name, true);
+                    Utils.setOrReplaceEntry(thirstRunMap, name, true);
                 }
             }
         }

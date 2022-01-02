@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class BStats {
 
-    private static final int ID = 12158;
+    private static final int ID = 13786;
     private final Metrics metrics;
 
     public BStats(RealisticSurvivalPlugin instance) {

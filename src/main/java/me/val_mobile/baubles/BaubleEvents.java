@@ -21,11 +21,10 @@ import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.PlayerRunnable;
 import me.val_mobile.utils.Utils;
-import net.minecraft.world.level.storage.LevelVersion;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.enchantments.Enchantment;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -49,7 +48,8 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.util.Random;
+import java.util.HashMap;
+
 /**
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
@@ -85,13 +85,26 @@ public class BaubleEvents implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onItemPickup(EntityPickupItemEvent event) {
 
-            // if the event is active
+        // if the event is active
         if (!event.isCancelled()) {
             LivingEntity entity = event.getEntity(); // get the entity that picked up the item
 
             // if the entity is a player
             if (entity instanceof Player) {
                 Player player = (Player) entity; // cast the entity to a player
+
+                HashMap<String, Boolean> prResRunMap = PlayerRunnable.getPrResRunnables();
+                HashMap<String, Boolean> prStrengthRunMap = PlayerRunnable.getPrStrengthRunnables();
+                HashMap<String, Boolean> prSpeedRunMap = PlayerRunnable.getPrSpeedRunnables();
+                HashMap<String, Boolean> prJumpRunMap = PlayerRunnable.getPrJumpRunnables();
+                HashMap<String, Boolean> prRegenRunMap = PlayerRunnable.getPrRegenRunnables();
+                HashMap<String, Boolean> prHasteRunMap = PlayerRunnable.getPrHasteRunnables();
+                HashMap<String, Boolean> minersRingRunMap = PlayerRunnable.getMinersRingRunnables();
+                HashMap<String, Boolean> scarliteRingRunMap = PlayerRunnable.getScarliteRingRunnables();
+                HashMap<String, Boolean> dragonsEyeRunMap = PlayerRunnable.getDragonsEyeRunnables();
+                HashMap<String, Boolean> shieldHonorRunMap = PlayerRunnable.getShieldHonorRunnables();
+
+                String name = player.getName();
 
                 if (util.shouldEventBeRan(player, "Baubles")) {
                     ItemStack item = event.getItem().getItemStack(); // get the item that was picked up
@@ -108,7 +121,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrResValues(player);
-                                            baubleRunnables.startPrResRunnable(player);
+                                            if (prResRunMap.containsKey(name)) {
+                                                if (!prResRunMap.get(name)) {
+                                                    baubleRunnables.startPrResRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrResRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -117,7 +137,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrRegenValues(player);
-                                            baubleRunnables.startPrRegenRunnable(player);
+                                            if (prRegenRunMap.containsKey(name)) {
+                                                if (!prRegenRunMap.get(name)) {
+                                                    baubleRunnables.startPrRegenRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrRegenRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -126,7 +153,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrStrengthValues(player);
-                                            baubleRunnables.startPrStrengthRunnable(player);
+                                            if (prStrengthRunMap.containsKey(name)) {
+                                                if (!prStrengthRunMap.get(name)) {
+                                                    baubleRunnables.startPrStrengthRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrStrengthRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -135,7 +169,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrSpeedValues(player);
-                                            baubleRunnables.startPrSpeedRunnable(player);
+                                            if (prSpeedRunMap.containsKey(name)) {
+                                                if (!prSpeedRunMap.get(name)) {
+                                                    baubleRunnables.startPrSpeedRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrSpeedRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -144,7 +185,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrJumpValues(player);
-                                            baubleRunnables.startPrJumpRunnable(player);
+                                            if (prJumpRunMap.containsKey(name)) {
+                                                if (!prJumpRunMap.get(name)) {
+                                                    baubleRunnables.startPrJumpRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrJumpRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -153,7 +201,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrHasteValues(player);
-                                            baubleRunnables.startPrHasteRunnable(player);
+                                            if (prHasteRunMap.containsKey(name)) {
+                                                if (!prHasteRunMap.get(name)) {
+                                                    baubleRunnables.startPrHasteRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrHasteRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -162,7 +217,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateMinersRingValues(player);
-                                            baubleRunnables.startMinersRingRunnable(player);
+                                            if (minersRingRunMap.containsKey(name)) {
+                                                if (!minersRingRunMap.get(name)) {
+                                                    baubleRunnables.startMinersRingRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startMinersRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -171,7 +233,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateScarliteRingValues(player);
-                                            baubleRunnables.startScarliteRingRunnable(player);
+                                            if (scarliteRingRunMap.containsKey(name)) {
+                                                if (!scarliteRingRunMap.get(name)) {
+                                                    baubleRunnables.startScarliteRingRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startScarliteRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -180,7 +249,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateDragonsEyeValues(player);
-                                            baubleRunnables.startDragonsEyeRunnable(player);
+                                            if (dragonsEyeRunMap.containsKey(name)) {
+                                                if (!dragonsEyeRunMap.get(name)) {
+                                                    baubleRunnables.startDragonsEyeRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startDragonsEyeRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -189,7 +265,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateShieldHonorValues(player);
-                                            baubleRunnables.startShieldHonorRunnable(player);
+                                            if (shieldHonorRunMap.containsKey(name)) {
+                                                if (!shieldHonorRunMap.get(name)) {
+                                                    baubleRunnables.startShieldHonorRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startScarliteRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -215,6 +298,19 @@ public class BaubleEvents implements Listener {
         if (!event.isCancelled()) {
             Player player = event.getPlayer(); // get the player
 
+            HashMap<String, Boolean> prResRunMap = PlayerRunnable.getPrResRunnables();
+            HashMap<String, Boolean> prStrengthRunMap = PlayerRunnable.getPrStrengthRunnables();
+            HashMap<String, Boolean> prSpeedRunMap = PlayerRunnable.getPrSpeedRunnables();
+            HashMap<String, Boolean> prJumpRunMap = PlayerRunnable.getPrJumpRunnables();
+            HashMap<String, Boolean> prRegenRunMap = PlayerRunnable.getPrRegenRunnables();
+            HashMap<String, Boolean> prHasteRunMap = PlayerRunnable.getPrHasteRunnables();
+            HashMap<String, Boolean> minersRingRunMap = PlayerRunnable.getMinersRingRunnables();
+            HashMap<String, Boolean> scarliteRingRunMap = PlayerRunnable.getScarliteRingRunnables();
+            HashMap<String, Boolean> dragonsEyeRunMap = PlayerRunnable.getDragonsEyeRunnables();
+            HashMap<String, Boolean> shieldHonorRunMap = PlayerRunnable.getShieldHonorRunnables();
+
+            String name = player.getName();
+
             if (util.shouldEventBeRan(player, "Baubles")) {
                 ItemStack item = event.getItemDrop().getItemStack(); // get the item that was dropped
 
@@ -230,7 +326,14 @@ public class BaubleEvents implements Listener {
                                     @Override
                                     public void run() {
                                         baubleRunnables.updatePrResValues(player);
-                                        baubleRunnables.startPrResRunnable(player);
+                                        if (prResRunMap.containsKey(name)) {
+                                            if (!prResRunMap.get(name)) {
+                                                baubleRunnables.startPrResRunnable(player);
+                                            }
+                                        }
+                                        else {
+                                            baubleRunnables.startPrResRunnable(player);
+                                        }
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -239,7 +342,14 @@ public class BaubleEvents implements Listener {
                                     @Override
                                     public void run() {
                                         baubleRunnables.updatePrRegenValues(player);
-                                        baubleRunnables.startPrRegenRunnable(player);
+                                        if (prRegenRunMap.containsKey(name)) {
+                                            if (!prRegenRunMap.get(name)) {
+                                                baubleRunnables.startPrRegenRunnable(player);
+                                            }
+                                        }
+                                        else {
+                                            baubleRunnables.startPrRegenRunnable(player);
+                                        }
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -248,7 +358,14 @@ public class BaubleEvents implements Listener {
                                     @Override
                                     public void run() {
                                         baubleRunnables.updatePrStrengthValues(player);
-                                        baubleRunnables.startPrStrengthRunnable(player);
+                                        if (prStrengthRunMap.containsKey(name)) {
+                                            if (!prStrengthRunMap.get(name)) {
+                                                baubleRunnables.startPrStrengthRunnable(player);
+                                            }
+                                        }
+                                        else {
+                                            baubleRunnables.startPrStrengthRunnable(player);
+                                        }
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -257,7 +374,14 @@ public class BaubleEvents implements Listener {
                                     @Override
                                     public void run() {
                                         baubleRunnables.updatePrSpeedValues(player);
-                                        baubleRunnables.startPrSpeedRunnable(player);
+                                        if (prSpeedRunMap.containsKey(name)) {
+                                            if (!prSpeedRunMap.get(name)) {
+                                                baubleRunnables.startPrSpeedRunnable(player);
+                                            }
+                                        }
+                                        else {
+                                            baubleRunnables.startPrSpeedRunnable(player);
+                                        }
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -266,7 +390,14 @@ public class BaubleEvents implements Listener {
                                     @Override
                                     public void run() {
                                         baubleRunnables.updatePrJumpValues(player);
-                                        baubleRunnables.startPrJumpRunnable(player);
+                                        if (prJumpRunMap.containsKey(name)) {
+                                            if (!prJumpRunMap.get(name)) {
+                                                baubleRunnables.startPrJumpRunnable(player);
+                                            }
+                                        }
+                                        else {
+                                            baubleRunnables.startPrJumpRunnable(player);
+                                        }
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -275,7 +406,14 @@ public class BaubleEvents implements Listener {
                                     @Override
                                     public void run() {
                                         baubleRunnables.updatePrHasteValues(player);
-                                        baubleRunnables.startPrHasteRunnable(player);
+                                        if (prHasteRunMap.containsKey(name)) {
+                                            if (!prHasteRunMap.get(name)) {
+                                                baubleRunnables.startPrHasteRunnable(player);
+                                            }
+                                        }
+                                        else {
+                                            baubleRunnables.startPrHasteRunnable(player);
+                                        }
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -284,7 +422,14 @@ public class BaubleEvents implements Listener {
                                     @Override
                                     public void run() {
                                         baubleRunnables.updateMinersRingValues(player);
-                                        baubleRunnables.startMinersRingRunnable(player);
+                                        if (minersRingRunMap.containsKey(name)) {
+                                            if (!minersRingRunMap.get(name)) {
+                                                baubleRunnables.startMinersRingRunnable(player);
+                                            }
+                                        }
+                                        else {
+                                            baubleRunnables.startMinersRingRunnable(player);
+                                        }
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -293,7 +438,14 @@ public class BaubleEvents implements Listener {
                                     @Override
                                     public void run() {
                                         baubleRunnables.updateScarliteRingValues(player);
-                                        baubleRunnables.startScarliteRingRunnable(player);
+                                        if (scarliteRingRunMap.containsKey(name)) {
+                                            if (!scarliteRingRunMap.get(name)) {
+                                                baubleRunnables.startScarliteRingRunnable(player);
+                                            }
+                                        }
+                                        else {
+                                            baubleRunnables.startScarliteRingRunnable(player);
+                                        }
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -302,7 +454,14 @@ public class BaubleEvents implements Listener {
                                     @Override
                                     public void run() {
                                         baubleRunnables.updateDragonsEyeValues(player);
-                                        baubleRunnables.startDragonsEyeRunnable(player);
+                                        if (dragonsEyeRunMap.containsKey(name)) {
+                                            if (!dragonsEyeRunMap.get(name)) {
+                                                baubleRunnables.startDragonsEyeRunnable(player);
+                                            }
+                                        }
+                                        else {
+                                            baubleRunnables.startDragonsEyeRunnable(player);
+                                        }
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -311,7 +470,14 @@ public class BaubleEvents implements Listener {
                                     @Override
                                     public void run() {
                                         baubleRunnables.updateShieldHonorValues(player);
-                                        baubleRunnables.startShieldHonorRunnable(player);
+                                        if (shieldHonorRunMap.containsKey(name)) {
+                                            if (!shieldHonorRunMap.get(name)) {
+                                                baubleRunnables.startShieldHonorRunnable(player);
+                                            }
+                                        }
+                                        else {
+                                            baubleRunnables.startScarliteRingRunnable(player);
+                                        }
                                     }
                                 }.runTaskLater(plugin, 1L);
                                 break;
@@ -336,6 +502,19 @@ public class BaubleEvents implements Listener {
         if (!event.isCancelled()) {
             Player player = (Player) event.getWhoClicked(); // get the player
 
+            HashMap<String, Boolean> prResRunMap = PlayerRunnable.getPrResRunnables();
+            HashMap<String, Boolean> prStrengthRunMap = PlayerRunnable.getPrStrengthRunnables();
+            HashMap<String, Boolean> prSpeedRunMap = PlayerRunnable.getPrSpeedRunnables();
+            HashMap<String, Boolean> prJumpRunMap = PlayerRunnable.getPrJumpRunnables();
+            HashMap<String, Boolean> prRegenRunMap = PlayerRunnable.getPrRegenRunnables();
+            HashMap<String, Boolean> prHasteRunMap = PlayerRunnable.getPrHasteRunnables();
+            HashMap<String, Boolean> minersRingRunMap = PlayerRunnable.getMinersRingRunnables();
+            HashMap<String, Boolean> scarliteRingRunMap = PlayerRunnable.getScarliteRingRunnables();
+            HashMap<String, Boolean> dragonsEyeRunMap = PlayerRunnable.getDragonsEyeRunnables();
+            HashMap<String, Boolean> shieldHonorRunMap = PlayerRunnable.getShieldHonorRunnables();
+
+            String name = player.getName();
+
             if (util.shouldEventBeRan(player, "Baubles")) {
                 // if the bottom half of the inventory view is the player's own inventory
                 if (event.getView().getBottomInventory() instanceof PlayerInventory) {
@@ -354,7 +533,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrResValues(player);
-                                            baubleRunnables.startPrResRunnable(player);
+                                            if (prResRunMap.containsKey(name)) {
+                                                if (!prResRunMap.get(name)) {
+                                                    baubleRunnables.startPrResRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrResRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -363,7 +549,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrRegenValues(player);
-                                            baubleRunnables.startPrRegenRunnable(player);
+                                            if (prRegenRunMap.containsKey(name)) {
+                                                if (!prRegenRunMap.get(name)) {
+                                                    baubleRunnables.startPrRegenRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrRegenRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -372,7 +565,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrStrengthValues(player);
-                                            baubleRunnables.startPrStrengthRunnable(player);
+                                            if (prStrengthRunMap.containsKey(name)) {
+                                                if (!prStrengthRunMap.get(name)) {
+                                                    baubleRunnables.startPrStrengthRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrStrengthRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -381,7 +581,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrSpeedValues(player);
-                                            baubleRunnables.startPrSpeedRunnable(player);
+                                            if (prSpeedRunMap.containsKey(name)) {
+                                                if (!prSpeedRunMap.get(name)) {
+                                                    baubleRunnables.startPrSpeedRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrSpeedRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -390,7 +597,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrJumpValues(player);
-                                            baubleRunnables.startPrJumpRunnable(player);
+                                            if (prJumpRunMap.containsKey(name)) {
+                                                if (!prJumpRunMap.get(name)) {
+                                                    baubleRunnables.startPrJumpRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrJumpRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -399,7 +613,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrHasteValues(player);
-                                            baubleRunnables.startPrHasteRunnable(player);
+                                            if (prHasteRunMap.containsKey(name)) {
+                                                if (!prHasteRunMap.get(name)) {
+                                                    baubleRunnables.startPrHasteRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrHasteRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -408,7 +629,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateMinersRingValues(player);
-                                            baubleRunnables.startMinersRingRunnable(player);
+                                            if (minersRingRunMap.containsKey(name)) {
+                                                if (!minersRingRunMap.get(name)) {
+                                                    baubleRunnables.startMinersRingRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startMinersRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -417,7 +645,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateScarliteRingValues(player);
-                                            baubleRunnables.startScarliteRingRunnable(player);
+                                            if (scarliteRingRunMap.containsKey(name)) {
+                                                if (!scarliteRingRunMap.get(name)) {
+                                                    baubleRunnables.startScarliteRingRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startScarliteRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -426,7 +661,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateDragonsEyeValues(player);
-                                            baubleRunnables.startDragonsEyeRunnable(player);
+                                            if (dragonsEyeRunMap.containsKey(name)) {
+                                                if (!dragonsEyeRunMap.get(name)) {
+                                                    baubleRunnables.startDragonsEyeRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startDragonsEyeRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -435,7 +677,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateShieldHonorValues(player);
-                                            baubleRunnables.startShieldHonorRunnable(player);
+                                            if (shieldHonorRunMap.containsKey(name)) {
+                                                if (!shieldHonorRunMap.get(name)) {
+                                                    baubleRunnables.startShieldHonorRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startScarliteRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -455,7 +704,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrResValues(player);
-                                            baubleRunnables.startPrResRunnable(player);
+                                            if (prResRunMap.containsKey(name)) {
+                                                if (!prResRunMap.get(name)) {
+                                                    baubleRunnables.startPrResRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrResRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -464,7 +720,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrRegenValues(player);
-                                            baubleRunnables.startPrRegenRunnable(player);
+                                            if (prRegenRunMap.containsKey(name)) {
+                                                if (!prRegenRunMap.get(name)) {
+                                                    baubleRunnables.startPrRegenRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrRegenRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -473,7 +736,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrStrengthValues(player);
-                                            baubleRunnables.startPrStrengthRunnable(player);
+                                            if (prStrengthRunMap.containsKey(name)) {
+                                                if (!prStrengthRunMap.get(name)) {
+                                                    baubleRunnables.startPrStrengthRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrStrengthRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -482,7 +752,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrSpeedValues(player);
-                                            baubleRunnables.startPrSpeedRunnable(player);
+                                            if (prSpeedRunMap.containsKey(name)) {
+                                                if (!prSpeedRunMap.get(name)) {
+                                                    baubleRunnables.startPrSpeedRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrSpeedRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -491,7 +768,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrJumpValues(player);
-                                            baubleRunnables.startPrJumpRunnable(player);
+                                            if (prJumpRunMap.containsKey(name)) {
+                                                if (!prJumpRunMap.get(name)) {
+                                                    baubleRunnables.startPrJumpRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrJumpRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -500,7 +784,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrHasteValues(player);
-                                            baubleRunnables.startPrHasteRunnable(player);
+                                            if (prHasteRunMap.containsKey(name)) {
+                                                if (!prHasteRunMap.get(name)) {
+                                                    baubleRunnables.startPrHasteRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrHasteRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -509,7 +800,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateMinersRingValues(player);
-                                            baubleRunnables.startMinersRingRunnable(player);
+                                            if (minersRingRunMap.containsKey(name)) {
+                                                if (!minersRingRunMap.get(name)) {
+                                                    baubleRunnables.startMinersRingRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startMinersRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -518,7 +816,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateScarliteRingValues(player);
-                                            baubleRunnables.startScarliteRingRunnable(player);
+                                            if (scarliteRingRunMap.containsKey(name)) {
+                                                if (!scarliteRingRunMap.get(name)) {
+                                                    baubleRunnables.startScarliteRingRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startScarliteRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -527,7 +832,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateDragonsEyeValues(player);
-                                            baubleRunnables.startDragonsEyeRunnable(player);
+                                            if (dragonsEyeRunMap.containsKey(name)) {
+                                                if (!dragonsEyeRunMap.get(name)) {
+                                                    baubleRunnables.startDragonsEyeRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startDragonsEyeRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -536,7 +848,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateShieldHonorValues(player);
-                                            baubleRunnables.startShieldHonorRunnable(player);
+                                            if (shieldHonorRunMap.containsKey(name)) {
+                                                if (!shieldHonorRunMap.get(name)) {
+                                                    baubleRunnables.startShieldHonorRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startScarliteRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -570,6 +889,18 @@ public class BaubleEvents implements Listener {
                     if (Utils.isItemReal(event.getOldCursor())) {
                         ItemStack oldCursor = event.getOldCursor();
 
+                        HashMap<String, Boolean> prResRunMap = PlayerRunnable.getPrResRunnables();
+                        HashMap<String, Boolean> prStrengthRunMap = PlayerRunnable.getPrStrengthRunnables();
+                        HashMap<String, Boolean> prSpeedRunMap = PlayerRunnable.getPrSpeedRunnables();
+                        HashMap<String, Boolean> prJumpRunMap = PlayerRunnable.getPrJumpRunnables();
+                        HashMap<String, Boolean> prRegenRunMap = PlayerRunnable.getPrRegenRunnables();
+                        HashMap<String, Boolean> prHasteRunMap = PlayerRunnable.getPrHasteRunnables();
+                        HashMap<String, Boolean> minersRingRunMap = PlayerRunnable.getMinersRingRunnables();
+                        HashMap<String, Boolean> scarliteRingRunMap = PlayerRunnable.getScarliteRingRunnables();
+                        HashMap<String, Boolean> dragonsEyeRunMap = PlayerRunnable.getDragonsEyeRunnables();
+                        HashMap<String, Boolean> shieldHonorRunMap = PlayerRunnable.getShieldHonorRunnables();
+
+                        String name = player.getName();
 
                         // if the item has an nbt tag called "Bauble"
                         if (util.hasNbtTag(oldCursor,"Bauble")) {
@@ -580,7 +911,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrResValues(player);
-                                            baubleRunnables.startPrResRunnable(player);
+                                            if (prResRunMap.containsKey(name)) {
+                                                if (!prResRunMap.get(name)) {
+                                                    baubleRunnables.startPrResRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrResRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -589,7 +927,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrRegenValues(player);
-                                            baubleRunnables.startPrRegenRunnable(player);
+                                            if (prRegenRunMap.containsKey(name)) {
+                                                if (!prRegenRunMap.get(name)) {
+                                                    baubleRunnables.startPrRegenRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrRegenRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -598,7 +943,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrStrengthValues(player);
-                                            baubleRunnables.startPrStrengthRunnable(player);
+                                            if (prStrengthRunMap.containsKey(name)) {
+                                                if (!prStrengthRunMap.get(name)) {
+                                                    baubleRunnables.startPrStrengthRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrStrengthRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -607,7 +959,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrSpeedValues(player);
-                                            baubleRunnables.startPrSpeedRunnable(player);
+                                            if (prSpeedRunMap.containsKey(name)) {
+                                                if (!prSpeedRunMap.get(name)) {
+                                                    baubleRunnables.startPrSpeedRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrSpeedRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -616,7 +975,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrJumpValues(player);
-                                            baubleRunnables.startPrJumpRunnable(player);
+                                            if (prJumpRunMap.containsKey(name)) {
+                                                if (!prJumpRunMap.get(name)) {
+                                                    baubleRunnables.startPrJumpRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrJumpRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -625,7 +991,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updatePrHasteValues(player);
-                                            baubleRunnables.startPrHasteRunnable(player);
+                                            if (prHasteRunMap.containsKey(name)) {
+                                                if (!prHasteRunMap.get(name)) {
+                                                    baubleRunnables.startPrHasteRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startPrHasteRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -634,7 +1007,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateMinersRingValues(player);
-                                            baubleRunnables.startMinersRingRunnable(player);
+                                            if (minersRingRunMap.containsKey(name)) {
+                                                if (!minersRingRunMap.get(name)) {
+                                                    baubleRunnables.startMinersRingRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startMinersRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -643,7 +1023,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateScarliteRingValues(player);
-                                            baubleRunnables.startScarliteRingRunnable(player);
+                                            if (scarliteRingRunMap.containsKey(name)) {
+                                                if (!scarliteRingRunMap.get(name)) {
+                                                    baubleRunnables.startScarliteRingRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startScarliteRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -652,7 +1039,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateDragonsEyeValues(player);
-                                            baubleRunnables.startDragonsEyeRunnable(player);
+                                            if (dragonsEyeRunMap.containsKey(name)) {
+                                                if (!dragonsEyeRunMap.get(name)) {
+                                                    baubleRunnables.startDragonsEyeRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startDragonsEyeRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -661,7 +1055,14 @@ public class BaubleEvents implements Listener {
                                         @Override
                                         public void run() {
                                             baubleRunnables.updateShieldHonorValues(player);
-                                            baubleRunnables.startShieldHonorRunnable(player);
+                                            if (shieldHonorRunMap.containsKey(name)) {
+                                                if (!shieldHonorRunMap.get(name)) {
+                                                    baubleRunnables.startShieldHonorRunnable(player);
+                                                }
+                                            }
+                                            else {
+                                                baubleRunnables.startScarliteRingRunnable(player);
+                                            }
                                         }
                                     }.runTaskLater(plugin, 1L);
                                     break;
@@ -769,6 +1170,8 @@ public class BaubleEvents implements Listener {
             Player player = (Player) event.getEntity(); // get the player
 
             if (util.shouldEventBeRan(player, "Baubles")) {
+                FileConfiguration config = CustomConfig.getBaubleConfig();
+
                 PlayerInventory inv = player.getInventory(); // get the player's inventory
                 ItemStack itemOffHand = inv.getItemInOffHand(); // get the item in the player's off hand
 
@@ -780,7 +1183,7 @@ public class BaubleEvents implements Listener {
                         // if the player has an obsidian skull
                         if (inv.containsAtLeast(customItems.getObsidianSkull(), 1)) {
                             // reduce the damage by a specified amount
-                            event.setDamage(event.getDamage() * CustomConfig.getBaubleConfig().getDouble("ObsidianSkull.HeatDamageMultiplier"));
+                            event.setDamage(event.getDamage() * config.getDouble("ObsidianSkull.HeatDamageMultiplier"));
                         }
                         // if the off hand item exists
                         else if (Utils.isItemReal(itemOffHand)) {
@@ -789,11 +1192,11 @@ public class BaubleEvents implements Listener {
                                 // if the item is a cobalt shield
                                 if (util.getNbtTag(itemOffHand,"Bauble").equals("Obsidian Shield"))
                                     // reduce the damage by a specified amount
-                                    event.setDamage(event.getDamage() * CustomConfig.getBaubleConfig().getDouble("ObsidianShield.HeatDamageMultiplier"));
+                                    event.setDamage(event.getDamage() * config.getDouble("ObsidianShield.HeatDamageMultiplier"));
                                     // if the item is an ankh shield
                                 else if (util.getNbtTag(itemOffHand,"Bauble").equals("Ankh Shield"))
                                     // reduce the damage by a specified amount
-                                    event.setDamage(event.getDamage() * CustomConfig.getBaubleConfig().getDouble("AnkhShield.HeatDamageMultiplier"));
+                                    event.setDamage(event.getDamage() * config.getDouble("AnkhShield.HeatDamageMultiplier"));
                             }
                         }
                         break;
@@ -818,7 +1221,7 @@ public class BaubleEvents implements Listener {
                         // if the player has a shield of honor
                         if (player.getInventory().containsAtLeast(customItems.getShieldHonor(), 1)) {
                             // reduce the damage by a specified amount
-                            event.setDamage(event.getDamage() * CustomConfig.getBaubleConfig().getDouble("ShieldHonor.ExplosionDamageMultiplier"));
+                            event.setDamage(event.getDamage() * config.getDouble("ShieldHonor.ExplosionDamageMultiplier"));
                         }
                         break;
                     }
@@ -827,14 +1230,14 @@ public class BaubleEvents implements Listener {
                         // if the player has a balloon
                         if (player.getInventory().containsAtLeast(customItems.getBalloon(), 1))
                             // if the fall distance is less than the specified minimum fall distance
-                            if (player.getFallDistance() <= CustomConfig.getBaubleConfig().getDouble("Balloon.MinFallDistance")) {
+                            if (player.getFallDistance() <= config.getDouble("Balloon.MinFallDistance")) {
                                 // cancel the event to set the fall damage to 0
                                 event.setCancelled(true);
                             }
                             // if the fall distance is greater than the specified minimum fall distance
                             else {
                                 // reduce the damage by a specified amount
-                                event.setDamage(event.getDamage() * CustomConfig.getBaubleConfig().getDouble("Balloon.FallDamageMultiplier"));
+                                event.setDamage(event.getDamage() * config.getDouble("Balloon.FallDamageMultiplier"));
                             }
                         // if the player's inventory has a lucky horseshoe
                         if (player.getInventory().containsAtLeast(customItems.getLuckyHorseshoe(), 1))
@@ -867,7 +1270,7 @@ public class BaubleEvents implements Listener {
                     Utils.setOrReplaceEntry(PlayerRunnable.getCrossNecklace(), player.getName(), true);
 
                     // remove the i-frames by setting the key of the player to false after a specified amount of time
-                    baubleRunnables.removeInvFrames(player).runTaskLater(plugin, CustomConfig.getBaubleConfig().getInt("CrossNecklace.InvFrameLength"));
+                    baubleRunnables.removeInvFrames(player).runTaskLater(plugin, config.getInt("CrossNecklace.InvFrameLength"));
                 }
             }
 
@@ -888,6 +1291,8 @@ public class BaubleEvents implements Listener {
         if (util.shouldEventBeRan(player, "Baubles")) {
             // if the event is active
             if (!event.isCancelled()) {
+                FileConfiguration config = CustomConfig.getBaubleConfig();
+
                 // if the player has a balloon
                 if (event.getPlayer().getInventory().containsAtLeast(customItems.getBalloon(), 1)) {
 
@@ -926,7 +1331,7 @@ public class BaubleEvents implements Listener {
                                     // check if the player is not flying or swimming
                                     if ( !(player.isInWater() || player.isRiptiding() || player.isFlying()) ) {
                                         // increase the velocity
-                                        velocity.setY(jumpVelocity * CustomConfig.getBaubleConfig().getDouble("Balloon.JumpVelocityMultiplier"));
+                                        velocity.setY(jumpVelocity * config.getDouble("Balloon.JumpVelocityMultiplier"));
 
                                         // set the player's velocity to that velocity
                                         player.setVelocity(velocity);
@@ -954,11 +1359,13 @@ public class BaubleEvents implements Listener {
         LivingEntity entity = event.getEntity();
 
         if (util.shouldEventBeRan(entity, "Baubles")) {
+            FileConfiguration config = CustomConfig.getBaubleConfig();
+
             // check what the entity is
             switch (entity.getType()) {
                 // if the entity is an ender dragon
                 case ENDER_DRAGON: {
-                    double chance = CustomConfig.getBaubleConfig().getDouble("EnderDragonscale.DropChance"); // store the chance
+                    double chance = config.getDouble("EnderDragonscale.DropChance"); // store the chance
 
                     if (entity.getKiller() != null) {
                         Player player = entity.getKiller(); // get the player
@@ -970,7 +1377,7 @@ public class BaubleEvents implements Listener {
                 }
                 // if the entity is a husk
                 case HUSK: {
-                    double chance = CustomConfig.getBaubleConfig().getDouble("ForbiddenFruit.DropChance"); // store the chance
+                    double chance = config.getDouble("ForbiddenFruit.DropChance"); // store the chance
 
                     if (entity.getKiller() != null) {
                         Player player = entity.getKiller(); // get the player
@@ -981,7 +1388,7 @@ public class BaubleEvents implements Listener {
                     break;
                 }
                 case STRAY: {
-                    double chance = CustomConfig.getBaubleConfig().getDouble("RingOverclocking.DropChance"); // store the chance
+                    double chance = config.getDouble("RingOverclocking.DropChance"); // store the chance
 
                     if (entity.getKiller() != null) {
                         Player player = entity.getKiller(); // get the player
@@ -993,7 +1400,7 @@ public class BaubleEvents implements Listener {
                 }
                 // if the entity is an elder guardian
                 case ELDER_GUARDIAN: {
-                    double chance = CustomConfig.getBaubleConfig().getDouble("Vitamins.DropChance"); // store the chance
+                    double chance = config.getDouble("Vitamins.DropChance"); // store the chance
 
                     if (entity != null) {
                         Player player = entity.getKiller(); // get the player
@@ -1005,7 +1412,7 @@ public class BaubleEvents implements Listener {
                 }
                 // if the entity is a cave spider
                 case CAVE_SPIDER: {
-                    double chance = CustomConfig.getBaubleConfig().getDouble("Bezoar.DropChance"); // store the chance
+                    double chance = config.getDouble("Bezoar.DropChance"); // store the chance
 
                     if (entity.getKiller() != null) {
                         Player player = entity.getKiller(); // get the player
@@ -1204,6 +1611,8 @@ public class BaubleEvents implements Listener {
         Player player = (Player) event.getView().getPlayer();
 
         if (util.shouldEventBeRan(player, "Baubles")) {
+            FileConfiguration config = CustomConfig.getBaubleConfig();
+
             AnvilInventory inv = event.getInventory(); // get the anvil inventory
             // if the first and second items in the anvils exist
             if (Utils.isItemReal(inv.getItem(0))) {
@@ -1229,32 +1638,32 @@ public class BaubleEvents implements Listener {
                         // set the combined item to an obsidian shield
                         event.setResult(customItems.getObsidianShield());
                         // set the repair and max repair costs to their specified amounts
-                        inv.setRepairCost(CustomConfig.getBaubleConfig().getInt("ObsidianShield.AnvilCost"));
-                        inv.setMaximumRepairCost(CustomConfig.getBaubleConfig().getInt("ObsidianShield.AnvilCost"));
+                        inv.setRepairCost(config.getInt("ObsidianShield.AnvilCost"));
+                        inv.setMaximumRepairCost(config.getInt("ObsidianShield.AnvilCost"));
                     }
                     // if the first item is a ring of overclocking and the second item is a shulker heart
                     else if (firstMeta.equals(customItems.getRingofOverclocking().getItemMeta()) && secondMeta.equals(customItems.getShulkerHeart().getItemMeta())) {
                         // set the combined item to a ring of free action
                         event.setResult(customItems.getRingofFreeAction());
                         // set the repair and max repair costs to their specified amounts
-                        inv.setRepairCost(CustomConfig.getBaubleConfig().getInt("RingFreeAction.AnvilCost"));
-                        inv.setMaximumRepairCost(CustomConfig.getBaubleConfig().getInt("RingFreeAction.AnvilCost"));
+                        inv.setRepairCost(config.getInt("RingFreeAction.AnvilCost"));
+                        inv.setMaximumRepairCost(config.getInt("RingFreeAction.AnvilCost"));
                     }
                     // if the first item is a bezoar and the second item is a black dragon scale
                     else if (firstMeta.equals(customItems.getBezoar().getItemMeta()) && secondMeta.equals(customItems.getBlackDragonscale().getItemMeta())) {
                         // set the combined item to a mixed color dragon scale
                         event.setResult(customItems.getMixedColorDragonscale());
                         // set the repair and max repair costs to their specified amounts
-                        inv.setRepairCost(CustomConfig.getBaubleConfig().getInt("MixedColorDragonscale.AnvilCost"));
-                        inv.setMaximumRepairCost(CustomConfig.getBaubleConfig().getInt("MixedColorDragonscale.AnvilCost"));
+                        inv.setRepairCost(config.getInt("MixedColorDragonscale.AnvilCost"));
+                        inv.setMaximumRepairCost(config.getInt("MixedColorDragonscale.AnvilCost"));
                     }
                     // if the first item is an obsidian shield and the second item is an ankh charm
                     else if (firstMeta.equals(customItems.getObsidianShield().getItemMeta()) && secondMeta.equals(customItems.getAnkhCharm().getItemMeta())) {
                         // set the combined item to an ankh shield
                         event.setResult(customItems.getAnkhShield());
                         // set the repair and max repair costs to their specified amounts
-                        inv.setRepairCost(CustomConfig.getBaubleConfig().getInt("AnkhShield.AnvilCost"));
-                        inv.setMaximumRepairCost(CustomConfig.getBaubleConfig().getInt("AnkhShield.AnvilCost"));
+                        inv.setRepairCost(config.getInt("AnkhShield.AnvilCost"));
+                        inv.setMaximumRepairCost(config.getInt("AnkhShield.AnvilCost"));
                     }
                 }
             }

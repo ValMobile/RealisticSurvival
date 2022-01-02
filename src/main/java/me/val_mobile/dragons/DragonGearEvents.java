@@ -19,6 +19,7 @@ package me.val_mobile.dragons;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.Utils;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -57,6 +58,8 @@ public class DragonGearEvents implements Listener {
         Entity entity = event.getEntity();
 
         if (util.shouldEventBeRan(entity, "Dragons")) {
+            FileConfiguration config = CustomConfig.getIceFireGearConfig();
+
             // if a player was attacked
             if (event.getEntity() instanceof Player) {
                 Player player = (Player) entity; // get the player
@@ -74,12 +77,12 @@ public class DragonGearEvents implements Listener {
                             // if the item has the nbt tag, "dragonscale_armor"
                             if (util.hasNbtTag(item, "dragonscale_armor")) {
                                 // add some protection
-                                dragonProtection += CustomConfig.getIceFireGearConfig().getDouble("Abilities.Dragonscale.DamageReduction");
+                                dragonProtection += config.getDouble("Abilities.Dragonscale.DamageReduction");
                             }
                             // if the item has the nbt tag, "dragonsteel_armor"
                             else if (util.hasNbtTag(item, "dragonsteel_armor")) {
                                 // add some protection
-                                dragonProtection += CustomConfig.getIceFireGearConfig().getDouble("Abilities.Dragonsteel.DamageReduction");
+                                dragonProtection += config.getDouble("Abilities.Dragonsteel.DamageReduction");
                             }
                         }
                     }
@@ -99,6 +102,7 @@ public class DragonGearEvents implements Listener {
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         Entity entity = event.getEntity(); // get the entity
         Entity attacker = event.getDamager(); // get the attacker
+        FileConfiguration config = CustomConfig.getIceFireGearConfig();
 
         // find out what entity the attacker is
         switch (attacker.getType()) {
@@ -122,7 +126,7 @@ public class DragonGearEvents implements Listener {
                                     // if the attacked entity is a dragon
                                     if (entity instanceof Dragon) {
                                         if (!(entity instanceof FireDragon)) {
-                                            event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.FlamedDragonbone.BonusDamage"));
+                                            event.setDamage(event.getDamage() + config.getDouble("Abilities.FlamedDragonbone.BonusDamage"));
                                         }
                                     }
                                     dragonGearAbilities.FireDragonboneAbility((LivingEntity) entity);
@@ -130,7 +134,7 @@ public class DragonGearEvents implements Listener {
                                 case "IcedDragonbone":
                                     if (entity instanceof Dragon) {
                                         if (!(entity instanceof IceDragon)) {
-                                            event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.IcedDragonbone.BonusDamage"));
+                                            event.setDamage(event.getDamage() + config.getDouble("Abilities.IcedDragonbone.BonusDamage"));
                                         }
                                     }
                                     dragonGearAbilities.IceDragonboneAbility((LivingEntity) entity);
@@ -138,7 +142,7 @@ public class DragonGearEvents implements Listener {
                                 case "LightningDragonbone":
                                     if (entity instanceof Dragon) {
                                         if (!(entity instanceof LightningDragon)) {
-                                            event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.LightningDragonbone.BonusDamage"));
+                                            event.setDamage(event.getDamage() + config.getDouble("Abilities.LightningDragonbone.BonusDamage"));
                                         }
                                     }
                                     dragonGearAbilities.LightningDragonboneAbility((LivingEntity) entity, player);
@@ -178,7 +182,7 @@ public class DragonGearEvents implements Listener {
                                     String configPath = weaponType + "." + materialType + "." + "AttackDamageMultiplier";
 
                                     if (weaponType.equals("Bow")) {
-                                        double multiplier = CustomConfig.getIceFireGearConfig().getDouble(configPath);
+                                        double multiplier = config.getDouble(configPath);
                                         event.setDamage(event.getDamage() * multiplier);
                                     }
 
@@ -186,7 +190,7 @@ public class DragonGearEvents implements Listener {
                                         case "FlamedDragonbone":
                                             if (entity instanceof Dragon) {
                                                 if (!(entity instanceof FireDragon)) {
-                                                    event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.FlamedDragonbone.BonusDamage"));
+                                                    event.setDamage(event.getDamage() + config.getDouble("Abilities.FlamedDragonbone.BonusDamage"));
                                                 }
                                             }
                                             dragonGearAbilities.FireDragonboneAbility((LivingEntity) entity);
@@ -194,7 +198,7 @@ public class DragonGearEvents implements Listener {
                                         case "IcedDragonbone":
                                             if (entity instanceof Dragon) {
                                                 if (!(entity instanceof IceDragon)) {
-                                                    event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.IcedDragonbone.BonusDamage"));
+                                                    event.setDamage(event.getDamage() + config.getDouble("Abilities.IcedDragonbone.BonusDamage"));
                                                 }
                                             }
                                             dragonGearAbilities.IceDragonboneAbility((LivingEntity) entity);
@@ -202,7 +206,7 @@ public class DragonGearEvents implements Listener {
                                         case "LightningDragonbone":
                                             if (entity instanceof Dragon) {
                                                 if (!(entity instanceof LightningDragon)) {
-                                                    event.setDamage(event.getDamage() + CustomConfig.getIceFireGearConfig().getDouble("Abilities.LightningDragonbone.BonusDamage"));
+                                                    event.setDamage(event.getDamage() + config.getDouble("Abilities.LightningDragonbone.BonusDamage"));
                                                 }
                                             }
                                             dragonGearAbilities.LightningDragonboneAbility((LivingEntity) entity, player);

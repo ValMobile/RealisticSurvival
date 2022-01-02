@@ -74,11 +74,11 @@ public class ItemBuilder extends ItemStack {
     public static final String CLUB = "Club";
 
 
-    private static Collection<String> commandNames = new ArrayList<>();
-    private static List<ItemBuilder> items = new ArrayList<>();
-    private static HashMap<String, Integer> itemMap = new HashMap<>();
-    private String configName;
-    private String commandName;
+    private static final Collection<String> commandNames = new ArrayList<>();
+    private static final List<ItemBuilder> items = new ArrayList<>();
+    private static final HashMap<String, Integer> itemMap = new HashMap<>();
+    private final String configName;
+    private final String commandName;
     private String gearType = "";
 
     private final Utils util;

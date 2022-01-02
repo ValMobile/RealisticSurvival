@@ -17,17 +17,23 @@
 package me.val_mobile.sea_serpents;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.PlayerRunnable;
 import me.val_mobile.utils.Utils;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.HashMap;
 
 public class SeaSerpentGearEvents implements Listener {
 
@@ -55,7 +61,9 @@ public class SeaSerpentGearEvents implements Listener {
                             @Override
                             public void run() {
                                 seaSerpentGearRunnables.updateTideGuardianArmor(player);
-                                seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                if (!PlayerRunnable.getTideArmorRunnables().get(player.getName())) {
+                                    seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                }
                             }
                         }.runTaskLater(plugin, 1L);
                     }
@@ -64,9 +72,13 @@ public class SeaSerpentGearEvents implements Listener {
         }
     }
 
+
     @EventHandler (priority = EventPriority.MONITOR)
     public void onItemThrow(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
+
+        HashMap<String, Boolean> gearRunMap = PlayerRunnable.getTideArmorRunnables();
+        String name = player.getName();
 
         if (util.shouldEventBeRan(player, "SeaSerpents")) {
             if (!event.isCancelled()) {
@@ -75,7 +87,14 @@ public class SeaSerpentGearEvents implements Listener {
                         @Override
                         public void run() {
                             seaSerpentGearRunnables.updateTideGuardianArmor(player);
-                            seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                            if (gearRunMap.containsKey(name)) {
+                                if (!gearRunMap.get(name)) {
+                                    seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                }
+                            }
+                            else {
+                                seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                            }
                         }
                     }.runTaskLater(plugin, 1L);
                 }
@@ -83,9 +102,47 @@ public class SeaSerpentGearEvents implements Listener {
         }
     }
 
+    @EventHandler
+    public void onInteract(PlayerInteractEvent event) {
+        if (util.shouldEventBeRan("SeaSerpents")) {
+            Player player = event.getPlayer();
+
+            ItemStack item = event.getItem();
+            HashMap<String, Boolean> gearRunMap = PlayerRunnable.getTideArmorRunnables();
+            String name = player.getName();
+
+            Action action = event.getAction();
+
+            if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+                if (Utils.isItemReal(item)) {
+                    if (util.hasNbtTag(item,"tide_guardian_armor")) {
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                seaSerpentGearRunnables.updateTideGuardianArmor(player);
+                                if (gearRunMap.containsKey(name)) {
+                                    if (!gearRunMap.get(name)) {
+                                        seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                    }
+                                }
+                                else {
+                                    seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                }
+                            }
+                        }.runTaskLater(plugin, 1L);
+                    }
+                }
+            }
+
+        }
+    }
+
     @EventHandler (priority = EventPriority.MONITOR)
     public void onClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
+
+        HashMap<String, Boolean> gearRunMap = PlayerRunnable.getTideArmorRunnables();
+        String name = player.getName();
 
         if (util.shouldEventBeRan(player, "SeaSerpents")) {
             if (!event.isCancelled()) {
@@ -95,7 +152,14 @@ public class SeaSerpentGearEvents implements Listener {
                             @Override
                             public void run() {
                                 seaSerpentGearRunnables.updateTideGuardianArmor(player);
-                                seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                if (gearRunMap.containsKey(name)) {
+                                    if (!gearRunMap.get(name)) {
+                                        seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                    }
+                                }
+                                else {
+                                    seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                }
                             }
                         }.runTaskLater(plugin, 1L);
                     }
@@ -106,7 +170,14 @@ public class SeaSerpentGearEvents implements Listener {
                             @Override
                             public void run() {
                                 seaSerpentGearRunnables.updateTideGuardianArmor(player);
-                                seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                if (gearRunMap.containsKey(name)) {
+                                    if (!gearRunMap.get(name)) {
+                                        seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                    }
+                                }
+                                else {
+                                    seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                }
                             }
                         }.runTaskLater(plugin, 1L);
                     }
@@ -119,6 +190,9 @@ public class SeaSerpentGearEvents implements Listener {
     public void onDragClick(InventoryDragEvent event) {
         Player player = (Player) event.getWhoClicked();
 
+        HashMap<String, Boolean> gearRunMap = PlayerRunnable.getTideArmorRunnables();
+        String name = player.getName();
+
         if (util.shouldEventBeRan(player, "SeaSerpents")) {
             if (!event.isCancelled()) {
                 if (Utils.isItemReal(event.getCursor())) {
@@ -127,7 +201,14 @@ public class SeaSerpentGearEvents implements Listener {
                             @Override
                             public void run() {
                                 seaSerpentGearRunnables.updateTideGuardianArmor(player);
-                                seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                if (gearRunMap.containsKey(name)) {
+                                    if (!gearRunMap.get(name)) {
+                                        seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                    }
+                                }
+                                else {
+                                    seaSerpentGearRunnables.startTideGuardianRunnable(player);
+                                }
                             }
                         }.runTaskLater(plugin, 1L);
                     }

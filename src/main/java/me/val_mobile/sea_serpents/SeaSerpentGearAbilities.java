@@ -18,6 +18,7 @@ package me.val_mobile.sea_serpents;
 
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.Utils;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -25,12 +26,12 @@ import org.bukkit.potion.PotionEffectType;
 public class SeaSerpentGearAbilities {
 
     public static void TideGuardianArmorAbility(Player player, int pieces) {
+        FileConfiguration config = CustomConfig.getIceFireGearConfig();
+        int waterBreathingAmplifier = config.getInt("Abilities.TideGuardian.WaterBreathing.Amplifier");
+        int waterBreathingDuration = config.getInt("Abilities.TideGuardian.WaterBreathing.Duration");
 
-        int waterBreathingAmplifier = CustomConfig.getIceFireGearConfig().getInt("Abilities.TideGuardian.WaterBreathing.Amplifier");
-        int waterBreathingDuration = CustomConfig.getIceFireGearConfig().getInt("Abilities.TideGuardian.WaterBreathing.Duration");
-
-        int strengthAmplifier = pieces - 1 + CustomConfig.getIceFireGearConfig().getInt("Abilities.TideGuardian.Strength.AmplifierPerArmorPiece");
-        int strengthDuration = CustomConfig.getIceFireGearConfig().getInt("Abilities.TideGuardian.Strength.Duration");
+        int strengthAmplifier = pieces - 1 + config.getInt("Abilities.TideGuardian.Strength.AmplifierPerArmorPiece");
+        int strengthDuration = config.getInt("Abilities.TideGuardian.Strength.Duration");
 
         PotionEffect waterBreathing = new PotionEffect(PotionEffectType.WATER_BREATHING, waterBreathingDuration, waterBreathingAmplifier);
         if (player.isInWater()) {

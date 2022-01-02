@@ -1,12 +1,10 @@
 # Realistic-Survival
-*Looking for the download link? **[Click here](https://www.spigotmc.org/resources/realisticsurvival-1-17-dragons-baubles-temperature.93795/)***
+*Looking for the download link? **[Click here](https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795/)***
 
 Realistic Survival is a plugin inspired by RLCraft that aims to 
 increase the difficulty of normal vanilla Minecraft.
 
-The plugin is organized into several modules which can be configured at will:
-- Dragons
-- Sea Serpents  
+The plugin is organized into several modules which can be configured at will: 
 - Baubles
 - Spartan Weaponry
 - No Tree Punching
@@ -30,7 +28,7 @@ To report bugs, open a [new issue](https://github.com/ValMobile/RealisticSurviva
 Realistic-Survival requires your Minecraft server to be running on [Spigot](https://www.spigotmc.org/) or any
 its forks like [Paper](https://papermc.io/) and [Purpur](https://purpur.pl3x.net/).
 
-You can download stable builds Realistic Survival for free [here](https://www.spigotmc.org/resources/realisticsurvival-1-17-baubles-dragons-sea-serpents.93795/).  
+You can download stable builds Realistic Survival for free [here](https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795/).  
 Alternatively, you can download development builds in the [Discord server](https://discord.gg/mMt3f4usqK). Development
 builds are less stable but offer the newest features and improvements.
 
@@ -60,7 +58,8 @@ Please consider helping me maintain this project, your dedication helps keep thi
 
 Here are some ways you can help support Realistic-Survival:
  - Creating bug reports 
- - Suggesting features or optionally
+ - Contributing to the [Wiki](https://github.com/ValMobile/RealisticSurvival/wiki/Expanding-the-Wiki)
+ - Suggesting features
  - Coding in features by forking this repo and creating a pull request
  - Answering the polls in my Discord server
  - Answering frequently-asked-questions (FAQs) in my Discord server

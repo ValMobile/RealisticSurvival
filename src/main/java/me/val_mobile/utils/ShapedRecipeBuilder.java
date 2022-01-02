@@ -31,7 +31,7 @@ public class ShapedRecipeBuilder extends ShapedRecipe {
 
     private final static List<Character> CHARS = Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I');
 
-    private HashMap<Character, Object> ingredients = new HashMap<>();
+    private final HashMap<Character, Object> ingredients = new HashMap<>();
 
     public ShapedRecipeBuilder(FileConfiguration config, int index, RealisticSurvivalPlugin instance) {
         super(new NamespacedKey(instance, config.getString(index + ".Key")),

@@ -26,7 +26,6 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkPopulateEvent;
@@ -113,8 +112,8 @@ public class DragonWorldGenEvents implements Listener {
                                 location.setY(location.getY() - 1.0);
 
                                 Schematics.pasteSchematic(Schematics.getFireDragonNest(), location, true);
-                                FireDragon dragon = new FireDragon(EntityTypes.v, ((CraftWorld) event.getWorld()).getHandle(), new Random(), 3, plugin);
-                                dragon.spawnEntity(location);
+                                FireDragon dragon = new FireDragon(EntityTypes.v, location, 3, plugin);
+                                dragon.spawn();
                             }
                         }
                         // check if biome is cold

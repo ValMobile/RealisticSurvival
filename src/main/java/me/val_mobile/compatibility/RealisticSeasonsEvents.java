@@ -1,7 +1,6 @@
 package me.val_mobile.compatibility;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.tan.TanRunnables;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.PlayerRunnable;

@@ -17,6 +17,7 @@
 package me.val_mobile.dragons;
 
 import me.val_mobile.utils.CustomConfig;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.LivingEntity;
@@ -58,13 +59,14 @@ public class DragonGearRunnables {
 
     public static BukkitRunnable shockEntity(Entity source, LivingEntity entity) {
         return new BukkitRunnable() {
+            FileConfiguration config = CustomConfig.getIceFireGearConfig();
             int iteration = 1;
             @Override
             public void run() {
                 entity.setVelocity(new Vector());
-                entity.damage(CustomConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonbone.ShockDamage"), source);
+                entity.damage(config.getInt("Abilities.LightningDragonbone.ShockDamage"), source);
                 iteration++;
-                if (iteration > CustomConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonbone.ShockAmount")) {
+                if (iteration > config.getInt("Abilities.LightningDragonbone.ShockAmount")) {
                     cancel();
                 }
             }
@@ -74,12 +76,13 @@ public class DragonGearRunnables {
     public static BukkitRunnable electrocuteEntity(Entity source, LivingEntity entity) {
         return new BukkitRunnable() {
             int iteration = 1;
+            FileConfiguration config = CustomConfig.getIceFireGearConfig();
             @Override
             public void run() {
-                entity.damage(CustomConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonsteel.ShockDamage"), source);
+                entity.damage(config.getInt("Abilities.LightningDragonsteel.ShockDamage"), source);
                 entity.setVelocity(new Vector());
                 iteration++;
-                if (iteration > CustomConfig.getIceFireGearConfig().getInt("Abilities.LightningDragonsteel.ShockAmount")) {
+                if (iteration > config.getInt("Abilities.LightningDragonsteel.ShockAmount")) {
                     cancel();
                 }
             }

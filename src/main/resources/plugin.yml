@@ -7,58 +7,77 @@ softdepend: [RealisticSeasons]
 
 commands:
   RealisticSurvival:
-    description: The RealisticSurvival command
+    description: The home command of the Realistic Survival plugin
+    usage: /realisticsurvival
+    aliases: [rsv]
+    permission: realisticsurvival.command.*
 
 permissions:
   realisticsurvival.toughasnails.resistance.cold:
     description: Grants the player immunity from getting cold
     default: op
+  realisticsurvival.toughasnails.resistance.colddamage:
+    description: Grants the player immunity to the health effects of hypothermia
+    default: op
+  realisticsurvival.toughasnails.resistance.coldvisual:
+    description: Grants the player immunity to the visual effects of hypothermia
+    default: op
   realisticsurvival.toughasnails.resistance.hot:
     description: Grants the player immunity from getting hot
     default: op
-  realisticsurvival.toughasnails.resistance.dehydration:
+  realisticsurvival.toughasnails.resistance.hotdamage:
+    description: Grants the player immunity to health effects of hyperthermia
+    default: op
+  realisticsurvival.toughasnails.resistance.hotvisual:
+    description: Grants the player immunity to the visual effects of hyperthermia
+    default: op
+  realisticsurvival.toughasnails.resistance.thirst:
+    description: Grants the player immunity from getting thirsty
+    default: op
+  realisticsurvival.toughasnails.resistance.thirstdamage:
     description: Grants the player immunity to the health effects of dehydration
-    default: op
-  realisticsurvival.toughasnails.resistance.hypothermia:
-    description: Grants the player immunity to the health effects of cold temperature
-    default: op
-  realisticsurvival.toughasnails.resistance.hyperthermia:
-    description: Grants the player immunity to health effects of high temperature
-    default: op
-  realisticsurvival.toughasnails.resistance.burning:
-    description: Grants the player immunity to the visual effects of high temperature
-    default: op
-  realisticsurvival.toughasnails.resistance.freezing:
-    description: Grants the player immunity to the visual effects of cold temperature
     default: op
   realisticsurvival.toughasnails.resistance.*:
     description: Wildcard permission
     default: op
     children:
-      realisticsurvival.toughasnails.resistance.thirst: true
       realisticsurvival.toughasnails.resistance.cold: true
+      realisticsurvival.toughasnails.resistance.colddamage: true
+      realisticsurvival.toughasnails.resistance.coldvisual: true
       realisticsurvival.toughasnails.resistance.hot: true
-      realisticsurvival.toughasnails.resistance.hypothermia: true
-      realisticsurvival.toughasnails.resistance.hyperthermia: true
-      realisticsurvival.toughasnails.resistance.burning: true
-      realisticsurvival.toughasnails.resistance.freezing: true
+      realisticsurvival.toughasnails.resistance.hotdamage: true
+      realisticsurvival.toughasnails.resistance.hotvisual: true
+      realisticsurvival.toughasnails.resistance.thirst: true
+      realisticsurvival.toughasnails.resistance.thirstdamage: true
   realisticsurvival.command.give:
-    description: Allows users to give themselves items from the Realistic-Survival plugin
+    description: Allows users to give themselves items from the plugin
+    default: op
+  realisticsurvival.command.spawnitem:
+    description: Allows users to spawn items from the plugin
     default: op
   realisticsurvival.command.reload:
-    description: Allows users to reload the Realistic-Survival plugin
+    description: Allows users to reload the plugin
     default: op
   realisticsurvival.command.thirst:
-    description: Allows users to change the thirst level of other players
+    description: Allows users to change the thirst of other players
     default: op
   realisticsurvival.command.temperature:
-    description: Allows users to change the temperature level of other players
+    description: Allows users to change the temperature of other players
+    default: op
+  realisticsurvival.command.help:
+    description: Allows users to access the help command
+    default: op
+  realisticsurvival.command.version:
+    description: Allows users to access the plugin version
     default: op
   realisticsurvival.command.*:
     description: Wildcard permission
     default: op
     children:
       realisticsurvival.command.give: true
+      realisticsurvival.command.spawnitem: true
       realisticsurvival.command.reload: true
       realisticsurvival.command.thirst: true
       realisticsurvival.command.temperature: true
+      realisticsurvival.command.help: true
+      realisticsurvival.command.version: true

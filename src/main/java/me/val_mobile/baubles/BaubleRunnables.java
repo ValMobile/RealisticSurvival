@@ -26,6 +26,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
+import java.util.HashMap;
+
 /**
  * BaubleRunnables is a utility class containing methods that
  * execute various runnables and update static field values
@@ -61,17 +64,20 @@ public class BaubleRunnables {
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
+            HashMap<String, Integer> baubleMap = PlayerRunnable.getPrRes();
+            HashMap<String, Boolean> baubleRunMap = PlayerRunnable.getPrResRunnables();
+            String playerName = player.getName();
             @Override
             public void run() {
                 // if the player has rings of res in his/her inventory
-                if (PlayerRunnable.getPrRes().get(player.getName()) > 0) {
+                if (baubleMap.get(playerName) > 0) {
                     // effect the player with resistance
-                    BaubleAbilities.RingResistanceAbility(player, PlayerRunnable.getPrRes().get(player.getName()));
+                    BaubleAbilities.RingResistanceAbility(player, baubleMap.get(playerName));
                 }
                 // if the player doesn't have rings of res in his/her inventory
                 else {
                     // update static hashmap values and cancel the runnable
-                    Utils.setOrReplaceEntry(getPrResRunnables(), player.getName(), false);
+                    Utils.setOrReplaceEntry(baubleRunMap, playerName, false);
                     cancel();
                 }
             }
@@ -91,17 +97,20 @@ public class BaubleRunnables {
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
+            HashMap<String, Integer> baubleMap = PlayerRunnable.getPrRegen();
+            HashMap<String, Boolean> baubleRunMap = PlayerRunnable.getPrRegenRunnables();
+            String playerName = player.getName();
             @Override
             public void run() {
                 // if the player has rings of regen in his/her inventory
-                if (PlayerRunnable.getPrRegen().get(player.getName()) > 0) {
+                if (baubleMap.get(playerName) > 0) {
                     // effect the player with regeneration
-                    BaubleAbilities.RingRegenerationAbility(player, PlayerRunnable.getPrRegen().get(player.getName()));
+                    BaubleAbilities.RingRegenerationAbility(player, baubleMap.get(playerName));
                 }
                 // if the player doesn't have rings of regen in his/her inventory
                 else {
                     // update static hashmap values and cancel the runnable
-                    Utils.setOrReplaceEntry(getPrRegenRunnables(), player.getName(), false);
+                    Utils.setOrReplaceEntry(baubleRunMap, playerName, false);
                     cancel();
                 }
             }
@@ -121,17 +130,20 @@ public class BaubleRunnables {
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
+            HashMap<String, Integer> baubleMap = PlayerRunnable.getPrStrength();
+            HashMap<String, Boolean> baubleRunMap = PlayerRunnable.getPrStrengthRunnables();
+            String playerName = player.getName();
             @Override
             public void run() {
                 // if the player has rings of strength in his/her inventory
-                if (PlayerRunnable.getPrStrength().get(player.getName()) > 0) {
+                if (PlayerRunnable.getPrStrength().get(playerName) > 0) {
                     // effect the player with strength
-                    BaubleAbilities.RingStrengthAbility(player, PlayerRunnable.getPrStrength().get(player.getName()));
+                    BaubleAbilities.RingStrengthAbility(player, baubleMap.get(playerName));
                 }
                 // if the player doesn't have rings of strength in his/her inventory
                 else {
                     // update static hashmap values and cancel the runnable
-                    Utils.setOrReplaceEntry(getPrStrengthRunnables(), player.getName(), false);
+                    Utils.setOrReplaceEntry(baubleRunMap, playerName, false);
                     cancel();
                 }
             }
@@ -151,17 +163,20 @@ public class BaubleRunnables {
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
+            HashMap<String, Integer> baubleMap = PlayerRunnable.getPrSpeed();
+            HashMap<String, Boolean> baubleRunMap = PlayerRunnable.getPrSpeedRunnables();
+            String playerName = player.getName();
             @Override
             public void run() {
                 // if the player has rings of speed in his/her inventory
-                if (PlayerRunnable.getPrSpeed().get(player.getName()) > 0) {
+                if (baubleMap.get(playerName) > 0) {
                     // effect the player with speed
-                    BaubleAbilities.RingSpeedAbility(player, PlayerRunnable.getPrSpeed().get(player.getName()));
+                    BaubleAbilities.RingSpeedAbility(player, baubleMap.get(playerName));
                 }
                 // if the player doesn't have rings of speed in his/her inventory
                 else {
                     // update static hashmap values and cancel the runnable
-                    Utils.setOrReplaceEntry(getPrSpeedRunnables(), player.getName(), false);
+                    Utils.setOrReplaceEntry(baubleRunMap, playerName, false);
                     cancel();
                 }
             }
@@ -181,17 +196,20 @@ public class BaubleRunnables {
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
+            HashMap<String, Integer> baubleMap = PlayerRunnable.getPrJump();
+            HashMap<String, Boolean> baubleRunMap = PlayerRunnable.getPrJumpRunnables();
+            String playerName = player.getName();
             @Override
             public void run() {
                 // if the player has rings of jump boost in his/her inventory
-                if (PlayerRunnable.getPrJump().get(player.getName()) > 0) {
+                if (baubleMap.get(playerName) > 0) {
                     // effect the player with jump boost
-                    BaubleAbilities.RingJumpBoostAbility(player, PlayerRunnable.getPrJump().get(player.getName()));
+                    BaubleAbilities.RingJumpBoostAbility(player, baubleMap.get(playerName));
                 }
                 // if the player doesn't have rings of jump boost in his/her inventory
                 else {
                     // update static hashmap values and cancel the runnable
-                    Utils.setOrReplaceEntry(getPrJumpRunnables(), player.getName(), false);
+                    Utils.setOrReplaceEntry(baubleRunMap, playerName, false);
                     cancel();
                 }
             }
@@ -211,17 +229,20 @@ public class BaubleRunnables {
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
+            HashMap<String, Integer> baubleMap = PlayerRunnable.getPrHaste();
+            HashMap<String, Boolean> baubleRunMap = PlayerRunnable.getPrHasteRunnables();
+            String playerName = player.getName();
             @Override
             public void run() {
                 // if the player has rings of haste in his/her inventory
-                if (PlayerRunnable.getPrHaste().get(player.getName()) > 0) {
+                if (baubleMap.get(playerName) > 0) {
                     // effect the player with haste
-                    BaubleAbilities.RingHasteAbility(player, PlayerRunnable.getPrHaste().get(player.getName()));
+                    BaubleAbilities.RingHasteAbility(player, baubleMap.get(playerName));
                 }
                 // if the player doesn't have rings of haste in his/her inventory
                 else {
                     // update static hashmap values and cancel the runnable
-                    Utils.setOrReplaceEntry(getPrHasteRunnables(), player.getName(), false);
+                    Utils.setOrReplaceEntry(baubleRunMap, playerName, false);
                     cancel();
                 }
             }
@@ -241,17 +262,20 @@ public class BaubleRunnables {
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
+            HashMap<String, Integer> baubleMap = PlayerRunnable.getDragonsEye();
+            HashMap<String, Boolean> baubleRunMap = PlayerRunnable.getDragonsEyeRunnables();
+            String playerName = player.getName();
             @Override
             public void run() {
                 // if the player has dragon's eyes in his/her inventory
-                if (PlayerRunnable.getDragonsEye().get(player.getName()) > 0) {
+                if (baubleMap.get(playerName) > 0) {
                     // effect the player with fire resistance and night vision
                     BaubleAbilities.DragonsEyeAbility(player);
                 }
                 // if the player doesn't have dragon's eyes in his/her inventory
                 else {
                     // update static hashmap values and cancel the runnable
-                    Utils.setOrReplaceEntry(getDragonsEyeRunnables(), player.getName(), false);
+                    Utils.setOrReplaceEntry(baubleRunMap, playerName, false);
                     cancel();
                 }
             }
@@ -271,17 +295,20 @@ public class BaubleRunnables {
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
+            HashMap<String, Integer> baubleMap = PlayerRunnable.getScarliteRing();
+            HashMap<String, Boolean> baubleRunMap = PlayerRunnable.getScarliteRingRunnables();
+            String playerName = player.getName();
             @Override
             public void run() {
                 // if the player has scarlite rings in his/her inventory
-                if (PlayerRunnable.getScarliteRing().get(player.getName()) > 0) {
+                if (baubleMap.get(playerName) > 0) {
                     // give the player health
                     BaubleAbilities.ScarliteRingAbility(player);
                 }
                 // if the player doesn't have scarlite rings in his/her inventory
                 else {
                     // update static hashmap values and cancel the runnable
-                    Utils.setOrReplaceEntry(getScarliteRingRunnables(), player.getName(), false);
+                    Utils.setOrReplaceEntry(baubleRunMap, playerName, false);
                     cancel();
                 }
             }
@@ -301,17 +328,20 @@ public class BaubleRunnables {
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
+            HashMap<String, Integer> baubleMap = PlayerRunnable.getMinersRing();
+            HashMap<String, Boolean> baubleRunMap = PlayerRunnable.getMinersRingRunnables();
+            String playerName = player.getName();
             @Override
             public void run() {
                 // if the player has miner's rings in his/her inventory
-                if (PlayerRunnable.getMinersRing().get(player.getName()) > 0) {
+                if (baubleMap.get(playerName) > 0) {
                     // effect the player with haste
                     BaubleAbilities.MinersRingAbility(player);
                 }
                 // if the player doesn't have miner's rings in his/her inventory
                 else {
                     // update static hashmap values and cancel the runnable
-                    Utils.setOrReplaceEntry(getMinersRingRunnables(), player.getName(), false);
+                    Utils.setOrReplaceEntry(baubleRunMap, playerName, false);
                     cancel();
                 }
             }
@@ -331,16 +361,19 @@ public class BaubleRunnables {
         // remove any color codes to get the basic string name
         Utils.removeColorCodes(name);
         return new PlayerRunnable(player, name) {
+            HashMap<String, Integer> baubleMap = PlayerRunnable.getShieldHonor();
+            HashMap<String, Boolean> baubleRunMap = PlayerRunnable.getShieldHonorRunnables();
+            String playerName = player.getName();
             @Override
             public void run() {
                 // if the player has shields of honor in his/her inventory
-                if (PlayerRunnable.getShieldHonor().get(player.getName()) > 0) {
+                if (baubleMap.get(playerName) > 0) {
                     BaubleAbilities.ShieldHonorAbility(player);
                 }
                 // if the player doesn't have shields of honor in his/her inventory
                 else {
                     // update static hashmap values and cancel the runnable
-                    Utils.setOrReplaceEntry(getShieldHonorRunnables(), player.getName(), false);
+                    Utils.setOrReplaceEntry(baubleRunMap, playerName, false);
                     cancel();
                 }
             }

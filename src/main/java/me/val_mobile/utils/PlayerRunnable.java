@@ -37,40 +37,40 @@ public class PlayerRunnable extends BukkitRunnable {
     private static final String scarliteRingName = "Scarlite Ring";
     private static final String shieldHonorName = "Shield of Honor";
 
-    private static HashMap<String, Boolean> prResRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> prRegenRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> prStrengthRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> prSpeedRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> prJumpRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> prHasteRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> tideArmorRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> dragonsEyeRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> minersRingRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> scarliteRingRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> shieldHonorRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> temperatureRunnables = new HashMap<>();
-    private static HashMap<String, Boolean> thirstRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> prResRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> prRegenRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> prStrengthRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> prSpeedRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> prJumpRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> prHasteRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> tideArmorRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> dragonsEyeRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> minersRingRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> scarliteRingRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> shieldHonorRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> temperatureRunnables = new HashMap<>();
+    private static final HashMap<String, Boolean> thirstRunnables = new HashMap<>();
 
     // Hashmaps for saving player and potion effect bauble amounts
-    private static HashMap<String, Integer> prRes = new HashMap<>();
-    private static HashMap<String, Integer> prRegen = new HashMap<>();
-    private static HashMap<String, Integer> prStrength = new HashMap<>();
-    private static HashMap<String, Integer> prSpeed = new HashMap<>();
-    private static HashMap<String, Integer> prJump = new HashMap<>();
-    private static HashMap<String, Integer> prHaste = new HashMap<>();
-    private static HashMap<String, Integer> tideArmor = new HashMap<>();
+    private static final HashMap<String, Integer> prRes = new HashMap<>();
+    private static final HashMap<String, Integer> prRegen = new HashMap<>();
+    private static final HashMap<String, Integer> prStrength = new HashMap<>();
+    private static final HashMap<String, Integer> prSpeed = new HashMap<>();
+    private static final HashMap<String, Integer> prJump = new HashMap<>();
+    private static final HashMap<String, Integer> prHaste = new HashMap<>();
+    private static final HashMap<String, Integer> tideArmor = new HashMap<>();
 
-    private static HashMap<String, Integer> dragonsEye = new HashMap<>();
-    private static HashMap<String, Integer> scarliteRing = new HashMap<>();
-    private static HashMap<String, Integer> minersRing = new HashMap<>();
-    private static HashMap<String, Integer> shieldHonor = new HashMap<>();
-    private static HashMap<String, Double> temperature = new HashMap<>();
-    private static HashMap<String, Double> thirst = new HashMap<>();
+    private static final HashMap<String, Integer> dragonsEye = new HashMap<>();
+    private static final HashMap<String, Integer> scarliteRing = new HashMap<>();
+    private static final HashMap<String, Integer> minersRing = new HashMap<>();
+    private static final HashMap<String, Integer> shieldHonor = new HashMap<>();
+    private static final HashMap<String, Double> temperature = new HashMap<>();
+    private static final HashMap<String, Double> thirst = new HashMap<>();
 
-    private static HashMap<String, Boolean> crossNecklace = new HashMap<>();
+    private static final HashMap<String, Boolean> crossNecklace = new HashMap<>();
 
-    private String name;
-    private String type;
+    private final String name;
+    private final String type;
 
     public PlayerRunnable(Player player, String type) {
         this.name = player.getName();

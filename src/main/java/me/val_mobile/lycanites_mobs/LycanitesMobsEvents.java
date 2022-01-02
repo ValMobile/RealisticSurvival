@@ -20,6 +20,7 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.CustomConfig;
 import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.Utils;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -42,27 +43,29 @@ public class LycanitesMobsEvents implements Listener {
         Player player = event.getPlayer();
 
         if (util.shouldEventBeRan(player, "LycanitesMobs")) {
+            FileConfiguration config = CustomConfig.getlMobsConfig();
+
             if (!event.isCancelled()) {
                 ItemStack item = event.getItem();
                 if (item.getItemMeta().equals(customItems.getBattleBurrito().getItemMeta())) {
 
-                    int speedAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Speed.Amplifier");
-                    int speedDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Speed.Duration");
+                    int speedAmplifier = config.getInt("BattleBurrito.Speed.Amplifier");
+                    int speedDuration = config.getInt("BattleBurrito.Speed.Duration");
 
-                    int regenAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Regeneration.Amplifier");
-                    int regenDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Regeneration.Duration");
+                    int regenAmplifier = config.getInt("BattleBurrito.Regeneration.Amplifier");
+                    int regenDuration = config.getInt("BattleBurrito.Regeneration.Duration");
 
-                    int strengthAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Strength.Amplifier");
-                    int strengthDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Strength.Duration");
+                    int strengthAmplifier = config.getInt("BattleBurrito.Strength.Amplifier");
+                    int strengthDuration = config.getInt("BattleBurrito.Strength.Duration");
 
-                    int resAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Resistance.Amplifier");
-                    int resDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Resistance.Duration");
+                    int resAmplifier = config.getInt("BattleBurrito.Resistance.Amplifier");
+                    int resDuration = config.getInt("BattleBurrito.Resistance.Duration");
 
-                    int absorptionAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Absorption.Amplifier");
-                    int absorptionDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.Absorption.Duration");
+                    int absorptionAmplifier = config.getInt("BattleBurrito.Absorption.Amplifier");
+                    int absorptionDuration = config.getInt("BattleBurrito.Absorption.Duration");
 
-                    int fireResAmplifier = CustomConfig.getlMobsConfig().getInt("BattleBurrito.FireResistance.Amplifier");
-                    int fireResDuration = CustomConfig.getlMobsConfig().getInt("BattleBurrito.FireResistance.Duration");
+                    int fireResAmplifier = config.getInt("BattleBurrito.FireResistance.Amplifier");
+                    int fireResDuration = config.getInt("BattleBurrito.FireResistance.Duration");
 
                     PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, speedDuration, speedAmplifier);
                     PotionEffect regen = new PotionEffect(PotionEffectType.REGENERATION, regenDuration, regenAmplifier);

@@ -18,11 +18,13 @@ package me.val_mobile.commands;
 
 import me.val_mobile.utils.ItemBuilder;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 /**
  * Tab is a class that creates a tab completer
@@ -33,11 +35,12 @@ import java.util.List;
  */
 public class Tab implements org.bukkit.command.TabCompleter {
     // create lists to store strings that will appear in the tab completer
-    List<String> firstArgs = new ArrayList<String>();
-    List<String> players = new ArrayList<String>();
-    List<String> items = new ArrayList<String>();
-    List<String> temperature = new ArrayList<String>(26);
-    List<String> thirst = new ArrayList<String>(21);
+    HashSet<String> firstArgs = new HashSet<String>();
+    HashSet<String> players = new HashSet<String>();
+    HashSet<String> items = new HashSet<String>();
+    HashSet<String> temperature = new HashSet<String>(26);
+    HashSet<String> thirst = new HashSet<String>(21);
+    HashSet<String> worlds = new HashSet<String>();
 
     /**
      * Creates a tab completer depending on what the user types
@@ -50,7 +53,7 @@ public class Tab implements org.bukkit.command.TabCompleter {
      */
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         // check if the user typed /realisticsurvival, case-insensitive
-        if (label.equalsIgnoreCase("realisticsurvival")) {
+        if (label.equalsIgnoreCase("realisticsurvival") || label.equalsIgnoreCase("rsv")) {
 
             // if the first list of arguments is empty
             if (firstArgs.isEmpty()) {
@@ -61,8 +64,11 @@ public class Tab implements org.bukkit.command.TabCompleter {
                 // add the appropriate strings
                 firstArgs.add("reload");
                 firstArgs.add("give");
+                firstArgs.add("spawnitem");
                 firstArgs.add("thirst");
                 firstArgs.add("temperature");
+                firstArgs.add("help");
+                firstArgs.add("version");
             }
 
             // if the list of players is empty
@@ -107,6 +113,12 @@ public class Tab implements org.bukkit.command.TabCompleter {
                 }
             }
 
+            if (worlds.isEmpty()) {
+                for (World world : Bukkit.getWorlds()) {
+                    worlds.add(world.getName());
+                }
+            }
+
             List<String> result = new ArrayList<String>(); // create an empty string list which will store the tab completer texts
 
             // if 1 argument was typed
@@ -127,6 +139,13 @@ public class Tab implements org.bukkit.command.TabCompleter {
                         args[0].equalsIgnoreCase("temperature")) {
                     // add all the names of the online players to the tab completer
                     for (String a : players) {
+                        if (a.toLowerCase().startsWith(args[1].toLowerCase()))
+                            result.add(a);
+                    }
+                }
+
+                if (args[0].equalsIgnoreCase("spawnitem")) {
+                    for (String a : items) {
                         if (a.toLowerCase().startsWith(args[1].toLowerCase()))
                             result.add(a);
                     }
@@ -167,7 +186,14 @@ public class Tab implements org.bukkit.command.TabCompleter {
             }
             // if more than 3 arguments were typed
             else if (args.length > 3) {
-                // return an empty tab completer
+                if (args.length == 6) {
+                    if (args[0].equalsIgnoreCase("spawnitem")) {
+                        for (String a : worlds) {
+                            if (a.toLowerCase().startsWith(args[5].toLowerCase()))
+                                result.add(a);
+                        }
+                    }
+                }
                 return result;
             }
             return null;

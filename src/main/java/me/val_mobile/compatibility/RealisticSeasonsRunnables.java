@@ -1,6 +1,5 @@
 package me.val_mobile.compatibility;
 
-import me.casperge.realisticseasons.api.SeasonsAPI;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.tan.TanEnchants;
 import me.val_mobile.tan.TemperatureThirstValues;
@@ -67,7 +66,7 @@ public class RealisticSeasonsRunnables {
                     if (!(player.isOp() || player.hasPermission("realisticsurvival.toughasnails.resistance.*"))) {
                         String text = "";
 
-                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.freezing")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldvisual")) {
                             if (temperature < 4.0) {
                                 switch (temperature) {
                                     case 0:
@@ -86,7 +85,7 @@ public class RealisticSeasonsRunnables {
                             }
                         }
 
-                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.burning")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotvisual")) {
                             if (temperature > 19.0) {
                                 switch (temperature) {
                                     case 20:
@@ -112,18 +111,18 @@ public class RealisticSeasonsRunnables {
                         if (!text.equals(""))
                             player.sendTitle(text, "", 0, 70, 0);
 
-                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.dehydration")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
                             if (thirst <= CustomConfig.getTanConfig().getDouble("Thirst.Dehydration.Limit"))
                                 player.damage(CustomConfig.getTanConfig().getDouble("Thirst.Dehydration.Damage"));
                         }
 
-                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hypothermia")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.colddamage")) {
                             // if the player's temperature is too low
                             if (temperature <= CustomConfig.getTanConfig().getDouble("Temperature.Hypothermia.Limit"))
                                 player.damage(CustomConfig.getTanConfig().getDouble("Temperature.Hypothermia.Damage"));
                         }
 
-                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hyperthermia")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotdamage")) {
                             // if the player's temperature is too high
                             if (temperature >= CustomConfig.getTanConfig().getDouble("Temperature.Hyperthermia.Limit"))
                                 player.damage(CustomConfig.getTanConfig().getDouble("Temperature.Hyperthermia.Damage"));
@@ -348,15 +347,21 @@ public class RealisticSeasonsRunnables {
 
         }
 
-
-        if (temp < NEUTRAL_TEMPERATURE) {
-            if (player.hasPermission("realisticsurvival.toughasnails.resistance.cold") || player.isOp()) {
+        if (temp != NEUTRAL_TEMPERATURE) {
+            if (player.isOp()) {
+                temp = NEUTRAL_TEMPERATURE;
+            }
+            if (temp < NEUTRAL_TEMPERATURE && player.hasPermission("realisticsurvival.toughasnails.resistance.cold")) {
+                temp = NEUTRAL_TEMPERATURE;
+            }
+            if (temp > NEUTRAL_TEMPERATURE && player.hasPermission("realisticsurvival.toughasnails.resistance.hot")) {
                 temp = NEUTRAL_TEMPERATURE;
             }
         }
-        if (temp > NEUTRAL_TEMPERATURE) {
-            if (player.hasPermission("realisticsurvival.toughasnails.resistance.hot") || player.isOp()) {
-                temp = NEUTRAL_TEMPERATURE;
+
+        if (thirst < LOWEST_THIRST) {
+            if (player.isOp() || player.hasPermission("realisticsurvival.toughasnails.resistance.thirst")) {
+                thirst = LOWEST_THIRST;
             }
         }
 

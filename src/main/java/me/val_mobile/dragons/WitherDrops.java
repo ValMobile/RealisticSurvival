@@ -22,6 +22,7 @@ import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -47,16 +48,17 @@ public class WitherDrops implements Listener {
         Entity entity = event.getEntity();
 
         if (util.shouldEventBeRan(entity, "Witherbones")) {
-            if (event.getEntityType().equals(EntityType.WITHER)) {
+            FileConfiguration config = CustomConfig.getMobConfig();
 
+            if (event.getEntityType().equals(EntityType.WITHER)) {
                 World world = entity.getWorld();
                 Location loc = entity.getLocation();
 
                 List<ItemStack> drops = new ArrayList<>();
 
                 Random r = new Random();
-                int boneAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("Witherbones.MaxBonesWither") -
-                        CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWither"))) + CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWither");
+                int boneAmount = (int) Math.round(r.nextDouble() * (config.getInt("Witherbones.MaxBonesWither") -
+                        config.getInt("Witherbones.MinBonesWither"))) + config.getInt("Witherbones.MinBonesWither");
 
                 ItemStack bone = customItems.getWitherbone();
                 bone.setAmount(boneAmount);
@@ -75,8 +77,8 @@ public class WitherDrops implements Listener {
                 List<ItemStack> drops = new ArrayList<>();
 
                 Random r = new Random();
-                int boneAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("Witherbones.MaxBonesWitherSkeleton") -
-                        CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWitherSkeleton"))) + CustomConfig.getMobConfig().getInt("Witherbones.MinBonesWitherSkeleton");
+                int boneAmount = (int) Math.round(r.nextDouble() * (config.getInt("Witherbones.MaxBonesWitherSkeleton") -
+                        config.getInt("Witherbones.MinBonesWitherSkeleton"))) + config.getInt("Witherbones.MinBonesWitherSkeleton");
 
                 ItemStack bone = customItems.getWitherbone();
                 bone.setAmount(boneAmount);

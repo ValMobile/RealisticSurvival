@@ -330,9 +330,7 @@ public class Utils {
     public static boolean isHoldingAxe(Player player) {
         ItemStack itemMainHand = player.getInventory().getItemInMainHand();
         if (isItemReal(itemMainHand)) {
-            if (itemMainHand.getType().toString().contains("AXE")) {
-                return true;
-            }
+            return itemMainHand.getType().toString().contains("AXE");
         }
         return false;
     }
@@ -340,9 +338,7 @@ public class Utils {
     public static boolean isHoldingPickaxe(Player player) {
         ItemStack itemMainHand = player.getInventory().getItemInMainHand();
         if (isItemReal(itemMainHand)) {
-            if (itemMainHand.getType().toString().contains("PICKAXE")) {
-                return true;
-            }
+            return itemMainHand.getType().toString().contains("PICKAXE");
         }
         return false;
     }
@@ -352,10 +348,7 @@ public class Utils {
 
         if (isItemReal(itemMainHand)) {
             if (hasNbtTag(itemMainHand,"spartans_weapon")) {
-                if (getNbtTag(itemMainHand,"spartans_weapon").equals("Dagger") || getNbtTag(itemMainHand,"spartans_weapon").equals("Throwing Knife")) {
-                    return true;
-                }
-                return false;
+                return getNbtTag(itemMainHand, "spartans_weapon").equals("Dagger") || getNbtTag(itemMainHand, "spartans_weapon").equals("Throwing Knife");
             }
             return false;
         }
@@ -374,10 +367,7 @@ public class Utils {
 
     public static boolean hasChestplate(LivingEntity entity) {
         ItemStack chestplate = entity.getEquipment().getChestplate();
-        if (isItemReal(chestplate)) {
-            return true;
-        }
-        return false;
+        return isItemReal(chestplate);
     }
 
     public boolean isHoldingTwoHandedWeapon(LivingEntity entity) {
@@ -407,10 +397,7 @@ public class Utils {
     public boolean checkTwoHandedDebuff(LivingEntity entity) {
         if (isHoldingTwoHandedWeapon(entity)) {
             ItemStack item = entity.getEquipment().getItemInOffHand();
-            if (isItemReal(item)) {
-                return true;
-            }
-            return false;
+            return isItemReal(item);
         }
         return false;
     }
@@ -555,10 +542,7 @@ public class Utils {
     }
 
     public static boolean isItemReal(ItemStack item) {
-        if (! (item == null || item.getType() == Material.AIR) ) {
-            return true;
-        }
-        return false;
+        return !(item == null || item.getType() == Material.AIR);
     }
 
     public static void smartAddPotionEffect(PotionEffect effect, LivingEntity entity) {
@@ -610,11 +594,7 @@ public class Utils {
         NamespacedKey nkey = new NamespacedKey(plugin, key);
         ItemMeta itemMeta = item.getItemMeta();
 
-        if(itemMeta.getPersistentDataContainer().has(nkey , PersistentDataType.STRING)) {
-            return true;
-        }
-
-        return false;
+        return itemMeta.getPersistentDataContainer().has(nkey, PersistentDataType.STRING);
     }
 
     public static HashMap<String, Tag> getTags() {
@@ -656,10 +636,7 @@ public class Utils {
     public static boolean isInRange(Player player, LivingEntity entity, double maxDistance) {
         if (isLookingAt(player, entity)) {
             double distance = player.getLocation().distance(entity.getLocation());
-            if (distance > 3 && distance < maxDistance) {
-                return true;
-            }
-            return false;
+            return distance > 3 && distance < maxDistance;
         }
         return false;
     }
@@ -668,8 +645,7 @@ public class Utils {
         BlockData blockData = block.getBlockData();
 
         if (blockData instanceof Levelled)
-            if (((Levelled) blockData).getLevel() == 0)
-                return true;
+            return ((Levelled) blockData).getLevel() == 0;
         return false;
     }
 
@@ -801,7 +777,9 @@ public class Utils {
 
         if (tool != null) {
             ItemMeta meta = tool.getItemMeta();
-            lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
+            if (meta != null) {
+                lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
+            }
         }
 
         // rare drops
@@ -865,9 +843,7 @@ public class Utils {
 
             ConfigurationSection allowedWorlds = config.getConfigurationSection(module + ".Worlds");
             if (allowedWorlds.getKeys(true).contains(worldName)) {
-                if (allowedWorlds.getBoolean(worldName)) {
-                    return true;
-                }
+                return allowedWorlds.getBoolean(worldName);
             }
         }
         return false;
@@ -881,9 +857,7 @@ public class Utils {
 
             ConfigurationSection allowedWorlds = config.getConfigurationSection(module + ".Worlds");
             if (allowedWorlds.getKeys(true).contains(worldName)) {
-                if (allowedWorlds.getBoolean(worldName)) {
-                    return true;
-                }
+                return allowedWorlds.getBoolean(worldName);
             }
         }
         return false;
@@ -897,9 +871,7 @@ public class Utils {
 
             ConfigurationSection allowedWorlds = config.getConfigurationSection(module + ".Worlds");
             if (allowedWorlds.getKeys(true).contains(worldName)) {
-                if (allowedWorlds.getBoolean(worldName)) {
-                    return true;
-                }
+                return allowedWorlds.getBoolean(worldName);
             }
         }
         return false;
@@ -908,9 +880,6 @@ public class Utils {
     public boolean shouldEventBeRan(String module) {
         FileConfiguration config = plugin.getConfig();
 
-        if (config.getBoolean(module + ".Enabled")) {
-            return true;
-        }
-        return false;
+        return config.getBoolean(module + ".Enabled");
     }
 }

@@ -23,15 +23,14 @@ import me.val_mobile.utils.LorePresets;
 import me.val_mobile.utils.Utils;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.boss.enderdragon.EntityEnderDragon;
-import net.minecraft.world.level.World;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
-import org.bukkit.entity.DragonFireball;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Projectile;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
@@ -45,16 +44,16 @@ public class FireDragon extends Dragon {
     private final DragonGearAbilities dragonGearAbilities;
     private final CustomItems customItems;
 
-    public FireDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, World world, Random random, RealisticSurvivalPlugin instance) {
-        super(entitytypes, world, random, me.val_mobile.enums.Dragon.Breed.FIRE);
+    public FireDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, Location loc, RealisticSurvivalPlugin instance) {
+        super(entitytypes, loc, me.val_mobile.enums.Dragon.Breed.FIRE, instance);
 
         plugin = instance;
         dragonGearAbilities = new DragonGearAbilities(instance);
         customItems = new CustomItems(instance);
     }
 
-    public FireDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, World world, Random random, int stage, RealisticSurvivalPlugin instance) {
-        super(entitytypes, world, random, me.val_mobile.enums.Dragon.Breed.FIRE, stage);
+    public FireDragon(EntityTypes<? extends EntityEnderDragon> entitytypes, Location loc, int stage, RealisticSurvivalPlugin instance) {
+        super(entitytypes, loc, me.val_mobile.enums.Dragon.Breed.FIRE, stage, instance);
 
         plugin = instance;
         dragonGearAbilities = new DragonGearAbilities(instance);
@@ -65,6 +64,7 @@ public class FireDragon extends Dragon {
     public void generateLoot() {
         // empty current loot table
         Collection<ItemStack> loot = getLoot();
+        FileConfiguration config = CustomConfig.getMobConfig();
         loot.clear();
 
         Random r = new Random(); // create a random variable for calculations
@@ -101,7 +101,7 @@ public class FireDragon extends Dragon {
          * less bones will drop and vice versa. This drop algorithm is more consistent with what is used
          * in the canonical Ice and Fire mod.
          */
-        if (CustomConfig.getMobConfig().getBoolean("Dragons.RecursiveDropRates.Enabled")) {
+        if (config.getBoolean("Dragons.RecursiveDropRates.Enabled")) {
             /**
              * Scale amount is between the minimum and maximum specified values.
              * Bone amount is calculated by subtracting the scale amount and adding a minimum bone amount.
@@ -110,11 +110,11 @@ public class FireDragon extends Dragon {
              * by a specified multiplier.
              */
             scaleAmount = (int) Math.round(r.nextDouble() *
-                    (CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MaxScales") - CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MinScales")))
-                    + CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MinScales");
-            boneAmount = CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MaxScales") - scaleAmount + CustomConfig.getMobConfig().getInt("Dragons.RecursiveDropRates.MinBones");
-            bloodAmount = (int) Math.round(scaleAmount * CustomConfig.getMobConfig().getDouble("Dragons.RecursiveDropRates.BloodMultiplier"));
-            fleshAmount = (int) Math.round(scaleAmount * CustomConfig.getMobConfig().getDouble("Dragons.RecursiveDropRates.FleshMultiplier"));
+                    (config.getInt("Dragons.RecursiveDropRates.MaxScales") - config.getInt("Dragons.RecursiveDropRates.MinScales")))
+                    + config.getInt("Dragons.RecursiveDropRates.MinScales");
+            boneAmount = config.getInt("Dragons.RecursiveDropRates.MaxScales") - scaleAmount + config.getInt("Dragons.RecursiveDropRates.MinBones");
+            bloodAmount = (int) Math.round(scaleAmount * config.getDouble("Dragons.RecursiveDropRates.BloodMultiplier"));
+            fleshAmount = (int) Math.round(scaleAmount * config.getDouble("Dragons.RecursiveDropRates.FleshMultiplier"));
         }
         // if recursive drop rates are disabled
         else {
@@ -166,16 +166,18 @@ public class FireDragon extends Dragon {
      */
     @Override
     public void triggerBreathAttack() {
-        if (this instanceof LivingEntity) {
-            Projectile projectile = ((LivingEntity) this).launchProjectile(DragonFireball.class);
+        if (Bukkit.getEntity(getUuid()) instanceof EnderDragon) {
+            final Projectile projectile = ((LivingEntity) Bukkit.getEntity(getUuid())).launchProjectile(DragonFireball.class);
+            FileConfiguration config = CustomConfig.getMobConfig();
+
             new BukkitRunnable() {
-                org.bukkit.World world = projectile.getWorld(); // get the world
-                Location loc = projectile.getLocation(); // get the location
+                final org.bukkit.World world = projectile.getWorld(); // get the world
+                final Location loc = projectile.getLocation(); // get the location
 
                 // create constants used in calculations
-                final double velocityMultiplier = CustomConfig.getMobConfig().getDouble("Dragons.FireDragon.BreathAttack.VelocityMultiplier");
-                final int radiusConstant = CustomConfig.getMobConfig().getInt("Dragons.FireDragon.BreathAttack.RadiusConstant");
-                final int decayTicks = CustomConfig.getMobConfig().getInt("Dragons.FireDragon.BreathAttack.DecayTicks");
+                final double velocityMultiplier = config.getDouble("Dragons.FireDragon.BreathAttack.VelocityMultiplier");
+                final int radiusConstant = config.getInt("Dragons.FireDragon.BreathAttack.RadiusConstant");
+                final int decayTicks = config.getInt("Dragons.FireDragon.BreathAttack.DecayTicks");
 
                 final Vector velocity = projectile.getVelocity().multiply(velocityMultiplier * getStage()); // determine the velocity of the flame trail
                 final int radius = getStage() + radiusConstant; // determine the radius of charring
@@ -221,25 +223,25 @@ public class FireDragon extends Dragon {
                                                 // if the lower block is solid
                                                 if (!secondBlock.isEmpty()) {
                                                     // set the upper block on fire
-                                                    world.getBlockAt(loc).setType(Material.valueOf(CustomConfig.getMobConfig().getString("Dragons.FireDragon.BreathAttack.LayerBlock")));
+                                                    world.getBlockAt(loc).setType(Material.valueOf(config.getString("Dragons.FireDragon.BreathAttack.LayerBlock")));
                                                 }
                                             }
                                         }
                                         // if the upper block is solid
                                         else {
                                             // check if the upper block is immune to fire breath attacks
-                                            if (!CustomConfig.getMobConfig().getStringList("Dragons.FireDragon.BreathAttack.ImmuneBlocks").contains(blockMaterial.toString())) {
+                                            if (!config.getStringList("Dragons.FireDragon.BreathAttack.ImmuneBlocks").contains(blockMaterial.toString())) {
                                                 // if the upper block is solid
                                                 if (!block.isLiquid()) {
                                                     // if the upper block is burnable like wood
                                                     if (blockMaterial.isFuel()) {
                                                         // set the upper block to a burnt block
-                                                        world.getBlockAt(loc).setType(Material.valueOf(CustomConfig.getMobConfig().getString("Dragons.FireDragon.BreathAttack.BurntBlock")));
+                                                        world.getBlockAt(loc).setType(Material.valueOf(config.getString("Dragons.FireDragon.BreathAttack.BurntBlock")));
                                                     }
                                                     // if the upper block is not burnable
                                                     else {
                                                         // set the upper block to a charred block
-                                                        world.getBlockAt(loc).setType(Material.valueOf(CustomConfig.getMobConfig().getString("Dragons.FireDragon.BreathAttack.CharredBlock")));
+                                                        world.getBlockAt(loc).setType(Material.valueOf(config.getString("Dragons.FireDragon.BreathAttack.CharredBlock")));
                                                     }
                                                 }
                                             }
@@ -270,7 +272,7 @@ public class FireDragon extends Dragon {
                                 // if the entity can be hurt
                                 if (e instanceof LivingEntity) {
                                     // check if entity is not a fire dragon
-                                    if (!(e instanceof FireDragon)) {
+                                    if (!( ((CraftEntity)e).getHandle() instanceof FireDragon)) {
                                         // set entity on fire
                                         ability((LivingEntity) e);
                                     }
@@ -287,7 +289,7 @@ public class FireDragon extends Dragon {
                     loc.setY(loc.getY() + velocity.getY());
                     loc.setZ(loc.getZ() + velocity.getZ());
                 }
-            }.runTaskTimer(plugin, 0, 1);
+            }.runTaskTimer(plugin, 20, 1);
 
             projectile.remove();
         }

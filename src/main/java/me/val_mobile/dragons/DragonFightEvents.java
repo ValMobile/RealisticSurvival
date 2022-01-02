@@ -36,14 +36,14 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.enchantments.Enchantment;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEnderDragon;
 import org.bukkit.entity.EnderDragon;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
+
 /**
  * DragonFightEvents is a class containing listener methods
  * that activate special dragon attacks based on each dragon's breed
@@ -71,15 +71,17 @@ public class DragonFightEvents implements Listener {
 
         if (util.shouldEventBeRan(entity, "Dragons")) {
             // if the entity that died was a dragon
-            if (event.getEntity() instanceof EnderDragon) {
-                Dragon dragon = (Dragon) entity;
-                Location loc = dragon.getBukkitEntity().getLocation();
-                World world = dragon.getBukkitEntity().getWorld();
+            if (entity instanceof EnderDragon) {
+                if (((CraftEnderDragon) entity).getHandle() instanceof Dragon) {
+                    Dragon dragon = (Dragon) ((CraftEnderDragon) entity).getHandle();
+                    Location loc = dragon.getBukkitEntity().getLocation();
+                    World world = dragon.getBukkitEntity().getWorld();
 
-                dragon.generateLoot();
+                    dragon.generateLoot();
 
-                for (ItemStack loot: dragon.getLoot()) {
-                    world.dropItemNaturally(loc, loot);
+                    for (ItemStack loot: dragon.getLoot()) {
+                        world.dropItemNaturally(loc, loot);
+                    }
                 }
             }
         }

@@ -22,10 +22,9 @@ import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.entity.Entity;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -49,6 +48,8 @@ public class SeaSerpentDrops implements Listener {
         LivingEntity entity = event.getEntity();
 
         if (util.shouldEventBeRan(entity, "SeaSerpents")) {
+            FileConfiguration config = CustomConfig.getMobConfig();
+
             if (event.getEntityType().equals(EntityType.ELDER_GUARDIAN)) {
 
                 World world = entity.getWorld();
@@ -57,8 +58,8 @@ public class SeaSerpentDrops implements Listener {
                 List<ItemStack> drops = new ArrayList<>();
 
                 Random r = new Random();
-                int scaleAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("SeaSerpents.MaxSerpentScales") -
-                        CustomConfig.getMobConfig().getInt("SeaSerpents.MinSerpentScales") )) + CustomConfig.getMobConfig().getInt("SeaSerpents.MinSerpentScales");
+                int scaleAmount = (int) Math.round(r.nextDouble() * (config.getInt("SeaSerpents.MaxSerpentScales") -
+                        config.getInt("SeaSerpents.MinSerpentScales") )) + config.getInt("SeaSerpents.MinSerpentScales");
                 int scaleColor = (int) Math.round(r.nextDouble() * 6);
                 switch (scaleColor) {
                     case 0: {
@@ -117,8 +118,8 @@ public class SeaSerpentDrops implements Listener {
                 List<ItemStack> drops = new ArrayList<>();
 
                 Random r = new Random();
-                int scaleAmount = (int) Math.round(r.nextDouble() * (CustomConfig.getMobConfig().getInt("SeaSerpents.MaxShinyScales") -
-                        CustomConfig.getMobConfig().getInt("SeaSerpents.MinShinyScales"))) + CustomConfig.getMobConfig().getInt("SeaSerpents.MinShinyScales");
+                int scaleAmount = (int) Math.round(r.nextDouble() * (config.getInt("SeaSerpents.MaxShinyScales") -
+                        config.getInt("SeaSerpents.MinShinyScales"))) + config.getInt("SeaSerpents.MinShinyScales");
 
                 ItemStack shinyScale = customItems.getShinyScale();
                 shinyScale.setAmount(scaleAmount);

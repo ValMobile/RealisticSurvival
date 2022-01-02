@@ -23,6 +23,7 @@ import me.val_mobile.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -51,20 +52,21 @@ public class NtrEvents implements Listener {
         Player player = event.getPlayer();
 
         if (util.shouldEventBeRan(player, "NoTreePunching")) {
+            FileConfiguration config = CustomConfig.getNtrConfig();
             ItemStack itemMainHand = player.getInventory().getItemInMainHand();
             Block block = event.getBlock();
             Material material = block.getBlockData().getMaterial();
 
-            if (CustomConfig.getNtrConfig().getStringList("WoodBlocks").contains(material.toString())) {
+            if (config.getStringList("WoodBlocks").contains(material.toString())) {
                 if (!Utils.isHoldingAxe(player)) {
                     event.setDropItems(false);
                 }
             }
 
-            if (CustomConfig.getNtrConfig().getStringList("PlantFiber.Blocks").contains(material.toString())) {
+            if (config.getStringList("PlantFiber.Blocks").contains(material.toString())) {
                 if (util.isHoldingKnife(player)) {
                     if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
-                        double chance = CustomConfig.getNtrConfig().getDouble("PlantFiber.DropChance");
+                        double chance = config.getDouble("PlantFiber.DropChance");
                         Utils.harvestLooting(chance, customItems.getPlantFiber(), false, itemMainHand, block.getLocation());
 
                         if (Utils.decrementDurability(itemMainHand))
@@ -80,6 +82,8 @@ public class NtrEvents implements Listener {
         Player player = event.getPlayer();
 
         if (util.shouldEventBeRan(player, "NoTreePunching")) {
+            FileConfiguration config = CustomConfig.getNtrConfig();
+
             if (Utils.isItemReal(event.getItem())) {
                 if (event.getItem().isSimilar(new ItemStack(Material.FLINT))) {
                     if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
@@ -88,7 +92,7 @@ public class NtrEvents implements Listener {
                             Block block = event.getClickedBlock();
                             Random r = new Random();
 
-                            if (r.nextDouble() <= CustomConfig.getNtrConfig().getDouble("FlintShard.DropChance")) {
+                            if (r.nextDouble() <= config.getDouble("FlintShard.DropChance")) {
                                 ItemStack itemMainHand = player.getInventory().getItemInMainHand();
                                 if (itemMainHand.getAmount() != 1) {
                                     itemMainHand.setAmount(itemMainHand.getAmount() - 1);

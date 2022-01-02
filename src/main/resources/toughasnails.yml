@@ -173,9 +173,14 @@ Temperature:
     TurtleArmor:
       Helmet: 1.0
 Thirst:
+  Decrement:
+    # Chance - The probability that the thirst decreases every "CheckTickTime" number of tucks (1 is highest, 0 is lowest)
+    # Amount - The amount the thirst decreases by, remember that 1 thirst bar = 2.0 units
+    Chance: 0.1   # Higher number means faster draining and vice versa
+    Amount: 1.0
   Dehydration:
-    Limit: 1.0  # Minimum thirst for player to be dehydrated and take damage
-    Damage: 0.5 # How much damage the player takes while dehydrated per "CheckTickTime" number of ticks
+    Limit: 1.0    # Minimum thirst for player to be dehydrated and take damage
+    Damage: 0.5   # How much damage the player takes while dehydrated per "CheckTickTime" number of ticks
   Supplements:
     # 1 thirst bar = 2.0 units
     WaterBottle:

@@ -149,6 +149,20 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
                 Utils.addRecipe(r);
             }
 
+            switch (this.getServer().getVersion()) {
+                case "1.17.0": {
+
+                }
+                case "1.17.1": {
+
+                }
+                case "1.18.0": {
+
+                }
+                case "1.18.1": {
+
+                }
+            }
 
             pm.registerEvents(dragonFight, this);
             pm.registerEvents(dragonGear, this);
@@ -217,8 +231,8 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
 
         pm.registerEvents(playerInitializer, this);
 
-        this.getCommand("Realistic-Survival").setExecutor(commands);
-        this.getCommand("Realistic-Survival").setTabCompleter(tab);
+        this.getCommand("RealisticSurvival").setExecutor(commands);
+        this.getCommand("RealisticSurvival").setTabCompleter(tab);
     }
 
     @Override

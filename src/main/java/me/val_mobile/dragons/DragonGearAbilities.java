@@ -22,6 +22,7 @@ import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
@@ -47,8 +48,8 @@ public class DragonGearAbilities {
     }
 
     // collections to hold all the ice blocks
-    private static Collection<FallingBlock> iceDragonboneBlocks = new ArrayList<>();
-    private static Collection<FallingBlock> iceDragonsteelBlocks = new ArrayList<>();
+    private static final Collection<FallingBlock> iceDragonboneBlocks = new ArrayList<>();
+    private static final Collection<FallingBlock> iceDragonsteelBlocks = new ArrayList<>();
 
     /**
      * Gets all the ice blocks created by using ice dragonbone weapons
@@ -103,9 +104,11 @@ public class DragonGearAbilities {
      * @see DragonGearRunnables
      */
     public void IceDragonboneAbility(LivingEntity entity) {
+        FileConfiguration config = CustomConfig.getIceFireGearConfig();
+
         // store the duration and amplifier of the slowness effect
-        int amplifier = CustomConfig.getIceFireGearConfig().getInt("Abilities.IcedDragonbone.Slowness.Amplifier");
-        int duration = CustomConfig.getIceFireGearConfig().getInt("Abilities.IcedDragonbone.Slowness.Duration");
+        int amplifier = config.getInt("Abilities.IcedDragonbone.Slowness.Amplifier");
+        int duration = config.getInt("Abilities.IcedDragonbone.Slowness.Duration");
 
         // create the slowness effect using the duration and amplifier variables
         PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
@@ -118,7 +121,7 @@ public class DragonGearAbilities {
 
         // encase the entity with ice
         Location loc = entity.getLocation(); // get the location
-        Material material = Material.valueOf(CustomConfig.getIceFireGearConfig().getString("Abilities.IcedDragonbone.Block")); // get the material
+        Material material = Material.valueOf(config.getString("Abilities.IcedDragonbone.Block")); // get the material
         FallingBlock block = entity.getWorld().spawnFallingBlock(loc, material.createBlockData()); // create an ice block
 
         // initialize other temp blocks
@@ -180,7 +183,7 @@ public class DragonGearAbilities {
         entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 1, 1);
 
         // remove the ice block after some time
-        DragonGearRunnables.removeIceDragonboneBlocks().runTaskLater(plugin, CustomConfig.getIceFireGearConfig().getInt("Abilities.IcedDragonbone.FrozenDuration"));
+        DragonGearRunnables.removeIceDragonboneBlocks().runTaskLater(plugin, config.getInt("Abilities.IcedDragonbone.FrozenDuration"));
     }
 
     /**
@@ -190,9 +193,11 @@ public class DragonGearAbilities {
      * @see DragonGearAbilities
      */
     public void IceDragonsteelAbility(LivingEntity entity) {
+        FileConfiguration config = CustomConfig.getIceFireGearConfig();
+
         // store the duration and amplifier of the slowness effect
-        int amplifier = CustomConfig.getIceFireGearConfig().getInt("Abilities.IceDragonsteel.Slowness.Amplifier");
-        int duration = CustomConfig.getIceFireGearConfig().getInt("Abilities.IceDragonsteel.Slowness.Duration");
+        int amplifier = config.getInt("Abilities.IceDragonsteel.Slowness.Amplifier");
+        int duration = config.getInt("Abilities.IceDragonsteel.Slowness.Duration");
 
         // create the slowness effect using the duration and amplifier variables
         PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
@@ -205,7 +210,7 @@ public class DragonGearAbilities {
 
         // encase the entity with ice
         Location loc = entity.getLocation(); // get the location
-        Material material = Material.valueOf(CustomConfig.getIceFireGearConfig().getString("Abilities.IceDragonsteel.Block")); // get the material
+        Material material = Material.valueOf(config.getString("Abilities.IceDragonsteel.Block")); // get the material
 
         FallingBlock block = entity.getWorld().spawnFallingBlock(loc, material.createBlockData()); // create an ice block
 
@@ -268,7 +273,7 @@ public class DragonGearAbilities {
         entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 1, 1);
 
         // remove the ice block after some time
-        DragonGearRunnables.removeIceDragonsteelBlocks().runTaskLater(plugin, CustomConfig.getIceFireGearConfig().getInt("Abilities.IceDragonsteel.FrozenDuration"));
+        DragonGearRunnables.removeIceDragonsteelBlocks().runTaskLater(plugin, config.getInt("Abilities.IceDragonsteel.FrozenDuration"));
     }
 
     /**

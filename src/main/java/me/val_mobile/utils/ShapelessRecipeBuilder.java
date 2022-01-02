@@ -32,7 +32,7 @@ import java.util.Objects;
 
 public class ShapelessRecipeBuilder extends ShapelessRecipe {
 
-    private Collection<Object> ingredients = new ArrayList<>();
+    private final Collection<Object> ingredients = new ArrayList<>();
 
     public ShapelessRecipeBuilder(FileConfiguration config, int index, RealisticSurvivalPlugin instance) {
         super(new NamespacedKey(instance, config.getString(index + ".Key")),
