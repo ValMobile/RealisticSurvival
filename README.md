@@ -32,10 +32,6 @@ You can download stable builds Realistic Survival for free [here](https://www.sp
 Alternatively, you can download development builds in the [Discord server](https://discord.gg/mMt3f4usqK). Development
 builds are less stable but offer the newest features and improvements.
 
-❗ It is recommended to use development builds since
-they are the most recent version of Realistic Survival and also receive the most frequent updates!   
-In fact, "stable" builds are so outdated that bug reports from them won't be accepted at all.
-
 ## 📷 Screenshots
 Here are some nice pictures of Realistic Survival. 
 If you have some cool screenshots 
