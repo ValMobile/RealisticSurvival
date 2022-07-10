@@ -1,0 +1,1732 @@
+#######################################
+#          Spartan and Fire           #
+#######################################
+
+# Customize the Spartan and Fire weapons
+
+# BonusDamage - How much extra damage is done to the opposite dragon type
+# NOTE: Flamed dragon bone weapons do 8.0 extra damage to ice dragons and vice versa, and
+# lighting dragon bone weapons do 4.0 extra damage to both fire and ice dragons in the official Ice and Fire mod.
+# NOTE: BonusDamage also affects extra damage for appropriate spartan's weapons
+
+# Amplifier - Potency of the potion effect
+# Amplifiers are 1 value stronger than they appear
+# Ex: An amplifier of 0 corresponds to Slowness I
+# Duration and FrozenDuration measured in ticks (20 ticks = 1 second)
+
+Items:
+  # Rapiers
+  dragonbone_rapier:
+    Enabled: true
+    Attributes:
+      AttackDamage: 4.5
+      AttackSpeed: 2.4
+  dragonbone_flamed_rapier:
+    Enabled: true
+    Attributes:
+      AttackDamage: 5.25
+      AttackSpeed: 2.4
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_rapier:
+    Enabled: true
+    Attributes:
+      AttackDamage: 5.25
+      AttackSpeed: 2.4
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10    # Determines how long a mob is encased in ice
+    BonusDamage: 8.0
+    # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+    Block: "ICE"          # What block the mob is encased in, default is ice
+  dragonbone_lightning_rapier:
+    Enabled: true
+    Attributes:
+      AttackDamage: 5.25
+      AttackSpeed: 2.4
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_rapier:
+    Enabled: true
+    Attributes:
+      AttackDamage: 13.0
+      AttackSpeed: 2.4
+    FireTicks: 400
+  dragonsteel_ice_rapier:
+    Enabled: true
+    Attributes:
+      AttackDamage: 13.0
+      AttackSpeed: 2.4
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_rapier:
+    Enabled: true
+    Attributes:
+      AttackDamage: 13.0
+      AttackSpeed: 2.4
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Katanas
+
+  dragonbone_katana:
+    Enabled: true
+    Attributes:
+      AttackDamage: 5.5
+      AttackSpeed: 2.0
+  dragonbone_flamed_katana:
+    Enabled: true
+    Attributes:
+      AttackDamage: 6.5
+      AttackSpeed: 2.0
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_katana:
+    Enabled: true
+    Attributes:
+      AttackDamage: 6.5
+      AttackSpeed: 2.0
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_katana:
+    Enabled: true
+    Attributes:
+      AttackDamage: 6.5
+      AttackSpeed: 2.0
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_katana:
+    Enabled: true
+    Attributes:
+      AttackDamage: 14.0
+      AttackSpeed: 2.0
+    FireTicks: 400
+  dragonsteel_ice_katana:
+    Enabled: true
+    Attributes:
+      AttackDamage: 14.0
+      AttackSpeed: 2.0
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_katana:
+    Enabled: true
+    Attributes:
+      AttackDamage: 14.0
+      AttackSpeed: 2.0
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Greatswords
+
+  dragonbone_greatsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 14.0
+      AttackSpeed: 1.4
+  dragonbone_flamed_greatsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 17.0
+      AttackSpeed: 1.4
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_greatsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 17.0
+      AttackSpeed: 1.4
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_greatsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 17.0
+      AttackSpeed: 1.4
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_greatsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 48.0
+      AttackSpeed: 1.4
+    FireTicks: 400
+  dragonsteel_ice_greatsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 48.0
+      AttackSpeed: 1.4
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_greatsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 48.0
+      AttackSpeed: 1.4
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Longswords
+
+  dragonbone_longsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 10.5
+      AttackSpeed: 1.4
+  dragonbone_flamed_longsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 12.75
+      AttackSpeed: 1.4
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_longsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 12.75
+      AttackSpeed: 1.4
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_longsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 12.75
+      AttackSpeed: 1.4
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_longsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 36.0
+      AttackSpeed: 1.4
+    FireTicks: 400
+  dragonsteel_ice_longsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 36.0
+      AttackSpeed: 1.4
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_longsword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 36.0
+      AttackSpeed: 1.4
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Spears
+
+  dragonbone_spear:
+    Enabled: true
+    Attributes:
+      AttackDamage: 6.5
+      AttackSpeed: 1.4
+  dragonbone_flamed_spear:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.25
+      AttackSpeed: 1.4
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_spear:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.25
+      AttackSpeed: 1.4
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_spear:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.25
+      AttackSpeed: 1.4
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_spear:
+    Enabled: true
+    Attributes:
+      AttackDamage: 15.0
+      AttackSpeed: 1.4
+    FireTicks: 400
+  dragonsteel_ice_spear:
+    Enabled: true
+    Attributes:
+      AttackDamage: 15.0
+      AttackSpeed: 1.4
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_spear:
+    Enabled: true
+    Attributes:
+      AttackDamage: 15.0
+      AttackSpeed: 1.4
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Sabers
+
+  dragonbone_saber:
+    Enabled: true
+    Attributes:
+      AttackDamage: 6.5
+      AttackSpeed: 1.6
+  dragonbone_flamed_saber:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.25
+      AttackSpeed: 1.6
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_saber:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.25
+      AttackSpeed: 1.6
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_saber:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.25
+      AttackSpeed: 1.6
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_saber:
+    Enabled: true
+    Attributes:
+      AttackDamage: 15.0
+      AttackSpeed: 1.6
+    FireTicks: 400
+  dragonsteel_ice_saber:
+    Enabled: true
+    Attributes:
+      AttackDamage: 15.0
+      AttackSpeed: 1.6
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_saber:
+    Enabled: true
+    Attributes:
+      AttackDamage: 15.0
+      AttackSpeed: 1.6
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Boomerangs
+
+  dragonbone_boomerang:
+    Enabled: true
+    Attributes:
+      AttackDamage: 8.0
+      AttackSpeed: 2.0
+  dragonbone_flamed_boomerang:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 2.0
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_boomerang:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 2.0
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_boomerang:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 2.0
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_boomerang:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 2.0
+    FireTicks: 400
+  dragonsteel_ice_boomerang:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 2.0
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_boomerang:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 2.0
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Daggers
+
+  dragonbone_dagger:
+    Enabled: true
+    Attributes:
+      AttackDamage: 4.5
+      AttackSpeed: 2.5
+  dragonbone_flamed_dagger:
+    Enabled: true
+    Attributes:
+      AttackDamage: 5.25
+      AttackSpeed: 2.5
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_dagger:
+    Enabled: true
+    Attributes:
+      AttackDamage: 5.25
+      AttackSpeed: 2.5
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_dagger:
+    Enabled: true
+    Attributes:
+      AttackDamage: 5.25
+      AttackSpeed: 2.5
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_dagger:
+    Enabled: true
+    Attributes:
+      AttackDamage: 13.0
+      AttackSpeed: 2.5
+    FireTicks: 400
+  dragonsteel_ice_dagger:
+    Enabled: true
+    Attributes:
+      AttackDamage: 13.0
+      AttackSpeed: 2.5
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_dagger:
+    Enabled: true
+    Attributes:
+      AttackDamage: 13.0
+      AttackSpeed: 2.5
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Glaives
+
+  dragonbone_glaive:
+    Enabled: true
+    Attributes:
+      AttackDamage: 8.0
+      AttackSpeed: 1.0
+  dragonbone_flamed_glaive:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.0
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_glaive:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.0
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_glaive:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.0
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_glaive:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.0
+    FireTicks: 400
+  dragonsteel_ice_glaive:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.0
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_glaive:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.0
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Halberds
+
+  dragonbone_halberd:
+    Enabled: true
+    Attributes:
+      AttackDamage: 16.5
+      AttackSpeed: 1.2
+  dragonbone_flamed_halberd:
+    Enabled: true
+    Attributes:
+      AttackDamage: 20.25
+      AttackSpeed: 1.2
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_halberd:
+    Enabled: true
+    Attributes:
+      AttackDamage: 20.25
+      AttackSpeed: 1.2
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_halberd:
+    Enabled: true
+    Attributes:
+      AttackDamage: 20.25
+      AttackSpeed: 1.2
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_halberd:
+    Enabled: true
+    Attributes:
+      AttackDamage: 59.0
+      AttackSpeed: 1.2
+    FireTicks: 400
+  dragonsteel_ice_halberd:
+    Enabled: true
+    Attributes:
+      AttackDamage: 59.0
+      AttackSpeed: 1.2
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_halberd:
+    Enabled: true
+    Attributes:
+      AttackDamage: 59.0
+      AttackSpeed: 1.2
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Hammers
+
+  dragonbone_hammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 10.0
+      AttackSpeed: 0.8
+  dragonbone_flamed_hammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 11.5
+      AttackSpeed: 0.8
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_hammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 11.5
+      AttackSpeed: 0.8
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_hammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 11.5
+      AttackSpeed: 0.8
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_hammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 27.0
+      AttackSpeed: 0.8
+    FireTicks: 400
+  dragonsteel_ice_hammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 27.0
+      AttackSpeed: 0.8
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_hammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 27.0
+      AttackSpeed: 0.8
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Javelins
+
+  dragonbone_javelin:
+    Enabled: true
+    Attributes:
+      AttackDamage: 3.5
+      AttackSpeed: 1.2
+  dragonbone_flamed_javelin:
+    Enabled: true
+    Attributes:
+      AttackDamage: 4.25
+      AttackSpeed: 1.2
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_javelin:
+    Enabled: true
+    Attributes:
+      AttackDamage: 4.25
+      AttackSpeed: 1.2
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_javelin:
+    Enabled: true
+    Attributes:
+      AttackDamage: 4.25
+      AttackSpeed: 1.2
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_javelin:
+    Enabled: true
+    Attributes:
+      AttackDamage: 12.0
+      AttackSpeed: 1.2
+    FireTicks: 400
+  dragonsteel_ice_javelin:
+    Enabled: true
+    Attributes:
+      AttackDamage: 12.0
+      AttackSpeed: 1.2
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_javelin:
+    Enabled: true
+    Attributes:
+      AttackDamage: 12.0
+      AttackSpeed: 1.2
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Lances
+
+  dragonbone_lance:
+    Enabled: true
+    Attributes:
+      AttackDamage: 8.0
+      AttackSpeed: 1.0
+  dragonbone_flamed_lance:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.0
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_lance:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.0
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_lance:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.0
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_lance:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.0
+    FireTicks: 400
+  dragonsteel_ice_lance:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.0
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_lance:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.0
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Maces
+
+  dragonbone_mace:
+    Enabled: true
+    Attributes:
+      AttackDamage: 8.0
+      AttackSpeed: 1.2
+  dragonbone_flamed_mace:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.2
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_mace:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.2
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_mace:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.2
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_mace:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.2
+    FireTicks: 400
+  dragonsteel_ice_mace:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.2
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_mace:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.2
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Pikes
+
+  dragonbone_pike:
+    Enabled: true
+    Attributes:
+      AttackDamage: 6.0
+      AttackSpeed: 1.4
+  dragonbone_flamed_pike:
+    Enabled: true
+    Attributes:
+      AttackDamage: 6.75
+      AttackSpeed: 1.4
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_pike:
+    Enabled: true
+    Attributes:
+      AttackDamage: 6.75
+      AttackSpeed: 1.4
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_pike:
+    Enabled: true
+    Attributes:
+      AttackDamage: 6.75
+      AttackSpeed: 1.4
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_pike:
+    Enabled: true
+    Attributes:
+      AttackDamage: 14.5
+      AttackSpeed: 1.4
+    FireTicks: 400
+  dragonsteel_ice_pike:
+    Enabled: true
+    Attributes:
+      AttackDamage: 14.5
+      AttackSpeed: 1.4
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_pike:
+    Enabled: true
+    Attributes:
+      AttackDamage: 14.5
+      AttackSpeed: 1.4
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Quarterstaffs
+
+  dragonbone_quarterstaff:
+    Enabled: true
+    Attributes:
+      AttackDamage: 5.5
+      AttackSpeed: 1.4
+  dragonbone_flamed_quarterstaff:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.0
+      AttackSpeed: 1.4
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_quarterstaff:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.0
+      AttackSpeed: 1.4
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_quarterstaff:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.0
+      AttackSpeed: 1.4
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_quarterstaff:
+    Enabled: true
+    Attributes:
+      AttackDamage: 22.5
+      AttackSpeed: 1.4
+    FireTicks: 400
+  dragonsteel_ice_quarterstaff:
+    Enabled: true
+    Attributes:
+      AttackDamage: 22.5
+      AttackSpeed: 1.4
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_quarterstaff:
+    Enabled: true
+    Attributes:
+      AttackDamage: 22.5
+      AttackSpeed: 1.4
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Tomahawk
+
+  dragonbone_tomahawk:
+    Enabled: true
+    Attributes:
+      AttackDamage: 6.0
+      AttackSpeed: 0.9
+  dragonbone_flamed_tomahawk:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.5
+      AttackSpeed: 0.9
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_tomahawk:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.5
+      AttackSpeed: 0.9
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_tomahawk:
+    Enabled: true
+    Attributes:
+      AttackDamage: 7.5
+      AttackSpeed: 0.9
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_tomahawk:
+    Enabled: true
+    Attributes:
+      AttackDamage: 23.0
+      AttackSpeed: 0.9
+    FireTicks: 400
+  dragonsteel_ice_tomahawk:
+    Enabled: true
+    Attributes:
+      AttackDamage: 23.0
+      AttackSpeed: 0.9
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_tomahawk:
+    Enabled: true
+    Attributes:
+      AttackDamage: 23.0
+      AttackSpeed: 0.9
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Throwing Knives
+
+  dragonbone_throwing_knife:
+    Enabled: true
+    Attributes:
+      AttackDamage: 3.5
+      AttackSpeed: 2.5
+  dragonbone_flamed_throwing_knife:
+    Enabled: true
+    Attributes:
+      AttackDamage: 4.25
+      AttackSpeed: 2.5
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_throwing_knife:
+    Enabled: true
+    Attributes:
+      AttackDamage: 4.25
+      AttackSpeed: 2.5
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_throwing_knife:
+    Enabled: true
+    Attributes:
+      AttackDamage: 4.25
+      AttackSpeed: 2.5
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_throwing_knife:
+    Enabled: true
+    Attributes:
+      AttackDamage: 12.0
+      AttackSpeed: 2.5
+    FireTicks: 400
+  dragonsteel_ice_throwing_knife:
+    Enabled: true
+    Attributes:
+      AttackDamage: 12.0
+      AttackSpeed: 2.5
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_throwing_knife:
+    Enabled: true
+    Attributes:
+      AttackDamage: 12.0
+      AttackSpeed: 2.5
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Warhammers
+
+  dragonbone_warhammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 8.0
+      AttackSpeed: 1.1
+  dragonbone_flamed_warhammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.1
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_warhammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.1
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_warhammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.1
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_warhammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.1
+    FireTicks: 400
+  dragonsteel_ice_warhammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.1
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_warhammer:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.1
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Battleaxes
+
+  dragonbone_battleaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 13.0
+      AttackSpeed: 1.0
+  dragonbone_flamed_battleaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 16.0
+      AttackSpeed: 1.0
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_battleaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 16.0
+      AttackSpeed: 1.0
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_battleaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 16.0
+      AttackSpeed: 1.0
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_battleaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 47.0
+      AttackSpeed: 1.0
+    FireTicks: 400
+  dragonsteel_ice_battleaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 47.0
+      AttackSpeed: 1.0
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_battleaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 47.0
+      AttackSpeed: 1.0
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Longbows
+
+  dragonbone_longbow:
+    AttackDamageMultiplier: 1.75
+    ArrowVelocityMultiplier: 1.75
+  dragonbone_flamed_longbow:
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_longbow:
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_longbow:
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_longbow:
+    AttackDamageMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0
+    FireTicks: 400
+  dragonsteel_ice_longbow:
+    AttackDamageMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_longbow:
+    AttackDamageMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Crossbows
+
+  dragonbone_crossbow:
+    AttackDamageMultiplier: 1.75
+    ArrowVelocityMultiplier: 1.75
+  dragonbone_flamed_crossbow:
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_crossbow:
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_crossbow:
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 2.0
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_crossbow:
+    AttackDamageMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0
+    FireTicks: 400
+  dragonsteel_ice_crossbow:
+    AttackDamageMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_crossbow:
+    AttackDamageMultiplier: 3.0
+    ArrowVelocityMultiplier: 3.0
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+# Customize recipes
+# Requires restart upon changing
+Recipes:
+  # Dragonbone Weapons
+  dragonbone_rapier:
+    Enabled: true # true = enabled, false = disabled
+    Unlock: true  # true = recipes unlocked automatically, false = recipes not unlocked until crafted
+  dragonbone_katana:
+    Enabled: true
+    Unlock: true
+  dragonbone_greatsword:
+    Enabled: true
+    Unlock: true
+  dragonbone_longsword:
+    Enabled: true
+    Unlock: true
+  dragonbone_spear:
+    Enabled: true
+    Unlock: true
+  dragonbone_saber:
+    Enabled: true
+    Unlock: true
+  dragonbone_boomerang:
+    Enabled: true
+    Unlock: true
+  dragonbone_dagger:
+    Enabled: true
+    Unlock: true
+  dragonbone_glaive:
+    Enabled: true
+    Unlock: true
+  dragonbone_halberd:
+    Enabled: true
+    Unlock: true
+  dragonbone_hammer:
+    Enabled: true
+    Unlock: true
+  dragonbone_javelin:
+    Enabled: true
+    Unlock: true
+  dragonbone_lance:
+    Enabled: true
+    Unlock: true
+  dragonbone_mace:
+    Enabled: true
+    Unlock: true
+  dragonbone_pike:
+    Enabled: true
+    Unlock: true
+  dragonbone_quarterstaff:
+    Enabled: true
+    Unlock: true
+  dragonbone_tomahawk:
+    Enabled: true
+    Unlock: true
+  dragonbone_throwing_knife:
+    Enabled: true
+    Unlock: true
+  dragonbone_warhammer:
+    Enabled: true
+    Unlock: true
+  dragonbone_battleaxe:
+    Enabled: true
+    Unlock: true
+  dragonbone_longbow:
+    Enabled: true
+    Unlock: true
+  dragonbone_crossbow:
+    Enabled: true
+    Unlock: true
+
+  # Flamed Dragonbone Weapons
+
+  dragonbone_flamed_rapier:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_katana:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_greatsword:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_longsword:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_spear:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_saber:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_boomerang:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_dagger:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_glaive:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_halberd:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_hammer:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_javelin:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_lance:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_mace:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_pike:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_quarterstaff:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_tomahawk:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_throwing_knife:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_warhammer:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_battleaxe:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_longbow:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_crossbow:
+    Enabled: true
+    Unlock: true
+
+  # Iced Dragonbone Weapons
+
+  dragonbone_iced_rapier:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_katana:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_greatsword:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_longsword:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_spear:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_saber:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_boomerang:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_dagger:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_glaive:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_halberd:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_hammer:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_javelin:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_lance:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_mace:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_pike:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_quarterstaff:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_tomahawk:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_throwing_knife:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_warhammer:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_battleaxe:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_longbow:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_crossbow:
+    Enabled: true
+    Unlock: true
+
+  # Lightning Dragonbone Weapons
+
+  dragonbone_lightning_rapier:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_katana:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_greatsword:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_longsword:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_spear:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_saber:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_boomerang:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_dagger:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_glaive:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_halberd:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_hammer:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_javelin:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_lance:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_mace:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_pike:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_quarterstaff:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_tomahawk:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_throwing_knife:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_warhammer:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_battleaxe:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_longbow:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_crossbow:
+    Enabled: true
+    Unlock: true
+
+  # Fire Dragonsteel Weapons
+
+  dragonsteel_fire_rapier:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_katana:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_greatsword:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_longsword:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_spear:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_saber:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_boomerang:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_dagger:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_glaive:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_halberd:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_hammer:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_javelin:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_lance:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_mace:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_pike:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_quarterstaff:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_tomahawk:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_throwing_knife:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_warhammer:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_battleaxe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_longbow:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_crossbow:
+    Enabled: true
+    Unlock: true
+
+  # Ice Dragonsteel Weapons
+
+  dragonsteel_ice_rapier:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_katana:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_greatsword:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_longsword:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_spear:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_saber:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_boomerang:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_dagger:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_glaive:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_halberd:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_hammer:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_javelin:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_lance:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_mace:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_pike:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_quarterstaff:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_tomahawk:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_throwing_knife:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_warhammer:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_battleaxe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_longbow:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_crossbow:
+    Enabled: true
+    Unlock: true
+
+  # Lightning Dragonsteel Weapons
+
+  dragonsteel_lightning_rapier:
+    Enabled: false
+  dragonsteel_lightning_katana:
+    Enabled: false
+  dragonsteel_lightning_greatsword:
+    Enabled: false
+  dragonsteel_lightning_longsword:
+    Enabled: false
+  dragonsteel_lightning_spear:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_saber:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_boomerang:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_dagger:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_glaive:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_halberd:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_hammer:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_javelin:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_lance:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_mace:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_pike:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_quarterstaff:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_tomahawk:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_throwing_knife:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_warhammer:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_battleaxe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_longbow:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_crossbow:
+    Enabled: true
+    Unlock: true
+
+  # Miscellaneous Items
+
+  witherbone_handle:
+    Enabled: true
+    Unlock: true
+  witherbone_pole:
+    Enabled: true
+    Unlock: true

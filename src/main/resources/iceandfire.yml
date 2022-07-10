@@ -1,0 +1,1588 @@
+#######################################
+#          Ice and Fire               #
+#######################################
+
+# Customize the Ice and Fire gear and the mobs
+# If you're looking to customize the Spartan's weaponry items, look in "spartanweaponry.yml"
+
+Dragons:
+  WorldGen:
+    FireDragon:
+      Chance: 0.2             # Chance out of 1.0 that a dragon nest spawns per chunk
+      UndergroundChance: 0.5  # Chance that a dragon nest that spawns is underground
+      MinBiomeTemp: -0.5      # What biomes should be eligible for spawning based on their temperature?
+      MaxBiomeTemp: 999.9     # Uses Minecraft biome temperature values listed here: https://minecraft.fandom.com/wiki/Biome
+      Biomes:
+        - ""
+    IceDragon:
+      Chance: 0.2
+      UndergroundChance: 0.5
+      MinBiomeTemp: -999.9
+      MaxBiomeTemp: -0.5
+      Biomes:
+        - ""
+    LightningDragon:
+      Chance: 0.2
+      UndergroundChance: 0.5
+      MinBiomeTemp: 999.9     # Autoconfigured to only spawn in predefined biomes as per the canon Ice and Fire mod, not in biomes with a certain temperature
+      MaxBiomeTemp: 999.9
+      Biomes:
+        - "JUNGLE"
+        - "JUNGLE_HILLS"
+        - "JUNGLE_EDGE"
+        - "BAMBOO_JUNGLE"
+        - "BAMBOO_JUNGLE_HILLS"
+        - "MODIFIED_JUNGLE"
+        - "MODIFIED_JUNGLE_EDGE"
+        - "BADLANDS"
+        - "BADLANDS_PLATEAU"
+        - "ERODED_BADLANDS"
+        - "MODIFIED_BADLANDS_PLATEAU"
+        - "SAVANNA"
+        - "SAVANNA_PLATEAU"
+        - "SHATTERED_SAVANNA"
+        - "SHATTERED_SAVANNA_PLATEAU"
+  Behavior:
+    FireDragon:
+      BreathAttack:
+        Chance: 0.2   # Only other attack is explosion, if this is set to 1.0 then all attacks will be breath and none will be explosion
+        # The following settings already work well for a good dragon fight
+        # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+        LayerBlock: "FIRE"            # The block that replaces air blocks directly above surface blocks
+        BurntBlock: "BLACKSTONE"      # The block which flammable blocks get turned into
+        CharredBlock: "SMOOTH_BASALT" # The block which inflammable blocks get turned into
+        VelocityConstant: 30          # Determines the speed of the breath flame
+        MinimumRadius: 2              # Minimum radius of charring
+        DespawnTime: 200              # How long it takes for the breath attack to despawn in ticks
+        SpecialBlocks:                # Specify the exact block you want something to be burnt into, overrides "BurntBlock" and "CharredBlock"
+          "ENUM_1: 'ENUM_2'"          # Follows the format of "BLOCK_1: "BLOCK_2" ", see the ice dragon section for an example
+        ImmuneBlocks: # Specify which blocks are immune to breath attacks
+          - "OBSIDIAN"
+          - "BEDROCK"
+      ExplosionAttack:
+    IceDragon:
+      BreathAttack:
+        Chance: 0.2
+        LayerBlock: "SNOW"
+        FrozenBlock: "PACKED_ICE"
+        VelocityConstant: 30
+        MinimumRadius: 2
+        DespawnTime: 200
+        SpecialBlocks:
+          WATER: "PACKED_ICE"
+          LAVA: "OBSIDIAN"
+        ImmuneBlocks:
+          - "OBSIDIAN"
+          - "BEDROCK"
+      ExplosionAttack:
+    LightningDragon:
+      BreathAttack:
+        Chance: 0.2
+        LayerBlock: "FIRE"
+        CrackledBlock: "BLACKSTONE"
+        VelocityConstant: 30
+        MinimumRadius: 2
+        DespawnTime: 200
+        SpecialBlocks:
+        ImmuneBlocks:
+          - "OBSIDIAN"
+          - "BEDROCK"
+      ExplosionAttack:
+
+Abilities:
+  TideGuardian:
+    WaterBreathing:
+      MaxAmplifier: 3
+    Strength:
+      MaxAmplifier: 3
+    TickTime: 20
+
+# BonusDamage - How much extra damage is done to the opposite dragon type
+# NOTE: Flamed dragon bone weapons do 8.0 extra damage to ice dragons and vice versa, and
+# lighting dragon bone weapons do 4.0 extra damage to both fire and ice dragons in the official Ice and Fire mod.
+# NOTE: BonusDamage also affects extra damage for appropriate spartan's weapons
+
+# Amplifier - Potency of the potion effect
+# Amplifiers are 1 value stronger than they appear
+# Ex: An amplifier of 0 corresponds to Slowness I
+# Duration and FrozenDuration measured in ticks (20 ticks = 1 second)
+
+# DamageReduction - How much is the damage of dragon attacks reduced per each piece of armor
+# 1.0 = full damage reduction
+Items:
+  dragonbone:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 6
+        MaxAmount: 18
+  witherbone:
+    Enabled: true
+    MobDrops:
+      WITHER:
+        Type: "Range"
+        MinAmount: 20
+        MaxAmount: 40
+  dragonscale_blue:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  dragonscale_bronze:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  dragonscale_gray:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  dragonscale_green:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  dragonscale_red:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  dragonscale_sapphire:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  dragonscale_silver:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  dragonscale_white:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  dragonscale_amethyst:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  dragonscale_black:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  dragonscale_copper:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  dragonscale_electric:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  sea_serpent_scale_blue:
+    Enabled: true
+    MobDrops:
+      ELDER_GUARDIAN:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  sea_serpent_scale_bronze:
+    Enabled: true
+    MobDrops:
+      ELDER_GUARDIAN:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  sea_serpent_scale_deepblue:
+    Enabled: true
+    MobDrops:
+      ELDER_GUARDIAN:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  sea_serpent_scale_green:
+    Enabled: true
+    MobDrops:
+      ELDER_GUARDIAN:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  sea_serpent_scale_purple:
+    Enabled: true
+    MobDrops:
+      ELDER_GUARDIAN:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  sea_serpent_scale_red:
+    Enabled: true
+    MobDrops:
+      ELDER_GUARDIAN:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  sea_serpent_scale_teal:
+    Enabled: true
+    MobDrops:
+      ELDER_GUARDIAN:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 20
+  shiny_scale:
+    Enabled: true
+    MobDrops:
+      GUARDIAN:
+        Type: "Range"
+        MinAmount: 1
+        MaxAmount: 3
+  dragon_blood_fire:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 3
+        MaxAmount: 8
+  dragon_blood_ice:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 3
+        MaxAmount: 8
+  dragon_blood_lightning:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 3
+        MaxAmount: 8
+  dragon_heart_fire:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Single"
+        Chance: 1.00
+  dragon_heart_ice:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Single"
+        Chance: 1.00
+  dragon_heart_lightning:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Single"
+        Chance: 1.00
+  dragon_skull_fire:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Single"
+        Chance: 1.00
+  dragon_skull_ice:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Single"
+        Chance: 1.00
+  dragon_skull_lightning:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Single"
+        Chance: 1.00
+  dragon_flesh_fire:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 3
+        MaxAmount: 8
+  dragon_flesh_ice:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 3
+        MaxAmount: 8
+  dragon_flesh_lightning:
+    Enabled: true
+    MobDrops:
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 3
+        MaxAmount: 8
+  dragonsteel_fire_ingot:
+    Enabled: true
+  dragonsteel_ice_ingot:
+    Enabled: true
+  dragonsteel_lightning_ingot:
+    Enabled: true
+  dragonsteel_fire_block:
+    Enabled: true
+  dragonsteel_ice_block:
+    Enabled: true
+  dragonsteel_lightning_block:
+    Enabled: true
+  # Pickaxes
+  dragonbone_pickaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 8.0
+      AttackSpeed: 1.2
+  dragonsteel_fire_pickaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 26.0
+      AttackSpeed: 1.2
+    FireTicks: 400
+  dragonsteel_ice_pickaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 26.0
+      AttackSpeed: 1.2
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10    # Determines how long a mob is encased in ice
+    # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+    Block: "PACKED_ICE"   # What block the mob is encased in, default is ice
+  dragonsteel_lightning_pickaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 26.0
+      AttackSpeed: 1.2
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Axes
+
+  dragonbone_axe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 10.0
+      AttackSpeed: 1.0
+  dragonsteel_fire_axe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 30.0
+      AttackSpeed: 1.0
+    FireTicks: 400
+  dragonsteel_ice_axe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 30.0
+      AttackSpeed: 1.0
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_axe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 30.0
+      AttackSpeed: 1.0
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Shovels
+
+  dragonbone_shovel:
+    Enabled: true
+    Attributes:
+      AttackDamage: 6.5
+      AttackSpeed: 1.0
+  dragonsteel_fire_shovel:
+    Enabled: true
+    Attributes:
+      AttackDamage: 26.5
+      AttackSpeed: 1.0
+    FireTicks: 400
+  dragonsteel_ice_shovel:
+    Enabled: true
+    Attributes:
+      AttackDamage: 26.5
+      AttackSpeed: 1.0
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_shovel:
+    Enabled: true
+    Attributes:
+      AttackDamage: 26.5
+      AttackSpeed: 1.0
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Hoes
+
+  dragonbone_hoe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 1.0
+      AttackSpeed: 1.0
+  dragonsteel_fire_hoe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 2.0
+      AttackSpeed: 1.0
+    FireTicks: 400
+  dragonsteel_ice_hoe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 2.0
+      AttackSpeed: 1.0
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_hoe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 2.0
+      AttackSpeed: 1.0
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Swords
+
+  dragonbone_sword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 8.0
+      AttackSpeed: 1.6
+  dragonbone_flamed_sword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.6
+    FireTicks: 200
+    BonusDamage: 8.0
+  dragonbone_iced_sword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.6
+    Slowness:
+      Amplifier: 4
+      Duration: 30
+    FrozenDuration: 10
+    BonusDamage: 8.0
+    Block: "ICE"
+  dragonbone_lightning_sword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 9.5
+      AttackSpeed: 1.6
+    ShockDamage: 0.2
+    ShockAmount: 10
+    BonusDamage: 4.0
+  dragonsteel_fire_sword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.6
+    FireTicks: 400
+  dragonsteel_ice_sword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.6
+    Slowness:
+      Amplifier: 4
+      Duration: 60
+    FrozenDuration: 10
+    Block: "PACKED_ICE"
+  dragonsteel_lightning_sword:
+    Enabled: true
+    Attributes:
+      AttackDamage: 25.0
+      AttackSpeed: 1.6
+    ShockDamage: 0.4
+    ShockAmount: 20
+
+  # Bows
+
+  dragonbone_bow:
+    Enabled: true
+    AttackDamageMultiplier: 1.75
+    ArrowVelocityMultiplier: 1.75
+
+  # Helmets
+
+  dragonscale_helmet_blue:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_helmet_bronze:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_helmet_gray:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_helmet_green:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_helmet_red:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_helmet_sapphire:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_helmet_silver:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_helmet_white:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_helmet_amethyst:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_helmet_black:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_helmet_copper:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_helmet_electric:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  tide_guardian_helmet_blue:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_helmet_bronze:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_helmet_deepblue:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_helmet_green:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_helmet_purple:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_helmet_red:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_helmet_teal:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  dragonsteel_fire_helmet:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+  dragonsteel_ice_helmet:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+  dragonsteel_lightning_helmet:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+
+  # Chestplates
+
+  dragonscale_chestplate_blue:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_chestplate_bronze:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_chestplate_gray:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_chestplate_green:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_chestplate_red:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_chestplate_sapphire:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_chestplate_silver:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_chestplate_white:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_chestplate_amethyst:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_chestplate_black:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_chestplate_copper:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_chestplate_electric:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  tide_guardian_chestplate_blue:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_chestplate_bronze:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_chestplate_deepblue:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_chestplate_green:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_chestplate_purple:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_chestplate_red:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_chestplate_teal:
+    Enabled: true
+    Attributes:
+      Armor: 12.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  dragonsteel_fire_chestplate:
+    Enabled: true
+    Attributes:
+      Armor: 12.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+  dragonsteel_ice_chestplate:
+    Enabled: true
+    Attributes:
+      Armor: 12.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+  dragonsteel_lightning_chestplate:
+    Enabled: true
+    Attributes:
+      Armor: 12.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+
+  # Leggings
+
+  dragonscale_leggings_blue:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_leggings_bronze:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_leggings_gray:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_leggings_green:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_leggings_red:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_leggings_sapphire:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_leggings_silver:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_leggings_white:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_leggings_amethyst:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_leggings_black:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_leggings_copper:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_leggings_electric:
+    Enabled: true
+    Attributes:
+      Armor: 7.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  tide_guardian_leggings_blue:
+    Enabled: true
+    Attributes:
+      Armor: 8.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_leggings_bronze:
+    Enabled: true
+    Attributes:
+      Armor: 8.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_leggings_deepblue:
+    Enabled: true
+    Attributes:
+      Armor: 8.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_leggings_green:
+    Enabled: true
+    Attributes:
+      Armor: 8.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_leggings_purple:
+    Enabled: true
+    Attributes:
+      Armor: 8.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_leggings_red:
+    Enabled: true
+    Attributes:
+      Armor: 8.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_leggings_teal:
+    Enabled: true
+    Attributes:
+      Armor: 8.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  dragonsteel_fire_leggings:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+  dragonsteel_ice_leggings:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+  dragonsteel_lightning_leggings:
+    Enabled: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+
+  # Boots
+
+  dragonscale_boots_blue:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_boots_bronze:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_boots_gray:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_boots_green:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_boots_red:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_boots_sapphire:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_boots_silver:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_boots_white:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_boots_amethyst:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_boots_black:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_boots_copper:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  dragonscale_boots_electric:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 2.0
+    DragonDamageReduction: 0.1
+  tide_guardian_boots_blue:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_boots_bronze:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_boots_deepblue:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_boots_green:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_boots_purple:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_boots_red:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  tide_guardian_boots_teal:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 2.5
+    WaterBreathing:
+      Amplifier: 0
+      Duration: 270
+    Strength:
+      Amplifier: 0
+      Duration: 270
+  dragonsteel_fire_boots:
+    Enabled: true
+    Attributes:
+      Armor: 6.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+  dragonsteel_ice_boots:
+    Enabled: true
+    Attributes:
+      Armor: 6.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+  dragonsteel_lightning_boots:
+    Enabled: true
+    Attributes:
+      Armor: 6.0
+      Toughness: 6.0
+    DragonDamageReduction: 0.2
+
+Recipes:
+  dragonscale_helmet_blue:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_blue:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_blue:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_blue:
+    Enabled: true
+    Unlock: true
+  dragonscale_helmet_bronze:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_bronze:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_bronze:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_bronze:
+    Enabled: true
+    Unlock: true
+  dragonscale_helmet_gray:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_gray:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_gray:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_gray:
+    Enabled: true
+    Unlock: true
+  dragonscale_helmet_green:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_green:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_green:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_green:
+    Enabled: true
+    Unlock: true
+  dragonscale_helmet_red:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_red:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_red:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_red:
+    Enabled: true
+    Unlock: true
+  dragonscale_helmet_sapphire:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_sapphire:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_sapphire:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_sapphire:
+    Enabled: true
+    Unlock: true
+  dragonscale_helmet_silver:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_silver:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_silver:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_silver:
+    Enabled: true
+    Unlock: true
+  dragonscale_helmet_white:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_white:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_white:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_white:
+    Enabled: true
+    Unlock: true
+  dragonscale_helmet_amethyst:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_amethyst:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_amethyst:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_amethyst:
+    Enabled: true
+    Unlock: true
+  dragonscale_helmet_black:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_black:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_black:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_black:
+    Enabled: true
+    Unlock: true
+  dragonscale_helmet_copper:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_copper:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_copper:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_copper:
+    Enabled: true
+    Unlock: true
+  dragonscale_helmet_electric:
+    Enabled: true
+    Unlock: true
+  dragonscale_chestplate_electric:
+    Enabled: true
+    Unlock: true
+  dragonscale_leggings_electric:
+    Enabled: true
+    Unlock: true
+  dragonscale_boots_electric:
+    Enabled: true
+    Unlock: true
+  tide_guardian_helmet_blue:
+    Enabled: true
+    Unlock: true
+  tide_guardian_chestplate_blue:
+    Enabled: true
+    Unlock: true
+  tide_guardian_leggings_blue:
+    Enabled: true
+    Unlock: true
+  tide_guardian_boots_blue:
+    Enabled: true
+    Unlock: true
+  tide_guardian_helmet_bronze:
+    Enabled: true
+    Unlock: true
+  tide_guardian_chestplate_bronze:
+    Enabled: true
+    Unlock: true
+  tide_guardian_leggings_bronze:
+    Enabled: true
+    Unlock: true
+  tide_guardian_boots_bronze:
+    Enabled: true
+    Unlock: true
+  tide_guardian_helmet_deepblue:
+    Enabled: true
+    Unlock: true
+  tide_guardian_chestplate_deepblue:
+    Enabled: true
+    Unlock: true
+  tide_guardian_leggings_deepblue:
+    Enabled: true
+    Unlock: true
+  tide_guardian_boots_deepblue:
+    Enabled: true
+    Unlock: true
+  tide_guardian_helmet_green:
+    Enabled: true
+    Unlock: true
+  tide_guardian_chestplate_green:
+    Enabled: true
+    Unlock: true
+  tide_guardian_leggings_green:
+    Enabled: true
+    Unlock: true
+  tide_guardian_boots_green:
+    Enabled: true
+    Unlock: true
+  tide_guardian_helmet_purple:
+    Enabled: true
+    Unlock: true
+  tide_guardian_chestplate_purple:
+    Enabled: true
+    Unlock: true
+  tide_guardian_leggings_purple:
+    Enabled: true
+    Unlock: true
+  tide_guardian_boots_purple:
+    Enabled: true
+    Unlock: true
+  tide_guardian_helmet_red:
+    Enabled: true
+    Unlock: true
+  tide_guardian_chestplate_red:
+    Enabled: true
+    Unlock: true
+  tide_guardian_leggings_red:
+    Enabled: true
+    Unlock: true
+  tide_guardian_boots_red:
+    Enabled: true
+    Unlock: true
+  tide_guardian_helmet_teal:
+    Enabled: true
+    Unlock: true
+  tide_guardian_chestplate_teal:
+    Enabled: true
+    Unlock: true
+  tide_guardian_leggings_teal:
+    Enabled: true
+    Unlock: true
+  tide_guardian_boots_teal:
+    Enabled: true
+    Unlock: true
+  dragonbone_pickaxe:
+    Enabled: true
+    Unlock: true
+  dragonbone_axe:
+    Enabled: true
+    Unlock: true
+  dragonbone_shovel:
+    Enabled: true
+    Unlock: true
+  dragonbone_hoe:
+    Enabled: true
+    Unlock: true
+  dragonbone_sword:
+    Enabled: true
+    Unlock: true
+  dragonbone_bow:
+    Enabled: true
+    Unlock: true
+  dragonbone_flamed_sword:
+    Enabled: true
+    Unlock: true
+  dragonbone_iced_sword:
+    Enabled: true
+    Unlock: true
+  dragonbone_lightning_sword:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_sword:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_pickaxe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_axe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_shovel:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_hoe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_helmet:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_chestplate:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_leggings:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_boots:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_sword:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_pickaxe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_axe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_shovel:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_hoe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_helmet:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_chestplate:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_leggings:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_boots:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_sword:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_pickaxe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_axe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_shovel:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_hoe:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_helmet:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_chestplate:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_leggings:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_boots:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_ingot:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_ingot:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_ingot:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_block:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_block:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_block:
+    Enabled: true
+    Unlock: true
+  dragonsteel_fire_ingot_block:
+    Enabled: true
+    Unlock: true
+  dragonsteel_ice_ingot_block:
+    Enabled: true
+    Unlock: true
+  dragonsteel_lightning_ingot_block:
+    Enabled: true
+    Unlock: true

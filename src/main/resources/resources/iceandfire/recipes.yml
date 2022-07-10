@@ -1,0 +1,1071 @@
+#######################################
+#          Ice and Fire Recipes       #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+dragonscale_helmet_blue:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_blue"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_blue|dragonscale_blue|dragonscale_blue"
+    - "dragonscale_blue||dragonscale_blue"
+dragonscale_chestplate_blue:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_blue"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_blue||dragonscale_blue"
+    - "dragonscale_blue|dragonscale_blue|dragonscale_blue"
+    - "dragonscale_blue|dragonscale_blue|dragonscale_blue"
+dragonscale_leggings_blue:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_blue"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_blue|dragonscale_blue|dragonscale_blue"
+    - "dragonscale_blue||dragonscale_blue"
+    - "dragonscale_blue||dragonscale_blue"
+dragonscale_boots_blue:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_blue"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_blue||dragonscale_blue"
+    - "dragonscale_blue||dragonscale_blue"
+dragonscale_helmet_bronze:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_bronze"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_bronze|dragonscale_bronze|dragonscale_bronze"
+    - "dragonscale_bronze||dragonscale_bronze"
+dragonscale_chestplate_bronze:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_bronze"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_bronze||dragonscale_bronze"
+    - "dragonscale_bronze|dragonscale_bronze|dragonscale_bronze"
+    - "dragonscale_bronze|dragonscale_bronze|dragonscale_bronze"
+dragonscale_leggings_bronze:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_bronze"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_bronze|dragonscale_bronze|dragonscale_bronze"
+    - "dragonscale_bronze||dragonscale_bronze"
+    - "dragonscale_bronze||dragonscale_bronze"
+dragonscale_boots_bronze:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_bronze"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_bronze||dragonscale_bronze"
+    - "dragonscale_bronze||dragonscale_bronze"
+dragonscale_helmet_gray:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_gray"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_gray|dragonscale_gray|dragonscale_gray"
+    - "dragonscale_gray||dragonscale_gray"
+dragonscale_chestplate_gray:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_gray"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_gray||dragonscale_gray"
+    - "dragonscale_gray|dragonscale_gray|dragonscale_gray"
+    - "dragonscale_gray|dragonscale_gray|dragonscale_gray"
+dragonscale_leggings_gray:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_gray"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_gray|dragonscale_gray|dragonscale_gray"
+    - "dragonscale_gray||dragonscale_gray"
+    - "dragonscale_gray||dragonscale_gray"
+dragonscale_boots_gray:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_gray"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_gray||dragonscale_gray"
+    - "dragonscale_gray||dragonscale_gray"
+dragonscale_helmet_green:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_green"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_green|dragonscale_green|dragonscale_green"
+    - "dragonscale_green||dragonscale_green"
+dragonscale_chestplate_green:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_green"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_green||dragonscale_green"
+    - "dragonscale_green|dragonscale_green|dragonscale_green"
+    - "dragonscale_green|dragonscale_green|dragonscale_green"
+dragonscale_leggings_green:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_green"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_green|dragonscale_green|dragonscale_green"
+    - "dragonscale_green||dragonscale_green"
+    - "dragonscale_green||dragonscale_green"
+dragonscale_boots_green:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_green"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_green||dragonscale_green"
+    - "dragonscale_green||dragonscale_green"
+dragonscale_helmet_red:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_red"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_red|dragonscale_red|dragonscale_red"
+    - "dragonscale_red||dragonscale_red"
+dragonscale_chestplate_red:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_red"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_red||dragonscale_red"
+    - "dragonscale_red|dragonscale_red|dragonscale_red"
+    - "dragonscale_red|dragonscale_red|dragonscale_red"
+dragonscale_leggings_red:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_red"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_red|dragonscale_red|dragonscale_red"
+    - "dragonscale_red||dragonscale_red"
+    - "dragonscale_red||dragonscale_red"
+dragonscale_boots_red:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_red"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_red||dragonscale_red"
+    - "dragonscale_red||dragonscale_red"
+dragonscale_helmet_sapphire:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_sapphire"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_sapphire|dragonscale_sapphire|dragonscale_sapphire"
+    - "dragonscale_sapphire||dragonscale_sapphire"
+dragonscale_chestplate_sapphire:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_sapphire"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_sapphire||dragonscale_sapphire"
+    - "dragonscale_sapphire|dragonscale_sapphire|dragonscale_sapphire"
+    - "dragonscale_sapphire|dragonscale_sapphire|dragonscale_sapphire"
+dragonscale_leggings_sapphire:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_sapphire"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_sapphire|dragonscale_sapphire|dragonscale_sapphire"
+    - "dragonscale_sapphire||dragonscale_sapphire"
+    - "dragonscale_sapphire||dragonscale_sapphire"
+dragonscale_boots_sapphire:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_sapphire"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_sapphire||dragonscale_sapphire"
+    - "dragonscale_sapphire||dragonscale_sapphire"
+dragonscale_helmet_silver:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_silver"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_silver|dragonscale_silver|dragonscale_silver"
+    - "dragonscale_silver||dragonscale_silver"
+dragonscale_chestplate_silver:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_silver"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_silver||dragonscale_silver"
+    - "dragonscale_silver|dragonscale_silver|dragonscale_silver"
+    - "dragonscale_silver|dragonscale_silver|dragonscale_silver"
+dragonscale_leggings_silver:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_silver"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_silver|dragonscale_silver|dragonscale_silver"
+    - "dragonscale_silver||dragonscale_silver"
+    - "dragonscale_silver||dragonscale_silver"
+dragonscale_boots_silver:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_silver"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_silver||dragonscale_silver"
+    - "dragonscale_silver||dragonscale_silver"
+dragonscale_helmet_white:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_white"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_white|dragonscale_white|dragonscale_white"
+    - "dragonscale_white||dragonscale_white"
+dragonscale_chestplate_white:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_white"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_white||dragonscale_white"
+    - "dragonscale_white|dragonscale_white|dragonscale_white"
+    - "dragonscale_white|dragonscale_white|dragonscale_white"
+dragonscale_leggings_white:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_white"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_white|dragonscale_white|dragonscale_white"
+    - "dragonscale_white||dragonscale_white"
+    - "dragonscale_white||dragonscale_white"
+dragonscale_boots_white:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_white"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_white||dragonscale_white"
+    - "dragonscale_white||dragonscale_white"
+dragonscale_helmet_amethyst:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_amethyst"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_amethyst|dragonscale_amethyst|dragonscale_amethyst"
+    - "dragonscale_amethyst||dragonscale_amethyst"
+dragonscale_chestplate_amethyst:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_amethyst"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_amethyst||dragonscale_amethyst"
+    - "dragonscale_amethyst|dragonscale_amethyst|dragonscale_amethyst"
+    - "dragonscale_amethyst|dragonscale_amethyst|dragonscale_amethyst"
+dragonscale_leggings_amethyst:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_amethyst"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_amethyst|dragonscale_amethyst|dragonscale_amethyst"
+    - "dragonscale_amethyst||dragonscale_amethyst"
+    - "dragonscale_amethyst||dragonscale_amethyst"
+dragonscale_boots_amethyst:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_amethyst"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_amethyst||dragonscale_amethyst"
+    - "dragonscale_amethyst||dragonscale_amethyst"
+dragonscale_helmet_black:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_black"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_black|dragonscale_black|dragonscale_black"
+    - "dragonscale_black||dragonscale_black"
+dragonscale_chestplate_black:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_black"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_black||dragonscale_black"
+    - "dragonscale_black|dragonscale_black|dragonscale_black"
+    - "dragonscale_black|dragonscale_black|dragonscale_black"
+dragonscale_leggings_black:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_black"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_black|dragonscale_black|dragonscale_black"
+    - "dragonscale_black||dragonscale_black"
+    - "dragonscale_black||dragonscale_black"
+dragonscale_boots_black:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_black"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_black||dragonscale_black"
+    - "dragonscale_black||dragonscale_black"
+dragonscale_helmet_copper:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_copper"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_copper|dragonscale_copper|dragonscale_copper"
+    - "dragonscale_copper||dragonscale_copper"
+dragonscale_chestplate_copper:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_copper"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_copper||dragonscale_copper"
+    - "dragonscale_copper|dragonscale_copper|dragonscale_copper"
+    - "dragonscale_copper|dragonscale_copper|dragonscale_copper"
+dragonscale_leggings_copper:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_copper"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_copper|dragonscale_copper|dragonscale_copper"
+    - "dragonscale_copper||dragonscale_copper"
+    - "dragonscale_copper||dragonscale_copper"
+dragonscale_boots_copper:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_copper"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_copper||dragonscale_copper"
+    - "dragonscale_copper||dragonscale_copper"
+dragonscale_helmet_electric:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_helmet_electric"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_electric|dragonscale_electric|dragonscale_electric"
+    - "dragonscale_electric||dragonscale_electric"
+dragonscale_chestplate_electric:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_chestplate_electric"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_electric||dragonscale_electric"
+    - "dragonscale_electric|dragonscale_electric|dragonscale_electric"
+    - "dragonscale_electric|dragonscale_electric|dragonscale_electric"
+dragonscale_leggings_electric:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_leggings_electric"
+    Amount: 1
+  Ingredients:
+    - "dragonscale_electric|dragonscale_electric|dragonscale_electric"
+    - "dragonscale_electric||dragonscale_electric"
+    - "dragonscale_electric||dragonscale_electric"
+dragonscale_boots_electric:
+  Type: "Shaped"
+  Result:
+    Item: "dragonscale_boots_electric"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonscale_electric||dragonscale_electric"
+    - "dragonscale_electric||dragonscale_electric"
+tide_guardian_helmet_blue:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_helmet_blue"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_blue|sea_serpent_scale_blue|sea_serpent_scale_blue"
+    - "sea_serpent_scale_blue||sea_serpent_scale_blue"
+tide_guardian_chestplate_blue:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_chestplate_blue"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_blue||sea_serpent_scale_blue"
+    - "sea_serpent_scale_blue|sea_serpent_scale_blue|sea_serpent_scale_blue"
+    - "shiny_scale|sea_serpent_scale_blue|shiny_scale"
+tide_guardian_leggings_blue:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_leggings_blue"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_blue|sea_serpent_scale_blue|sea_serpent_scale_blue"
+    - "sea_serpent_scale_blue||sea_serpent_scale_blue"
+    - "shiny_scale||shiny_scale"
+tide_guardian_boots_blue:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_boots_blue"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_blue||sea_serpent_scale_blue"
+    - "sea_serpent_scale_blue||sea_serpent_scale_blue"
+tide_guardian_helmet_bronze:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_helmet_bronze"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_bronze|sea_serpent_scale_bronze|sea_serpent_scale_bronze"
+    - "sea_serpent_scale_bronze||sea_serpent_scale_bronze"
+tide_guardian_chestplate_bronze:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_chestplate_bronze"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_bronze||sea_serpent_scale_bronze"
+    - "sea_serpent_scale_bronze|sea_serpent_scale_bronze|sea_serpent_scale_bronze"
+    - "shiny_scale|sea_serpent_scale_bronze|shiny_scale"
+tide_guardian_leggings_bronze:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_leggings_bronze"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_bronze|sea_serpent_scale_bronze|sea_serpent_scale_bronze"
+    - "sea_serpent_scale_bronze||sea_serpent_scale_bronze"
+    - "shiny_scale||shiny_scale"
+tide_guardian_boots_bronze:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_boots_bronze"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_bronze||sea_serpent_scale_bronze"
+    - "sea_serpent_scale_bronze||sea_serpent_scale_bronze"
+tide_guardian_helmet_deepblue:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_helmet_deepblue"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_deepblue|sea_serpent_scale_deepblue|sea_serpent_scale_deepblue"
+    - "sea_serpent_scale_deepblue||sea_serpent_scale_deepblue"
+tide_guardian_chestplate_deepblue:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_chestplate_deepblue"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_deepblue||sea_serpent_scale_deepblue"
+    - "sea_serpent_scale_deepblue|sea_serpent_scale_deepblue|sea_serpent_scale_deepblue"
+    - "shiny_scale|sea_serpent_scale_deepblue|shiny_scale"
+tide_guardian_leggings_deepblue:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_leggings_deepblue"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_deepblue|sea_serpent_scale_deepblue|sea_serpent_scale_deepblue"
+    - "sea_serpent_scale_deepblue||sea_serpent_scale_deepblue"
+    - "shiny_scale||shiny_scale"
+tide_guardian_boots_deepblue:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_boots_deepblue"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_deepblue||sea_serpent_scale_deepblue"
+    - "sea_serpent_scale_deepblue||sea_serpent_scale_deepblue"
+tide_guardian_helmet_green:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_helmet_green"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_green|sea_serpent_scale_green|sea_serpent_scale_green"
+    - "sea_serpent_scale_green||sea_serpent_scale_green"
+tide_guardian_chestplate_green:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_chestplate_green"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_green||sea_serpent_scale_green"
+    - "sea_serpent_scale_green|sea_serpent_scale_green|sea_serpent_scale_green"
+    - "shiny_scale|sea_serpent_scale_green|shiny_scale"
+tide_guardian_leggings_green:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_leggings_green"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_green|sea_serpent_scale_green|sea_serpent_scale_green"
+    - "sea_serpent_scale_green||sea_serpent_scale_green"
+    - "shiny_scale||shiny_scale"
+tide_guardian_boots_green:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_boots_green"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_green||sea_serpent_scale_green"
+    - "sea_serpent_scale_green||sea_serpent_scale_green"
+tide_guardian_helmet_purple:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_helmet_purple"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_purple|sea_serpent_scale_purple|sea_serpent_scale_purple"
+    - "sea_serpent_scale_purple||sea_serpent_scale_purple"
+tide_guardian_chestplate_purple:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_chestplate_purple"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_purple||sea_serpent_scale_purple"
+    - "sea_serpent_scale_purple|sea_serpent_scale_purple|sea_serpent_scale_purple"
+    - "shiny_scale|sea_serpent_scale_purple|shiny_scale"
+tide_guardian_leggings_purple:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_leggings_purple"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_purple|sea_serpent_scale_purple|sea_serpent_scale_purple"
+    - "sea_serpent_scale_purple||sea_serpent_scale_purple"
+    - "shiny_scale||shiny_scale"
+tide_guardian_boots_purple:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_boots_purple"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_purple||sea_serpent_scale_purple"
+    - "sea_serpent_scale_purple||sea_serpent_scale_purple"
+tide_guardian_helmet_red:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_helmet_red"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_red|sea_serpent_scale_red|sea_serpent_scale_red"
+    - "sea_serpent_scale_red||sea_serpent_scale_red"
+tide_guardian_chestplate_red:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_chestplate_red"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_red||sea_serpent_scale_red"
+    - "sea_serpent_scale_red|sea_serpent_scale_red|sea_serpent_scale_red"
+    - "shiny_scale|sea_serpent_scale_red|shiny_scale"
+tide_guardian_leggings_red:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_leggings_red"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_red|sea_serpent_scale_red|sea_serpent_scale_red"
+    - "sea_serpent_scale_red||sea_serpent_scale_red"
+    - "shiny_scale||shiny_scale"
+tide_guardian_boots_red:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_boots_red"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_red||sea_serpent_scale_red"
+    - "sea_serpent_scale_red||sea_serpent_scale_red"
+tide_guardian_helmet_teal:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_helmet_teal"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_teal|sea_serpent_scale_teal|sea_serpent_scale_teal"
+    - "sea_serpent_scale_teal||sea_serpent_scale_teal"
+tide_guardian_chestplate_teal:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_chestplate_teal"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_teal||sea_serpent_scale_teal"
+    - "sea_serpent_scale_teal|sea_serpent_scale_teal|sea_serpent_scale_teal"
+    - "shiny_scale|sea_serpent_scale_teal|shiny_scale"
+tide_guardian_leggings_teal:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_leggings_teal"
+    Amount: 1
+  Ingredients:
+    - "sea_serpent_scale_teal|sea_serpent_scale_teal|sea_serpent_scale_teal"
+    - "sea_serpent_scale_teal||sea_serpent_scale_teal"
+    - "shiny_scale||shiny_scale"
+tide_guardian_boots_teal:
+  Type: "Shaped"
+  Result:
+    Item: "tide_guardian_boots_teal"
+    Amount: 1
+  Ingredients:
+    - "shiny_scale||shiny_scale"
+    - "sea_serpent_scale_teal||sea_serpent_scale_teal"
+    - "sea_serpent_scale_teal||sea_serpent_scale_teal"
+dragonbone_pickaxe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_pickaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone|dragonbone"
+    - "|witherbone"
+    - "|witherbone"
+dragonbone_axe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_axe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone"
+    - "dragonbone|witherbone"
+    - "|witherbone"
+dragonbone_shovel:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_shovel"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|witherbone"
+    - "|witherbone"
+dragonbone_hoe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_hoe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone"
+    - "|witherbone"
+    - "|witherbone"
+dragonbone_sword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_sword"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|dragonbone"
+    - "|witherbone"
+dragonbone_bow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_bow"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone|STRING"
+    - "witherbone||STRING"
+    - "|dragonbone|STRING"
+dragonbone_flamed_sword:
+  Type: "Shapeless"
+  Result:
+    Item: "dragonbone_flamed_sword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_sword"
+    - "dragon_blood_fire"
+dragonbone_iced_sword:
+  Type: "Shapeless"
+  Result:
+    Item: "dragonbone_iced_sword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_sword"
+    - "dragon_blood_ice"
+dragonbone_lightning_sword:
+  Type: "Shapeless"
+  Result:
+    Item: "dragonbone_lightning_sword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_sword"
+    - "dragon_blood_lightning"
+dragonsteel_fire_sword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_sword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+    - "|witherbone"
+dragonsteel_fire_pickaxe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_pickaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "|witherbone"
+    - "|witherbone"
+dragonsteel_fire_axe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_axe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "witherbone|dragonsteel_fire_ingot"
+    - "witherbone"
+dragonsteel_fire_shovel:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_shovel"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|witherbone"
+    - "|witherbone"
+dragonsteel_fire_hoe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_hoe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "witherbone"
+    - "witherbone"
+dragonsteel_fire_helmet:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_helmet"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+dragonsteel_fire_chestplate:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_chestplate"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+dragonsteel_fire_leggings:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_leggings"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+dragonsteel_fire_boots:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_boots"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot||dragonsteel_fire_ingot"
+dragonsteel_ice_sword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_sword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+    - "|witherbone"
+dragonsteel_ice_pickaxe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_pickaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "|witherbone"
+    - "|witherbone"
+dragonsteel_ice_axe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_axe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "witherbone|dragonsteel_ice_ingot"
+    - "witherbone"
+dragonsteel_ice_shovel:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_shovel"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|witherbone"
+    - "|witherbone"
+dragonsteel_ice_hoe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_hoe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "witherbone"
+    - "witherbone"
+dragonsteel_ice_helmet:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_helmet"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+dragonsteel_ice_chestplate:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_chestplate"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+dragonsteel_ice_leggings:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_leggings"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+dragonsteel_ice_boots:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_boots"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot||dragonsteel_ice_ingot"
+dragonsteel_lightning_sword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_sword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+    - "|witherbone"
+dragonsteel_lightning_pickaxe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_pickaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "|witherbone"
+    - "|witherbone"
+dragonsteel_lightning_axe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_axe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "witherbone|dragonsteel_lightning_ingot"
+    - "witherbone"
+dragonsteel_lightning_shovel:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_shovel"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|witherbone"
+    - "|witherbone"
+dragonsteel_lightning_hoe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_hoe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "witherbone"
+    - "witherbone"
+dragonsteel_lightning_helmet:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_helmet"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+dragonsteel_lightning_chestplate:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_chestplate"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+dragonsteel_lightning_leggings:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_leggings"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+dragonsteel_lightning_boots:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_boots"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot||dragonsteel_lightning_ingot"
+dragonsteel_fire_ingot:
+  Type: "Shapeless"
+  Result:
+    Item: "dragonsteel_fire_ingot"
+    Amount: 1
+  Ingredients:
+    - "dragon_blood_fire"
+    - "IRON_INGOT"
+    - "NETHERITE_SCRAP"
+dragonsteel_ice_ingot:
+  Type: "Shapeless"
+  Result:
+    Item: "dragonsteel_ice_ingot"
+    Amount: 1
+  Ingredients:
+    - "dragon_blood_ice"
+    - "IRON_INGOT"
+    - "NETHERITE_SCRAP"
+dragonsteel_lightning_ingot:
+  Type: "Shapeless"
+  Result:
+    Item: "dragonsteel_lightning_ingot"
+    Amount: 1
+  Ingredients:
+    - "dragon_blood_lightning"
+    - "IRON_INGOT"
+    - "NETHERITE_SCRAP"
+dragonsteel_fire_block:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_block"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+dragonsteel_ice_block:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_block"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+dragonsteel_lightning_block:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_block"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+dragonsteel_fire_ingot_block:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_ingot"
+    Amount: 9
+  Ingredients:
+    - "dragonsteel_fire_block"
+dragonsteel_ice_ingot_block:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_ingot"
+    Amount: 9
+  Ingredients:
+    - "dragonsteel_ice_block"
+dragonsteel_lightning_ingot_block:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_ingot"
+    Amount: 9
+  Ingredients:
+    - "dragonsteel_lightning_block"

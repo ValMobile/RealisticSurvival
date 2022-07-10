@@ -1,16 +1,28 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.tan;
 
+import me.val_mobile.data.RSVFiles;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.PlayerRunnable;
 import me.val_mobile.utils.Utils;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.apache.commons.lang.WordUtils;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -20,7 +32,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
-import java.util.Random;
+import java.util.SplittableRandom;
 
 public class TanRunnables {
 
@@ -34,9 +46,9 @@ public class TanRunnables {
     private final RealisticSurvivalPlugin plugin;
     private final Utils util;
 
-    public TanRunnables(RealisticSurvivalPlugin instance) {
-        plugin = instance;
-        util = new Utils(instance);
+    public TanRunnables(RealisticSurvivalPlugin plugin) {
+        this.plugin = plugin;
+        util = new Utils(plugin);
     }
 
     public BukkitRunnable getVisualRunnable(Player player) {
@@ -48,7 +60,7 @@ public class TanRunnables {
                 HashMap<String, Double> thirstMap = PlayerRunnable.getThirst();
                 HashMap<String, Boolean> thirstRunMap = PlayerRunnable.getThirstRunnables();
 
-                FileConfiguration tanConfig = CustomConfig.getTanConfig();
+                FileConfiguration tanConfig = RSVFiles.getTanUserConfig();
 
                 GameMode mode = player.getGameMode(); // get the player's name
                 String name = player.getName(); // get the player's name
@@ -70,7 +82,7 @@ public class TanRunnables {
 
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(val.getActionbarText()));
 
-                    if (!(player.isOp() || player.hasPermission("realisticsurvival.toughasnails.resistance.*"))) {
+                    if (!(player.hasPermission("realisticsurvival.toughasnails.resistance.*"))) {
                         String text = "";
 
                         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldvisual")) {
@@ -115,8 +127,9 @@ public class TanRunnables {
                             }
                         }
 
-                        if (!text.equals(""))
+                        if (!text.equals("")) {
                             player.sendTitle(text, "", 0, 70, 0);
+                        }
 
                         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
                             if (thirst <= tanConfig.getDouble("Thirst.Dehydration.Limit"))
@@ -176,7 +189,7 @@ public class TanRunnables {
     public void updateTemperatureThirstValues(Player player) {
         String name = player.getName(); // get the player's name
 
-        FileConfiguration tanConfig = CustomConfig.getTanConfig();
+        FileConfiguration config = RSVFiles.getTanUserConfig();
         HashMap<String, Double> tempMap = PlayerRunnable.getTemperature();
         HashMap<String, Double> thirstMap = PlayerRunnable.getThirst();
 
@@ -188,7 +201,6 @@ public class TanRunnables {
 
         double temp = tempMap.get(player.getName()); // create a variable to store the temperature
         double thirst = thirstMap.get(player.getName()); // create a variable to store the thirst
-
         double biomeTemp = pWorld.getTemperature((int) px, (int) py, (int) pz); // create a variable to store the temperature
 
         if (biomeTemp <= 0.30) {
@@ -209,11 +221,24 @@ public class TanRunnables {
         double environment = 0;
         double regulation = 0;
 
-        Random r = new Random();
+        double thirstChance = config.getDouble("Thirst.Decrement.Chance");
+        double thirstAmount = config.getDouble("Thirst.Decrement.Amount");
+
+        double tempMaxChange = config.getDouble("Temperature.MaxChange");
+        double tempSubmergedWater = config.getDouble("Temperature.SubmergedWater");
+        double tempSubmergedLava = config.getDouble("Temperature.SubmergedLava");
+        double tempStorming = config.getDouble("Temperature.Storming");
+        double tempBurning = config.getDouble("Temperature.Burning");
+        double tempCoolingEnch = config.getDouble("Temperature.Cooling");
+        double tempWarmingEnch = config.getDouble("Temperature.Warming");
+        double tempHoused = config.getDouble("Temperature.Housed");
+
+
+        SplittableRandom r = new SplittableRandom();
 
         if (thirst >= 0.6) {
-            if (r.nextDouble() <= tanConfig.getDouble("Thirst.Decrement.Chance")) {
-                thirst -= tanConfig.getDouble("Thirst.Decrement.Amount");
+            if (r.nextDouble() <= thirstChance) {
+                thirst -= thirstAmount;
             }
         }
 
@@ -225,11 +250,11 @@ public class TanRunnables {
 
                     if (block != null) {
                         String path = "Temperature.Blocks";
-                        ConfigurationSection section = tanConfig.getConfigurationSection(path);
+                        ConfigurationSection section = config.getConfigurationSection(path);
 
                         String material = block.getBlockData().getMaterial().toString();
                         if (section.getKeys(true).contains(material)) {
-                            environment += tanConfig.getDouble(path + "." + material);
+                            environment += config.getDouble(path + "." + material);
                         }
                     }
                 }
@@ -237,22 +262,22 @@ public class TanRunnables {
         }
 
         if (player.isInWater()) {
-            environment += tanConfig.getDouble("Temperature.SubmergedWater");
+            environment += tempSubmergedWater;
         }
         if (pLoc.getBlock() != null) {
             if (pLoc.getBlock().getBlockData().getMaterial() == Material.LAVA) {
-                environment += tanConfig.getDouble("Temperature.SubmergedLava");
+                environment += tempSubmergedLava;
             }
         }
 
         if (!pWorld.isClearWeather()) {
             if (Utils.isExposedToSky(player)) {
-                environment += tanConfig.getDouble("Temperature.Storming");
+                environment += tempStorming;
             }
         }
 
         if (player.getFireTicks() > 0) {
-            environment += tanConfig.getDouble("Temperature.Burning");
+            environment += tempBurning;
         }
 
         for (ItemStack item : player.getInventory().getArmorContents()) {
@@ -264,41 +289,29 @@ public class TanRunnables {
 
                 if (util.hasNbtTag(item, "tan_materials")) {
                     if (util.getNbtTag(item, "tan_materials").equals("Wool")) {
-                        environment += tanConfig.getDouble("Temperature.WoolArmor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
+                        environment += config.getDouble("Temperature.WoolArmor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
                     }
                     else if (util.getNbtTag(item, "tan_materials").equals("Jelled Slime")) {
-                        environment += tanConfig.getDouble("Temperature.JelledSlimeArmor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
+                        environment += config.getDouble("Temperature.JelledSlimeArmor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1)));
                     }
                 }
 
                 if (meta.hasEnchant(TanEnchants.COOLING)) {
-                    environment += tanConfig.getDouble("Temperature.Cooling");
+                    environment += tempCoolingEnch;
                 }
                 if (meta.hasEnchant(TanEnchants.WARMING)) {
-                    environment += tanConfig.getDouble("Temperature.Warming");
+                    environment += tempWarmingEnch;
                 }
             }
         }
 
-        double dif = Math.abs(temp - (normalTemp + environment));
+        double change = normalTemp + environment - temp;
 
-        // if not equal
-        if (dif > 0.01) {
-            int sign = (temp > normalTemp + environment) ? -1 : 1;
-
-            if (dif < tanConfig.getDouble("Temperature.MaxChange")) {
-                temp += dif * sign;
-            }
-            else {
-                temp += tanConfig.getDouble("Temperature.MaxChange") * sign;
-            }
-        }
+        int sign = temp + change > NEUTRAL_TEMPERATURE ? -1 : 1;
 
         if (temp != NEUTRAL_TEMPERATURE) {
-            int sign = (temp > NEUTRAL_TEMPERATURE) ? -1 : 1;
-
             if (!Utils.isExposedToSky(player)) {
-                regulation += tanConfig.getDouble("Temperature.Housed") * sign;
+                regulation += tempHoused * sign;
             }
 
             for (ItemStack item : player.getInventory().getArmorContents()) {
@@ -333,10 +346,10 @@ public class TanRunnables {
                         case NETHERITE_BOOTS:
                         case TURTLE_HELMET:
                             if (!util.hasNbtTag(item, "tan_materials")) {
-                                regulation += tanConfig.getDouble("Temperature.Regulation." + WordUtils.capitalizeFully(s.substring(0, s.indexOf('_'))) + "Armor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1))) * sign;
+                                regulation += config.getDouble("Temperature.Regulation." + WordUtils.capitalizeFully(s.substring(0, s.indexOf('_'))) + "Armor." + WordUtils.capitalizeFully(s.substring(s.indexOf('_') + 1))) * sign;
 
                                 if (item.getItemMeta().hasEnchant(TanEnchants.OZZY_LINER)) {
-                                    regulation += tanConfig.getDouble("Temperature.Regulation.OzzyLiner") * sign;
+                                    regulation += config.getDouble("Temperature.Regulation.OzzyLiner") * sign;
                                 }
                             }
                     }
@@ -345,29 +358,55 @@ public class TanRunnables {
 
             // negative regulation
             if (sign == -1) {
-                if (temp + regulation <= NEUTRAL_TEMPERATURE) {
-                    temp = NEUTRAL_TEMPERATURE;
+                if (sign * regulation < tempMaxChange) {
+                    if (temp + regulation <= NEUTRAL_TEMPERATURE) {
+                        temp = NEUTRAL_TEMPERATURE;
+                    }
+                    else {
+                        temp += regulation;
+                    }
                 }
                 else {
-                    temp += regulation;
+                    if (temp + tempMaxChange <= NEUTRAL_TEMPERATURE) {
+                        temp = NEUTRAL_TEMPERATURE;
+                    }
+                    else {
+                        temp += tempMaxChange;
+                    }
                 }
             }
             // positive regulation
             else {
-                if (temp + regulation >= NEUTRAL_TEMPERATURE) {
-                    temp = NEUTRAL_TEMPERATURE;
+                if (sign * regulation < tempMaxChange) {
+                    if (temp + regulation >= NEUTRAL_TEMPERATURE) {
+                        temp = NEUTRAL_TEMPERATURE;
+                    }
+                    else {
+                        temp += regulation;
+                    }
                 }
                 else {
-                    temp += regulation;
+                    if (temp + sign * tempMaxChange >= NEUTRAL_TEMPERATURE) {
+                        temp = NEUTRAL_TEMPERATURE;
+                    }
+                    else {
+                        temp += tempMaxChange;
+                    }
                 }
             }
 
         }
 
+        change += regulation;
+
+        if (Math.abs(change) < tempMaxChange) {
+            temp += change;
+        }
+        else {
+            temp += tempMaxChange * ((change > 0) ? 1 : -1);
+        }
+
         if (temp != NEUTRAL_TEMPERATURE) {
-            if (player.isOp()) {
-                temp = NEUTRAL_TEMPERATURE;
-            }
             if (temp < NEUTRAL_TEMPERATURE && player.hasPermission("realisticsurvival.toughasnails.resistance.cold")) {
                 temp = NEUTRAL_TEMPERATURE;
             }
@@ -377,7 +416,7 @@ public class TanRunnables {
         }
 
         if (thirst < LOWEST_THIRST) {
-            if (player.isOp() || player.hasPermission("realisticsurvival.toughasnails.resistance.thirst")) {
+            if (player.hasPermission("realisticsurvival.toughasnails.resistance.thirst")) {
                 thirst = LOWEST_THIRST;
             }
         }
@@ -407,7 +446,7 @@ public class TanRunnables {
     public void startTemperatureThirstRunnable(Player player) {
         String name = player.getName(); // get the player's name
 
-        FileConfiguration config = CustomConfig.getTanConfig();
+        FileConfiguration config = RSVFiles.getTanUserConfig();
         HashMap<String, Boolean> tempRunMap = PlayerRunnable.getTemperatureRunnables();
         HashMap<String, Boolean> thirstRunMap = PlayerRunnable.getThirstRunnables();
 

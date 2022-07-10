@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2021  Val_Mobile
+    Copyright (C) 2022  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,8 +29,8 @@ public class BStats {
     private static final int ID = 13786;
     private final Metrics metrics;
 
-    public BStats(RealisticSurvivalPlugin instance) {
-        metrics = new Metrics(instance, ID);
+    public BStats(RealisticSurvivalPlugin plugin) {
+        metrics = new Metrics(plugin, ID);
     }
 
     public void recordData() {

@@ -1,0 +1,621 @@
+#######################################
+#          Baubles Recipes            #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+dragons_eye_fire_dragon:
+  Type: "Shaped"
+  Result:
+    Item: "dragons_eye"
+    Amount: 1
+  Ingredients:
+    - "ring_enchanted_eyes|DIAMOND_SWORD|glowing_gem"
+    - "DIAMOND_SWORD|dragon_skull_fire|DIAMOND_SWORD"
+    - "glowing_gem|DIAMOND_SWORD|glowing_gem"
+dragons_eye_ice_dragon:
+  Type: "Shaped"
+  Result:
+    Item: "dragons_eye"
+    Amount: 1
+  Ingredients:
+    - "ring_enchanted_eyes|DIAMOND_SWORD|glowing_gem"
+    - "DIAMOND_SWORD|dragon_skull_ice|DIAMOND_SWORD"
+    - "glowing_gem|DIAMOND_SWORD|glowing_gem"
+dragons_eye_lightning_dragon:
+  Type: "Shaped"
+  Result:
+    Item: "dragons_eye"
+    Amount: 1
+  Ingredients:
+    - "ring_enchanted_eyes|DIAMOND_SWORD|glowing_gem"
+    - "DIAMOND_SWORD|dragon_skull_lightning|DIAMOND_SWORD"
+    - "glowing_gem|DIAMOND_SWORD|glowing_gem"
+dragons_eye_ender_dragon:
+  Type: "Shaped"
+  Result:
+    Item: "dragons_eye"
+    Amount: 1
+  Ingredients:
+    - "ring_enchanted_eyes|DIAMOND_SWORD|glowing_gem"
+    - "DIAMOND_SWORD|DRAGON_HEAD|DIAMOND_SWORD"
+    - "glowing_gem|DIAMOND_SWORD|glowing_gem"
+poison_stone:
+  Type: "Shaped"
+  Result:
+    Item: "poison_stone"
+    Amount: 1
+  Ingredients:
+    - "glowing_ingot|FERMENTED_SPIDER_EYE|glowing_ingot"
+    - "FERMENTED_SPIDER_EYE|bezoar|FERMENTED_SPIDER_EYE"
+    - "glowing_ingot|FERMENTED_SPIDER_EYE|glowing_ingot"
+potion_ring_resistance:
+  Type: "Shaped"
+  Result:
+    Item: "potion_ring_resistance"
+    Amount: 1
+  Ingredients:
+    - "DIAMOND_BLOCK|DIAMOND"
+    - "DIAMOND|potion_ring|DIAMOND"
+    - "|DIAMOND"
+potion_ring_regeneration:
+  Type: "Shaped"
+  Result:
+    Item: "potion_ring_resistance"
+    Amount: 1
+  Ingredients:
+    - "NETHER_STAR|GHAST_TEAR"
+    - "GHAST_TEAR|potion_ring|GHAST_TEAR"
+    - "|GHAST_TEAR"
+potion_ring_haste:
+  Type: "Shaped"
+  Result:
+    Item: "potion_ring_resistance"
+    Amount: 1
+  Ingredients:
+    - "EMERALD_BLOCK|EMERALD"
+    - "EMERALD|potion_ring|EMERALD"
+    - "|EMERALD"
+potion_ring_strength:
+  Type: "Shaped"
+  Result:
+    Item: "potion_ring_resistance"
+    Amount: 1
+  Ingredients:
+    - "MAGMA_BLOCK|BLAZE_POWDER"
+    - "BLAZE_POWDER|potion_ring|BLAZE_POWDER"
+    - "|BLAZE_POWDER"
+potion_ring_speed:
+  Type: "Shaped"
+  Result:
+    Item: "potion_ring_resistance"
+    Amount: 1
+  Ingredients:
+    - "REDSTONE_BLOCK|SUGAR"
+    - "SUGAR|potion_ring|SUGAR"
+    - "|SUGAR"
+potion_ring_jump_boost:
+  Type: "Shaped"
+  Result:
+    Item: "potion_ring_resistance"
+    Amount: 1
+  Ingredients:
+    - "SLIME_BLOCK|SUGAR"
+    - "SUGAR|potion_ring|SUGAR"
+    - "|SUGAR"
+ender_queens_crown:
+  Type: "Shaped"
+  Result:
+    Item: "ender_queens_crown"
+    Amount: 1
+  Ingredients:
+    - "ENDER_EYE|ENDER_EYE|ENDER_EYE"
+    - "END_ROD|END_CRYSTAL|END_ROD"
+    - "glowing_gem|glowing_gem|glowing_gem"
+sunglasses:
+  Type: "Shaped"
+  Result:
+    Item: "sunglasses"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt||spectral_silt"
+    - "GLASS|STICK|GLASS"
+    - "spectral_silt||spectral_silt"
+balloon:
+  Type: "Shaped"
+  Result:
+    Item: "balloon"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt|WOOL|spectral_silt"
+    - "WOOL|spectral_silt|WOOL"
+    - "spectral_silt|WOOL|spectral_silt"
+cobalt_shield:
+  Type: "Shaped"
+  Result:
+    Item: "cobalt_shield"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt|spectral_silt|spectral_silt"
+    - "spectral_silt|SHIELD|spectral_silt"
+    - "spectral_silt|spectral_silt|spectral_silt"
+obsidian_skull:
+  Type: "Shaped"
+  Result:
+    Item: "obsidian_skull"
+    Amount: 1
+  Ingredients:
+    - "OBSIDIAN|BLAZE_POWDER|OBSIDIAN"
+    - "potion_fire_resistance|WITHER_SKELETON_SKULL|potion_fire_resistance"
+    - "OBSIDIAN|BLAZE_POWDER|OBSIDIAN"
+obsidian_shield:
+  Type: "Anvil"
+  Result:
+    Item: "obsidian_shield"
+    Amount: 1
+  LeftIngredient:
+    Item: "cobalt_shield"
+    Amount: 1
+  RightIngredient:
+    Item: "obsidian_skull"
+    Amount: 1
+  RepairCost: 10
+  MaximumRepairCost: 10
+ring_free_action:
+  Type: "Anvil"
+  Result:
+    Item: "ring_free_action"
+    Amount: 1
+  LeftIngredient:
+    Item: "ring_overclocking"
+    Amount: 1
+  RightIngredient:
+    Item: "shulker_heart"
+    Amount: 1
+  RepairCost: 10
+  MaximumRepairCost: 10
+ender_dragonscale:
+  Type: "Shaped"
+  Result:
+    Item: "cracked_black_dragonscale"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt|spectral_silt|spectral_silt"
+    - "spectral_silt|ender_dragonscale|spectral_silt"
+    - "spectral_silt|spectral_silt|spectral_silt"
+cracked_black_dragonscale:
+  Type: "Shaped"
+  Result:
+    Item: "cracked_black_dragonscale"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt|spectral_silt|spectral_silt"
+    - "spectral_silt|ender_dragonscale|spectral_silt"
+    - "spectral_silt|spectral_silt|spectral_silt"
+black_dragonscale_bauble:
+  Type: "Shaped"
+  Result:
+    Item: "black_dragonscale_bauble"
+    Amount: 1
+  Ingredients:
+    - "NETHER_STAR|ender_dragonscale|cracked_black_dragonscale"
+mixed_color_dragonscale:
+  Type: "Anvil"
+  Result:
+    Item: "mixed_color_dragonscale"
+    Amount: 1
+  LeftIngredient:
+    Item: "bezoar"
+    Amount: 1
+  RightIngredient:
+    Item: "black_dragonscale_bauble"
+    Amount: 1
+  RepairCost: 10
+  MaximumRepairCost: 10
+ankh_charm:
+  Type: "Shaped"
+  Result:
+    Item: "ankh_charm"
+    Amount: 1
+  Ingredients:
+    - "GOLD_INGOT|sunglasses|GOLD_INGOT"
+    - "ring_free_action|mixed_color_dragonscale|forbidden_fruit"
+    - "GOLD_INGOT|vitamins|GOLD_INGOT"
+ankh_shield:
+  Type: "Anvil"
+  Result:
+    Item: "ankh_shield"
+    Amount: 1
+  LeftIngredient:
+    Item: "obsidian_shield"
+    Amount: 1
+  RightIngredient:
+    Item: "ankh_charm"
+    Amount: 1
+  RepairCost: 10
+  MaximumRepairCost: 10
+scarlite_ring:
+  Type: "Shaped"
+  Result:
+    Item: "scarlite_ring"
+    Amount: 1
+  Ingredients:
+    - "REDSTONE|IRON_INGOT"
+    - "IRON_INGOT|FERMENTED_SPIDER_EYE|IRON_INGOT"
+    - "|IRON_INGOT"
+disintegration_tablet:
+  Type: "Shaped"
+  Result:
+    Item: "disintegration_tablet"
+    Amount: 1
+  Ingredients:
+    - "QUARTZ|BLAZE_POWDER|QUARTZ"
+    - "BLAZE_POWDER|REDSTONE|BLAZE_POWDER"
+    - "QUARTZ|BLAZE_POWDER|QUARTZ"
+cross_necklace:
+  Type: "Shaped"
+  Result:
+    Item: "cross_necklace"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt|GOLD_INGOT|spectral_silt"
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "spectral_silt|GOLD_INGOT|spectral_silt"
+wrath_pendant:
+  Type: "Shaped"
+  Result:
+    Item: "wrath_pendant"
+    Amount: 1
+  Ingredients:
+    - "|BONE"
+    - "BONE|sin_pendant|BONE"
+    - "|SKULL"
+pride_pendant:
+  Type: "Shapeless"
+  Result:
+    Item: "pride_pendant"
+    Amount: 1
+  Ingredients:
+    - "sin_pendant"
+    - "golden_crown"
+golden_crown:
+  Type: "Shaped"
+  Result:
+    Item: "golden_crown"
+    Amount: 1
+  Ingredients:
+    - "|REDSTONE"
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "GOLD_INGOT||GOLD_INGOT"
+gluttony_pendant:
+  Type: "Shaped"
+  Result:
+    Item: "gluttony_pendant"
+    Amount: 1
+  Ingredients:
+    - "|CAKE"
+    - "|sin_pendant"
+    - "|GOLDEN_APPLE"
+sin_pendant:
+  Type: "Shaped"
+  Result:
+    Item: "sin_pendant"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt|STRING|spectral_silt"
+    - "spectral_silt|silver_ingot|spectral_silt"
+    - "spectral_silt|spectral_silt|spectral_silt"
+phytoprotostasia_amulet:
+  Type: "Shaped"
+  Result:
+    Item: "phytoprotostasia_amulet"
+    Amount: 1
+  Ingredients:
+    - "STRING|STRING|STRING"
+    - "PURPLE_DYE|IRON_INGOT|PURPLE_DYE"
+    - "VINE|FERMENTED_SPIDER_EYE|VINE"
+potion_ring:
+  Type: "Shaped"
+  Result:
+    Item: "potion_ring"
+    Amount: 1
+  Ingredients:
+    - "LAPIS_BLOCK|GOLD_INGOT|"
+    - "GOLD_INGOT|silver_ingot|GOLD_INGOT"
+    - "|GOLD_INGOT"
+emerald_ring:
+  Type: "Shaped"
+  Result:
+    Item: "emerald_ring"
+    Amount: 1
+  Ingredients:
+    - "|EMERALD|"
+    - "GOLD_INGOT||GOLD_INGOT"
+    - "|GOLD_INGOT"
+emerald_amulet:
+  Type: "Shaped"
+  Result:
+    Item: "emerald_amulet"
+    Amount: 1
+  Ingredients:
+    - "spectral_silt|GOLD_INGOT|spectral_silt"
+    - "GOLD_INGOT||GOLD_INGOT"
+    - "spectral_silt|GOLD_INGOT|spectral_silt"
+glowing_ingot:
+  Type: "Shaped"
+  Result:
+    Item: "glowing_ingot"
+    Amount: 1
+  Ingredients:
+    - "GLOWSTONE_DUST|BLAZE_POWDER|GLOWSTONE_DUST"
+    - "BLAZE_POWDER|silver_ingot|BLAZE_POWDER"
+    - "GLOWSTONE_DUST|BLAZE_POWDER|GLOWSTONE_DUST"
+glowing_ingot_powder:
+  Type: "Shaped"
+  Result:
+    Item: "glowing_ingot"
+    Amount: 1
+  Ingredients:
+    - "glowing_powder|glowing_powder"
+    - "glowing_powder|glowing_powder"
+glowing_powder:
+  Type: "Shapeless"
+  Result:
+    Item: "glowing_powder"
+    Amount: 4
+  Ingredients:
+    - "glowing_ingot"
+glowing_gem:
+  Type: "Shaped"
+  Result:
+    Item: "glowing_gem"
+    Amount: 1
+  Ingredients:
+    - "glowing_ingot|glowing_powder|glowing_ingot"
+    - "glowing_powder|DIAMOND_BLOCK|glowing_powder"
+    - "glowing_ingot|glowing_powder|glowing_ingot"
+dwarf_stout:
+  Type: "Shaped"
+  Result:
+    Item: "dwarf_stout"
+    Amount: 1
+  Ingredients:
+    - "glowing_ingot|IRON_PICKAXE|glowing_ingot"
+    - "DRAGON_BREATH|ring_dwarves|DRAGON_BREATH"
+    - "glowing_ingot|RABBIT_STEW|glowing_ingot"
+fairy_dew:
+  Type: "Shaped"
+  Result:
+    Item: "fairy_dew"
+    Amount: 1
+  Ingredients:
+    - "glowing_powder|GHAST_TEAR|glowing_powder"
+    - "DRAGON_BREATH|ring_fairies|DRAGON_BREATH"
+    - "glowing_powder|WATER_BUCKET|glowing_powder"
+ring_enchanted_eyes:
+  Type: "Shaped"
+  Result:
+    Item: "ring_enchanted_eyes"
+    Amount: 1
+  Ingredients:
+    - "glowing_ingot|IRON_INGOT"
+    - "IRON_INGOT|GOLDEN_CARROT|IRON_INGOT"
+    - "|IRON_INGOT"
+stone_sea:
+  Type: "Shaped"
+  Result:
+    Item: "stone_sea"
+    Amount: 1
+  Ingredients:
+    - "FISH|glowing_ingot|FISH"
+    - "glowing_ingot|PRISMARINE_CRYSTALS|glowing_ingot"
+    - "FISH|glowing_ingot|FISH"
+polarized_stone:
+  Type: "Shaped"
+  Result:
+    Item: "polarized_stone"
+    Amount: 1
+  Ingredients:
+    - "IRON_BLOCK|glowing_ingot|IRON_BLOCK"
+    - "glowing_ingot|REDSTONE_BLOCK|glowing_ingot"
+    - "IRON_BLOCK|glowing_ingot|IRON_BLOCK"
+wither_ring_nether_star:
+  Type: "Shaped"
+  Result:
+    Item: "wither_ring"
+    Amount: 1
+  Ingredients:
+    - "glowing_ingot|IRON_INGOT|glowing_ingot"
+    - "IRON_INGOT|NETHER_STAR|IRON_INGOT"
+    - "glowing_ingot|IRON_INGOT|glowing_ingot"
+wither_ring_wither_skeleton_skull:
+  Type: "Shaped"
+  Result:
+    Item: "wither_ring"
+    Amount: 1
+  Ingredients:
+    - "glowing_ingot|IRON_INGOT|glowing_ingot"
+    - "IRON_INGOT|WITHER_SKELETON_SKULL|IRON_INGOT"
+    - "glowing_ingot|IRON_INGOT|glowing_ingot"
+wither_ring_ice_dragon_skull:
+  Type: "Shaped"
+  Result:
+    Item: "wither_ring"
+    Amount: 1
+  Ingredients:
+    - "glowing_ingot|IRON_INGOT|glowing_ingot"
+    - "IRON_INGOT|dragon_skull_ice|IRON_INGOT"
+    - "glowing_ingot|IRON_INGOT|glowing_ingot"
+shield_honor:
+  Type: "Shaped"
+  Result:
+    Item: "shield_honor"
+    Amount: 1
+  Ingredients:
+    - "glowing_gem|LOGS|glowing_gem"
+    - "LOGS|DRAGON_EGG|LOGS"
+    - "glowing_gem|LOGS|glowing_gem"
+warped_scroll:
+  Type: "Shaped"
+  Result:
+    Item: "warped_scroll"
+    Amount: 3
+  Ingredients:
+    - "ENDER_PEARL|PURPLE_DYE|ENDER_PEARL"
+    - "PAPER|PAPER|PAPER"
+    - "GOLD_NUGGET|PURPLE_DYE|GOLD_NUGGET"
+bound_scroll:
+  Type: "Shaped"
+  Result:
+    Item: "bound_scroll"
+    Amount: 3
+  Ingredients:
+    - "PURPLE_DYE|PURPLE_DYE|PURPLE_DYE"
+    - "GOLD_NUGGET|ENDER_PEARL|GOLD_NUGGET"
+    - "PAPER|PAPER|PAPER"
+return_scroll:
+  Type: "Shaped"
+  Result:
+    Item: "return_scroll"
+    Amount: 3
+  Ingredients:
+    - "GOLD_NUGGET|ENDER_PEARL|GOLD_NUGGET"
+    - "PAPER|PAPER|PAPER"
+lucky_horseshoe:
+  Type: "Shaped"
+  Result:
+    Item: "lucky_horseshoe"
+    Amount: 1
+  Ingredients:
+    - "GOLD_INGOT|spectral_silt|GOLD_INGOT"
+    - "GOLD_INGOT|spectral_silt|GOLD_INGOT"
+    - "spectral_silt|GOLD_INGOT|spectral_silt"
+spectral_silt_broken_heart:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "broken_heart"
+    - "disintegration_tablet"
+spectral_silt_balloon:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "balloon"
+    - "disintegration_tablet"
+spectral_silt_cobalt_shield:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "cobalt_shield"
+    - "disintegration_tablet"
+spectral_silt_obsidian_shield:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "obsidian_shield"
+    - "disintegration_tablet"
+spectral_silt_magic_mirror:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "magic_mirror"
+    - "disintegration_tablet"
+spectral_silt_wormhole_mirror:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "wormhole_mirror"
+    - "disintegration_tablet"
+spectral_silt_lucky_horseshoe:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "lucky_horseshoe"
+    - "disintegration_tablet"
+spectral_silt_sunglasses:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "sunglasses"
+    - "disintegration_tablet"
+spectral_silt_cross_necklace:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "cross_necklace"
+    - "disintegration_tablet"
+spectral_silt_sin_pendant:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "sin_pendant"
+    - "disintegration_tablet"
+spectral_silt_flare_gun:
+  Type: "Shapeless"
+  Result:
+    Item: "flare_gun"
+    Amount: 1
+  Ingredients:
+    - "broken_heart"
+    - "disintegration_tablet"
+spectral_silt_cracked_black_dragonscale:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "cracked_black_dragonscale"
+    - "disintegration_tablet"
+spectral_silt_diamond_block:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "DIAMOND_BLOCK"
+    - "disintegration_tablet"
+spectral_silt_emerald_block:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "EMERALD_BLOCK"
+    - "disintegration_tablet"
+spectral_silt_phantom_prism:
+  Type: "Shapeless"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "phantom_prism"
+    - "disintegration_tablet"
+spectral_silt_flare:
+  Type: "Shaped"
+  Result:
+    Item: "spectral_silt"
+    Amount: 1
+  Ingredients:
+    - "flare|flare|flare"
+    - "flare|disintegration_tablet|flare"
+    - "flare|flare|flare"

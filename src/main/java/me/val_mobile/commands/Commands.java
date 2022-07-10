@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2021  Val_Mobile
+    Copyright (C) 2022  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,10 +16,9 @@
  */
 package me.val_mobile.commands;
 
+import me.val_mobile.data.RSVFiles;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.ItemBuilder;
-import me.val_mobile.utils.PlayerRunnable;
+import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -44,12 +43,10 @@ public class Commands implements CommandExecutor {
      * The custom config class must be injected because its non-static methods are needed
      */
     private final RealisticSurvivalPlugin plugin;
-    private final CustomConfig customConfig;
 
     // constructing the Commands class
-    public Commands(RealisticSurvivalPlugin instance) {
-        plugin = instance;
-        customConfig = new CustomConfig(instance);
+    public Commands(RealisticSurvivalPlugin plugin) {
+        this.plugin = plugin;
     }
 
     /**
@@ -59,8 +56,8 @@ public class Commands implements CommandExecutor {
      * @param label The word directly after the forward slash
      * @param args An array holding every argument after the label
      * @return A boolean showing if the user successfully executed the appropriate command
-     * @see ItemBuilder
-     * @see CustomConfig
+     * @see RSVItem
+     * @see RSVFiles
      */
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         // check if the user typed /realisticsurvival, case-insensitive
@@ -120,8 +117,8 @@ public class Commands implements CommandExecutor {
                                     Player player = Bukkit.getPlayer(args[1]); // get the online player
 
                                     // check if the third argument is the command name of an item
-                                    if (ItemBuilder.getCommandNames().contains(args[2])) {
-                                        ItemStack customItem = ItemBuilder.getItem(ItemBuilder.getItemMap().get(args[2])); // get the item from its command name
+                                    if (RSVItem.getNames().contains(args[2])) {
+                                        ItemStack customItem = RSVItem.getItem(RSVItem.getItemMap().get(args[2])); // get the item from its command name
 
                                         // amount specified
                                         if (args.length > 3) {
@@ -196,10 +193,10 @@ public class Commands implements CommandExecutor {
                             /**
                              * Check if the second argument is a custom item
                              * example: /realisticsurvival spawnitem ^~%1t --> invalid item name
-                             *          /realisticsurvival spawnitem flint_axe --> valid item name
+                             *          /realisticsurvival spawnitem flint_hatchet --> valid item name
                              */
-                            if (ItemBuilder.getCommandNames().contains(args[1])) {
-                                ItemStack item = ItemBuilder.getItem(ItemBuilder.getItemMap().get(args[1]));
+                            if (RSVItem.getNames().contains(args[1])) {
+                                ItemStack item = RSVItem.getItem(RSVItem.getItemMap().get(args[1]));
 
                                 if (isPlayer) {
                                     if (args.length > 4) {
@@ -278,16 +275,8 @@ public class Commands implements CommandExecutor {
                          * Send the player a message showing successful reload of the plugin, and reload all configs.
                          */
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Reload")));
-                        plugin.reloadConfig();
-                        customConfig.reloadBaubleConfig();
-                        customConfig.reloadSpartanWeaponryConfig();
-                        customConfig.reloadIceFireGearConfig();
-                        customConfig.reloadMobConfig();
-                        customConfig.reloadNtrConfig();
-                        customConfig.reloadLycanitesMobsConfig();
-                        customConfig.reloadItemConfig();
-                        customConfig.reloadRecipeConfig();
-                        customConfig.reloadTanConfig();
+                        plugin.getConfig();
+                        RSVFiles.reloadConfigs();
                         return true;
                     }
 
@@ -296,16 +285,8 @@ public class Commands implements CommandExecutor {
                      * Send the player a message showing successful reload of the plugin, and reload all configs.
                      */
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Reload")));
-                    plugin.reloadConfig();
-                    customConfig.reloadBaubleConfig();
-                    customConfig.reloadSpartanWeaponryConfig();
-                    customConfig.reloadIceFireGearConfig();
-                    customConfig.reloadMobConfig();
-                    customConfig.reloadNtrConfig();
-                    customConfig.reloadLycanitesMobsConfig();
-                    customConfig.reloadItemConfig();
-                    customConfig.reloadRecipeConfig();
-                    customConfig.reloadTanConfig();
+                    plugin.getConfig();
+                    RSVFiles.reloadConfigs();
                     return true;
                 }
                 // if the user typed /realisticsurvival thirst, case-insensitive

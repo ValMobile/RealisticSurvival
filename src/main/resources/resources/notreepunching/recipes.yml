@@ -1,0 +1,65 @@
+#######################################
+#          NoTreePunching Recipes     #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+flint_hatchet:
+  Type: "Shaped"
+  Result:
+    Item: "flint_hatchet"
+    Amount: 1
+  Ingredients:
+    - "plant_string|flint_shard"
+    - "STICK"
+flint_knife:
+  Type: "Shaped"
+  Result:
+    Item: "flint_knife"
+    Amount: 1
+  Ingredients:
+    - "|flint_shard"
+    - "STICK"
+flint_pickaxe:
+  Type: "Shaped"
+  Result:
+    Item: "flint_pickaxe"
+    Amount: 1
+  Ingredients:
+    - "flint_shard|flint_shard|flint_shard"
+    - "|STICK"
+    - "|STICK"
+flint_shovel:
+  Type: "Shaped"
+  Result:
+    Item: "flint_shovel"
+    Amount: 1
+  Ingredients:
+    - "|flint_shard"
+    - "|STICK"
+    - "|STICK"
+flint_hoe:
+  Type: "Shaped"
+  Result:
+    Item: "flint_hoe"
+    Amount: 1
+  Ingredients:
+    - "flint_shard|flint_shard"
+    - "|STICK"
+    - "|STICK"
+cobblestone:
+  Type: "Shaped"
+  Result:
+    Item: "COBBLESTONE"
+    Amount: 1
+  Ingredients:
+    - "STONE_BUTTON|STONE_BUTTON"
+    - "STONE_BUTTON|STONE_BUTTON"
+plant_string:
+  Type: "Shaped"
+  Result:
+    Item: "plant_string"
+    Amount: 1
+  Ingredients:
+    - "plant_fiber|plant_fiber"
+    - "plant_fiber"

@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2021  Val_Mobile
+    Copyright (C) 2022  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,6 +41,7 @@ import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 import java.util.Random;
+import java.util.SplittableRandom;
 
 public class Utils {
 
@@ -49,8 +50,8 @@ public class Utils {
 
     private final RealisticSurvivalPlugin plugin;
 
-    public Utils(RealisticSurvivalPlugin instance) {
-        plugin = instance;
+    public Utils(RealisticSurvivalPlugin plugin) {
+        this.plugin = plugin;
     }
 
     public static Location modifyLocation(Location loc, double x, double y, double z) {
@@ -65,7 +66,7 @@ public class Utils {
 
     public static Vector randomizeVelocity(Vector velocity) {
         Vector newVelocity = velocity.clone();
-        Random r = new Random();
+        SplittableRandom r = new SplittableRandom();
 
         newVelocity.setX((newVelocity.getX() * r.nextDouble()) + 0.5);
         newVelocity.setY((newVelocity.getY() * r.nextDouble()) + 0.5);
@@ -545,28 +546,6 @@ public class Utils {
         return !(item == null || item.getType() == Material.AIR);
     }
 
-    public static void smartAddPotionEffect(PotionEffect effect, LivingEntity entity) {
-        int requestedAmplifier = effect.getAmplifier();
-        int requestedDuration = effect.getDuration();
-        PotionEffectType type = effect.getType();
-
-        if (entity.hasPotionEffect(type)) {
-            int currentAmplifier = entity.getPotionEffect(type).getAmplifier();
-            int currentDuration = entity.getPotionEffect(type).getDuration();
-
-            if (currentDuration < requestedDuration) {
-                if (currentAmplifier <= requestedAmplifier) {
-                    if (currentDuration < requestedDuration / 2) {
-                        entity.addPotionEffect(effect);
-                    }
-                }
-            }
-        }
-        else {
-            entity.addPotionEffect(effect);
-        }
-    }
-
     public void addNbtTag(ItemStack item, String key, String value) {
 
         NamespacedKey nkey = new NamespacedKey(plugin, key);
@@ -613,17 +592,6 @@ public class Utils {
         return tags;
     }
 
-    public static double getDamage(ItemStack item) {
-
-        double damage = 0D;
-
-        for (AttributeModifier atrMod : item.getItemMeta().getAttributeModifiers().get(Attribute.GENERIC_ATTACK_DAMAGE)) {
-            damage += (atrMod.getAmount() - ATTACK_DAMAGE_CONSTANT);
-        }
-
-        return damage;
-    }
-
     public static boolean isLookingAt(Player player, LivingEntity entity)
     {
         Location eye = player.getEyeLocation();
@@ -659,49 +627,6 @@ public class Utils {
         int highestY = loc.getWorld().getHighestBlockYAt(loc);
 
         return loc.getY() > highestY;
-    }
-
-    public static void addRecipe(Recipe r) {
-        if (r instanceof ShapedRecipe) {
-            if (Bukkit.getRecipe(((ShapedRecipe) r).getKey()) == null) {
-                Bukkit.addRecipe(r);
-            }
-        }
-        else if (r instanceof ShapelessRecipe) {
-            if (Bukkit.getRecipe(((ShapelessRecipe) r).getKey()) == null) {
-                Bukkit.addRecipe(r);
-            }
-        }
-        else if (r instanceof SmithingRecipe) {
-            if (Bukkit.getRecipe(((SmithingRecipe) r).getKey()) == null) {
-                Bukkit.addRecipe(r);
-            }
-        }
-        else if (r instanceof FurnaceRecipe) {
-            if (Bukkit.getRecipe(((FurnaceRecipe) r).getKey()) == null) {
-                Bukkit.addRecipe(r);
-            }
-        }
-        else if (r instanceof CampfireRecipe) {
-            if (Bukkit.getRecipe(((CampfireRecipe) r).getKey()) == null) {
-                Bukkit.addRecipe(r);
-            }
-        }
-        else if (r instanceof BlastingRecipe) {
-            if (Bukkit.getRecipe(((BlastingRecipe) r).getKey()) == null) {
-                Bukkit.addRecipe(r);
-            }
-        }
-        else if (r instanceof SmokingRecipe) {
-            if (Bukkit.getRecipe(((SmokingRecipe) r).getKey()) == null) {
-                Bukkit.addRecipe(r);
-            }
-        }
-        else if (r instanceof StonecuttingRecipe) {
-            if (Bukkit.getRecipe(((StonecuttingRecipe) r).getKey()) == null) {
-                Bukkit.addRecipe(r);
-            }
-        }
     }
 
     public static void discoverRecipe(Player p, Recipe r) {
@@ -747,7 +672,7 @@ public class Utils {
     }
 
     public static void harvestFortune(double chance, ItemStack drop, ItemStack tool, Location loc) {
-        Random r = new Random();
+        SplittableRandom r = new SplittableRandom();
 
         int lvl = 0;
 
@@ -770,7 +695,11 @@ public class Utils {
         }
     }
 
-    public static void harvestLooting(double chance, ItemStack drop, boolean rare, ItemStack tool, Location loc) {
+    public enum DROP_TYPE {
+        COMMON, RARE, RANGE
+    }
+
+    public static void harvestLooting(double chance, ItemStack drop, DROP_TYPE dropType, ItemStack tool, Location loc) {
         Random r = new Random();
 
         int lvl = 0;
@@ -782,34 +711,59 @@ public class Utils {
             }
         }
 
-        // rare drops
-        if (rare) {
-            if (r.nextDouble() <= chance + lvl * 0.01) {
-                loc.getWorld().dropItemNaturally(loc, drop);
-            }
-            else {
-                if (r.nextDouble() <= (lvl / (lvl + 1D)))
-                    loc.getWorld().dropItemNaturally(loc, drop);
-            }
-        }
-        // common drops
-        else {
-            if (r.nextDouble() <= chance + lvl * 0.01) {
-                int maxAmount = lvl + 1;
-
-                double rawAmount = chance * maxAmount;
-                int actualAmount = (int) Math.floor(rawAmount);
-
-                double dif = rawAmount - actualAmount;
-
-                if (r.nextDouble() <= dif)
-                    actualAmount++;
-
-                if (actualAmount > 0) {
-                    drop.setAmount(actualAmount);
-
-                    loc.getWorld().dropItemNaturally(loc, drop);
+        switch (dropType) {
+            case RARE: {
+                // rare drops
+                if (dropType == DROP_TYPE.RARE) {
+                    if (r.nextDouble() <= chance + lvl * 0.01) {
+                        loc.getWorld().dropItemNaturally(loc, drop);
+                    }
+                    else {
+                        if (r.nextDouble() <= (lvl / (lvl + 1D)))
+                            loc.getWorld().dropItemNaturally(loc, drop);
+                    }
                 }
+                break;
+            }
+            case COMMON: {
+                if (r.nextDouble() <= chance + lvl * 0.01) {
+                    int maxAmount = lvl + 1;
+
+                    double rawAmount = chance * maxAmount;
+                    int actualAmount = (int) Math.floor(rawAmount);
+
+                    double dif = rawAmount - actualAmount;
+
+                    if (r.nextDouble() <= dif)
+                        actualAmount++;
+
+                    if (actualAmount > 0) {
+                        drop.setAmount(actualAmount);
+
+                        loc.getWorld().dropItemNaturally(loc, drop);
+                    }
+                }
+                break;
+            }
+            case RANGE: {
+                if (r.nextDouble() <= chance + lvl * 0.01) {
+                    int maxAmount = lvl + 1;
+
+                    double rawAmount = chance * maxAmount;
+                    int actualAmount = (int) Math.floor(rawAmount);
+
+                    double dif = rawAmount - actualAmount;
+
+                    if (r.nextDouble() <= dif)
+                        actualAmount++;
+
+                    if (actualAmount > 0) {
+                        drop.setAmount(actualAmount);
+
+                        loc.getWorld().dropItemNaturally(loc, drop);
+                    }
+                }
+                break;
             }
         }
     }
@@ -818,7 +772,7 @@ public class Utils {
         ItemMeta meta = tool.getItemMeta();
         int lvl = meta.getEnchantLevel(Enchantment.DURABILITY);
 
-        Random r = new Random();
+        SplittableRandom r = new SplittableRandom();
 
         if (r.nextDouble() <= (1D / (lvl + 1D))) {
             if (((Damageable) meta).getDamage() + 1 >= tool.getType().getMaxDurability()) {
@@ -835,51 +789,4 @@ public class Utils {
         return false;
     }
 
-    public boolean shouldEventBeRan(LivingEntity entity, String module) {
-        FileConfiguration config = plugin.getConfig();
-
-        if (config.getBoolean(module + ".Enabled")) {
-            String worldName = entity.getWorld().getName();
-
-            ConfigurationSection allowedWorlds = config.getConfigurationSection(module + ".Worlds");
-            if (allowedWorlds.getKeys(true).contains(worldName)) {
-                return allowedWorlds.getBoolean(worldName);
-            }
-        }
-        return false;
-    }
-
-    public boolean shouldEventBeRan(Entity entity, String module) {
-        FileConfiguration config = plugin.getConfig();
-
-        if (config.getBoolean(module + ".Enabled")) {
-            String worldName = entity.getWorld().getName();
-
-            ConfigurationSection allowedWorlds = config.getConfigurationSection(module + ".Worlds");
-            if (allowedWorlds.getKeys(true).contains(worldName)) {
-                return allowedWorlds.getBoolean(worldName);
-            }
-        }
-        return false;
-    }
-
-    public boolean shouldEventBeRan(ChunkPopulateEvent event, String module) {
-        FileConfiguration config = plugin.getConfig();
-
-        if (config.getBoolean(module + ".Enabled")) {
-            String worldName = event.getWorld().getName();
-
-            ConfigurationSection allowedWorlds = config.getConfigurationSection(module + ".Worlds");
-            if (allowedWorlds.getKeys(true).contains(worldName)) {
-                return allowedWorlds.getBoolean(worldName);
-            }
-        }
-        return false;
-    }
-
-    public boolean shouldEventBeRan(String module) {
-        FileConfiguration config = plugin.getConfig();
-
-        return config.getBoolean(module + ".Enabled");
-    }
 }

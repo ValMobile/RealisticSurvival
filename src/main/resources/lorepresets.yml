@@ -1,0 +1,138 @@
+#######################################
+#          Lore Presets               #
+#######################################
+
+Rapier:
+  - "&6Damage Absorption"
+  - " &7%RAPIER_ABSORBED% of damage taken dealt"
+  - " &7in durability from this weapon"
+  - "&6Unarmoured Damage Bonus"
+  - " &7%RAPIER_DAMAGE_BONUS% base weapon damage"
+  - " &7when the foe has no Armor"
+Katana:
+  - "&6Two-Handed I"
+  - " &7Any item in the opposite hand slot"
+  - " &7slows down attack speed"
+  - "&6Chest Damage Bonus"
+  - " &7+%KATANA_DAMAGE_BONUS%% base weapon damage"
+  - " &7when the foe has no Chest Armor"
+Greatsword:
+  - "&6Two-Handed II"
+  - " &7Any item in the opposite hand slot"
+  - " &7slows down attack speed"
+  - "&6Reach I"
+  - " &7Increased melee damage range"
+  - " &7Higher reach levels have more range"
+  - "&6Wide Attack II"
+  - " &7All targets in sweep range"
+  - " &7take %GREATSWORD_BONUS% of standard damage"
+Longsword:
+  - "&6Two-Handed I"
+  - " &7Any item in the opposite hand slot"
+  - " &7slows down attack speed"
+Spear:
+  - "&6Reach I"
+  - " &7Increased melee damage range"
+  - " &7Higher reach levels have more range"
+Saber:
+  - "&6Damage Absorption"
+  - " &7%SABER_ABSORBED% of damage taken dealt"
+  - " &7in durability from this weapon"
+  - "&6Chest Damage Bonus"
+  - "&7%SABER_BONUS% base weapon damage"
+  - " &7when the foe has no Chest Armor"
+Boomerang:
+  - "&6Throwable"
+  - " &7This weapon can be thrown at foes"
+Dagger:
+  - "&6Throwable"
+  - " &7This weapon can be thrown at foes"
+Glaive:
+  - "&6Two-Handed I"
+  - " &7Any item in the opposite hand slot"
+  - " &7slows down attack speed"
+  - "&6Reach I"
+  - " &7Increased melee damage range"
+  - " &7Higher reach levels have more range"
+  - "&6Wide Attack I"
+  - " &7All targets in sweep range"
+  - " &7take %GLAIVE_BONUS% of standard damage"
+Halberd:
+  - "&6Two-Handed II"
+  - " &7Any item in the opposite hand slot"
+  - " &7slows down attack speed"
+  - "&6Reach I"
+  - " &7Increased melee damage range"
+  - " &7Higher reach levels have more range"
+  - "&6Shield Breach"
+  - " &7Chance to breach a foe's shield"
+Hammer:
+  - "&6Enhanced Knockback"
+  - " &7Foes get knocked back further away"
+  - "&6Nauseous Blow"
+  - " &7Inflicts Nausea %HAMMER_AMPLIFIER% (%HAMMER_DURATION%) on hit,"
+  - " &7unless the foe is wearing a Helmet"
+Javelin:
+  - "&6Throwable"
+  - " &7This weapon can be thrown at foes"
+  - "&6Throwing Damage Bonus"
+  - " &7%JAVELIN_BONUS% damage when the weapon is thrown"
+Lance:
+  - "&6Reach I"
+  - " &7Increased melee damage range"
+  - " &7Higher reach levels have more range"
+  - "&6Riding Damage Bonus"
+  - " &7%LANCE_BONUS% base weapon damage"
+  - " &7while riding a mount or vehicle"
+Mace:
+  - "&6Undead Damage Bonus"
+  - " &7%MACE_BONUS% base weapon damage against Undead foes"
+Pike:
+  - "&6Two-Handed I"
+  - " &7Any item in the opposite hand slot"
+  - " &7slows down attack speed"
+  - "&6Reach II"
+  - " &7Increased melee damage range"
+  - " &7Higher reach levels have more range"
+Quarterstaff:
+  - "&6Two-Handed I"
+  - " &7Any item in the opposite hand slot"
+  - " &7slows down attack speed"
+  - "&6Wide Attack I"
+  - " &7All targets in sweep range"
+  - " &7take %QUARTERSTAFF_BONUS% of standard damage"
+Tomahawk:
+  - "&6Throwable"
+  - " &7This weapon can be thrown at foes"
+  - "&6Throwing Damage Bonus"
+  - " &7%TOMAHAWK_BONUS% damage when the weapon is thrown"
+ThrowingKnife:
+  - "&6Throwable"
+  - " &7This weapon can be thrown at foes"
+  - "&6Throwing Damage Bonus"
+  - " &7%THROWING_KNIFE_BONUS% damage when the weapon is thrown"
+Warhammer:
+  - "&6Two-Handed I"
+  - " &7Any item in the opposite hand slot"
+  - " &7slows down attack speed"
+  - "&6Armor Piercing"
+  - " &7%WARHAMMER_BONUS% of damage inflicted ignores armor"
+Battleaxe:
+  - "&6Two-Handed I"
+  - " &7Any item in the opposite hand slot"
+  - " &7slows down attack speed"
+  - "&6Versatile"
+  - " &7Can be used as an axe"
+Club:
+  - "&6Nauseous Blow"
+  - " &7Inflicts Nausea %CLUB_AMPLIFIER% (%CLUB_DURATION%) on hit,"
+  - " &7unless the foe is wearing a Helmet"
+Longbow:
+  - "&7Long-range version of the standard bow"
+  - "&7Takes longer to draw fully"
+Crossbow:
+  - "&7High damage & Long-ranged. Requires loading before firing. Uses Bolts."
+  - "&7Quick shots after firing will affect accuracy."
+  - "&7Hold the aim for a pinpoint shot."
+
+

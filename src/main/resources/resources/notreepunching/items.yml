@@ -1,0 +1,58 @@
+#######################################
+#          NoTreePunching Items       #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+flint_hatchet:
+  Material: "WOODEN_AXE"
+  DisplayName: "&fFlint Hatchet"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+flint_knife:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fFlint Knife"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+flint_pickaxe:
+  Material: "WOODEN_PICKAXE"
+  DisplayName: "&fFlint Pickaxe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+flint_shovel:
+  Material: "WOODEN_SHOVEL"
+  DisplayName: "&fFlint Shovel"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+flint_hoe:
+  Material: "WOODEN_HOE"
+  DisplayName: "&fFlint Hoe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+plant_fiber:
+  Material: "GRASS"
+  DisplayName: "&fPlant Fiber"
+  CustomModelData: 83650
+plant_string:
+  Material: "STRING"
+  DisplayName: "&fPlant String"
+  CustomModelData: 83650
+flint_shard:
+  Material: "FLINT"
+  DisplayName: "&fFlint Shard"
+  CustomModelData: 93650

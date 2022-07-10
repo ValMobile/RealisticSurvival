@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2021  Val_Mobile
+    Copyright (C) 2022  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,17 +16,14 @@
  */
 package me.val_mobile.tan;
 
+import me.val_mobile.data.RSVFiles;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.CustomItems;
-import me.val_mobile.utils.PlayerRunnable;
 import me.val_mobile.utils.Utils;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -40,7 +37,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
-import java.util.Random;
+import java.util.SplittableRandom;
 
 import static me.val_mobile.tan.TanRunnables.LOWEST_THIRST;
 
@@ -51,11 +48,11 @@ public class TanEvents implements Listener {
     private final Utils util;
     private final CustomItems customItems;
 
-    public TanEvents(RealisticSurvivalPlugin instance) {
-        tanRunnables = new TanRunnables(instance);
-        plugin = instance;
-        util = new Utils(instance);
-        customItems = new CustomItems(instance);
+    public TanEvents(RealisticSurvivalPlugin plugin) {
+        tanRunnables = new TanRunnables(plugin);
+        this.plugin = plugin;
+        util = new Utils(plugin);
+        customItems = new CustomItems(plugin);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -116,29 +113,29 @@ public class TanEvents implements Listener {
                         }
 
                         if (waterSource != null) {
-                            double maxDistance = CustomConfig.getTanConfig().getDouble("Thirst.Supplements.Drinking.MaxDistance");
+                            double maxDistance = RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Drinking.MaxDistance");
 
                             if (playerLoc.distance(waterSource.getLocation()) < maxDistance) {
                                 double current = PlayerRunnable.getThirst().get(player.getName());
                                 double difference = LOWEST_THIRST - current;
 
-                                if (CustomConfig.getTanConfig().getBoolean("Thirst.Supplements.Drinking.OverrideLimit")) {
-                                    Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + CustomConfig.getTanConfig().getDouble("Thirst.Supplements.Drinking.Amount"));
+                                if (RSVFiles.getTanUserConfig().getBoolean("Thirst.Supplements.Drinking.OverrideLimit")) {
+                                    Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Drinking.Amount"));
                                 }
                                 else {
                                     if (Math.abs(difference) >= 0.01) {
 
-                                        if (difference > CustomConfig.getTanConfig().getDouble("Thirst.Supplements.Drinking.Amount")) {
-                                            Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + CustomConfig.getTanConfig().getDouble("Thirst.Supplements.Drinking.Amount"));
+                                        if (difference > RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Drinking.Amount")) {
+                                            Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Drinking.Amount"));
                                         }
                                         else {
                                             Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + difference);
                                         }
                                     }
                                 }
-                                Sound sound = Sound.valueOf(CustomConfig.getTanConfig().getString("Thirst.Supplements.Drinking.Sound"));
-                                float volume = (float) CustomConfig.getTanConfig().getDouble("Thirst.Supplements.Drinking.Volume");
-                                float pitch = (float) CustomConfig.getTanConfig().getDouble("Thirst.Supplements.Drinking.Pitch");
+                                Sound sound = Sound.valueOf(RSVFiles.getTanUserConfig().getString("Thirst.Supplements.Drinking.Sound"));
+                                float volume = (float) RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Drinking.Volume");
+                                float pitch = (float) RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Drinking.Pitch");
 
                                 if (volume != -1.0) {
                                     player.playSound(playerLoc, sound, volume, pitch);
@@ -156,21 +153,21 @@ public class TanEvents implements Listener {
                                     double current = PlayerRunnable.getThirst().get(player.getName());
                                     double difference = LOWEST_THIRST - current;
 
-                                    if (CustomConfig.getTanConfig().getBoolean("Thirst.Supplements.Raining.OverrideLimit")) {
-                                        Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + CustomConfig.getTanConfig().getDouble("Thirst.Supplements.Raining.Amount"));
+                                    if (RSVFiles.getTanUserConfig().getBoolean("Thirst.Supplements.Raining.OverrideLimit")) {
+                                        Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Raining.Amount"));
                                     }
                                     else {
                                         if (Math.abs(difference) >= 0.01) {
-                                            if (difference > CustomConfig.getTanConfig().getDouble("Thirst.Supplements.Raining.Amount")) {
-                                                Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + CustomConfig.getTanConfig().getDouble("Thirst.Supplements.Raining.Amount"));
+                                            if (difference > RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Raining.Amount")) {
+                                                Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Raining.Amount"));
                                             } else {
                                                 Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + difference);
                                             }
                                         }
                                     }
-                                    Sound sound = Sound.valueOf(CustomConfig.getTanConfig().getString("Thirst.Supplements.Raining.Sound"));
-                                    float volume = (float) CustomConfig.getTanConfig().getDouble("Thirst.Supplements.Raining.Volume");
-                                    float pitch = (float) CustomConfig.getTanConfig().getDouble("Thirst.Supplements.Raining.Pitch");
+                                    Sound sound = Sound.valueOf(RSVFiles.getTanUserConfig().getString("Thirst.Supplements.Raining.Sound"));
+                                    float volume = (float) RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Raining.Volume");
+                                    float pitch = (float) RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Raining.Pitch");
 
                                     if (volume != -1.0) {
                                         player.playSound(loc, sound, volume, pitch);
@@ -209,13 +206,13 @@ public class TanEvents implements Listener {
                     }
 
 
-                    if (CustomConfig.getTanConfig().getBoolean("Thirst.Supplements." + drink + ".OverrideLimit")) {
-                        Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + CustomConfig.getTanConfig().getDouble("Thirst.Supplements." + drink + ".Amount"));
+                    if (RSVFiles.getTanUserConfig().getBoolean("Thirst.Supplements." + drink + ".OverrideLimit")) {
+                        Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements." + drink + ".Amount"));
                     }
                     else {
                         if (Math.abs(difference) >= 0.01) {
-                            if (difference > CustomConfig.getTanConfig().getDouble("Thirst.Supplements." + drink + ".Amount")) {
-                                Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + CustomConfig.getTanConfig().getDouble("Thirst.Supplements." + drink + ".Amount"));
+                            if (difference > RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements." + drink + ".Amount")) {
+                                Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements." + drink + ".Amount"));
                             } else {
                                 Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + difference);
                             }
@@ -223,11 +220,11 @@ public class TanEvents implements Listener {
                     }
 
                     if (drink.equals("ChorusFruitJuice")) {
-                        if (CustomConfig.getTanConfig().getBoolean("Thirst.Supplements.ChorusFruitJuice.Teleport.Enabled")) {
+                        if (RSVFiles.getTanUserConfig().getBoolean("Thirst.Supplements.ChorusFruitJuice.Teleport.Enabled")) {
                             Location loc = player.getLocation();
 
-                            Random r = new Random();
-                            final double RADIUS = CustomConfig.getTanConfig().getDouble("Thirst.Supplements.ChorusFruitJuice.Teleport.MaxRadius");
+                            SplittableRandom r = new SplittableRandom();
+                            final double RADIUS = RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.ChorusFruitJuice.Teleport.MaxRadius");
                             double x = loc.getX() + r.nextDouble() * RADIUS;
                             double z = loc.getZ() + r.nextDouble() * RADIUS;
 
@@ -235,9 +232,9 @@ public class TanEvents implements Listener {
 
                             player.teleport(newLoc);
 
-                            Sound sound = Sound.valueOf(CustomConfig.getTanConfig().getString("Thirst.Supplements.ChorusFruitJuice.Teleport.Sound"));
-                            float volume = (float) CustomConfig.getTanConfig().getDouble("Thirst.Supplements.ChorusFruitJuice.Teleport.Volume");
-                            float pitch = (float) CustomConfig.getTanConfig().getDouble("Thirst.Supplements.ChorusFruitJuice.Teleport.Pitch");
+                            Sound sound = Sound.valueOf(RSVFiles.getTanUserConfig().getString("Thirst.Supplements.ChorusFruitJuice.Teleport.Sound"));
+                            float volume = (float) RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.ChorusFruitJuice.Teleport.Volume");
+                            float pitch = (float) RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.ChorusFruitJuice.Teleport.Pitch");
 
                             if (volume != -1.0) {
                                 player.playSound(loc, sound, volume, pitch);
@@ -258,10 +255,10 @@ public class TanEvents implements Listener {
             Block block = event.getBlock();
             Material material = block.getBlockData().getMaterial();
 
-            if (CustomConfig.getTanConfig().getStringList("IceCube.Blocks").contains(material.toString())) {
+            if (RSVFiles.getTanUserConfig().getStringList("IceCube.Blocks").contains(material.toString())) {
                 if (Utils.isHoldingPickaxe(player)) {
                     if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
-                        double chance = CustomConfig.getTanConfig().getDouble("IceCube.DropChance");
+                        double chance = RSVFiles.getTanUserConfig().getDouble("IceCube.DropChance");
                         Utils.harvestFortune(chance, customItems.getIceCube(), itemMainHand, block.getLocation());
 
                         if (Utils.decrementDurability(itemMainHand))
@@ -269,12 +266,12 @@ public class TanEvents implements Listener {
                     }
                 }
             }
-            if (CustomConfig.getTanConfig().getStringList("MagmaShard.Blocks").contains(material.toString())) {
+            if (RSVFiles.getTanUserConfig().getStringList("MagmaShard.Blocks").contains(material.toString())) {
                 if (Utils.isHoldingPickaxe(player)) {
                     if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
                         event.setDropItems(false);
 
-                        double chance = CustomConfig.getTanConfig().getDouble("MagmaShard.DropChance");
+                        double chance = RSVFiles.getTanUserConfig().getDouble("MagmaShard.DropChance");
                         Utils.harvestFortune(chance, customItems.getMagmaShard(), itemMainHand, block.getLocation());
                         if (Utils.decrementDurability(itemMainHand))
                             player.getInventory().setItemInMainHand(null);

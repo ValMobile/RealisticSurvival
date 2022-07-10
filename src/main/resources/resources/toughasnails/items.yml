@@ -1,0 +1,169 @@
+#######################################
+#          Tough as Nails Items       #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+ice_cube:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fIce Cube"
+  CustomModelData: 83715
+magma_shard:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fMagma Shard"
+  CustomModelData: 83716
+jelled_slime:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fJelled Slime"
+  CustomModelData: 83717
+thermometer:
+  Material: "COMPASS"
+  DisplayName: "&fThermometer"
+  CustomModelData: 83650
+wool_hood:
+  Material: "LEATHER_HELMET"
+  DisplayName: "&fWool Hood"
+  CustomModelData: 83651
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wool_jacket:
+  Material: "LEATHER_CHESTPLATE"
+  DisplayName: "&fWool Jacket"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wool_pants:
+  Material: "LEATHER_LEGGINGS"
+  DisplayName: "&fWool Pants"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wool_boots:
+  Material: "LEATHER_BOOTS"
+  DisplayName: "&fWool Boots"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+jelled_slime_helmet:
+  Material: "LEATHER_HELMET"
+  DisplayName: "&fJelled Slime Helmet"
+  CustomModelData: 83652
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+jelled_slime_chestplate:
+  Material: "LEATHER_CHESTPLATE"
+  DisplayName: "&fJelled Slime Chestplate"
+  CustomModelData: 83651
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+jelled_slime_leggings:
+  Material: "LEATHER_LEGGINGS"
+  DisplayName: "&fJelled Slime Leggings"
+  CustomModelData: 83651
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+jelled_slime_boots:
+  Material: "LEATHER_BOOTS"
+  DisplayName: "&fJelled Slime Boots"
+  CustomModelData: 83651
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+juice_apple:
+  Material: "POTION"
+  DisplayName: "&fApple Juice"
+  CustomModelData: 83652
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
+juice_beetroot:
+  Material: "POTION"
+  DisplayName: "&fBeetroot Juice"
+  CustomModelData: 83653
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
+juice_cactus:
+  Material: "POTION"
+  DisplayName: "&fCactus Juice"
+  CustomModelData: 83654
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
+juice_carrot:
+  Material: "POTION"
+  DisplayName: "&fCarrot Juice"
+  CustomModelData: 83655
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
+juice_chorus_fruit:
+  Material: "POTION"
+  DisplayName: "&fChorus Fruit Juice"
+  CustomModelData: 83656
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
+juice_melon_glistering:
+  Material: "POTION"
+  DisplayName: "&fGlistering Melon Juice"
+  CustomModelData: 83657
+  Enchantments:
+    DURABILITY: 1
+  ItemFlags:
+    - "HIDE_ENCHANTS"
+    - "HIDE_POTION_EFFECTS"
+juice_apple_golden:
+  Material: "POTION"
+  DisplayName: "&fGolden Apple Juice"
+  CustomModelData: 83658
+  Enchantments:
+    DURABILITY: 1
+  ItemFlags:
+    - "HIDE_ENCHANTS"
+    - "HIDE_POTION_EFFECTS"
+juice_carrot_golden:
+  Material: "POTION"
+  DisplayName: "&fGolden Carrot Juice"
+  CustomModelData: 83659
+  Enchantments:
+    DURABILITY: 1
+  ItemFlags:
+    - "HIDE_ENCHANTS"
+    - "HIDE_POTION_EFFECTS"
+juice_melon:
+  Material: "POTION"
+  DisplayName: "&fMelon Juice"
+  CustomModelData: 83660
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
+juice_pumpkin:
+  Material: "POTION"
+  DisplayName: "&fPumpkin Juice"
+  CustomModelData: 83661
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
+purified_water_bottle:
+  Material: "POTION"
+  DisplayName: "&fPurified Water Bottle"
+  CustomModelData: 83662
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
+charcoal_filter:
+  Material: "PAPER"
+  DisplayName: "&fCharcoal Filter"
+  CustomModelData: 83650
+water_bottle:
+  Material: "POTION"
+  DisplayName: "&fWater Bottle"
+  Color: "BLUE"

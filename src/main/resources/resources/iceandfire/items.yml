@@ -1,0 +1,1394 @@
+#######################################
+#          Ice and Fire Items         #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+dragonbone:
+  Material: "BONE"
+  DisplayName: "&fDragonbone"
+  CustomModelData: 83650
+witherbone:
+  Material: "BONE"
+  DisplayName: "&fWitherbone"
+  CustomModelData: 83651
+dragonscale_blue:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.BLUE_DRAGON_SCALE"
+dragonscale_bronze:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.BRONZE_DRAGON_SCALE"
+dragonscale_gray:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.GRAY_DRAGON_SCALE"
+dragonscale_green:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.GREEN_DRAGON_SCALE"
+dragonscale_red:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.RED_DRAGON_SCALE"
+dragonscale_sapphire:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
+dragonscale_silver:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.SILVER_DRAGON_SCALE"
+dragonscale_white:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.WHITE_DRAGON_SCALE"
+dragonscale_amethyst:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.AMETHYST_DRAGON_SCALE"
+dragonscale_black:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.BLACK_DRAGON_SCALE"
+dragonscale_copper:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.COPPER_DRAGON_SCALE"
+dragonscale_electric:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fDragon Scales"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
+sea_serpent_scale_blue:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fSea Serpent Scales"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.BLUE_SEA_SERPENT_SCALE"
+sea_serpent_scale_bronze:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fSea Serpent Scales"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.BRONZE_SEA_SERPENT_SCALE"
+sea_serpent_scale_deepblue:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fSea Serpent Scales"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"
+sea_serpent_scale_green:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fSea Serpent Scales"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.GREEN_SEA_SERPENT_SCALE"
+sea_serpent_scale_purple:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fSea Serpent Scales"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.PURPLE_SEA_SERPENT_SCALE"
+sea_serpent_scale_red:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fSea Serpent Scales"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.RED_SEA_SERPENT_SCALE"
+sea_serpent_scale_teal:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fSea Serpent Scales"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.TEAL_SEA_SERPENT_SCALE"
+shiny_scale:
+  Material: "IRON_NUGGET"
+  DisplayName: "&fShiny Scale"
+  CustomModelData: 83669
+dragon_blood_fire:
+  Material: "DRAGON_BREATH"
+  DisplayName: "&fFire Dragon Blood"
+  CustomModelData: 83650
+dragon_blood_ice:
+  Material: "DRAGON_BREATH"
+  DisplayName: "&fIce Dragon Blood"
+  CustomModelData: 83651
+dragon_blood_lightning:
+  Material: "DRAGON_BREATH"
+  DisplayName: "&fLightning Dragon Blood"
+  CustomModelData: 83652
+dragon_heart_fire:
+  Material: "HEART_OF_THE_SEA"
+  DisplayName: "&fFire Dragon Heart"
+  CustomModelData: 83650
+dragon_heart_ice:
+  Material: "HEART_OF_THE_SEA"
+  DisplayName: "&fIce Dragon Heart"
+  CustomModelData: 83651
+dragon_heart_lightning:
+  Material: "HEART_OF_THE_SEA"
+  DisplayName: "&fLightning Dragon Heart"
+  CustomModelData: 83652
+dragon_skull_fire:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fDragon Skull"
+  CustomModelData: 83658
+dragon_skull_ice:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fDragon Skull"
+  CustomModelData: 83659
+dragon_skull_lightning:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fDragon Skull"
+  CustomModelData: 83660
+dragon_flesh_fire:
+  Material: "COOKED_BEEF"
+  DisplayName: "&fFire Dragon Flesh"
+  CustomModelData: 83650
+dragon_flesh_ice:
+  Material: "COOKED_BEEF"
+  DisplayName: "&fIce Dragon Flesh"
+  CustomModelData: 83651
+dragon_flesh_lightning:
+  Material: "COOKED_BEEF"
+  DisplayName: "&fLightning Dragon Flesh"
+  CustomModelData: 83652
+dragonsteel_fire_ingot:
+  Material: "IRON_INGOT"
+  DisplayName: "&fFire Dragonsteel Ingot"
+  CustomModelData: 83650
+dragonsteel_ice_ingot:
+  Material: "IRON_INGOT"
+  DisplayName: "&fIce Dragonsteel Ingot"
+  CustomModelData: 83651
+dragonsteel_lightning_ingot:
+  Material: "IRON_INGOT"
+  DisplayName: "&fLightning Dragonsteel Ingot"
+  CustomModelData: 83652
+dragonscale_helmet_blue:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.BLUE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_blue:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.BLUE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_blue:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.BLUE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_blue:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.BLUE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_helmet_bronze:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.BRONZE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_bronze:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.BRONZE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_bronze:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.BRONZE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_bronze:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.BRONZE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_helmet_gray:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.GRAY_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_gray:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.GRAY_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_gray:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.GRAY_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_gray:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.GRAY_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_helmet_green:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.GREEN_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_green:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.GREEN_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_green:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.GREEN_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_green:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.GREEN_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_helmet_red:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.RED_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_red:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.RED_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_red:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.RED_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_red:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.RED_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_helmet_sapphire:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_sapphire:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_sapphire:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_sapphire:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_helmet_silver:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.SILVER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_silver:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.SILVER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_silver:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.SILVER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_silver:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.SILVER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_helmet_white:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.WHITE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_white:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.WHITE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_white:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.WHITE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_white:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.WHITE_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_helmet_amethyst:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.AMETHYST_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_amethyst:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.AMETHYST_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_amethyst:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.AMETHYST_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_amethyst:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.AMETHYST_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_helmet_black:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.BLACK_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_black:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.BLACK_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_black:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.BLACK_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_black:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.BLACK_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_helmet_copper:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.COPPER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_copper:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.COPPER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_copper:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.COPPER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_copper:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.COPPER_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_helmet_electric:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fDragon Scale Helmet"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_chestplate_electric:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fDragon Scale Chestplate"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_leggings_electric:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fDragon Scale Leggings"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonscale_boots_electric:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fDragon Scale Boots"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_helmet_blue:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fTide Guardian Helmet"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.BLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_chestplate_blue:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fTide Guardian Chestplate"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.BLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_leggings_blue:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fTide Guardian Leggings"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.BLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_boots_blue:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fTide Guardian Boots"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.BLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_helmet_bronze:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fTide Guardian Helmet"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_chestplate_bronze:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fTide Guardian Chestplate"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_leggings_bronze:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fTide Guardian Leggings"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_boots_bronze:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fTide Guardian Boots"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.BRONZE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_helmet_deepblue:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fTide Guardian Helmet"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_chestplate_deepblue:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fTide Guardian Chestplate"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_leggings_deepblue:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fTide Guardian Leggings"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_boots_deepblue:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fTide Guardian Boots"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_helmet_green:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fTide Guardian Helmet"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.GREEN_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_chestplate_green:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fTide Guardian Chestplate"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.GREEN_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_leggings_green:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fTide Guardian Leggings"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.GREEN_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_boots_green:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fTide Guardian Boots"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.GREEN_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_helmet_purple:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fTide Guardian Helmet"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_chestplate_purple:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fTide Guardian Chestplate"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_leggings_purple:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fTide Guardian Leggings"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_boots_purple:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fTide Guardian Boots"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.PURPLE_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_helmet_red:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fTide Guardian Helmet"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.RED_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_chestplate_red:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fTide Guardian Chestplate"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.RED_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_leggings_red:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fTide Guardian Leggings"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.RED_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_boots_red:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fTide Guardian Boots"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.RED_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_helmet_teal:
+  Material: "DIAMOND_HELMET"
+  DisplayName: "&fTide Guardian Helmet"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.TEAL_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_chestplate_teal:
+  Material: "DIAMOND_CHESTPLATE"
+  DisplayName: "&fTide Guardian Chestplate"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.TEAL_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_leggings_teal:
+  Material: "DIAMOND_LEGGINGS"
+  DisplayName: "&fTide Guardian Leggings"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.TEAL_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+tide_guardian_boots_teal:
+  Material: "DIAMOND_BOOTS"
+  DisplayName: "&fTide Guardian Boots"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.TEAL_SEA_SERPENT_SCALE"
+    - "LOREPRESET.TIDE_GUARDIAN_BREATHING"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonbone_pickaxe:
+  Material: "DIAMOND_PICKAXE"
+  DisplayName: "&fDragonbone Pickaxe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonbone_axe:
+  Material: "DIAMOND_AXE"
+  DisplayName: "&fDragonbone Axe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonbone_shovel:
+  Material: "DIAMOND_SHOVEL"
+  DisplayName: "&fDragonbone Shovel"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonbone_hoe:
+  Material: "DIAMOND_HOE"
+  DisplayName: "&fDragonbone Hoe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonbone_sword:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDragonbone Sword"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonbone_bow:
+  Material: "BOW"
+  DisplayName: "&fDragonbone Bow"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonbone_flamed_sword:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fFlamed Dragonbone Sword"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.LEGENDARY_WEAPON"
+    - "LOREPRESET.FLAMED_EXTRA_DAMAGE"
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonbone_iced_sword:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fIced Dragonbone Sword"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.LEGENDARY_WEAPON"
+    - "LOREPRESET.ICED_EXTRA_DAMAGE"
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonbone_lightning_sword:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fLightning Dragonbone Sword"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.LEGENDARY_WEAPON"
+    - "LOREPRESET.LIGHTNING_EXTRA_DAMAGE"
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_fire_sword:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fFire Dragonsteel Sword"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_fire_pickaxe:
+  Material: "NETHERITE_PICKAXE"
+  DisplayName: "&fFire Dragonsteel Pickaxe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_fire_axe:
+  Material: "NETHERITE_AXE"
+  DisplayName: "&fFire Dragonsteel Axe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_fire_shovel:
+  Material: "NETHERITE_SHOVEL"
+  DisplayName: "&fFire Dragonsteel Shovel"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_fire_hoe:
+  Material: "NETHERITE_HOE"
+  DisplayName: "&fFire Dragonsteel Hoe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_ice_sword:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fIce Dragonsteel Sword"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_ice_pickaxe:
+  Material: "NETHERITE_PICKAXE"
+  DisplayName: "&fIce Dragonsteel Pickaxe"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_ice_axe:
+  Material: "NETHERITE_AXE"
+  DisplayName: "&fIce Dragonsteel Axe"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_ice_shovel:
+  Material: "NETHERITE_SHOVEL"
+  DisplayName: "&fIce Dragonsteel Shovel"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_ice_hoe:
+  Material: "NETHERITE_HOE"
+  DisplayName: "&fIce Dragonsteel Hoe"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.ICE_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_lightning_sword:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fLightning Dragonsteel Sword"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_lightning_pickaxe:
+  Material: "NETHERITE_PICKAXE"
+  DisplayName: "&fLightning Dragonsteel Pickaxe"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_lightning_axe:
+  Material: "NETHERITE_AXE"
+  DisplayName: "&fLightning Dragonsteel Axe"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_lightning_shovel:
+  Material: "NETHERITE_SHOVEL"
+  DisplayName: "&fLightning Dragonsteel Shovel"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_lightning_hoe:
+  Material: "NETHERITE_HOE"
+  DisplayName: "&fLightning Dragonsteel Hoe"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_fire_helmet:
+  Material: "NETHERITE_HELMET"
+  DisplayName: "&fFire Dragonsteel Helmet"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_fire_chestplate:
+  Material: "NETHERITE_CHESTPLATE"
+  DisplayName: "&fFire Dragonsteel Chestplate"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_fire_leggings:
+  Material: "NETHERITE_LEGGINGS"
+  DisplayName: "&fFire Dragonsteel Leggings"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_fire_boots:
+  Material: "NETHERITE_BOOTS"
+  DisplayName: "&fFire Dragonsteel Boots"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_ice_helmet:
+  Material: "NETHERITE_HELMET"
+  DisplayName: "&fIce Dragonsteel Helmet"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_ice_chestplate:
+  Material: "NETHERITE_CHESTPLATE"
+  DisplayName: "&fIce Dragonsteel Chestplate"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_ice_leggings:
+  Material: "NETHERITE_LEGGINGS"
+  DisplayName: "&fIce Dragonsteel Leggings"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_ice_boots:
+  Material: "NETHERITE_BOOTS"
+  DisplayName: "&fIce Dragonsteel Boots"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_lightning_helmet:
+  Material: "NETHERITE_HELMET"
+  DisplayName: "&fLightning Dragonsteel Helmet"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_lightning_chestplate:
+  Material: "NETHERITE_CHESTPLATE"
+  DisplayName: "&fLightning Dragonsteel Chestplate"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_lightning_leggings:
+  Material: "NETHERITE_LEGGINGS"
+  DisplayName: "&fLightning Dragonsteel Leggings"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_lightning_boots:
+  Material: "NETHERITE_BOOTS"
+  DisplayName: "&fLightning Dragonsteel Boots"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.DRAGON_PROTECTION"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+dragonsteel_fire_block:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fFire Dragonsteel Block"
+  CustomModelData: 83710
+dragonsteel_ice_block:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fIce Dragonsteel Block"
+  CustomModelData: 83711
+dragonsteel_lightning_block:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fLightning Dragonsteel Block"
+  CustomModelData: 83712

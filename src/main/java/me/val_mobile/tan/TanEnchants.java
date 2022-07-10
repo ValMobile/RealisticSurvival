@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2021  Val_Mobile
+    Copyright (C) 2022  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -36,8 +36,8 @@ public class TanEnchants {
 
     private final RealisticSurvivalPlugin plugin;
 
-    public TanEnchants(RealisticSurvivalPlugin instance) {
-        plugin = instance;
+    public TanEnchants(RealisticSurvivalPlugin plugin) {
+        this.plugin = plugin;
     }
 
     public void register(Enchantment ench) {

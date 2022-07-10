@@ -1,0 +1,21 @@
+#######################################
+#          Ice and Fire Recipes       #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+battle_burrito:
+  Type: "Shapeless"
+  Result:
+    Item: "battle_burrito"
+    Amount: 1
+  Ingredients:
+    - "GOLDEN_APPLE"
+    - "GOLDEN_CARROT"
+    - "GLISTERING_MELON_SLICE"
+    - "RABBIT_STEW"
+    - "COOKED_SALMON"
+    - "HONEY_BOTTLE"
+    - "PUMPKIN_PIE"
+    - "COOKED_COD"
+    - "COOKED_BEEF"

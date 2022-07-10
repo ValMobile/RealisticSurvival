@@ -1,0 +1,1574 @@
+#######################################
+#          Spartan Weaponry Items     #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+handle:
+  Material: "STICK"
+  DisplayName: "&fHandle"
+  CustomModelData: 83650
+pole:
+  Material: "STICK"
+  DisplayName: "&fPole"
+  CustomModelData: 83651
+netherite_rapier:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Rapier"
+  CustomModelData: 83710
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_katana:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Katana"
+  CustomModelData: 83711
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_greatsword:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Greatsword"
+  CustomModelData: 83712
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_longsword:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Longsword"
+  CustomModelData: 83713
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_spear:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Spear"
+  CustomModelData: 83714
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_saber:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Saber"
+  CustomModelData: 83715
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_boomerang:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Boomerang"
+  CustomModelData: 83716
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_dagger:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Dagger"
+  CustomModelData: 83717
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_glaive:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Glaive"
+  CustomModelData: 83718
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_halberd:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Halberd"
+  CustomModelData: 83719
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_hammer:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Hammer"
+  CustomModelData: 83720
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_javelin:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Javelin"
+  CustomModelData: 83721
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_lance:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Lance"
+  CustomModelData: 83722
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_mace:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Flanged Mace"
+  CustomModelData: 83723
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_pike:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Pike"
+  CustomModelData: 83724
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_quarterstaff:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Quarterstaff"
+  CustomModelData: 83725
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_tomahawk:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Tomahawk"
+  CustomModelData: 83726
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_throwing_knife:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Throwing Knife"
+  CustomModelData: 83727
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_warhammer:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Warhammer"
+  CustomModelData: 83728
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_battleaxe:
+  Material: "NETHERITE_AXE"
+  DisplayName: "&fNetherite Battleaxe"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_longbow:
+  Material: "BOW"
+  DisplayName: "&fNetherite-Strengthened Longbow"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_crossbow:
+  Material: "CROSSBOW"
+  DisplayName: "&fNetherite-Strengthened Crossbow"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_rapier:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Rapier"
+  CustomModelData: 83730
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_katana:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Katana"
+  CustomModelData: 83731
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_greatsword:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Greatsword"
+  CustomModelData: 83732
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_longsword:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Longsword"
+  CustomModelData: 83733
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_spear:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Spear"
+  CustomModelData: 83734
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_saber:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Saber"
+  CustomModelData: 83735
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_boomerang:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Boomerang"
+  CustomModelData: 83736
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_dagger:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Dagger"
+  CustomModelData: 83737
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_glaive:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Glaive"
+  CustomModelData: 83738
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_halberd:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Halberd"
+  CustomModelData: 83739
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_hammer:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Hammer"
+  CustomModelData: 83740
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_javelin:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Javelin"
+  CustomModelData: 83741
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_lance:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Lance"
+  CustomModelData: 83742
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_mace:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Flanged Mace"
+  CustomModelData: 83743
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_pike:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Pike"
+  CustomModelData: 83744
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_quarterstaff:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Quarterstaff"
+  CustomModelData: 83745
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_tomahawk:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Tomahawk"
+  CustomModelData: 83746
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_throwing_knife:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Throwing Knife"
+  CustomModelData: 83747
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_warhammer:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Warhammer"
+  CustomModelData: 83748
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_battleaxe:
+  Material: "DIAMOND_AXE"
+  DisplayName: "&fDiamond Battleaxe"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_longbow:
+  Material: "BOW"
+  DisplayName: "&fDiamond-Strengthened Longbow"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_crossbow:
+  Material: "CROSSBOW"
+  DisplayName: "&fDiamond-Strengthened Crossbow"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_rapier:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Rapier"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_katana:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Katana"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_greatsword:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Greatsword"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_longsword:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Longsword"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_spear:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Spear"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_saber:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Saber"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_boomerang:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Boomerang"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_dagger:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Dagger"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_glaive:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Glaive"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_halberd:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Halberd"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_hammer:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Hammer"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_javelin:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Javelin"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_lance:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Lance"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_mace:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Flanged Mace"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_pike:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Pike"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_quarterstaff:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Quarterstaff"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_tomahawk:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Tomahawk"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_throwing_knife:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Throwing Knife"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_warhammer:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Warhammer"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_battleaxe:
+  Material: "IRON_AXE"
+  DisplayName: "&fIron Battleaxe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_longbow:
+  Material: "BOW"
+  DisplayName: "&fIron-Strengthened Longbow"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_crossbow:
+  Material: "CROSSBOW"
+  DisplayName: "&fIron-Strengthened Crossbow"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_rapier:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Rapier"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_katana:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Katana"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_greatsword:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Greatsword"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_longsword:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Longsword"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_spear:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Spear"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_saber:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Saber"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_boomerang:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Boomerang"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_dagger:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Dagger"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_glaive:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Glaive"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_halberd:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Halberd"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_hammer:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Hammer"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_javelin:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Javelin"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_lance:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Lance"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_mace:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Flanged Mace"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_pike:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Pike"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_quarterstaff:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Quarterstaff"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_tomahawk:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Tomahawk"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_throwing_knife:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Throwing Knife"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_warhammer:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Warhammer"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_battleaxe:
+  Material: "GOLDEN_AXE"
+  DisplayName: "&fGolden Battleaxe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_longbow:
+  Material: "BOW"
+  DisplayName: "&fGolden-Strengthened Longbow"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+gold_crossbow:
+  Material: "CROSSBOW"
+  DisplayName: "&fGolden-Strengthened Crossbow"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_rapier:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Rapier"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_katana:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Katana"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_greatsword:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Greatsword"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_longsword:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Longsword"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_spear:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Spear"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_saber:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Saber"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_boomerang:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Boomerang"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_dagger:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Dagger"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_glaive:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Glaive"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_halberd:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Halberd"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_hammer:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Hammer"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_javelin:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Javelin"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_lance:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Lance"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_mace:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Flanged Mace"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_pike:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Pike"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_quarterstaff:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Quarterstaff"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_tomahawk:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Tomahawk"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_throwing_knife:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Throwing Knife"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_warhammer:
+  Material: "STONE_SWORD"
+  DisplayName: "&fStone Warhammer"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+stone_battleaxe:
+  Material: "STONE_AXE"
+  DisplayName: "&fStone Battleaxe"
+  CustomModelData: 83650
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_rapier:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Rapier"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_katana:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Katana"
+  CustomModelData: 83652
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_greatsword:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Greatsword"
+  CustomModelData: 83653
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_longsword:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Longsword"
+  CustomModelData: 83654
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_spear:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Spear"
+  CustomModelData: 83655
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_saber:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Saber"
+  CustomModelData: 83656
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_boomerang:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Boomerang"
+  CustomModelData: 83657
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_dagger:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Dagger"
+  CustomModelData: 83658
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_glaive:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Glaive"
+  CustomModelData: 83659
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_halberd:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Halberd"
+  CustomModelData: 83660
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_hammer:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Hammer"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_javelin:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Javelin"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_lance:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Lance"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_mace:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Flanged Mace"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_pike:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Pike"
+  CustomModelData: 83665
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_quarterstaff:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Quarterstaff"
+  CustomModelData: 83666
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_tomahawk:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Tomahawk"
+  CustomModelData: 83667
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_throwing_knife:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Throwing Knife"
+  CustomModelData: 83668
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_warhammer:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Warhammer"
+  CustomModelData: 83669
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_battleaxe:
+  Material: "WOODEN_AXE"
+  DisplayName: "&fWooden Battleaxe"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_longbow:
+  Material: "BOW"
+  DisplayName: "&fWooden-Strengthened Longbow"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_crossbow:
+  Material: "CROSSBOW"
+  DisplayName: "&fWooden-Strengthened Crossbow"
+  CustomModelData: 83661
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+wooden_club:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fWooden Club"
+  CustomModelData: 83670
+  Lore:
+    - "LOREPRESET.CLUB"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+leather_longbow:
+  Material: "BOW"
+  DisplayName: "&fLeather-Strengthened Longbow"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+leather_crossbow:
+  Material: "CROSSBOW"
+  DisplayName: "&fLeather-Strengthened Crossbow"
+  CustomModelData: 83662
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_rapier:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Rapier"
+  CustomModelData: 83669
+  Lore:
+    - "LOREPRESET.RAPIER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_katana:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Katana"
+  CustomModelData: 83670
+  Lore:
+    - "LOREPRESET.KATANA"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_greatsword:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Greatsword"
+  CustomModelData: 83671
+  Lore:
+    - "LOREPRESET.GREATSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_longsword:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Longsword"
+  CustomModelData: 83672
+  Lore:
+    - "LOREPRESET.LONGSWORD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_spear:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Spear"
+  CustomModelData: 83673
+  Lore:
+    - "LOREPRESET.SPEAR"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_saber:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Saber"
+  CustomModelData: 83674
+  Lore:
+    - "LOREPRESET.SABER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_boomerang:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Boomerang"
+  CustomModelData: 83675
+  Lore:
+    - "LOREPRESET.BOOMERANG"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_dagger:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Dagger"
+  CustomModelData: 83676
+  Lore:
+    - "LOREPRESET.DAGGER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_glaive:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Glaive"
+  CustomModelData: 83677
+  Lore:
+    - "LOREPRESET.GLAIVE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_halberd:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Halberd"
+  CustomModelData: 83678
+  Lore:
+    - "LOREPRESET.HALBERD"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_hammer:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Hammer"
+  CustomModelData: 83679
+  Lore:
+    - "LOREPRESET.HAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_javelin:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Javelin"
+  CustomModelData: 83680
+  Lore:
+    - "LOREPRESET.JAVELIN"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_lance:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Lance"
+  CustomModelData: 83681
+  Lore:
+    - "LOREPRESET.LANCE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_mace:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Flanged Mace"
+  CustomModelData: 83682
+  Lore:
+    - "LOREPRESET.MACE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_pike:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Pike"
+  CustomModelData: 83683
+  Lore:
+    - "LOREPRESET.PIKE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_quarterstaff:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Quarterstaff"
+  CustomModelData: 83684
+  Lore:
+    - "LOREPRESET.QUARTERSTAFF"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_tomahawk:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Tomahawk"
+  CustomModelData: 83685
+  Lore:
+    - "LOREPRESET.TOMAHAWK"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_throwing_knife:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Throwing Knife"
+  CustomModelData: 83686
+  Lore:
+    - "LOREPRESET.THROWING_KNIFE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_warhammer:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Warhammer"
+  CustomModelData: 83687
+  Lore:
+    - "LOREPRESET.WARHAMMER"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_battleaxe:
+  Material: "STONE_AXE"
+  DisplayName: "&fCopper Battleaxe"
+  CustomModelData: 83651
+  Lore:
+    - "LOREPRESET.BATTLEAXE"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_longbow:
+  Material: "BOW"
+  DisplayName: "&fCopper-Strengthened Longbow"
+  CustomModelData: 83664
+  Lore:
+    - "LOREPRESET.LONGBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_crossbow:
+  Material: "CROSSBOW"
+  DisplayName: "&fCopper-Strengthened Crossbow"
+  CustomModelData: 83663
+  Lore:
+    - "LOREPRESET.CROSSBOW"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+studded_club:
+  Material: "IRON_SWORD"
+  DisplayName: "&fStudded Club"
+  CustomModelData: 83669
+  Lore:
+    - "LOREPRESET.CLUB"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true

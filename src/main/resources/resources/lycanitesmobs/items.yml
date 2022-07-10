@@ -1,0 +1,14 @@
+#######################################
+#          Lycanite's Mobs Items      #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+battle_burrito:
+  Material: "GOLDEN_APPLE"
+  DisplayName: "&fBattle Burrito"
+  CustomModelData: 83650
+  Lore:
+    - "&aA powerful fusion of many tasty meats!"
+    - "&aApplies: Strength, Resistance,"
+    - "&aAbsorption, Health Boost, and Heals!"

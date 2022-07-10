@@ -2,40 +2,7 @@
 #          No Tree Punching           #
 #######################################
 
-# Customize weapon traits of flint gear and drop chance of plant fiber
-# Breaking grass with any dagger and throwing knive can drop plant fiber in addition to the regular flint knife
-# 25% = 0.25
-PlantFiber:
-  DropChance: 0.25
-  Blocks:  # What blocks should be counted as grass
-    - "TALL_GRASS"
-    - "GRASS"
-FlintShard:
-  DropChance: 0.3
-Pickaxe:
-  Flint:
-    AttackDamage: 2.5
-    AttackSpeed: 2.5
-Axe:
-  Flint:
-    AttackDamage: 5.0
-    AttackSpeed: 1.0
-Shovel:
-  Flint:
-    AttackDamage: 3.0
-    AttackSpeed: 2.4
-Hoe:
-  Flint:
-    AttackDamage: 1.0
-    AttackSpeed: 2.6
-Knife:
-  Flint:
-    AttackDamage: 2.0
-    AttackSpeed: 3.0
-
-# How much less durability should flint tools have compared to their wooden counterparts
-# Higher values mean less durability
-DurabilityDamageMultiplier: 2.0
+# Customize the No Tree Punching features
 
 # The wooden blocks that should not be broken by fist
 # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
@@ -68,3 +35,73 @@ WoodBlocks:
   - "WARPED_HYPHAE"
   - "STRIPPED_WARPED_STEM"
   - "STRIPPED_WARPED_HYPHAE"
+
+Items:
+  flint_hatchet:
+    Enabled: true
+    Attributes:
+      AttackDamage: 5.0
+      AttackSpeed: 1.0
+  flint_knife:
+    Enabled: true
+    Attributes:
+      AttackDamage: 2.0
+      AttackSpeed: 3.0
+  flint_pickaxe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 2.5
+      AttackSpeed: 2.5
+  flint_shovel:
+    Enabled: true
+    Attributes:
+      AttackDamage: 3.0
+      AttackSpeed: 2.4
+  flint_hoe:
+    Enabled: true
+    Attributes:
+      AttackDamage: 1.0
+      AttackSpeed: 2.6
+  plant_fiber:
+    Enabled: true
+    # Customize weapon traits of flint gear and drop chance of plant fiber
+    # Breaking grass with any dagger and throwing knive can drop plant fiber in addition to the regular flint knife
+    # 25% = 0.25
+    BlockDrops:         # What blocks should be counted as grass
+      TALL_GRASS:
+        Type: "Single"
+        Chance: 0.25
+      GRASS:
+        Type: "Single"
+        Chance: 0.25
+  plant_string:
+    Enabled: true
+  flint_shard:
+    Enabled: true
+    BlockDrops: # What blocks should be counted as gravel
+      GRAVEL:
+        Type: "Single"
+        Chance: 0.3
+
+Recipes:
+  flint_hatchet:
+    Enabled: true
+    Unlock: true
+  flint_knife:
+    Enabled: true
+    Unlock: true
+  flint_pickaxe:
+    Enabled: true
+    Unlock: true
+  flint_shovel:
+    Enabled: true
+    Unlock: true
+  flint_hoe:
+    Enabled: true
+    Unlock: true
+  cobblestone:
+    Enabled: true
+    Unlock: true
+  plant_string:
+    Enabled: true
+    Unlock: true

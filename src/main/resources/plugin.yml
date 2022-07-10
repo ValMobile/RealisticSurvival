@@ -3,6 +3,7 @@ name: RealisticSurvival
 version: ${project.version}
 author: Val_Mobile
 api-version: 1.17
+depend: [FastAsyncWorldEdit]
 softdepend: [RealisticSeasons]
 
 commands:
@@ -15,31 +16,31 @@ commands:
 permissions:
   realisticsurvival.toughasnails.resistance.cold:
     description: Grants the player immunity from getting cold
-    default: op
+    default: not op
   realisticsurvival.toughasnails.resistance.colddamage:
     description: Grants the player immunity to the health effects of hypothermia
-    default: op
+    default: not op
   realisticsurvival.toughasnails.resistance.coldvisual:
     description: Grants the player immunity to the visual effects of hypothermia
-    default: op
+    default: not op
   realisticsurvival.toughasnails.resistance.hot:
     description: Grants the player immunity from getting hot
-    default: op
+    default: not op
   realisticsurvival.toughasnails.resistance.hotdamage:
     description: Grants the player immunity to health effects of hyperthermia
-    default: op
+    default: not op
   realisticsurvival.toughasnails.resistance.hotvisual:
     description: Grants the player immunity to the visual effects of hyperthermia
-    default: op
+    default: not op
   realisticsurvival.toughasnails.resistance.thirst:
     description: Grants the player immunity from getting thirsty
-    default: op
+    default: not op
   realisticsurvival.toughasnails.resistance.thirstdamage:
     description: Grants the player immunity to the health effects of dehydration
-    default: op
+    default: not op
   realisticsurvival.toughasnails.resistance.*:
     description: Wildcard permission
-    default: op
+    default: not op
     children:
       realisticsurvival.toughasnails.resistance.cold: true
       realisticsurvival.toughasnails.resistance.colddamage: true

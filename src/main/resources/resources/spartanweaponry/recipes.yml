@@ -1,0 +1,1379 @@
+#######################################
+#          Spartan Weaponry Recipes   #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+netherite_rapier:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_rapier"
+    Amount: 1
+  Base: "diamond_rapier"
+  Addition: "NETHERITE_INGOT"
+netherite_katana:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_katana"
+    Amount: 1
+  Base: "diamond_katana"
+  Addition: "NETHERITE_INGOT"
+netherite_greatsword:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_greatsword"
+    Amount: 1
+  Base: "diamond_greatsword"
+  Addition: "NETHERITE_INGOT"
+netherite_longsword:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_longsword"
+    Amount: 1
+  Base: "diamond_longsword"
+  Addition: "NETHERITE_INGOT"
+netherite_spear:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_spear"
+    Amount: 1
+  Base: "diamond_spear"
+  Addition: "NETHERITE_INGOT"
+netherite_saber:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_saber"
+    Amount: 1
+  Base: "diamond_saber"
+  Addition: "NETHERITE_INGOT"
+netherite_boomerang:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_boomerang"
+    Amount: 1
+  Base: "diamond_boomerang"
+  Addition: "NETHERITE_INGOT"
+netherite_dagger:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_dagger"
+    Amount: 1
+  Base: "diamond_dagger"
+  Addition: "NETHERITE_INGOT"
+netherite_glaive:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_glaive"
+    Amount: 1
+  Base: "diamond_glaive"
+  Addition: "NETHERITE_INGOT"
+netherite_halberd:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_halberd"
+    Amount: 1
+  Base: "diamond_halberd"
+  Addition: "NETHERITE_INGOT"
+netherite_hammer:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_hammer"
+    Amount: 1
+  Base: "diamond_hammer"
+  Addition: "NETHERITE_INGOT"
+netherite_javelin:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_javelin"
+    Amount: 1
+  Base: "diamond_javelin"
+  Addition: "NETHERITE_INGOT"
+netherite_lance:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_lance"
+    Amount: 1
+  Base: "diamond_lance"
+  Addition: "NETHERITE_INGOT"
+netherite_mace:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_mace"
+    Amount: 1
+  Base: "diamond_mace"
+  Addition: "NETHERITE_INGOT"
+netherite_pike:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_pike"
+    Amount: 1
+  Base: "diamond_pike"
+  Addition: "NETHERITE_INGOT"
+netherite_quarterstaff:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_quarterstaff"
+    Amount: 1
+  Base: "diamond_quarterstaff"
+  Addition: "NETHERITE_INGOT"
+netherite_tomahawk:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_tomahawk"
+    Amount: 1
+  Base: "diamond_tomahawk"
+  Addition: "NETHERITE_INGOT"
+netherite_throwing_knife:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_throwing_knife"
+    Amount: 1
+  Base: "diamond_throwing_knife"
+  Addition: "NETHERITE_INGOT"
+netherite_warhammer:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_warhammer"
+    Amount: 1
+  Base: "diamond_warhammer"
+  Addition: "NETHERITE_INGOT"
+netherite_battleaxe:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_battleaxe"
+    Amount: 1
+  Base: "diamond_battleaxe"
+  Addition: "NETHERITE_INGOT"
+netherite_longbow:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_longbow"
+    Amount: 1
+  Base: "diamond_longbow"
+  Addition: "NETHERITE_INGOT"
+netherite_crossbow:
+  Type: "Smithing"
+  Result:
+    Item: "netherite_crossbow"
+    Amount: 1
+  Base: "diamond_crossbow"
+  Addition: "NETHERITE_INGOT"
+diamond_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_rapier"
+    Amount: 1
+  Ingredients:
+    - "||DIAMOND"
+    - "DIAMOND|DIAMOND"
+    - "handle|DIAMOND"
+diamond_katana:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_katana"
+    Amount: 1
+  Ingredients:
+    - "||DIAMOND"
+    - "|DIAMOND"
+    - "handle"
+diamond_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "DIAMOND|DIAMOND|DIAMOND"
+    - "DIAMOND|handle|DIAMOND"
+diamond_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_longsword"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|DIAMOND"
+    - "DIAMOND|handle|DIAMOND"
+diamond_spear:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_spear"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|pole"
+diamond_saber:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_saber"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|DIAMOND"
+    - "DIAMOND|handle"
+diamond_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_boomerang"
+    Amount: 1
+  Ingredients:
+    - "DIAMOND|DIAMOND|DIAMOND"
+    - "DIAMOND"
+    - "DIAMOND"
+diamond_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_dagger"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|handle"
+diamond_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_glaive"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|DIAMOND"
+    - "|pole"
+diamond_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_halberd"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "DIAMOND|DIAMOND"
+    - "DIAMOND|pole"
+diamond_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_hammer"
+    Amount: 1
+  Ingredients:
+    - "DIAMOND|DIAMOND|DIAMOND"
+    - "DIAMOND|DIAMOND|DIAMOND"
+    - "|handle"
+diamond_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|DIAMOND"
+diamond_lance:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_lance"
+    Amount: 1
+  Ingredients:
+    - "||DIAMOND"
+    - "DIAMOND|pole"
+    - "handle|DIAMOND"
+diamond_mace:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_mace"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND|DIAMOND"
+    - "|STICK|DIAMOND"
+    - "handle"
+diamond_pike:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_pike"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "|pole"
+    - "|pole"
+diamond_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|DIAMOND"
+diamond_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|DIAMOND"
+    - "|DIAMOND"
+diamond_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|DIAMOND"
+diamond_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "DIAMOND|DIAMOND"
+    - "|handle"
+diamond_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "DIAMOND|DIAMOND|DIAMOND"
+    - "DIAMOND|STICK|DIAMOND"
+    - "|handle"
+diamond_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|DIAMOND"
+    - "STICK||STRING"
+    - "DIAMOND|STRING|STRING"
+diamond_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_crossbow"
+    Amount: 1
+  Ingredients:
+    - "DIAMOND|BOW|DIAMOND"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle"
+iron_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "iron_rapier"
+    Amount: 1
+  Ingredients:
+    - "||IRON_INGOT"
+    - "IRON_INGOT|IRON_INGOT"
+    - "handle|IRON_INGOT"
+iron_katana:
+  Type: "Shaped"
+  Result:
+    Item: "iron_katana"
+    Amount: 1
+  Ingredients:
+    - "||IRON_INGOT"
+    - "|IRON_INGOT"
+    - "handle"
+iron_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "iron_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "IRON_INGOT|IRON_INGOT|IRON_INGOT"
+    - "IRON_INGOT|handle|IRON_INGOT"
+iron_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "iron_longsword"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|IRON_INGOT"
+    - "IRON_INGOT|handle|IRON_INGOT"
+iron_spear:
+  Type: "Shaped"
+  Result:
+    Item: "iron_spear"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|pole"
+iron_saber:
+  Type: "Shaped"
+  Result:
+    Item: "iron_saber"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|IRON_INGOT"
+    - "IRON_INGOT|handle"
+iron_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "iron_boomerang"
+    Amount: 1
+  Ingredients:
+    - "IRON_INGOT|IRON_INGOT|IRON_INGOT"
+    - "IRON_INGOT"
+    - "IRON_INGOT"
+iron_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "iron_dagger"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|handle"
+iron_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "iron_glaive"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|IRON_INGOT"
+    - "|pole"
+iron_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "iron_halberd"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "IRON_INGOT|IRON_INGOT"
+    - "IRON_INGOT|pole"
+iron_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "iron_hammer"
+    Amount: 1
+  Ingredients:
+    - "IRON_INGOT|IRON_INGOT|IRON_INGOT"
+    - "IRON_INGOT|IRON_INGOT|IRON_INGOT"
+    - "|handle"
+iron_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "iron_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|IRON_INGOT"
+iron_lance:
+  Type: "Shaped"
+  Result:
+    Item: "iron_lance"
+    Amount: 1
+  Ingredients:
+    - "||IRON_INGOT"
+    - "IRON_INGOT|pole"
+    - "handle|IRON_INGOT"
+iron_mace:
+  Type: "Shaped"
+  Result:
+    Item: "iron_mace"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT|IRON_INGOT"
+    - "|STICK|IRON_INGOT"
+    - "handle"
+iron_pike:
+  Type: "Shaped"
+  Result:
+    Item: "iron_pike"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "|pole"
+    - "|pole"
+iron_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "iron_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|IRON_INGOT"
+iron_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "iron_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|IRON_INGOT"
+    - "|IRON_INGOT"
+iron_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "iron_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|IRON_INGOT"
+iron_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "iron_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "IRON_INGOT|IRON_INGOT"
+    - "|handle"
+iron_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "iron_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "IRON_INGOT|IRON_INGOT|IRON_INGOT"
+    - "IRON_INGOT|STICK|IRON_INGOT"
+    - "|handle"
+iron_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "iron_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|IRON_INGOT"
+    - "STICK||STRING"
+    - "IRON_INGOT|STRING|STRING"
+iron_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "iron_crossbow"
+    Amount: 1
+  Ingredients:
+    - "IRON_INGOT|BOW|IRON_INGOT"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle"
+gold_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "gold_rapier"
+    Amount: 1
+  Ingredients:
+    - "||GOLD_INGOT"
+    - "GOLD_INGOT|GOLD_INGOT"
+    - "handle|GOLD_INGOT"
+gold_katana:
+  Type: "Shaped"
+  Result:
+    Item: "gold_katana"
+    Amount: 1
+  Ingredients:
+    - "||GOLD_INGOT"
+    - "|GOLD_INGOT"
+    - "handle"
+gold_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "gold_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "GOLD_INGOT|handle|GOLD_INGOT"
+gold_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "gold_longsword"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|GOLD_INGOT"
+    - "GOLD_INGOT|handle|GOLD_INGOT"
+gold_spear:
+  Type: "Shaped"
+  Result:
+    Item: "gold_spear"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|pole"
+gold_saber:
+  Type: "Shaped"
+  Result:
+    Item: "gold_saber"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|GOLD_INGOT"
+    - "GOLD_INGOT|handle"
+gold_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "gold_boomerang"
+    Amount: 1
+  Ingredients:
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "GOLD_INGOT"
+    - "GOLD_INGOT"
+gold_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "gold_dagger"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|handle"
+gold_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "gold_glaive"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|GOLD_INGOT"
+    - "|pole"
+gold_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "gold_halberd"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "GOLD_INGOT|GOLD_INGOT"
+    - "GOLD_INGOT|pole"
+gold_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "gold_hammer"
+    Amount: 1
+  Ingredients:
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "|handle"
+gold_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "gold_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|GOLD_INGOT"
+gold_lance:
+  Type: "Shaped"
+  Result:
+    Item: "gold_lance"
+    Amount: 1
+  Ingredients:
+    - "||GOLD_INGOT"
+    - "GOLD_INGOT|pole"
+    - "handle|GOLD_INGOT"
+gold_mace:
+  Type: "Shaped"
+  Result:
+    Item: "gold_mace"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT|GOLD_INGOT"
+    - "|STICK|GOLD_INGOT"
+    - "handle"
+gold_pike:
+  Type: "Shaped"
+  Result:
+    Item: "gold_pike"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "|pole"
+    - "|pole"
+gold_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "gold_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|GOLD_INGOT"
+gold_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "gold_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|GOLD_INGOT"
+    - "|GOLD_INGOT"
+gold_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "gold_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|GOLD_INGOT"
+gold_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "gold_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "GOLD_INGOT|GOLD_INGOT"
+    - "|handle"
+gold_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "gold_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "GOLD_INGOT|STICK|GOLD_INGOT"
+    - "|handle"
+gold_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "gold_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|GOLD_INGOT"
+    - "STICK||STRING"
+    - "GOLD_INGOT|STRING|STRING"
+gold_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "gold_crossbow"
+    Amount: 1
+  Ingredients:
+    - "GOLD_INGOT|BOW|GOLD_INGOT"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle"
+stone_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "stone_rapier"
+    Amount: 1
+  Ingredients:
+    - "||COBBLESTONE"
+    - "COBBLESTONE|COBBLESTONE"
+    - "handle|COBBLESTONE"
+stone_katana:
+  Type: "Shaped"
+  Result:
+    Item: "stone_katana"
+    Amount: 1
+  Ingredients:
+    - "||COBBLESTONE"
+    - "|COBBLESTONE"
+    - "handle"
+stone_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "stone_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "COBBLESTONE|COBBLESTONE|COBBLESTONE"
+    - "COBBLESTONE|handle|COBBLESTONE"
+stone_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "stone_longsword"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|COBBLESTONE"
+    - "COBBLESTONE|handle|COBBLESTONE"
+stone_spear:
+  Type: "Shaped"
+  Result:
+    Item: "stone_spear"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|pole"
+stone_saber:
+  Type: "Shaped"
+  Result:
+    Item: "stone_saber"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|COBBLESTONE"
+    - "COBBLESTONE|handle"
+stone_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "stone_boomerang"
+    Amount: 1
+  Ingredients:
+    - "COBBLESTONE|COBBLESTONE|COBBLESTONE"
+    - "COBBLESTONE"
+    - "COBBLESTONE"
+stone_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "stone_dagger"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|handle"
+stone_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "stone_glaive"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|COBBLESTONE"
+    - "|pole"
+stone_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "stone_halberd"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "COBBLESTONE|COBBLESTONE"
+    - "COBBLESTONE|pole"
+stone_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "stone_hammer"
+    Amount: 1
+  Ingredients:
+    - "COBBLESTONE|COBBLESTONE|COBBLESTONE"
+    - "COBBLESTONE|COBBLESTONE|COBBLESTONE"
+    - "|handle"
+stone_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "stone_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|COBBLESTONE"
+stone_lance:
+  Type: "Shaped"
+  Result:
+    Item: "stone_lance"
+    Amount: 1
+  Ingredients:
+    - "||COBBLESTONE"
+    - "COBBLESTONE|pole"
+    - "handle|COBBLESTONE"
+stone_mace:
+  Type: "Shaped"
+  Result:
+    Item: "stone_mace"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE|COBBLESTONE"
+    - "|STICK|COBBLESTONE"
+    - "handle"
+stone_pike:
+  Type: "Shaped"
+  Result:
+    Item: "stone_pike"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "|pole"
+    - "|pole"
+stone_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "stone_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|COBBLESTONE"
+stone_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "stone_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|COBBLESTONE"
+    - "|COBBLESTONE"
+stone_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "stone_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|COBBLESTONE"
+stone_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "stone_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|COBBLESTONE"
+    - "COBBLESTONE|COBBLESTONE"
+    - "|handle"
+stone_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "stone_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "COBBLESTONE|COBBLESTONE|COBBLESTONE"
+    - "COBBLESTONE|STICK|COBBLESTONE"
+    - "|handle"
+leather_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "leather_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|COBBLESTONE"
+    - "STICK||STRING"
+    - "COBBLESTONE|STRING|STRING"
+leather_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "leather_crossbow"
+    Amount: 1
+  Ingredients:
+    - "COBBLESTONE|BOW|COBBLESTONE"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle"
+wooden_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_rapier"
+    Amount: 1
+  Ingredients:
+    - "||PLANKS"
+    - "PLANKS|PLANKS"
+    - "handle|PLANKS"
+wooden_katana:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_katana"
+    Amount: 1
+  Ingredients:
+    - "||PLANKS"
+    - "|PLANKS"
+    - "handle"
+wooden_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "PLANKS|PLANKS|PLANKS"
+    - "PLANKS|handle|PLANKS"
+wooden_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_longsword"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|PLANKS"
+    - "PLANKS|handle|PLANKS"
+wooden_spear:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_spear"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|pole"
+wooden_saber:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_saber"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|PLANKS"
+    - "PLANKS|handle"
+wooden_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_boomerang"
+    Amount: 1
+  Ingredients:
+    - "PLANKS|PLANKS|PLANKS"
+    - "PLANKS"
+    - "PLANKS"
+wooden_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_dagger"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|handle"
+wooden_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_glaive"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|PLANKS"
+    - "|pole"
+wooden_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_halberd"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "PLANKS|PLANKS"
+    - "PLANKS|pole"
+wooden_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_hammer"
+    Amount: 1
+  Ingredients:
+    - "PLANKS|PLANKS|PLANKS"
+    - "PLANKS|PLANKS|PLANKS"
+    - "|handle"
+wooden_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|PLANKS"
+wooden_lance:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_lance"
+    Amount: 1
+  Ingredients:
+    - "||PLANKS"
+    - "PLANKS|pole"
+    - "handle|PLANKS"
+wooden_mace:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_mace"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS|PLANKS"
+    - "|STICK|PLANKS"
+    - "handle"
+wooden_pike:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_pike"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "|pole"
+    - "|pole"
+wooden_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|PLANKS"
+wooden_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|PLANKS"
+    - "|PLANKS"
+wooden_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|PLANKS"
+wooden_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|PLANKS"
+    - "PLANKS|PLANKS"
+    - "|handle"
+wooden_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "PLANKS|PLANKS|PLANKS"
+    - "PLANKS|STICK|PLANKS"
+    - "|handle"
+wooden_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|PLANKS"
+    - "STICK||STRING"
+    - "PLANKS|STRING|STRING"
+wooden_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_crossbow"
+    Amount: 1
+  Ingredients:
+    - "PLANKS|BOW|PLANKS"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|handle"
+copper_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "copper_rapier"
+    Amount: 1
+  Ingredients:
+    - "||COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT"
+    - "handle|COPPER_INGOT"
+copper_katana:
+  Type: "Shaped"
+  Result:
+    Item: "copper_katana"
+    Amount: 1
+  Ingredients:
+    - "||COPPER_INGOT"
+    - "|COPPER_INGOT"
+    - "handle"
+copper_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "copper_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT|handle|COPPER_INGOT"
+copper_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "copper_longsword"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|COPPER_INGOT"
+    - "COPPER_INGOT|handle|COPPER_INGOT"
+copper_spear:
+  Type: "Shaped"
+  Result:
+    Item: "copper_spear"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|pole"
+copper_saber:
+  Type: "Shaped"
+  Result:
+    Item: "copper_saber"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|COPPER_INGOT"
+    - "COPPER_INGOT|handle"
+copper_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "copper_boomerang"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT"
+    - "COPPER_INGOT"
+copper_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "copper_dagger"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|handle"
+copper_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "copper_glaive"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|COPPER_INGOT"
+    - "|pole"
+copper_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "copper_halberd"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT|pole"
+copper_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "copper_hammer"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "|handle"
+copper_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "copper_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "pole|COPPER_INGOT"
+copper_lance:
+  Type: "Shaped"
+  Result:
+    Item: "copper_lance"
+    Amount: 1
+  Ingredients:
+    - "||COPPER_INGOT"
+    - "COPPER_INGOT|pole"
+    - "handle|COPPER_INGOT"
+copper_mace:
+  Type: "Shaped"
+  Result:
+    Item: "copper_mace"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT|COPPER_INGOT"
+    - "|STICK|COPPER_INGOT"
+    - "handle"
+copper_pike:
+  Type: "Shaped"
+  Result:
+    Item: "copper_pike"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "|pole"
+    - "|pole"
+copper_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "copper_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|pole"
+    - "|COPPER_INGOT"
+copper_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "copper_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "handle|COPPER_INGOT"
+    - "|COPPER_INGOT"
+copper_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "copper_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "handle|COPPER_INGOT"
+copper_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "copper_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT"
+    - "|handle"
+copper_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "copper_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT|STICK|COPPER_INGOT"
+    - "|handle"
+copper_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "copper_longbow"
+    Amount: 1
+  Ingredients:
+    - "handle|STICK|COPPER_INGOT"
+    - "STICK||STRING"
+    - "COPPER_INGOT|STRING|STRING"
+copper_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "copper_crossbow"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|BOW|COPPER_INGOT"
+    - "COPPER_INGOT|TRIPWIRE_HOOK|COPPER_INGOT"
+    - "|handle"
+handle_0:
+  Type: "Shapeless"
+  Result:
+    Item: "handle"
+    Amount: 1
+  Ingredients:
+    - "STICK"
+    - "STRING"
+handle_1:
+  Type: "Shaped"
+  Result:
+    Item: "handle"
+    Amount: 4
+  Ingredients:
+    - "STICK|STICK|STICK"
+    - "STICK|WOOL"
+handle_2:
+  Type: "Shaped"
+  Result:
+    Item: "handle"
+    Amount: 4
+  Ingredients:
+    - "STICK|STICK|STICK"
+    - "STICK|LEATHER"
+pole_0:
+  Type: "Shaped"
+  Result:
+    Item: "pole"
+    Amount: 1
+  Ingredients:
+    - "STICK"
+    - "STICK|STRING"
+    - "STICK"
+pole_1:
+  Type: "Shaped"
+  Result:
+    Item: "pole"
+    Amount: 4
+  Ingredients:
+    - "STICK|STICK|STICK"
+    - "STICK|STICK|STICK"
+    - "STICK|STICK|WOOL"
+pole_2:
+  Type: "Shaped"
+  Result:
+    Item: "pole"
+    Amount: 4
+  Ingredients:
+    - "STICK|STICK|STICK"
+    - "STICK|STICK|STICK"
+    - "STICK|STICK|LEATHER"
+wooden_club:
+  Type: "Shaped"
+  Result:
+    Item: "wooden_club"
+    Amount: 1
+  Ingredients:
+    - "|LOGS"
+    - "LOGS"
+studded_club:
+  Type: "Shaped"
+  Result:
+    Item: "studded_club"
+    Amount: 1
+  Ingredients:
+    - "wooden_club"
+    - "IRON_INGOT"

@@ -9,22 +9,14 @@
 VisualTickTime: 5  # Responsible for temperature and thirst HUDs
 CheckTickTime: 100 # Responsible for temperature and thirst logic calculations
 
-IceCube:
-  DropChance: 0.33
-  Blocks:
-    - "ICE"
-    - "PACKED_ICE"
-    - "BLUE_ICE"
-MagmaShard:
-  DropChance: 0.33
-  Blocks:
-    - "MAGMA_BLOCK"
-
 Temperature:
+  Enabled: true
   Hypothermia:
+    EnableTint: true # Should the screen be tinted light blue when a player has hypothermia?
     Limit: 1.0    # Minimum temperature for player to be in hypothermia and take damage
     Damage: 0.5   # How much damage the player takes while in hypothermia per "CheckTickTime" number of ticks
   Hyperthermia:
+    EnableTint: true # Should the screen be tinted orange when a player has hyperthermia?
     Limit: 24.0   # Minimum temperature for player to be in hyperthermia and take damage
     Damage: 0.5   # How much damage the player takes while in hyperthermia per "CheckTickTime" number of ticks
   MaxChange: 0.75  # By how much can a player's temperature change per "CheckTickTime" number of ticks
@@ -32,240 +24,615 @@ Temperature:
   # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
   Blocks:
     # 1 temperature bar = 1.0 units
-    CAMPFIRE: 2.0
-    TORCH: 0.1
-    WALL_TORCH: 0.1
-    JACK_O_LANTERN: 0.1
-    LANTERN: 0.1
-    FIRE: 0.2
-    LAVA: 0.1
-    LAVA_CAULDRON: 0.1
-    WATER: -0.005
-    WATER_CAULDRON: -0.005
-    SNOW: -0.01
-    SNOW_BLOCK: -0.01
-    POWDER_SNOW: -0.01
-    POWDER_SNOW_CAULDRON: -0.01
-    ICE: -0.01
-    PACKED_ICE: -0.02
-    BLUE_ICE: -0.1
-    FROSTED_ICE: -0.01
-    SOUL_CAMPFIRE: -2.0
-    SOUL_TORCH: -0.1
-    SOUL_WALL_TORCH: -0.1
-    SOUL_LANTERN: -0.1
-    SOUL_FIRE: -0.2
-    MAGMA_BLOCK: 0.03
-    WHITE_WOOL: 0.03
-    WHITE_CARPET: 0.03
-    WHITE_CANDLE: 0.05
-    WHITE_CANDLE_CAKE: 0.05
-    ORANGE_WOOL: 0.03
-    ORANGE_CARPET: 0.03
-    ORANGE_CANDLE: 0.05
-    ORANGE_CANDLE_CAKE: 0.05
-    PINK_WOOL: 0.03
-    PINK_CARPET: 0.03
-    PINK_CANDLE: 0.05
-    PINK_CANDLE_CAKE: 0.05
-    CYAN_WOOL: 0.03
-    CYAN_CARPET: 0.03
-    CYAN_CANDLE: 0.05
-    CYAN_CANDLE_CAKE: 0.05
-    YELLOW_WOOL: 0.03
-    YELLOW_CARPET: 0.03
-    YELLOW_CANDLE: 0.5
-    YELLOW_CANDLE_CAKE: 0.05
-    LIME_WOOL: 0.03
-    LIME_CARPET: 0.03
-    LIME_CANDLE: 0.05
-    LIME_CANDLE_CAKE: 0.05
-    MAGENTA_WOOL: 0.03
-    MAGENTA_CARPET: 0.03
-    MAGENTA_CANDLE: 0.05
-    MAGENTA_CANDLE_CAKE: 0.05
-    GRAY_WOOL: 0.03
-    GRAY_CARPET: 0.03
-    GRAY_CANDLE: 0.05
-    GRAY_CANDLE_CAKE: 0.05
-    LIGHT_GRAY_WOOL: 0.03
-    LIGHT_GRAY_CARPET: 0.03
-    LIGHT_GRAY_CANDLE: 0.05
-    LIGHT_GRAY_CANDLE_CAKE: 0.05
-    LIGHT_BLUE_WOOL: 0.03
-    LIGHT_BLUE_CARPET: 0.03
-    LIGHT_BLUE_CANDLE: 0.05
-    LIGHT_BLUE_CANDLE_CAKE: 0.05
-    PURPLE_WOOL: 0.03
-    PURPLE_CARPET: 0.03
-    PURPLE_CANDLE: 0.05
-    PURPLE_CANDLE_CAKE: 0.05
-    BLUE_WOOL: 0.03
-    BLUE_CARPET: 0.03
-    BLUE_CANDLE: 0.05
-    BLUE_CANDLE_CAKE: 0.05
-    BROWN_WOOL: 0.03
-    BROWN_CARPET: 0.03
-    BROWN_CANDLE: 0.05
-    BROWN_CANDLE_CAKE: 0.05
-    GREEN_WOOL: 0.03
-    GREEN_CARPET: 0.03
-    GREEN_CANDLE: 0.05
-    GREEN_CANDLE_CAKE: 0.05
-    RED_WOOL: 0.03
-    RED_CARPET: 0.03
-    RED_CANDLE: 0.05
-    RED_CANDLE_CAKE: 0.05
-    BLACK_WOOL: 0.03
-    BLACK_CARPET: 0.03
-    BLACK_CANDLE: 0.05
-    BLACK_CANDLE_CAKE: 0.05
-  WoolArmor:
-    Helmet: 2.0
-    Chestplate: 2.0
-    Leggings: 1.75
-    Boots: 1.5
-  JelledSlimeArmor:
-    Helmet: -2.0
-    Chestplate: -2.0
-    Leggings: -1.75
-    Boots: -1.5
-  Warming: 3.0         # Warming enchant
-  Cooling: -3.0        # Cooling enchant
-  Burning: 3.0
-  SubmergedWater: -2.0 # If a player is in water
-  SubmergedLava: 3.0   # If a player is in lava
-  Storming: -2.0       # If it is raining or thundering, and the player is outside
+    CAMPFIRE:
+      Type: "Change"
+      Value: 2.0
+    TORCH:
+      Type: "Change"
+      Value: 0.1
+    WALL_TORCH:
+      Type: "Change"
+      Value: 0.1
+    JACK_O_LANTERN:
+      Type: "Change"
+      Value: 0.1
+    LANTERN:
+      Type: "Change"
+      Value: 0.1
+    FIRE:
+      Type: "Change"
+      Value: 0.4
+    LAVA:
+      Type: "Change"
+      Value: 0.5
+    LAVA_CAULDRON:
+      Type: "Change"
+      Value: 0.1
+    WATER:
+      Type: "Change"
+      Value: -0.1
+    WATER_CAULDRON:
+      Type: "Change"
+      Value: -0.1
+    SNOW:
+      Type: "Change"
+      Value: -0.05
+    SNOW_BLOCK:
+      Type: "Change"
+      Value: -0.1
+    POWDER_SNOW:
+      Type: "Change"
+      Value: -0.05
+    POWDER_SNOW_CAULDRON:
+      Type: "Change"
+      Value: -0.1
+    ICE:
+      Type: "Change"
+      Value: -0.1
+    PACKED_ICE:
+      Type: "Change"
+      Value: -0.15
+    BLUE_ICE:
+      Type: "Change"
+      Value: -0.2
+    FROSTED_ICE:
+      Type: "Change"
+      Value: -0.1
+    SOUL_CAMPFIRE:
+      Type: "Change"
+      Value: -2.0
+    SOUL_TORCH:
+      Type: "Change"
+      Value: -0.1
+    SOUL_WALL_TORCH:
+      Type: "Change"
+      Value: -0.1
+    SOUL_LANTERN:
+      Type: "Change"
+      Value: -0.1
+    SOUL_FIRE:
+      Type: "Change"
+      Value: -0.4
+    MAGMA_BLOCK:
+      Type: "Change"
+      Value: 0.1
+    WHITE_WOOL:
+      Type: "Change"
+      Value: 0.1
+    WHITE_CARPET:
+      Type: "Change"
+      Value: 0.1
+    WHITE_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    WHITE_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    ORANGE_WOOL:
+      Type: "Change"
+      Value: 0.1
+    ORANGE_CARPET:
+      Type: "Change"
+      Value: 0.1
+    ORANGE_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    ORANGE_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    PINK_WOOL:
+      Type: "Change"
+      Value: 0.1
+    PINK_CARPET:
+      Type: "Change"
+      Value: 0.1
+    PINK_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    PINK_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    CYAN_WOOL:
+      Type: "Change"
+      Value: 0.1
+    CYAN_CARPET:
+      Type: "Change"
+      Value: 0.1
+    CYAN_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    CYAN_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    YELLOW_WOOL:
+      Type: "Change"
+      Value: 0.1
+    YELLOW_CARPET:
+      Type: "Change"
+      Value: 0.1
+    YELLOW_CANDLE:
+      Type: "Change"
+      Value: 0.5
+    YELLOW_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    LIME_WOOL:
+      Type: "Change"
+      Value: 0.1
+    LIME_CARPET:
+      Type: "Change"
+      Value: 0.1
+    LIME_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    LIME_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    MAGENTA_WOOL:
+      Type: "Change"
+      Value: 0.1
+    MAGENTA_CARPET:
+      Type: "Change"
+      Value: 0.1
+    MAGENTA_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    MAGENTA_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    GRAY_WOOL:
+      Type: "Change"
+      Value: 0.1
+    GRAY_CARPET:
+      Type: "Change"
+      Value: 0.1
+    GRAY_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    GRAY_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    LIGHT_GRAY_WOOL:
+      Type: "Change"
+      Value: 0.1
+    LIGHT_GRAY_CARPET:
+      Type: "Change"
+      Value: 0.1
+    LIGHT_GRAY_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    LIGHT_GRAY_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    LIGHT_BLUE_WOOL:
+      Type: "Change"
+      Value: 0.1
+    LIGHT_BLUE_CARPET:
+      Type: "Change"
+      Value: 0.1
+    LIGHT_BLUE_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    LIGHT_BLUE_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    PURPLE_WOOL:
+      Type: "Change"
+      Value: 0.1
+    PURPLE_CARPET:
+      Type: "Change"
+      Value: 0.1
+    PURPLE_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    PURPLE_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    BLUE_WOOL:
+      Type: "Change"
+      Value: 0.1
+    BLUE_CARPET:
+      Type: "Change"
+      Value: 0.1
+    BLUE_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    BLUE_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    BROWN_WOOL:
+      Type: "Change"
+      Value: 0.1
+    BROWN_CARPET:
+      Type: "Change"
+      Value: 0.1
+    BROWN_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    BROWN_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    GREEN_WOOL:
+      Type: "Change"
+      Value: 0.1
+    GREEN_CARPET:
+      Type: "Change"
+      Value: 0.1
+    GREEN_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    GREEN_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    RED_WOOL:
+      Type: "Change"
+      Value: 0.1
+    RED_CARPET:
+      Type: "Change"
+      Value: 0.1
+    RED_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    RED_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+    BLACK_WOOL:
+      Type: "Change"
+      Value: 0.1
+    BLACK_CARPET:
+      Type: "Change"
+      Value: 0.1
+    BLACK_CANDLE:
+      Type: "Change"
+      Value: 0.2
+    BLACK_CANDLE_CAKE:
+      Type: "Change"
+      Value: 0.2
+  Warming:             # Warming enchant
+    Type: "Change"
+    Value: 3.0
+  Cooling:              # Cooling enchant
+    Type: "Change"
+    Value: -3.0
+  Burning:
+    Type: "Change"
+    Value: 3.0
+  SubmergedWater:       # If a player is in water
+    Type: "Change"
+    Value: -2.0
+  SubmergedLava:        # If a player is in lava
+    Type: "Change"
+    Value: 3.0
+  Storming:             # If it is raining or thundering, and the player is outside
+    Type: "Change"
+    Value: -2.0
   # Any conditions that will stabilize a player's temperature to normal
-  Regulation:
-    Housed: 2.0 # If a player is under a roof
-    OzzyLiner: 5.0
-    LeatherArmor:
-      Helmet: 1.5
-      Chestplate: 1.5
-      Leggings: 1.25
-      Boots: 1.0
-    ChainmailArmor:
-      Helmet: 0.5
-      Chestplate: 0.5
-      Leggings: 0.25
-      Boots: 0.2
-    IronArmor:
-      Helmet: 0.5
-      Chestplate: 0.5
-      Leggings: 0.25
-      Boots: 0.2
-    GoldenArmor:
-      Helmet: 0.5
-      Chestplate: 0.5
-      Leggings: 0.25
-      Boots: 0.2
-    DiamondArmor:
-      Helmet: 0.75
-      Chestplate: 0.75
-      Leggings: 0.5
-      Boots: 0.25
-    NetheriteArmor:
-      Helmet: 0.75
-      Chestplate: 0.5
-      Leggings: 0.25
-      Boots: 0.2
-    TurtleArmor:
-      Helmet: 1.0
-Thirst:
-  Decrement:
-    # Chance - The probability that the thirst decreases every "CheckTickTime" number of tucks (1 is highest, 0 is lowest)
-    # Amount - The amount the thirst decreases by, remember that 1 thirst bar = 2.0 units
-    Chance: 0.1   # Higher number means faster draining and vice versa
-    Amount: 1.0
-  Dehydration:
-    Limit: 1.0    # Minimum thirst for player to be dehydrated and take damage
-    Damage: 0.5   # How much damage the player takes while dehydrated per "CheckTickTime" number of ticks
-  Supplements:
-    # 1 thirst bar = 2.0 units
-    WaterBottle:
-      Amount: 6.0
-      OverrideLimit: false
-    PurifiedWaterBottle:
-      Amount: 8.0
-      OverrideLimit: false
-    AppleJuice:
-      Amount: 8.0
-      OverrideLimit: false
-    BeetrootJuice:
-      Amount: 10.0
-      OverrideLimit: false
-    CactusJuice:
-      Amount: 10.0
-      OverrideLimit: false
-    ChorusFruitJuice:
-      Amount: 12.0
-      OverrideLimit: false
-      Teleport:
-        Enabled: true
-        MaxRadius: 7.0
-        Sound: "ITEM_CHORUS_FRUIT_TELEPORT"
-        Volume: 0.5 # Set to -1.0 to disable
-        Pitch: 1.0
-    GlisteringMelonJuice:
-      Amount: 16.0
-      OverrideLimit: true
-    GoldenAppleJuice:
-      Amount: 20.0
-      OverrideLimit: true
-    GoldenCarrotJuice:
-      Amount: 30.0
-      OverrideLimit: true
-    MelonJuice:
-      Amount: 10.0
-      OverrideLimit: false
-    PumpkinJuice:
-      Amount: 10.0
-      OverrideLimit: false
-    Drinking:
-      # Customize aspects of the sound made when a player drinks from a source block of water
-      # Volume ranges from 0.0 to 1.0, any values greater than 1.0 just increase the distance at which the sound can be heard
-      # Pitch ranges from 0.5 to 2.0 where 1.0 is normal play speed
-      # For more info regarding sounds, see https://bukkit.org/threads/playsound-parameters-volume-and-pitch.151517/
-      # No need to change settings, already sound decent
-      Amount: 1.0
-      Sound: "ENTITY_GENERIC_DRINK"
-      Volume: 0.1      # Set to -1.0 to disable
-      Pitch: 1.0
-      MaxDistance: 2.0 # Maximum distance at which a player can drink a water source from
-      OverrideLimit: false
-    Raining:
-      Amount: 1.0
-      Sound: "ENTITY_GENERIC_DRINK"
-      Volume: 0.1      # Set to -1.0 to disable
-      Pitch: 1.0
-      OverrideLimit: false
+  Housed:               # If a player is under a roof
+    Type: "Regulate"
+    Value: 2.0
+  OzzyLiner:
+    Type: "Regulate"
+    Value: 2.0
+  wool_hood:
+    Type: "Change"
+    Value: 2.0
+  wool_jacket:
+    Type: "Change"
+    Value: 2.0
+  wool_pants:
+    Type: "Change"
+    Value: 1.75
+  wool_boots:
+    Type: "Change"
+    Value: 1.5
+  jelled_slime_helmet:
+    Type: "Change"
+    Value: -2.0
+  jelled_slime_chestplate:
+    Type: "Change"
+    Value: -2.0
+  jelled_slime_leggings:
+    Type: "Change"
+    Value: -1.75
+  jelled_slime_boots:
+    Type: "Change"
+    Value: -1.5
+  LEATHER_HELMET:
+    Type: "Regulate"
+    Value: 1.5
+  LEATHER_CHESTPLATE:
+    Type: "Regulate"
+    Value: 1.5
+  LEATHER_LEGGINGS:
+    Type: "Regulate"
+    Value: 1.25
+  LEATHER_BOOTS:
+    Type: "Regulate"
+    Value: 1.0
+  CHAINMAIL_HELMET:
+    Type: "Regulate"
+    Value: 0.5
+  CHAINMAIL_CHESTPLATE:
+    Type: "Regulate"
+    Value: 0.5
+  CHAINMAIL_LEGGINGS:
+    Type: "Regulate"
+    Value: 0.25
+  CHAINMAIL_BOOTS:
+    Type: "Regulate"
+    Value: 0.2
+  IRON_HELMET:
+    Type: "Regulate"
+    Value: 0.5
+  IRON_CHESTPLATE:
+    Type: "Regulate"
+    Value: 0.5
+  IRON_LEGGINGS:
+    Type: "Regulate"
+    Value: 0.25
+  IRON_BOOTS:
+    Type: "Regulate"
+    Value: 0.2
+  GOLDEN_HELMET:
+    Type: "Regulate"
+    Value: 0.5
+  GOLDEN_CHESTPLATE:
+    Type: "Regulate"
+    Value: 0.5
+  GOLDEN_LEGGINGS:
+    Type: "Regulate"
+    Value: 0.25
+  GOLDEN_BOOTS:
+    Type: "Regulate"
+    Value: 0.2
+  DIAMOND_HELMET:
+    Type: "Regulate"
+    Value: 0.75
+  DIAMOND_CHESTPLATE:
+    Type: "Regulate"
+    Value: 0.75
+  DIAMOND_LEGGINGS:
+    Type: "Regulate"
+    Value: 0.5
+  DIAMOND_BOOTS:
+    Type: "Regulate"
+    Value: 0.25
+  NETHERITE_HELMET:
+    Type: "Regulate"
+    Value: 0.75
+  NETHERITE_CHESTPLATE:
+    Type: "Regulate"
+    Value: 0.5
+  NETHERITE_LEGGINGS:
+    Type: "Regulate"
+    Value: 0.25
+  NETHERITE_BOOTS:
+    Type: "Regulate"
+    Value: 0.2
+  TURTLE_HELMET:
+    Type: "Regulate"
+    Value: 1.0
 
-Helmet:
-  Wool:
-    Armor: 1.0
-    Toughness: 0.5
-  JelledSlime:
-    Armor: 2.0
-    Toughness: 0.5
-Chestplate:
-  Wool:
-    Armor: 3.0
-    Toughness: 0.5
-  JelledSlime:
-    Armor: 5.0
-    Toughness: 0.5
-Leggings:
-  Wool:
-    Armor: 2.0
-    Toughness: 0.5
-  JelledSlime:
-    Armor: 4.0
-    Toughness: 0.5
-Boots:
-  Wool:
-    Armor: 1.0
-    Toughness: 0.5
-  JelledSlime:
-    Armor: 1.0
-    Toughness: 0.5
+Thirst:
+  Enabled: true
+  Dehydration:
+    Limit: 1.0  # Minimum thirst for player to be dehydrated and take damage
+    Damage: 0.5 # How much damage the player takes while dehydrated per "CheckTickTime" number of ticks
+  Drinking:
+    # Customize aspects of the sound made when a player drinks from a source block of water
+    # Volume ranges from 0.0 to 1.0, any values greater than 1.0 just increase the distance at which the sound can be heard
+    # Pitch ranges from 0.5 to 2.0 where 1.0 is normal play speed
+    # For more info regarding sounds, see https://bukkit.org/threads/playsound-parameters-volume-and-pitch.151517/
+    # No need to change settings, already sound decent
+    Amount: 1.0
+    Sound: "ENTITY_GENERIC_DRINK"
+    Volume: 0.1      # Set to -1.0 to disable
+    Pitch: 1.0
+    MaxDistance: 2.0 # Maximum distance at which a player can drink a water source from
+    OverrideLimit: false
+  Raining:
+    Amount: 1.0
+    Sound: "ENTITY_GENERIC_DRINK"
+    Volume: 0.1      # Set to -1.0 to disable
+    Pitch: 1.0
+    OverrideLimit: false
+
+Items:
+  ice_cube:
+    Enabled: true
+    BlockDrops: # What blocks should be counted as ice
+      ICE:
+        Type: "Single"
+        Chance: 0.33
+      PACKED_ICE:
+        Type: "Single"
+        Chance: 0.20
+      BLUE_ICE:
+        Type: "Single"
+        Chance: 0.10
+  magma_shard:
+    Enabled: true
+    BlockDrops: # What blocks should be counted as magma blocks
+      MAGMA_BLOCK:
+        Type: "Single"
+        Chance: 0.33
+  jelled_slime:
+    Enabled: true
+  thermometer:
+    Enabled: true
+  wool_hood:
+    Enabled: true
+    Attributes:
+      Armor: 1.0
+      Toughness: 0.5
+  wool_jacket:
+    Enabled: true
+    Attributes:
+      Armor: 3.0
+      Toughness: 0.5
+  wool_pants:
+    Enabled: true
+    Attributes:
+      Armor: 2.0
+      Toughness: 0.5
+  wool_boots:
+    Enabled: true
+    Attributes:
+      Armor: 1.0
+      Toughness: 0.5
+  jelled_slime_helmet:
+    Enabled: true
+    Attributes:
+      Armor: 2.0
+      Toughness: 0.5
+  jelled_slime_chestplate:
+    Enabled: true
+    Attributes:
+      Armor: 5.0
+      Toughness: 0.5
+  jelled_slime_leggings:
+    Enabled: true
+    Attributes:
+      Armor: 4.0
+      Toughness: 0.5
+  jelled_slime_boots:
+    Enabled: true
+    Attributes:
+      Armor: 1.0
+      Toughness: 0.5
+  juice_apple:
+    Enabled: true
+    ReplenishAmount: 8.0    # 1 thirst bar = 2.0 units
+    OverrideLimit: false
+  juice_beetroot:
+    Enabled: true
+    ReplenishAmount: 8.0
+    OverrideLimit: false
+  juice_cactus:
+    Enabled: true
+    ReplenishAmount: 10.0
+    OverrideLimit: false
+  juice_carrot:
+    Enabled: true
+    ReplenishAmount: 10.0
+    OverrideLimit: false
+  juice_chorus_fruit:
+    Enabled: true
+    ReplenishAmount: 12.0
+    OverrideLimit: false
+    Teleport:
+      Enabled: true
+      MaxRadius: 7.0
+      Sound: "ITEM_CHORUS_FRUIT_TELEPORT"
+      Volume: 0.5 # Set to -1.0 to disable
+      Pitch: 1.0
+  juice_melon_glistering:
+    Enabled: true
+    ReplenishAmount: 16.0
+    OverrideLimit: true
+  juice_apple_golden:
+    Enabled: true
+    ReplenishAmount: 20.0
+    OverrideLimit: true
+  juice_carrot_golden:
+    Enabled: true
+    ReplenishAmount: 30.0
+    OverrideLimit: true
+  juice_melon:
+    Enabled: true
+    ReplenishAmount: 10.0
+    OverrideLimit: false
+  juice_pumpkin:
+    Enabled: true
+    ReplenishAmount: 10.0
+    OverrideLimit: false
+  purified_water_bottle:
+    Enabled: true
+    ReplenishAmount: 8.0
+    OverrideLimit: false
+  charcoal_filter:
+    Enabled: true
+  water_bottle:
+    Enabled: true
+    ReplenishAmount: 1.0
+    OverrideLimit: false
+
+Recipes:
+  jelled_slime:
+    Enabled: true
+    Unlock: true
+  jelled_slime_helmet:
+    Enabled: true
+    Unlock: true
+  jelled_slime_chestplate:
+    Enabled: true
+    Unlock: true
+  jelled_slime_leggings:
+    Enabled: true
+    Unlock: true
+  jelled_slime_boots:
+    Enabled: true
+    Unlock: true
+  wool_hood:
+    Enabled: true
+    Unlock: true
+  wool_jacket:
+    Enabled: true
+    Unlock: true
+  wool_pants:
+    Enabled: true
+    Unlock: true
+  wool_boots:
+    Enabled: true
+    Unlock: true
+  charcoal_filter:
+    Enabled: true
+    Unlock: true
+  purified_water_bottle:
+    Enabled: true
+    Unlock: true
+  purified_water_bottle_2:
+    Enabled: true
+    Unlock: true
+  purified_water_bottle_3:
+    Enabled: true
+    Unlock: true
+  purified_water_bottle_4:
+    Enabled: true
+    Unlock: true
+  thermometer:
+    Enabled: true
+    Unlock: true
+  juice_apple:
+    Enabled: true
+    Unlock: true
+  juice_beetroot:
+    Enabled: true
+    Unlock: true
+  juice_cactus:
+    Enabled: true
+    Unlock: true
+  juice_carrot:
+    Enabled: true
+    Unlock: true
+  juice_chorus_fruit:
+    Enabled: true
+    Unlock: true
+  juice_melon_glistering:
+    Enabled: true
+    Unlock: true
+  juice_apple_golden:
+    Enabled: true
+    Unlock: true
+  juice_carrot_golden:
+    Enabled: true
+    Unlock: true
+  juice_melon:
+    Enabled: true
+    Unlock: true
+  juice_pumpkin:
+    Enabled: true
+    Unlock: true
+  magma_block:
+    Enabled: true
+    Unlock: true

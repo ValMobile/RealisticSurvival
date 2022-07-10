@@ -1,0 +1,1318 @@
+#######################################
+#          Spartan and Fire Recipes   #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+dragonbone_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_rapier"
+    Amount: 1
+  Ingredients:
+    - "||dragonbone"
+    - "dragonbone|dragonbone"
+    - "witherbone_handle|dragonbone"
+dragonbone_katana:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_katana"
+    Amount: 1
+  Ingredients:
+    - "||dragonbone"
+    - "|dragonbone"
+    - "witherbone_handle"
+dragonbone_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "dragonbone|dragonbone|dragonbone"
+    - "dragonbone|witherbone_handle|dragonbone"
+dragonbone_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_longsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|dragonbone"
+    - "dragonbone|witherbone_handle|dragonbone"
+dragonbone_spear:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_spear"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|witherbone_pole"
+dragonbone_saber:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_saber"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|dragonbone"
+    - "dragonbone|witherbone_handle"
+dragonbone_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone|dragonbone"
+    - "dragonbone"
+    - "dragonbone"
+dragonbone_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_dagger"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|witherbone_handle"
+dragonbone_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_glaive"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|dragonbone"
+    - "|witherbone_pole"
+dragonbone_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_halberd"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "dragonbone|dragonbone"
+    - "dragonbone|witherbone_pole"
+dragonbone_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone|dragonbone"
+    - "dragonbone|dragonbone|dragonbone"
+    - "|witherbone_handle"
+dragonbone_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "witherbone_pole|dragonbone"
+dragonbone_lance:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lance"
+    Amount: 1
+  Ingredients:
+    - "||dragonbone"
+    - "dragonbone|witherbone_pole"
+    - "witherbone_handle|dragonbone"
+dragonbone_mace:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_mace"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone|dragonbone"
+    - "|STICK|dragonbone"
+    - "witherbone_handle"
+dragonbone_pike:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_pike"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "|witherbone_pole"
+    - "|witherbone_pole"
+dragonbone_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|witherbone_pole"
+    - "|dragonbone"
+dragonbone_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "witherbone_handle|dragonbone"
+    - "|dragonbone"
+dragonbone_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "witherbone_handle|dragonbone"
+dragonbone_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|dragonbone"
+    - "dragonbone|dragonbone"
+    - "|witherbone_handle"
+dragonbone_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|dragonbone|dragonbone"
+    - "dragonbone|STICK|dragonbone"
+    - "|witherbone_handle"
+dragonbone_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_longbow"
+    Amount: 1
+  Ingredients:
+    - "witherbone_handle|STICK|dragonbone"
+    - "STICK||STRING"
+    - "dragonbone|STRING|STRING"
+dragonbone_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone|BOW|dragonbone"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|witherbone_handle"
+dragonbone_flamed_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_rapier"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_rapier"
+    - "dragon_blood_fire"
+dragonbone_flamed_katana:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_katana"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_katana"
+    - "dragon_blood_fire"
+dragonbone_flamed_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_greatsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_greatsword"
+    - "dragon_blood_fire"
+dragonbone_flamed_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_longsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longsword"
+    - "dragon_blood_fire"
+dragonbone_flamed_spear:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_spear"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_spear"
+    - "dragon_blood_fire"
+dragonbone_flamed_saber:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_saber"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_saber"
+    - "dragon_blood_fire"
+dragonbone_flamed_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_boomerang"
+    - "dragon_blood_fire"
+dragonbone_flamed_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_dagger"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_dagger"
+    - "dragon_blood_fire"
+dragonbone_flamed_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_glaive"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_glaive"
+    - "dragon_blood_fire"
+dragonbone_flamed_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_halberd"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_halberd"
+    - "dragon_blood_fire"
+dragonbone_flamed_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_hammer"
+    - "dragon_blood_fire"
+dragonbone_flamed_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_javelin"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_javelin"
+    - "dragon_blood_fire"
+dragonbone_flamed_lance:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_lance"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_lance"
+    - "dragon_blood_fire"
+dragonbone_flamed_mace:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_mace"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_mace"
+    - "dragon_blood_fire"
+dragonbone_flamed_pike:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_pike"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_pike"
+    - "dragon_blood_fire"
+dragonbone_flamed_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_quarterstaff"
+    - "dragon_blood_fire"
+dragonbone_flamed_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_tomahawk"
+    - "dragon_blood_fire"
+dragonbone_flamed_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_throwing_knife"
+    - "dragon_blood_fire"
+dragonbone_flamed_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_warhammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_warhammer"
+    - "dragon_blood_fire"
+dragonbone_flamed_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_battleaxe"
+    - "dragon_blood_fire"
+dragonbone_flamed_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_longbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longbow"
+    - "dragon_blood_fire"
+dragonbone_flamed_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_flamed_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_crossbow"
+    - "dragon_blood_fire"
+dragonbone_iced_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_rapier"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_rapier"
+    - "dragon_blood_ice"
+dragonbone_iced_katana:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_katana"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_katana"
+    - "dragon_blood_ice"
+dragonbone_iced_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_greatsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_greatsword"
+    - "dragon_blood_ice"
+dragonbone_iced_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_longsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longsword"
+    - "dragon_blood_ice"
+dragonbone_iced_spear:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_spear"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_spear"
+    - "dragon_blood_ice"
+dragonbone_iced_saber:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_saber"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_saber"
+    - "dragon_blood_ice"
+dragonbone_iced_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_boomerang"
+    - "dragon_blood_ice"
+dragonbone_iced_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_dagger"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_dagger"
+    - "dragon_blood_ice"
+dragonbone_iced_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_glaive"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_glaive"
+    - "dragon_blood_ice"
+dragonbone_iced_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_halberd"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_halberd"
+    - "dragon_blood_ice"
+dragonbone_iced_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_hammer"
+    - "dragon_blood_ice"
+dragonbone_iced_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_javelin"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_javelin"
+    - "dragon_blood_ice"
+dragonbone_iced_lance:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_lance"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_lance"
+    - "dragon_blood_ice"
+dragonbone_iced_mace:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_mace"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_mace"
+    - "dragon_blood_ice"
+dragonbone_iced_pike:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_pike"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_pike"
+    - "dragon_blood_ice"
+dragonbone_iced_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_quarterstaff"
+    - "dragon_blood_ice"
+dragonbone_iced_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_tomahawk"
+    - "dragon_blood_ice"
+dragonbone_iced_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_throwing_knife"
+    - "dragon_blood_ice"
+dragonbone_iced_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_warhammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_warhammer"
+    - "dragon_blood_ice"
+dragonbone_iced_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_battleaxe"
+    - "dragon_blood_ice"
+dragonbone_iced_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_longbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longbow"
+    - "dragon_blood_ice"
+dragonbone_iced_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_iced_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_crossbow"
+    - "dragon_blood_ice"
+dragonbone_lightning_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_rapier"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_rapier"
+    - "dragon_blood_lightning"
+dragonbone_lightning_katana:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_katana"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_katana"
+    - "dragon_blood_lightning"
+dragonbone_lightning_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_greatsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_greatsword"
+    - "dragon_blood_lightning"
+dragonbone_lightning_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_longsword"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longsword"
+    - "dragon_blood_lightning"
+dragonbone_lightning_spear:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_spear"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_spear"
+    - "dragon_blood_lightning"
+dragonbone_lightning_saber:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_saber"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_saber"
+    - "dragon_blood_lightning"
+dragonbone_lightning_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_boomerang"
+    - "dragon_blood_lightning"
+dragonbone_lightning_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_dagger"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_dagger"
+    - "dragon_blood_lightning"
+dragonbone_lightning_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_glaive"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_glaive"
+    - "dragon_blood_lightning"
+dragonbone_lightning_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_halberd"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_halberd"
+    - "dragon_blood_lightning"
+dragonbone_lightning_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_hammer"
+    - "dragon_blood_lightning"
+dragonbone_lightning_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_javelin"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_javelin"
+    - "dragon_blood_lightning"
+dragonbone_lightning_lance:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_lance"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_lance"
+    - "dragon_blood_lightning"
+dragonbone_lightning_mace:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_mace"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_mace"
+    - "dragon_blood_lightning"
+dragonbone_lightning_pike:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_pike"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_pike"
+    - "dragon_blood_lightning"
+dragonbone_lightning_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_quarterstaff"
+    - "dragon_blood_lightning"
+dragonbone_lightning_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_tomahawk"
+    - "dragon_blood_lightning"
+dragonbone_lightning_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_throwing_knife"
+    - "dragon_blood_lightning"
+dragonbone_lightning_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_warhammer"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_warhammer"
+    - "dragon_blood_lightning"
+dragonbone_lightning_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_battleaxe"
+    - "dragon_blood_lightning"
+dragonbone_lightning_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_longbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_longbow"
+    - "dragon_blood_lightning"
+dragonbone_lightning_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonbone_lightning_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonbone_crossbow"
+    - "dragon_blood_lightning"
+dragonsteel_fire_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_rapier"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "witherbone_handle|dragonsteel_fire_ingot"
+dragonsteel_fire_katana:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_katana"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+    - "witherbone_handle"
+dragonsteel_fire_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|witherbone_handle|dragonsteel_fire_ingot"
+dragonsteel_fire_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_longsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|witherbone_handle|dragonsteel_fire_ingot"
+dragonsteel_fire_spear:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_spear"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|witherbone_pole"
+dragonsteel_fire_saber:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_saber"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|witherbone_handle"
+dragonsteel_fire_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot"
+dragonsteel_fire_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_dagger"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|witherbone_handle"
+dragonsteel_fire_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_glaive"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+    - "|witherbone_pole"
+dragonsteel_fire_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_halberd"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|witherbone_pole"
+dragonsteel_fire_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "|witherbone_handle"
+dragonsteel_fire_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "witherbone_pole|dragonsteel_fire_ingot"
+dragonsteel_fire_lance:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_lance"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|witherbone_pole"
+    - "witherbone_handle|dragonsteel_fire_ingot"
+dragonsteel_fire_mace:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_mace"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "|STICK|dragonsteel_fire_ingot"
+    - "witherbone_handle"
+dragonsteel_fire_pike:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_pike"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "|witherbone_pole"
+    - "|witherbone_pole"
+dragonsteel_fire_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|witherbone_pole"
+    - "|dragonsteel_fire_ingot"
+dragonsteel_fire_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "witherbone_handle|dragonsteel_fire_ingot"
+    - "|dragonsteel_fire_ingot"
+dragonsteel_fire_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "witherbone_handle|dragonsteel_fire_ingot"
+dragonsteel_fire_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "|witherbone_handle"
+dragonsteel_fire_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|dragonsteel_fire_ingot|dragonsteel_fire_ingot"
+    - "dragonsteel_fire_ingot|STICK|dragonsteel_fire_ingot"
+    - "|witherbone_handle"
+dragonsteel_fire_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_longbow"
+    Amount: 1
+  Ingredients:
+    - "witherbone_handle|STICK|dragonsteel_fire_ingot"
+    - "STICK||STRING"
+    - "dragonsteel_fire_ingot|STRING|STRING"
+dragonsteel_fire_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_fire_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_fire_ingot|BOW|dragonsteel_fire_ingot"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|witherbone_handle"
+dragonsteel_ice_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_rapier"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "witherbone_handle|dragonsteel_ice_ingot"
+dragonsteel_ice_katana:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_katana"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+    - "witherbone_handle"
+dragonsteel_ice_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|witherbone_handle|dragonsteel_ice_ingot"
+dragonsteel_ice_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_longsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|witherbone_handle|dragonsteel_ice_ingot"
+dragonsteel_ice_spear:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_spear"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|witherbone_pole"
+dragonsteel_ice_saber:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_saber"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|witherbone_handle"
+dragonsteel_ice_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot"
+dragonsteel_ice_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_dagger"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|witherbone_handle"
+dragonsteel_ice_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_glaive"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+    - "|witherbone_pole"
+dragonsteel_ice_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_halberd"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|witherbone_pole"
+dragonsteel_ice_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "|witherbone_handle"
+dragonsteel_ice_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "witherbone_pole|dragonsteel_ice_ingot"
+dragonsteel_ice_lance:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_lance"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|witherbone_pole"
+    - "witherbone_handle|dragonsteel_ice_ingot"
+dragonsteel_ice_mace:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_mace"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "|STICK|dragonsteel_ice_ingot"
+    - "witherbone_handle"
+dragonsteel_ice_pike:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_pike"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "|witherbone_pole"
+    - "|witherbone_pole"
+dragonsteel_ice_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|witherbone_pole"
+    - "|dragonsteel_ice_ingot"
+dragonsteel_ice_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "witherbone_handle|dragonsteel_ice_ingot"
+    - "|dragonsteel_ice_ingot"
+dragonsteel_ice_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "witherbone_handle|dragonsteel_ice_ingot"
+dragonsteel_ice_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "|witherbone_handle"
+dragonsteel_ice_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|dragonsteel_ice_ingot|dragonsteel_ice_ingot"
+    - "dragonsteel_ice_ingot|STICK|dragonsteel_ice_ingot"
+    - "|witherbone_handle"
+dragonsteel_ice_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_longbow"
+    Amount: 1
+  Ingredients:
+    - "witherbone_handle|STICK|dragonsteel_ice_ingot"
+    - "STICK||STRING"
+    - "dragonsteel_ice_ingot|STRING|STRING"
+dragonsteel_ice_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_ice_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_ice_ingot|BOW|dragonsteel_ice_ingot"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|witherbone_handle"
+dragonsteel_lightning_rapier:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_rapier"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "witherbone_handle|dragonsteel_lightning_ingot"
+dragonsteel_lightning_katana:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_katana"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+    - "witherbone_handle"
+dragonsteel_lightning_greatsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_greatsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|witherbone_handle|dragonsteel_lightning_ingot"
+dragonsteel_lightning_longsword:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_longsword"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|witherbone_handle|dragonsteel_lightning_ingot"
+dragonsteel_lightning_spear:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_spear"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|witherbone_pole"
+dragonsteel_lightning_saber:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_saber"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|witherbone_handle"
+dragonsteel_lightning_boomerang:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_boomerang"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot"
+dragonsteel_lightning_dagger:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_dagger"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|witherbone_handle"
+dragonsteel_lightning_glaive:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_glaive"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+    - "|witherbone_pole"
+dragonsteel_lightning_halberd:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_halberd"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|witherbone_pole"
+dragonsteel_lightning_hammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_hammer"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "|witherbone_handle"
+dragonsteel_lightning_javelin:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_javelin"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "witherbone_pole|dragonsteel_lightning_ingot"
+dragonsteel_lightning_lance:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_lance"
+    Amount: 1
+  Ingredients:
+    - "||dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|witherbone_pole"
+    - "witherbone_handle|dragonsteel_lightning_ingot"
+dragonsteel_lightning_mace:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_mace"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "|STICK|dragonsteel_lightning_ingot"
+    - "witherbone_handle"
+dragonsteel_lightning_pike:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_pike"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "|witherbone_pole"
+    - "|witherbone_pole"
+dragonsteel_lightning_quarterstaff:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_quarterstaff"
+    Amount: 1
+  Ingredients:
+    - "|witherbone_pole"
+    - "|dragonsteel_lightning_ingot"
+dragonsteel_lightning_tomahawk:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_tomahawk"
+    Amount: 1
+  Ingredients:
+    - "witherbone_handle|dragonsteel_lightning_ingot"
+    - "|dragonsteel_lightning_ingot"
+dragonsteel_lightning_throwing_knife:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_throwing_knife"
+    Amount: 1
+  Ingredients:
+    - ""
+    - "witherbone_handle|dragonsteel_lightning_ingot"
+dragonsteel_lightning_warhammer:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_warhammer"
+    Amount: 1
+  Ingredients:
+    - "|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "|witherbone_handle"
+dragonsteel_lightning_battleaxe:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_battleaxe"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|dragonsteel_lightning_ingot|dragonsteel_lightning_ingot"
+    - "dragonsteel_lightning_ingot|STICK|dragonsteel_lightning_ingot"
+    - "|witherbone_handle"
+dragonsteel_lightning_longbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_longbow"
+    Amount: 1
+  Ingredients:
+    - "witherbone_handle|STICK|dragonsteel_lightning_ingot"
+    - "STICK||STRING"
+    - "dragonsteel_lightning_ingot|STRING|STRING"
+dragonsteel_lightning_crossbow:
+  Type: "Shaped"
+  Result:
+    Item: "dragonsteel_lightning_crossbow"
+    Amount: 1
+  Ingredients:
+    - "dragonsteel_lightning_ingot|BOW|dragonsteel_lightning_ingot"
+    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "|witherbone_handle"
+witherbone_handle:
+  Type: "Shapeless"
+  Result:
+    Item: "witherbone_handle"
+    Amount: 1
+  Ingredients:
+    - "handle"
+    - "witherbone"
+witherbone_pole:
+  Type: "Shapeless"
+  Result:
+    Item: "witherbone_pole"
+    Amount: 1
+  Ingredients:
+    - "pole"
+    - "witherbone"

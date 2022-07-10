@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2021  Val_Mobile
+    Copyright (C) 2022  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,146 +16,54 @@
  */
 package me.val_mobile.misc;
 
-import me.val_mobile.baubles.BaubleRunnables;
+import me.val_mobile.data.RSVModule;
+import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.sea_serpents.SeaSerpentGearRunnables;
-import me.val_mobile.tan.TanRunnables;
-import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.CustomRecipes;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Recipe;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Set;
 
 public class PlayerInitializer implements Listener {
 
     private final RealisticSurvivalPlugin plugin;
-    private final SeaSerpentGearRunnables seaSerpentGearRunnables;
-    private final BaubleRunnables baubleRunnables;
-    private final TanRunnables tanRunnables;
-    private final Utils util;
 
-    public PlayerInitializer(RealisticSurvivalPlugin instance) {
-        plugin = instance;
-        seaSerpentGearRunnables = new SeaSerpentGearRunnables(instance);
-        baubleRunnables = new BaubleRunnables(instance);
-        tanRunnables = new TanRunnables(instance);
-        util = new Utils(instance);
+    public PlayerInitializer(RealisticSurvivalPlugin plugin) {
+        this.plugin = plugin;
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        FileConfiguration config = plugin.getConfig();
+        RSVPlayer rsvplayer = new RSVPlayer(plugin, player);
 
-        if (util.shouldEventBeRan(player, "NoTreePunching")) {
-            if (config.getBoolean("UnlockRecipes")) {
-                for (Recipe r : CustomRecipes.getNtrRecipes()) {
-                    Utils.discoverRecipe(player, r);
+        rsvplayer.retrieveData();
+        rsvplayer.updateData();
+
+        Collection<RSVModule> rsvModules = RSVModule.getModules().values();
+
+        for (RSVModule module : rsvModules) {
+            if (module.isEnabled()) {
+                HashMap<String, Recipe> map = module.getModuleRecipes().getRecipeMap();
+                Set<String> keySet = map.keySet();
+                FileConfiguration config = module.getUserConfig().getConfig();
+                for (String name : keySet) {
+                    boolean unlock = config.getBoolean(name + ".Unlock");
+                    if (unlock) {
+                        Utils.discoverRecipe(player, map.get(name));
+                    }
                 }
             }
         }
 
-        if (util.shouldEventBeRan(player, "Dragons")) {
-            if (config.getBoolean("UnlockRecipes")) {
-                // give the player every dragon gear recipe
-                for (Recipe r : CustomRecipes.getDragonRecipes()) {
-                    Utils.discoverRecipe(player, r);
-                }
-            }
-
-        }
-
-        if (util.shouldEventBeRan(player, "SeaSerpents")) {
-            seaSerpentGearRunnables.updateTideGuardianArmor(player);
-            seaSerpentGearRunnables.getTideGuardianArmorRunnable(player).runTaskTimer(plugin, 0L, CustomConfig.getIceFireGearConfig().getInt("Abilities.TideGuardian.TickTime"));
-
-            if (config.getBoolean("UnlockRecipes")) {
-                for (Recipe r : CustomRecipes.getSeaSerpentRecipes()) {
-                    Utils.discoverRecipe(player, r);
-                }
-            }
-        }
-
-        if (util.shouldEventBeRan(player, "Baubles")) {
-            // create new values in the static hashmaps
-            baubleRunnables.resetBaubleMaps(player);
-            baubleRunnables.updateBaubleValues(player);
-
-            // start every bauble runnable
-            baubleRunnables.startPrResRunnable(player);
-            baubleRunnables.startPrStrengthRunnable(player);
-            baubleRunnables.startPrSpeedRunnable(player);
-            baubleRunnables.startPrJumpRunnable(player);
-            baubleRunnables.startPrHasteRunnable(player);
-            baubleRunnables.startPrRegenRunnable(player);
-
-            baubleRunnables.startScarliteRingRunnable(player);
-            baubleRunnables.startDragonsEyeRunnable(player);
-            baubleRunnables.startMinersRingRunnable(player);
-            baubleRunnables.startShieldHonorRunnable(player);
-
-            if (config.getBoolean("UnlockRecipes")) {
-                // give the player every bauble recipe
-                for (Recipe r : CustomRecipes.getBaubleRecipes()) {
-                    Utils.discoverRecipe(player, r);
-                }
-            }
-
-        }
-
-        if (util.shouldEventBeRan(player, "SpartanWeaponry")) {
-            if (config.getBoolean("UnlockRecipes")) {
-                // give the player every spartan weaponry recipe
-                for (Recipe r : CustomRecipes.getSpartanWeaponryRecipes()) {
-                    Utils.discoverRecipe(player, r);
-                }
-            }
-
-        }
-
-        if (util.shouldEventBeRan(player, "Waystones")) {
-            if (config.getBoolean("UnlockRecipes")) {
-                for (Recipe r : CustomRecipes.getWaystoneRecipes()) {
-                    Utils.discoverRecipe(player, r);
-                }
-            }
-        }
-
-        if (util.shouldEventBeRan(player, "ToughAsNails")) {
-            if (config.getBoolean("UnlockRecipes")) {
-                for (Recipe r : CustomRecipes.getTanRecipes()) {
-                    Utils.discoverRecipe(player, r);
-                }
-            }
-            // create new values in the static hashmaps
-            tanRunnables.resetTemperatureThirstMaps(player);
-
-            // start every bauble runnable
-            tanRunnables.startTemperatureThirstRunnable(player);
-        }
-    }
-
-    @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
-        // set all the bauble values of the target player to 0
-
-        FileConfiguration config = plugin.getConfig();
-        Player player = event.getEntity();
-
-        if (util.shouldEventBeRan(player, "Baubles"))
-            baubleRunnables.resetBaubleMaps(player);
-
-        if (util.shouldEventBeRan(player, "SeaSerpents"))
-            seaSerpentGearRunnables.resetArmorMaps(player);
-
-        if (util.shouldEventBeRan(player, "ToughAsNails"))
-            tanRunnables.resetTemperatureThirstMaps(player);
     }
 
 }

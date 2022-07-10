@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2021  Val_Mobile
+    Copyright (C) 2022  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
  */
 package me.val_mobile.ntr;
 
+import me.val_mobile.data.RSVFiles;
+import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.CustomConfig;
-import me.val_mobile.utils.CustomItems;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -34,17 +34,18 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Random;
+import java.util.SplittableRandom;
 
-public class NtrEvents implements Listener {
+public class NtrEvents extends ModuleEvents implements Listener {
 
     private final CustomItems customItems;
     private final RealisticSurvivalPlugin plugin;
     private final Utils util;
-    public NtrEvents(RealisticSurvivalPlugin instance) {
-        plugin = instance;
-        customItems = new CustomItems(instance);
-        util = new Utils(instance);
+    public NtrEvents(RealisticSurvivalPlugin plugin) {
+        super(plugin);
+        this.plugin = plugin;
+        customItems = new CustomItems(plugin);
+        util = new Utils(plugin);
     }
 
     @EventHandler (priority = EventPriority.HIGHEST)
@@ -52,7 +53,7 @@ public class NtrEvents implements Listener {
         Player player = event.getPlayer();
 
         if (util.shouldEventBeRan(player, "NoTreePunching")) {
-            FileConfiguration config = CustomConfig.getNtrConfig();
+            FileConfiguration config = RSVFiles.getNtrUserConfig();
             ItemStack itemMainHand = player.getInventory().getItemInMainHand();
             Block block = event.getBlock();
             Material material = block.getBlockData().getMaterial();
@@ -82,7 +83,7 @@ public class NtrEvents implements Listener {
         Player player = event.getPlayer();
 
         if (util.shouldEventBeRan(player, "NoTreePunching")) {
-            FileConfiguration config = CustomConfig.getNtrConfig();
+            FileConfiguration config = RSVFiles.getNtrUserConfig();
 
             if (Utils.isItemReal(event.getItem())) {
                 if (event.getItem().isSimilar(new ItemStack(Material.FLINT))) {
@@ -90,7 +91,7 @@ public class NtrEvents implements Listener {
                         if (event.getClickedBlock().getBlockData().getMaterial() == Material.STONE) {
 
                             Block block = event.getClickedBlock();
-                            Random r = new Random();
+                            SplittableRandom r = new SplittableRandom();
 
                             if (r.nextDouble() <= config.getDouble("FlintShard.DropChance")) {
                                 ItemStack itemMainHand = player.getInventory().getItemInMainHand();

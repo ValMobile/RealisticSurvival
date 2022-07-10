@@ -1,0 +1,231 @@
+#######################################
+#          Tough as Nails Recipes     #
+#######################################
+
+# For dev use only, do NOT edit anything
+
+jelled_slime:
+  Type: "Shaped"
+  Result:
+    Item: "jelled_slime"
+    Amount: 3
+  Ingredients:
+    - "ice_cube|ice_cube|ice_cube"
+    - "ice_cube|SLIME_BALL|ice_cube"
+    - "ice_cube|ice_cube|ice_cube"
+jelled_slime_helmet:
+  Type: "Shaped"
+  Result:
+    Item: "jelled_slime_helmet"
+    Amount: 1
+  Ingredients:
+    - "jelled_slime|jelled_slime|jelled_slime"
+    - "jelled_slime||jelled_slime"
+jelled_slime_chestplate:
+  Type: "Shaped"
+  Result:
+    Item: "jelled_slime_chestplate"
+    Amount: 1
+  Ingredients:
+    - "jelled_slime||jelled_slime"
+    - "jelled_slime|jelled_slime|jelled_slime"
+    - "jelled_slime|jelled_slime|jelled_slime"
+jelled_slime_leggings:
+  Type: "Shaped"
+  Result:
+    Item: "jelled_slime_leggings"
+    Amount: 1
+  Ingredients:
+    - "jelled_slime|jelled_slime|jelled_slime"
+    - "jelled_slime||jelled_slime"
+    - "jelled_slime||jelled_slime"
+jelled_slime_boots:
+  Type: "Shaped"
+  Result:
+    Item: "jelled_slime_boots"
+    Amount: 1
+  Ingredients:
+    - "jelled_slime||jelled_slime"
+    - "jelled_slime||jelled_slime"
+wool_hood:
+  Type: "Shaped"
+  Result:
+    Item: "wool_hood"
+    Amount: 1
+  Ingredients:
+    - "WOOL|WOOL|WOOL"
+    - "WOOL||WOOL"
+wool_jacket:
+  Type: "Shaped"
+  Result:
+    Item: "wool_jacket"
+    Amount: 1
+  Ingredients:
+    - "WOOL||WOOL"
+    - "WOOL|WOOL|WOOL"
+    - "WOOL|WOOL|WOOL"
+wool_pants:
+  Type: "Shaped"
+  Result:
+    Item: "wool_pants"
+    Amount: 1
+  Ingredients:
+    - "WOOL|WOOL|WOOL"
+    - "WOOL||WOOL"
+    - "WOOL||WOOL"
+wool_boots:
+  Type: "Shaped"
+  Result:
+    Item: "wool_boots"
+    Amount: 1
+  Ingredients:
+    - "WOOL||WOOL"
+    - "WOOL||WOOL"
+charcoal_filter:
+  Type: "Shaped"
+  Result:
+    Item: "charcoal_filter"
+    Amount: 3
+  Ingredients:
+    - "|PAPER"
+    - "|CHARCOAL"
+    - "|PAPER"
+purified_water_bottle:
+  Type: "Shapeless"
+  Result:
+    Item: "purified_water_bottle"
+    Amount: 1
+  Ingredients:
+    - "POTION"
+    - "charcoal_filter"
+thermometer:
+  Type: "Shaped"
+  Result:
+    Item: "thermometer"
+    Amount: 1
+  Ingredients:
+    - "|GLASS"
+    - "GLASS|REDSTONE|GLASS"
+    - "|GLASS"
+juice_apple:
+  Type: "Shapeless"
+  Result:
+    Item: "juice_apple"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "APPLE"
+juice_beetroot:
+  Type: "Shapeless"
+  Result:
+    Item: "juice_beetroot"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "BEETROOT"
+juice_cactus:
+  Type: "Shapeless"
+  Result:
+    Item: "juice_cactus"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "CACTUS"
+juice_carrot:
+  Type: "Shapeless"
+  Result:
+    Item: "juice_carrot"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "CARROT"
+juice_chorus_fruit:
+  Type: "Shapeless"
+  Result:
+    Item: "juice_chorus_fruit"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "CHORUS_FRUIT"
+juice_melon_glistering:
+  Type: "Shapeless"
+  Result:
+    Item: "juice_melon_glistering"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "GLISTERING_MELON_SLICE"
+juice_apple_golden:
+  Type: "Shapeless"
+  Result:
+    Item: "juice_apple_golden"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "GOLDEN_APPLE"
+juice_carrot_golden:
+  Type: "Shapeless"
+  Result:
+    Item: "juice_carrot_golden"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "GOLDEN_CARROT"
+juice_melon:
+  Type: "Shapeless"
+  Result:
+    Item: "juice_melon"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "MELON_SLICE"
+juice_pumpkin:
+  Type: "Shapeless"
+  Result:
+    Item: "juice_pumpkin"
+    Amount: 1
+  Ingredients:
+    - "purified_water_bottle"
+    - "SUGAR"
+    - "PUMPKIN"
+purified_water_bottle_2:
+  Type: "Furnace"
+  Result:
+    Item: "purified_water_bottle"
+    Amount: 1
+  Input: "POTION"
+  Experience: 1.0
+  CookingTime: 160
+purified_water_bottle_3:
+  Type: "Campfire"
+  Result:
+    Item: "purified_water_bottle"
+    Amount: 1
+  Input: "POTION"
+  Experience: 1.0
+  CookingTime: 160
+purified_water_bottle_4:
+  Type: "Smoker"
+  Result:
+    Item: "purified_water_bottle"
+    Amount: 1
+  Input: "POTION"
+  Experience: 1.0
+  CookingTime: 80
+magma_block:
+  Type: "Shaped"
+  Result:
+    Item: "MAGMA_BLOCK"
+    Amount: 1
+  Ingredients:
+    - "magma_shard|magma_shard"
+    - "magma_shard|magma_shard"

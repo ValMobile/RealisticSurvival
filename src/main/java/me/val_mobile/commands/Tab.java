@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2021  Val_Mobile
+    Copyright (C) 2022  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  */
 package me.val_mobile.commands;
 
-import me.val_mobile.utils.ItemBuilder;
+import me.val_mobile.utils.RSVItem;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -92,7 +92,7 @@ public class Tab implements org.bukkit.command.TabCompleter {
                  *
                  * Add every command name to the third list of arguments.
                  */
-                for (String tabName : ItemBuilder.getCommandNames()) {
+                for (String tabName : RSVItem.getNames()) {
                     items.add(tabName);
                 }
             }

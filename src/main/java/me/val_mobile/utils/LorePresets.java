@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2021  Val_Mobile
+    Copyright (C) 2022  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.enums.Dragon;
+import me.val_mobile.iceandfire.DragonEnums;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -28,7 +28,7 @@ import java.util.List;
 
 public class LorePresets {
 
-    public static void addDragonSkullLore(ItemStack item, int stage, Dragon.Breed breed) {
+    public static void addDragonSkullLore(ItemStack item, int stage, DragonEnums.Breed breed) {
 
         ItemMeta meta = item.getItemMeta();
         if (!(meta.getLore() == null || meta.getLore().isEmpty())) {
@@ -36,10 +36,10 @@ public class LorePresets {
 
             lore.add(ChatColor.translateAlternateColorCodes('&',""));
 
-            if (breed.equals(Dragon.Breed.FIRE)) {
+            if (breed.equals(DragonEnums.Breed.FIRE)) {
                 lore.add(ChatColor.translateAlternateColorCodes('&', "&7Fire"));
             }
-            else if (breed.equals(Dragon.Breed.ICE)) {
+            else if (breed.equals(DragonEnums.Breed.ICE)) {
                 lore.add(ChatColor.translateAlternateColorCodes('&', "&7Ice"));
             }
             else {
@@ -57,10 +57,10 @@ public class LorePresets {
 
             lore.add(ChatColor.translateAlternateColorCodes('&',""));
 
-            if (breed.equals(Dragon.Breed.FIRE)) {
+            if (breed.equals(DragonEnums.Breed.FIRE)) {
                 lore.add(ChatColor.translateAlternateColorCodes('&', "&7Fire"));
             }
-            else if (breed.equals(Dragon.Breed.ICE)) {
+            else if (breed.equals(DragonEnums.Breed.ICE)) {
                 lore.add(ChatColor.translateAlternateColorCodes('&', "&7Ice"));
             }
             else {
@@ -85,6 +85,46 @@ public class LorePresets {
 
     }
 
+    public static void addKatanaLore(List<String> lore) {
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Chest Damage Bonus"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7+100% base weapon damage"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7when the foe has no Chest Armor"));
+
+    }
+
+    public static void addGreatswordLore(List<String> lore) {
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed II"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Higher reach levels have more range"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Wide Attack II"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7All targets in sweep range"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7take 100.0% of standard damage"));
+    }
+
+    public static void addLongswordLore(List<String> lore) {
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
+
+    }
+
+    public static void addSpearLore(List<String> lore) {
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Higher reach levels have more range"));
+
+    }
+
     public static void addSaberLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Damage Absorption"));
@@ -96,27 +136,9 @@ public class LorePresets {
 
     }
 
-    public static void addBattleaxeLore(List<String> lore) {
-
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Versatile"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Can be used as an axe"));
-
-    }
-
     public static void addBoomerangLore(List<String> lore) {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
-
-    }
-
-    public static void addCrossbowLore(List<String> lore) {
-
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7High damage & Long-ranged. Requires loading before firing. Uses Bolts."));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Quick shots after firing will affect accuracy."));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Hold the aim for a pinpoint shot."));
 
     }
 
@@ -138,20 +160,6 @@ public class LorePresets {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Wide Attack I"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7All targets in sweep range"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7take 50.0% of standard damage"));
-
-    }
-
-    public static void addGreatswordLore(List<String> lore) {
-
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed II"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Higher reach levels have more range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Wide Attack II"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7All targets in sweep range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7take 100.0% of standard damage"));
 
     }
 
@@ -186,17 +194,6 @@ public class LorePresets {
 
     }
 
-    public static void addKatanaLore(List<String> lore) {
-
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Chest Damage Bonus"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7+100% base weapon damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7when the foe has no Chest Armor"));
-
-    }
-
     public static void addLanceLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
@@ -205,21 +202,6 @@ public class LorePresets {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Riding Damage Bonus"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7+100% base weapon damage"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7while riding a mount or vehicle"));
-
-    }
-
-    public static void addLongbowLore(List<String> lore) {
-
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Long-range version of the standard bow"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Takes longer to draw fully"));
-
-    }
-
-    public static void addLongswordLore(List<String> lore) {
-
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
 
     }
 
@@ -241,14 +223,6 @@ public class LorePresets {
 
     }
 
-    public static void addSpearLore(List<String> lore) {
-
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Higher reach levels have more range"));
-
-    }
-
     public static void addQuarterstaffLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
@@ -260,7 +234,7 @@ public class LorePresets {
 
     }
 
-    public static void addThrowingAxeLore(List<String> lore) {
+    public static void addTomahawkLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
@@ -278,13 +252,13 @@ public class LorePresets {
 
     }
 
-    public static void addWarhammerLore(List<String> lore) {
+    public static void addBattleaxeLore(List<String> lore) {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Armor Piercing"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &750.0% of damage inflicted ignores armor"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Versatile"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Can be used as an axe"));
 
     }
 
@@ -293,6 +267,31 @@ public class LorePresets {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&6Nauseous Blow"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7Inflicts Nausea II (5.0s) on hit,"));
         lore.add(ChatColor.translateAlternateColorCodes('&', " &7unless the foe is wearing a Helmet"));
+
+    }
+
+    public static void addCrossbowLore(List<String> lore) {
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7High damage & Long-ranged. Requires loading before firing. Uses Bolts."));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Quick shots after firing will affect accuracy."));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Hold the aim for a pinpoint shot."));
+
+    }
+
+    public static void addLongbowLore(List<String> lore) {
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Long-range version of the standard bow"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Takes longer to draw fully"));
+
+    }
+
+    public static void addWarhammerLore(List<String> lore) {
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Armor Piercing"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', " &750.0% of damage inflicted ignores armor"));
 
     }
 
@@ -575,7 +574,7 @@ public class LorePresets {
                 addQuarterstaffLore(lore);
                 break;
             case "TOMAHAWK":
-                addThrowingAxeLore(lore);
+                addTomahawkLore(lore);
                 break;
             case "THROWING_KNIFE":
                 addThrowingKnifeLore(lore);

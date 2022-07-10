@@ -1,4 +1,4 @@
-# Realistic-Survival
+# Realistic Survival
 *Looking for the download link? **[Click here](https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795/)***
 
 Realistic Survival is a plugin inspired by RLCraft that aims to 
@@ -7,10 +7,10 @@ increase the difficulty of normal vanilla Minecraft.
 The plugin is organized into several modules which can be configured at will: 
 - Baubles
 - Spartan Weaponry
+- Spartan and Fire
 - No Tree Punching
-- Waystones
 - Tough As Nails
-- Lycanite's Mobs
+- Ice and Fire
 
 If you have any questions or suggestions,
 feel free to discuss it in my [Discord server](https://discord.gg/mMt3f4usqK).  
@@ -25,7 +25,7 @@ To report bugs, open a [new issue](https://github.com/ValMobile/RealisticSurviva
 - [❗Disclaimers](https://github.com/ValMobile/RealisticSurvival#-disclaimers)
 
 ## 💻 Download Realistic Survival
-Realistic-Survival requires your Minecraft server to be running on [Spigot](https://www.spigotmc.org/) or any
+Realistic-Survival requires your Minecraft server to be running on [Spigot](https://www.spigotmc.org/) or any of 
 its forks like [Paper](https://papermc.io/) and [Purpur](https://purpur.pl3x.net/).
 
 You can download stable builds Realistic Survival for free [here](https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795/).  
@@ -59,7 +59,7 @@ Here are some ways you can help support Realistic-Survival:
  - Coding in features by forking this repo and creating a pull request
  - Answering the polls in my Discord server
  - Answering frequently-asked-questions (FAQs) in my Discord server
- - Donating to my [Patreon](https://www.patreon.com/val_mobile)
+ - [Donating](https://www.paypal.com/donate/?hosted_button_id=MCSBPJP4B5KHL)
 
 ## ❗ Disclaimers
 Realistic Survival collects anonymous usage information through bStats. This info helps me to better
@@ -74,7 +74,8 @@ Realistic Survival uses source textures and ideas from many mods.
 All credits go to the following people:
  - Raptorfarian and Alexthe666 of [Ice and Fire](https://www.curseforge.com/minecraft/mc-mods/ice-and-fire-dragons)
  - ObliviousSpartan and xwerffx of [Spartan Weaponry](https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry)
- - Raptorfarian and Janivire of [Spartan and Fire](https://www.curseforge.com/minecraft/mc-mods/spartan-and-fire)
+ - Raptorfarian and Janivire of [Spartan and Fire [1.12.2]](https://www.curseforge.com/minecraft/mc-mods/spartan-and-fire)
+ - Kreloxcz and ChoglixVT of [Spartan and Fire [1.16.5]](https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry-ice-and-fire)
  - Cursed1nferno of [Bountiful Baubles](https://www.curseforge.com/minecraft/mc-mods/bountifulbaubles)
  - Azanor13 of [Baubles](https://www.curseforge.com/minecraft/mc-mods/baubles)
  - XzeroAir and sonicx8000 of [Trinkets and Baubles](https://www.curseforge.com/minecraft/mc-mods/trinkets-and-baubles)
