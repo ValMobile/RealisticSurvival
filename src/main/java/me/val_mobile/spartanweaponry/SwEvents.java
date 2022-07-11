@@ -23,16 +23,20 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Attack;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
+
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -44,11 +48,9 @@ import org.bukkit.util.Vector;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static org.bukkit.Material.ARROW;
-import static org.bukkit.Material.SPECTRAL_ARROW;
-
 public class SwEvents extends ModuleEvents implements Listener {
 
+    private final ThrowableWeapon throwableWeapon = new ThrowableWeapon();
     private final Utils util;
     private final RSVModule module;
     public SwEvents(RSVModule module, RealisticSurvivalPlugin plugin) {
@@ -203,6 +205,27 @@ public class SwEvents extends ModuleEvents implements Listener {
                             event.setResult(null);
                             break;
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onThrowing(PlayerInteractEvent event){
+        Player player = event.getPlayer();
+        if(player.isSneaking()){
+            return;
+        }
+        ItemStack itemStack = player.getInventory().getItemInMainHand();
+        if (shouldEventBeRan(player)) {
+            ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+            if (RSVItem.isRSVItem(itemMainHand, util)) {
+                if (util.getNbtTag(itemMainHand, "rsvmodule").equals("spartanweaponry")) {
+                    String name = util.getNbtTag(itemMainHand, "rsvitem");
+                    if (name.endsWith("boomerang") || name.endsWith("dagger") || name.endsWith("tomahawk")|| name.endsWith("jaweline")) {
+                        throwableWeapon.throwWeapon(player, throwableWeapon.spawnArmorstand(player,itemStack.clone(),false), itemStack.clone(), true, false, false, true);
+                        itemStack.setAmount(0);
                     }
                 }
             }

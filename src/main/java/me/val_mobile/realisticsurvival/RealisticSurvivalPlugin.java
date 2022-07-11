@@ -47,8 +47,11 @@ import java.util.Collection;
 
 public class RealisticSurvivalPlugin extends JavaPlugin {
 
+    private static RealisticSurvivalPlugin instance;
+
     @Override
     public void onEnable() {
+        setInstance(this);
 
         this.saveDefaultConfig();
 
@@ -82,5 +85,12 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    public static void setInstance(RealisticSurvivalPlugin ins) {
+        instance = ins;
+    }
+    public static RealisticSurvivalPlugin getInstance() {
+        return instance;
     }
 }

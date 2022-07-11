@@ -19,17 +19,13 @@ package me.val_mobile.utils;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.world.ChunkPopulateEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -37,6 +33,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 import java.util.HashMap;
@@ -787,6 +784,30 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    public static EulerAngle setRightArmAngle(ArmorStand armorStand, int x, int y, int z){
+        double armorStandX = armorStand.getRightArmPose().getX();
+        double armorStandY = armorStand.getRightArmPose().getY();
+        double armorStandZ = armorStand.getRightArmPose().getZ();
+
+        return new EulerAngle(armorStandX + Math.toRadians(x), armorStandY + Math.toRadians(y), armorStandZ + Math.toRadians(z));
+    }
+
+    public static EulerAngle setLeftArmAngle(ArmorStand armorStand, int x, int y, int z){
+        double armorStandX = armorStand.getLeftArmPose().getX();
+        double armorStandY = armorStand.getLeftArmPose().getY();
+        double armorStandZ = armorStand.getLeftArmPose().getZ();
+
+        return new EulerAngle(armorStandX + Math.toRadians(x), armorStandY + Math.toRadians(y), armorStandZ + Math.toRadians(z));
+    }
+
+    public static EulerAngle setHeadAngle(ArmorStand armorStand, int x, int y, int z){
+        double armorStandX = armorStand.getHeadPose().getX();
+        double armorStandY = armorStand.getHeadPose().getY();
+        double armorStandZ = armorStand.getHeadPose().getZ();
+
+        return new EulerAngle(armorStandX + Math.toRadians(x), armorStandY + Math.toRadians(y), armorStandZ + Math.toRadians(z));
     }
 
 }

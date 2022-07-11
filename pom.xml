@@ -84,13 +84,29 @@
             <url>https://mvn.intellectualsites.com/content/groups/public/</url>
         </repository>
 
+        <repository>
+            <id>papermc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
     </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.intellectualsites.bom</groupId>
+                <artifactId>bom-1.18.x</artifactId>
+                <version>1.9</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Spigot API -->
         <dependency>
             <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
+            <artifactId>spigot-api</artifactId>
             <version>1.17.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
@@ -98,20 +114,17 @@
         <!-- FAWE Core API -->
         <dependency>
             <groupId>com.fastasyncworldedit</groupId>
-            <artifactId>FAWE-Core</artifactId>
-            <version>1.17-47</version>
+            <artifactId>FastAsyncWorldEdit-Core</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!-- FAWE Bukkit API -->
         <dependency>
             <groupId>com.fastasyncworldedit</groupId>
-            <artifactId>FAWE-Bukkit</artifactId>
-            <version>1.17-47</version>
+            <artifactId>FastAsyncWorldEdit-Bukkit</artifactId>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
-                    <artifactId>FAWE-Core</artifactId>
+                    <artifactId>FastAsyncWorldEdit-Core</artifactId>
                     <groupId>*</groupId>
                 </exclusion>
             </exclusions>
@@ -123,6 +136,13 @@
             <artifactId>bstats-bukkit</artifactId>
             <version>2.2.1</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
