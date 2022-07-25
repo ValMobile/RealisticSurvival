@@ -1,0 +1,86 @@
+main: me.val_mobile.realisticsurvival.RealisticSurvivalPlugin
+name: ${project.name}
+version: ${project.version}
+author: Val_Mobile
+description: ${project.description}
+website: ${project.url}
+api-version: 1.16.4
+depend: [FastAsyncWorldEdit]
+softdepend: [RealisticSeasons]
+
+commands:
+  RealisticSurvival:
+    description: The home command of the Realistic Survival plugin
+    usage: /realisticsurvival
+    aliases: [rsv]
+    permission: realisticsurvival.command.*
+
+permissions:
+  realisticsurvival.toughasnails.resistance.cold:
+    description: Grants the player immunity from getting cold
+    default: not op
+  realisticsurvival.toughasnails.resistance.colddamage:
+    description: Grants the player immunity to the health effects of hypothermia
+    default: not op
+  realisticsurvival.toughasnails.resistance.coldvisual:
+    description: Grants the player immunity to the visual effects of hypothermia
+    default: not op
+  realisticsurvival.toughasnails.resistance.hot:
+    description: Grants the player immunity from getting hot
+    default: not op
+  realisticsurvival.toughasnails.resistance.hotdamage:
+    description: Grants the player immunity to health effects of hyperthermia
+    default: not op
+  realisticsurvival.toughasnails.resistance.hotvisual:
+    description: Grants the player immunity to the visual effects of hyperthermia
+    default: not op
+  realisticsurvival.toughasnails.resistance.thirst:
+    description: Grants the player immunity from getting thirsty
+    default: not op
+  realisticsurvival.toughasnails.resistance.thirstdamage:
+    description: Grants the player immunity to the health effects of dehydration
+    default: not op
+  realisticsurvival.toughasnails.resistance.*:
+    description: Wildcard permission
+    default: not op
+    children:
+      realisticsurvival.toughasnails.resistance.cold: true
+      realisticsurvival.toughasnails.resistance.colddamage: true
+      realisticsurvival.toughasnails.resistance.coldvisual: true
+      realisticsurvival.toughasnails.resistance.hot: true
+      realisticsurvival.toughasnails.resistance.hotdamage: true
+      realisticsurvival.toughasnails.resistance.hotvisual: true
+      realisticsurvival.toughasnails.resistance.thirst: true
+      realisticsurvival.toughasnails.resistance.thirstdamage: true
+  realisticsurvival.command.give:
+    description: Allows users to give themselves items from the plugin
+    default: op
+  realisticsurvival.command.spawnitem:
+    description: Allows users to spawn items from the plugin
+    default: op
+  realisticsurvival.command.reload:
+    description: Allows users to reload the plugin
+    default: op
+  realisticsurvival.command.thirst:
+    description: Allows users to change the thirst of other players
+    default: op
+  realisticsurvival.command.temperature:
+    description: Allows users to change the temperature of other players
+    default: op
+  realisticsurvival.command.help:
+    description: Allows users to access the help command
+    default: op
+  realisticsurvival.command.version:
+    description: Allows users to access the plugin version
+    default: op
+  realisticsurvival.command.*:
+    description: Wildcard permission
+    default: op
+    children:
+      realisticsurvival.command.give: true
+      realisticsurvival.command.spawnitem: true
+      realisticsurvival.command.reload: true
+      realisticsurvival.command.thirst: true
+      realisticsurvival.command.temperature: true
+      realisticsurvival.command.help: true
+      realisticsurvival.command.version: true

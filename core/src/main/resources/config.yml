@@ -1,0 +1,92 @@
+#################################################################################################################################
+#																																#
+#	Realistic Survival Plugin	MC 1.17 - 1.19																			        #
+#	Version 1.2.3	            Made by: Val_Mobile											                                    #
+#																																#
+#################################################################################################################################
+
+
+#######################################
+#          Messages                   #
+#######################################
+
+Reload: "&6[Realistic Survival] &fPlugin reloaded!"
+NoPermission: "&cYou do not have permission to do this!"
+NoOnlinePlayer: "&cThe specified player is not online!"
+MisspelledPlayer: "&cThe specified player's name was misspelled"
+MisspelledItemName: "&cYou mispelled the item!"
+InvalidArguments: "&cYou are using the invalid arguments!"
+RegisteredEnchant: "&7Registered &e%ENCHANT% &7enchant!"                  # %enchant% is a placeholder for the enchant name
+Version: "&6[Realistic Survival] &fYou're running on version %VERSION%"   # %version% is a placeholder for the plugin version
+Help:
+  - "&6-----Realistic Survival Command Help-----"
+  - "&6/realisticsurvival &freload"
+  - "&6/realisticsurvival &fgive player item &b*&6&famount"
+  - "&6/realisticsurvival &fspawnitem item x y z &b*&fworld"
+  - "&6/realisticsurvival &ftemperature player amount"
+  - "&6/realisticsurvival &fthirst player amount"
+  - "&b* &fmeans that argument is optional"
+  - "&6/rsv &fcan be used as a shorthand"
+CorrectVersion:
+  - "&fYou are running the latest version"
+OutdatedVersion:
+  - "&cYou are running on an outdated version"
+  - "&cUpdate to receive the latest features! https://www.spigotmc.org/resources/realisticsurvival-1-17-baubles-dragons-sea-serpents.93795/history"
+DeveloperBuildVersion:
+  - "&eYou are running on a developer build"
+  - "&eNote that there might be bugs or glitches! Please report any bugs, issues, or glitches"
+  - "&ein the plugin support Discord server: https://discord.gg/mMt3f4usqK"
+
+#######################################
+#          Gameplay Features          #
+#######################################
+
+# Enable and disable features to your liking
+# Set a feature to "false" to disable and "true" to enable
+# There are 6 other configs to customize the individual details of each feature
+# Resource pack is disabled by default to allow for integration of it into
+# your own custom server pack if needed
+# NOTE: You must restart the server after enabling or disabling any feature
+ResourcePack:
+  Enabled: true
+  # If you upgrade to newer versions, the URL will need to be manually updated to the newest one,
+  # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
+  Url: "https://www.dropbox.com/s/g0eqk0bdw9qjhcv/Realistic%20Survival%20RP%201.2.3.zip?dl=1"
+UnlockRecipes: true
+NoTreePunching:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+Baubles:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+SpartanWeaponry:
+  Enabled: true
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+SpartanandFire:
+  Enabled: true # Spartan Weaponry and Ice and Fire must be set to true if enabled
+  Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
+IceandFire:
+  Enabled: true
+  Worlds:
+ToughAsNails:
+  Enabled: true
+  Worlds:
+
+#######################################
+#          Miscellaneous              #
+#######################################
+
+BStats: true       # Do you want non-confidential server data to be recorded for my use?
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit

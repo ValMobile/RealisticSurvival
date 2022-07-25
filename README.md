@@ -25,7 +25,7 @@ To report bugs, open a [new issue](https://github.com/ValMobile/RealisticSurviva
 - [❗Disclaimers](https://github.com/ValMobile/RealisticSurvival#-disclaimers)
 
 ## 💻 Download Realistic Survival
-Realistic-Survival requires your Minecraft server to be running on [Spigot](https://www.spigotmc.org/) or any of 
+Realistic Survival requires your Minecraft server to be running on [Spigot](https://www.spigotmc.org/) or any of 
 its forks like [Paper](https://papermc.io/) and [Purpur](https://purpur.pl3x.net/).
 
 You can download stable builds Realistic Survival for free [here](https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795/).  
@@ -42,17 +42,17 @@ and I'll add them here.
 ![A player holding a cobalt shield](https://i.imgur.com/hZrfDS6.png)
 
 ## 🎧 Discord
-You can find the Realistic-Survival community on Discord and connect with users of Realistic-Survival from all over the world.  
+You can find the Realistic Survival community on Discord and connect with users of Realistic Survival from all over the world.  
 Click the image below to join us!
 
 [![Discord logo](https://th.bing.com/th/id/OIP.nmHobRJPgkH-7YQqXsbCqwHaEK?pid=ImgDet&rs=1)](https://discord.gg/mMt3f4usqK)
 
 ## 🤝 Contributing to this project
-Realistic-Survival is an open-source project and licensed under the terms and conditions of the
+Realistic Survival is an open-source project and licensed under the terms and conditions of the
 [GNU General Public License v3](https://github.com/ValMobile/RealisticSurvival/blob/master/LICENSE.md).  
 Please consider helping me maintain this project, your dedication helps keep this project alive!  
 
-Here are some ways you can help support Realistic-Survival:
+Here are some ways you can help support Realistic Survival:
  - Creating bug reports 
  - Contributing to the [Wiki](https://github.com/ValMobile/RealisticSurvival/wiki/Expanding-the-Wiki)
  - Suggesting features
@@ -68,7 +68,7 @@ information to be collected, set BStats to false in the config.yml file.
 
 Because Realistic Survival is currently in its infancy, many features will be buggy and
 not work properly. There is currently no support for protection plugins like GriefProtection
-or WorldGuard. I am not responsible for any damage caused by Realistic-Survival to your server.
+or WorldGuard. I am not responsible for any damage caused by Realistic Survival to your server.
 
 Realistic Survival uses source textures and ideas from many mods.  
 All credits go to the following people:
@@ -82,6 +82,7 @@ All credits go to the following people:
  - Tmtravlr of [Quality Tools](https://www.curseforge.com/minecraft/mc-mods/quality-tools)
  - AlcatrazEscape of [No Tree Punching](https://www.curseforge.com/minecraft/mc-mods/no-tree-punching)
  - TheAdubbz of [Tough As Nails](https://www.curseforge.com/minecraft/mc-mods/tough-as-nails)
+ - 
 
 *Note that Realistic Survival is not affiliated with Mojang Studios, Minecraft, 
 or Shivaxi, the creator of the official RLCraft modpack.*

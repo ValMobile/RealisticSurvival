@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Code of Conduct
+    url: https://github.com/ValMobile/RealisticSurvival/blob/master/.github/CODE_OF_CONDUCT.md
+    about: Please read this before posting
+  - name: Bug Report Guidelines
+    url: https://github.com/ValMobile/RealisticSurvival/wiki/How-to-report-bugs
+    about: Guidelines on how to make good Bug reports
+  - name: Discord Server (for Questions and Suggestions)
+    url: https://discord.gg/mMt3f4usqK
+    about: Please ask and answer questions here.
