@@ -19,13 +19,21 @@ package me.val_mobile.misc;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.event.inventory.PrepareSmithingEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.SmithingInventory;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -34,9 +42,11 @@ import java.util.Set;
 public class PlayerInitializer implements Listener {
 
     private final RealisticSurvivalPlugin plugin;
+    private final Utils util;
 
     public PlayerInitializer(RealisticSurvivalPlugin plugin) {
         this.plugin = plugin;
+        this.util = new Utils(plugin);
     }
 
     @EventHandler
@@ -52,13 +62,14 @@ public class PlayerInitializer implements Listener {
 
         for (RSVModule module : rsvModules) {
             if (module.isEnabled()) {
-                HashMap<String, Recipe> map = module.getModuleRecipes().getRecipeMap();
-                Set<String> keySet = map.keySet();
-                FileConfiguration config = module.getUserConfig().getConfig();
-                for (String name : keySet) {
-                    boolean unlock = config.getBoolean(name + ".Unlock");
-                    if (unlock) {
-                        Utils.discoverRecipe(player, map.get(name));
+                if (module.getAllowedWorlds().contains(player.getWorld().getName())) {
+                    HashMap<String, Recipe> map = module.getModuleRecipes().getRecipeMap();
+                    Set<String> keySet = map.keySet();
+                    FileConfiguration config = module.getUserConfig().getConfig();
+                    for (String name : keySet) {
+                        if (config.getBoolean("Recipes." + name + ".Unlock")) {
+                            Utils.discoverRecipe(player, map.get(name));
+                        }
                     }
                 }
             }
@@ -66,4 +77,56 @@ public class PlayerInitializer implements Listener {
 
     }
 
+    @EventHandler
+    public void onCraft(PrepareItemCraftEvent event) {
+        Recipe r = event.getRecipe();
+
+        if (r != null) {
+            ItemStack result = r.getResult();
+
+            if (RSVItem.isRSVItem(result, util)) {
+
+                String moduleName = RSVItem.getModuleNameFromItem(result, util);
+                if (!RSVModule.getModules().get(moduleName).getAllowedWorlds().contains(event.getView().getPlayer().getWorld().getName())) {
+                    event.getInventory().setResult(null);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onSmithing(PrepareSmithingEvent event) {
+        ItemStack result = event.getResult();
+        SmithingInventory inv = event.getInventory();
+
+        if (!(inv.getRecipe() == null || result == null)) {
+            ItemStack baseItem = inv.getItem(0);
+
+            Material mat = result.getType();
+            if (Utils.isNetherite(mat)) {
+                if (RSVItem.isRSVItem(baseItem, util)) {
+                    if (Utils.isDiamond(baseItem.getType())) {
+                        String originalName = RSVItem.getNameFromItem(baseItem, util);
+                        String netheriteName = originalName.replaceAll("diamond", "netherite");
+
+                        if (!originalName.equals(netheriteName)) {
+                            if (Bukkit.getRecipesFor(RSVItem.getItem(netheriteName)).contains(inv.getRecipe())) {
+                                event.setResult(null);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onDurability(PlayerItemDamageEvent event) {
+        ItemStack item = event.getItem();
+        if (RSVItem.isRSVItem(item, util)) {
+            if (util.hasNbtTag(item, "rsvdurability")) {
+                int nbtDurability =
+            }
+        }
+    }
 }

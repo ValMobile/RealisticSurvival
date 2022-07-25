@@ -14,15 +14,20 @@ public class EnderCrownTask extends BukkitRunnable {
 
     private final RSVPlayer rsvPlayer;
     private final RealisticSurvivalPlugin plugin;
-    private final FileConfiguration config = RSVFiles.getBaubleUserConfig();
-    private double actRange = config.getDouble("Items.ender_queens_crown.ActivationRange");
-    private double chance = config.getDouble("Items.ender_queens_crown.SummonEndermanAlly.Chance");
-    private double maxHealthPercent = config.getDouble("Items.ender_queens_crown.SummonEndermanAlly.MaxHealthPercent");
-    private double waterDamage = config.getDouble("Items.ender_queens_crown.WaterContactDamage");
+    private final FileConfiguration config;
+    private final double actRange;
+    private final double chance;
+    private final double maxHealthPercent;
+    private final double waterDamage;
 
-    public EnderCrownTask(RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
+    public EnderCrownTask(BaubleModule module, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
+        this.config = module.getUserConfig().getConfig();
         this.plugin = plugin;
+        this.actRange = config.getDouble("Items.ender_queens_crown.ActivationRange");
+        this.chance = config.getDouble("Items.ender_queens_crown.SummonEndermanAlly.Chance");
+        this.maxHealthPercent = config.getDouble("Items.ender_queens_crown.SummonEndermanAlly.MaxHealthPercent");
+        this.waterDamage = config.getDouble("Items.ender_queens_crown.WaterContactDamage");
     }
 
     @Override
@@ -52,7 +57,7 @@ public class EnderCrownTask extends BukkitRunnable {
     }
 
     public void startRunnable() {
-        int tickSpeed = RSVFiles.getBaubleUserConfig().getInt("Items.ender_queens_crown.TickTime"); // get the tick speed
+        int tickSpeed = config.getInt("Items.ender_queens_crown.TickTime"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 }

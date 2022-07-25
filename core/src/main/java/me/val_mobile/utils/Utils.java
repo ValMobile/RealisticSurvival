@@ -17,6 +17,8 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.spartanandfire.FreezeTask;
+import me.val_mobile.spartanweaponry.KbTask;
 import org.apache.commons.lang.mutable.MutableInt;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
@@ -506,7 +508,7 @@ public class Utils {
         NamespacedKey nkey = new NamespacedKey(plugin, key);
         PersistentDataContainer container = entity.getPersistentDataContainer();
 
-        if(container.has(nkey , PersistentDataType.STRING)) {
+        if(container.has(nkey, PersistentDataType.STRING)) {
             return container.get(nkey, PersistentDataType.STRING);
         }
 
@@ -514,12 +516,7 @@ public class Utils {
     }
 
     public void freezeEntity(Entity entity) {
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                entity.setVelocity(new Vector());
-            }
-        }.runTaskLater(plugin, 1L);
+        new KbTask(plugin, entity, 0D).start();
     }
 
     public static boolean doublesEquals(double v, double v1) {
@@ -541,6 +538,8 @@ public class Utils {
 
         return itemMeta.getPersistentDataContainer().has(nkey, PersistentDataType.STRING);
     }
+
+
 
     public static HashMap<String, Tag> getTags() {
         return internals.getTags();
@@ -701,6 +700,44 @@ public class Utils {
                     }
                 }
                 break;
+            }
+        }
+    }
+
+    public static boolean isNetherite(Material material) {
+        switch (material) {
+            case NETHERITE_AXE:
+            case NETHERITE_BOOTS:
+            case NETHERITE_HELMET:
+            case NETHERITE_CHESTPLATE:
+            case NETHERITE_LEGGINGS:
+            case NETHERITE_PICKAXE:
+            case NETHERITE_SWORD:
+            case NETHERITE_SHOVEL:
+            case NETHERITE_HOE: {
+                return true;
+            }
+            default: {
+                return false;
+            }
+        }
+    }
+
+    public static boolean isDiamond(Material material) {
+        switch (material) {
+            case DIAMOND_AXE:
+            case DIAMOND_BOOTS:
+            case DIAMOND_HELMET:
+            case DIAMOND_CHESTPLATE:
+            case DIAMOND_LEGGINGS:
+            case DIAMOND_PICKAXE:
+            case DIAMOND_SWORD:
+            case DIAMOND_SHOVEL:
+            case DIAMOND_HOE: {
+                return true;
+            }
+            default: {
+                return false;
             }
         }
     }

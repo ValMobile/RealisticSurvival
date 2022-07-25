@@ -22,6 +22,7 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -32,10 +33,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -194,11 +197,13 @@ public class SwEvents extends ModuleEvents implements Listener {
                                     Location eLoc;
                                     Location defLoc = defender.getLocation();
                                     for (Entity e : entities) {
-                                        if (e instanceof LivingEntity) {
-                                            eLoc = e.getLocation();
-                                            if (Math.abs(eLoc.getY() - defLoc.getY()) <= 0.25) {
-                                                if (Math.hypot(eLoc.getX() - defLoc.getX(), eLoc.getZ() - defLoc.getZ()) <= 1.0) {
-                                                    ((LivingEntity) e).damage(damage * multiplier, attacker);
+                                        if (!e.getUniqueId().equals(attacker.getUniqueId())) {
+                                            if (e instanceof LivingEntity) {
+                                                eLoc = e.getLocation();
+                                                if (Math.abs(eLoc.getY() - defLoc.getY()) <= 0.25) {
+                                                    if (Math.hypot(eLoc.getX() - defLoc.getX(), eLoc.getZ() - defLoc.getZ()) <= 1.0) {
+                                                        ((LivingEntity) e).damage(damage * multiplier, attacker);
+                                                    }
                                                 }
                                             }
                                         }
@@ -216,13 +221,7 @@ public class SwEvents extends ModuleEvents implements Listener {
                                     }
 
                                     double kbMultiplier = config.getDouble("Items." + name + ".KnockbackMultiplier");
-                                    new BukkitRunnable() {
-                                        @Override
-                                        public void run() {
-                                            Vector kb = defender.getVelocity().multiply(kbMultiplier);
-                                            defender.setVelocity(kb);
-                                        }
-                                    }.runTaskLater(plugin, 1L);
+                                    util.freezeEntity(defender);
                                     break;
                                 }
                                 case "warhammer": {
@@ -402,24 +401,4 @@ public class SwEvents extends ModuleEvents implements Listener {
         }
     }
 
-    @EventHandler
-    public void onSmithing(PrepareSmithingEvent event) {
-        ItemStack result = event.getResult();
-        SmithingInventory inv = event.getInventory();
-
-        if (shouldEventBeRan(event.getView().getPlayer())) {
-            if (!(inv.getRecipe() == null || result == null)) {
-                ItemStack baseItem = inv.getItem(0);
-
-                Material mat = result.getType();
-                if (mat == Material.NETHERITE_SWORD || mat == Material.NETHERITE_AXE) {
-                    if (RSVItem.isRSVItem(baseItem, util)) {
-                        if (RSVItem.getModuleNameFromItem(baseItem, util).equals(SwModule.NAME)) {
-                            event.setResult(null);
-                        }
-                    }
-                }
-            }
-        }
-    }
 }

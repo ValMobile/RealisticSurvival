@@ -114,9 +114,13 @@ public class SfEvents extends ModuleEvents implements Listener {
                                         }
                                     }
 
-                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning")) {
+                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
                                         Location loc = defender.getLocation();
-                                        loc.getWorld().strikeLightning(loc);
+                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                                            loc.getWorld().strikeLightningEffect(loc);
+                                        } else {
+                                            loc.getWorld().strikeLightning(loc);
+                                        }
                                     }
 
                                     if (defender instanceof Damageable) {
@@ -143,9 +147,14 @@ public class SfEvents extends ModuleEvents implements Listener {
                                     break;
                                 }
                                 case "dragonsteel_lightning": {
-                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning")) {
+                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
                                         Location loc = defender.getLocation();
-                                        loc.getWorld().strikeLightning(loc);
+                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                                            loc.getWorld().strikeLightningEffect(loc);
+                                        }
+                                        else {
+                                            loc.getWorld().strikeLightning(loc);
+                                        }
                                     }
 
                                     if (defender instanceof Damageable) {

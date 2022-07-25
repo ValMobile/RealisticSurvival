@@ -2,7 +2,9 @@ package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.spartanweaponry.KbTask;
 import me.val_mobile.utils.Utils;
+import org.apache.commons.lang.mutable.MutableInt;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -14,6 +16,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -71,6 +74,8 @@ public class FreezeTask extends BukkitRunnable {
 
         // remove the ice block after some time
        unfreezeTask.start();
+
+       new Utils(plugin).freezeEntity(entity);
     }
 
     public void start() {

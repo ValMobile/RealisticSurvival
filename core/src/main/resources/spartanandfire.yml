@@ -78,10 +78,12 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_rapier:
     Enabled: true
@@ -120,10 +122,12 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Katanas
 
@@ -174,10 +178,12 @@ Items:
       Duration: 30
     ChestDamageMultiplier: 2.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_katana:
     Enabled: true
@@ -216,10 +222,12 @@ Items:
       Duration: 30
     ChestDamageMultiplier: 2.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Greatswords
 
@@ -274,10 +282,12 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_greatsword:
     Enabled: true
@@ -319,10 +329,12 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Longswords
 
@@ -373,10 +385,12 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.25
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_longsword:
     Enabled: true
@@ -415,10 +429,12 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.25
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Spears
 
@@ -457,10 +473,12 @@ Items:
       AttackSpeed: 1.4
     Reach: 7.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_spear:
     Enabled: true
@@ -490,10 +508,12 @@ Items:
       AttackSpeed: 1.4
     Reach: 7.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Sabers
 
@@ -544,10 +564,12 @@ Items:
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_saber:
     Enabled: true
@@ -586,10 +608,12 @@ Items:
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Boomerangs
 
@@ -672,10 +696,12 @@ Items:
       AttackDamage: 9.5
       Velocity: 10.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_boomerang:
     Enabled: true
@@ -738,10 +764,12 @@ Items:
       AttackDamage: 25.0
       Velocity: 10.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Daggers
 
@@ -828,10 +856,12 @@ Items:
       Velocity: 10.0
     BackstabDamageMultiplier: 3.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_dagger:
     Enabled: true
@@ -897,10 +927,12 @@ Items:
       AttackDamage: 13.0
       Velocity: 10.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Glaives
 
@@ -955,10 +987,12 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_glaive:
     Enabled: true
@@ -1000,10 +1034,12 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Halberds
 
@@ -1058,10 +1094,12 @@ Items:
     Reach: 7.0
     ShieldBreachChance: 0.9
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_halberd:
     Enabled: true
@@ -1103,10 +1141,12 @@ Items:
     Reach: 7.0
     ShieldBreachChance: 0.9
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Hammers
 
@@ -1157,10 +1197,12 @@ Items:
       Amplifier: 1
       Duration: 100
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_hammer:
     Enabled: true
@@ -1199,10 +1241,12 @@ Items:
       Amplifier: 1
       Duration: 100
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Javelins
 
@@ -1285,10 +1329,12 @@ Items:
       AttackDamage: 12.75
       Velocity: 10.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_javelin:
     Enabled: true
@@ -1351,10 +1397,12 @@ Items:
       AttackDamage: 36.0
       Velocity: 10.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Lances
 
@@ -1397,10 +1445,12 @@ Items:
     Reach: 7.0
     RidingDamageBonus: 2.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_lance:
     Enabled: true
@@ -1433,10 +1483,12 @@ Items:
     Reach: 7.0
     RidingDamageBonus: 2.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Maces
 
@@ -1475,10 +1527,12 @@ Items:
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_mace:
     Enabled: true
@@ -1508,10 +1562,12 @@ Items:
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Pikes
 
@@ -1562,10 +1618,12 @@ Items:
       Duration: 30
     Reach: 8.5
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_pike:
     Enabled: true
@@ -1604,10 +1662,12 @@ Items:
       Duration: 30
     Reach: 8.5
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Quarterstaffs
 
@@ -1658,10 +1718,12 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.5
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_quarterstaff:
     Enabled: true
@@ -1700,10 +1762,12 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.5
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Tomahawk
 
@@ -1786,10 +1850,12 @@ Items:
       AttackDamage: 15.0
       Velocity: 10.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_tomahawk:
     Enabled: true
@@ -1852,10 +1918,12 @@ Items:
       AttackDamage: 46.0
       Velocity: 10.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Throwing Knives
 
@@ -1938,10 +2006,12 @@ Items:
       AttackDamage: 8.5
       Velocity: 10.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_throwing_knife:
     Enabled: true
@@ -2004,10 +2074,12 @@ Items:
       AttackDamage: 24.0
       Velocity: 10.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Warhammers
 
@@ -2058,10 +2130,12 @@ Items:
       Duration: 30
     ArmorPiercing: 0.5
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_warhammer:
     Enabled: true
@@ -2100,10 +2174,12 @@ Items:
       Duration: 30
     ArmorPiercing: 0.5
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Battleaxes
 
@@ -2150,10 +2226,12 @@ Items:
       Amplifier: 2
       Duration: 30
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_battleaxe:
     Enabled: true
@@ -2186,10 +2264,12 @@ Items:
       Amplifier: 2
       Duration: 30
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Longbows
 
@@ -2216,10 +2296,12 @@ Items:
     AttackDamageMultiplier: 2.0
     ArrowVelocityMultiplier: 2.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_longbow:
     AttackDamageMultiplier: 3.0
@@ -2240,10 +2322,12 @@ Items:
     AttackDamageMultiplier: 3.0
     ArrowVelocityMultiplier: 3.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Crossbows
 
@@ -2270,10 +2354,12 @@ Items:
     AttackDamageMultiplier: 2.0
     ArrowVelocityMultiplier: 2.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_crossbow:
     AttackDamageMultiplier: 3.0
@@ -2294,10 +2380,12 @@ Items:
     AttackDamageMultiplier: 3.0
     ArrowVelocityMultiplier: 3.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
 # Customize recipes
 # Requires restart upon changing

@@ -297,7 +297,6 @@ public class BaubleEvents extends ModuleEvents implements Listener {
      * Activates various defensive baubles if a player is attacked
      * by certain causes
      * @param event The event called when an entity is attacked
-     * @see RSVFiles
      * @see Utils
      */
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -406,7 +405,6 @@ public class BaubleEvents extends ModuleEvents implements Listener {
     /**
      * Activates the balloon ability if a player jumps
      * @param event The event called when a player moves
-     * @see RSVFiles
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerMove(PlayerVelocityEvent event)
@@ -477,7 +475,6 @@ public class BaubleEvents extends ModuleEvents implements Listener {
     /**
      * Drops bauble items if certain entities die
      * @param event The event called when an entity dies
-     * @see RSVFiles
      * @see Utils
      */
     @EventHandler
@@ -608,7 +605,6 @@ public class BaubleEvents extends ModuleEvents implements Listener {
     /**
      * Adds anvil recipes to craft complex baubles
      * @param event The event called when a player adds items inside an anvil
-     * @see RSVFiles
      * @see Utils
      */
     @EventHandler

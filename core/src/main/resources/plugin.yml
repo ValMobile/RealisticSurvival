@@ -4,7 +4,7 @@ version: ${project.version}
 author: Val_Mobile
 description: ${project.description}
 website: ${project.url}
-api-version: 1.16.4
+api-version: 1.16
 depend: [FastAsyncWorldEdit]
 softdepend: [RealisticSeasons]
 

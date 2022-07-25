@@ -385,10 +385,12 @@ Items:
       AttackDamage: 26.0
       AttackSpeed: 1.2
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Axes
 
@@ -422,10 +424,12 @@ Items:
       AttackDamage: 30.0
       AttackSpeed: 1.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Shovels
 
@@ -459,10 +463,12 @@ Items:
       AttackDamage: 26.5
       AttackSpeed: 1.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Hoes
 
@@ -496,10 +502,12 @@ Items:
       AttackDamage: 2.0
       AttackSpeed: 1.0
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Swords
 
@@ -534,10 +542,12 @@ Items:
       AttackDamage: 9.5
       AttackSpeed: 1.6
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 1
+      TickSpeed: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_sword:
     Enabled: true
@@ -564,10 +574,12 @@ Items:
       AttackDamage: 25.0
       AttackSpeed: 1.6
     ElectrocuteAbility:
-      SummonLightning: true
+      SummonLightning:
+        Enabled: true
+        Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 1
+      TickSpeed: 2
 
   # Bows
 

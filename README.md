@@ -38,14 +38,18 @@ If you have some cool screenshots
 of Realistic Survival yourself, feel free to post them in the [Discord server](https://discord.gg/mMt3f4usqK), 
 and I'll add them here.
 
-![A player holding an ankh shield and an enchanted flamed dragon bone sword](https://i.imgur.com/GtbXi8g.png)
-![A player holding a cobalt shield](https://i.imgur.com/hZrfDS6.png)
+|                 Temperature and Thirst                  |            Weapons and Armor             |          Modded Experience           | 
+| :-------------------------------------------: | :--------------------------------------: | :----------------------------------------: | 
+| ![Player experiencing hyperthermia](https://raw.githubusercontent.com/ValMobile/RealisticSurvival-Wiki/master/images/showcase-toughasnails-hot.png) | ![A player holding a netherite halberd](https://raw.githubusercontent.com/ValMobile/RealisticSurvival-Wiki/master/images/showcase-spartanweaponry.png) | ![Sunset view](https://raw.githubusercontent.com/ValMobile/RealisticSurvival-Wiki/master/images/showcase-irisworldgenerator.png) | 
+| *Screenshot provided by Val_Mobile#7926* | *Screenshot provided by Val_Mobile#7926* | *Screenshot provided by Triassic#3426, uses Iris World Generator and Slimefun4* | 
+| ![Player experiencing hypothermia](https://raw.githubusercontent.com/ValMobile/RealisticSurvival-Wiki/master/images/showcase-toughasnails-cold.png) | ![A player holding a cobalt shield](https://raw.githubusercontent.com/ValMobile/RealisticSurvival-Wiki/master/images/showcase-baubles.png) | ![A player holding an ankh shield and an enchanted flamed dragon bone sword](https://raw.githubusercontent.com/ValMobile/RealisticSurvival-Wiki/master/images/showcase-plugin-icon.png) | 
+| *Screenshot provided by Val_Mobile#7926* | *Screenshot provided by Val_Mobile#7926* | *Screenshot provided by Val_Mobile#7926* |
 
 ## 🎧 Discord
 You can find the Realistic Survival community on Discord and connect with users of Realistic Survival from all over the world.  
 Click the image below to join us!
 
-[![Discord logo](https://th.bing.com/th/id/OIP.nmHobRJPgkH-7YQqXsbCqwHaEK?pid=ImgDet&rs=1)](https://discord.gg/mMt3f4usqK)
+<p align="center"> <a href="https://discord.gg/mMt3f4usqK"> <img src="https://discordapp.com/api/guilds/860666565463638017/widget.png?style=banner3" alt="Discord Invite"/> </a> </p>
 
 ## 🤝 Contributing to this project
 Realistic Survival is an open-source project and licensed under the terms and conditions of the
@@ -83,6 +87,7 @@ All credits go to the following people:
  - AlcatrazEscape of [No Tree Punching](https://www.curseforge.com/minecraft/mc-mods/no-tree-punching)
  - TheAdubbz of [Tough As Nails](https://www.curseforge.com/minecraft/mc-mods/tough-as-nails)
  - FN-FAL113 for [Throwable Weapon Code](https://github.com/FN-FAL113/FN-FAL-s-Amplifications/tree/main/src/main/java/ne/fnfal113/fnamplifications/gems/implementation)
+ - Shivaxi of [RLCraft modpack](https://www.curseforge.com/minecraft/modpacks/rlcraft)
 
 *Note that Realistic Survival is not affiliated with Mojang Studios, Minecraft, 
 or Shivaxi, the creator of the official RLCraft modpack.*

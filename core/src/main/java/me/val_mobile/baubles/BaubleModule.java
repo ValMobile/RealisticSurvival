@@ -16,6 +16,11 @@
  */
 package me.val_mobile.baubles;
 
+import me.val_mobile.data.ModuleItems;
+import me.val_mobile.data.ModuleRecipes;
+import me.val_mobile.data.baubles.ItemConfig;
+import me.val_mobile.data.baubles.RecipesConfig;
+import me.val_mobile.data.baubles.UserConfig;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -26,8 +31,8 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
 
     public static final String NAME = "Baubles";
 
-    private me.val_mobile.baubles.BaubleAbilities abilities;
-    private me.val_mobile.baubles.BaubleEvents events;
+    private BaubleAbilities abilities;
+    private BaubleEvents events;
 
     public BaubleModule(RealisticSurvivalPlugin plugin) {
         super(NAME, plugin);
@@ -44,15 +49,15 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
             plugin.getLogger().info(message);
         }
 
-        setUserConfig(new me.val_mobile.data.baubles.UserConfig(plugin));
-        setItemConfig(new me.val_mobile.data.baubles.ItemConfig(plugin));
-        setRecipeConfig(new me.val_mobile.data.baubles.RecipesConfig(plugin));
-        setModuleItems(new me.val_mobile.data.ModuleItems(this, plugin));
-        setModuleRecipes(new me.val_mobile.data.ModuleRecipes(this, plugin));
+        setUserConfig(new UserConfig(plugin));
+        setItemConfig(new ItemConfig(plugin));
+        setRecipeConfig(new RecipesConfig(plugin));
+        setModuleItems(new ModuleItems(this, plugin));
+        setModuleRecipes(new ModuleRecipes(this, plugin));
 
-        events = new me.val_mobile.baubles.BaubleEvents(this, plugin);
+        events = new BaubleEvents(this, plugin);
 
-        abilities = new me.val_mobile.baubles.BaubleAbilities();;
+        abilities = new BaubleAbilities();;
 
 
         getModuleItems().initialize();
@@ -71,11 +76,11 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
         }
     }
 
-    public me.val_mobile.baubles.BaubleAbilities getAbilities() {
+    public BaubleAbilities getAbilities() {
         return abilities;
     }
 
-    public me.val_mobile.baubles.BaubleEvents getEvents() {
+    public BaubleEvents getEvents() {
         return events;
     }
 }

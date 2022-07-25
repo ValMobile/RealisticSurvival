@@ -39,7 +39,7 @@ public class ModuleItems {
         FileConfiguration userConfig = module.getUserConfig().getConfig();
         Set<String> keys = itemConfig.getConfigurationSection("").getKeys(false);
         for (String key : keys) {
-            if (userConfig.getBoolean(key + ".Enabled")) {
+            if (userConfig.getBoolean("Items." + key + ".Enabled")) {
                 RSVItem item = new RSVItem(module, key, plugin);
                 items.putIfAbsent(key, item);
             }

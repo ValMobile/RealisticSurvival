@@ -17,18 +17,26 @@
 package me.val_mobile.data;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.Utils;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.PluginManager;
 
 public abstract class ModuleEvents implements Listener {
 
     private final RealisticSurvivalPlugin plugin;
+    private Utils util;
     private RSVModule module;
 
     public ModuleEvents(RSVModule module, RealisticSurvivalPlugin plugin) {
         this.module = module;
+        this.util = new Utils(plugin);
         this.plugin = plugin;
     }
 
@@ -48,4 +56,5 @@ public abstract class ModuleEvents implements Listener {
     public RSVModule getModule() {
         return module;
     }
+
 }

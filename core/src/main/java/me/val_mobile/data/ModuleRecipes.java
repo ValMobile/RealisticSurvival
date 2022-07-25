@@ -50,7 +50,7 @@ public class ModuleRecipes {
 
             String type = recipeConfig.getString(name + ".Type");
 
-            if (userConfig.getBoolean(name + ".Enabled")) {
+            if (userConfig.getBoolean("Recipes." + name + ".Enabled")) {
                 switch (type) {
                     case "Shaped": {
                         recipe = new RSVShapedRecipe(recipeConfig, name, plugin);
