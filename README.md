@@ -82,7 +82,7 @@ All credits go to the following people:
  - Tmtravlr of [Quality Tools](https://www.curseforge.com/minecraft/mc-mods/quality-tools)
  - AlcatrazEscape of [No Tree Punching](https://www.curseforge.com/minecraft/mc-mods/no-tree-punching)
  - TheAdubbz of [Tough As Nails](https://www.curseforge.com/minecraft/mc-mods/tough-as-nails)
- - 
+ - FN-FAL113 for [Throwable Weapon Code](https://github.com/FN-FAL113/FN-FAL-s-Amplifications/tree/main/src/main/java/ne/fnfal113/fnamplifications/gems/implementation)
 
 *Note that Realistic Survival is not affiliated with Mojang Studios, Minecraft, 
 or Shivaxi, the creator of the official RLCraft modpack.*
