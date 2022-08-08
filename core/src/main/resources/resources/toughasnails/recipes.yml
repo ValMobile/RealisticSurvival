@@ -2,7 +2,9 @@
 #          Tough as Nails Recipes     #
 #######################################
 
-# For dev use only, do NOT edit anything
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
+# Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Recipe-YML-Files
 
 jelled_slime:
   Type: "Shaped"
@@ -229,3 +231,12 @@ magma_block:
   Ingredients:
     - "magma_shard|magma_shard"
     - "magma_shard|magma_shard"
+canteen_empty:
+  Type: "Shaped"
+  Result:
+    Item: "canteen_empty"
+    Amount: 1
+  Ingredients:
+    - "|LEATHER"
+    - "LEATHER||LEATHER"
+    - "LEATHER|LEATHER|LEATHER"

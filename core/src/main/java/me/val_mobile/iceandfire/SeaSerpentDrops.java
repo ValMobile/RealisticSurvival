@@ -63,9 +63,9 @@ public class SeaSerpentDrops extends ModuleEvents implements Listener {
                 ItemStack heart = itemMap.get("fire_dragon_heart");
 
                 Random r = new Random();
-                int scaleAmount = (int) Math.round(r.nextDouble() * (config.getInt("SeaSerpents.MaxSerpentScales") -
+                int scaleAmount = (int) Math.round(Math.random() * (config.getInt("SeaSerpents.MaxSerpentScales") -
                         config.getInt("SeaSerpents.MinSerpentScales") )) + config.getInt("SeaSerpents.MinSerpentScales");
-                int scaleColor = (int) Math.round(r.nextDouble() * 6);
+                int scaleColor = (int) Math.round(Math.random() * 6);
                 switch (scaleColor) {
                     case 0: {
                         ItemStack blueScale = customItems.getSeaSerpentScaleBlue();
@@ -123,7 +123,7 @@ public class SeaSerpentDrops extends ModuleEvents implements Listener {
                 List<ItemStack> drops = new ArrayList<>();
 
                 Random r = new Random();
-                int scaleAmount = (int) Math.round(r.nextDouble() * (config.getInt("SeaSerpents.MaxShinyScales") -
+                int scaleAmount = (int) Math.round(Math.random() * (config.getInt("SeaSerpents.MaxShinyScales") -
                         config.getInt("SeaSerpents.MinShinyScales"))) + config.getInt("SeaSerpents.MinShinyScales");
 
                 ItemStack shinyScale = customItems.getShinyScale();

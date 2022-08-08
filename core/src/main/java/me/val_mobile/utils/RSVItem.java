@@ -28,11 +28,14 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentWrapper;
+import org.bukkit.entity.Entity;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
@@ -47,14 +50,12 @@ public class RSVItem extends ItemStack {
     private final String name;
     private final String module;
 
-    private final Utils util;
-
     public RSVItem(RSVModule module, String name, RealisticSurvivalPlugin plugin)  {
         super(Material.valueOf(module.getItemConfig().getConfig().getString(name + ".Material")));
 
         FileConfiguration config = module.getItemConfig().getConfig();
-        util = new Utils(plugin);
 
+        Utils util = RealisticSurvivalPlugin.getUtil();
         this.name = name;
 
         String materialPath = name + ".Material";
@@ -161,12 +162,17 @@ public class RSVItem extends ItemStack {
                 String key = s;
                 String value = config.getString(nbtTagsPath + "." + s);
                 if (!(key == null || key.isEmpty() || value == null || value.isEmpty())) {
-                    util.addNbtTag(this, key, value);
+                    if (key.equals("rsvdurability")) {
+                        util.addNbtTag(this, key, Integer.parseInt(value), PersistentDataType.INTEGER);
+                    }
+                    else {
+                        util.addNbtTag(this, key, value, PersistentDataType.STRING);
+                    }
                 }
             }
         }
-        util.addNbtTag(this, "rsvitem", this.name);
-        util.addNbtTag(this, "rsvmodule", this.module);
+        util.addNbtTag(this, "rsvitem", this.name, PersistentDataType.STRING);
+        util.addNbtTag(this, "rsvmodule", this.module, PersistentDataType.STRING);
 
         this.setItemMeta(meta);
     }
@@ -176,22 +182,23 @@ public class RSVItem extends ItemStack {
         return this;
     }
 
-    public static boolean isRSVItem(ItemStack item, Utils util) {
-        return util.hasNbtTag(item, "rsvitem");
+    public static boolean isRSVItem(ItemStack item) {
+        return RealisticSurvivalPlugin.getUtil().hasNbtTag(item, "rsvitem");
     }
 
     public static RSVItem convertItemStackToRSVItem(ItemStack item, RealisticSurvivalPlugin plugin) {
-        Utils util = new Utils(plugin);
+        Utils util = RealisticSurvivalPlugin.getUtil();
+
         RSVItem rsvItem = null;
 
-        if (isRSVItem(item, util)) {
-            String name = util.getNbtTag(item, "rsvmodule");
+        if (isRSVItem(item)) {
+            String name = util.getNbtTag(item, "rsvmodule", PersistentDataType.STRING);
 
             Collection<RSVModule> mod = RSVModule.getModules().values();
 
             for (RSVModule m : mod) {
                 if (Objects.equals(name, m.getName())) {
-                    rsvItem = new RSVItem(m, util.getNbtTag(item, "rsvitem"), plugin);
+                    rsvItem = new RSVItem(m, util.getNbtTag(item, "rsvitem", PersistentDataType.STRING), plugin);
                     break;
                 }
             }
@@ -201,12 +208,12 @@ public class RSVItem extends ItemStack {
         return rsvItem;
     }
 
-    public static String getModuleNameFromItem(ItemStack item, Utils util) {
-        return util.getNbtTag(item, "rsvmodule");
+    public static String getModuleNameFromItem(ItemStack item) {
+        return RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvmodule", PersistentDataType.STRING);
     }
 
-    public static String getNameFromItem(ItemStack item, Utils util) {
-        return util.getNbtTag(item, "rsvitem");
+    public static String getNameFromItem(ItemStack item) {
+        return RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvitem", PersistentDataType.STRING);
     }
 
     public String getModule() {
@@ -225,4 +232,19 @@ public class RSVItem extends ItemStack {
         return itemMap.get(name);
     }
 
+    public static int getMaxCustomDurability(ItemStack item) {
+        return RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvmaxdurability", PersistentDataType.INTEGER);
+    }
+
+    public static int getCustomDurability(ItemStack item) {
+        return RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdurability", PersistentDataType.INTEGER);
+    }
+
+    public static boolean hasMaxCustomDurability(ItemStack item) {
+        return RealisticSurvivalPlugin.getUtil().hasNbtTag(item, "rsvmaxdurability");
+    }
+
+    public static boolean hasCustomDurability(ItemStack item) {
+        return RealisticSurvivalPlugin.getUtil().hasNbtTag(item, "rsvdurability");
+    }
 }

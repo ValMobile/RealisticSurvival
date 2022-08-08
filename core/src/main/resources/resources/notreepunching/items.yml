@@ -2,7 +2,9 @@
 #          NoTreePunching Items       #
 #######################################
 
-# For dev use only, do NOT edit anything
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
+# Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
 flint_hatchet:
   Material: "WOODEN_AXE"
@@ -12,10 +14,59 @@ flint_hatchet:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 45
+    rsvmaxdurability: 45
 flint_knife:
   Material: "WOODEN_SWORD"
   DisplayName: "&fFlint Knife"
   CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 45
+    rsvmaxurability: 45
+copper_knife:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Knife"
+  CustomModelData: 83688
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxurability: 175
+golden_knife:
+  Material: "GOLDEN_SWORD"
+  DisplayName: "&fGolden Knife"
+  CustomModelData: 83669
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+iron_knife:
+  Material: "IRON_SWORD"
+  DisplayName: "&fIron Knife"
+  CustomModelData: 83671
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_knife:
+  Material: "DIAMOND_SWORD"
+  DisplayName: "&fDiamond Knife"
+  CustomModelData: 83749
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_knife:
+  Material: "NETHERITE_SWORD"
+  DisplayName: "&fNetherite Knife"
+  CustomModelData: 83729
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -28,6 +79,9 @@ flint_pickaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 45
+    rsvmaxdurability: 45
 flint_shovel:
   Material: "WOODEN_SHOVEL"
   DisplayName: "&fFlint Shovel"
@@ -36,10 +90,59 @@ flint_shovel:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 45
+    rsvmaxdurability: 45
 flint_hoe:
   Material: "WOODEN_HOE"
   DisplayName: "&fFlint Hoe"
   CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 45
+    rsvmaxdurability: 45
+golden_saw:
+  Material: "GOLDEN_AXE"
+  DisplayName: "&fGolden Saw"
+  CustomModelData: 83651
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+copper_saw:
+  Material: "STONE_AXE"
+  DisplayName: "&fCopper Saw"
+  CustomModelData: 83652
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxurability: 175
+iron_saw:
+  Material: "IRON_AXE"
+  DisplayName: "&fIron Saw"
+  CustomModelData: 83651
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+diamond_saw:
+  Material: "DIAMOND_AXE"
+  DisplayName: "&fDiamond Saw"
+  CustomModelData: 83656
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+netherite_saw:
+  Material: "NETHERITE_AXE"
+  DisplayName: "&fNetherite Saw"
+  CustomModelData: 83657
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -56,3 +159,273 @@ flint_shard:
   Material: "FLINT"
   DisplayName: "&fFlint Shard"
   CustomModelData: 93650
+stone_rock:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fStone Rock"
+  CustomModelData: 83729
+andesite_rock:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fAndesite Rock"
+  CustomModelData: 83730
+diorite_rock:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fDiorite Rock"
+  CustomModelData: 83731
+granite_rock:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fGranite Rock"
+  CustomModelData: 83732
+sandstone_rock:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fSandstone Rock"
+  CustomModelData: 83733
+red_sandstone_rock:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fRed Sandstone Rock"
+  CustomModelData: 83734
+matchbox:
+  Material: "FLINT_AND_STEEL"
+  DisplayName: "&fMatchbox"
+  CustomModelData: 83650
+  NBTTags:
+    rsvdurability: 32
+    rsvmaxdurability: 32
+fire_starter:
+  Material: "WOODEN_AXE"
+  DisplayName: "&fFire Starter"
+  CustomModelData: 83652
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    rsvdurability: 7
+    rsvmaxdurability: 7
+golden_mattock:
+  Material: "GOLDEN_AXE"
+  DisplayName: "&fGolden Mattock"
+  CustomModelData: 93650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 64
+    rsvmaxdurability: 64
+copper_mattock:
+  Material: "STONE_AXE"
+  DisplayName: "&fCopper Mattock"
+  CustomModelData: 93650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 350
+    rsvmaxdurability: 350
+iron_mattock:
+  Material: "IRON_AXE"
+  DisplayName: "&fIron Mattock"
+  CustomModelData: 93650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 500
+    rsvmaxdurability: 500
+diamond_mattock:
+  Material: "DIAMOND_AXE"
+  DisplayName: "&fDiamond Mattock"
+  CustomModelData: 93650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 3122
+    rsvmaxdurability: 3122
+netherite_mattock:
+  Material: "NETHERITE_AXE"
+  DisplayName: "&fNetherite Mattock"
+  CustomModelData: 93650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 4062
+    rsvmaxdurability: 4062
+macuahuitl:
+  Material: "STONE_SWORD"
+  DisplayName: "&fMacuahuitl"
+  CustomModelData: 83689
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
+copper_axe:
+  Material: "STONE_AXE"
+  DisplayName: "&fCopper Axe"
+  CustomModelData: 83653
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
+copper_pickaxe:
+  Material: "STONE_PICKAXE"
+  DisplayName: "&fCopper Pickaxe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
+copper_shovel:
+  Material: "STONE_SHOVEL"
+  DisplayName: "&fCopper Shovel"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
+copper_sword:
+  Material: "STONE_SWORD"
+  DisplayName: "&fCopper Sword"
+  CustomModelData: 83690
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
+copper_hoe:
+  Material: "STONE_HOE"
+  DisplayName: "&fCopper Hoe"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
+copper_helmet:
+  Material: "IRON_HELMET"
+  DisplayName: "&fCopper Helmet"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 110
+    rsvmaxdurability: 110
+copper_chestplate:
+  Material: "IRON_CHESTPLATE"
+  DisplayName: "&fCopper Chestplate"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 160
+    rsvmaxdurability: 160
+copper_leggings:
+  Material: "IRON_LEGGINGS"
+  DisplayName: "&fCopper Leggings"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 150
+    rsvmaxdurability: 150
+copper_boots:
+  Material: "IRON_BOOTS"
+  DisplayName: "&fCopper Boots"
+  CustomModelData: 83650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 130
+    rsvmaxdurability: 130
+clay_tool:
+  Material: "WOODEN_AXE"
+  DisplayName: "&fClay Tool"
+  CustomModelData: 83653
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  NBTTags:
+    rsvdurability: 128
+    rsvmaxdurability: 128
+clay_brick:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fClay Brick"
+  CustomModelData: 83735
+clay_bucket:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fClay Bucket"
+  CustomModelData: 83736
+clay_flower_pot:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fClay Flower Pot"
+  CustomModelData: 83737
+ceramic_bucket:
+  Material: "BUCKET"
+  DisplayName: "&fCeramic Bucket"
+  CustomModelData: 83650
+ceramic_water_bucket:
+  Material: "WATER_BUCKET"
+  DisplayName: "&fCeramic Water Bucket"
+  CustomModelData: 83650
+ceramic_lava_bucket:
+  Material: "LAVA_BUCKET"
+  DisplayName: "&fCeramic Lava Bucket"
+  CustomModelData: 83650
+ceramic_milk_bucket:
+  Material: "MILK_BUCKET"
+  DisplayName: "&fCeramic Milk Bucket"
+  CustomModelData: 83650
+ceramic_tropical_fish_bucket:
+  Material: "TROPICAL_FISH_BUCKET"
+  DisplayName: "&fCeramic Bucket of Tropical Fish"
+  CustomModelData: 83650
+ceramic_tadpole_bucket:
+  Material: "TADPOLE_BUCKET"
+  DisplayName: "&fCeramic Bucket of Tadpole"
+  CustomModelData: 83650
+ceramic_salmon_bucket:
+  Material: "SALMON_BUCKET"
+  DisplayName: "&fCeramic Bucket of Salmon"
+  CustomModelData: 83650
+ceramic_pufferfish_bucket:
+  Material: "PUFFERFISH_BUCKET"
+  DisplayName: "&fCeramic Bucket of Pufferfish"
+  CustomModelData: 83650
+ceramic_powder_snow_bucket:
+  Material: "POWDER_SNOW_BUCKET"
+  DisplayName: "&fCeramic Powder Snow Bucket"
+  CustomModelData: 83650
+ceramic_axolotl_bucket:
+  Material: "AXOLOTL_BUCKET"
+  DisplayName: "&fCeramic Bucket of Axolotl"
+  CustomModelData: 83650
+ceramic_cod_bucket:
+  Material: "COD_BUCKET"
+  DisplayName: "&fCeramic Bucket of Cod"
+  CustomModelData: 83650

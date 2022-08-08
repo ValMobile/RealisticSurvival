@@ -19,6 +19,7 @@ package me.val_mobile.iceandfire;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.LorePresets;
 import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -97,7 +98,7 @@ public class FireDragon extends Dragon {
              * Dragon flesh and blood amounts are determined by multiplying the scale amount
              * by a specified multiplier.
              */
-            scaleAmount = (int) Math.round(r.nextDouble() *
+            scaleAmount = (int) Math.round(Math.random() *
                     (config.getInt("Dragons.RecursiveDropRates.MaxScales") - config.getInt("Dragons.RecursiveDropRates.MinScales")))
                     + config.getInt("Dragons.RecursiveDropRates.MinScales");
             boneAmount = config.getInt("Dragons.RecursiveDropRates.MaxScales") - scaleAmount + config.getInt("Dragons.RecursiveDropRates.MinBones");
@@ -110,16 +111,16 @@ public class FireDragon extends Dragon {
              * Scale, bone, blood, and flesh amounts are calculated using
              * their respective minimum and maximum values.
              */
-            scaleAmount = (int) Math.round(r.nextDouble() *
+            scaleAmount = (int) Math.round(Math.random() *
                     (plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MaxScales") - plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinScales")))
                     + plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinScales");
-            boneAmount = (int) Math.round(r.nextDouble() *
+            boneAmount = (int) Math.round(Math.random() *
                     (plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MaxBones") - plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinBones")))
                     + plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinBones");
-            bloodAmount = (int) Math.round(r.nextDouble() *
+            bloodAmount = (int) Math.round(Math.random() *
                     (plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MaxBlood") - plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinBlood")))
                     + plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinBlood");
-            fleshAmount = (int) Math.round(r.nextDouble() *
+            fleshAmount = (int) Math.round(Math.random() *
                     (plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MaxFlesh") - plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinFlesh")))
                     + plugin.getConfig().getInt("Dragons.SpecifiedDropRates.MinFlesh");
         }

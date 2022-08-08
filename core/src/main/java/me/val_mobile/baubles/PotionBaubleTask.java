@@ -16,9 +16,11 @@
  */
 package me.val_mobile.baubles;
 
+import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.data.baubles.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -66,7 +68,9 @@ public class PotionBaubleTask extends BukkitRunnable {
     }
 
     public void startRunnable() {
-        int tickSpeed = RSVFiles.getBaubleUserConfig().getInt("Items." + potionBauble.getName() + ".TickTime"); // get the tick speed
+        FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
+
+        int tickSpeed = config.getInt("Items." + potionBauble.getName() + ".TickTime"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 

@@ -239,7 +239,7 @@ public class TanRunnables {
         Random r = new Random();
 
         if (thirst >= 0.6) {
-            if (r.nextDouble() <= thirstChance) {
+            if (Math.random() <= thirstChance) {
                 thirst -= thirstAmount;
             }
         }

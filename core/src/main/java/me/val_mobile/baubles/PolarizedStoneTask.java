@@ -1,5 +1,6 @@
 package me.val_mobile.baubles;
 
+import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.data.baubles.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
@@ -15,7 +16,7 @@ public class PolarizedStoneTask extends BukkitRunnable {
 
     private final RSVPlayer rsvPlayer;
     private final RealisticSurvivalPlugin plugin;
-    private final FileConfiguration config = RSVFiles.getBaubleUserConfig();
+    private final FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
     private double maxRadius = config.getDouble("Items.polarized_stone.MaxRadius");
     private double pullForce = config.getDouble("Items.polarized_stone.PullForce");
 
@@ -50,7 +51,7 @@ public class PolarizedStoneTask extends BukkitRunnable {
     }
 
     public void startRunnable() {
-        int tickSpeed = RSVFiles.getBaubleUserConfig().getInt("Items.polarized_stone.TickTime"); // get the tick speed
+        int tickSpeed = config.getInt("Items.polarized_stone.TickTime"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 }

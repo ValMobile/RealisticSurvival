@@ -53,4 +53,8 @@ public class ModuleItems {
     public HashMap<String, RSVItem> getItems() {
         return items;
     }
+
+    public RSVItem getItem(String name) {
+        return items.get(name);
+    }
 }

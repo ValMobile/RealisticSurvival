@@ -2,6 +2,8 @@
 #          Baubles                    #
 #######################################
 
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
 # Customize messages
 Initialize:
   Enabled: true
@@ -22,7 +24,8 @@ Items:
   # Increase this number if you have performance issues with the plugin
   # Do not set below 1
   dragons_eye:      # REQUIRES ICE AND FIRE TO BE ENABLED
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     Effects:
       NIGHT_VISION:
@@ -34,16 +37,19 @@ Items:
         Amplifier: 0
         Duration: 270
   poison_stone:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 1.5
     Effects:
       POISON:
         Amplifier: 1
         Duration: 270
   potion_ring:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   potion_ring_resistance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     Effects:
       DAMAGE_RESISTANCE:
@@ -51,7 +57,8 @@ Items:
         Amplifier: 0
         Duration: 270
   potion_ring_regeneration:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     Effects:
       REGENERATION:
@@ -59,7 +66,8 @@ Items:
         Amplifier: 0
         Duration: 270
   potion_ring_haste:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     Effects:
       FAST_DIGGING:
@@ -67,7 +75,8 @@ Items:
         Amplifier: 0
         Duration: 270
   potion_ring_strength:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     Effects:
       INCREASE_DAMAGE:
@@ -75,7 +84,8 @@ Items:
         Amplifier: 0
         Duration: 270
   potion_ring_speed:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     Effects:
       SPEED:
@@ -83,7 +93,8 @@ Items:
         Amplifier: 0
         Duration: 270
   potion_ring_jump_boost:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     Effects:
       JUMP:
@@ -91,14 +102,16 @@ Items:
         Amplifier: 0
         Duration: 270
   ender_queens_crown:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     ActivationRange: 10.0
     SummonEndermanAlly:
       Chance: 0.5
       MaxHealthPercent: 0.5
     WaterContactDamage: 1.0
   sunglasses:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   # MinFallDistance - The minimum distance a player can fall with a balloon without taking fall damage.
   # Vanilla minimum fall distance is 3 blocks
   # FallDamageMultiplier - How much is fall damage reduced
@@ -106,105 +119,137 @@ Items:
   # JumpVelocityMultiplier - How much faster is jump speed
   # Avoid going too high otherwise the player will take damage just from landing
   balloon:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     MinFallDistance: 8.0
     FallDamageMultiplier: 0.25
     JumpVelocityMultiplier: 2.0
   cobalt_shield:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   # Should a player take fire, lava, or magma block damage, by how much is it reduced
   obsidian_skull:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     HeatDamageMultiplier: 0.25
   obsidian_shield:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     # Cost to create the obsidian shield from a cobalt shield and obsidian skull in experience levels
     AnvilCost: 10
     HeatDamageMultiplier: 0.25
   forbidden_fruit:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     MobDrops:
       HUSK:
         Rare: true
         Value: 0.025
   vitamins:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     MobDrops:
       ELDER_GUARDIAN:
         Rare: true
         Value: 1.00
   ring_overclocking:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     MobDrops:
       STRAY:
         Rare: true
         Value: 0.03
   shulker_heart:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     MobDrops:
       SHULKER:
         Rare: true
         Value: 1.00
   ring_free_action:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     AnvilCost: 10
   bezoar:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     MobDrops:
       CAVE_SPIDER:
         Rare: true
         Value: 0.05
   # Note 1.00 = 100%
   ender_dragonscale:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     MobDrops:
       ENDER_DRAGON:
         Rare: true
         Value: 1.00
   cracked_black_dragonscale:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   black_dragonscale_bauble:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   mixed_color_dragonscale:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     AnvilCost: 10
   ankh_charm:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   ankh_shield:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     AnvilCost: 10
     HeatDamageMultiplier: 0.25
   iron_ring:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   magic_mirror:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Cooldown: 300
   recall_potion:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   wormhole_potion:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   lucky_horseshoe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   # The tick time of the scarlite ring affects how long it will take to heal the player
   # For reference, 1.0 HP is half a heart
   scarlite_ring:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     HealAmount: 1.0
     TickTime: 300
   spectral_silt:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   disintegration_tablet:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   broken_heart:
-    Enabled: true
-    SleepRegenerationAmount: 1.0
+    Enabled:
+      EnableAllVersions: true
+    Break: false            # Should bauble disappear when it reaches 0 durability?
+    SleepRepair:
+      Enabled:
+      EnableAllVersions: true
+      Duration: 1200        # How long the player must lay in bed for the bauble to repair in ticks
+      Amount: 1
   # Length of the invincibility frame the cross necklace gives you in ticks (20 ticks = 1 second)
   # Vanilla i-frames are 10 ticks long
   cross_necklace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     InvFrameLength: 20
   wrath_pendant:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     ExtraDamage: 2.0
     Effects:
       STRENGTH:
@@ -216,7 +261,8 @@ Items:
         Amplifier: 0
         Duration: 270
   pride_pendant:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Effects:
       STRENGTH:
         AmplifierIncrement: 1
@@ -227,7 +273,8 @@ Items:
         Amplifier: 0
         Duration: 270
   gluttony_pendant:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Effects:
       STRENGTH:
         AmplifierIncrement: 1
@@ -238,45 +285,62 @@ Items:
         Amplifier: 0
         Duration: 270
   sin_pendant:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   golden_crown:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Armor: 13.0
   flare_gun:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     FlareVelocity: 10.0
     LightLevel: 15
   flare:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   phytoprotostasia_amulet:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   emerald_ring:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   emerald_amulet:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   glowing_ingot:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   glowing_powder:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   glowing_gem:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   dwarf_stout:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   fairy_dew:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   stone_negative_gravity:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   stone_inertia_null:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   stone_greater_inertia:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     MovementSpeedMultiplier: 1.5
     JumpVelocityMultiplier: 2.0
     KnockbackPercent: 0.5
   ring_enchanted_eyes:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   stone_sea:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     SwimSpeedMultiplier: 2.0
     Effects:
@@ -289,12 +353,14 @@ Items:
         Amplifier: 0
         Duration: 420
   polarized_stone:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     MaxRadius: 10.0
     PullForce: 1.0
   ring_fairies:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     AttackDamageMultiplier: 0.75
     HealthMultiplier: 0.75
@@ -307,7 +373,8 @@ Items:
     StepHeight: 0.35
     ReachMultiplier: 0.4
   ring_dwarves:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     MiningSpeedMultiplier: 2.0
     StoneExperience:
@@ -315,9 +382,11 @@ Items:
       Amount: 1.0
     FortuneLevel: 1.0
   wither_ring:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   shield_honor:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     Effects:
       DAMAGE_RESISTANCE:
@@ -326,7 +395,8 @@ Items:
         Duration: 270
     ExplosionDamageMultiplier: 0.5
   miners_ring:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     Effects:
       FAST_DIGGING:
@@ -334,7 +404,8 @@ Items:
         Amplifier: 0
         Duration: 270
   phantom_prism:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     TickTime: 20
     Effects:
       INVISIBILITY:
@@ -342,233 +413,312 @@ Items:
         Amplifier: 0
         Duration: 270
   warped_scroll:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Cooldown: 300
   bound_scroll:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Cooldown: 300
   return_scroll:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Cooldown: 300
   body_slot:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   charm_slot:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   belt_slot:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   ring_slot:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   head_slot:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   amulet_slot:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   gui_glass:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   potion_fire_resistance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
 
 Recipes:
   dragons_eye_fire_dragon:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   dragons_eye_ice_dragon:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   dragons_eye_lightning_dragon:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   dragons_eye_ender_dragon:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   poison_stone:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   potion_ring_resistance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   potion_ring_regeneration:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   potion_ring_haste:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   potion_ring_strength:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   potion_ring_speed:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   potion_ring_jump_boost:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   ender_queens_crown:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   sunglasses:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   balloon:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   cobalt_shield:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   obsidian_skull:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   obsidian_shield:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   ring_free_action:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   ender_dragonscale:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   cracked_black_dragonscale:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   black_dragonscale_bauble:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   mixed_color_dragonscale:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   ankh_charm:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   ankh_shield:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   scarlite_ring:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   disintegration_tablet:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   cross_necklace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wrath_pendant:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   pride_pendant:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   golden_crown:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gluttony_pendant:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   sin_pendant:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   phytoprotostasia_amulet:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   potion_ring:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   emerald_ring:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   emerald_amulet:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   glowing_ingot:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   glowing_ingot_powder:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   glowing_powder:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   glowing_gem:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   dwarf_stout:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   fairy_dew:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   ring_enchanted_eyes:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_sea:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   polarized_stone:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wither_ring_nether_star:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wither_ring_ice_dragon_skull:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   shield_honor:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   warped_scroll:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   bound_scroll:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   return_scroll:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   lucky_horseshoe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_broken_heart:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_balloon:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_cobalt_shield:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_obsidian_shield:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_magic_mirror:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_wormhole_mirror:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_lucky_horseshoe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_sunglasses:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_cross_necklace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_sin_pendant:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_flare_gun:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_cracked_black_dragonscale:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_diamond_block:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_emerald_block:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_phantom_prism:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   spectral_silt_flare:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true

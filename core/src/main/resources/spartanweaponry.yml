@@ -2,31 +2,42 @@
 #          Spartan's Weaponry         #
 #######################################
 
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
 # Customize messages
 Initialize:
   Enabled: true
-  Message: "&6[Realistic Survival] &fInitializing &b%NAME% &fmodule"                # All placeholders: %NAME%
+  Message: "&6[Realistic Survival] &fInitializing &b%NAME% &fmodule"                                  # All placeholders: %NAME%
 Shutdown:
   Enabled: true
-  Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"               # All placeholders: %NAME%
+  Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"                                 # All placeholders: %NAME%
 MaxDistanceReached:
   Enabled: true
-  Message: "&eYour weapon has reached the max distance of %MAX_DISTANCE% blocks!"   # All placeholders: %MAX_DISTANCE%
+  Message: "&fYour weapon has reached the max distance of &b%MAX_DISTANCE% &fblocks!"                 # All placeholders: %MAX_DISTANCE%
+MaxReturnDistanceReached:
+  Enabled: true
+  Message: "&fYour weapon has not been returned since you're too far!"                                # All placeholders: %MAX_DISTANCE%
+FullInventoryWeaponDropped:
+  Enabled: true
+  Message: "&fInventory full! Your weapon has been dropped instead at &bx&f: &b%X-COORD%&f, &by&f: &b%Y-COORD%&f, &bz&f: &b%Z-COORD%&f."        # All placeholders: %X-COORD%, %Y_COORD%, %Z-COORD%
 WeaponDropped:
   Enabled: true
-  Message: "&6Weapon dropped at x: %X-COORD%, y: %Y-COORD%, z: %Z-COORD%."          # All placeholders: %X-COORD%, %Y_COORD%, %Z-COORD%
+  Message: "&fWeapon dropped at &bx&f: &b%X-COORD%&f, &by&f: &b%Y-COORD%&f, &bz&f: &b%Z-COORD%&f."    # All placeholders: %X-COORD%, %Y_COORD%, %Z-COORD%
 
 # Customize weapon and armor traits of the Spartan Weaponry items
 # Ignore the dragonbone or dragonsteel items, they are in beta
 
 Items:
   handle:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   pole:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   # Rapiers
   netherite_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 2.4
@@ -35,7 +46,8 @@ Items:
       PercentAbsorbed: 0.25     # How much does the rapier absorb damage taken (0.25 = 25%)
       DamageDurability: 2       # Durability used up when attacked
   diamond_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.5
       AttackSpeed: 2.4
@@ -44,7 +56,8 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
   gold_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.4
       AttackSpeed: 2.4
@@ -53,7 +66,8 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
   iron_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 2.4
@@ -62,7 +76,8 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
   copper_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.75
       AttackSpeed: 2.4
@@ -71,7 +86,8 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
   stone_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.5
       AttackSpeed: 2.4
@@ -80,7 +96,8 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
   wooden_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.0
       AttackSpeed: 2.4
@@ -92,7 +109,8 @@ Items:
   # Katanas
 
   netherite_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 2.0
@@ -102,7 +120,8 @@ Items:
       Duration: 30
     ChestDamageMultiplier: 2.0
   diamond_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 2.0
@@ -112,7 +131,8 @@ Items:
       Duration: 30
     ChestDamageMultiplier: 2.0
   gold_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       TickTime: 20
       AttackDamage: 3.5
@@ -124,7 +144,8 @@ Items:
     ChestDamageMultiplier: 2.0
   iron_katana:
     TickTime: 20
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.5
       AttackSpeed: 2.0
@@ -134,7 +155,8 @@ Items:
       Duration: 30
     ChestDamageMultiplier: 2.0
   copper_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.25
       AttackSpeed: 2.0
@@ -144,7 +166,8 @@ Items:
       Duration: 30
     ChestDamageMultiplier: 2.0
   stone_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 2.0
@@ -154,7 +177,8 @@ Items:
       Duration: 30
     ChestDamageMultiplier: 2.0
   wooden_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.5
       AttackSpeed: 2.0
@@ -167,7 +191,8 @@ Items:
   # Greatswords
 
   netherite_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 10.0
       AttackSpeed: 1.4
@@ -178,7 +203,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
   diamond_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 8.5
       AttackSpeed: 1.4
@@ -189,7 +215,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
   gold_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.4
@@ -200,7 +227,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
   iron_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.0
       AttackSpeed: 1.4
@@ -211,7 +239,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
   copper_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.25
       AttackSpeed: 1.4
@@ -222,7 +251,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
   stone_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 1.4
@@ -233,7 +263,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
   wooden_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.4
@@ -247,7 +278,8 @@ Items:
   # Longswords
 
   netherite_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 10.5
       AttackSpeed: 1.4
@@ -257,7 +289,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.25
   diamond_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 9.0
       AttackSpeed: 1.4
@@ -267,7 +300,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.25
   gold_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.5
       AttackSpeed: 1.4
@@ -277,7 +311,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.25
   iron_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.5
       AttackSpeed: 1.4
@@ -287,7 +322,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.25
   copper_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.75
       AttackSpeed: 1.4
@@ -297,7 +333,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.25
   stone_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.0
       AttackSpeed: 1.4
@@ -307,7 +344,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.25
   wooden_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.5
       AttackSpeed: 1.4
@@ -320,43 +358,50 @@ Items:
   # Spears
 
   netherite_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.5
       AttackSpeed: 1.4
     Reach: 7.0
   diamond_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.0
       AttackSpeed: 1.4
     Reach: 7.0
   gold_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 1.4
     Reach: 7.0
   iron_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.5
       AttackSpeed: 1.4
     Reach: 7.0
   copper_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.25
       AttackSpeed: 1.4
     Reach: 7.0
   stone_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.0
       AttackSpeed: 1.4
     Reach: 7.0
   wooden_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 1.4
@@ -365,7 +410,8 @@ Items:
   # Sabers
 
   netherite_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 1.6
@@ -374,7 +420,8 @@ Items:
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
   diamond_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 1.6
@@ -383,7 +430,8 @@ Items:
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
   gold_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.5
       AttackSpeed: 1.6
@@ -392,7 +440,8 @@ Items:
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
   iron_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.5
       AttackSpeed: 1.6
@@ -401,7 +450,8 @@ Items:
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
   copper_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.25
       AttackSpeed: 1.6
@@ -410,7 +460,8 @@ Items:
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
   stone_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.6
@@ -419,7 +470,8 @@ Items:
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
   wooden_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.5
       AttackSpeed: 1.6
@@ -431,7 +483,8 @@ Items:
   # Boomerangs
 
   netherite_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.0
       AttackSpeed: 2.0
@@ -440,15 +493,19 @@ Items:
       Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 8.0
       Velocity: 10.0
   diamond_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.0
       AttackSpeed: 2.0
@@ -457,15 +514,19 @@ Items:
       Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 7.0
       Velocity: 10.0
   gold_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.0
       AttackSpeed: 2.0
@@ -474,15 +535,19 @@ Items:
       Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 4.0
       Velocity: 10.0
   iron_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.0
       AttackSpeed: 2.0
@@ -491,15 +556,19 @@ Items:
       Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 6.0
       Velocity: 10.0
   copper_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.0
       AttackSpeed: 2.0
@@ -508,15 +577,19 @@ Items:
       Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 5.5
       Velocity: 10.0
   stone_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.0
       AttackSpeed: 2.0
@@ -525,15 +598,19 @@ Items:
       Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 5.0
       Velocity: 10.0
   wooden_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.0
       AttackSpeed: 2.0
@@ -542,18 +619,22 @@ Items:
       Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 4.0
       Velocity: 10.0
 
   # Daggers
 
   netherite_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.5
       AttackSpeed: 2.5
@@ -562,16 +643,20 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 6.5
       Velocity: 10.0
     BackstabDamageMultiplier: 3.0
   diamond_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 2.5
@@ -580,16 +665,20 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 5.5
       Velocity: 10.0
     BackstabDamageMultiplier: 3.0
   gold_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.5
       AttackSpeed: 2.5
@@ -598,16 +687,20 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 2.5
       Velocity: 10.0
     BackstabDamageMultiplier: 3.0
   iron_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.5
       AttackSpeed: 2.5
@@ -616,16 +709,20 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 4.5
       Velocity: 10.0
     BackstabDamageMultiplier: 3.0
   copper_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 2.5
@@ -634,16 +731,20 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 4.0
       Velocity: 10.0
     BackstabDamageMultiplier: 3.0
   stone_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.5
       AttackSpeed: 2.5
@@ -652,16 +753,20 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 3.5
       Velocity: 10.0
     BackstabDamageMultiplier: 3.0
   wooden_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.5
       AttackSpeed: 2.5
@@ -670,11 +775,14 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 2.5
       Velocity: 10.0
     BackstabDamageMultiplier: 3.0
@@ -682,7 +790,8 @@ Items:
   # Glaives
 
   netherite_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 10.0
       AttackSpeed: 1.0
@@ -692,7 +801,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
   diamond_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 8.5
       AttackSpeed: 1.0
@@ -702,7 +812,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
   gold_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.0
@@ -712,7 +823,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
   iron_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.0
       AttackSpeed: 1.0
@@ -722,7 +834,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
   copper_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.25
       AttackSpeed: 1.0
@@ -732,7 +845,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
   stone_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 1.0
@@ -742,7 +856,8 @@ Items:
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
   wooden_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.0
@@ -755,7 +870,8 @@ Items:
   # Halberds
 
   netherite_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 11.0
       AttackSpeed: 1.2
@@ -766,7 +882,8 @@ Items:
     Reach: 7.0
     ShieldBreachChance: 0.9
   diamond_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 9.5
       AttackSpeed: 1.2
@@ -777,7 +894,8 @@ Items:
     Reach: 7.0
     ShieldBreachChance: 0.9
   gold_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 1.2
@@ -788,7 +906,8 @@ Items:
     Reach: 7.0
     ShieldBreachChance: 0.9
   iron_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 8.0
       AttackSpeed: 1.2
@@ -799,7 +918,8 @@ Items:
     Reach: 7.0
     ShieldBreachChance: 0.9
   copper_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.25
       AttackSpeed: 1.2
@@ -810,7 +930,8 @@ Items:
     Reach: 7.0
     ShieldBreachChance: 0.9
   stone_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.5
       AttackSpeed: 1.2
@@ -821,7 +942,8 @@ Items:
     Reach: 7.0
     ShieldBreachChance: 0.9
   wooden_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 1.2
@@ -835,7 +957,8 @@ Items:
   # Hammers
 
   netherite_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 13.0
       AttackSpeed: 0.8
@@ -844,7 +967,8 @@ Items:
       Amplifier: 1
       Duration: 100
   diamond_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 11.0
       AttackSpeed: 0.8
@@ -853,7 +977,8 @@ Items:
       Amplifier: 1
       Duration: 100
   gold_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 0.8
@@ -862,7 +987,8 @@ Items:
       Amplifier: 1
       Duration: 100
   iron_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 9.0
       AttackSpeed: 0.8
@@ -871,7 +997,8 @@ Items:
       Amplifier: 1
       Duration: 100
   copper_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 8.0
       AttackSpeed: 0.8
@@ -880,7 +1007,8 @@ Items:
       Amplifier: 1
       Duration: 100
   stone_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.0
       AttackSpeed: 0.8
@@ -889,7 +1017,8 @@ Items:
       Amplifier: 1
       Duration: 100
   wooden_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 0.8
@@ -901,7 +1030,8 @@ Items:
   # Javelins
 
   netherite_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 1.2
@@ -910,15 +1040,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 16.5
       Velocity: 10.0
   diamond_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.5
       AttackSpeed: 1.2
@@ -927,15 +1061,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 13.5
       Velocity: 10.0
   gold_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.5
       AttackSpeed: 1.2
@@ -944,15 +1082,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 4.5
       Velocity: 10.0
   iron_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.5
       AttackSpeed: 1.2
@@ -961,15 +1103,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 10.5
       Velocity: 10.0
   copper_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 1.2
@@ -978,15 +1124,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 9.0
       Velocity: 10.0
   stone_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.5
       AttackSpeed: 1.2
@@ -995,15 +1145,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 7.5
       Velocity: 10.0
   wooden_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.5
       AttackSpeed: 1.2
@@ -1012,60 +1166,70 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 4.5
       Velocity: 10.0
 
   # Lances
 
   netherite_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 8.0
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
   diamond_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.0
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
   gold_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
   iron_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.0
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
   copper_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
   stone_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
   wooden_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.0
@@ -1075,43 +1239,50 @@ Items:
   # Maces
 
   netherite_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 9.0
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
   diamond_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.5
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
   gold_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
   iron_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.0
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
   copper_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.25
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
   stone_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.5
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
   wooden_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 1.2
@@ -1120,7 +1291,8 @@ Items:
   # Pikes
 
   netherite_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 8.0
       AttackSpeed: 1.4
@@ -1130,7 +1302,8 @@ Items:
       Duration: 30
     Reach: 8.5
   diamond_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.0
       AttackSpeed: 1.4
@@ -1140,7 +1313,8 @@ Items:
       Duration: 30
     Reach: 8.5
   gold_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.4
@@ -1150,7 +1324,8 @@ Items:
       Duration: 30
     Reach: 8.5
   iron_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.0
       AttackSpeed: 1.4
@@ -1160,7 +1335,8 @@ Items:
       Duration: 30
     Reach: 8.5
   copper_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 1.4
@@ -1170,7 +1346,8 @@ Items:
       Duration: 30
     Reach: 8.5
   stone_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 1.4
@@ -1180,7 +1357,8 @@ Items:
       Duration: 30
     Reach: 8.5
   wooden_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.4
@@ -1193,7 +1371,8 @@ Items:
   # Quarterstaffs
 
   netherite_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 9.0
       AttackSpeed: 1.4
@@ -1202,7 +1381,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.5
   diamond_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.5
       AttackSpeed: 1.4
@@ -1211,7 +1391,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.5
   gold_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 1.4
@@ -1220,7 +1401,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.5
   iron_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.0
       AttackSpeed: 1.4
@@ -1229,7 +1411,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.5
   copper_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.25
       AttackSpeed: 1.4
@@ -1238,7 +1421,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.5
   stone_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.5
       AttackSpeed: 1.4
@@ -1247,7 +1431,8 @@ Items:
       Duration: 30
     SweepingDamageMultiplier: 0.5
   wooden_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 1.4
@@ -1259,129 +1444,158 @@ Items:
   # Tomahawks
 
   netherite_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 8.0
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 16.0
       Velocity: 10.0
   diamond_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.5
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 13.0
       Velocity: 10.0
   gold_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.0
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 4.0
       Velocity: 10.0
   iron_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 10.0
       Velocity: 10.0
   copper_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.25
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 8.5
       Velocity: 10.0
   stone_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.5
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 7.0
       Velocity: 10.0
   wooden_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.0
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 4.0
       Velocity: 10.0
 
   # Throwing Knives
 
   netherite_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 2.5
@@ -1390,15 +1604,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 11.0
       Velocity: 10.0
   diamond_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.5
       AttackSpeed: 2.5
@@ -1407,15 +1625,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 9.0
       Velocity: 10.0
   gold_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.5
       AttackSpeed: 2.5
@@ -1424,15 +1646,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 3.0
       Velocity: 10.0
   iron_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.5
       AttackSpeed: 2.5
@@ -1441,15 +1667,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 7.0
       Velocity: 10.0
   copper_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 2.5
@@ -1458,15 +1688,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 6.0
       Velocity: 10.0
   stone_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.5
       AttackSpeed: 2.5
@@ -1475,15 +1709,19 @@ Items:
       Rotate: false
       Return: true
       Sound:
-        Enabled: true
+        Enabled:
+      EnableAllVersions: true
+
         Sound: "ENTITY_WITCH_THROW"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 5.0
       Velocity: 10.0
   wooden_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.5
       AttackSpeed: 2.5
@@ -1497,13 +1735,15 @@ Items:
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
+      MaxReturnDistance: 150.0
       AttackDamage: 3.0
       Velocity: 10.0
 
   # Warhammers
 
   netherite_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 10.0
       AttackSpeed: 1.1
@@ -1513,7 +1753,8 @@ Items:
       Duration: 30
     ArmorPiercing: 0.5
   diamond_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 8.5
       AttackSpeed: 1.1
@@ -1523,7 +1764,8 @@ Items:
       Duration: 30
     ArmorPiercing: 0.5
   gold_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.1
@@ -1533,7 +1775,8 @@ Items:
       Duration: 30
     ArmorPiercing: 0.5
   iron_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 7.0
       AttackSpeed: 1.1
@@ -1543,7 +1786,8 @@ Items:
       Duration: 30
     ArmorPiercing: 0.5
   copper_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.25
       AttackSpeed: 1.1
@@ -1553,7 +1797,8 @@ Items:
       Duration: 30
     ArmorPiercing: 0.5
   stone_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 1.1
@@ -1563,7 +1808,8 @@ Items:
       Duration: 30
     ArmorPiercing: 0.5
   wooden_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.1
@@ -1576,7 +1822,8 @@ Items:
   # Battleaxes
 
   netherite_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 12.0
       AttackSpeed: 1.0
@@ -1584,7 +1831,8 @@ Items:
       Amplifier: 2
       Duration: 30
   diamond_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 10.0
       AttackSpeed: 1.0
@@ -1592,7 +1840,8 @@ Items:
       Amplifier: 2
       Duration: 30
   gold_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.0
@@ -1600,7 +1849,8 @@ Items:
       Amplifier: 2
       Duration: 30
   iron_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 8.0
       AttackSpeed: 1.0
@@ -1608,7 +1858,22 @@ Items:
       Amplifier: 2
       Duration: 30
   copper_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 7.0
       AttackSpeed: 1.0
@@ -1616,7 +1881,8 @@ Items:
       Amplifier: 2
       Duration: 30
   stone_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.0
       AttackSpeed: 1.0
@@ -1624,7 +1890,8 @@ Items:
       Amplifier: 2
       Duration: 30
   wooden_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.0
@@ -1635,7 +1902,8 @@ Items:
   # Clubs
 
   studded_club:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 6.0
       AttackSpeed: 1.3
@@ -1643,7 +1911,8 @@ Items:
       Amplifier: 1
       Duration: 100
   wooden_club:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 1.3
@@ -1651,57 +1920,122 @@ Items:
       Amplifier: 1
       Duration: 100
 
+  # Cestuses
+
+  cestus:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 2.0
+      AttackSpeed: 4.0
+  studded_cestus:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 3.0
+      AttackSpeed: 3.0
+
   # Longbows
 
   netherite_longbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 2.25
     ArrowVelocityMultiplier: 2.25
   diamond_longbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 1.5
     ArrowVelocityMultiplier: 1.5
   gold_longbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 1.1
     ArrowVelocityMultiplier: 1.1
   iron_longbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 1.35
     ArrowVelocityMultiplier: 1.35
   leather_longbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 1.3
     ArrowVelocityMultiplier: 1.3
   copper_longbow:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     AttackDamageMultiplier: 1.25
     ArrowVelocityMultiplier: 1.25
-  stone_longbow:
-    AttackDamageMultiplier: 1.2
-    ArrowVelocityMultiplier: 1.2
   wooden_longbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 1.1
     ArrowVelocityMultiplier: 1.1
 
   # Crossbows
 
   netherite_crossbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 2.25
     ArrowVelocityMultiplier: 2.25
   diamond_crossbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 1.5
     ArrowVelocityMultiplier: 1.5
   gold_crossbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 1.1
     ArrowVelocityMultiplier: 1.1
   iron_crossbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 1.35
     ArrowVelocityMultiplier: 1.35
   leather_crossbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 1.3
     ArrowVelocityMultiplier: 1.3
   copper_crossbow:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     AttackDamageMultiplier: 1.25
     ArrowVelocityMultiplier: 1.25
-  stone_crossbow:
-    AttackDamageMultiplier: 1.2
-    ArrowVelocityMultiplier: 1.2
   wooden_crossbow:
+    Enabled:
+      EnableAllVersions: true
     AttackDamageMultiplier: 1.1
     ArrowVelocityMultiplier: 1.1
 
@@ -1710,512 +2044,990 @@ Items:
 Recipes:
   # Netherite Weapons
   netherite_rapier:
-    Enabled: true # true = enabled, false = disabled
+    Enabled:
+      EnableAllVersions: true # true = enabled, false = disabled
     Unlock: true  # true = recipes unlocked automatically, false = recipes not unlocked until crafted
   netherite_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_longbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   netherite_crossbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
 
   # Diamond Weapons
 
   diamond_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_longbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   diamond_crossbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
 
   # Iron Weapons
 
   iron_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_longbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   iron_crossbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
 
   # Gold Weapons
 
   gold_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_longbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   gold_crossbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
 
   # Stone Weapons
 
   stone_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   stone_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
 
   # Leather Weapons
 
   leather_longbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   leather_crossbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
 
   # Wooden Weapons
 
   wooden_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_longbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_crossbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
 
   # Copper Weapons
 
   copper_rapier:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_katana:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_greatsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_longsword:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_spear:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_saber:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_boomerang:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_dagger:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_glaive:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_halberd:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_hammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_javelin:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_lance:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_mace:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_pike:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_quarterstaff:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_tomahawk:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_throwing_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_warhammer:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_battleaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_longbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
   copper_crossbow:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Unlock: true
 
   # Miscellaneous Items
 
   handle_0:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   handle_1:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   handle_2:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   pole_0:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   pole_1:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   pole_2:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   wooden_club:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   studded_club:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  cestus:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  studded_cestus:
+    Enabled:
+      EnableAllVersions: true
     Unlock: true

@@ -59,14 +59,7 @@ public class UpdateChecker {
 
             double spigotVersion = Utils.getNumberFromUpdate((latestVersion));
 
-            List<String> messages;
-
-            if (Math.abs(currentVersion - spigotVersion) <= 0.01)
-                messages = plugin.getConfig().getStringList("CorrectVersion");
-            else if (currentVersion > spigotVersion)
-                messages = plugin.getConfig().getStringList("DeveloperBuildVersion");
-            else
-                messages = plugin.getConfig().getStringList("OutdatedVersion");
+            List<String> messages = Utils.doublesEquals(currentVersion, spigotVersion) ? plugin.getConfig().getStringList("CorrectVersion") : (currentVersion < spigotVersion ? plugin.getConfig().getStringList("OutdatedVersion") : plugin.getConfig().getStringList("DeveloperBuildVersion"));
 
             for (String message : messages) {
                 logger.info(ChatColor.translateAlternateColorCodes('&', message));

@@ -63,7 +63,8 @@ Here are some ways you can help support Realistic Survival:
  - Coding in features by forking this repo and creating a pull request
  - Answering the polls in my Discord server
  - Answering frequently-asked-questions (FAQs) in my Discord server
- - [Donating](https://www.paypal.com/donate/?hosted_button_id=MCSBPJP4B5KHL)
+ - Starring this GitHub repository
+ - Donating via [Patreon](https://www.patreon.com/realisticsurvival) or [PayPal](https://www.paypal.com/donate/?hosted_button_id=MCSBPJP4B5KHL) (You also get special perks)
 
 ## ❗ Disclaimers
 Realistic Survival collects anonymous usage information through bStats. This info helps me to better

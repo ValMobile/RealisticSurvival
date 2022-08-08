@@ -20,12 +20,13 @@ import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.commands.Commands;
 import me.val_mobile.commands.Tab;
 import me.val_mobile.misc.BStats;
-import me.val_mobile.misc.PlayerInitializer;
+import me.val_mobile.misc.MiscEvents;
 import me.val_mobile.misc.ResourcePackEvents;
 import me.val_mobile.misc.UpdateChecker;
 import me.val_mobile.ntr.NtrModule;
 import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.spartanweaponry.SwModule;
+import me.val_mobile.tan.TanModule;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -40,12 +41,12 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
 
         this.saveDefaultConfig();
 
-        util = new Utils(this);
+        util = RealisticSurvivalPlugin.getUtil();
 
         BStats bStats = new BStats(this);
         UpdateChecker updateChecker = new UpdateChecker(this, 93795);
         ResourcePackEvents resourcePack = new ResourcePackEvents(this);
-        PlayerInitializer playerInitializer = new PlayerInitializer(this);
+        MiscEvents miscEvents = new MiscEvents(this);
 
         updateChecker.checkUpdate();
 
@@ -56,6 +57,7 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         NtrModule ntrModule = new NtrModule(this);
         SfModule sfModule = new SfModule(this);
         SwModule swModule = new SwModule(this);
+        TanModule tanModule = new TanModule(this);
 
         if (config.getBoolean("ResourcePack.Enabled"))
             pm.registerEvents(resourcePack, this);
@@ -63,7 +65,7 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         if (config.getBoolean("BStats"))
             bStats.recordData();
 
-        pm.registerEvents(playerInitializer, this);
+        pm.registerEvents(miscEvents, this);
 
         this.getCommand("RealisticSurvival").setExecutor(new Commands(this));
         this.getCommand("RealisticSurvival").setTabCompleter(new Tab());

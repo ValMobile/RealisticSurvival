@@ -2,7 +2,9 @@
 #          Ice and Fire Items         #
 #######################################
 
-# For dev use only, do NOT edit anything
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
+# Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
 dragonbone:
   Material: "BONE"
@@ -201,6 +203,9 @@ dragonscale_helmet_blue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_blue:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -212,6 +217,9 @@ dragonscale_chestplate_blue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_blue:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -223,6 +231,9 @@ dragonscale_leggings_blue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_blue:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -234,6 +245,9 @@ dragonscale_boots_blue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 dragonscale_helmet_bronze:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"
@@ -245,6 +259,9 @@ dragonscale_helmet_bronze:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_bronze:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -256,6 +273,9 @@ dragonscale_chestplate_bronze:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_bronze:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -267,6 +287,9 @@ dragonscale_leggings_bronze:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_bronze:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -278,6 +301,9 @@ dragonscale_boots_bronze:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 dragonscale_helmet_gray:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"
@@ -289,6 +315,9 @@ dragonscale_helmet_gray:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_gray:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -300,6 +329,9 @@ dragonscale_chestplate_gray:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_gray:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -311,6 +343,9 @@ dragonscale_leggings_gray:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_gray:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -322,6 +357,9 @@ dragonscale_boots_gray:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 dragonscale_helmet_green:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"
@@ -333,6 +371,9 @@ dragonscale_helmet_green:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_green:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -344,6 +385,9 @@ dragonscale_chestplate_green:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_green:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -355,6 +399,9 @@ dragonscale_leggings_green:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_green:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -366,6 +413,9 @@ dragonscale_boots_green:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 dragonscale_helmet_red:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"
@@ -377,6 +427,9 @@ dragonscale_helmet_red:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_red:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -388,6 +441,9 @@ dragonscale_chestplate_red:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_red:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -399,6 +455,9 @@ dragonscale_leggings_red:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_red:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -410,6 +469,9 @@ dragonscale_boots_red:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 dragonscale_helmet_sapphire:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"
@@ -421,6 +483,9 @@ dragonscale_helmet_sapphire:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_sapphire:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -432,6 +497,9 @@ dragonscale_chestplate_sapphire:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_sapphire:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -443,6 +511,9 @@ dragonscale_leggings_sapphire:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_sapphire:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -454,6 +525,9 @@ dragonscale_boots_sapphire:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 dragonscale_helmet_silver:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"
@@ -465,6 +539,9 @@ dragonscale_helmet_silver:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_silver:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -476,6 +553,9 @@ dragonscale_chestplate_silver:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_silver:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -487,6 +567,9 @@ dragonscale_leggings_silver:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_silver:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -498,6 +581,9 @@ dragonscale_boots_silver:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 dragonscale_helmet_white:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"
@@ -509,6 +595,9 @@ dragonscale_helmet_white:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_white:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -520,6 +609,9 @@ dragonscale_chestplate_white:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_white:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -531,6 +623,9 @@ dragonscale_leggings_white:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_white:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -542,6 +637,9 @@ dragonscale_boots_white:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 dragonscale_helmet_amethyst:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"
@@ -553,6 +651,9 @@ dragonscale_helmet_amethyst:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_amethyst:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -564,6 +665,9 @@ dragonscale_chestplate_amethyst:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_amethyst:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -575,6 +679,9 @@ dragonscale_leggings_amethyst:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_amethyst:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -586,6 +693,9 @@ dragonscale_boots_amethyst:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 dragonscale_helmet_black:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"
@@ -597,6 +707,9 @@ dragonscale_helmet_black:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_black:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -608,6 +721,9 @@ dragonscale_chestplate_black:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_black:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -619,6 +735,9 @@ dragonscale_leggings_black:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_black:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -630,6 +749,9 @@ dragonscale_boots_black:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 dragonscale_helmet_copper:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"
@@ -641,6 +763,9 @@ dragonscale_helmet_copper:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_copper:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -652,6 +777,9 @@ dragonscale_chestplate_copper:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_copper:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -663,6 +791,9 @@ dragonscale_leggings_copper:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_copper:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -674,6 +805,9 @@ dragonscale_boots_copper:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 dragonscale_helmet_electric:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"
@@ -685,6 +819,9 @@ dragonscale_helmet_electric:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 396
+    rsvmaxdurability: 396
 dragonscale_chestplate_electric:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fDragon Scale Chestplate"
@@ -696,6 +833,9 @@ dragonscale_chestplate_electric:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 dragonscale_leggings_electric:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fDragon Scale Leggings"
@@ -707,6 +847,9 @@ dragonscale_leggings_electric:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 540
+    rsvmaxdurability: 540
 dragonscale_boots_electric:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fDragon Scale Boots"
@@ -718,6 +861,9 @@ dragonscale_boots_electric:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 468
+    rsvmaxdurability: 468
 tide_guardian_helmet_blue:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fTide Guardian Helmet"
@@ -729,6 +875,9 @@ tide_guardian_helmet_blue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 330
+    rsvmaxdurability: 330
 tide_guardian_chestplate_blue:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fTide Guardian Chestplate"
@@ -740,6 +889,9 @@ tide_guardian_chestplate_blue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 480
+    rsvmaxdurability: 480
 tide_guardian_leggings_blue:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fTide Guardian Leggings"
@@ -751,6 +903,9 @@ tide_guardian_leggings_blue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 450
+    rsvmaxdurability: 450
 tide_guardian_boots_blue:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fTide Guardian Boots"
@@ -762,6 +917,9 @@ tide_guardian_boots_blue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 390
+    rsvmaxdurability: 390
 tide_guardian_helmet_bronze:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fTide Guardian Helmet"
@@ -773,6 +931,9 @@ tide_guardian_helmet_bronze:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 330
+    rsvmaxdurability: 330
 tide_guardian_chestplate_bronze:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fTide Guardian Chestplate"
@@ -784,6 +945,9 @@ tide_guardian_chestplate_bronze:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 480
+    rsvmaxdurability: 480
 tide_guardian_leggings_bronze:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fTide Guardian Leggings"
@@ -795,6 +959,9 @@ tide_guardian_leggings_bronze:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 450
+    rsvmaxdurability: 450
 tide_guardian_boots_bronze:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fTide Guardian Boots"
@@ -806,6 +973,9 @@ tide_guardian_boots_bronze:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 390
+    rsvmaxdurability: 390
 tide_guardian_helmet_deepblue:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fTide Guardian Helmet"
@@ -817,6 +987,9 @@ tide_guardian_helmet_deepblue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 330
+    rsvmaxdurability: 330
 tide_guardian_chestplate_deepblue:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fTide Guardian Chestplate"
@@ -828,6 +1001,9 @@ tide_guardian_chestplate_deepblue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 480
+    rsvmaxdurability: 480
 tide_guardian_leggings_deepblue:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fTide Guardian Leggings"
@@ -839,6 +1015,9 @@ tide_guardian_leggings_deepblue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 450
+    rsvmaxdurability: 450
 tide_guardian_boots_deepblue:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fTide Guardian Boots"
@@ -850,6 +1029,9 @@ tide_guardian_boots_deepblue:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 390
+    rsvmaxdurability: 390
 tide_guardian_helmet_green:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fTide Guardian Helmet"
@@ -861,6 +1043,9 @@ tide_guardian_helmet_green:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 330
+    rsvmaxdurability: 330
 tide_guardian_chestplate_green:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fTide Guardian Chestplate"
@@ -872,6 +1057,9 @@ tide_guardian_chestplate_green:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 480
+    rsvmaxdurability: 480
 tide_guardian_leggings_green:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fTide Guardian Leggings"
@@ -883,6 +1071,9 @@ tide_guardian_leggings_green:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 450
+    rsvmaxdurability: 450
 tide_guardian_boots_green:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fTide Guardian Boots"
@@ -894,6 +1085,9 @@ tide_guardian_boots_green:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 390
+    rsvmaxdurability: 390
 tide_guardian_helmet_purple:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fTide Guardian Helmet"
@@ -905,6 +1099,9 @@ tide_guardian_helmet_purple:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 330
+    rsvmaxdurability: 330
 tide_guardian_chestplate_purple:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fTide Guardian Chestplate"
@@ -916,6 +1113,9 @@ tide_guardian_chestplate_purple:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 480
+    rsvmaxdurability: 480
 tide_guardian_leggings_purple:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fTide Guardian Leggings"
@@ -927,6 +1127,9 @@ tide_guardian_leggings_purple:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 450
+    rsvmaxdurability: 450
 tide_guardian_boots_purple:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fTide Guardian Boots"
@@ -938,6 +1141,9 @@ tide_guardian_boots_purple:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 390
+    rsvmaxdurability: 390
 tide_guardian_helmet_red:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fTide Guardian Helmet"
@@ -949,6 +1155,9 @@ tide_guardian_helmet_red:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 330
+    rsvmaxdurability: 330
 tide_guardian_chestplate_red:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fTide Guardian Chestplate"
@@ -960,6 +1169,9 @@ tide_guardian_chestplate_red:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 480
+    rsvmaxdurability: 480
 tide_guardian_leggings_red:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fTide Guardian Leggings"
@@ -971,6 +1183,9 @@ tide_guardian_leggings_red:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 450
+    rsvmaxdurability: 450
 tide_guardian_boots_red:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fTide Guardian Boots"
@@ -982,6 +1197,9 @@ tide_guardian_boots_red:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 390
+    rsvmaxdurability: 390
 tide_guardian_helmet_teal:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fTide Guardian Helmet"
@@ -993,6 +1211,9 @@ tide_guardian_helmet_teal:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 330
+    rsvmaxdurability: 330
 tide_guardian_chestplate_teal:
   Material: "DIAMOND_CHESTPLATE"
   DisplayName: "&fTide Guardian Chestplate"
@@ -1004,6 +1225,9 @@ tide_guardian_chestplate_teal:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 480
+    rsvmaxdurability: 480
 tide_guardian_leggings_teal:
   Material: "DIAMOND_LEGGINGS"
   DisplayName: "&fTide Guardian Leggings"
@@ -1015,6 +1239,9 @@ tide_guardian_leggings_teal:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 450
+    rsvmaxdurability: 450
 tide_guardian_boots_teal:
   Material: "DIAMOND_BOOTS"
   DisplayName: "&fTide Guardian Boots"
@@ -1026,6 +1253,9 @@ tide_guardian_boots_teal:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 390
+    rsvmaxdurability: 390
 dragonbone_pickaxe:
   Material: "DIAMOND_PICKAXE"
   DisplayName: "&fDragonbone Pickaxe"
@@ -1034,6 +1264,9 @@ dragonbone_pickaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_axe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fDragonbone Axe"
@@ -1042,6 +1275,9 @@ dragonbone_axe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_shovel:
   Material: "DIAMOND_SHOVEL"
   DisplayName: "&fDragonbone Shovel"
@@ -1050,6 +1286,9 @@ dragonbone_shovel:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_hoe:
   Material: "DIAMOND_HOE"
   DisplayName: "&fDragonbone Hoe"
@@ -1058,6 +1297,9 @@ dragonbone_hoe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_sword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Sword"
@@ -1066,6 +1308,9 @@ dragonbone_sword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_bow:
   Material: "BOW"
   DisplayName: "&fDragonbone Bow"
@@ -1074,6 +1319,9 @@ dragonbone_bow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 584
+    rsvmaxdurability: 584
 dragonbone_flamed_sword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Sword"
@@ -1086,6 +1334,9 @@ dragonbone_flamed_sword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_sword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Sword"
@@ -1098,6 +1349,9 @@ dragonbone_iced_sword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_sword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Sword"
@@ -1110,6 +1364,9 @@ dragonbone_lightning_sword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonsteel_fire_sword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Sword"
@@ -1120,6 +1377,9 @@ dragonsteel_fire_sword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_pickaxe:
   Material: "NETHERITE_PICKAXE"
   DisplayName: "&fFire Dragonsteel Pickaxe"
@@ -1130,6 +1390,9 @@ dragonsteel_fire_pickaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_axe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fFire Dragonsteel Axe"
@@ -1140,6 +1403,9 @@ dragonsteel_fire_axe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_shovel:
   Material: "NETHERITE_SHOVEL"
   DisplayName: "&fFire Dragonsteel Shovel"
@@ -1150,6 +1416,9 @@ dragonsteel_fire_shovel:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_hoe:
   Material: "NETHERITE_HOE"
   DisplayName: "&fFire Dragonsteel Hoe"
@@ -1160,6 +1429,9 @@ dragonsteel_fire_hoe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_sword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Sword"
@@ -1170,6 +1442,9 @@ dragonsteel_ice_sword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_pickaxe:
   Material: "NETHERITE_PICKAXE"
   DisplayName: "&fIce Dragonsteel Pickaxe"
@@ -1180,6 +1455,9 @@ dragonsteel_ice_pickaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_axe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fIce Dragonsteel Axe"
@@ -1190,6 +1468,9 @@ dragonsteel_ice_axe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_shovel:
   Material: "NETHERITE_SHOVEL"
   DisplayName: "&fIce Dragonsteel Shovel"
@@ -1200,6 +1481,9 @@ dragonsteel_ice_shovel:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_hoe:
   Material: "NETHERITE_HOE"
   DisplayName: "&fIce Dragonsteel Hoe"
@@ -1210,6 +1494,9 @@ dragonsteel_ice_hoe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_sword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Sword"
@@ -1220,6 +1507,9 @@ dragonsteel_lightning_sword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_pickaxe:
   Material: "NETHERITE_PICKAXE"
   DisplayName: "&fLightning Dragonsteel Pickaxe"
@@ -1230,6 +1520,9 @@ dragonsteel_lightning_pickaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_axe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fLightning Dragonsteel Axe"
@@ -1240,6 +1533,9 @@ dragonsteel_lightning_axe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_shovel:
   Material: "NETHERITE_SHOVEL"
   DisplayName: "&fLightning Dragonsteel Shovel"
@@ -1250,6 +1546,9 @@ dragonsteel_lightning_shovel:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_hoe:
   Material: "NETHERITE_HOE"
   DisplayName: "&fLightning Dragonsteel Hoe"
@@ -1260,6 +1559,9 @@ dragonsteel_lightning_hoe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_helmet:
   Material: "NETHERITE_HELMET"
   DisplayName: "&fFire Dragonsteel Helmet"
@@ -1270,6 +1572,9 @@ dragonsteel_fire_helmet:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1760
+    rsvmaxdurability: 1760
 dragonsteel_fire_chestplate:
   Material: "NETHERITE_CHESTPLATE"
   DisplayName: "&fFire Dragonsteel Chestplate"
@@ -1280,6 +1585,9 @@ dragonsteel_fire_chestplate:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2560
+    rsvmaxdurability: 2560
 dragonsteel_fire_leggings:
   Material: "NETHERITE_LEGGINGS"
   DisplayName: "&fFire Dragonsteel Leggings"
@@ -1290,6 +1598,9 @@ dragonsteel_fire_leggings:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2400
+    rsvmaxdurability: 2400
 dragonsteel_fire_boots:
   Material: "NETHERITE_BOOTS"
   DisplayName: "&fFire Dragonsteel Boots"
@@ -1300,6 +1611,9 @@ dragonsteel_fire_boots:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2080
+    rsvmaxdurability: 2080
 dragonsteel_ice_helmet:
   Material: "NETHERITE_HELMET"
   DisplayName: "&fIce Dragonsteel Helmet"
@@ -1310,6 +1624,9 @@ dragonsteel_ice_helmet:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1760
+    rsvmaxdurability: 1760
 dragonsteel_ice_chestplate:
   Material: "NETHERITE_CHESTPLATE"
   DisplayName: "&fIce Dragonsteel Chestplate"
@@ -1320,6 +1637,9 @@ dragonsteel_ice_chestplate:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2560
+    rsvmaxdurability: 2560
 dragonsteel_ice_leggings:
   Material: "NETHERITE_LEGGINGS"
   DisplayName: "&fIce Dragonsteel Leggings"
@@ -1330,6 +1650,9 @@ dragonsteel_ice_leggings:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2400
+    rsvmaxdurability: 2400
 dragonsteel_ice_boots:
   Material: "NETHERITE_BOOTS"
   DisplayName: "&fIce Dragonsteel Boots"
@@ -1340,6 +1663,9 @@ dragonsteel_ice_boots:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2080
+    rsvmaxdurability: 2080
 dragonsteel_lightning_helmet:
   Material: "NETHERITE_HELMET"
   DisplayName: "&fLightning Dragonsteel Helmet"
@@ -1350,6 +1676,9 @@ dragonsteel_lightning_helmet:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1760
+    rsvmaxdurability: 1760
 dragonsteel_lightning_chestplate:
   Material: "NETHERITE_CHESTPLATE"
   DisplayName: "&fLightning Dragonsteel Chestplate"
@@ -1360,6 +1689,9 @@ dragonsteel_lightning_chestplate:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2560
+    rsvmaxdurability: 2560
 dragonsteel_lightning_leggings:
   Material: "NETHERITE_LEGGINGS"
   DisplayName: "&fLightning Dragonsteel Leggings"
@@ -1370,6 +1702,9 @@ dragonsteel_lightning_leggings:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2400
+    rsvmaxdurability: 2400
 dragonsteel_lightning_boots:
   Material: "NETHERITE_BOOTS"
   DisplayName: "&fLightning Dragonsteel Boots"
@@ -1380,6 +1715,9 @@ dragonsteel_lightning_boots:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2080
+    rsvmaxdurability: 2080
 dragonsteel_fire_block:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fFire Dragonsteel Block"

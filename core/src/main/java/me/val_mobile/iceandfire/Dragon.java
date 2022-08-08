@@ -19,6 +19,7 @@ package me.val_mobile.iceandfire;
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVMob;
 import net.minecraft.network.chat.ChatComponentText;
 import net.minecraft.server.v1_16_R3.ChatComponentText;
 import net.minecraft.server.v1_16_R3.EntityEnderDragon;
@@ -37,7 +38,7 @@ import java.util.Collection;
 import java.util.Random;
 import java.util.UUID;
 
-public abstract class Dragon extends EntityEnderDragon {
+public abstract class Dragon extends EntityEnderDragon implements RSVMob {
 
     private final RealisticSurvivalPlugin plugin;
     private Breed breed;
@@ -50,7 +51,7 @@ public abstract class Dragon extends EntityEnderDragon {
     private final ModuleItems moduleItems;
 
     public Dragon(Location loc, Breed breed, RealisticSurvivalPlugin plugin) {
-        super(EntityTypes.ENDER_DRAGON, NMSUtil.getInternals().getWorld(loc.getWorld()));
+        super(EntityTypes.ENDER_DRAGON, RealisticSurvivalPlugin.getUtil().getInternals().getWorld(loc.getWorld()));
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
 
         this.plugin = plugin;
@@ -58,12 +59,12 @@ public abstract class Dragon extends EntityEnderDragon {
 
         Random r = new Random();
 
-        this.moduleItems = RSVModule.getModules().get("IceandFire").getModuleItems();;
+        this.moduleItems = RSVModule.getModule("IceandFire").getModuleItems();;
         this.breed = breed;
-        this.stage = (int) Math.round(r.nextDouble() * 4) + 1;
-        this.age = this.stage * 100 + (int) Math.round(r.nextDouble() * 99);
+        this.stage = (int) Math.round(Math.random() * 4) + 1;
+        this.age = this.stage * 100 + (int) Math.round(Math.random() * 99);
 
-        this.gender = ((int) Math.round(r.nextDouble()) == 1) ? Gender.MALE : Gender.FEMALE;
+        this.gender = ((int) Math.round(Math.random()) == 1) ? Gender.MALE : Gender.FEMALE;
 
         this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalizeFirstLetter(variant.toString()) + " Dragon"));
         this.setCustomNameVisible(false);
@@ -78,12 +79,12 @@ public abstract class Dragon extends EntityEnderDragon {
 
         Random r = new Random();
 
-        this.moduleItems = RSVModule.getModules().get("IceandFire").getModuleItems();;
+        this.moduleItems = RSVModule.getModule("IceandFire").getModuleItems();;
         this.breed = breed;
         this.stage = stage;
-        this.age = this.stage * 100 + (int) Math.round(r.nextDouble() * 99);
+        this.age = this.stage * 100 + (int) Math.round(Math.random() * 99);
 
-        this.gender = ((int) Math.round(r.nextDouble()) == 1) ? Gender.MALE : Gender.FEMALE;
+        this.gender = ((int) Math.round(Math.random()) == 1) ? Gender.MALE : Gender.FEMALE;
 
         this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalizeFirstLetter(variant.toString()) + " Dragon"));
         this.setCustomNameVisible(false);

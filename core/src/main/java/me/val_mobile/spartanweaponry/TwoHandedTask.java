@@ -23,7 +23,6 @@ public class TwoHandedTask extends BukkitRunnable {
     private final PotionEffect effect;
     private final UUID id;
     private final String itemName;
-    private final Utils util;
 
     private static HashMap<UUID, String> players = new HashMap<>();
 
@@ -31,7 +30,6 @@ public class TwoHandedTask extends BukkitRunnable {
         this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();
         this.id = player.getUniqueId();
-        this.util = new Utils(plugin);
         this.itemName = itemName;
         this.effect = new PotionEffect(PotionEffectType.SLOW_DIGGING, config.getInt("Items." + itemName + ".MiningFatigue.Duration"), config.getInt("Items." + itemName + ".MiningFatigue.Amplifier"));
     }
@@ -41,8 +39,8 @@ public class TwoHandedTask extends BukkitRunnable {
         Player player = Bukkit.getPlayer(id);
         ItemStack itemMainhand = player.getInventory().getItemInMainHand();
 
-        if (RSVItem.isRSVItem(itemMainhand, util)) {
-            if (RSVItem.getNameFromItem(itemMainhand, util).equals(itemName)) {
+        if (RSVItem.isRSVItem(itemMainhand)) {
+            if (RSVItem.getNameFromItem(itemMainhand).equals(itemName)) {
                 player.addPotionEffect(effect);
             }
             else {

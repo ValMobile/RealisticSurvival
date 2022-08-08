@@ -31,12 +31,10 @@ import org.bukkit.plugin.PluginManager;
 public abstract class ModuleEvents implements Listener {
 
     private final RealisticSurvivalPlugin plugin;
-    private Utils util;
     private RSVModule module;
 
     public ModuleEvents(RSVModule module, RealisticSurvivalPlugin plugin) {
         this.module = module;
-        this.util = new Utils(plugin);
         this.plugin = plugin;
     }
 

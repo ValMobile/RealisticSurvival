@@ -17,6 +17,7 @@
 package me.val_mobile.data;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVMob;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -37,7 +38,7 @@ public abstract class RSVModule {
     private RSVConfig itemConfig;
     private RSVConfig recipesConfig;
 
-    private Collection<String> allowedWorlds;
+    private Collection<String> allowedWorlds = new ArrayList<>();
 
     public RSVModule(String name, RealisticSurvivalPlugin plugin) {
         FileConfiguration config = plugin.getConfig();
@@ -48,7 +49,7 @@ public abstract class RSVModule {
             Set<String> keys = section.getKeys(false);
 
             List<World> worlds = plugin.getServer().getWorlds();
-            allowedWorlds = new ArrayList<>();
+
             for (World world : worlds) {
                 String worldName = world.getName();
                 if (!keys.contains(worldName)) {
@@ -130,5 +131,9 @@ public abstract class RSVModule {
 
     public ModuleRecipes getModuleRecipes() {
         return moduleRecipes;
+    }
+
+    public static RSVModule getModule(String name) {
+        return modules.get(name);
     }
 }

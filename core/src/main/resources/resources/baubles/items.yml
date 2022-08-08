@@ -2,7 +2,9 @@
 #          Baubles Items              #
 #######################################
 
-# For dev use only, do NOT edit anything
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
+# Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
 dragons_eye:
   Material: "PRISMARINE_SHARD"
@@ -364,12 +366,15 @@ broken_heart:
   DisplayName: "&fBroken Heart"
   CustomModelData: 83650
   Lore:
+    - "&7Durability: 3/3"
     - "&9Lethal damage destroys empty heart containers instead."
     - "&9Sleep to regenerate heart containers."
     - "&aHow did this happen?"
     - ""
     - "&6Bauble (Any)"
   NBTTags:
+    rsvdurability: 3
+    rsvmaxdurability: 3
     rsvbaubleslot: "Any"
 cross_necklace:
   Material: "PRISMARINE_SHARD"
@@ -430,6 +435,9 @@ golden_crown:
   Material: "GOLDEN_HELMET"
   DisplayName: "&fGolden Crown"
   CustomModelData: 83650
+  NBTTags:
+    rsvdurability: 275
+    rsvmaxdurability: 275
 flare_gun:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fFlare Gun"
@@ -437,6 +445,10 @@ flare_gun:
   Lore:
     - "&9Exactly what it sounds like"
     - "&aShine a light on the situation!"
+    - "&7Durability: 384/384"
+  NBTTags:
+    rsvdurability: 384
+    rsvmaxdurability: 384
 flare:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fFlare"
@@ -663,3 +675,7 @@ potion_fire_resistance:
   Material: "POTION"
   DisplayName: "&fPotion of Fire Resistance"
   Effects: "FIRE_RESISTANCE"
+bauble_bag:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fBauble Bag"
+  CustomModelData: 83738

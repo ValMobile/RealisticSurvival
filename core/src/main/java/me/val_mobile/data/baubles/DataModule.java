@@ -28,17 +28,10 @@ import java.util.UUID;
 
 public class DataModule implements RSVDataModule {
 
-    private UUID uuid;
     private BaubleInventory baubleBag;
-    private final RealisticSurvivalPlugin plugin;
-    private final Utils util;
 
-
-    public DataModule(RealisticSurvivalPlugin plugin, Player player) {
-        this.plugin = plugin;
-        this.util = new Utils(plugin);
-        this.uuid = player.getUniqueId();
-        baubleBag = new BaubleInventory(player, plugin);
+    public DataModule(Player player) {
+        baubleBag = new BaubleInventory(player);
         retrieveData();
     }
 

@@ -142,4 +142,8 @@ public class ModuleRecipes {
     public Collection<RSVAnvilRecipe> getAnvilRecipes() {
         return anvilRecipes;
     }
+
+    public Recipe getRecipe(String name) {
+        return recipeMap.get(name);
+    }
 }

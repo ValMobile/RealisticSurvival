@@ -19,12 +19,15 @@ package me.val_mobile.utils;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.spartanandfire.FreezeTask;
 import me.val_mobile.spartanweaponry.KbTask;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.mutable.MutableInt;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -44,6 +47,8 @@ import org.bukkit.util.Vector;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.logging.Level;
 
@@ -74,9 +79,9 @@ public class Utils {
         Vector newVelocity = velocity.clone();
         Random r = new Random();
 
-        newVelocity.setX((newVelocity.getX() * r.nextDouble()) + 0.5);
-        newVelocity.setY((newVelocity.getY() * r.nextDouble()) + 0.5);
-        newVelocity.setZ((newVelocity.getZ() * r.nextDouble()) + 0.5);
+        newVelocity.setX((newVelocity.getX() * Math.random()) + 0.5);
+        newVelocity.setY((newVelocity.getY() * Math.random()) + 0.5);
+        newVelocity.setZ((newVelocity.getZ() * Math.random()) + 0.5);
 
         return newVelocity;
     }
@@ -481,48 +486,43 @@ public class Utils {
         return !(item == null || item.getType() == Material.AIR);
     }
 
-    public void addNbtTag(ItemStack item, String key, String value) {
+    public <T> void addNbtTag(Entity entity, String key, T value, PersistentDataType<T,T> type) {
+
+        NamespacedKey nkey = new NamespacedKey(plugin, key);
+        entity.getPersistentDataContainer().set(nkey, type, value);
+    }
+
+    public <T> void addNbtTag(ItemStack item, String key, T value, PersistentDataType<T,T> type) {
 
         NamespacedKey nkey = new NamespacedKey(plugin, key);
         ItemMeta itemMeta = item.getItemMeta();
-        itemMeta.getPersistentDataContainer().set(nkey, PersistentDataType.STRING, value);
+        itemMeta.getPersistentDataContainer().set(nkey, type, value);
 
         item.setItemMeta(itemMeta);
     }
 
-    public String getNbtTag(ItemStack item, String key) {
-
-        NamespacedKey nkey = new NamespacedKey(plugin, key);
-        ItemMeta itemMeta = item.getItemMeta();
-        PersistentDataContainer container = itemMeta.getPersistentDataContainer();
-
-        if(container.has(nkey , PersistentDataType.STRING)) {
-            return container.get(nkey, PersistentDataType.STRING);
-        }
-
-        return null;
-    }
-
-    public String getNbtTag(Entity entity, String key) {
+    public <T> T getNbtTag(Entity entity, String key, PersistentDataType<T,T> type) {
 
         NamespacedKey nkey = new NamespacedKey(plugin, key);
         PersistentDataContainer container = entity.getPersistentDataContainer();
 
         if(container.has(nkey, PersistentDataType.STRING)) {
-            return container.get(nkey, PersistentDataType.STRING);
+            return container.get(nkey, type);
         }
 
         return null;
     }
 
-    public void freezeEntity(Entity entity) {
-        new KbTask(plugin, entity, 0D).start();
-    }
+    public <T> T getNbtTag(ItemStack item, String key, PersistentDataType<T,T> type) {
 
-    public static boolean doublesEquals(double v, double v1) {
-        double tolerance = 0.001;
+        NamespacedKey nkey = new NamespacedKey(plugin, key);
+        PersistentDataContainer container = item.getItemMeta().getPersistentDataContainer();
 
-        return Math.abs(v - v1) <= tolerance;
+        if(container.has(nkey, PersistentDataType.STRING)) {
+            return container.get(nkey, type);
+        }
+
+        return null;
     }
 
     public boolean hasNbtTag(Entity entity, String key) {
@@ -539,7 +539,15 @@ public class Utils {
         return itemMeta.getPersistentDataContainer().has(nkey, PersistentDataType.STRING);
     }
 
+    public void freezeEntity(Entity entity) {
+        new KbTask(plugin, entity, 0D).start();
+    }
 
+    public static boolean doublesEquals(double v, double v1) {
+        double tolerance = 0.001;
+
+        return Math.abs(v - v1) <= tolerance;
+    }
 
     public static HashMap<String, Tag> getTags() {
         return internals.getTags();
@@ -607,7 +615,7 @@ public class Utils {
         return Double.valueOf(text);
     }
 
-    public static void harvestFortune(double chance, ItemStack drop, ItemStack tool, Location loc) {
+    public static void harvestFortune(ConfigurationSection section, ItemStack drop, ItemStack tool, Location loc) {
         Random r = new Random();
 
         int lvl = 0;
@@ -617,17 +625,37 @@ public class Utils {
             lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
         }
 
-        double rawAmount = (1D / (lvl + 2D) + (lvl + 1D) / 2D) * chance;
-        int actualAmount = (int) Math.floor(rawAmount);
-        double dif = rawAmount - actualAmount;
+        switch (DROP_TYPE.valueOf(section.getString("Type").toUpperCase())) {
+            case RARE:
+            case COMMON: {
+                double chance = section.getDouble("Chance");
+                double rawAmount = (1D / (lvl + 2D) + (lvl + 1D) / 2D) * chance;
+                int actualAmount = (int) Math.floor(rawAmount);
+                double dif = rawAmount - actualAmount;
 
-        if (r.nextDouble() <= dif)
-            actualAmount++;
+                if (Math.random() <= dif)
+                    actualAmount++;
 
-        if (actualAmount > 0) {
-            drop.setAmount(actualAmount);
+                if (actualAmount > 0) {
+                    drop.setAmount(actualAmount);
 
-            loc.getWorld().dropItemNaturally(loc, drop);
+                    loc.getWorld().dropItemNaturally(loc, drop);
+                }
+                break;
+            }
+            case RANGE: {
+                int min = section.getInt("MinAmount");
+                int max = section.getInt("MaxAmount");
+
+                int amount = Math.toIntExact(Math.round(Math.random() * (max - min)) + min);
+
+                drop.setAmount(amount);
+                loc.getWorld().dropItemNaturally(loc, drop);
+                break;
+            }
+            default: {
+                break;
+            }
         }
     }
 
@@ -635,7 +663,7 @@ public class Utils {
         COMMON, RARE, RANGE
     }
 
-    public static void harvestLooting(double chance, ItemStack drop, DROP_TYPE dropType, ItemStack tool, Location loc) {
+    public static void harvestLooting(ConfigurationSection section, ItemStack drop, ItemStack tool, Location loc) {
         Random r = new Random();
 
         int lvl = 0;
@@ -647,22 +675,23 @@ public class Utils {
             }
         }
 
-        switch (dropType) {
+        switch (DROP_TYPE.valueOf(section.getString("Type").toUpperCase())) {
             case RARE: {
+                double chance = section.getDouble("Chance");
                 // rare drops
-                if (dropType == DROP_TYPE.RARE) {
-                    if (r.nextDouble() <= chance + lvl * 0.01) {
+                if (Math.random() <= chance + lvl * 0.01) {
+                    loc.getWorld().dropItemNaturally(loc, drop);
+                }
+                else {
+                    if (Math.random() <= (lvl / (lvl + 1D)))
                         loc.getWorld().dropItemNaturally(loc, drop);
-                    }
-                    else {
-                        if (r.nextDouble() <= (lvl / (lvl + 1D)))
-                            loc.getWorld().dropItemNaturally(loc, drop);
-                    }
                 }
                 break;
             }
             case COMMON: {
-                if (r.nextDouble() <= chance + lvl * 0.01) {
+                double chance = section.getDouble("Chance");
+
+                if (Math.random() <= chance + lvl * 0.01) {
                     int maxAmount = lvl + 1;
 
                     double rawAmount = chance * maxAmount;
@@ -670,7 +699,7 @@ public class Utils {
 
                     double dif = rawAmount - actualAmount;
 
-                    if (r.nextDouble() <= dif)
+                    if (Math.random() <= dif)
                         actualAmount++;
 
                     if (actualAmount > 0) {
@@ -682,23 +711,16 @@ public class Utils {
                 break;
             }
             case RANGE: {
-                if (r.nextDouble() <= chance + lvl * 0.01) {
-                    int maxAmount = lvl + 1;
+                int min = section.getInt("MinAmount");
+                int max = section.getInt("MaxAmount");
 
-                    double rawAmount = chance * maxAmount;
-                    int actualAmount = (int) Math.floor(rawAmount);
+                int amount = Math.toIntExact(Math.round(Math.random() * (max - min)) + min);
 
-                    double dif = rawAmount - actualAmount;
-
-                    if (r.nextDouble() <= dif)
-                        actualAmount++;
-
-                    if (actualAmount > 0) {
-                        drop.setAmount(actualAmount);
-
-                        loc.getWorld().dropItemNaturally(loc, drop);
-                    }
-                }
+                drop.setAmount(amount);
+                loc.getWorld().dropItemNaturally(loc, drop);
+                break;
+            }
+            default: {
                 break;
             }
         }
@@ -742,27 +764,95 @@ public class Utils {
         }
     }
 
-    public static boolean decrementDurability(ItemStack tool, int maxDamage) {
-        ItemMeta meta = tool.getItemMeta();
+    public static boolean changeDurability(ItemStack item, int change) {
+        ItemMeta meta = item.getItemMeta();
         int lvl = meta.getEnchantLevel(Enchantment.DURABILITY);
 
-        Random r = new Random();
-        boolean decremented = false;
+        boolean hasCustomDurability = RSVItem.hasCustomDurability(item) && RSVItem.hasMaxCustomDurability(item);
+        
+        int rsvDurability = RSVItem.getCustomDurability(item);
+        int rsvMaxDurability = RSVItem.getMaxCustomDurability(item);
 
-        for (int i = 0; i < maxDamage; i++) {
-            if (r.nextDouble() <= (1D / (lvl + 1D))) {
-                if (((Damageable) meta).getDamage() + 1 >= tool.getType().getMaxDurability()) {
-                    decremented = true;
-                }
-                else {
-                    ((Damageable) meta).setDamage(((Damageable) meta).getDamage() + 1);
+        int maxMcDurability = item.getType().getMaxDurability();
+        int mcDurability = maxMcDurability - ((Damageable) meta).getDamage();
 
-                    tool.setItemMeta(meta);
+        int actualChange = 0;
+
+        if (change < 0) {
+            change *= -1;
+
+            for (int i = 0; i < change; i++) {
+                if (Math.random() <= (1D / (lvl + 1D))) {
+                    actualChange++;
                 }
             }
+
+            // actual damageable item in vanilla
+            if (maxMcDurability > 0) {
+                if (hasCustomDurability) {
+                    double mcRatio = (double) mcDurability / maxMcDurability;
+                    double rsvRatio = (double) rsvDurability / rsvMaxDurability;
+
+                    if (!Utils.doublesEquals(mcRatio, rsvRatio)) {
+                        mcDurability = (int) Math.ceil(rsvRatio * maxMcDurability);
+                    }
+
+                    actualChange = maxMcDurability - mcDurability;
+
+                    ((Damageable) meta).setDamage(actualChange);
+                }
+                else {
+                    ((Damageable) meta).setDamage(((Damageable) meta).getDamage() + actualChange);
+
+                    item.setItemMeta(meta);
+                }
+                return ((Damageable) meta).getDamage() + actualChange >= item.getType().getMaxDurability();
+            }
+            if (hasCustomDurability) {
+                int newDurability = rsvDurability - actualChange;
+
+                RealisticSurvivalPlugin.getUtil().addNbtTag(item, "rsvdurability", newDurability, PersistentDataType.INTEGER);
+                updateLore(item, rsvDurability, newDurability);
+                return (newDurability < 1);
+            }
         }
-        return decremented;
+        else if (change > 0) {
+            actualChange = change;
+
+            if (maxMcDurability > 0) {
+                if (hasCustomDurability) {
+                    double mcRatio = (double) mcDurability / maxMcDurability;
+                    double rsvRatio = (double) rsvDurability / rsvMaxDurability;
+
+                    if (!Utils.doublesEquals(mcRatio, rsvRatio)) {
+                        mcDurability = (int) Math.ceil(rsvRatio * maxMcDurability);
+                    }
+
+                    actualChange = maxMcDurability - mcDurability;
+
+                    ((Damageable) meta).setDamage(actualChange);
+                }
+            }
+            if (hasCustomDurability) {
+
+            }
+        }
+        return false;
     }
+
+    public static void incrementDurability(ItemStack item, int amount) {
+        ItemMeta meta = item.getItemMeta();
+
+        boolean hasCustomDurability = RSVItem.hasCustomDurability(item);
+        boolean hasMaxCustomDurability = RSVItem.hasMaxCustomDurability(item);
+
+        int rsvDurability = RSVItem.getCustomDurability(item);
+        int rsvMaxDurability = RSVItem.getMaxCustomDurability(item);
+
+        int maxMcDurability = item.getType().getMaxDurability();
+        int mcDurability = maxMcDurability - ((Damageable) meta).getDamage();
+    }
+
 
     public static InternalsProvider getInternals() {
         return internals;
@@ -777,5 +867,41 @@ public class Utils {
         return new EulerAngle(armorStandX + Math.toRadians(x), armorStandY + Math.toRadians(y), armorStandZ + Math.toRadians(z));
     }
 
+    public static void playSound(Location loc, String soundName, float volume, float pitch) {
+        if (StringUtils.isAllLowerCase(soundName)) {
+            loc.getWorld().playSound(loc, soundName, volume, pitch);
+        }
+        else {
+            loc.getWorld().playSound(loc, Sound.valueOf(soundName), volume, pitch);
+        }
+    }
 
+    public static void updateLore(ItemStack item, int oldDurability, int newDurability) {
+        if (RSVItem.hasMaxCustomDurability(item) && RSVItem.hasCustomDurability(item)) {
+            ItemMeta meta = item.getItemMeta();
+
+            List<String> lore = meta.getLore();
+
+            for (int i = 0; i < lore.size(); i++) {
+                if (lore.get(i).contains("Durability: ")) {
+                    lore.set(i, lore.get(i).replace(String.valueOf(oldDurability), String.valueOf(newDurability)));
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Gets the BlockFace of the block the entity is currently targeting.
+     *
+     * @param entity the entity whose targeted blocks' BlockFace is to be checked.
+     * @return the BlockFace of the targeted block, or null if the targeted block is non-occluding.
+     */
+    public static BlockFace getBlockFace(LivingEntity entity) {
+        List<Block> lastTwoTargetBlocks = entity.getLastTwoTargetBlocks(null, 100);
+        if (lastTwoTargetBlocks.size() != 2 || !lastTwoTargetBlocks.get(1).getType().isOccluding()) return null;
+        Block targetBlock = lastTwoTargetBlocks.get(1);
+        Block adjacentBlock = lastTwoTargetBlocks.get(0);
+        return targetBlock.getFace(adjacentBlock);
+    }
 }

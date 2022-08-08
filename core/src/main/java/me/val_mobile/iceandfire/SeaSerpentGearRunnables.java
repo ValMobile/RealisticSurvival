@@ -25,10 +25,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class SeaSerpentGearRunnables {
 
     private final RealisticSurvivalPlugin plugin;
-    private final Utils util;
+
     public SeaSerpentGearRunnables(RealisticSurvivalPlugin plugin) {
         this.plugin = plugin;
-        util = new Utils(plugin);
     }
 
     public void updateTideGuardianArmor(Player player) {

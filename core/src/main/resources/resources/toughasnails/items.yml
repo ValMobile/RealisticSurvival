@@ -2,7 +2,9 @@
 #          Tough as Nails Items       #
 #######################################
 
-# For dev use only, do NOT edit anything
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
+# Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
 ice_cube:
   Material: "PRISMARINE_SHARD"
@@ -28,6 +30,9 @@ wool_hood:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 22
+    rsvmaxdurability: 22
 wool_jacket:
   Material: "LEATHER_CHESTPLATE"
   DisplayName: "&fWool Jacket"
@@ -36,6 +41,9 @@ wool_jacket:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 22
+    rsvmaxdurability: 22
 wool_pants:
   Material: "LEATHER_LEGGINGS"
   DisplayName: "&fWool Pants"
@@ -44,6 +52,9 @@ wool_pants:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 22
+    rsvmaxdurability: 22
 wool_boots:
   Material: "LEATHER_BOOTS"
   DisplayName: "&fWool Boots"
@@ -52,6 +63,9 @@ wool_boots:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 22
+    rsvmaxdurability: 22
 jelled_slime_helmet:
   Material: "LEATHER_HELMET"
   DisplayName: "&fJelled Slime Helmet"
@@ -60,6 +74,9 @@ jelled_slime_helmet:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 22
+    rsvmaxdurability: 22
 jelled_slime_chestplate:
   Material: "LEATHER_CHESTPLATE"
   DisplayName: "&fJelled Slime Chestplate"
@@ -68,6 +85,9 @@ jelled_slime_chestplate:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 22
+    rsvmaxdurability: 22
 jelled_slime_leggings:
   Material: "LEATHER_LEGGINGS"
   DisplayName: "&fJelled Slime Leggings"
@@ -76,6 +96,9 @@ jelled_slime_leggings:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 22
+    rsvmaxdurability: 22
 jelled_slime_boots:
   Material: "LEATHER_BOOTS"
   DisplayName: "&fJelled Slime Boots"
@@ -84,6 +107,9 @@ jelled_slime_boots:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 22
+    rsvmaxdurability: 22
 juice_apple:
   Material: "POTION"
   DisplayName: "&fApple Juice"
@@ -167,3 +193,25 @@ water_bottle:
   Material: "POTION"
   DisplayName: "&fWater Bottle"
   Color: "BLUE"
+canteen_empty:
+  Material: "GLASS_BOTTLE"
+  DisplayName: "&fEmpty Canteen"
+  CustomModelData: 83650
+  Lore:
+    - "Drink: None"
+    - "Durability: &90&7/&95"
+  NBTTags:
+    rsvdrink: "None"
+    rsvdurability: 0
+    rsvmaxdurability: 5
+canteen_filled:
+  Material: "POTION"
+  DisplayName: "&fFilled Canteen"
+  CustomModelData: 83650
+  Lore:
+    - "Drink: Water"
+    - "&98&7/&95"
+  NBTTags:
+    rsvdrink: "Water"
+    rsvdurability: 5
+    rsvmaxdurability: 5

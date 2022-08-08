@@ -2,11 +2,12 @@ package me.val_mobile.tan;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 import java.util.UUID;
 
-public class ThirstChangeEvent {
+public class ThirstChangeEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
     private UUID id;

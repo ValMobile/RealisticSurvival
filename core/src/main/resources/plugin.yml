@@ -5,8 +5,7 @@ author: Val_Mobile
 description: ${project.description}
 website: ${project.url}
 api-version: 1.16
-depend: [FastAsyncWorldEdit]
-softdepend: [RealisticSeasons]
+softdepend: [RealisticSeasons], [FastAsyncWorldEdit]
 
 commands:
   RealisticSurvival:
@@ -58,6 +57,9 @@ permissions:
   realisticsurvival.command.spawnitem:
     description: Allows users to spawn items from the plugin
     default: op
+  realisticsurvival.command.spawnmob:
+    description: Allows users to spawn mobs from the plugin
+    default: op
   realisticsurvival.command.reload:
     description: Allows users to reload the plugin
     default: op
@@ -69,16 +71,17 @@ permissions:
     default: op
   realisticsurvival.command.help:
     description: Allows users to access the help command
-    default: op
+    default: not op
   realisticsurvival.command.version:
     description: Allows users to access the plugin version
-    default: op
+    default: not op
   realisticsurvival.command.*:
     description: Wildcard permission
     default: op
     children:
       realisticsurvival.command.give: true
       realisticsurvival.command.spawnitem: true
+      realisticsurvival.command.spawnmob: true
       realisticsurvival.command.reload: true
       realisticsurvival.command.thirst: true
       realisticsurvival.command.temperature: true

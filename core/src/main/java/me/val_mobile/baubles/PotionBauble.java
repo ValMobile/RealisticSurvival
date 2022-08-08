@@ -16,6 +16,7 @@
  */
 package me.val_mobile.baubles;
 
+import me.val_mobile.data.RSVModule;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.potion.PotionEffectType;
@@ -31,7 +32,7 @@ public class PotionBauble extends Tickable {
     public PotionBauble(String name) {
         super(name);
 
-        FileConfiguration config = RSVFiles.getBaubleUserConfig();
+        FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
         ConfigurationSection section = config.getConfigurationSection("Items." + name + ".Effects");
         Set<String> keys = section.getKeys(false);
 

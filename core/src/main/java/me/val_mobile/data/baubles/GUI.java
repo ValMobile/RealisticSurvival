@@ -18,10 +18,6 @@ public abstract class GUI {
         inv = Bukkit.createInventory(player, size, name);
     }
 
-    public ItemStack getBauble(BaubleSlot baubleSlot) {
-        return inv.getItem(baubleSlot.getValue());
-    }
-
     public Collection<ItemStack> getDisallowedItems() {
         return disallowedItems;
     }

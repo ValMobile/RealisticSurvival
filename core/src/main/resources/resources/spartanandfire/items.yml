@@ -2,7 +2,9 @@
 #          Spartan and Fire Items     #
 #######################################
 
-# For dev use only, do NOT edit anything
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
+# Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
 dragonbone_rapier:
   Material: "DIAMOND_SWORD"
@@ -14,6 +16,9 @@ dragonbone_rapier:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_katana:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Katana"
@@ -24,6 +29,9 @@ dragonbone_katana:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Greatsword"
@@ -34,6 +42,9 @@ dragonbone_greatsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Longsword"
@@ -44,6 +55,9 @@ dragonbone_longsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Spear"
@@ -54,6 +68,9 @@ dragonbone_spear:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Saber"
@@ -64,6 +81,9 @@ dragonbone_saber:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Boomerang"
@@ -74,6 +94,9 @@ dragonbone_boomerang:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Dagger"
@@ -84,6 +107,9 @@ dragonbone_dagger:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Glaive"
@@ -94,6 +120,9 @@ dragonbone_glaive:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Halberd"
@@ -104,6 +133,9 @@ dragonbone_halberd:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Hammer"
@@ -114,6 +146,9 @@ dragonbone_hammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Javelin"
@@ -124,6 +159,9 @@ dragonbone_javelin:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Lance"
@@ -134,6 +172,9 @@ dragonbone_lance:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Flanged Mace"
@@ -144,6 +185,9 @@ dragonbone_mace:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Pike"
@@ -154,6 +198,9 @@ dragonbone_pike:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Quarterstaff"
@@ -164,6 +211,9 @@ dragonbone_quarterstaff:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Tomahawk"
@@ -174,6 +224,9 @@ dragonbone_tomahawk:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Throwing Knife"
@@ -184,6 +237,9 @@ dragonbone_throwing_knife:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Warhammer"
@@ -194,6 +250,9 @@ dragonbone_warhammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fDragonbone Battleaxe"
@@ -204,6 +263,9 @@ dragonbone_battleaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 1660
+    rsvmaxdurability: 1660
 dragonbone_longbow:
   Material: "BOW"
   DisplayName: "&fDragonbone-Strengthened Longbow"
@@ -214,6 +276,8 @@ dragonbone_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2490
 dragonbone_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fDragonbone-Strengthened Crossbow"
@@ -224,6 +288,8 @@ dragonbone_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2490
 dragonbone_flamed_rapier:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Rapier"
@@ -246,6 +312,9 @@ dragonbone_flamed_katana:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Greatsword"
@@ -257,6 +326,9 @@ dragonbone_flamed_greatsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Longsword"
@@ -268,6 +340,9 @@ dragonbone_flamed_longsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Spear"
@@ -279,6 +354,9 @@ dragonbone_flamed_spear:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Saber"
@@ -290,6 +368,9 @@ dragonbone_flamed_saber:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Boomerang"
@@ -301,6 +382,9 @@ dragonbone_flamed_boomerang:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Dagger"
@@ -312,6 +396,9 @@ dragonbone_flamed_dagger:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Glaive"
@@ -323,6 +410,9 @@ dragonbone_flamed_glaive:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Halberd"
@@ -334,6 +424,9 @@ dragonbone_flamed_halberd:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Hammer"
@@ -345,6 +438,9 @@ dragonbone_flamed_hammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Javelin"
@@ -356,6 +452,9 @@ dragonbone_flamed_javelin:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Lance"
@@ -367,6 +466,9 @@ dragonbone_flamed_lance:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Flanged Mace"
@@ -378,6 +480,9 @@ dragonbone_flamed_mace:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Pike"
@@ -389,6 +494,9 @@ dragonbone_flamed_pike:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Quarterstaff"
@@ -400,6 +508,9 @@ dragonbone_flamed_quarterstaff:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Tomahawk"
@@ -411,6 +522,9 @@ dragonbone_flamed_tomahawk:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Throwing Knife"
@@ -422,6 +536,9 @@ dragonbone_flamed_throwing_knife:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Warhammer"
@@ -433,6 +550,9 @@ dragonbone_flamed_warhammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fFlamed Dragonbone Battleaxe"
@@ -444,6 +564,9 @@ dragonbone_flamed_battleaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_flamed_longbow:
   Material: "BOW"
   DisplayName: "&fFlamed Dragonbone-Strengthened Longbow"
@@ -455,6 +578,8 @@ dragonbone_flamed_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 3000
 dragonbone_flamed_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fFlamed Dragonbone-Strengthened Crossbow"
@@ -466,6 +591,8 @@ dragonbone_flamed_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 3000
 dragonbone_iced_rapier:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Rapier"
@@ -477,6 +604,9 @@ dragonbone_iced_rapier:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_katana:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Katana"
@@ -488,6 +618,9 @@ dragonbone_iced_katana:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Greatsword"
@@ -499,6 +632,9 @@ dragonbone_iced_greatsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Longsword"
@@ -510,6 +646,9 @@ dragonbone_iced_longsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Spear"
@@ -521,6 +660,9 @@ dragonbone_iced_spear:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Saber"
@@ -532,6 +674,9 @@ dragonbone_iced_saber:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Boomerang"
@@ -543,6 +688,9 @@ dragonbone_iced_boomerang:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Dagger"
@@ -554,6 +702,9 @@ dragonbone_iced_dagger:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Glaive"
@@ -565,6 +716,9 @@ dragonbone_iced_glaive:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Halberd"
@@ -576,6 +730,9 @@ dragonbone_iced_halberd:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Hammer"
@@ -587,6 +744,9 @@ dragonbone_iced_hammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Javelin"
@@ -598,6 +758,9 @@ dragonbone_iced_javelin:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Lance"
@@ -609,6 +772,9 @@ dragonbone_iced_lance:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Flanged Mace"
@@ -620,6 +786,9 @@ dragonbone_iced_mace:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Pike"
@@ -631,6 +800,9 @@ dragonbone_iced_pike:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Quarterstaff"
@@ -642,6 +814,9 @@ dragonbone_iced_quarterstaff:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Tomahawk"
@@ -653,6 +828,9 @@ dragonbone_iced_tomahawk:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Throwing Knife"
@@ -664,6 +842,9 @@ dragonbone_iced_throwing_knife:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Warhammer"
@@ -675,6 +856,9 @@ dragonbone_iced_warhammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fIced Dragonbone Battleaxe"
@@ -686,6 +870,9 @@ dragonbone_iced_battleaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_iced_longbow:
   Material: "BOW"
   DisplayName: "&fIced Dragonbone-Strengthened Longbow"
@@ -697,6 +884,8 @@ dragonbone_iced_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 3000
 dragonbone_iced_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fIced Dragonbone-Strengthened Crossbow"
@@ -708,6 +897,8 @@ dragonbone_iced_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 3000
 dragonbone_lightning_rapier:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Rapier"
@@ -719,6 +910,9 @@ dragonbone_lightning_rapier:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_katana:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Katana"
@@ -730,6 +924,9 @@ dragonbone_lightning_katana:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Greatsword"
@@ -741,6 +938,9 @@ dragonbone_lightning_greatsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Longsword"
@@ -752,6 +952,9 @@ dragonbone_lightning_longsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Spear"
@@ -763,6 +966,9 @@ dragonbone_lightning_spear:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Saber"
@@ -774,6 +980,9 @@ dragonbone_lightning_saber:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Boomerang"
@@ -785,6 +994,9 @@ dragonbone_lightning_boomerang:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Dagger"
@@ -796,6 +1008,9 @@ dragonbone_lightning_dagger:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Glaive"
@@ -807,6 +1022,9 @@ dragonbone_lightning_glaive:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Halberd"
@@ -818,6 +1036,9 @@ dragonbone_lightning_halberd:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Hammer"
@@ -829,6 +1050,9 @@ dragonbone_lightning_hammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Javelin"
@@ -840,6 +1064,9 @@ dragonbone_lightning_javelin:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Lance"
@@ -851,6 +1078,9 @@ dragonbone_lightning_lance:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Flanged Mace"
@@ -862,6 +1092,9 @@ dragonbone_lightning_mace:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Pike"
@@ -873,6 +1106,9 @@ dragonbone_lightning_pike:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Quarterstaff"
@@ -884,6 +1120,9 @@ dragonbone_lightning_quarterstaff:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Tomahawk"
@@ -895,6 +1134,9 @@ dragonbone_lightning_tomahawk:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Throwing Knife"
@@ -906,6 +1148,9 @@ dragonbone_lightning_throwing_knife:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Warhammer"
@@ -917,6 +1162,9 @@ dragonbone_lightning_warhammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fLightning Dragonbone Battleaxe"
@@ -928,6 +1176,9 @@ dragonbone_lightning_battleaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2000
+    rsvmaxdurability: 2000
 dragonbone_lightning_longbow:
   Material: "BOW"
   DisplayName: "&fLightning Dragonbone-Strengthened Longbow"
@@ -939,6 +1190,8 @@ dragonbone_lightning_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 3000
 dragonbone_lightning_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fLightning Dragonbone-Strengthened Crossbow"
@@ -950,6 +1203,8 @@ dragonbone_lightning_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 3000
 dragonsteel_fire_rapier:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Rapier"
@@ -961,6 +1216,9 @@ dragonsteel_fire_rapier:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_katana:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Katana"
@@ -972,6 +1230,9 @@ dragonsteel_fire_katana:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_greatsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Greatsword"
@@ -983,6 +1244,9 @@ dragonsteel_fire_greatsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_longsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Longsword"
@@ -994,6 +1258,9 @@ dragonsteel_fire_longsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_spear:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Spear"
@@ -1005,6 +1272,9 @@ dragonsteel_fire_spear:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_saber:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Saber"
@@ -1016,6 +1286,9 @@ dragonsteel_fire_saber:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_boomerang:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Boomerang"
@@ -1027,6 +1300,9 @@ dragonsteel_fire_boomerang:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_dagger:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Dagger"
@@ -1038,6 +1314,9 @@ dragonsteel_fire_dagger:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_glaive:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Glaive"
@@ -1049,6 +1328,9 @@ dragonsteel_fire_glaive:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_halberd:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Halberd"
@@ -1060,6 +1342,9 @@ dragonsteel_fire_halberd:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_hammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Hammer"
@@ -1071,6 +1356,9 @@ dragonsteel_fire_hammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_javelin:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Javelin"
@@ -1082,6 +1370,9 @@ dragonsteel_fire_javelin:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_lance:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Lance"
@@ -1093,6 +1384,9 @@ dragonsteel_fire_lance:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_mace:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Flanged Mace"
@@ -1104,6 +1398,9 @@ dragonsteel_fire_mace:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_pike:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Pike"
@@ -1115,6 +1412,9 @@ dragonsteel_fire_pike:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_quarterstaff:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Quarterstaff"
@@ -1126,6 +1426,9 @@ dragonsteel_fire_quarterstaff:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_tomahawk:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Tomahawk"
@@ -1137,6 +1440,9 @@ dragonsteel_fire_tomahawk:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_throwing_knife:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Throwing Knife"
@@ -1148,6 +1454,9 @@ dragonsteel_fire_throwing_knife:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_warhammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Warhammer"
@@ -1159,6 +1468,9 @@ dragonsteel_fire_warhammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_battleaxe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fFire Dragonsteel Battleaxe"
@@ -1170,6 +1482,9 @@ dragonsteel_fire_battleaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_fire_longbow:
   Material: "BOW"
   DisplayName: "&fFire Dragonsteel-Strengthened Longbow"
@@ -1181,6 +1496,9 @@ dragonsteel_fire_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 9000
+    rsvmaxdurability: 9000
 dragonsteel_fire_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fFire Dragonsteel-Strengthened Crossbow"
@@ -1192,6 +1510,9 @@ dragonsteel_fire_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 9000
+    rsvmaxdurability: 9000
 dragonsteel_ice_rapier:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Rapier"
@@ -1203,6 +1524,9 @@ dragonsteel_ice_rapier:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_katana:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Katana"
@@ -1214,6 +1538,9 @@ dragonsteel_ice_katana:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_greatsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Greatsword"
@@ -1225,6 +1552,9 @@ dragonsteel_ice_greatsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_longsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Longsword"
@@ -1236,6 +1566,9 @@ dragonsteel_ice_longsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_spear:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Spear"
@@ -1247,6 +1580,9 @@ dragonsteel_ice_spear:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_saber:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Saber"
@@ -1258,6 +1594,9 @@ dragonsteel_ice_saber:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_boomerang:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Boomerang"
@@ -1269,6 +1608,9 @@ dragonsteel_ice_boomerang:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_dagger:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Dagger"
@@ -1280,6 +1622,9 @@ dragonsteel_ice_dagger:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_glaive:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Glaive"
@@ -1291,6 +1636,9 @@ dragonsteel_ice_glaive:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_halberd:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Halberd"
@@ -1302,6 +1650,9 @@ dragonsteel_ice_halberd:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_hammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Hammer"
@@ -1313,6 +1664,9 @@ dragonsteel_ice_hammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_javelin:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Javelin"
@@ -1324,6 +1678,9 @@ dragonsteel_ice_javelin:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_lance:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Lance"
@@ -1335,6 +1692,9 @@ dragonsteel_ice_lance:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_mace:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Flanged Mace"
@@ -1346,6 +1706,9 @@ dragonsteel_ice_mace:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_pike:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Pike"
@@ -1357,6 +1720,9 @@ dragonsteel_ice_pike:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_quarterstaff:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Quarterstaff"
@@ -1368,6 +1734,9 @@ dragonsteel_ice_quarterstaff:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_tomahawk:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Tomahawk"
@@ -1379,6 +1748,9 @@ dragonsteel_ice_tomahawk:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_throwing_knife:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Throwing Knife"
@@ -1390,6 +1762,9 @@ dragonsteel_ice_throwing_knife:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_warhammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Warhammer"
@@ -1401,6 +1776,9 @@ dragonsteel_ice_warhammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_battleaxe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fIce Dragonsteel Battleaxe"
@@ -1412,6 +1790,9 @@ dragonsteel_ice_battleaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_ice_longbow:
   Material: "BOW"
   DisplayName: "&fIce Dragonsteel-Strengthened Longbow"
@@ -1423,6 +1804,9 @@ dragonsteel_ice_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 9000
+    rsvmaxdurability: 9000
 dragonsteel_ice_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fIce Dragonsteel-Strengthened Crossbow"
@@ -1434,6 +1818,9 @@ dragonsteel_ice_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 9000
+    rsvmaxdurability: 9000
 dragonsteel_lightning_rapier:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Rapier"
@@ -1445,6 +1832,9 @@ dragonsteel_lightning_rapier:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_katana:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Katana"
@@ -1456,6 +1846,9 @@ dragonsteel_lightning_katana:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_greatsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Greatsword"
@@ -1467,6 +1860,9 @@ dragonsteel_lightning_greatsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_longsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Longsword"
@@ -1478,6 +1874,9 @@ dragonsteel_lightning_longsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_spear:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Spear"
@@ -1489,6 +1888,9 @@ dragonsteel_lightning_spear:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_saber:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Saber"
@@ -1500,6 +1902,9 @@ dragonsteel_lightning_saber:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_boomerang:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Boomerang"
@@ -1511,6 +1916,9 @@ dragonsteel_lightning_boomerang:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_dagger:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Dagger"
@@ -1522,6 +1930,9 @@ dragonsteel_lightning_dagger:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_glaive:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Glaive"
@@ -1533,6 +1944,9 @@ dragonsteel_lightning_glaive:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_halberd:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Halberd"
@@ -1544,6 +1958,9 @@ dragonsteel_lightning_halberd:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_hammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Hammer"
@@ -1555,6 +1972,9 @@ dragonsteel_lightning_hammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_javelin:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Javelin"
@@ -1566,6 +1986,9 @@ dragonsteel_lightning_javelin:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_lance:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Lance"
@@ -1577,6 +2000,9 @@ dragonsteel_lightning_lance:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_mace:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Flanged Mace"
@@ -1588,6 +2014,9 @@ dragonsteel_lightning_mace:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_pike:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Pike"
@@ -1599,6 +2028,9 @@ dragonsteel_lightning_pike:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_quarterstaff:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Quarterstaff"
@@ -1610,6 +2042,9 @@ dragonsteel_lightning_quarterstaff:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_tomahawk:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Tomahawk"
@@ -1621,6 +2056,9 @@ dragonsteel_lightning_tomahawk:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_throwing_knife:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Throwing Knife"
@@ -1632,6 +2070,9 @@ dragonsteel_lightning_throwing_knife:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_warhammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Warhammer"
@@ -1643,6 +2084,9 @@ dragonsteel_lightning_warhammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_battleaxe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fLightning Dragonsteel Battleaxe"
@@ -1654,6 +2098,9 @@ dragonsteel_lightning_battleaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 8000
+    rsvmaxdurability: 8000
 dragonsteel_lightning_longbow:
   Material: "BOW"
   DisplayName: "&fLightning Dragonsteel-Strengthened Longbow"
@@ -1665,6 +2112,9 @@ dragonsteel_lightning_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 9000
+    rsvmaxdurability: 9000
 dragonsteel_lightning_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fLightning Dragonsteel-Strengthened Crossbow"
@@ -1676,12 +2126,15 @@ dragonsteel_lightning_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 9000
+    rsvmaxdurability: 9000
 witherbone_handle:
-  Material: "STICK"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fWitherbone Handle"
-  CustomModelData: 83652
+  CustomModelData: 83727
 witherbone_pole:
-  Material: "STICK"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fWitherbone Pole"
-  CustomModelData: 83653
+  CustomModelData: 83728
 

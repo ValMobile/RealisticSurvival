@@ -1,5 +1,6 @@
 package me.val_mobile.baubles;
 
+import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.data.baubles.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
@@ -12,7 +13,7 @@ public class ScarliteRingTask extends BukkitRunnable {
 
     private final RSVPlayer rsvPlayer;
     private final RealisticSurvivalPlugin plugin;
-    private final FileConfiguration config = RSVFiles.getBaubleUserConfig();
+    private final FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
     private double defaultHealAmount = config.getDouble("Items.scarlite_ring.HealAmount");
 
     public ScarliteRingTask(RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
@@ -45,7 +46,9 @@ public class ScarliteRingTask extends BukkitRunnable {
     }
 
     public void startRunnable() {
-        int tickSpeed = RSVFiles.getBaubleUserConfig().getInt("Items.scarlite_ring.TickTime"); // get the tick speed
+        FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
+
+        int tickSpeed = config.getInt("Items.scarlite_ring.TickTime"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 }

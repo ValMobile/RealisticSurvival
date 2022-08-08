@@ -2,16 +2,18 @@
 #          Spartan Weaponry Items     #
 #######################################
 
-# For dev use only, do NOT edit anything
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
+# Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
 handle:
-  Material: "STICK"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fHandle"
-  CustomModelData: 83650
+  CustomModelData: 83725
 pole:
-  Material: "STICK"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fPole"
-  CustomModelData: 83651
+  CustomModelData: 83726
 netherite_rapier:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Rapier"
@@ -222,6 +224,9 @@ netherite_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2600
+    rsvmaxdurability: 2600
 netherite_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fNetherite-Strengthened Crossbow"
@@ -232,6 +237,9 @@ netherite_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2600
+    rsvmaxdurability: 2600
 diamond_rapier:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Rapier"
@@ -442,6 +450,9 @@ diamond_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2341
+    rsvmaxdurability: 2341
 diamond_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fDiamond-Strengthened Crossbow"
@@ -452,6 +463,9 @@ diamond_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 2341
+    rsvmaxdurability: 2341
 iron_rapier:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Rapier"
@@ -662,6 +676,9 @@ iron_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 375
+    rsvmaxdurability: 375
 iron_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fIron-Strengthened Crossbow"
@@ -672,6 +689,9 @@ iron_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 375
+    rsvmaxdurability: 375
 gold_rapier:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Rapier"
@@ -882,6 +902,9 @@ gold_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 32
+    rsvmaxdurability: 32
 gold_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fGolden-Strengthened Crossbow"
@@ -892,6 +915,9 @@ gold_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 32
+    rsvmaxdurability: 32
 stone_rapier:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Rapier"
@@ -1302,6 +1328,9 @@ wooden_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 88
+    rsvmaxdurability: 88
 wooden_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fWooden-Strengthened Crossbow"
@@ -1312,6 +1341,9 @@ wooden_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 88
+    rsvmaxdurability: 88
 wooden_club:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Club"
@@ -1332,6 +1364,9 @@ leather_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 192
+    rsvmaxdurability: 192
 leather_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fLeather-Strengthened Crossbow"
@@ -1342,6 +1377,9 @@ leather_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 192
+    rsvmaxdurability: 192
 copper_rapier:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Rapier"
@@ -1352,6 +1390,9 @@ copper_rapier:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_katana:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Katana"
@@ -1362,6 +1403,9 @@ copper_katana:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_greatsword:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Greatsword"
@@ -1372,6 +1416,9 @@ copper_greatsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_longsword:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Longsword"
@@ -1382,6 +1429,9 @@ copper_longsword:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_spear:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Spear"
@@ -1392,6 +1442,9 @@ copper_spear:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_saber:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Saber"
@@ -1402,6 +1455,9 @@ copper_saber:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_boomerang:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Boomerang"
@@ -1412,6 +1468,9 @@ copper_boomerang:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_dagger:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Dagger"
@@ -1422,6 +1481,9 @@ copper_dagger:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_glaive:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Glaive"
@@ -1432,6 +1494,9 @@ copper_glaive:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_halberd:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Halberd"
@@ -1442,6 +1507,9 @@ copper_halberd:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_hammer:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Hammer"
@@ -1452,6 +1520,9 @@ copper_hammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_javelin:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Javelin"
@@ -1462,6 +1533,9 @@ copper_javelin:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_lance:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Lance"
@@ -1472,6 +1546,9 @@ copper_lance:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_mace:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Flanged Mace"
@@ -1482,6 +1559,9 @@ copper_mace:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_pike:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Pike"
@@ -1492,6 +1572,9 @@ copper_pike:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_quarterstaff:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Quarterstaff"
@@ -1502,6 +1585,9 @@ copper_quarterstaff:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_tomahawk:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Tomahawk"
@@ -1512,6 +1598,9 @@ copper_tomahawk:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_throwing_knife:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Throwing Knife"
@@ -1522,6 +1611,9 @@ copper_throwing_knife:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_warhammer:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Warhammer"
@@ -1532,6 +1624,9 @@ copper_warhammer:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_battleaxe:
   Material: "STONE_AXE"
   DisplayName: "&fCopper Battleaxe"
@@ -1542,6 +1637,9 @@ copper_battleaxe:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 175
+    rsvmaxdurability: 175
 copper_longbow:
   Material: "BOW"
   DisplayName: "&fCopper-Strengthened Longbow"
@@ -1552,6 +1650,9 @@ copper_longbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 245
+    rsvmaxdurability: 245
 copper_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fCopper-Strengthened Crossbow"
@@ -1562,12 +1663,41 @@ copper_crossbow:
     - "HIDE_ATTRIBUTES"
   Attributes:
     UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 245
+    rsvmaxdurability: 245
 studded_club:
   Material: "IRON_SWORD"
   DisplayName: "&fStudded Club"
   CustomModelData: 83669
   Lore:
     - "LOREPRESET.CLUB"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 250
+    rsvmaxdurability: 250
+cestus:
+  Material: "WOODEN_SWORD"
+  DisplayName: "&fCestus"
+  CustomModelData: 83671
+  Lore:
+    - "LOREPRESET.CESTUS"
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 128
+    rsvmaxdurability: 128
+studded_cestus:
+  Material: "IRON_SWORD"
+  DisplayName: "&fStudded Cestus"
+  CustomModelData: 83670
+  Lore:
+    - "LOREPRESET.CESTUS"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:

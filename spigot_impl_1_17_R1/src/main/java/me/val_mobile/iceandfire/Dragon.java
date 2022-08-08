@@ -55,12 +55,12 @@ public abstract class Dragon extends EntityEnderDragon {
 
         Random r = new Random();
 
-        this.moduleItems = RSVModule.getModules().get("IceandFire").getModuleItems();;
+        this.moduleItems = RSVModule.getModule("IceandFire").getModuleItems();;
         this.breed = breed;
-        this.stage = (int) Math.round(r.nextDouble() * 4) + 1;
-        this.age = this.stage * 100 + (int) Math.round(r.nextDouble() * 99);
+        this.stage = (int) Math.round(Math.random() * 4) + 1;
+        this.age = this.stage * 100 + (int) Math.round(Math.random() * 99);
 
-        this.gender = ((int) Math.round(r.nextDouble()) == 1) ? Gender.MALE : Gender.FEMALE;
+        this.gender = ((int) Math.round(Math.random()) == 1) ? Gender.MALE : Gender.FEMALE;
 
         this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalizeFirstLetter(variant.toString()) + " Dragon"));
         this.setCustomNameVisible(false);
@@ -75,12 +75,12 @@ public abstract class Dragon extends EntityEnderDragon {
 
         Random r = new Random();
 
-        this.moduleItems = RSVModule.getModules().get("IceandFire").getModuleItems();;
+        this.moduleItems = RSVModule.getModule("IceandFire").getModuleItems();;
         this.breed = breed;
         this.stage = stage;
-        this.age = this.stage * 100 + (int) Math.round(r.nextDouble() * 99);
+        this.age = this.stage * 100 + (int) Math.round(Math.random() * 99);
 
-        this.gender = ((int) Math.round(r.nextDouble()) == 1) ? Gender.MALE : Gender.FEMALE;
+        this.gender = ((int) Math.round(Math.random()) == 1) ? Gender.MALE : Gender.FEMALE;
 
         this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalizeFirstLetter(variant.toString()) + " Dragon"));
         this.setCustomNameVisible(false);

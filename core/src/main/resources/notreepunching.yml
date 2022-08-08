@@ -2,6 +2,8 @@
 #          No Tree Punching           #
 #######################################
 
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
 # Customize messages
 Initialize:
   Enabled: true
@@ -12,104 +14,896 @@ Shutdown:
 
 # Customize the No Tree Punching features
 
-# The wooden blocks that should not be broken by fist
-# Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
-WoodBlocks:
-  - "OAK_LOG"
-  - "OAK_WOOD"
-  - "STRIPPED_OAK_LOG"
-  - "STRIPPED_OAK_WOOD"
-  - "BIRCH_LOG"
-  - "BIRCH_WOOD"
-  - "STRIPPED_BIRCH_LOG"
-  - "STRIPPED_BIRCH_WOOD"
-  - "SPRUCE_LOG"
-  - "SPRUCE_WOOD"
-  - "STRIPPED_SPRUCE_LOG"
-  - "STRIPPED_SPRUCE_WOOD"
-  - "DARK_OAK_LOG"
-  - "DARK_OAK_WOOD"
-  - "STRIPPED_DARK_OAK_LOG"
-  - "STRIPPED_DARK_OAK_WOOD"
-  - "JUNGLE_LOG"
-  - "JUNGLE_WOOD"
-  - "STRIPPED_JUNGLE_LOG"
-  - "STRIPPED_JUNGLE_WOOD"
-  - "CRIMSON_STEM"
-  - "CRIMSON_HYPHAE"
-  - "STRIPPED_CRIMSON_STEM"
-  - "STRIPPED_CRIMSON_HYPHAE"
-  - "WARPED_STEM"
-  - "WARPED_HYPHAE"
-  - "STRIPPED_WARPED_STEM"
-  - "STRIPPED_WARPED_HYPHAE"
+PreventPunchingWood:
+  Enabled: true
+  # The wooden blocks that should not be broken by fist
+  # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Tag.html
+  WoodBlocks:
+    - "OAK_LOG"
+    - "OAK_WOOD"
+    - "OAK_PLANKS"
+    - "STRIPPED_OAK_LOG"
+    - "STRIPPED_OAK_WOOD"
+    - "BIRCH_LOG"
+    - "BIRCH_WOOD"
+    - "BIRCH_PLANKS"
+    - "STRIPPED_BIRCH_LOG"
+    - "STRIPPED_BIRCH_WOOD"
+    - "SPRUCE_LOG"
+    - "SPRUCE_WOOD"
+    - "SPRUCE_PLANKS"
+    - "STRIPPED_SPRUCE_LOG"
+    - "STRIPPED_SPRUCE_WOOD"
+    - "DARK_OAK_LOG"
+    - "DARK_OAK_WOOD"
+    - "DARK_OAK_PLANKS"
+    - "STRIPPED_DARK_OAK_LOG"
+    - "STRIPPED_DARK_OAK_WOOD"
+    - "JUNGLE_LOG"
+    - "JUNGLE_WOOD"
+    - "JUNGLE_PLANKS"
+    - "STRIPPED_JUNGLE_LOG"
+    - "STRIPPED_JUNGLE_WOOD"
+    - "CRIMSON_STEM"
+    - "CRIMSON_HYPHAE"
+    - "CRIMSON_PLANKS"
+    - "STRIPPED_CRIMSON_STEM"
+    - "STRIPPED_CRIMSON_HYPHAE"
+    - "WARPED_STEM"
+    - "WARPED_HYPHAE"
+    - "WARPED_PLANKS"
+    - "STRIPPED_WARPED_STEM"
+    - "STRIPPED_WARPED_HYPHAE"
+    - "MANGROVE_LOG"
+    - "MANGROVE_WOOD"
+    - "MANGROVE_PLANKS"
+    - "STRIPPED_MANGROVE_LOG"
+    - "STRIPPED_MANGROVE_WOOD"
+
+RemoveVanillaPlankRecipes:
+  Enabled: true
+  AxePlankChance: 0.4       # Chance to break a log into planks when right-clicking a log with an axe
+  BlockDrops:
+    Type: "Range"
+    MinAmount: 2
+    MaxAmount: 4
+
+RemoveVanillaCampfireRecipes:
+  Enabled: true             # Right-click and hold the fire starter over the fuel and kindling to create campfires
+  Time: 300                 # Time needed to create a campfire
+  MaxDistance: 0.4          # Maximum distance that the fuel and kindling items can be from one another
+  BurningSound:
+    Enabled: true
+    Chance: 0.15  # Probability every "TickSpeed" that a burning sound will be made
+    Sound: "BLOCK_LAVA_EXTINGUISH"
+    Volume: 0.5
+    Pitch: 1.0
+  EmitParticles:
+    Enabled: true
+    Chance: 0.15  # Probability every "TickSpeed" that a particle will be emitted
+    Particle: "SMOKE_NORMAL"
+    MinCount: 1
+    MaxCount: 3
+    x-Offset: 0.2
+    y-Offset: 0.2
+    z-Offset: 0.2
+  Fuel:
+    Required: true
+    Amount: 1
+    Materials:
+      - "LOGS"
+      - "PLANKS"
+  Kindling:
+    Required: true
+    Amount: 3
+    Materials:
+      - "STICK"
+      - "SAPLINGS"
+      - "STRING"
+  SoulItems:                # Required in addition to the above items to create soul campfires
+    Amount: 1
+    Materials:
+      - "SOUL_SAND"
+      - "SOUL_SOIL"
+
+Pottery:
+  RemoveFlowerPotRecipe: true
+  CeramicLavaBucketMelting:
+    Enabled: true
+    TickSpeed: 5
+    Time: 160       # Time it takes for the ceramic lava bucket to melt and disappear in ticks
+    BurningSound:
+      Enabled: true
+      Chance: 0.15  # Probability every "TickSpeed" that a burning sound will be made
+      Sound: "BLOCK_LAVA_EXTINGUISH"
+      Volume: 0.5
+      Pitch: 1.0
+    EmitParticles:
+      Enabled: true
+      Chance: 0.15  # Probability every "TickSpeed" that a particle will be emitted
+      Particle: "SMOKE_NORMAL"
+      MinCount: 1
+      MaxCount: 3
+      x-Offset: 0.2
+      y-Offset: 0.2
+      z-Offset: 0.2
+
+FlintKnapping:
+  Enabled: true
+  BlockDrops: # What blocks can flint knapping occur on?
+    STONE:
+      Type: "Common"
+      Chance: 0.3
+      Sound:
+        Enabled: true
+        Sound: "knapping"
+        Volume: 0.5
+        Pitch: 1.0
+    BLACKSTONE:
+      Type: "Common"
+      Chance: 0.3
+      Sound:
+        Enabled: true
+        Sound: "knapping"
+        Volume: 0.5
+        Pitch: 1.0
+    DEEPSLATE:
+      Type: "Common"
+      Chance: 0.3
+      Sound:
+        Enabled: true
+        Sound: "knapping"
+        Volume: 0.5
+        Pitch: 1.0
+
+PlantFiberGathering:
+  Enabled: true
+  # Customize weapon traits of flint gear and drop chance of plant fiber
+  # Breaking grass with any dagger and throwing knife can drop plant fiber in addition to the regular knives
+  # 25% = 0.25
+  BlockDrops: # What blocks should be counted as grass
+    TALL_GRASS:
+      Type: "Common"
+      Chance: 0.25
+    GRASS:
+      Type: "Common"
+      Chance: 0.25
+    FERN:
+      Type: "Common"
+      Chance: 0.25
+    SEAGRASS:
+      Type: "Common"
+      Chance: 0.25
+    TALL_SEAGRASS:
+      Type: "Common"
+      Chance: 0.25
+    CRIMSON_ROOTS:
+      Type: "Common"
+      Chance: 0.25
+    WARPED_ROOTS:
+      Type: "Common"
+      Chance: 0.25
 
 Items:
   flint_hatchet:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 1.0
   flint_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.0
       AttackSpeed: 3.0
+  golden_knife:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 2.0
+      AttackSpeed: 3.0
+  iron_knife:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 3.0
+      AttackSpeed: 3.0
+  diamond_knife:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 3.0
+  netherite_knife:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 5.0
+      AttackSpeed: 3.0
   flint_pickaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.5
       AttackSpeed: 2.5
   flint_shovel:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 2.4
   flint_hoe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.0
       AttackSpeed: 2.6
   plant_fiber:
-    Enabled: true
-    # Customize weapon traits of flint gear and drop chance of plant fiber
-    # Breaking grass with any dagger and throwing knive can drop plant fiber in addition to the regular flint knife
-    # 25% = 0.25
-    BlockDrops:         # What blocks should be counted as grass
-      TALL_GRASS:
-        Type: "Single"
-        Chance: 0.25
-      GRASS:
-        Type: "Single"
-        Chance: 0.25
+    Enabled:
+      EnableAllVersions: true
   plant_string:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
   flint_shard:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
+  golden_saw:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 2.0
+      AttackSpeed: 3.0
+  iron_saw:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 3.0
+      AttackSpeed: 3.0
+  diamond_saw:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 3.0
+  netherite_saw:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 5.0
+      AttackSpeed: 3.0
+  stone_rock:
+    Enabled:
+      EnableAllVersions: true     # If set to false, cobblestone will be acquired normally
     BlockDrops: # What blocks should be counted as stone
       STONE:
-        Type: "Single"
-        Chance: 0.3
-
+        Type: "Range"
+        MinAmount: 2
+        MaxAmount: 4
+  andesite_rock:
+    Enabled:
+      EnableAllVersions: true
+    BlockDrops: # What blocks should be counted as andesite
+      ANDESITE:
+        Type: "Range"
+        MinAmount: 2
+        MaxAmount: 4
+  granite_rock:
+    Enabled:
+      EnableAllVersions: true
+    BlockDrops: # What blocks should be counted as granite
+      GRANITE:
+        Type: "Range"
+        MinAmount: 2
+        MaxAmount: 4
+  diorite_rock:
+    Enabled:
+      EnableAllVersions: true
+    BlockDrops: # What blocks should be counted as diorite
+      DIORITE:
+        Type: "Range"
+        MinAmount: 2
+        MaxAmount: 4
+  sandstone_rock:
+    Enabled:
+      EnableAllVersions: true
+    BlockDrops: # What blocks should be counted as sandstone
+      SANDSTONE:
+        Type: "Range"
+        MinAmount: 2
+        MaxAmount: 4
+  red_sandstone_rock:
+    Enabled:
+      EnableAllVersions: true
+    BlockDrops: # What blocks should be counted as red sandstone
+      RED_SANDSTONE:
+        Type: "Range"
+        MinAmount: 2
+        MaxAmount: 4
+  matchbox:
+    Enabled:
+      EnableAllVersions: true
+    Cooldown: 40
+  fire_starter:
+    Enabled:
+      EnableAllVersions: true
+  golden_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  copper_mattock:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  iron_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  diamond_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  netherite_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  macuahuitl:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  copper_axe:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  copper_pickaxe:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  copper_shovel:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  copper_sword:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  copper_hoe:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  copper_helmet:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+  copper_chestplate:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+  copper_leggings:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+  copper_boots:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Attributes:
+      Armor: 9.0
+      Toughness: 2.0
+  clay_tool:
+    Enabled:
+      EnableAllVersions: true
+  clay_brick:
+    Enabled:
+      EnableAllVersions: true
+  clay_bucket:
+    Enabled:
+      EnableAllVersions: true
+  clay_flower_pot:
+    Enabled:
+      EnableAllVersions: true
+  ceramic_bucket:
+    Enabled:
+      EnableAllVersions: true
+  ceramic_water_bucket:
+    Enabled:
+      EnableAllVersions: true
+  ceramic_lava_bucket:
+    Enabled:
+      EnableAllVersions: true
+  ceramic_milk_bucket:
+    Enabled:
+      EnableAllVersions: true
+  ceramic_tropical_fish_bucket:
+    Enabled:
+      EnableAllVersions: true
+  ceramic_tadpole_bucket:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: false
+        1.17.1: false
+        1.18: false
+        1.18.1: false
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+  ceramic_salmon_bucket:
+    Enabled:
+      EnableAllVersions: true
+  ceramic_pufferfish_bucket:
+    Enabled:
+      EnableAllVersions: true
+  ceramic_powder_snow_bucket:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+  ceramic_axolotl_bucket:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+  ceramic_cod_bucket:
+    Enabled:
+      EnableAllVersions: true
 Recipes:
   flint_hatchet:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   flint_knife:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   flint_pickaxe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   flint_shovel:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   flint_hoe:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   cobblestone:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
     Unlock: true
   plant_string:
-    Enabled: true
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  andesite:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  diorite:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  granite:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  sandstone:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  red_sandstone:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  matchbox:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  fire_starter:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  golden_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  copper_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  iron_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  diamond_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  netherite_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  macuahuitl:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  copper_axe:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Unlock: true
+  copper_pickaxe:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Unlock: true
+  copper_shovel:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Unlock: true
+  copper_sword:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Unlock: true
+  copper_hoe:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Unlock: true
+  copper_helmet:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Unlock: true
+  copper_chestplate:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Unlock: true
+  copper_leggings:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Unlock: true
+  copper_boots:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Unlock: true
+  clay_tool:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  clay_brick:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  clay_bucket:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  clay_flower_pot:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  ceramic_bucket:
+    Enabled:
+      EnableAllVersions: true
     Unlock: true

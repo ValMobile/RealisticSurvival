@@ -39,7 +39,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
 
     public ThrowWeaponTask(RSVModule module, RealisticSurvivalPlugin plugin, Player player, ItemStack itemStack, boolean rotateWeapon, boolean piercing, boolean returnWeapon, Vector vector) {
         this.config = module.getUserConfig().getConfig();
-        this.name = RSVItem.getNameFromItem(itemStack, new Utils(plugin));
+        this.name = RSVItem.getNameFromItem(itemStack);
         this.maxDistance = config.getDouble("Items." + name + ".ThrownAttributes.MaxDistance");
         this.plugin = plugin;
         this.player = player;
@@ -49,7 +49,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
         this.returnWeapon = returnWeapon;
         this.vector = vector;
         this.armorStand = spawnArmorstand(player, itemStack);
-        this.returnWeaponTask = new ReturnWeaponTask(itemStack, armorStand, player);
+        this.returnWeaponTask = new ReturnWeaponTask(module, plugin, itemStack, armorStand, player);
     }
 
     public ArmorStand spawnArmorstand(Player thrower, ItemStack itemStack) {
@@ -135,7 +135,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
 
     public void dropWeaponTask(ArmorStand as, Player player, ItemStack itemStack) {
         Item droppedItem = as.getWorld().dropItem(as.getLocation(), itemStack.clone());
-        Location locInfo = droppedItem.getLocation();
+        Location loc = droppedItem.getLocation();
 
         droppedItem.setOwner(player.getUniqueId()); // only the player who threw can pick up the weapon
         droppedItem.setGlowing(true);
@@ -146,9 +146,9 @@ public class ThrowWeaponTask extends BukkitRunnable {
 
         if (config.getBoolean("WeaponDropped.Enabled")) {
             String message = ChatColor.translateAlternateColorCodes('&', config.getString("WeaponDropped.Message"));
-            message = message.replaceAll("%X-COORD%", String.valueOf((int) locInfo.getX()));
-            message = message.replaceAll("%Y-COORD%", String.valueOf((int) locInfo.getY()));
-            message = message.replaceAll("%Z-COORD%", String.valueOf((int) locInfo.getZ()));
+            message = message.replaceAll("%X-COORD%", String.valueOf((int) loc.getX()));
+            message = message.replaceAll("%Y-COORD%", String.valueOf((int) loc.getY()));
+            message = message.replaceAll("%Z-COORD%", String.valueOf((int) loc.getZ()));
 
             player.sendMessage(message);
         }

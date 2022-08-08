@@ -34,7 +34,6 @@ public class ResourcePackEvents implements Listener {
         Player player = event.getPlayer();
 
         player.setResourcePack(plugin.getConfig().getString("ResourcePack.Url"));
-
     }
 
 }

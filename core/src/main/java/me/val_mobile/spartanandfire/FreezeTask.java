@@ -53,7 +53,7 @@ public class FreezeTask extends BukkitRunnable {
         }
 
         // freeze the entity
-        new Utils(plugin).freezeEntity(entity);
+        RealisticSurvivalPlugin.getUtil().freezeEntity(entity);
 
         // encase the entity with ice
         Location loc = entity.getLocation().clone(); // get the location
@@ -74,8 +74,6 @@ public class FreezeTask extends BukkitRunnable {
 
         // remove the ice block after some time
        unfreezeTask.start();
-
-       new Utils(plugin).freezeEntity(entity);
     }
 
     public void start() {

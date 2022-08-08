@@ -101,7 +101,7 @@ public class DragonWorldGenEvents extends ModuleEvents implements Listener {
                         if (temperature > -0.5) {
                             // generate fire dragon nest
 
-                            if (r.nextDouble() <= 0.1) {
+                            if (Math.random() <= 0.1) {
                                 RSVFiles.getFireDragonNest().paste(loc);
                                 plugin.getLogger().info("X: " + loc.getX() + " Y: " + loc.getY() + " Z: " + loc.getZ());
 //                                FireDragon dragon = new FireDragon(EntityTypes.v, location, 3, plugin);
@@ -112,7 +112,7 @@ public class DragonWorldGenEvents extends ModuleEvents implements Listener {
                         // check if biome is cold
                         else if (temperature <= -0.5) {
                             // generate ice dragon nest
-                            if (r.nextDouble() <= 0.1) {
+                            if (Math.random() <= 0.1) {
 
                                 RSVFiles.getIceDragonNest().paste(loc);
                                 plugin.getLogger().info("X: " + loc.getX() + " Y: " + loc.getY() + " Z: " + loc.getZ());

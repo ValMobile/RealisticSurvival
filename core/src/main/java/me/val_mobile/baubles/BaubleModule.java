@@ -31,7 +31,6 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
 
     public static final String NAME = "Baubles";
 
-    private BaubleAbilities abilities;
     private BaubleEvents events;
 
     public BaubleModule(RealisticSurvivalPlugin plugin) {
@@ -57,9 +56,6 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
 
         events = new BaubleEvents(this, plugin);
 
-        abilities = new BaubleAbilities();;
-
-
         getModuleItems().initialize();
         getModuleRecipes().initialize();
         events.initialize();
@@ -74,10 +70,6 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
 
             plugin.getLogger().info(message);
         }
-    }
-
-    public BaubleAbilities getAbilities() {
-        return abilities;
     }
 
     public BaubleEvents getEvents() {

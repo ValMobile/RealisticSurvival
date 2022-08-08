@@ -32,7 +32,7 @@ public class BaubleChangeEvent extends Event {
     }
 
     public String getBaubleName() {
-        return RSVItem.getModuleNameFromItem(bauble, RealisticSurvivalPlugin.getUtil());
+        return RSVItem.getModuleNameFromItem(bauble);
     }
 
     public BaubleChange getChange() {

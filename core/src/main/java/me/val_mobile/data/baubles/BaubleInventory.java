@@ -13,13 +13,10 @@ import java.util.HashMap;
 
 public class BaubleInventory extends GUI {
 
-    private final Utils util;
-
-    public BaubleInventory(Player player, RealisticSurvivalPlugin plugin) {
+    public BaubleInventory(Player player) {
         super(player, 54, "Bauble Bag");
         Inventory inv = getInv();
         int size = inv.getSize();
-        this.util = new Utils(plugin);
 
         inv = Bukkit.createInventory(player, size, "Bauble Bag");
 
@@ -50,7 +47,7 @@ public class BaubleInventory extends GUI {
         Collection<ItemStack> baubles = getBaubles().values();
 
         for (ItemStack bauble : baubles) {
-            if (RSVItem.getNameFromItem(bauble, util).equals(name)) {
+            if (RSVItem.getNameFromItem(bauble).equals(name)) {
                 return true;
             }
         }
@@ -62,7 +59,7 @@ public class BaubleInventory extends GUI {
         Collection<ItemStack> baubles = getBaubles().values();
 
         for (ItemStack bauble : baubles) {
-            if (RSVItem.getNameFromItem(bauble, util).equals(name)) {
+            if (RSVItem.getNameFromItem(bauble).equals(name)) {
                 sum++;
             }
         }
@@ -80,4 +77,12 @@ public class BaubleInventory extends GUI {
         return items;
     }
 
+    public ItemStack getItem(String name) {
+        for (ItemStack item : getBaubles().values()) {
+            if (RSVItem.getNameFromItem(item).equals(name)) {
+                return item;
+            }
+        }
+        return null;
+    }
 }

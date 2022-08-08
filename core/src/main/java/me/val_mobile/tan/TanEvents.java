@@ -47,14 +47,12 @@ public class TanEvents extends ModuleEvents implements Listener {
     private final TanRunnables tanRunnables;
     private final TanModule module;
     private final RealisticSurvivalPlugin plugin;
-    private final Utils util;
 
     public TanEvents(TanModule module, RealisticSurvivalPlugin plugin) {
         super(module, plugin);
         tanRunnables = new TanRunnables(plugin);
         this.plugin = plugin;
         this.module = module;
-        util = new Utils(plugin);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -231,8 +229,8 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                             Random r = new Random();
                             final double RADIUS = RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.ChorusFruitJuice.Teleport.MaxRadius");
-                            double x = loc.getX() + r.nextDouble() * RADIUS;
-                            double z = loc.getZ() + r.nextDouble() * RADIUS;
+                            double x = loc.getX() + Math.random() * RADIUS;
+                            double z = loc.getZ() + Math.random() * RADIUS;
 
                             Location newLoc = new Location(loc.getWorld(), x, loc.getWorld().getHighestBlockYAt((int) Math.round(x), (int) Math.round(z)), z, loc.getYaw(), loc.getPitch());
 
@@ -267,7 +265,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                         double chance = RSVFiles.getTanUserConfig().getDouble("IceCube.DropChance");
                         Utils.harvestFortune(chance, customItems.getIceCube(), itemMainHand, block.getLocation());
 
-                        if (Utils.decrementDurability(itemMainHand))
+                        if (Utils.changeDurability(itemMainHand))
                             player.getInventory().setItemInMainHand(null);
                     }
                 }
@@ -279,7 +277,7 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                         double chance = RSVFiles.getTanUserConfig().getDouble("MagmaShard.DropChance");
                         Utils.harvestFortune(chance, customItems.getMagmaShard(), itemMainHand, block.getLocation());
-                        if (Utils.decrementDurability(itemMainHand))
+                        if (Utils.changeDurability(itemMainHand))
                             player.getInventory().setItemInMainHand(null);
                     }
                 }

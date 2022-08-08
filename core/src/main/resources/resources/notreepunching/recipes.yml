@@ -2,7 +2,9 @@
 #          NoTreePunching Recipes     #
 #######################################
 
-# For dev use only, do NOT edit anything
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
+# Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Recipe-YML-Files
 
 flint_hatchet:
   Type: "Shaped"
@@ -19,6 +21,38 @@ flint_knife:
     Amount: 1
   Ingredients:
     - "|flint_shard"
+    - "STICK"
+golden_knife:
+  Type: "Shaped"
+  Result:
+    Item: "golden_knife"
+    Amount: 1
+  Ingredients:
+    - "|GOLD_INGOT"
+    - "STICK"
+iron_knife:
+  Type: "Shaped"
+  Result:
+    Item: "iron_knife"
+    Amount: 1
+  Ingredients:
+    - "|IRON_INGOT"
+    - "STICK"
+diamond_knife:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_knife"
+    Amount: 1
+  Ingredients:
+    - "|DIAMOND"
+    - "STICK"
+netherite_knife:
+  Type: "Shaped"
+  Result:
+    Item: "netherite_knife"
+    Amount: 1
+  Ingredients:
+    - "|NETHERITE_INGOT"
     - "STICK"
 flint_pickaxe:
   Type: "Shaped"
@@ -53,8 +87,8 @@ cobblestone:
     Item: "COBBLESTONE"
     Amount: 1
   Ingredients:
-    - "STONE_BUTTON|STONE_BUTTON"
-    - "STONE_BUTTON|STONE_BUTTON"
+    - "stone_rock|stone_rock"
+    - "stone_rock|stone_rock"
 plant_string:
   Type: "Shaped"
   Result:
@@ -63,3 +97,96 @@ plant_string:
   Ingredients:
     - "plant_fiber|plant_fiber"
     - "plant_fiber"
+golden_saw:
+  Type: "Shaped"
+  Result:
+    Item: "golden_saw"
+    Amount: 1
+  Ingredients:
+    - "||STICK"
+    - "|STICK|GOLD_INGOT"
+    - "STICK|GOLD_INGOT|"
+iron_saw:
+  Type: "Shaped"
+  Result:
+    Item: "iron_saw"
+    Amount: 1
+  Ingredients:
+    - "||STICK"
+    - "|STICK|IRON_INGOT"
+    - "STICK|IRON_INGOT|"
+diamond_saw:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_saw"
+    Amount: 1
+  Ingredients:
+    - "||STICK"
+    - "|STICK|DIAMOND"
+    - "STICK|DIAMOND|"
+netherite_saw:
+  Type: "Shaped"
+  Result:
+    Item: "netherite_saw"
+    Amount: 1
+  Ingredients:
+    - "||STICK"
+    - "|STICK|NETHERITE_INGOT"
+    - "STICK|NETHERITE_INGOT|"
+andesite:
+  Type: "Shaped"
+  Result:
+    Item: "ANDESITE"
+    Amount: 1
+  Ingredients:
+    - "andesite_rock|andesite_rock"
+    - "andesite_rock|andesite_rock"
+diorite:
+  Type: "Shaped"
+  Result:
+    Item: "DIORITE"
+    Amount: 1
+  Ingredients:
+    - "diorite_rock|diorite_rock"
+    - "diorite_rock|diorite_rock"
+granite:
+  Type: "Shaped"
+  Result:
+    Item: "GRANITE"
+    Amount: 1
+  Ingredients:
+    - "granite_rock|granite_rock"
+    - "granite_rock|granite_rock"
+sandstone:
+  Type: "Shaped"
+  Result:
+    Item: "SANDSTONE"
+    Amount: 1
+  Ingredients:
+    - "sandstone_rock|sandstone_rock"
+    - "sandstone_rock|sandstone_rock"
+red_sandstone:
+  Type: "Shaped"
+  Result:
+    Item: "RED_SANDSTONE"
+    Amount: 1
+  Ingredients:
+    - "red_sandstone_rock|red_sandstone_rock"
+    - "red_sandstone_rock|red_sandstone_rock"
+matchbox:
+  Type: "Shaped"
+  Result:
+    Item: "matchbox"
+    Amount: 1
+  Ingredients:
+    - "PAPER|PAPER|PAPER"
+    - "WOODEN_SLABS|WOODEN_SLABS|WOODEN_SLABS"
+fire_starter:
+  Type: "Shaped"
+  Result:
+    Item: "fire_starter"
+    Amount: 1
+  Ingredients:
+    - "|STICK|STICK"
+    - "STICK|STICK"
+    - "STICK"

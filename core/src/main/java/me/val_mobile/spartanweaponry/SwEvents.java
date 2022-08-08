@@ -22,7 +22,6 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -33,17 +32,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
-import org.bukkit.event.inventory.PrepareItemCraftEvent;
-import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.HashMap;
@@ -53,14 +47,12 @@ import java.util.UUID;
 
 public class SwEvents extends ModuleEvents implements Listener {
 
-    private final Utils util;
     private final SwModule module;
     private final RealisticSurvivalPlugin plugin;
 
     public SwEvents(SwModule module, RealisticSurvivalPlugin plugin) {
         super(module, plugin);
         this.module = module;
-        this.util = new Utils(plugin);
         this.plugin = plugin;
     }
 
@@ -76,11 +68,11 @@ public class SwEvents extends ModuleEvents implements Listener {
                     if (shouldEventBeRan(player) && shouldEventBeRan(projectile)) {
                         ItemStack itemMainHand = player.getInventory().getItemInMainHand();
 
-                        if (RSVItem.isRSVItem(itemMainHand, util)) {
-                            String moduleName = RSVItem.getModuleNameFromItem(itemMainHand, util);
+                        if (RSVItem.isRSVItem(itemMainHand)) {
+                            String moduleName = RSVItem.getModuleNameFromItem(itemMainHand);
                             if (moduleName.equals(SwModule.NAME) || moduleName.equals(SfModule.NAME)) {
-                                FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModules().get(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModules().get(SfModule.NAME).getUserConfig().getConfig();
-                                String name = RSVItem.getNameFromItem(itemMainHand, util);
+                                FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModule(SfModule.NAME).getUserConfig().getConfig();
+                                String name = RSVItem.getNameFromItem(itemMainHand);
                                 String type = name.substring(name.lastIndexOf("_") + 1);
                                 if (type.equals("longbow") || type.equals("crossbow")) {
                                     double multiplier = config.getDouble("Items." + name + ".ArrowVelocityMultiplier");
@@ -112,12 +104,12 @@ public class SwEvents extends ModuleEvents implements Listener {
                             Player player = (Player) shooter;
 
                             ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-                            if (RSVItem.isRSVItem(itemMainHand, util)) {
-                                String moduleName = RSVItem.getModuleNameFromItem(itemMainHand, util);
+                            if (RSVItem.isRSVItem(itemMainHand)) {
+                                String moduleName = RSVItem.getModuleNameFromItem(itemMainHand);
                                 if (moduleName.equals(SwModule.NAME) || moduleName.equals(SfModule.NAME)) {
-                                    FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModules().get(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModules().get(SfModule.NAME).getUserConfig().getConfig();
+                                    FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModule(SfModule.NAME).getUserConfig().getConfig();
 
-                                    String name = RSVItem.getNameFromItem(itemMainHand, util);
+                                    String name = RSVItem.getNameFromItem(itemMainHand);
                                     String type = name.substring(name.lastIndexOf("_") + 1);
                                     if (type.equals("longbow") || type.equals("crossbow")) {
                                         double multiplier = config.getDouble("Items." + name + ".AttackDamageMultiplier");
@@ -131,13 +123,13 @@ public class SwEvents extends ModuleEvents implements Listener {
                 else if (attacker instanceof LivingEntity) {
 
                     ItemStack itemMainHand = ((LivingEntity) attacker).getEquipment().getItemInMainHand();
-                    if (RSVItem.isRSVItem(itemMainHand, util)) {
-                        String moduleName = RSVItem.getModuleNameFromItem(itemMainHand, util);
+                    if (RSVItem.isRSVItem(itemMainHand)) {
+                        String moduleName = RSVItem.getModuleNameFromItem(itemMainHand);
 
                         if (moduleName.equals(SwModule.NAME) || moduleName.equals(SfModule.NAME)) {
-                            FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModules().get(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModules().get(SfModule.NAME).getUserConfig().getConfig();
+                            FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModule(SfModule.NAME).getUserConfig().getConfig();
 
-                            String name = util.getNbtTag(itemMainHand, "rsvitem");
+                            String name = RSVItem.getNameFromItem(itemMainHand);
                             String type = name.substring(name.lastIndexOf("_") + 1);
 
                             switch (type) {
@@ -221,7 +213,7 @@ public class SwEvents extends ModuleEvents implements Listener {
                                     }
 
                                     double kbMultiplier = config.getDouble("Items." + name + ".KnockbackMultiplier");
-                                    util.freezeEntity(defender);
+                                    RealisticSurvivalPlugin.getUtil().freezeEntity(defender);
                                     break;
                                 }
                                 case "warhammer": {
@@ -275,19 +267,21 @@ public class SwEvents extends ModuleEvents implements Listener {
 
                     ItemStack itemMainHand = player.getInventory().getItemInMainHand();
 
-                    if (RSVItem.isRSVItem(itemMainHand, util)) {
-                        String moduleName = RSVItem.getModuleNameFromItem(itemMainHand, util);
+                    if (RSVItem.isRSVItem(itemMainHand)) {
+                        String moduleName = RSVItem.getModuleNameFromItem(itemMainHand);
 
                         if (moduleName.equals(SwModule.NAME) || moduleName.equals(SfModule.NAME)) {
-                            FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModules().get(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModules().get(SfModule.NAME).getUserConfig().getConfig();
-                            String name = RSVItem.getNameFromItem(itemMainHand, util);
+                            FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModule(SfModule.NAME).getUserConfig().getConfig();
+                            String name = RSVItem.getNameFromItem(itemMainHand);
                             String type = name.substring(name.lastIndexOf("_") + 1);
                             if (type.equals("saber") || type.equals("rapier")) {
                                 double multiplier = 1D - config.getDouble("Items." + name + ".Protection.PercentAbsorbed");
                                 int maxDecrement = config.getInt("Items." + name + ".Protection.DamageDurability");
 
                                 damage *= multiplier;
-                                Utils.decrementDurability(itemMainHand, maxDecrement);
+                                if (Utils.changeDurability(itemMainHand, maxDecrement)) {
+                                    player.getInventory().setItemInMainHand(null);
+                                }
                             }
                         }
                     }
@@ -304,9 +298,9 @@ public class SwEvents extends ModuleEvents implements Listener {
         if (shouldEventBeRan(player)) {
             if (event.getAction() == Action.LEFT_CLICK_AIR) {
                 ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-                if (RSVItem.isRSVItem(itemMainHand, util)) {
-                    if (RSVItem.getModuleNameFromItem(itemMainHand, util).equals(SwModule.NAME)) {
-                        String name = util.getNbtTag(itemMainHand, "rsvitem");
+                if (RSVItem.isRSVItem(itemMainHand)) {
+                    if (RSVItem.getModuleNameFromItem(itemMainHand).equals(SwModule.NAME)) {
+                        String name = RSVItem.getNameFromItem(itemMainHand);
                         String type = name.substring(name.lastIndexOf("_") + 1);
 
                         FileConfiguration config = module.getUserConfig().getConfig();
@@ -367,9 +361,9 @@ public class SwEvents extends ModuleEvents implements Listener {
             Player player = event.getPlayer();
             if (shouldEventBeRan(player)) {
                 ItemStack item = player.getInventory().getItem(event.getNewSlot());
-                if (RSVItem.isRSVItem(item, util)) {
-                    if (RSVItem.getModuleNameFromItem(item, util).equals(SwModule.NAME)) {
-                        String name = util.getNbtTag(item, "rsvitem");
+                if (RSVItem.isRSVItem(item)) {
+                    if (RSVItem.getModuleNameFromItem(item).equals(SwModule.NAME)) {
+                        String name = RSVItem.getNameFromItem(item);
                         String type = name.substring(name.lastIndexOf("_") + 1);
 
                         switch (type) {

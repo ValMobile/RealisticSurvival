@@ -54,7 +54,7 @@ public class WitherDrops implements Listener {
                 List<ItemStack> drops = new ArrayList<>();
 
                 Random r = new Random();
-                int boneAmount = (int) Math.round(r.nextDouble() * (config.getInt("Witherbones.MaxBonesWither") -
+                int boneAmount = (int) Math.round(Math.random() * (config.getInt("Witherbones.MaxBonesWither") -
                         config.getInt("Witherbones.MinBonesWither"))) + config.getInt("Witherbones.MinBonesWither");
 
                 ItemStack bone = customItems.getWitherbone();
@@ -74,7 +74,7 @@ public class WitherDrops implements Listener {
                 List<ItemStack> drops = new ArrayList<>();
 
                 Random r = new Random();
-                int boneAmount = (int) Math.round(r.nextDouble() * (config.getInt("Witherbones.MaxBonesWitherSkeleton") -
+                int boneAmount = (int) Math.round(Math.random() * (config.getInt("Witherbones.MaxBonesWitherSkeleton") -
                         config.getInt("Witherbones.MinBonesWitherSkeleton"))) + config.getInt("Witherbones.MinBonesWitherSkeleton");
 
                 ItemStack bone = customItems.getWitherbone();

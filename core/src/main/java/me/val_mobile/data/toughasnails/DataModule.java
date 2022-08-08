@@ -16,10 +16,15 @@
  */
 package me.val_mobile.data.toughasnails;
 
+import me.val_mobile.data.PlayerDataConfig;
+import me.val_mobile.data.RSVConfig;
 import me.val_mobile.data.RSVDataModule;
+import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.tan.TanEnchants;
+import me.val_mobile.tan.TanModule;
 import me.val_mobile.tan.TanRunnables;
+import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Location;
@@ -32,6 +37,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.net.SecureCacheResponse;
 import java.util.Random;
 
 import static me.val_mobile.tan.TanRunnables.LOWEST_THIRST;
@@ -40,15 +46,15 @@ import static me.val_mobile.tan.TanRunnables.NEUTRAL_TEMPERATURE;
 public class DataModule implements RSVDataModule {
 
     private Player player;
+    private final FileConfiguration config;
     private final RealisticSurvivalPlugin plugin;
-    private final Utils util;
     private final TanRunnables tanRunnables;
     private double temperature;
     private double thirst;
 
     public DataModule(RealisticSurvivalPlugin plugin, Player player) {
+        this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         this.plugin = plugin;
-        this.util = new Utils(plugin);
         this.tanRunnables = new TanRunnables(plugin);
         this.player = player;
 
@@ -73,11 +79,9 @@ public class DataModule implements RSVDataModule {
 
     @Override
     public void retrieveData() {
-        FileConfiguration config = RSVFiles.getPlayerDataConfig();
-
         String p = player.getUniqueId().toString();
 
-        String tanPath = p + ".Tan";
+        String tanPath = p + TanModule.NAME;
         String tempPath = tanPath + ".Temperature";
         String thirstPath = tanPath + ".Thirst";
 
@@ -95,8 +99,6 @@ public class DataModule implements RSVDataModule {
 
     @Override
     public void updateData() {
-        FileConfiguration config = RSVFiles.getTanUserConfig();
-
         World pWorld = player.getWorld();
         Location pLoc = player.getLocation();
         double px = pLoc.getX();
@@ -139,7 +141,7 @@ public class DataModule implements RSVDataModule {
         Random r = new Random();
 
         if (thirst >= 0.6) {
-            if (r.nextDouble() <= thirstChance) {
+            if (Math.random() <= thirstChance) {
                 thirst -= thirstAmount;
             }
         }
@@ -155,8 +157,13 @@ public class DataModule implements RSVDataModule {
                         ConfigurationSection section = config.getConfigurationSection(path);
 
                         String material = block.getBlockData().getMaterial().toString();
-                        if (section.getKeys(true).contains(material)) {
-                            environment += config.getDouble(path + "." + material);
+                        if (section.getKeys(false).contains(material)) {
+                            if (section.getString(material + ".Type").equals("Change")) {
+                                environment+=section.getDouble(material + ".Value");
+                            }
+                            else {
+                                regulation+=section.getDouble(material + ".Value");
+                            }
                         }
                     }
                 }
@@ -322,6 +329,11 @@ public class DataModule implements RSVDataModule {
                 thirst = LOWEST_THIRST;
             }
         }
+    }
+
+    @Override
+    public void saveData() {
+
     }
 
 

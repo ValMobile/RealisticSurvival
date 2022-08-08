@@ -2,6 +2,8 @@
 #          Lore Presets               #
 #######################################
 
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
 Rapier:
   - "&6Damage Absorption"
   - " &7%RAPIER_ABSORBED% of damage taken dealt"

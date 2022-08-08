@@ -35,6 +35,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -44,13 +45,11 @@ import java.util.UUID;
 public class SfEvents extends ModuleEvents implements Listener {
 
     private final RealisticSurvivalPlugin plugin;
-    private final Utils util;
     private final SfModule module;
 
     // constructing the DragonGearEvents class
     public SfEvents(SfModule module, RealisticSurvivalPlugin plugin) {
         super(module, plugin);
-        this.util = new Utils(plugin);
         this.plugin = plugin;
         this.module = module;
     }
@@ -68,6 +67,7 @@ public class SfEvents extends ModuleEvents implements Listener {
 
         if (!event.isCancelled()) {
             if (shouldEventBeRan(attacker) && shouldEventBeRan(defender)) {
+                Utils util = RealisticSurvivalPlugin.getUtil();
                 double damage = event.getDamage();
                 // find out what defender the attacker is
                 switch (attacker.getType()) {
@@ -78,14 +78,14 @@ public class SfEvents extends ModuleEvents implements Listener {
                         ItemStack itemMainHand = player.getInventory().getItemInMainHand(); // get the item in the player's main hand
 
                         // check if the item is real
-                        if (RSVItem.isRSVItem(itemMainHand, util)) {
-                            String name = RSVItem.getNameFromItem(itemMainHand, util);
+                        if (RSVItem.isRSVItem(itemMainHand)) {
+                            String name = RSVItem.getNameFromItem(itemMainHand);
                             String type = name.substring(0, name.lastIndexOf("_"));
 
                             switch (type) {
                                 case "dragonbone_flamed": {
                                     if (util.hasNbtTag(defender, "rsvmob")) {
-                                        if (!util.getNbtTag(defender, "rsvmob").equals("fire_dragon")) {
+                                        if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                         }
                                     }
@@ -100,7 +100,7 @@ public class SfEvents extends ModuleEvents implements Listener {
                                 }
                                 case "dragonbone_iced": {
                                     if (util.hasNbtTag(defender, "rsvmob")) {
-                                        if (!util.getNbtTag(defender, "rsvmob").equals("ice_dragon")) {
+                                        if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                         }
                                     }
@@ -109,7 +109,7 @@ public class SfEvents extends ModuleEvents implements Listener {
                                 }
                                 case "dragonbone_lightning": {
                                     if (util.hasNbtTag(defender, "rsvmob")) {
-                                        if (!util.getNbtTag(defender, "rsvmob").equals("lightning_dragon")) {
+                                        if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("lightning_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                         }
                                     }
@@ -186,8 +186,8 @@ public class SfEvents extends ModuleEvents implements Listener {
 
                                 ItemStack itemMainHand = player.getEquipment().getItemInMainHand();
 
-                                if (RSVItem.isRSVItem(itemMainHand, util)) {
-                                    String name = RSVItem.getNameFromItem(itemMainHand, util);
+                                if (RSVItem.isRSVItem(itemMainHand)) {
+                                    String name = RSVItem.getNameFromItem(itemMainHand);
                                     String materialType = name.substring(0, name.lastIndexOf("_"));
 
                                     String weaponType = name.substring(name.lastIndexOf("_") + 1);
@@ -197,7 +197,7 @@ public class SfEvents extends ModuleEvents implements Listener {
                                         switch (materialType) {
                                             case "dragonbone_flamed": {
                                                 if (util.hasNbtTag(defender, "rsvmob")) {
-                                                    if (!util.getNbtTag(defender, "rsvmob").equals("fire_dragon")) {
+                                                    if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
                                                         event.setDamage(event.getDamage() + config.getDouble("Items." + name + ".DragonBonusDamage"));
                                                     }
                                                 }
@@ -212,7 +212,7 @@ public class SfEvents extends ModuleEvents implements Listener {
                                             }
                                             case "dragonbone_iced": {
                                                 if (util.hasNbtTag(defender, "rsvmob")) {
-                                                    if (!util.getNbtTag(defender, "rsvmob").equals("ice_dragon")) {
+                                                    if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
                                                         event.setDamage(event.getDamage() + config.getDouble("Items." + name + ".DragonBonusDamage"));
                                                     }
                                                 }
