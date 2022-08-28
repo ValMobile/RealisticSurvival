@@ -17,7 +17,6 @@
 package me.val_mobile.commands;
 
 import me.val_mobile.data.RSVConfig;
-import me.val_mobile.iceandfire.Dragon;
 import me.val_mobile.iceandfire.FireDragon;
 import me.val_mobile.iceandfire.IceDragon;
 import me.val_mobile.iceandfire.LightningDragon;
@@ -32,14 +31,11 @@ import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
-import java.util.Locale;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Commands is a class that allows users to

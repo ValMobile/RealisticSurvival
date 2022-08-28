@@ -1,6 +1,5 @@
 package me.val_mobile.baubles;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

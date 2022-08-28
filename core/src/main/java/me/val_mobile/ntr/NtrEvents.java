@@ -16,15 +16,15 @@
  */
 package me.val_mobile.ntr;
 
-import jdk.jshell.ImportSnippet;
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.ModuleItems;
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import net.minecraft.server.v1_16_R3.Tags;
-import org.bukkit.*;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -33,17 +33,17 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.*;
-import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 
-import javax.lang.model.element.ElementVisitor;
 import java.util.*;
 
 public class NtrEvents extends ModuleEvents implements Listener {
@@ -238,7 +238,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                             Block block = event.getBlock();
                             Material blockMat = block.getType();
 
-                            if (!block.isPreferredTool(item)) {
+                            if (!block.(item)) {
                                 // TODO: Add mattock code from https://github.com/JEFF-Media-GbR/Spigot-BestTools/blob/a5c333622f727bc5d7839e1faec3c46e6793a1b4/src/main/java/de/jeff_media/BestTools/BestToolsHandler.java#L116
                             }
                         }

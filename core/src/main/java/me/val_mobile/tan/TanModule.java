@@ -23,7 +23,6 @@ import me.val_mobile.data.toughasnails.ItemConfig;
 import me.val_mobile.data.toughasnails.RecipesConfig;
 import me.val_mobile.data.toughasnails.UserConfig;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.spartanandfire.SfEvents;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 

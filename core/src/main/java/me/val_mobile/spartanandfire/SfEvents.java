@@ -16,19 +16,13 @@
  */
 package me.val_mobile.spartanandfire;
 
-import io.netty.handler.ssl.IdentityCipherSuiteFilter;
 import me.val_mobile.data.ModuleEvents;
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.Dragon;
-import me.val_mobile.iceandfire.FireDragon;
-import me.val_mobile.iceandfire.IceDragon;
 import me.val_mobile.iceandfire.LightningDragon;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -36,8 +30,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 import java.util.UUID;

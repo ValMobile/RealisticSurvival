@@ -478,7 +478,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                 // check if the player's jump velocity is equal to the player's Y velocity
                                 if (Utils.doublesEquals(velocity.getY(), jumpVelocity)) {
                                     // check if the player is not flying or swimming
-                                    if (!(player.isInWater() || player.isRiptiding() || player.isFlying())) {
+                                    if (!(player.getLocation().getBlock().isLiquid() || player.isRiptiding() || player.isFlying())) {
                                         // increase the velocity
                                         velocity.setY(jumpVelocity * config.getDouble("Items.balloon.JumpVelocityMultiplier"));
 

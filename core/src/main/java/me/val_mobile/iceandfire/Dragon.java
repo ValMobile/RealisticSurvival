@@ -20,16 +20,12 @@ import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVMob;
-import net.minecraft.network.chat.ChatComponentText;
 import net.minecraft.server.v1_16_R3.ChatComponentText;
-import net.minecraft.server.v1_16_R3.EntityEnderDragon;
-import net.minecraft.server.v1_16_R3.EntityTypes;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.boss.enderdragon.EntityEnderDragon;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.libs.org.codehaus.plexus.util.StringUtils;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
@@ -66,7 +62,7 @@ public abstract class Dragon extends EntityEnderDragon implements RSVMob {
 
         this.gender = ((int) Math.round(Math.random()) == 1) ? Gender.MALE : Gender.FEMALE;
 
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalizeFirstLetter(variant.toString()) + " Dragon"));
+        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString()) + " Dragon"));
         this.setCustomNameVisible(false);
     }
 

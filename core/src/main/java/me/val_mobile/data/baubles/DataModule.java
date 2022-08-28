@@ -17,14 +17,7 @@
 package me.val_mobile.data.baubles;
 
 import me.val_mobile.data.RSVDataModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.RSVItem;
-import me.val_mobile.utils.Utils;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
-import java.util.Collection;
-import java.util.UUID;
 
 public class DataModule implements RSVDataModule {
 

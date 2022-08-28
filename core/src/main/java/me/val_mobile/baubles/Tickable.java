@@ -1,7 +1,5 @@
 package me.val_mobile.baubles;
 
-import org.bukkit.scheduler.BukkitRunnable;
-
 public class Tickable {
 
     private String name;

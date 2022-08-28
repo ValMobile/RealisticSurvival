@@ -42,35 +42,24 @@
         </plugins>
     </build>
     <dependencies>
-        <!-- FAWE Core API -->
-        <dependency>
-            <groupId>com.fastasyncworldedit</groupId>
-            <artifactId>FAWE-Core</artifactId>
-            <version>1.17-47</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- FAWE Bukkit API -->
-        <dependency>
-            <groupId>com.fastasyncworldedit</groupId>
-            <artifactId>FAWE-Bukkit</artifactId>
-            <version>1.17-47</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>FAWE-Core</artifactId>
-                    <groupId>*</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <!-- bStats -->
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
-            <version>2.2.1</version>
+            <version>3.0.0</version>
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>me.Val_Mobile</groupId>
+            <artifactId>realisticsurvival-spigot_impl_1_19_R3</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>me.Val_Mobile</groupId>
+            <artifactId>realisticsurvival-spigot_impl_1_19_R2</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <dependency>
             <groupId>me.Val_Mobile</groupId>
             <artifactId>realisticsurvival-spigot_impl_1_19_R1</artifactId>
@@ -98,11 +87,6 @@
         </dependency>
         <dependency>
             <groupId>me.Val_Mobile</groupId>
-            <artifactId>realisticsurvival-spigot_impl_1_16_R6</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>me.Val_Mobile</groupId>
             <artifactId>realisticsurvival-spigot_impl_1_16_R5</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
@@ -119,6 +103,11 @@
         <dependency>
             <groupId>me.Val_Mobile</groupId>
             <artifactId>realisticsurvival-spigot_impl_1_16_R2</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>me.Val_Mobile</groupId>
+            <artifactId>realisticsurvival-spigot_impl_1_16_R1</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>

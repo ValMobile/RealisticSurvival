@@ -19,7 +19,6 @@ package me.val_mobile.iceandfire;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.LorePresets;
 import me.val_mobile.utils.RSVItem;
-import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
