@@ -16,16 +16,28 @@
  */
 package me.val_mobile.data.baubles;
 
+import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.data.RSVDataModule;
+import me.val_mobile.data.RSVModule;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+
+import java.io.IOException;
+import java.util.Collection;
+import java.util.UUID;
 
 public class DataModule implements RSVDataModule {
 
-    private BaubleInventory baubleBag;
+    private final PlayerDataConfig config;
+    private final BaubleInventory baubleBag;
+    private final UUID id;
 
     public DataModule(Player player) {
-        baubleBag = new BaubleInventory(player);
-        retrieveData();
+        this.baubleBag = new BaubleInventory(player);
+        this.config = ((BaubleModule) RSVModule.getModule(BaubleModule.NAME)).getPlayerDataConfig();
+        this.id = player.getUniqueId();
     }
 
     public BaubleInventory getBaubleBag() {
@@ -42,15 +54,50 @@ public class DataModule implements RSVDataModule {
 
     @Override
     public void retrieveData() {
+        FileConfiguration config = this.config.getConfig();
 
-    }
+        if (config.getConfigurationSection("").contains(id.toString())) {
+            ItemStack[] items = loadItemStacks();
 
-    @Override
-    public void updateData() {
+            if (items != null) {
+                Inventory inv = baubleBag.getInv();
+                BaubleSlot[] slots = BaubleSlot.values();
+
+                for (int i = 0; i < items.length; i++) {
+                    inv.setItem(slots[i].getValue(), items[i]);
+                }
+            }
+        }
+        else {
+            String itemsPath = id + ".Items";
+
+            config.createSection(id.toString());
+            config.createSection(itemsPath);
+
+            saveFile();
+        }
     }
 
     @Override
     public void saveData() {
+        FileConfiguration config = this.config.getConfig();
 
+        config.set(id + ".Items", baubleBag.getBaubles().values().toArray());
+
+        saveFile();
+    }
+
+    public ItemStack[] loadItemStacks() {
+        Object object = config.getConfig().get(id + ".Items");
+
+        return object instanceof Collection ? ((Collection<ItemStack>) object).toArray(new ItemStack[0]) : null;
+    }
+
+    public void saveFile() {
+        try {
+            config.getConfig().save(this.config.getFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

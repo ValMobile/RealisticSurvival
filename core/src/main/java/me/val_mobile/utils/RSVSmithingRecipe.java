@@ -34,10 +34,10 @@ public class RSVSmithingRecipe extends SmithingRecipe {
                         ? new ItemStack(Material.valueOf(config.getString(name + ".Result.Item")), config.getInt(name + ".Result.Amount")) :
                         RSVItem.getItem(config.getString(name + ".Result.Item")).resize(config.getInt(name + ".Result.Amount")),
                 Objects.equals(config.getString(name + ".Base"), config.getString(name + ".Base").toUpperCase())
-                        ? (Utils.getTags().containsKey(config.getString(name + ".Base")) ? new RecipeChoice.MaterialChoice(Utils.getTags().get(config.getString(name + ".Base"))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(name + ".Base"))))
+                        ? (config.getString(name + ".Base").contains("Tag.") ? new RecipeChoice.MaterialChoice(Utils.getTag(config.getString(name + ".Base"))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(name + ".Base"))))
                         : new RecipeChoice.ExactChoice(RSVItem.getItem(config.getString(name + ".Base"))),
                 Objects.equals(config.getString(name + ".Addition"), config.getString(name + ".Addition").toUpperCase())
-                        ? (Utils.getTags().containsKey(config.getString(name + ".Addition")) ? new RecipeChoice.MaterialChoice(Utils.getTags().get(config.getString(name + ".Addition"))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(name + ".Addition"))))
+                        ? (config.getString(name + ".Addition").contains("Tag.") ? new RecipeChoice.MaterialChoice(Utils.getTag(config.getString(name + ".Addition"))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(name + ".Addition"))))
                         : new RecipeChoice.ExactChoice(RSVItem.getItem(config.getString(name + ".Addition"))));
     }
 }

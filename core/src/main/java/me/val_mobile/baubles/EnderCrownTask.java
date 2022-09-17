@@ -52,7 +52,7 @@ public class EnderCrownTask extends BukkitRunnable {
                 if (e instanceof Enderman) {
                     // transfrom enderman into ally
                     if (!Objects.equals(RealisticSurvivalPlugin.getUtil().getNbtTag(e, "rsvmob", PersistentDataType.STRING), "enderman_ally")) {
-                        Utils.getInternals().spawnEndermanAlly(p, loc);
+                        Utils.spawnEndermanAlly(p, loc);
                         e.remove();
                     }
                 }
@@ -78,7 +78,7 @@ public class EnderCrownTask extends BukkitRunnable {
                         x = (int) (Math.random() * 21) - 10;
                         z = (int) (Math.random() * 21) - 10;
                         y = p.getWorld().getHighestBlockYAt(x, z);
-                        Utils.getInternals().spawnEndermanAlly(p, new Location(p.getWorld(), x, y, z));
+                        Utils.spawnEndermanAlly(p, new Location(p.getWorld(), x, y, z));
                     }
                 }
             }

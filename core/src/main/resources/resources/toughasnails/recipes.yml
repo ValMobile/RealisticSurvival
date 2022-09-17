@@ -55,34 +55,34 @@ wool_hood:
     Item: "wool_hood"
     Amount: 1
   Ingredients:
-    - "WOOL|WOOL|WOOL"
-    - "WOOL||WOOL"
+    - "Tag.WOOL|Tag.WOOL|Tag.WOOL"
+    - "Tag.WOOL||Tag.WOOL"
 wool_jacket:
   Type: "Shaped"
   Result:
     Item: "wool_jacket"
     Amount: 1
   Ingredients:
-    - "WOOL||WOOL"
-    - "WOOL|WOOL|WOOL"
-    - "WOOL|WOOL|WOOL"
+    - "Tag.WOOL||Tag.WOOL"
+    - "Tag.WOOL|Tag.WOOL|Tag.WOOL"
+    - "Tag.WOOL|Tag.WOOL|Tag.WOOL"
 wool_pants:
   Type: "Shaped"
   Result:
     Item: "wool_pants"
     Amount: 1
   Ingredients:
-    - "WOOL|WOOL|WOOL"
-    - "WOOL||WOOL"
-    - "WOOL||WOOL"
+    - "Tag.WOOL|Tag.WOOL|Tag.WOOL"
+    - "Tag.WOOL||Tag.WOOL"
+    - "Tag.WOOL||Tag.WOOL"
 wool_boots:
   Type: "Shaped"
   Result:
     Item: "wool_boots"
     Amount: 1
   Ingredients:
-    - "WOOL||WOOL"
-    - "WOOL||WOOL"
+    - "Tag.WOOL||Tag.WOOL"
+    - "Tag.WOOL||Tag.WOOL"
 charcoal_filter:
   Type: "Shaped"
   Result:
@@ -231,6 +231,14 @@ magma_block:
   Ingredients:
     - "magma_shard|magma_shard"
     - "magma_shard|magma_shard"
+ice_block:
+  Type: "Shaped"
+  Result:
+    Item: "ICE"
+    Amount: 1
+  Ingredients:
+    - "ice_cube|ice_cube"
+    - "ice_cube|ice_cube"
 canteen_empty:
   Type: "Shaped"
   Result:

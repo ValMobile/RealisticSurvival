@@ -350,7 +350,7 @@ diamond_crossbow:
     Amount: 1
   Ingredients:
     - "DIAMOND|BOW|DIAMOND"
-    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "Tag.PLANKS|TRIPWIRE_HOOK|Tag.PLANKS"
     - "|handle"
 iron_rapier:
   Type: "Shaped"
@@ -542,7 +542,7 @@ iron_crossbow:
     Amount: 1
   Ingredients:
     - "IRON_INGOT|BOW|IRON_INGOT"
-    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "Tag.PLANKS|TRIPWIRE_HOOK|Tag.PLANKS"
     - "|handle"
 gold_rapier:
   Type: "Shaped"
@@ -734,7 +734,7 @@ gold_crossbow:
     Amount: 1
   Ingredients:
     - "GOLD_INGOT|BOW|GOLD_INGOT"
-    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "Tag.PLANKS|TRIPWIRE_HOOK|Tag.PLANKS"
     - "|handle"
 stone_rapier:
   Type: "Shaped"
@@ -926,7 +926,7 @@ leather_crossbow:
     Amount: 1
   Ingredients:
     - "COBBLESTONE|BOW|COBBLESTONE"
-    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "Tag.PLANKS|TRIPWIRE_HOOK|Tag.PLANKS"
     - "|handle"
 wooden_rapier:
   Type: "Shaped"
@@ -934,17 +934,17 @@ wooden_rapier:
     Item: "wooden_rapier"
     Amount: 1
   Ingredients:
-    - "||PLANKS"
-    - "PLANKS|PLANKS"
-    - "handle|PLANKS"
+    - "||Tag.PLANKS"
+    - "Tag.PLANKS|Tag.PLANKS"
+    - "handle|Tag.PLANKS"
 wooden_katana:
   Type: "Shaped"
   Result:
     Item: "wooden_katana"
     Amount: 1
   Ingredients:
-    - "||PLANKS"
-    - "|PLANKS"
+    - "||Tag.PLANKS"
+    - "|Tag.PLANKS"
     - "handle"
 wooden_greatsword:
   Type: "Shaped"
@@ -952,25 +952,25 @@ wooden_greatsword:
     Item: "wooden_greatsword"
     Amount: 1
   Ingredients:
-    - "|PLANKS"
-    - "PLANKS|PLANKS|PLANKS"
-    - "PLANKS|handle|PLANKS"
+    - "|Tag.PLANKS"
+    - "Tag.PLANKS|Tag.PLANKS|Tag.PLANKS"
+    - "Tag.PLANKS|handle|Tag.PLANKS"
 wooden_longsword:
   Type: "Shaped"
   Result:
     Item: "wooden_longsword"
     Amount: 1
   Ingredients:
-    - "|PLANKS"
-    - "|PLANKS"
-    - "PLANKS|handle|PLANKS"
+    - "|Tag.PLANKS"
+    - "|Tag.PLANKS"
+    - "Tag.PLANKS|handle|Tag.PLANKS"
 wooden_spear:
   Type: "Shaped"
   Result:
     Item: "wooden_spear"
     Amount: 1
   Ingredients:
-    - "|PLANKS"
+    - "|Tag.PLANKS"
     - "|pole"
 wooden_saber:
   Type: "Shaped"
@@ -978,25 +978,25 @@ wooden_saber:
     Item: "wooden_saber"
     Amount: 1
   Ingredients:
-    - "|PLANKS"
-    - "|PLANKS"
-    - "PLANKS|handle"
+    - "|Tag.PLANKS"
+    - "|Tag.PLANKS"
+    - "Tag.PLANKS|handle"
 wooden_boomerang:
   Type: "Shaped"
   Result:
     Item: "wooden_boomerang"
     Amount: 1
   Ingredients:
-    - "PLANKS|PLANKS|PLANKS"
-    - "PLANKS"
-    - "PLANKS"
+    - "Tag.PLANKS|Tag.PLANKS|Tag.PLANKS"
+    - "Tag.PLANKS"
+    - "Tag.PLANKS"
 wooden_dagger:
   Type: "Shaped"
   Result:
     Item: "wooden_dagger"
     Amount: 1
   Ingredients:
-    - "|PLANKS"
+    - "|Tag.PLANKS"
     - "|handle"
 wooden_glaive:
   Type: "Shaped"
@@ -1004,8 +1004,8 @@ wooden_glaive:
     Item: "wooden_glaive"
     Amount: 1
   Ingredients:
-    - "|PLANKS"
-    - "|PLANKS"
+    - "|Tag.PLANKS"
+    - "|Tag.PLANKS"
     - "|pole"
 wooden_halberd:
   Type: "Shaped"
@@ -1013,17 +1013,17 @@ wooden_halberd:
     Item: "wooden_halberd"
     Amount: 1
   Ingredients:
-    - "|PLANKS"
-    - "PLANKS|PLANKS"
-    - "PLANKS|pole"
+    - "|Tag.PLANKS"
+    - "Tag.PLANKS|Tag.PLANKS"
+    - "Tag.PLANKS|pole"
 wooden_hammer:
   Type: "Shaped"
   Result:
     Item: "wooden_hammer"
     Amount: 1
   Ingredients:
-    - "PLANKS|PLANKS|PLANKS"
-    - "PLANKS|PLANKS|PLANKS"
+    - "Tag.PLANKS|Tag.PLANKS|Tag.PLANKS"
+    - "Tag.PLANKS|Tag.PLANKS|Tag.PLANKS"
     - "|handle"
 wooden_javelin:
   Type: "Shaped"
@@ -1032,24 +1032,24 @@ wooden_javelin:
     Amount: 1
   Ingredients:
     - ""
-    - "pole|PLANKS"
+    - "pole|Tag.PLANKS"
 wooden_lance:
   Type: "Shaped"
   Result:
     Item: "wooden_lance"
     Amount: 1
   Ingredients:
-    - "||PLANKS"
-    - "PLANKS|pole"
-    - "handle|PLANKS"
+    - "||Tag.PLANKS"
+    - "Tag.PLANKS|pole"
+    - "handle|Tag.PLANKS"
 wooden_mace:
   Type: "Shaped"
   Result:
     Item: "wooden_mace"
     Amount: 1
   Ingredients:
-    - "|PLANKS|PLANKS"
-    - "|STICK|PLANKS"
+    - "|Tag.PLANKS|Tag.PLANKS"
+    - "|STICK|Tag.PLANKS"
     - "handle"
 wooden_pike:
   Type: "Shaped"
@@ -1057,7 +1057,7 @@ wooden_pike:
     Item: "wooden_pike"
     Amount: 1
   Ingredients:
-    - "|PLANKS"
+    - "|Tag.PLANKS"
     - "|pole"
     - "|pole"
 wooden_quarterstaff:
@@ -1067,15 +1067,15 @@ wooden_quarterstaff:
     Amount: 1
   Ingredients:
     - "|pole"
-    - "|PLANKS"
+    - "|Tag.PLANKS"
 wooden_tomahawk:
   Type: "Shaped"
   Result:
     Item: "wooden_tomahawk"
     Amount: 1
   Ingredients:
-    - "handle|PLANKS"
-    - "|PLANKS"
+    - "handle|Tag.PLANKS"
+    - "|Tag.PLANKS"
 wooden_throwing_knife:
   Type: "Shaped"
   Result:
@@ -1083,15 +1083,15 @@ wooden_throwing_knife:
     Amount: 1
   Ingredients:
     - ""
-    - "handle|PLANKS"
+    - "handle|Tag.PLANKS"
 wooden_warhammer:
   Type: "Shaped"
   Result:
     Item: "wooden_warhammer"
     Amount: 1
   Ingredients:
-    - "|PLANKS"
-    - "PLANKS|PLANKS"
+    - "|Tag.PLANKS"
+    - "Tag.PLANKS|Tag.PLANKS"
     - "|handle"
 wooden_battleaxe:
   Type: "Shaped"
@@ -1099,8 +1099,8 @@ wooden_battleaxe:
     Item: "wooden_battleaxe"
     Amount: 1
   Ingredients:
-    - "PLANKS|PLANKS|PLANKS"
-    - "PLANKS|STICK|PLANKS"
+    - "Tag.PLANKS|Tag.PLANKS|Tag.PLANKS"
+    - "Tag.PLANKS|STICK|Tag.PLANKS"
     - "|handle"
 wooden_longbow:
   Type: "Shaped"
@@ -1108,17 +1108,17 @@ wooden_longbow:
     Item: "wooden_longbow"
     Amount: 1
   Ingredients:
-    - "handle|STICK|PLANKS"
+    - "handle|STICK|Tag.PLANKS"
     - "STICK||STRING"
-    - "PLANKS|STRING|STRING"
+    - "Tag.PLANKS|STRING|STRING"
 wooden_crossbow:
   Type: "Shaped"
   Result:
     Item: "wooden_crossbow"
     Amount: 1
   Ingredients:
-    - "PLANKS|BOW|PLANKS"
-    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "Tag.PLANKS|BOW|Tag.PLANKS"
+    - "Tag.PLANKS|TRIPWIRE_HOOK|Tag.PLANKS"
     - "|handle"
 copper_rapier:
   Type: "Shaped"
@@ -1327,7 +1327,7 @@ handle_1:
     Amount: 4
   Ingredients:
     - "STICK|STICK|STICK"
-    - "STICK|WOOL"
+    - "STICK|Tag.WOOL"
 handle_2:
   Type: "Shaped"
   Result:
@@ -1353,7 +1353,7 @@ pole_1:
   Ingredients:
     - "STICK|STICK|STICK"
     - "STICK|STICK|STICK"
-    - "STICK|STICK|WOOL"
+    - "STICK|STICK|Tag.WOOL"
 pole_2:
   Type: "Shaped"
   Result:
@@ -1369,8 +1369,8 @@ wooden_club:
     Item: "wooden_club"
     Amount: 1
   Ingredients:
-    - "|LOGS"
-    - "LOGS"
+    - "|Tag.LOGS"
+    - "Tag.LOGS"
 studded_club:
   Type: "Shaped"
   Result:
@@ -1386,7 +1386,7 @@ cestus:
     Amount: 1
   Ingredients:
     - ""
-    - "LEATHER|WOOL"
+    - "LEATHER|Tag.WOOL"
 studded_cestus:
   Type: "Shaped"
   Result:

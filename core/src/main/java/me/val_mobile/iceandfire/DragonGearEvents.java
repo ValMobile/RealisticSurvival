@@ -34,20 +34,14 @@ import org.bukkit.inventory.ItemStack;
  * DragonGearEvents is a class containing listener methods
  * that activate fire, ice, and lighting dragon weapon abilities
  * @author Val_Mobile
- * @version 1.2
+ * @version 1.2.3
  * @since 1.0
  */
 public class DragonGearEvents extends ModuleEvents implements Listener {
 
-    // Dependency injecting the abilities classes for use
-    private final DragonGearAbilities dragonGearAbilities;
-    private final Utils util;
-
     // constructing the DragonGearEvents class
     public DragonGearEvents(RSVModule module, RealisticSurvivalPlugin plugin) {
         super(module, plugin);
-        dragonGearAbilities = new DragonGearAbilities(plugin);
-        util = new Utils(plugin);
     }
 
     /**

@@ -4,9 +4,9 @@
 
 ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
 
-# Stores player data using UUIDs
+# Stores player data using UUIDs, do NOT edit
 
 bd6af9e1-9527-4c5c-b736-76aef13f22b9:
-  ToughAsNails:
+  Items:
 
 

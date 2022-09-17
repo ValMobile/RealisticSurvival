@@ -71,13 +71,21 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
-    Slowness:
-      Amplifier: 4
-      Duration: 30
-    FrozenDuration: 10    # Determines how long a mob is encased in ice
     DragonBonusDamage: 8.0
-    # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
-    Block: "ICE"          # What block the mob is encased in, default is ice
+    FreezeAbility:
+      Slowness:
+        Amplifier: 4
+        Duration: 60
+      FrozenDuration: 10
+      # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"          # What block the mob is encased in, default is packed ice
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_rapier:
     Enabled:
       EnableAllVersions: true
@@ -123,8 +131,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_rapier:
     Enabled:
       EnableAllVersions: true
@@ -184,7 +199,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_katana:
     Enabled:
       EnableAllVersions: true
@@ -230,8 +252,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_katana:
     Enabled:
       EnableAllVersions: true
@@ -294,7 +323,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_greatsword:
     Enabled:
       EnableAllVersions: true
@@ -343,8 +379,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_greatsword:
     Enabled:
       EnableAllVersions: true
@@ -451,8 +494,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_longsword:
     Enabled:
       EnableAllVersions: true
@@ -503,7 +553,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_spear:
     Enabled:
       EnableAllVersions: true
@@ -540,8 +597,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_spear:
     Enabled:
       EnableAllVersions: true
@@ -598,7 +662,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_saber:
     Enabled:
       EnableAllVersions: true
@@ -644,8 +715,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_saber:
     Enabled:
       EnableAllVersions: true
@@ -732,7 +810,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -805,8 +890,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -905,7 +997,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_dagger:
     Enabled:
       EnableAllVersions: true
@@ -981,8 +1080,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_dagger:
     Enabled:
       EnableAllVersions: true
@@ -1055,7 +1161,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_glaive:
     Enabled:
       EnableAllVersions: true
@@ -1104,8 +1217,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_glaive:
     Enabled:
       EnableAllVersions: true
@@ -1169,7 +1289,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1218,8 +1345,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1280,7 +1414,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1326,8 +1467,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1414,7 +1562,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1487,8 +1642,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1551,7 +1713,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_lance:
     Enabled:
       EnableAllVersions: true
@@ -1591,8 +1760,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_lance:
     Enabled:
       EnableAllVersions: true
@@ -1641,7 +1817,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_mace:
     Enabled:
       EnableAllVersions: true
@@ -1678,8 +1861,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_mace:
     Enabled:
       EnableAllVersions: true
@@ -1736,7 +1926,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_pike:
     Enabled:
       EnableAllVersions: true
@@ -1782,8 +1979,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_pike:
     Enabled:
       EnableAllVersions: true
@@ -1843,7 +2047,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_quarterstaff:
     Enabled:
       EnableAllVersions: true
@@ -1889,8 +2100,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_quarterstaff:
     Enabled:
       EnableAllVersions: true
@@ -1977,7 +2195,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2050,8 +2275,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2147,7 +2379,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2220,8 +2459,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2290,7 +2536,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_warhammer:
     Enabled:
       EnableAllVersions: true
@@ -2336,8 +2589,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_warhammer:
     Enabled:
       EnableAllVersions: true
@@ -2394,7 +2654,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_battleaxe:
     Enabled:
       EnableAllVersions: true
@@ -2434,8 +2701,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_battleaxe:
     Enabled:
       EnableAllVersions: true
@@ -2479,7 +2753,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_longbow:
     Enabled:
       EnableAllVersions: true
@@ -2510,8 +2791,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_longbow:
     Enabled:
       EnableAllVersions: true
@@ -2551,7 +2839,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_crossbow:
     Enabled:
       EnableAllVersions: true
@@ -2582,8 +2877,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_crossbow:
     Enabled:
       EnableAllVersions: true

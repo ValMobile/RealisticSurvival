@@ -38,11 +38,6 @@ public class PathfinderGoalPet extends PathfinderGoal {
         else if (!(this.a.getDisplayName().toString().contains(this.b.getName()))) {
             return false;
         }
-        else if (this.b.h(this.a) > (double) (this.g * this.g)) {
-            // distance is too far then teleport pet
-            a.setPosition(this.b.locX(), this.b.locY(), this.b.locZ());
-            return false;
-        }
         else {
             // follow owner
             Vec3D vec = RandomPositionGenerator.a((EntityCreature) this.a, 16, 7, this.b.getPositionVector());

@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.persistence.PersistentDataType;
 
-public class EndermanAlly extends EntityEnderman {
+public class EndermanAlly extends EntityEnderman implements RSVMob {
 
     public EndermanAlly(Player owner, Location loc)
     {
@@ -20,6 +20,17 @@ public class EndermanAlly extends EntityEnderman {
 
         this.setInvulnerable(false);
         setOwner(owner);
+    }
+
+    public EndermanAlly(EntityTypes entityTypes, World world) {
+        super(entityTypes, world);
+
+        this.setInvulnerable(false);
+        setOwner(null);
+    }
+
+    @Override
+    public void addNbtData() {
         RealisticSurvivalPlugin.getUtil().addNbtTag(this.getBukkitEntity(), "rsvmob", "enderman_ally", PersistentDataType.STRING);
     }
 

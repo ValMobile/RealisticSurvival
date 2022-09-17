@@ -137,7 +137,6 @@ public class ThrowWeaponTask extends BukkitRunnable {
         Item droppedItem = as.getWorld().dropItem(as.getLocation(), itemStack.clone());
         Location loc = droppedItem.getLocation();
 
-        droppedItem.setOwner(player.getUniqueId()); // only the player who threw can pick up the weapon
         droppedItem.setGlowing(true);
 
         as.remove();

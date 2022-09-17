@@ -17,23 +17,36 @@
 package me.val_mobile.data;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.Utils;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.util.Consumer;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Scanner;
 
 public class RSVConfig extends FileBuilder {
 
     private static Collection<RSVConfig> configList = new ArrayList<>();
 
+    private final String path;
+    private final RealisticSurvivalPlugin plugin;
+    private final boolean renameOldVersions;
     private FileConfiguration config;
 
-    public RSVConfig(RealisticSurvivalPlugin plugin, String path, boolean replace) {
+    public RSVConfig(RealisticSurvivalPlugin plugin, String path, boolean replace, boolean renameOldVersions) {
         super(plugin, path, replace);
-
+        this.plugin = plugin;
+        this.path = path;
+        this.renameOldVersions = renameOldVersions;
         createConfig();
 
         configList.add(this);
@@ -50,6 +63,49 @@ public class RSVConfig extends FileBuilder {
             // print any exceptions that are thrown
             e.printStackTrace();
         }
+
+        if (renameOldVersions) {
+            renameOldConfig();
+        }
+    }
+
+    private void getVersion(final Consumer<String> consumer) {
+        Bukkit.getScheduler().runTaskAsynchronously(this.plugin, () -> {
+            try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=" + 93975).openStream(); Scanner scanner = new Scanner(inputStream)) {
+                if (scanner.hasNext()) {
+                    consumer.accept(scanner.next());
+                }
+            } catch (IOException exception) {
+                this.plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&',"&cCannot look for updates: " + exception.getMessage()));
+            }
+        });
+    }
+
+    private void renameOldConfig() {
+        getVersion(latestVersion -> {
+            double currentVersion = 0D;
+            if (config.contains("ConfigId")) {
+                currentVersion = Utils.getNumberFromUpdate(config.getString("ConfigId"));
+            }
+
+            double version = Utils.getNumberFromUpdate((latestVersion));
+
+            if (!(Utils.doublesEquals(currentVersion, version) || currentVersion > version)) {
+                File f = getFile();
+                int num = 0;
+
+                String newPath = path.replace(".yml", "_Old_Version_" + num + ".yml");
+
+                while (new File(newPath).exists()) {
+                    num++;
+                    newPath = newPath.replace("_Old_Version_" + (num - 1), "_Old_Version_" + num);
+                }
+                f.renameTo(new File(newPath));
+
+                createFile(path);
+                createConfig();
+            }
+        });
     }
 
     /**

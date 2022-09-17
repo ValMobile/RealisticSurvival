@@ -19,6 +19,7 @@ package me.val_mobile.baubles;
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
 import me.val_mobile.data.baubles.ItemConfig;
+import me.val_mobile.data.baubles.PlayerDataConfig;
 import me.val_mobile.data.baubles.RecipesConfig;
 import me.val_mobile.data.baubles.UserConfig;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
@@ -31,11 +32,13 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
 
     public static final String NAME = "Baubles";
 
+    private PlayerDataConfig config;
     private BaubleEvents events;
 
     public BaubleModule(RealisticSurvivalPlugin plugin) {
         super(NAME, plugin);
         this.plugin = plugin;
+        this.config = new PlayerDataConfig(plugin);
     }
 
     @Override
@@ -70,6 +73,10 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
 
             plugin.getLogger().info(message);
         }
+    }
+
+    public PlayerDataConfig getPlayerDataConfig() {
+        return config;
     }
 
     public BaubleEvents getEvents() {

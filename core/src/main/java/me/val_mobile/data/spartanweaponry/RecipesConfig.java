@@ -22,9 +22,10 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 public class RecipesConfig extends RSVConfig {
 
     public static final String PATH = "resources/spartanweaponry/recipes.yml";
-    public static final boolean REPLACE = true;
+    public static final boolean REPLACE = false;
+    public static final boolean UPDATE = true;
 
     public RecipesConfig(RealisticSurvivalPlugin plugin) {
-        super(plugin, PATH, REPLACE);
+        super(plugin, PATH, REPLACE, UPDATE);
     }
 }

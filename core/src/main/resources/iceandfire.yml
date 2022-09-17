@@ -7,89 +7,296 @@ ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
 # Customize the Ice and Fire gear and the mobs
 
 Dragons:
-  WorldGen:
-    FireDragon:
-      Chance: 0.2             # Chance out of 1.0 that a dragon nest spawns per chunk
-      UndergroundChance: 0.5  # Chance that a dragon nest that spawns is underground
-      MinBiomeTemp: -0.5      # What biomes should be eligible for spawning based on their temperature?
-      MaxBiomeTemp: 999.9     # Uses Minecraft biome temperature values listed here: https://minecraft.fandom.com/wiki/Biome
-      Biomes:
-        - ""
-    IceDragon:
-      Chance: 0.2
-      UndergroundChance: 0.5
-      MinBiomeTemp: -999.9
-      MaxBiomeTemp: -0.5
-      Biomes:
-        - ""
-    LightningDragon:
-      Chance: 0.2
-      UndergroundChance: 0.5
-      MinBiomeTemp: 999.9     # Autoconfigured to only spawn in predefined biomes as per the canon Ice and Fire mod, not in biomes with a certain temperature
-      MaxBiomeTemp: 999.9
-      Biomes:
-        - "JUNGLE"
-        - "JUNGLE_HILLS"
-        - "JUNGLE_EDGE"
-        - "BAMBOO_JUNGLE"
-        - "BAMBOO_JUNGLE_HILLS"
-        - "MODIFIED_JUNGLE"
-        - "MODIFIED_JUNGLE_EDGE"
-        - "BADLANDS"
-        - "BADLANDS_PLATEAU"
-        - "ERODED_BADLANDS"
-        - "MODIFIED_BADLANDS_PLATEAU"
-        - "SAVANNA"
-        - "SAVANNA_PLATEAU"
-        - "SHATTERED_SAVANNA"
-        - "SHATTERED_SAVANNA_PLATEAU"
-  Behavior:
-    FireDragon:
-      BreathAttack:
-        Chance: 0.2   # Only other attack is explosion, if this is set to 1.0 then all attacks will be breath and none will be explosion
-        # The following settings already work well for a good dragon fight
-        # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
-        LayerBlock: "FIRE"            # The block that replaces air blocks directly above surface blocks
-        BurntBlock: "BLACKSTONE"      # The block which flammable blocks get turned into
-        CharredBlock: "BASALT"        # The block which inflammable blocks get turned into  (For 1.17+ versions, use SMOOTH_BASALT as it looks nicer)
-        VelocityConstant: 30          # Determines the speed of the breath flame
-        MinimumRadius: 2              # Minimum radius of charring
-        DespawnTime: 200              # How long it takes for the breath attack to despawn in ticks
-        SpecialBlocks:                # Specify the exact block you want something to be burnt into, overrides "BurntBlock" and "CharredBlock"
-          "ENUM_1: 'ENUM_2'"          # Follows the format of "BLOCK_1: "BLOCK_2" ", see the ice dragon section for an example
-        ImmuneBlocks: # Specify which blocks are immune to breath attacks
-          - "OBSIDIAN"
-          - "BEDROCK"
-      ExplosionAttack:
-    IceDragon:
-      BreathAttack:
-        Chance: 0.2
-        LayerBlock: "SNOW"
-        FrozenBlock: "PACKED_ICE"
-        VelocityConstant: 30
-        MinimumRadius: 2
-        DespawnTime: 200
-        SpecialBlocks:
-          WATER: "PACKED_ICE"
-          LAVA: "OBSIDIAN"
-        ImmuneBlocks:
-          - "OBSIDIAN"
-          - "BEDROCK"
-      ExplosionAttack:
-    LightningDragon:
-      BreathAttack:
-        Chance: 0.2
-        LayerBlock: "FIRE"
-        CrackledBlock: "BLACKSTONE"
-        VelocityConstant: 30
-        MinimumRadius: 2
-        DespawnTime: 200
-        SpecialBlocks:
-        ImmuneBlocks:
-          - "OBSIDIAN"
-          - "BEDROCK"
-      ExplosionAttack:
-
+  FireDragon:
+    BreathAttack:
+      Chance: 0.8   # Only other attack is explosion, if this is set to 1.0 then all attacks will be breath and none will be explosion
+      # The following settings already work well for a good dragon fight
+      # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+      Particle: "FLAME"
+      LayerBlock: "FIRE"            # The block that replaces air blocks directly above surface blocks
+      BurntBlock: "BLACKSTONE"      # The block which flammable blocks get turned into
+      CharredBlock: "BASALT"        # The block which inflammable blocks get turned into  (For 1.17+ versions, use SMOOTH_BASALT as it looks nicer)
+      Velocity: 15                  # Determines the speed of the breath flame
+      Radius: 2                     # Minimum radius of charring and for nearby entities to take damage
+      DespawnTime: 200              # How long it takes for the breath attack to despawn in ticks
+      SpecialBlocks:                # Specify the exact block you want something to be burnt into, overrides "BurntBlock" and "CharredBlock"
+        "ENUM_1: 'ENUM_2'"          # Follows the format of "BLOCK_1: "BLOCK_2" ", see the ice dragon section for an example
+      ImmuneBlocks: # Specify which blocks are immune to breath attacks
+        - "OBSIDIAN"
+        - "BEDROCK"
+      StageMultipliers: # Multiplies the velocity and grief radius by the specified value
+        Stage1: 1.0
+        Stage2: 1.5
+        Stage3: 2.0
+        Stage4: 2.5
+        Stage5: 3.0
+    ExplosionAttack:
+      # The following settings already work well for a good dragon fight
+      # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+      Particle: "FLAME"
+      FallingBlock: "MAGMA_BLOCK"
+      LayerBlock: "FIRE"            # The block that replaces air blocks directly above surface blocks
+      BurntBlock: "BLACKSTONE"      # The block which flammable blocks get turned into
+      CharredBlock: "BASALT"        # The block which inflammable blocks get turned into  (For 1.17+ versions, use SMOOTH_BASALT as it looks nicer)
+      Explosion:
+        Power: 6.0                  # For reference, explosion power of TNT is 4.0
+        SetFire: true
+        BreakBlocks: true
+      Velocity: 15                  # Determines the speed of the breath flame
+      Radius: 2                     # Minimum radius of charring and for nearby entities to take damage
+      DespawnTime: 200              # How long it takes for the breath attack to despawn in ticks
+      SpecialBlocks: # Specify the exact block you want something to be burnt into, overrides "BurntBlock" and "CharredBlock"
+        "ENUM_1: 'ENUM_2'"          # Follows the format of "BLOCK_1: "BLOCK_2" ", see the ice dragon section for an example
+      ImmuneBlocks: # Specify which blocks are immune to explosion attacks
+        - "OBSIDIAN"
+        - "BEDROCK"
+      StageMultipliers: # Multiplies the velocity, grief radius, and explosion power by the specified value
+        Stage1: 1.0
+        Stage2: 1.5
+        Stage3: 2.0
+        Stage4: 2.5
+        Stage5: 3.0
+    MeleeAttack:
+      BaseDamage: 10.0
+      StageMultipliers: # Multiplies the damage by the specified value
+        Stage1: 1.0
+        Stage2: 1.25
+        Stage3: 1.5
+        Stage4: 1.75
+        Stage5: 2.0
+    InfernoAbility:
+      FireTicks: 400
+      StageMultipliers: # Multiplies the fire ticks by the specified value
+        Stage1: 1.0
+        Stage2: 1.25
+        Stage3: 1.5
+        Stage4: 1.75
+        Stage5: 2.0
+    Drops:
+      # Configure drop rates
+      # Note that dragons that drop more dragonscales will drop fewer blood vials and vice versa
+      Dragonscales:
+        Min: 12
+        Max: 20
+      Blood:
+        Min: 3
+        Max: 8
+      Dragonbones:
+        Min: 6
+        Max: 18
+      Flesh:
+        Min: 3
+        Max: 8
+      Skull:
+        Min: 1
+        Max: 1
+      Heart:
+        Min: 1
+        Max: 1
+      StageMultipliers: # Multiplies the drop amounts by the specified value
+        Stage1: 1.0
+        Stage2: 1.25
+        Stage3: 1.5
+        Stage4: 1.75
+        Stage5: 2.0
+  IceDragon:
+    BreathAttack:
+      Chance: 0.8
+      Particle: "SNOWBALL"
+      LayerBlock: "SNOW"
+      FrozenBlock: "PACKED_ICE"
+      Velocity: 15
+      Radius: 2
+      DespawnTime: 200
+      SpecialBlocks:
+        WATER: "PACKED_ICE"
+        LAVA: "OBSIDIAN"
+      ImmuneBlocks:
+        - "OBSIDIAN"
+        - "BEDROCK"
+      StageMultipliers: # Multiplies the velocity and grief radius by the specified value
+        Stage1: 1.0
+        Stage2: 1.5
+        Stage3: 2.0
+        Stage4: 2.5
+        Stage5: 3.0
+    ExplosionAttack:
+      Particle: "SNOWBALL"
+      FallingBlock: "BLUE_ICE"
+      LayerBlock: "SNOW"
+      FrozenBlock: "PACKED_ICE"
+      Explosion:
+        Power: 6.0                  # For reference, explosion power of TNT is 4.0
+        SetFire: true
+        BreakBlocks: true
+      Velocity: 15
+      Radius: 2
+      DespawnTime: 200
+      SpecialBlocks:
+        WATER: "PACKED_ICE"
+        LAVA: "OBSIDIAN"
+      ImmuneBlocks:
+        - "OBSIDIAN"
+        - "BEDROCK"
+      StageMultipliers: # Multiplies the velocity and grief radius by the specified value
+        Stage1: 1.0
+        Stage2: 1.5
+        Stage3: 2.0
+        Stage4: 2.5
+        Stage5: 3.0
+    MeleeAttack:
+      BaseDamage: 10.0
+      StageMultipliers: # Multiplies the damage by the specified value
+        Stage1: 1.0
+        Stage2: 1.25
+        Stage3: 1.5
+        Stage4: 1.75
+        Stage5: 2.0
+    FreezeAbility:
+      Slowness:
+        Amplifier: 4
+        Duration: 60
+      FrozenDuration: 30
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
+      StageMultipliers: # Multiplies the slowness duration and frozen duration by the specified value
+        Stage1: 1.0
+        Stage2: 1.1
+        Stage3: 1.2
+        Stage4: 1.3
+        Stage5: 1.5
+    Drops:
+      # Configure drop rates
+      # Note that dragons that drop more dragonscales will drop fewer blood vials and vice versa
+      Dragonscales:
+        Min: 12
+        Max: 20
+      Blood:
+        Min: 3
+        Max: 8
+      Dragonbones:
+        Min: 6
+        Max: 18
+      Flesh:
+        Min: 3
+        Max: 8
+      Skull:
+        Min: 1
+        Max: 1
+      Heart:
+        Min: 1
+        Max: 1
+      StageMultipliers: # Multiplies the drop amounts by the specified value
+        Stage1: 1.0
+        Stage2: 1.25
+        Stage3: 1.5
+        Stage4: 1.75
+        Stage5: 2.0
+  LightningDragon:
+    BreathAttack:
+      Chance: 0.8
+      Particle: "END_ROD"
+      LayerBlock: "AIR"
+      ElectrifiedBlock: "BASALT"
+      Velocity: 15
+      Radius: 2
+      DespawnTime: 200
+      SpecialBlocks:
+        SAND: "GLASS"
+        RED_SAND: "GLASS"
+        BLACK_CONCRETE_POWDER: "BLACK_CONCRETE"
+        BLUE_CONCRETE_POWDER: "BLUE_CONCRETE"
+        BROWN_CONCRETE_POWDER: "BROWN_CONCRETE"
+        CYAN_CONCRETE_POWDER: "CYAN_CONCRETE"
+        GRAY_CONCRETE_POWDER: "GRAY_CONCRETE"
+        GREEN_CONCRETE_POWDER: "GREEN_CONCRETE"
+        LIGHT_BLUE_CONCRETE_POWDER: "LIGHT_BLUE_CONCRETE"
+        LIGHT_GRAY_CONCRETE_POWDER: "LIGHT_GRAY_CONCRETE"
+        LIME_CONCRETE_POWDER: "LIME_CONCRETE"
+        MAGENTA_CONCRETE_POWDER: "MAGENTA_CONCRETE"
+        ORANGE_CONCRETE_POWDER: "ORANGE_CONCRETE"
+        PINK_CONCRETE_POWDER: "PINK_CONCRETE"
+        PURPLE_CONCRETE_POWDER: "PURPLE_CONCRETE"
+        RED_CONCRETE_POWDER: "RED_CONCRETE"
+        WHITE_CONCRETE_POWDER: "WHITE_CONCRETE"
+        YELLOW_CONCRETE_POWDER: "YELLOW_CONCRETE"
+      ImmuneBlocks:
+        - "OBSIDIAN"
+        - "BEDROCK"
+      StageMultipliers: # Multiplies the velocity and grief radius by the specified value
+        Stage1: 1.0
+        Stage2: 1.5
+        Stage3: 2.0
+        Stage4: 2.5
+        Stage5: 3.0
+    ExplosionAttack:
+      Particle: "END_ROD"
+      FallingBlock: "PURPLE_STAINED_GLASS"
+      LayerBlock: "AIR"
+      FrozenBlock: "BASALT"
+      Explosion:
+        Power: 6.0                  # For reference, explosion power of TNT is 4.0
+        SetFire: true
+        BreakBlocks: true
+      Velocity: 15
+      Radius: 2
+      DespawnTime: 200
+      SpecialBlocks:
+        WATER: "PACKED_ICE"
+        LAVA: "OBSIDIAN"
+      ImmuneBlocks:
+        - "OBSIDIAN"
+        - "BEDROCK"
+      StageMultipliers: # Multiplies the velocity and grief radius by the specified value
+        Stage1: 1.0
+        Stage2: 1.5
+        Stage3: 2.0
+        Stage4: 2.5
+        Stage5: 3.0
+    ElectrocuteAbility:
+      SummonCosmeticLightning: false
+      ShockDamage: 1.0
+      ShockAmount: 10
+      TickSpeed: 2
+      StageMultipliers: # Multiplies the shock damage and amount by the specified value
+        Stage1: 1.0
+        Stage2: 1.5
+        Stage3: 2.0
+        Stage4: 2.5
+        Stage5: 3.0
+    Drops:
+      # Configure drop rates
+      # Note that dragons that drop more dragonscales will drop fewer blood vials and vice versa
+      Dragonscales:
+        Min: 12
+        Max: 20
+      Blood:
+        Min: 3
+        Max: 8
+      Dragonbones:
+        Min: 6
+        Max: 18
+      Flesh:
+        Min: 3
+        Max: 8
+      Skull:
+        Min: 1
+        Max: 1
+      Heart:
+        Min: 1
+        Max: 1
+      StageMultipliers: # Multiplies the drop amounts by the specified value
+        Stage1: 1.0
+        Stage2: 1.25
+        Stage3: 1.5
+        Stage4: 1.75
+        Stage5: 2.0
 Abilities:
   TideGuardian:
     WaterBreathing:
@@ -417,12 +624,19 @@ Items:
     Attributes:
       AttackDamage: 26.0
       AttackSpeed: 1.2
-    Slowness:
-      Amplifier: 4
-      Duration: 60
-    FrozenDuration: 10    # Determines how long a mob is encased in ice
-    # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
-    Block: "PACKED_ICE"   # What block the mob is encased in, default is ice
+    FreezeAbility:
+      Slowness:
+        Amplifier: 4
+        Duration: 60
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_pickaxe:
     Enabled:
       EnableAllVersions: true
@@ -464,8 +678,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_axe:
     Enabled:
       EnableAllVersions: true
@@ -507,8 +728,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_shovel:
     Enabled:
       EnableAllVersions: true
@@ -550,8 +778,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_hoe:
     Enabled:
       EnableAllVersions: true
@@ -595,7 +830,14 @@ Items:
         Amplifier: 4
         Duration: 60
       FrozenDuration: 10
-      Block: "PACKED_ICE"
+      EncaseIce:
+        Enabled: true
+        Block: "PACKED_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonbone_lightning_sword:
     Enabled:
       EnableAllVersions: true
@@ -629,8 +871,15 @@ Items:
       Slowness:
         Amplifier: 4
         Duration: 60
-      FrozenDuration: 10
-      Block: "PACKED_ICE"
+      FrozenDuration: 20
+      EncaseIce:
+        Enabled: true
+        Block: "BLUE_ICE"
+      Sound:
+        Enabled: true
+        Sound: "BLOCK_GLASS_BREAK"
+        Volume: 1.0
+        Pitch: 1.0
   dragonsteel_lightning_sword:
     Enabled:
       EnableAllVersions: true

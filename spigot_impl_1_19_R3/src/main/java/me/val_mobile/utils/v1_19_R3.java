@@ -22,4 +22,8 @@ public class v1_19_R3 extends InternalsProvider {
         return PotionEffectTypeList.valueOf(type).getType();
     }
 
+    @Override
+    public void registerEntities() {
+        CustomEntities.registerEntities();
+    }
 }

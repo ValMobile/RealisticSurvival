@@ -129,9 +129,9 @@ balloon:
     Item: "balloon"
     Amount: 1
   Ingredients:
-    - "spectral_silt|WOOL|spectral_silt"
-    - "WOOL|spectral_silt|WOOL"
-    - "spectral_silt|WOOL|spectral_silt"
+    - "spectral_silt|Tag.WOOL|spectral_silt"
+    - "Tag.WOOL|spectral_silt|Tag.WOOL"
+    - "spectral_silt|Tag.WOOL|spectral_silt"
 cobalt_shield:
   Type: "Shaped"
   Result:
@@ -454,9 +454,9 @@ shield_honor:
     Item: "shield_honor"
     Amount: 1
   Ingredients:
-    - "glowing_gem|LOGS|glowing_gem"
-    - "LOGS|DRAGON_EGG|LOGS"
-    - "glowing_gem|LOGS|glowing_gem"
+    - "glowing_gem|Tag.LOGS|glowing_gem"
+    - "Tag.LOGS|DRAGON_EGG|Tag.LOGS"
+    - "glowing_gem|Tag.LOGS|glowing_gem"
 warped_scroll:
   Type: "Shaped"
   Result:

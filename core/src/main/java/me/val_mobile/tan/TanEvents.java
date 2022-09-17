@@ -16,43 +16,160 @@
  */
 package me.val_mobile.tan;
 
+import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.data.ModuleEvents;
+import me.val_mobile.data.RSVPlayer;
+import me.val_mobile.data.baubles.BaubleInventory;
+import me.val_mobile.data.baubles.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
+import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
+import org.bukkit.util.Vector;
 
-import java.util.HashMap;
-import java.util.Random;
+import java.util.Set;
 
-import static me.val_mobile.tan.TanRunnables.LOWEST_THIRST;
+import static me.val_mobile.tan.ThirstCalculateTask.DEFAULT_SATURATION;
+import static me.val_mobile.tan.ThirstCalculateTask.MAXIMUM_THIRST;
 
 public class TanEvents extends ModuleEvents implements Listener {
 
-    private final TanRunnables tanRunnables;
-    private final TanModule module;
     private final RealisticSurvivalPlugin plugin;
+    private final FileConfiguration config;
+    private final boolean tempEnabled;
+    private final TanModule module;
+    private final boolean thirstEnabled;
 
     public TanEvents(TanModule module, RealisticSurvivalPlugin plugin) {
         super(module, plugin);
-        tanRunnables = new TanRunnables(plugin);
-        this.plugin = plugin;
         this.module = module;
+        this.plugin = plugin;
+        this.config = module.getUserConfig().getConfig();
+        this.tempEnabled = config.getBoolean("Temperature.Enabled");
+        this.thirstEnabled = config.getBoolean("Thirst.Enabled");
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+
+        if (shouldEventBeRan(player)) {
+            if (tempEnabled || thirstEnabled) {
+                RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(player.getUniqueId());
+                if (tempEnabled) {
+                    if (TemperatureCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
+                        if (!TemperatureCalculateTask.getPlayers().get(player.getUniqueId())) {
+                            new TemperatureCalculateTask(plugin, rsvplayer).start();
+                        }
+                    }
+                    else {
+                        new TemperatureCalculateTask(plugin, rsvplayer).start();
+                    }
+                }
+                if (thirstEnabled) {
+                    if (ThirstCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
+                        if (!ThirstCalculateTask.getPlayers().get(player.getUniqueId())) {
+                            new ThirstCalculateTask(plugin, rsvplayer).start();
+                        }
+                    }
+                    else {
+                        new ThirstCalculateTask(plugin, rsvplayer).start();
+                    }
+                }
+                if (DisplayTask.getPlayers().containsKey(player.getUniqueId())) {
+                    if (!DisplayTask.getPlayers().get(player.getUniqueId())) {
+                        new DisplayTask(plugin, rsvplayer).start();
+                    }
+                }
+                else {
+                    new DisplayTask(plugin, rsvplayer).start();
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onPlayerVelocity(PlayerVelocityEvent event)
+    {
+        Player player = event.getPlayer(); // get the player
+
+        if (!event.isCancelled()) {
+            if (shouldEventBeRan(player)) {
+                Vector velocity = player.getVelocity(); // get the player's current velocity
+
+                // check if the player is moving up
+                if (velocity.getY() > 0) {
+                    double jumpVelocity = 0.42; // default jump velocity
+
+                    // if the player has the jump boost effect
+                    if (player.hasPotionEffect(PotionEffectType.JUMP)) {
+                        PotionEffect jumpBoost = player.getPotionEffect(PotionEffectType.JUMP);  // get the jump boost effect
+
+                        // add the jump boost to the velocity to factor in the increased velocity
+                        jumpVelocity += ((double) jumpBoost.getAmplifier() + 1) * 0.1;
+                    }
+
+                    Location loc = player.getLocation(); // get the player's location
+                    Block block = loc.getBlock(); // get the block at that location
+                    Material blockMaterial = block.getType(); // get the material of the block
+
+                    // check if the player is not climbing
+                    switch (blockMaterial) {
+                        case LADDER, VINE, TWISTING_VINES, TWISTING_VINES_PLANT, WEEPING_VINES, WEEPING_VINES_PLANT -> {
+                        }
+                        default -> {
+                            // check if the player's jump velocity is equal to the player's Y velocity
+                            if (Utils.doublesEquals(velocity.getY(), jumpVelocity)) {
+                                // check if the player is not flying or swimming
+                                if (!(player.getLocation().getBlock().isLiquid() || player.isRiptiding() || player.isFlying())) {
+                                    ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
+
+                                    if (task != null) {
+                                        task.setJumping(true);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        Player player = event.getEntity();
+
+        if (shouldEventBeRan(player)) {
+            ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
+
+            if (task != null) {
+                task.setThirstLvl(MAXIMUM_THIRST);
+                task.setSaturationLvl(DEFAULT_SATURATION);
+            }
+        }
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -63,19 +180,39 @@ public class TanEvents extends ModuleEvents implements Listener {
             if (shouldEventBeRan(player)) {
                 GameMode mode = event.getNewGameMode();
                 if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) {
-                    tanRunnables.updateTemperatureThirstValues(player);
-                    tanRunnables.startTemperatureThirstRunnable(player);
+                    if (tempEnabled || thirstEnabled) {
+                        RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(player.getUniqueId());
+                        if (tempEnabled) {
+                            if (TemperatureCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
+                                if (!TemperatureCalculateTask.getPlayers().get(player.getUniqueId())) {
+                                    new TemperatureCalculateTask(plugin, rsvplayer).start();
+                                }
+                            }
+                            else {
+                                new TemperatureCalculateTask(plugin, rsvplayer).start();
+                            }
+                        }
+                        if (thirstEnabled) {
+                            if (ThirstCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
+                                if (!ThirstCalculateTask.getPlayers().get(player.getUniqueId())) {
+                                    new ThirstCalculateTask(plugin, rsvplayer).start();
+                                }
+                            }
+                            else {
+                                new ThirstCalculateTask(plugin, rsvplayer).start();
+                            }
+                        }
+                        if (DisplayTask.getPlayers().containsKey(player.getUniqueId())) {
+                            if (!DisplayTask.getPlayers().get(player.getUniqueId())) {
+                                new DisplayTask(plugin, rsvplayer).start();
+                            }
+                        }
+                        else {
+                            new DisplayTask(plugin, rsvplayer).start();
+                        }
+                    }
                 }
             }
-        }
-    }
-
-    @EventHandler
-    public void onRespawn(PlayerRespawnEvent event) {
-        Player player = event.getPlayer();
-
-        if (shouldEventBeRan(player)) {
-            tanRunnables.resetTemperatureThirstMaps(event.getPlayer());
         }
     }
 
@@ -86,95 +223,154 @@ public class TanEvents extends ModuleEvents implements Listener {
         if (shouldEventBeRan(player)) {
             GameMode mode = player.getGameMode();
             Action action = event.getAction();
-            if (mode.equals(GameMode.SURVIVAL) || mode.equals(GameMode.ADVENTURE)) {
-                FileConfiguration config = module.getUserConfig().getConfig();
+            if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) {
+                boolean parasites = false;
 
-                if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
-                    if (player.isSneaking()) {
-                        Location playerLoc = player.getLocation();
+                switch (action) {
+                    case RIGHT_CLICK_BLOCK -> {
+                        if (config.getBoolean("Thirst.SaturationRestoration.Drinking.Enabled")) {
+                            if (player.isSneaking()) {
+                                Location playerLoc = player.getLocation();
 
-                        Block block = event.getClickedBlock();
-                        Location loc = block.getLocation();
+                                Block block = event.getClickedBlock();
+                                Location loc = block.getLocation();
 
-                        Location aboveLoc = loc.clone();
-                        aboveLoc.setY(aboveLoc.getY() + 1D);
-                        Block aboveBlock = aboveLoc.getBlock();
+                                Location aboveLoc = loc.clone();
+                                aboveLoc.setY(aboveLoc.getY() + 1D);
+                                Block aboveBlock = aboveLoc.getBlock();
 
-                        Block waterSource = null;
+                                Block waterSource = null;
 
-                        if (block.getBlockData().getMaterial() == Material.WATER) {
-                            if (Utils.isSourceLiquid(block)) {
-                                waterSource = block;
-                            }
-                        }
-
-                        if (aboveBlock.getBlockData().getMaterial() == Material.WATER) {
-                            if (Utils.isSourceLiquid(aboveBlock)) {
-                                waterSource = aboveBlock;
-                            }
-                        }
-
-
-                        if (waterSource != null) {
-                            double maxDistance = config.getDouble("Thirst.Drinking.MaxDistance");
-
-                            if (playerLoc.distance(waterSource.getLocation()) < maxDistance) {
-                                double current = PlayerRunnable.getThirst().get(player.getName());
-                                double difference = LOWEST_THIRST - current;
-                                double amount = config.getDouble("Thirst.Drinking.Amount");
-
-                                if (config.getBoolean("Thirst.Drinking.OverrideLimit")) {
-                                    Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + amount);
-                                }
-                                else {
-                                    if (Math.abs(difference) >= 0.01) {
-
-                                        if (difference > amount) {
-                                            Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + amount);
-                                        }
-                                        else {
-                                            Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + difference);
-                                        }
+                                if (block.getBlockData().getMaterial() == Material.WATER) {
+                                    if (Utils.isSourceLiquid(block)) {
+                                        waterSource = block;
                                     }
                                 }
-                                Sound sound = Sound.valueOf(config.getString("Thirst.Drinking.Sound"));
-                                float volume = (float) config.getDouble("Thirst.Drinking.Volume");
-                                float pitch = (float) config.getDouble("Thirst.Drinking.Pitch");
 
-                                if (volume != -1.0) {
-                                    player.playSound(playerLoc, sound, volume, pitch);
-                                }
-                            }
-                        }
-                    }
-                }
-                else if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.LEFT_CLICK_AIR)) {
-                    if (!player.getWorld().isClearWeather()) {
-                        if (player.isSneaking()) {
-                            if (Utils.isExposedToSky(player)) {
-                                Location loc = player.getLocation();
-                                if (Math.abs(loc.getPitch() + 90F) < 0.01) {
-                                    double current = PlayerRunnable.getThirst().get(player.getName());
-                                    double difference = LOWEST_THIRST - current;
-
-                                    if (config.getBoolean("Thirst.Raining.OverrideLimit")) {
-                                        Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Raining.Amount"));
+                                if (aboveBlock.getBlockData().getMaterial() == Material.WATER) {
+                                    if (Utils.isSourceLiquid(aboveBlock)) {
+                                        waterSource = aboveBlock;
                                     }
-                                    else {
-                                        if (Math.abs(difference) >= 0.01) {
-                                            if (difference > RSVFiles.getTanUserConfig().getDouble("Thirst.Raining.Amount")) {
-                                                Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Raining.Amount"));
-                                            } else {
-                                                Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + difference);
+                                }
+
+                                if (waterSource != null) {
+                                    double maxDistance = config.getDouble("Thirst.SaturationRestoration.Drinking.MaxDistance");
+
+                                    if (playerLoc.distance(waterSource.getLocation()) < maxDistance) {
+                                        ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
+
+                                        if (task != null) {
+                                            double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Drinking.ThirstPoints");
+                                            double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Drinking.SaturationPoints");
+
+                                            task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
+                                            task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
+
+                                            if (config.getBoolean("Thirst.SaturationRestoration.Drinking.Sound.Enabled")) {
+                                                Sound sound = Sound.valueOf(config.getString("Thirst.SaturationRestoration.Drinking.Sound.Sound"));
+                                                float volume = (float) config.getDouble("Thirst.SaturationRestoration.Drinking.Sound.Volume");
+                                                float pitch = (float) config.getDouble("Thirst.SaturationRestoration.Drinking.Sound.Pitch");
+
+                                                player.playSound(playerLoc, sound, volume, pitch);
+                                            }
+
+
+                                            // Parasites code
+
+                                            Location waterSourceLoc = waterSource.getLocation();
+                                            World world = waterSourceLoc.getWorld();
+                                            Block air;
+
+                                            int airAmount = 0;
+                                            int caveAirAmount = 0;
+
+                                            for (int x = -3; x < 2; x++) {
+                                                for (int y = -3; y < 2; y++) {
+                                                    for (int z = -3; z < 2; z++) {
+                                                        air = world.getBlockAt(x + (int) waterSourceLoc.getX(), y + (int) waterSourceLoc.getY(), z + (int) waterSourceLoc.getZ());
+                                                        if (air.getType() == Material.AIR) {
+                                                            airAmount++;
+                                                        }
+                                                        else if (air.getType() == Material.CAVE_AIR) {
+                                                            caveAirAmount++;
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            if (caveAirAmount > airAmount) {
+                                                // cave water
+                                                if (config.getBoolean("Thirst.Parasites.CaveWater.Enabled")) {
+                                                    if (Math.random() <= config.getDouble("Thirst.Parasites.CaveWater.Chance")) {
+                                                        parasites = true;
+                                                    }
+                                                }
+                                            }
+                                            else {
+                                                Biome biome = waterSource.getBiome();
+                                                switch (biome) {
+                                                    case RIVER, FROZEN_RIVER -> {
+                                                        // river water
+                                                        if (config.getBoolean("Thirst.Parasites.RiverWater.Enabled")) {
+                                                            if (Math.random() <= config.getDouble("Thirst.Parasites.RiverWater.Chance")) {
+                                                                parasites = true;
+                                                            }
+                                                        }
+                                                    }
+                                                    case OCEAN, COLD_OCEAN, DEEP_LUKEWARM_OCEAN, LUKEWARM_OCEAN, DEEP_OCEAN, DEEP_COLD_OCEAN, DEEP_FROZEN_OCEAN, FROZEN_OCEAN, DEEP_WARM_OCEAN, WARM_OCEAN -> {
+                                                        // ocean water
+                                                        if (config.getBoolean("Thirst.Parasites.SeaWater.Enabled")) {
+                                                            if (Math.random() <= config.getDouble("Thirst.Parasites.SeaWater.Chance")) {
+                                                                parasites = true;
+                                                            }
+                                                        }
+                                                    }
+                                                    default -> {
+                                                        // regular water
+                                                        if (config.getBoolean("Thirst.Parasites.RegularWater.Enabled")) {
+                                                            if (Math.random() <= config.getDouble("Thirst.Parasites.RegularWater.Chance")) {
+                                                                parasites = true;
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }
-                                    Sound sound = Sound.valueOf(RSVFiles.getTanUserConfig().getString("Thirst.Supplements.Raining.Sound"));
-                                    float volume = (float) RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Raining.Volume");
-                                    float pitch = (float) RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.Raining.Pitch");
+                                }
+                            }
+                        }
+                    }
+                    case RIGHT_CLICK_AIR, LEFT_CLICK_AIR -> {
+                        if (config.getBoolean("Thirst.SaturationRestoration.Raining.Enabled")) {
+                            if (player.getWorld().hasStorm()) {
+                                if (Utils.isExposedToSky(player)) {
+                                    Location loc = player.getLocation();
+                                    if (Math.abs(loc.getPitch() + 90F) < 0.01) {
+                                        ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
 
-                                    if (volume != -1.0) {
-                                        player.playSound(loc, sound, volume, pitch);
+                                        if (task != null) {
+                                            double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Raining.ThirstPoints");
+                                            double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Raining.SaturationPoints");
+
+                                            task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
+                                            task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
+
+                                            if (config.getBoolean("Thirst.SaturationRestoration.Raining.Sound.Enabled")) {
+                                                Sound sound = Sound.valueOf(config.getString("Thirst.SaturationRestoration.Raining.Sound.Sound"));
+                                                float volume = (float) config.getDouble("Thirst.SaturationRestoration.Raining.Sound.Volume");
+                                                float pitch = (float) config.getDouble("Thirst.SaturationRestoration.Raining.Sound.Pitch");
+
+                                                player.playSound(loc, sound, volume, pitch);
+                                            }
+
+                                            // regular water
+                                            if (config.getBoolean("Thirst.Parasites.Rain.Enabled")) {
+                                                if (Math.random() <= config.getDouble("Thirst.Parasites.Rain.Chance")) {
+                                                    parasites = true;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -182,6 +378,16 @@ public class TanEvents extends ModuleEvents implements Listener {
                     }
                 }
 
+                if (parasites) {
+                    if (ParasiteTask.getPlayers().containsKey(player.getUniqueId())) {
+                        if (!ParasiteTask.getPlayers().get(player.getUniqueId())) {
+                            new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                        }
+                    }
+                    else {
+                        new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                    }
+                }
             }
         }
     }
@@ -190,60 +396,112 @@ public class TanEvents extends ModuleEvents implements Listener {
     public void onConsume(PlayerItemConsumeEvent event) {
         Player player = event.getPlayer();
 
-        if (util.shouldEventBeRan(player, "ToughAsNails")) {
+        if (shouldEventBeRan(player)) {
             GameMode mode = player.getGameMode();
 
-            if (mode.equals(GameMode.SURVIVAL) || mode.equals(GameMode.ADVENTURE)) {
+            if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) {
                 ItemStack item = event.getItem();
 
-                if (item.getType() == Material.POTION) {
-                    double current = PlayerRunnable.getThirst().get(player.getName());
-                    double difference = LOWEST_THIRST - current;
+                String name = RSVItem.isRSVItem(item) ? RSVItem.getNameFromItem(item) : item.getType().toString();
+                Set<String> keys = config.getConfigurationSection("Thirst.SaturationRestoration.Foods").getKeys(false);
 
-                    String drink;
+                if (name != null) {
+                    if (keys.contains(name)) {
+                        ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
 
-                    if (util.hasNbtTag(item, "tan_drinks")) {
-                        drink = util.getNbtTag(item, "tan_drinks");
-                    }
-                    else {
-                        drink = "WaterBottle";
-                    }
+                        if (task != null) {
+                            double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + name + ".ThirstPoints");
+                            double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + name + ".SaturationPoints");
 
+                            task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
+                            task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
 
-                    if (RSVFiles.getTanUserConfig().getBoolean("Thirst.Supplements." + drink + ".OverrideLimit")) {
-                        Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements." + drink + ".Amount"));
-                    }
-                    else {
-                        if (Math.abs(difference) >= 0.01) {
-                            if (difference > RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements." + drink + ".Amount")) {
-                                Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements." + drink + ".Amount"));
-                            } else {
-                                Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), current + difference);
+                            if (name.equals(item.getType().toString()) && item.getType() == Material.POTION) {
+                                if (((PotionMeta) item.getItemMeta()).getBasePotionData().getType() == PotionType.WATER) {
+                                    // unpurified water
+                                    if (config.getBoolean("Thirst.Parasites.UnpurifiedWaterBottle.Enabled")) {
+                                        if (Math.random() <= config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance")) {
+                                            if (ParasiteTask.getPlayers().containsKey(player.getUniqueId())) {
+                                                if (!ParasiteTask.getPlayers().get(player.getUniqueId())) {
+                                                    new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                                                }
+                                            }
+                                            else {
+                                                new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (name.equals("juice_chorus_fruit")) {
+                                if (config.getBoolean("Items.juice_chorus_fruit.Teleport.Enabled")) {
+                                    Location loc = player.getLocation();
+                                    final double RADIUS = config.getDouble("Items.juice_chorus_fruit.Teleport.MaxRadius");
+                                    double x = loc.getX() + Math.random() * RADIUS;
+                                    double z = loc.getZ() + Math.random() * RADIUS;
+
+                                    Location newLoc = new Location(loc.getWorld(), x, loc.getWorld().getHighestBlockYAt((int) Math.round(x), (int) Math.round(z)), z, loc.getYaw(), loc.getPitch());
+
+                                    player.teleport(newLoc);
+
+                                    if (config.getBoolean("Items.juice_chorus_fruit.Teleport.Sound.Enabled")) {
+                                        Sound sound = Sound.valueOf(config.getString("Items.juice_chorus_fruit.Teleport.Sound.Sound"));
+                                        float volume = (float) config.getDouble("Items.juice_chorus_fruit.Teleport.Sound.Volume");
+                                        float pitch = (float) config.getDouble("Items.juice_chorus_fruit.Teleport.Sound.Pitch");
+                                        player.playSound(loc, sound, volume, pitch);
+                                    }
+                                }
                             }
                         }
                     }
+                }
+            }
+        }
+    }
 
-                    if (drink.equals("ChorusFruitJuice")) {
-                        if (RSVFiles.getTanUserConfig().getBoolean("Thirst.Supplements.ChorusFruitJuice.Teleport.Enabled")) {
-                            Location loc = player.getLocation();
+    @EventHandler (priority = EventPriority.MONITOR)
+    public void onDamage(EntityDamageEvent event) {
+        Entity e = event.getEntity();
 
-                            Random r = new Random();
-                            final double RADIUS = RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.ChorusFruitJuice.Teleport.MaxRadius");
-                            double x = loc.getX() + Math.random() * RADIUS;
-                            double z = loc.getZ() + Math.random() * RADIUS;
+        if (!event.isCancelled()) {
+            if (shouldEventBeRan(e)) {
+                if (e instanceof Player) {
+                    ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(e.getUniqueId());
+                    GameMode mode = ((Player) e).getGameMode();
 
-                            Location newLoc = new Location(loc.getWorld(), x, loc.getWorld().getHighestBlockYAt((int) Math.round(x), (int) Math.round(z)), z, loc.getYaw(), loc.getPitch());
+                    if (mode.equals(GameMode.SURVIVAL) || mode.equals(GameMode.ADVENTURE)) {
 
-                            player.teleport(newLoc);
+                        if (task != null) {
+                            if (event.getCause() == EntityDamageEvent.DamageCause.DROWNING) {
+                                if (config.getBoolean("Thirst.SaturationRestoration.Drowning.Enabled")) {
+                                    double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Drowning.ThirstPoints");
+                                    double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Drowning.SaturationPoints");
 
-                            Sound sound = Sound.valueOf(RSVFiles.getTanUserConfig().getString("Thirst.Supplements.ChorusFruitJuice.Teleport.Sound"));
-                            float volume = (float) RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.ChorusFruitJuice.Teleport.Volume");
-                            float pitch = (float) RSVFiles.getTanUserConfig().getDouble("Thirst.Supplements.ChorusFruitJuice.Teleport.Pitch");
-
-                            if (volume != -1.0) {
-                                player.playSound(loc, sound, volume, pitch);
+                                    task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
+                                    task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
+                                }
                             }
+                            double parasiteExhaustionMultiplier = config.getBoolean("Thirst.Parasites.MultiplyExhaustionRates.Enabled") ? config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value") : 1D;
+                            task.setExhaustionLvl(task.getExhaustionLvl() + (config.getDouble("Thirst.ExhaustionLevelIncrease.TakingDamage") * parasiteExhaustionMultiplier));
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler (priority = EventPriority.MONITOR)
+    public void onRegenerate(EntityRegainHealthEvent event) {
+        if (!event.isCancelled()) {
+            Entity e = event.getEntity();
+            if (e instanceof Player) {
+                if (shouldEventBeRan(e)) {
+                    ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(e.getUniqueId());
+
+                    if (task != null) {
+                        double parasiteExhaustionMultiplier = config.getBoolean("Thirst.Parasites.MultiplyExhaustionRates.Enabled") ? config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value") : 1D;
+                        task.setExhaustionLvl(task.getExhaustionLvl() + (config.getDouble("Thirst.ExhaustionLevelIncrease.RegeneratingHealth") * parasiteExhaustionMultiplier));
                     }
                 }
             }
@@ -254,32 +512,41 @@ public class TanEvents extends ModuleEvents implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
 
-        if (util.shouldEventBeRan(player, "ToughAsNails")) {
-            ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-            Block block = event.getBlock();
-            Material material = block.getBlockData().getMaterial();
+        if (!event.isCancelled()) {
+            if (shouldEventBeRan(player)) {
+                ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+                Block block = event.getBlock();
+                Material material = block.getBlockData().getMaterial();
+                Location loc = block.getLocation().add(0D, 0.15D, 0D);
 
-            if (RSVFiles.getTanUserConfig().getStringList("IceCube.Blocks").contains(material.toString())) {
-                if (Utils.isHoldingPickaxe(player)) {
-                    if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
-                        double chance = RSVFiles.getTanUserConfig().getDouble("IceCube.DropChance");
-                        Utils.harvestFortune(chance, customItems.getIceCube(), itemMainHand, block.getLocation());
+                Set<String> iceBlocks = config.getConfigurationSection("Items.ice_cube.BlockDrops").getKeys(false);
+                Set<String> magmaBlocks = config.getConfigurationSection("Items.magma_shard.BlockDrops").getKeys(false);
 
-                        if (Utils.changeDurability(itemMainHand))
-                            player.getInventory().setItemInMainHand(null);
+                if (iceBlocks.contains(material.toString())) {
+                    if (Utils.isHoldingPickaxe(player)) {
+                        if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                            Utils.harvestFortune(config.getConfigurationSection("Items.ice_cube.BlockDrops." + material), RSVItem.getItem("ice_cube"), itemMainHand, loc);
+
+                            if (Utils.changeDurability(itemMainHand, -1))
+                                player.getInventory().setItemInMainHand(null);
+                        }
                     }
                 }
-            }
-            if (RSVFiles.getTanUserConfig().getStringList("MagmaShard.Blocks").contains(material.toString())) {
-                if (Utils.isHoldingPickaxe(player)) {
-                    if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
-                        event.setDropItems(false);
+                if (magmaBlocks.contains(material.toString())) {
+                    if (Utils.isHoldingPickaxe(player)) {
+                        if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                            Utils.harvestFortune(config.getConfigurationSection("Items.magma_shard.BlockDrops." + material), RSVItem.getItem("ice_cube"), itemMainHand, loc);
 
-                        double chance = RSVFiles.getTanUserConfig().getDouble("MagmaShard.DropChance");
-                        Utils.harvestFortune(chance, customItems.getMagmaShard(), itemMainHand, block.getLocation());
-                        if (Utils.changeDurability(itemMainHand))
-                            player.getInventory().setItemInMainHand(null);
+                            if (Utils.changeDurability(itemMainHand, -1))
+                                player.getInventory().setItemInMainHand(null);
+                        }
                     }
+                }
+                ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
+
+                if (task != null) {
+                    double parasiteExhaustionMultiplier = config.getBoolean("Thirst.Parasites.MultiplyExhaustionRates.Enabled") ? config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value") : 1D;
+                    task.setExhaustionLvl(task.getExhaustionLvl() + (config.getDouble("Thirst.ExhaustionLevelIncrease.BreakingBlock") * parasiteExhaustionMultiplier));
                 }
             }
         }
@@ -290,39 +557,60 @@ public class TanEvents extends ModuleEvents implements Listener {
 
         Player player = event.getPlayer();
 
-        if (util.shouldEventBeRan(player, "ToughAsNails")) {
-            String name = player.getName();
+        if (shouldEventBeRan(player)) {
+            String oldWorld = event.getFrom().toString();
 
-            HashMap<String, Boolean> tempRunMap = PlayerRunnable.getTemperatureRunnables();
-            HashMap<String, Boolean> thirstRunMap = PlayerRunnable.getThirstRunnables();
-
-            if (tempRunMap.containsKey(name) && thirstRunMap.containsKey(name)) {
-                if (!(tempRunMap.get(name) || thirstRunMap.get(name))) {
-                    // start every bauble runnable
-                    tanRunnables.startTemperatureThirstRunnable(player);
-
-                    Utils.setOrReplaceEntry(tempRunMap, name, true);
-                    Utils.setOrReplaceEntry(thirstRunMap, name, true);
+            if (!module.getAllowedWorlds().contains(oldWorld)) {
+                if (tempEnabled || thirstEnabled) {
+                    RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(player.getUniqueId());
+                    if (tempEnabled) {
+                        if (TemperatureCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
+                            if (!TemperatureCalculateTask.getPlayers().get(player.getUniqueId())) {
+                                new TemperatureCalculateTask(plugin, rsvplayer).start();
+                            }
+                        }
+                        else {
+                            new TemperatureCalculateTask(plugin, rsvplayer).start();
+                        }
+                    }
+                    if (thirstEnabled) {
+                        if (ThirstCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
+                            if (!ThirstCalculateTask.getPlayers().get(player.getUniqueId())) {
+                                new ThirstCalculateTask(plugin, rsvplayer).start();
+                            }
+                        }
+                        else {
+                            new ThirstCalculateTask(plugin, rsvplayer).start();
+                        }
+                    }
+                    if (DisplayTask.getPlayers().containsKey(player.getUniqueId())) {
+                        if (!DisplayTask.getPlayers().get(player.getUniqueId())) {
+                            new DisplayTask(plugin, rsvplayer).start();
+                        }
+                    }
+                    else {
+                        new DisplayTask(plugin, rsvplayer).start();
+                    }
                 }
             }
         }
     }
 
-    @EventHandler
-    public void onCraft(PrepareItemCraftEvent event) {
-        Player player = (Player) event.getView().getPlayer();
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemSwap(PlayerItemHeldEvent event) {
+        if (!event.isCancelled()) {
+            Player p = event.getPlayer();
+            if (shouldEventBeRan(p)) {
+                ItemStack item = p.getInventory().getItem(event.getNewSlot());
 
-        if (util.shouldEventBeRan(player, "ToughAsNails")) {
-            if (event.getRecipe() != null) {
-                if (event.getRecipe().getResult().isSimilar(new ItemStack(Material.PRISMARINE))) {
-                    for (ItemStack i : event.getInventory().getContents()) {
-                        ItemMeta meta = i.getItemMeta();
-
-                        if (meta.hasCustomModelData()) {
-                            if (meta.getCustomModelData() >= 83650 && meta.getCustomModelData() <= 84000) {
-                                event.getInventory().setResult(null);
-                                break;
+                if (RSVItem.isRSVItem(item)) {
+                    if (RSVItem.getNameFromItem(item).equals("thermometer")) {
+                        if (ThermometerTask.getPlayers().containsKey(p.getUniqueId())) {
+                            if (!ThermometerTask.getPlayers().get(p.getUniqueId())) {
+                                new ThermometerTask(plugin, RSVPlayer.getPlayers().get(p.getUniqueId())).start();
                             }
+                        } else {
+                            new ThermometerTask(plugin, RSVPlayer.getPlayers().get(p.getUniqueId())).start();
                         }
                     }
                 }
@@ -330,4 +618,30 @@ public class TanEvents extends ModuleEvents implements Listener {
         }
     }
 
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemPickup(EntityPickupItemEvent event) {
+        if (!event.isCancelled()) {
+            Entity e = event.getEntity();
+            if (e instanceof Player) {
+                if (shouldEventBeRan(e)) {
+                    Player p = (Player) e;
+                    ItemStack item = event.getItem().getItemStack();
+
+                    if (RSVItem.isRSVItem(item)) {
+                        if (RSVItem.getNameFromItem(item).equals("thermometer")) {
+                            if (ThermometerTask.getPlayers().containsKey(p.getUniqueId())) {
+                                if (!ThermometerTask.getPlayers().get(p.getUniqueId())) {
+                                    new ThermometerTask(plugin, RSVPlayer.getPlayers().get(p.getUniqueId())).start();
+                                }
+                            }
+                            else {
+                                new ThermometerTask(plugin, RSVPlayer.getPlayers().get(p.getUniqueId())).start();
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
 }

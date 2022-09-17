@@ -27,14 +27,13 @@ HypothermiaDeath:
     - "&f%PLAYER_NAME% died of hypothermia."
     - "&f%PLAYER_NAME% froze to death."
 
+VisualTickSpeed: 5
 
 # Customize various aspects of the temperature and thirst systems
 
-VisualTickSpeed: 5  # Responsible for temperature and thirst HUDs
-
 Temperature:
   Enabled: true
-  TickSpeed: 100   # Time in ticks that the game will check, don't recommend changing unless the server is lagging severely
+  CalculateTickSpeed: 100   # Time in ticks that the game will check, don't recommend changing unless the server is lagging severely
   MaxChange: 0.75  # By how much can a player's temperature change each time temperature is recalculated
   Hypothermia:
     ScreenTinting:                          # Should the screen be tinted light blue when a player has hypothermia?
@@ -51,8 +50,11 @@ Temperature:
           Duration: 160
     Duration: 240                   # Number of ticks in which the player can take damage from hypothermia
     TickSpeed: 80                   # Player will take damage each time this many number of ticks passes
-    MinimumTemperature: 1.0         # At what temperature or lower should the player be in hypothermia?
-    Damage: 1.0
+    Temperature: 1.0                # At what temperature or lower should the player be in hypothermia?
+    Damage:
+      Enabled: true
+      Cutoff: -1.0                  # The player will stop taking damage from hypothermia if their health is below this value
+      Amount: 1.0
   Hyperthermia:
     ScreenTinting: true # Should the screen be tinted orange when a player has hyperthermia?
     Ignite:             # Should the player be set on fire?
@@ -69,448 +71,454 @@ Temperature:
           Duration: 160
     Duration: 240                   # Number of ticks in which the player can take damage from hyperthermia
     TickSpeed: 80                   # Player will take damage each time this many number of ticks passes
-    MinimumTemperature: 24.0        # At what temperature or higher should the player be in hyperthermia?
-    Damage: 1.0
+    Temperature: 24.0               # At what temperature or higher should the player be in hyperthermia?
+    Damage:
+      Enabled: true
+      Cutoff: -1.0                  # The player will stop taking damage from hypothermia if their health is below this value
+      Amount: 1.0
   Environment:
     # List blocks that should affect a player's temperature
     # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+    CubeLength: 4       # What blocks should be checked for in a cubic volume of length "CubeLength"
     Blocks:
       # 1 temperature bar = 1.0 units
       CAMPFIRE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 2.0
       TORCH:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       WALL_TORCH:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       JACK_O_LANTERN:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       LANTERN:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       FIRE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.4
       LAVA:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.5
       LAVA_CAULDRON:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       WATER:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.1
       WATER_CAULDRON:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.1
       SNOW:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.05
       SNOW_BLOCK:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.1
       POWDER_SNOW:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.05
       POWDER_SNOW_CAULDRON:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.1
       ICE:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.1
       PACKED_ICE:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.15
       BLUE_ICE:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.2
       FROSTED_ICE:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.1
       SOUL_CAMPFIRE:
-        Type: "Change"
+        IsRegulatory: false
         Value: -2.0
       SOUL_TORCH:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.1
       SOUL_WALL_TORCH:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.1
       SOUL_LANTERN:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.1
       SOUL_FIRE:
-        Type: "Change"
+        IsRegulatory: false
         Value: -0.4
       MAGMA_BLOCK:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       WHITE_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       WHITE_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       WHITE_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       WHITE_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       ORANGE_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       ORANGE_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       ORANGE_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       ORANGE_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       PINK_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       PINK_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       PINK_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       PINK_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       CYAN_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       CYAN_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       CYAN_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       CYAN_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       YELLOW_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       YELLOW_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       YELLOW_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.5
       YELLOW_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       LIME_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       LIME_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       LIME_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       LIME_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       MAGENTA_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       MAGENTA_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       MAGENTA_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       MAGENTA_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       GRAY_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       GRAY_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       GRAY_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       GRAY_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       LIGHT_GRAY_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       LIGHT_GRAY_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       LIGHT_GRAY_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       LIGHT_GRAY_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       LIGHT_BLUE_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       LIGHT_BLUE_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       LIGHT_BLUE_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       LIGHT_BLUE_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       PURPLE_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       PURPLE_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       PURPLE_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       PURPLE_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       BLUE_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       BLUE_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       BLUE_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       BLUE_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       BROWN_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       BROWN_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       BROWN_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       BROWN_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       GREEN_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       GREEN_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       GREEN_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       GREEN_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       RED_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       RED_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       RED_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       RED_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       BLACK_WOOL:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       BLACK_CARPET:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.1
       BLACK_CANDLE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
       BLACK_CANDLE_CAKE:
-        Type: "Change"
+        IsRegulatory: false
         Value: 0.2
     SubmergedWater: # If a player is in water
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: -2.0
     SubmergedLava: # If a player is in lava
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: 3.0
     Burning:
-      Type: "Change"
+      Enabled: true
+      IsRegulatory: false
       Value: 3.0
     Storming: # If it is raining or thundering, and the player is outside
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: -2.0
     # Any conditions that will stabilize a player's temperature to normal
     Housed: # If a player is under a roof
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 2.0
   Enchantments:
     Warming:             # Warming enchant
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: 3.0
     Cooling:              # Cooling enchant
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: -3.0
     OzzyLiner:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 2.0
   Armor:
     wool_hood:
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: 2.0
     wool_jacket:
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: 2.0
     wool_pants:
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: 1.75
     wool_boots:
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: 1.5
     jelled_slime_helmet:
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: -2.0
     jelled_slime_chestplate:
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: -2.0
     jelled_slime_leggings:
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: -1.75
     jelled_slime_boots:
       Enabled: true
-      Type: "Change"
+      IsRegulatory: false
       Value: -1.5
     LEATHER_HELMET:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 1.5
     LEATHER_CHESTPLATE:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 1.5
     LEATHER_LEGGINGS:
-      Type: "Regulate"
+      IsRegulatory: true
       Enabled: true
       Value: 1.25
     LEATHER_BOOTS:
-      Type: "Regulate"
+      IsRegulatory: true
       Enabled: true
       Value: 1.0
     CHAINMAIL_HELMET:
-      Type: "Regulate"
+      IsRegulatory: true
       Enabled: true
       Value: 0.5
     CHAINMAIL_CHESTPLATE:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.5
     CHAINMAIL_LEGGINGS:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.25
     CHAINMAIL_BOOTS:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.2
     IRON_HELMET:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.5
     IRON_CHESTPLATE:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.5
     IRON_LEGGINGS:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.25
     IRON_BOOTS:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.2
     GOLDEN_HELMET:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.5
     GOLDEN_CHESTPLATE:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.5
     GOLDEN_LEGGINGS:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.25
     GOLDEN_BOOTS:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.2
     DIAMOND_HELMET:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.75
     DIAMOND_CHESTPLATE:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.75
     DIAMOND_LEGGINGS:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.5
     DIAMOND_BOOTS:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.25
     NETHERITE_HELMET:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.75
     NETHERITE_CHESTPLATE:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.5
     NETHERITE_LEGGINGS:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.25
     NETHERITE_BOOTS:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 0.2
     TURTLE_HELMET:
       Enabled: true
-      Type: "Regulate"
+      IsRegulatory: true
       Value: 1.0
 
 Thirst:
   Enabled: true
-  TickSpeed: 1   # Time in ticks that the game will decide each time to reduce thirst, don't recommend changing unless the server is lagging severely
+  CalculateTickSpeed: 100   # Time in ticks that the game will check to deplete thirst, don't recommend changing unless the server is lagging severely
   Dehydration:
+    ScreenTinting: true       # Should the screen be tinted gray when a player has thirst?
     PotionEffects:
       Enabled: false
       Effects:
@@ -522,29 +530,169 @@ Thirst:
           Duration: 160
     Duration: 240             # Number of ticks in which the player can take damage from dehydration
     TickSpeed: 80             # Player will take damage each time this many number of ticks passes
-    MinimumThirst: 0.1        # At what thirst level or lower should the player be dehydrated
-    Damage: 0.5
-  Drinking:
-    Enabled: true
-    Amount: 1.0
-    # Customize aspects of the sound made when a player drinks from a source block of water
-    # Volume ranges from 0.0 to 1.0, any values greater than 1.0 just increase the distance at which the sound can be heard
-    # Pitch ranges from 0.5 to 2.0 where 1.0 is normal play speed
-    # For more info regarding sounds, see https://bukkit.org/threads/playsound-parameters-volume-and-pitch.151517/
-    # No need to change settings, already sound decent
-    Sound: "ENTITY_GENERIC_DRINK"
-    Volume: 0.1      # Set to -1.0 to disable
-    Pitch: 1.0
-    MaxDistance: 2.0 # Maximum distance at which a player can drink a water source from
-    OverrideLimit: false
-  Raining:
-    Enabled: true
-    Amount: 1.0
-    Sound: "ENTITY_GENERIC_DRINK"
-    Volume: 0.1      # Set to -1.0 to disable
-    Pitch: 1.0
-    OverrideLimit: false
-
+    Thirst: 0.4               # At what thirst level or lower should the player be dehydrated
+    Damage:
+      Enabled: true
+      Cutoff: -1.0                  # The player will stop taking damage from dehydration if their health is below this value
+      Amount: 1.0
+  Parasites:
+    UnpurifiedWaterBottle:
+      Enabled: true
+      Chance: 0.1         # The chance of contracting parasites per drink
+    Rain:
+      Enabled: false
+      Chance: 0.0
+    Drowning:
+      Enabled: true
+      Chance: 0.1
+    RegularWater:         # Any water that isn't from a cave, river, or ocean
+      Enabled: true
+      Chance: 0.1
+    CaveWater:
+      Enabled: true
+      Chance: 0.1
+    RiverWater:
+      Enabled: true
+      Chance: 0.05
+    SeaWater:
+      Enabled: true
+      Chance: 0.1
+    MultiplyExhaustionRates:
+      Enabled: true
+      Value: 2.0    # The exhaustion increase from sources in "ExhaustionLevelIncrease" will be multiplied by the specified value
+    TickSpeed: 100  # Every "TickSpeed" ticks, you'll take damage
+    Duration: 600   # How long parasites will be active for in ticks
+    Damage: 1.0
+    PotionEffects:
+      Enabled: true
+      Effects:
+        POISON:
+          Amplifier: 0
+          Duration: 210
+  ExhaustionLevelIncrease:
+    Swimming: 0.01
+    BreakingBlock: 0.005
+    Sprinting: 0.1
+    Jumping: 0.05
+    AttackingEnemy: 0.1
+    TakingDamage: 0.1
+    JumpingWhileSprinting: 0.2
+    RegeneratingHealth: 6.0
+  SaturationRestoration:
+    Foods:
+      APPLE:
+        ThirstPoints: 2.0
+        SaturationPoints: 1.2
+      BEETROOT:
+        ThirstPoints: 0.5
+        SaturationPoints: 0.6
+      BEETROOT_SOUP:
+        ThirstPoints: 3.0
+        SaturationPoints: 3.6
+      CARROT:
+        ThirstPoints: 1.5
+        SaturationPoints: 1.8
+      GOLDEN_CARROT:
+        ThirstPoints: 3.0
+        SaturationPoints: 7.2
+      CHORUS_FRUIT:
+        ThirstPoints: 2.0
+        SaturationPoints: 1.2
+      GOLDEN_APPLE:
+        ThirstPoints: 2.0
+        SaturationPoints: 4.8
+      ENCHANTED_GOLDEN_APPLE:
+        ThirstPoints: 2.0
+        SaturationPoints: 4.8
+      GLOW_BERRIES:
+        ThirstPoints: 1.0
+        SaturationPoints: 0.2
+      HONEY_BOTTLE:
+        ThirstPoints: 3.0
+        SaturationPoints: 0.6
+      MELON_SLICE:
+        ThirstPoints: 1.0
+        SaturationPoints: 0.6
+      MUSHROOM_STEW:
+        ThirstPoints: 3.0
+        SaturationPoints: 3.6
+      RABBIT_STEW:
+        ThirstPoints: 5.0
+        SaturationPoints: 6.0
+      SWEET_BERRIES:
+        ThirstPoints: 1.0
+        SaturationPoints: 0.2
+      SUSPICIOUS_STEW:
+        ThirstPoints: 3.0
+        SaturationPoints: 3.6
+      POTION:
+        ThirstPoints: 4.0
+        SaturationPoints: 2.0
+      MILK_BUCKET:
+        ThirstPoints: 6.0
+        SaturationPoints: 3.0
+      juice_apple:
+        ThirstPoints: 8.0
+        SaturationPoints: 4.0
+      juice_beetroot:
+        ThirstPoints: 8.0
+        SaturationPoints: 4.0
+      juice_cactus:
+        ThirstPoints: 10.0
+        SaturationPoints: 5.0
+      juice_carrot:
+        ThirstPoints: 10.0
+        SaturationPoints: 5.0
+      juice_chorus_fruit:
+        ThirstPoints: 12.0
+        SaturationPoints: 6.0
+      juice_melon_glistering:
+        ThirstPoints: 16.0
+        SaturationPoints: 8.0
+      juice_apple_golden:
+        ThirstPoints: 20.0
+        SaturationPoints: 10.0
+      juice_carrot_golden:
+        ThirstPoints: 20.0
+        SaturationPoints: 15.0
+      juice_melon:
+        ThirstPoints: 10.0
+        SaturationPoints: 5.0
+      juice_pumpkin:
+        ThirstPoints: 10.0
+        SaturationPoints: 5.0
+      purified_water_bottle:
+        ThirstPoints: 6.0
+        SaturationPoints: 3.0
+    Drinking:
+      Enabled: true
+      ThirstPoints: 2.0
+      SaturationPoints: 1.0
+      # Customize aspects of the sound made when a player drinks from a source block of water
+      # Volume ranges from 0.0 to 1.0, any values greater than 1.0 just increase the distance at which the sound can be heard
+      # Pitch ranges from 0.5 to 2.0 where 1.0 is normal play speed
+      # For more info regarding sounds, see https://bukkit.org/threads/playsound-parameters-volume-and-pitch.151517/
+      # No need to change settings, already sound decent
+      Sound:
+        Enabled: true
+        Sound: "ENTITY_GENERIC_DRINK"
+        Volume: 0.1
+        Pitch: 1.0
+      MaxDistance: 2.0 # Maximum distance at which a player can drink a water source from
+      OverrideLimit: false
+    Raining:
+      Enabled: true
+      ThirstPoints: 1.0
+      SaturationPoints: 1.0
+      Sound:
+        Enabled: true
+        Sound: "ENTITY_GENERIC_DRINK"
+        Volume: 0.1
+        Pitch: 1.0
+    Drowning:
+      Enabled: true
+      ThirstPoints: 2.0
+      SaturationPoints: 1.0
 Items:
   ice_cube:
     Enabled:
@@ -555,10 +703,10 @@ Items:
         Chance: 0.33
       PACKED_ICE:
         Type: "Common"
-        Chance: 0.20
+        Chance: 0.67
       BLUE_ICE:
         Type: "Common"
-        Chance: 0.10
+        Chance: 1.00
   magma_shard:
     Enabled:
       EnableAllVersions: true
@@ -572,6 +720,7 @@ Items:
   thermometer:
     Enabled:
       EnableAllVersions: true
+    TickSpeed: 20        # How often will the compass update your temperature in ticks
   wool_hood:
     Enabled:
       EnableAllVersions: true
@@ -623,28 +772,18 @@ Items:
   juice_apple:
     Enabled:
       EnableAllVersions: true
-    ReplenishAmount: 8.0    # 1 thirst bar = 2.0 units
-    OverrideLimit: false
   juice_beetroot:
     Enabled:
       EnableAllVersions: true
-    ReplenishAmount: 8.0
-    OverrideLimit: false
   juice_cactus:
     Enabled:
       EnableAllVersions: true
-    ReplenishAmount: 10.0
-    OverrideLimit: false
   juice_carrot:
     Enabled:
       EnableAllVersions: true
-    ReplenishAmount: 10.0
-    OverrideLimit: false
   juice_chorus_fruit:
     Enabled:
       EnableAllVersions: true
-    ReplenishAmount: 12.0
-    OverrideLimit: false
     Teleport:
       Enabled: true
       MaxRadius: 7.0
@@ -656,33 +795,21 @@ Items:
   juice_melon_glistering:
     Enabled:
       EnableAllVersions: true
-    ReplenishAmount: 16.0
-    OverrideLimit: true
   juice_apple_golden:
     Enabled:
       EnableAllVersions: true
-    ReplenishAmount: 20.0
-    OverrideLimit: true
   juice_carrot_golden:
     Enabled:
       EnableAllVersions: true
-    ReplenishAmount: 30.0
-    OverrideLimit: true
   juice_melon:
     Enabled:
       EnableAllVersions: true
-    ReplenishAmount: 10.0
-    OverrideLimit: false
   juice_pumpkin:
     Enabled:
       EnableAllVersions: true
-    ReplenishAmount: 10.0
-    OverrideLimit: false
   purified_water_bottle:
     Enabled:
       EnableAllVersions: true
-    ReplenishAmount: 8.0
-    OverrideLimit: false
   charcoal_filter:
     Enabled:
       EnableAllVersions: true
@@ -807,3 +934,56 @@ Recipes:
     Enabled:
       EnableAllVersions: true
     Unlock: true
+
+
+# Do NOT edit unless you know what you're doing
+CharacterOverrides:
+  # All placeholders: %TEMP%, %THIRST%
+
+  TemperatureActionbar: "              %TEMP%              "          # Template for sending overriden text to the actionbar when only temperature is enabled
+  ThirstActionbar: "              %THIRST% "               # Template for sending overriden text to the actionbar when only thirst is enabled
+  TemperatureThirstActionbar: "              %TEMP%%THIRST% "    #  Template for sending overriden text to the actionbar when temperature and thirst are enabled
+  AboveWaterFullThirstDrop: ''                          # Default Unicode Value: \uE784
+  AboveWaterHalfThirstDrop: ''                         # Default Unicode Value: \uE790
+  AboveWaterEmptyThirstDrop: ''                        # Default Unicode Value: \uE791
+  UnderwaterFullThirstDrop: ''                         # Default Unicode Value: \uE828
+  UnderwaterHalfThirstDrop: ''                         # Default Unicode Value: \uE826
+  UnderwaterEmptyThirstDrop: ''                        # Default Unicode Value: \uE827
+  Temperature0: ''                            # Default Unicode Value: \uE779
+  Temperature1: ''                            # Default Unicode Value: \uE779
+  Temperature2: ''                            # Default Unicode Value: \uE779
+  Temperature3: ''                            # Default Unicode Value: \uE779
+  Temperature4: ''                            # Default Unicode Value: \uE779
+  Temperature5: ''                            # Default Unicode Value: \uE779
+  Temperature6: ''                           # Default Unicode Value: \uE806
+  Temperature7: ''                           # Default Unicode Value: \uE807
+  Temperature8: ''                           # Default Unicode Value: \uE808
+  Temperature9: ''                           # Default Unicode Value: \uE809
+  Temperature10: ''                          # Default Unicode Value: \uE810
+  Temperature11: ''                          # Default Unicode Value: \uE811
+  Temperature12: ''                          # Default Unicode Value: \uE812
+  Temperature13: ''                          # Default Unicode Value: \uE813
+  Temperature14: ''                          # Default Unicode Value: \uE814
+  Temperature15: ''                          # Default Unicode Value: \uE815
+  Temperature16: ''                          # Default Unicode Value: \uE816
+  Temperature17: ''                          # Default Unicode Value: \uE817
+  Temperature18: ''                          # Default Unicode Value: \uE818
+  Temperature19: ''                          # Default Unicode Value: \uE819
+  Temperature20: ''                           # Default Unicode Value: \uE782
+  Temperature21: ''                           # Default Unicode Value: \uE782
+  Temperature22: ''                           # Default Unicode Value: \uE782
+  Temperature23: ''                           # Default Unicode Value: \uE782
+  Temperature24: ''                           # Default Unicode Value: \uE782
+  Temperature25: ''                           # Default Unicode Value: \uE782
+  FreezingView: ''                             # Default Unicode Value:
+  IceVignette1: ''                             # Default Unicode Value: \uE831
+  IceVignette2: ''                             # Default Unicode Value: \uE832
+  IceVignette3: ''                             # Default Unicode Value: \uE833
+  IceVignette4: ''                             # Default Unicode Value: \uE834
+  IceVignette5: ''                             # Default Unicode Value: \uE835
+  FireVignette1: ''                            # Default Unicode Value: \uE821
+  FireVignette2: ''                            # Default Unicode Value: \uE822
+  FireVignette3: ''                            # Default Unicode Value: \uE823
+  FireVignette4: ''                            # Default Unicode Value: \uE824
+  FireVignette5: ''                            # Default Unicode Value: \uE825
+  BurningView: ''                              # Default Unicode Value: \uE787 (ascent: 100, height: 200) and \uE788 (ascent: 200, height: 400)

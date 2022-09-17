@@ -22,7 +22,6 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVAnvilRecipe;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -54,11 +53,11 @@ public class MiscEvents implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        RSVPlayer rsvplayer = new RSVPlayer(plugin, player);
+        if (!RSVPlayer.getPlayers().containsKey(player.getUniqueId())) {
+            RSVPlayer rsvplayer = new RSVPlayer(plugin, player);
 
-        rsvplayer.retrieveData();
-        rsvplayer.updateData();
-
+            rsvplayer.retrieveData();
+        }
         Collection<RSVModule> rsvModules = RSVModule.getModules().values();
 
         for (RSVModule module : rsvModules) {
@@ -127,41 +126,14 @@ public class MiscEvents implements Listener {
 
     @EventHandler
     public void onSmithing(PrepareSmithingEvent event) {
-        ItemStack result = event.getResult();
         SmithingInventory inv = event.getInventory();
 
-        if (!(inv.getRecipe() == null || result == null)) {
-            ItemStack baseItem = inv.getItem(0);
+        ItemStack baseItem = inv.getItem(0);
 
-            Material mat = result.getType();
-            if (Utils.isNetherite(mat)) {
-
-                if (RSVItem.isRSVItem(baseItem)) {
-                    if (Utils.isDiamond(baseItem.getType())) {
-                        Recipe recipe = inv.getRecipe();
-                        if (recipe instanceof ShapelessRecipe) {
-                            NamespacedKey key = ((ShapelessRecipe) recipe).getKey();
-
-                            if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
-                                switch (key.getKey()) {
-                                    case "netherite_axe_smithing":
-                                    case "netherite_pickaxe_smithing":
-                                    case "netherite_shovel_smithing":
-                                    case "netherite_sword_smithing":
-                                    case "netherite_hoe_smithing":
-                                    case "netherite_helmet_smithing":
-                                    case "netherite_chestplate_smithing":
-                                    case "netherite_leggings_smithing":
-                                    case "netherite_boots_smithing": {
-                                        event.getInventory().setResult(null);
-                                    }
-                                    default: {
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
+        if (baseItem != null) {
+            if (RSVItem.isRSVItem(baseItem)) {
+                if (Utils.isNetheriteRecipe(inv)) {
+                    event.setResult(null);
                 }
             }
         }

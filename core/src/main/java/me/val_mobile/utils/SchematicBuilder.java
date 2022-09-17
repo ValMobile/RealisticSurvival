@@ -16,24 +16,14 @@
  */
 package me.val_mobile.utils;
 
-import com.fastasyncworldedit.core.FaweAPI;
-import com.sk89q.worldedit.extent.clipboard.Clipboard;
-import com.sk89q.worldedit.math.BlockVector3;
-import com.sk89q.worldedit.world.World;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.Location;
-
-import java.io.File;
-import java.io.IOException;
-
 public class SchematicBuilder {
 
-    private File file;
-    private Clipboard schematic;
-
-    public SchematicBuilder(RealisticSurvivalPlugin plugin, String path) throws IOException {
-        file = new File(plugin.getDataFolder(), path);
-        schematic = FaweAPI.load(file);
+//    private File file;
+//    private Clipboard schematic;
+//
+//    public SchematicBuilder(RealisticSurvivalPlugin plugin, String path) throws IOException {
+//        file = new File(plugin.getDataFolder(), path);
+//        schematic = FaweAPI.load(file);
 //        file.createNewFile();
 //
 //        // if the file doesn't exist in the plugins folder
@@ -52,43 +42,43 @@ public class SchematicBuilder {
 //                fos.write(buffer, 0, len);
 //            }
 //        }
-    }
-
-    public Clipboard getSchematic() {
-        return schematic;
-    }
-
-    public void paste(Location loc) {
-        pasteSchematic(schematic, loc);
-    }
-
-    /**
-     * Pastes a schematic at a given location
-     * @param file The schematic file to be pasted
-     * @param loc The location where the schematic will be pasted
-     */
-    public static void pasteSchematic(File file, Location loc) {
-
-        World world = FaweAPI.getWorld(loc.getWorld().getName()); // get the world
-        BlockVector3 vector = BlockVector3.at(loc.getX(), loc.getY(), loc.getZ());
-
-        try {
-            FaweAPI.load(file).paste(world, vector);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Pastes a schematic at a given location
-     * @param schematic The schematic to be pasted
-     * @param loc The location where the schematic will be pasted
-     */
-    public static void pasteSchematic(Clipboard schematic, Location loc) {
-
-        World world = FaweAPI.getWorld(loc.getWorld().getName()); // get the world
-        BlockVector3 vector = BlockVector3.at(loc.getX(), loc.getY(), loc.getZ());
-
-        schematic.paste(world, vector);
-    }
+//    }
+//
+//    public Clipboard getSchematic() {
+//        return schematic;
+//    }
+//
+//    public void paste(Location loc) {
+//        pasteSchematic(schematic, loc);
+//    }
+//
+//    /**
+//     * Pastes a schematic at a given location
+//     * @param file The schematic file to be pasted
+//     * @param loc The location where the schematic will be pasted
+//     */
+//    public static void pasteSchematic(File file, Location loc) {
+//
+//        World world = FaweAPI.getWorld(loc.getWorld().getName()); // get the world
+//        BlockVector3 vector = BlockVector3.at(loc.getX(), loc.getY(), loc.getZ());
+//
+//        try {
+//            FaweAPI.load(file).paste(world, vector);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    /**
+//     * Pastes a schematic at a given location
+//     * @param schematic The schematic to be pasted
+//     * @param loc The location where the schematic will be pasted
+//     */
+//    public static void pasteSchematic(Clipboard schematic, Location loc) {
+//
+//        World world = FaweAPI.getWorld(loc.getWorld().getName()); // get the world
+//        BlockVector3 vector = BlockVector3.at(loc.getX(), loc.getY(), loc.getZ());
+//
+//        schematic.paste(world, vector);
+//    }
 }

@@ -1,6 +1,7 @@
 package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.RSVModule;
+import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Damageable;
@@ -19,6 +20,16 @@ public class ElectrocuteTask extends BukkitRunnable {
     private final int tickSpeed;
 
     private static HashMap<UUID, Boolean> entities = new HashMap<>();
+
+    public ElectrocuteTask(RealisticSurvivalPlugin plugin, int stage, Damageable entity) {
+        this.entity = entity;
+        this.plugin = plugin;
+        this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
+        int stageMultiplier = config.getInt("Dragons.LightningDragon.ElectrocuteAbility.StageMultipliers.Stage" + stage);
+        this.shockDamage = config.getDouble("Dragons.LightningDragon.ElectrocuteAbility.ShockDamage") * stageMultiplier;
+        this.shockAmount = config.getInt("Dragons.LightningDragon.ElectrocuteAbility.ShockAmount") * stageMultiplier;
+        this.tickSpeed = config.getInt("Dragons.LightningDragon.ElectrocuteAbility.TickSpeed");
+    }
 
     public ElectrocuteTask(RealisticSurvivalPlugin plugin, RSVModule module, String itemName, Damageable entity) {
         this.entity = entity;

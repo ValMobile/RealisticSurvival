@@ -23,8 +23,9 @@ public class UserConfig extends RSVConfig {
 
     public static final String PATH = "baubles.yml";
     public static final boolean REPLACE = false;
+    public static final boolean UPDATE = true;
 
     public UserConfig(RealisticSurvivalPlugin plugin) {
-        super(plugin, PATH, REPLACE);
+        super(plugin, PATH, REPLACE, UPDATE);
     }
 }

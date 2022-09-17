@@ -1,6 +1,7 @@
 package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.RSVModule;
+import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
@@ -19,56 +20,87 @@ import java.util.Collection;
 public class FreezeTask extends BukkitRunnable {
 
     private final Entity entity;
-    private final String itemName;
     private final RealisticSurvivalPlugin plugin;
     private final Collection<FrozenBlock> blocks = new ArrayList<>();
     private final FileConfiguration config;
-    private final UnfreezeTask unfreezeTask;
+    private final boolean encaseIce;
+    private final boolean playSound;
+    private final PotionEffect slowness;
+    private final Material frozenMaterial;
+    private final Sound sound;
+    private final float volume;
+    private final float pitch;
+    private final int duration;
+
+    public FreezeTask(RealisticSurvivalPlugin plugin, int stage, Entity entity) {
+        this.entity = entity;
+        this.plugin = plugin;
+        this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
+        this.encaseIce = config.getBoolean("Dragons.IceDragon.FreezeAbility.EncaseIce.Enabled");
+        this.playSound = config.getBoolean("Dragons.IceDragon.FreezeAbility.Sound.Enabled");
+        int stageMultiplier = config.getInt("Dragons.IceDragon.FreezeAbility.StageMultipliers.Stage" + stage);
+
+        int amplifier = config.getInt("Dragons.IceDragon.FreezeAbility.Slowness.Amplifier");
+        int duration = config.getInt("Dragons.IceDragon.FreezeAbility.Duration.Amplifier") * stageMultiplier;
+        this.slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
+        this.frozenMaterial = Material.valueOf(config.getString("Dragons.IceDragon.FreezeAbility.EncaseIce.Block"));
+        this.sound = Sound.valueOf(config.getString("Dragons.IceDragon.FreezeAbility.Sound.Sound"));
+        this.volume = (float) config.getDouble("Dragons.IceDragon.FreezeAbility.Sound.Volume");
+        this.pitch = (float) config.getDouble("Dragons.IceDragon.FreezeAbility.Sound.Pitch");
+        this.duration = config.getInt("Dragons.IceDragon.FreezeAbility.FrozenDuration") * stageMultiplier;
+    }
 
     public FreezeTask(RealisticSurvivalPlugin plugin, RSVModule module, String itemName, Entity entity) {
         this.entity = entity;
-        this.itemName = itemName;
         this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();
-        this.unfreezeTask = new UnfreezeTask(plugin, blocks, config.getInt("Items." + itemName + ".FreezeAbility.FrozenDuration"));
+        this.encaseIce = config.getBoolean("Items." + itemName + ".FreezeAbility.EncaseIce.Enabled");
+        this.playSound = config.getBoolean("Items." + itemName + ".FreezeAbility.Sound.Enabled");
+        int amplifier = config.getInt("Items." + itemName + ".FreezeAbility.Slowness.Amplifier");
+        int duration = config.getInt("Items." + itemName + ".FreezeAbility.Slowness.Duration");
+        this.slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
+        this.frozenMaterial = Material.valueOf(config.getString("Items." + itemName + ".FreezeAbility.EncaseIce.Block"));
+        this.sound = Sound.valueOf(config.getString("Items." + itemName + ".FreezeAbility.Sound.Sound"));
+        this.volume = (float) config.getDouble("Items." + itemName + ".FreezeAbility.Sound.Volume");
+        this.pitch = (float) config.getDouble("Items." + itemName + ".FreezeAbility.Sound.Pitch");
+        this.duration = config.getInt("Items." + itemName + ".FreezeAbility.FrozenDuration");
     }
 
     @Override
     public void run() {
-        // store the duration and amplifier of the slowness effect
-        int amplifier = config.getInt("Items." + itemName + ".FreezeAbility.Slowness.Amplifier");
-        int duration = config.getInt("Items." + itemName + ".FreezeAbility.Slowness.Duration");
-
-        // create the slowness effect using the duration and amplifier variables
-        PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
-
         // add the slowness effect to the target entity
         if (entity instanceof LivingEntity) {
             ((LivingEntity) entity).addPotionEffect(slowness);
+            ((LivingEntity) entity).setAI(false);
         }
-
         // freeze the entity
-        RealisticSurvivalPlugin.getUtil().freezeEntity(entity);
+        RealisticSurvivalPlugin.getUtil().setZeroKb(entity);
 
         // encase the entity with ice
         Location loc = entity.getLocation().clone(); // get the location
-        Material material = Material.valueOf(config.getString("Items." + itemName + ".FreezeAbility.Block")); // get the material
 
         double height = entity.getHeight();
 
         double dif;
-        for (double i = 0D; Utils.doublesEquals(height, i); i+=dif) {
-            FrozenBlock block = new FrozenBlock(loc, material);
-            dif = (height - i > 1D) ? 1D : height - i;
-            loc = loc.add(0D, dif, 0D);
-            blocks.add(block);
+
+        if (encaseIce) {
+            for (double i = 0D; Utils.doublesEquals(height, i); i+=dif) {
+                FrozenBlock block = new FrozenBlock(loc, frozenMaterial);
+                dif = Math.min(height - i, 1D);
+                loc = loc.add(0D, dif, 0D);
+                blocks.add(block);
+            }
         }
 
-        // play the ice break sound effect
-        entity.getWorld().playSound(loc, Sound.BLOCK_GLASS_BREAK, 1, 1);
+        if (playSound) {
+            // play the ice break sound effect
+            entity.getWorld().playSound(loc, sound, volume, pitch);
+        }
 
         // remove the ice block after some time
-       unfreezeTask.start();
+        if (encaseIce) {
+            new UnfreezeTask(plugin, entity, blocks, duration).start();
+        }
     }
 
     public void start() {

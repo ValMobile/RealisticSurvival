@@ -19,6 +19,5 @@ package me.val_mobile.data;
 public interface RSVDataModule {
 
     void retrieveData();
-    void updateData();
     void saveData();
 }

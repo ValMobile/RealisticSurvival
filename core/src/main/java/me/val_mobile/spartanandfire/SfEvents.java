@@ -17,8 +17,6 @@
 package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.ModuleEvents;
-import me.val_mobile.iceandfire.Dragon;
-import me.val_mobile.iceandfire.LightningDragon;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
@@ -212,15 +210,21 @@ public class SfEvents extends ModuleEvents implements Listener {
                                                 break;
                                             }
                                             case "dragonbone_lightning": {
-                                                if (defender instanceof Dragon) {
-                                                    if (!(defender instanceof LightningDragon)) {
-                                                        event.setDamage(event.getDamage() + config.getDouble("Abilities.LightningDragonbone.BonusDamage"));
+                                                if (util.hasNbtTag(defender, "rsvmob")) {
+                                                    if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("llightning_dragon")) {
+                                                        event.setDamage(event.getDamage() + config.getDouble("Items." + name + ".DragonBonusDamage"));
                                                     }
                                                 }
 
-                                                if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning")) {
+                                                if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
                                                     Location loc = defender.getLocation();
-                                                    loc.getWorld().strikeLightning(loc);
+
+                                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                                                        loc.getWorld().strikeLightningEffect(loc);
+                                                    }
+                                                    else {
+                                                        loc.getWorld().strikeLightning(loc);
+                                                    }
                                                 }
 
                                                 if (defender instanceof Damageable) {
@@ -247,9 +251,15 @@ public class SfEvents extends ModuleEvents implements Listener {
                                                 break;
                                             }
                                             case "dragonsteel_lightning": {
-                                                if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning")) {
+                                                if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
                                                     Location loc = defender.getLocation();
-                                                    loc.getWorld().strikeLightning(loc);
+
+                                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                                                        loc.getWorld().strikeLightningEffect(loc);
+                                                    }
+                                                    else {
+                                                        loc.getWorld().strikeLightning(loc);
+                                                    }
                                                 }
 
                                                 if (defender instanceof Damageable) {

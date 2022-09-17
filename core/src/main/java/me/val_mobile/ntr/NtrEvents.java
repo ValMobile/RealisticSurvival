@@ -238,9 +238,9 @@ public class NtrEvents extends ModuleEvents implements Listener {
                             Block block = event.getBlock();
                             Material blockMat = block.getType();
 
-                            if (!block.(item)) {
+//                            if (!block.(item)) {
                                 // TODO: Add mattock code from https://github.com/JEFF-Media-GbR/Spigot-BestTools/blob/a5c333622f727bc5d7839e1faec3c46e6793a1b4/src/main/java/de/jeff_media/BestTools/BestToolsHandler.java#L116
-                            }
+//                            }
                         }
                     }
                 }

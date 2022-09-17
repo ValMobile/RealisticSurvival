@@ -41,7 +41,6 @@ import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -480,6 +479,10 @@ public class Utils {
         return !(item == null || item.getType() == Material.AIR);
     }
 
+    public static void setFreezingView(Player player) {
+        internals.setFreezingView(player);
+    }
+
     public <T> void addNbtTag(Entity entity, String key, T value, PersistentDataType<T,T> type) {
 
         NamespacedKey nkey = new NamespacedKey(plugin, key);
@@ -533,18 +536,34 @@ public class Utils {
         return itemMeta.getPersistentDataContainer().has(nkey, PersistentDataType.STRING);
     }
 
-    public void freezeEntity(Entity entity) {
+    public void setZeroKb(Entity entity) {
         new KbTask(plugin, entity, 0D).start();
     }
 
     public static boolean doublesEquals(double v, double v1) {
-        double tolerance = 0.001;
+        double tolerance = 0.0001;
 
         return Math.abs(v - v1) <= tolerance;
     }
 
-    public static HashMap<String, Tag> getTags() {
-        return internals.getTags();
+    public static boolean isUndead(Entity entity) {
+        return internals.isUndead(entity);
+    }
+
+    public static boolean isNetheriteRecipe(SmithingInventory inv) {
+        return internals.isNetheriteRecipe(inv);
+    }
+
+    public static boolean isTag(String name) {
+        return internals.getTag(name) != null;
+    }
+
+    public static int getRandomNum(int min, int max) {
+        return (int) (Math.random() * (max - min + 1)) + min;
+    }
+
+    public static Tag getTag(String name) {
+        return internals.getTag(name);
     }
 
     public static boolean isSourceLiquid(Block block) {
@@ -560,7 +579,7 @@ public class Utils {
     }
 
     public static boolean isExposedToSky(Player player) {
-        Location loc = player.getLocation().clone();
+        Location loc = player.getLocation();
 
         int highestY = loc.getWorld().getHighestBlockYAt(loc);
 
@@ -828,7 +847,11 @@ public class Utils {
                 }
             }
             if (hasCustomDurability) {
+                int newDurability = rsvDurability + actualChange;
 
+                RealisticSurvivalPlugin.getUtil().addNbtTag(item, "rsvdurability", newDurability, PersistentDataType.INTEGER);
+                updateLore(item, rsvDurability, newDurability);
+                return (newDurability < 1);
             }
         }
         return false;
@@ -847,9 +870,12 @@ public class Utils {
         int mcDurability = maxMcDurability - ((Damageable) meta).getDamage();
     }
 
+    public static void spawnEndermanAlly(Player owner, Location loc) {
+        internals.spawnEndermanAlly(owner, loc);
+    }
 
-    public static InternalsProvider getInternals() {
-        return internals;
+    public static void registerEntities() {
+        internals.registerEntities();
     }
 
     // Armorstand methods for setting euler angles

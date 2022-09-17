@@ -19,6 +19,8 @@ package me.val_mobile.realisticsurvival;
 import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.commands.Commands;
 import me.val_mobile.commands.Tab;
+import me.val_mobile.data.RSVPlayer;
+import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.misc.BStats;
 import me.val_mobile.misc.MiscEvents;
 import me.val_mobile.misc.ResourcePackEvents;
@@ -27,14 +29,18 @@ import me.val_mobile.ntr.NtrModule;
 import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.spartanweaponry.SwModule;
 import me.val_mobile.tan.TanModule;
+import me.val_mobile.utils.RSVEnchants;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Collection;
+
 public class RealisticSurvivalPlugin extends JavaPlugin {
 
     private static Utils util;
+    public static final double VERSION = 1.23;
 
     @Override
     public void onEnable() {
@@ -53,11 +59,15 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         PluginManager pm = this.getServer().getPluginManager();
         FileConfiguration config = this.getConfig();
 
+        IceFireModule module = new IceFireModule(this);
+        SwModule swModule = new SwModule(this);
         BaubleModule baubleModule = new BaubleModule(this);
         NtrModule ntrModule = new NtrModule(this);
         SfModule sfModule = new SfModule(this);
-        SwModule swModule = new SwModule(this);
         TanModule tanModule = new TanModule(this);
+
+        RSVEnchants enchants = new RSVEnchants(this);
+        enchants.registerAllEnchants();
 
         if (config.getBoolean("ResourcePack.Enabled"))
             pm.registerEvents(resourcePack, this);
@@ -74,6 +84,16 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        Collection<RSVPlayer> players = RSVPlayer.getPlayers().values();
+
+        for (RSVPlayer player : players) {
+            player.saveData();
+        }
+    }
+
+    @Override
+    public void onLoad() {
+        Utils.registerEntities();
     }
 
     public static Utils getUtil() {

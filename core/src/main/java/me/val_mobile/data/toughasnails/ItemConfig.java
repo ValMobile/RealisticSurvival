@@ -23,8 +23,9 @@ public class ItemConfig extends RSVConfig {
 
     public static final String PATH = "resources/toughasnails/items.yml";
     public static final boolean REPLACE = false;
+    public static final boolean UPDATE = true;
 
     public ItemConfig(RealisticSurvivalPlugin plugin) {
-        super(plugin, PATH, REPLACE);
+        super(plugin, PATH, REPLACE, UPDATE);
     }
 }

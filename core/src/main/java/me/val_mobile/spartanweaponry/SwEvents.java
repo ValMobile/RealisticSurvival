@@ -213,7 +213,7 @@ public class SwEvents extends ModuleEvents implements Listener {
                                     }
 
                                     double kbMultiplier = config.getDouble("Items." + name + ".KnockbackMultiplier");
-                                    RealisticSurvivalPlugin.getUtil().freezeEntity(defender);
+                                    RealisticSurvivalPlugin.getUtil().setZeroKb(defender);
                                     break;
                                 }
                                 case "warhammer": {
@@ -248,8 +248,9 @@ public class SwEvents extends ModuleEvents implements Listener {
                                 }
                                 case "mace": {
                                     if (defender instanceof LivingEntity) {
-                                        if (((LivingEntity) defender).getCategory() == EntityCategory.UNDEAD) {
+                                        if (Utils.isUndead(defender)) {
                                             damage *= config.getDouble("Items." + name + ".UndeadDamageMultiplier");
+
                                         }
                                     }
                                 }

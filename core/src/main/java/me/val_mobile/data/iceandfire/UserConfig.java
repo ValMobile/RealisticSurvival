@@ -23,13 +23,10 @@ public class UserConfig extends RSVConfig {
 
     public static final String PATH = "iceandfire.yml";
     public static final boolean REPLACE = false;
+    public static final boolean UPDATE = true;
 
-    private UserConfigValues userConfigValues;
 
     public UserConfig(RealisticSurvivalPlugin plugin) {
-        super(plugin, PATH, REPLACE);
-
-        String id = plugin.getConfig().getString("ConfigId");
-        userConfigValues = new UserConfigValues(id);
+        super(plugin, PATH, REPLACE, UPDATE);
     }
 }

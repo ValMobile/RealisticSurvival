@@ -16,11 +16,10 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.iceandfire.Dragon;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.craftbukkit.libs.org.codehaus.plexus.util.StringUtils;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -29,7 +28,7 @@ import java.util.List;
 
 public class LorePresets {
 
-    public static void addDragonSkullLore(ItemStack item, int stage, Dragon.Breed breed) {
+    public static void addDragonSkullLore(ItemStack item, int stage, String breed) {
 
         ItemMeta meta = item.getItemMeta();
 
@@ -37,7 +36,7 @@ public class LorePresets {
 
         lore.add(ChatColor.translateAlternateColorCodes('&',""));
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7" + StringUtils.capitalizeFirstLetter(breed.toString().toLowerCase())));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7" + (StringUtils.capitalize(breed.toLowerCase()))));
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7Stage " + stage));
 

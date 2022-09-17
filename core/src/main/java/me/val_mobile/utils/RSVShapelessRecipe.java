@@ -62,11 +62,13 @@ public class RSVShapelessRecipe extends ShapelessRecipe {
     }
 
     public Object getItem(String text) {
-        // text is a material
-        if (Objects.equals(text, text.toUpperCase())) {
-            if (Utils.getTags().containsKey(text))
-                return Utils.getTags().get(text);
-            return Material.valueOf(text);
+        if (text.isEmpty())
+            return null;
+            // text is a material
+        else if (Objects.equals(text, text.toUpperCase())) {
+            if (text.contains("Tag."))
+                return Utils.getTag(text);
+            return new ItemStack(Material.valueOf(text));
         }
         // text is an item
         if (RSVItem.getItemMap().get(text) != null) {

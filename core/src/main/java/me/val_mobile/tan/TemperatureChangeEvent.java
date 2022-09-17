@@ -8,7 +8,7 @@ import org.bukkit.event.HandlerList;
 
 import java.util.UUID;
 
-public class TemperatureChangeEvent extends Event implements Cancellable {
+public class TemperatureChangeEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
     private UUID id;

@@ -107,7 +107,6 @@ public class BaubleEvents extends ModuleEvents implements Listener {
         UUID id = event.getPlayer().getUniqueId();
 
         RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
-        rsvPlayer.getDataModuleFromName(BaubleModule.NAME).updateData();
 
         if (event.getChange() == BaubleChangeEvent.BaubleChange.ADDITION) {
             HashMap<UUID, Collection> baubleMap = TickableBaubleManager.getBaubles();
@@ -137,8 +136,12 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                 new ScarliteRingTask(rsvPlayer, plugin).startRunnable();
                                 break;
                             }
-                            case POLARIZED_STONE:
+                            case POLARIZED_STONE: {
+                                new PolarizedStoneTask(rsvPlayer, plugin).startRunnable();
+                                break;
+                            }
                             case ENDER_QUEENS_CROWN: {
+                                new EnderCrownTask(module, rsvPlayer, plugin).startRunnable();
                                 break;
                             }
                         }
@@ -164,8 +167,12 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                             new ScarliteRingTask(rsvPlayer, plugin).startRunnable();
                             break;
                         }
-                        case POLARIZED_STONE:
+                        case POLARIZED_STONE: {
+                            new PolarizedStoneTask(rsvPlayer, plugin).startRunnable();
+                            break;
+                        }
                         case ENDER_QUEENS_CROWN: {
+                            new EnderCrownTask(module, rsvPlayer, plugin).startRunnable();
                             break;
                         }
                     }
@@ -334,7 +341,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 boolean ankhShield = baubleInv.hasBauble("ankh_shield") || offHandName.equals("ankh_shield") ? true : false;
 
                 if (cobaltShield || obsShield || ankhShield) {
-                    RealisticSurvivalPlugin.getUtil().freezeEntity(player);
+                    RealisticSurvivalPlugin.getUtil().setZeroKb(player);
                 }
 
                 // check the cause of the damage
@@ -466,15 +473,9 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
                         // check if the player is not climbing
                         switch (blockMaterial) {
-                            case LADDER:
-                            case VINE:
-                            case TWISTING_VINES:
-                            case TWISTING_VINES_PLANT:
-                            case WEEPING_VINES:
-                            case WEEPING_VINES_PLANT: {
-                                break;
+                            case LADDER, VINE, TWISTING_VINES, TWISTING_VINES_PLANT, WEEPING_VINES, WEEPING_VINES_PLANT -> {
                             }
-                            default: {
+                            default -> {
                                 // check if the player's jump velocity is equal to the player's Y velocity
                                 if (Utils.doublesEquals(velocity.getY(), jumpVelocity)) {
                                     // check if the player is not flying or swimming
@@ -486,14 +487,12 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                         player.setVelocity(velocity);
                                     }
                                 }
-                                break;
                             }
                         }
                     }
                 }
             }
         }
-
     }
 
     /**

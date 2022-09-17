@@ -196,7 +196,7 @@ dragonbone_crossbow:
     Amount: 1
   Ingredients:
     - "dragonbone|BOW|dragonbone"
-    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "Tag.PLANKS|TRIPWIRE_HOOK|Tag.PLANKS"
     - "|witherbone_handle"
 dragonbone_flamed_rapier:
   Type: "Shaped"
@@ -916,7 +916,7 @@ dragonsteel_fire_crossbow:
     Amount: 1
   Ingredients:
     - "dragonsteel_fire_ingot|BOW|dragonsteel_fire_ingot"
-    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "Tag.PLANKS|TRIPWIRE_HOOK|Tag.PLANKS"
     - "|witherbone_handle"
 dragonsteel_ice_rapier:
   Type: "Shaped"
@@ -1108,7 +1108,7 @@ dragonsteel_ice_crossbow:
     Amount: 1
   Ingredients:
     - "dragonsteel_ice_ingot|BOW|dragonsteel_ice_ingot"
-    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "Tag.PLANKS|TRIPWIRE_HOOK|Tag.PLANKS"
     - "|witherbone_handle"
 dragonsteel_lightning_rapier:
   Type: "Shaped"
@@ -1300,7 +1300,7 @@ dragonsteel_lightning_crossbow:
     Amount: 1
   Ingredients:
     - "dragonsteel_lightning_ingot|BOW|dragonsteel_lightning_ingot"
-    - "PLANKS|TRIPWIRE_HOOK|PLANKS"
+    - "Tag.PLANKS|TRIPWIRE_HOOK|Tag.PLANKS"
     - "|witherbone_handle"
 witherbone_handle:
   Type: "Shapeless"

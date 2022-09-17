@@ -20,6 +20,7 @@ import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.toughasnails.ItemConfig;
+import me.val_mobile.data.toughasnails.PlayerDataConfig;
 import me.val_mobile.data.toughasnails.RecipesConfig;
 import me.val_mobile.data.toughasnails.UserConfig;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
@@ -30,6 +31,7 @@ public class TanModule extends RSVModule {
 
     private final RealisticSurvivalPlugin plugin;
 
+    private final PlayerDataConfig config;
     private TanEvents events;
 
     public static final String NAME = "ToughAsNails";
@@ -37,6 +39,7 @@ public class TanModule extends RSVModule {
     public TanModule(RealisticSurvivalPlugin plugin) {
         super(NAME, plugin);
         this.plugin = plugin;
+        this.config = new me.val_mobile.data.toughasnails.PlayerDataConfig(plugin);
     }
 
     @Override
@@ -71,6 +74,10 @@ public class TanModule extends RSVModule {
 
             plugin.getLogger().info(message);
         }
+    }
+
+    public PlayerDataConfig getPlayerDataConfig() {
+        return config;
     }
 
     public TanEvents getEvents() {

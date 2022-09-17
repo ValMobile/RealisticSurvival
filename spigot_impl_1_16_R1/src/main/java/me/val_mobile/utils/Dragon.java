@@ -18,157 +18,273 @@ package me.val_mobile.utils;
 
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.RSVModule;
+import me.val_mobile.iceandfire.DragonBreed;
+import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import net.minecraft.network.chat.ChatComponentText;
-import net.minecraft.world.entity.EntityTypes;
-import net.minecraft.world.entity.boss.enderdragon.EntityEnderDragon;
+import net.minecraft.server.v1_16_R1.*;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.libs.org.codehaus.plexus.util.StringUtils;
-import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
+import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.craftbukkit.v1_16_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R1.entity.CraftEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Random;
 import java.util.UUID;
 
-public abstract class Dragon extends EntityEnderDragon {
+public abstract class Dragon extends EntityEnderDragon implements RSVMob {
 
     private final RealisticSurvivalPlugin plugin;
-    private Breed breed;
+    private final DragonBreed breed;
     private int stage;
     private int age;
-    private Gender gender;
-    private Variant variant;
+    private final Gender gender;
+    private DragonBreed.Variant variant;
     private final Collection<ItemStack> loot = new ArrayList<>();
     private final UUID uuid;
-    private final ModuleItems moduleItems;
+    protected final RSVModule module;
 
-    public Dragon(Location loc, Breed breed, RealisticSurvivalPlugin plugin) {
-        super(EntityTypes.v, ((CraftWorld) loc.getWorld()).getHandle());
+    public Dragon(Location loc, DragonBreed breed, RealisticSurvivalPlugin plugin) {
+        super(EntityTypes.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
+        this.plugin = plugin;
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
 
-        this.plugin = plugin;
         this.uuid = getUniqueID();
 
-        Random r = new Random();
-
-        this.moduleItems = RSVModule.getModule("IceandFire").getModuleItems();;
+        this.module = RSVModule.getModule(IceFireModule.NAME);
+        this.variant = breed.getVariants()[Utils.getRandomNum(0, breed.getVariants().length - 1)];
         this.breed = breed;
-        this.stage = (int) Math.round(Math.random() * 4) + 1;
-        this.age = this.stage * 100 + (int) Math.round(Math.random() * 99);
+        this.stage = Utils.getRandomNum(1, 5);
+        this.age = Utils.getRandomNum(stage * 100, stage * 100 + 99);
 
-        this.gender = ((int) Math.round(Math.random()) == 1) ? Gender.MALE : Gender.FEMALE;
+        this.gender = Utils.getRandomNum(0, 1) == 1 ? Gender.MALE : Gender.FEMALE;
 
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalizeFirstLetter(variant.toString()) + " Dragon"));
+        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
         this.setCustomNameVisible(false);
+
+        addNbtData();
     }
 
-    public Dragon(Location loc, Breed breed, int stage, RealisticSurvivalPlugin plugin) {
-        super(EntityTypes.v, NMSUtil.getInternals().getWorld(loc.getWorld()));
+    public Dragon(Location loc, DragonBreed breed, DragonBreed.Variant variant, RealisticSurvivalPlugin plugin) {
+        super(EntityTypes.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
+        this.plugin = plugin;
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
 
-        this.plugin = plugin;
         this.uuid = getUniqueID();
 
-        Random r = new Random();
+        this.module = RSVModule.getModule(IceFireModule.NAME);
+        this.variant = variant;
+        this.breed = breed;
+        this.stage = Utils.getRandomNum(1, 5);
+        this.age = Utils.getRandomNum(stage * 100, stage * 100 + 99);
 
-        this.moduleItems = RSVModule.getModule("IceandFire").getModuleItems();;
+        this.gender = Utils.getRandomNum(0, 1) == 1 ? Gender.MALE : Gender.FEMALE;
+
+        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
+        this.setCustomNameVisible(false);
+
+        addNbtData();
+    }
+
+    public Dragon(Location loc, DragonBreed breed, int stage, RealisticSurvivalPlugin plugin) {
+        super(EntityTypes.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
+        this.plugin = plugin;
+        this.setPosition(loc.getX(), loc.getY(), loc.getZ());
+
+        this.uuid = getUniqueID();
+
+        this.module = RSVModule.getModule(IceFireModule.NAME);
+        this.variant = breed.getVariants()[Utils.getRandomNum(0, breed.getVariants().length - 1)];
         this.breed = breed;
         this.stage = stage;
-        this.age = this.stage * 100 + (int) Math.round(Math.random() * 99);
+        this.age = Utils.getRandomNum(stage * 100, stage * 100 + 99);
 
-        this.gender = ((int) Math.round(Math.random()) == 1) ? Gender.MALE : Gender.FEMALE;
+        this.gender = Utils.getRandomNum(0, 1) == 1 ? Gender.MALE : Gender.FEMALE;
 
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalizeFirstLetter(variant.toString()) + " Dragon"));
+        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
         this.setCustomNameVisible(false);
+
+        addNbtData();
     }
 
-    public ModuleItems getModuleItems() {
-        return moduleItems;
+    public Dragon(Location loc, DragonBreed breed, DragonBreed.Variant variant, int stage, RealisticSurvivalPlugin plugin) {
+        super(EntityTypes.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
+        this.plugin = plugin;
+        this.setPosition(loc.getX(), loc.getY(), loc.getZ());
+
+        this.uuid = getUniqueID();
+
+        this.module = RSVModule.getModule(IceFireModule.NAME);
+        this.variant = variant;
+        this.breed = breed;
+        this.stage = stage;
+        this.age = Utils.getRandomNum(stage * 100, stage * 100 + 99);
+
+        this.gender = Utils.getRandomNum(0, 1) == 1 ? Gender.MALE : Gender.FEMALE;
+
+        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
+        this.setCustomNameVisible(false);
+
+        addNbtData();
     }
 
-    public void spawnEntity() {
-        NMSUtil.getInternals().spawnEntity(this);
+    @Override
+    public void addNbtData() {
+        Utils util = RealisticSurvivalPlugin.getUtil();
+        CraftEntity entity = this.getBukkitEntity();
+        util.addNbtTag(entity, "rsvmob", breed.toString().toLowerCase() + "_dragon", PersistentDataType.STRING);
     }
 
-    public UUID getUuid() {
+    @Override
+    public void die(DamageSource damageSource) {
+        super.die(damageSource);
+        generateLoot();
+        Location loc = this.getBukkitEntity().getLocation();
+        World world = loc.getWorld();
+
+        Location center = world.getHighestBlockAt(loc).isEmpty() ? new Location(world, 0, 64, 256) : loc;
+
+        for (ItemStack item : loot) {
+            world.dropItemNaturally(center, item);
+        }
+    }
+
+    @Override
+    protected void initPathfinder()
+    {
+        this.goalSelector.a(0, new PathfinderGoalFloat(this));
+
+        this.goalSelector.a(2, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+        this.goalSelector.a(3, new PathfinderGoalRandomLookaround(this));
+        this.goalSelector.a(1, new PathfinderGoalPet(this, 1.0, 25));
+    }
+
+    public final ModuleItems getModuleItems() {
+        return module.getModuleItems();
+    }
+
+    public final UUID getUuid() {
         return uuid;
     }
 
-    public abstract void ability(LivingEntity entity);
+    public abstract void performMeleeAttack(LivingEntity entity);
 
-    public abstract void triggerBreathAttack();
+    public abstract void performSpecialAbility(LivingEntity entity);
 
-    public abstract void triggerExplosionAttack();
+    public abstract void triggerBreathAttack(Location target);
 
-    public abstract void generateLoot();
+    public abstract void triggerExplosionAttack(Location target);
 
-    public Breed getBreed() {
+    public final void generateLoot() {
+        // empty current loot table
+        FileConfiguration config = module.getUserConfig().getConfig();
+        loot.clear();
+
+        String lowercaseBreed = breed.toString().toLowerCase();
+        String capitalizeBreed = StringUtils.capitalize(lowercaseBreed);
+
+        // initialize loot items
+        ItemStack heart = RSVItem.getItem(lowercaseBreed + "_dragon_heart");
+        ItemStack skull = RSVItem.getItem(lowercaseBreed + "_dragon_skull");
+        ItemStack scales;
+        ItemStack blood = RSVItem.getItem(lowercaseBreed + "_dragon_blood");
+        ItemStack flesh = RSVItem.getItem(lowercaseBreed + "_dragon_flesh");
+        ItemStack bones = RSVItem.getItem("dragonbone");
+
+        // initialize the drop amounts of the loot
+        int scaleAmount;
+        int boneAmount;
+        int bloodAmount;
+        int fleshAmount;
+
+        scales = RSVItem.getItem("dragonscale_" + variant.toString().toLowerCase());
+
+        /**
+         * Scale amount is between the minimum and maximum specified values.
+         * Bone amount is calculated by subtracting the scale amount and adding a minimum bone amount.
+         * Adding a minimum value ensures that at least 1 bone will drop.
+         * Dragon flesh and blood amounts are determined by multiplying the scale amount
+         * by a specified multiplier.
+         */
+        int maxScales = config.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Dragonscales.Max");
+        int minScales = config.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Dragonscales.Min");
+        int maxBones = config.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Dragonbones.Max");
+        int minBones = config.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Dragonbones.Min");
+        int minBlood = config.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Blood.Min");
+        int maxBlood = config.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Blood.Max");
+        int minFlesh = config.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Flesh.Min");
+        int maxFlesh = config.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Flesh.Max");
+
+        double stageMultiplier = config.getDouble("Dragons." + capitalizeBreed + "Dragon.Drops.StageMultipliers.Stage" + stage);
+
+        scaleAmount = Utils.getRandomNum(minScales, maxScales);
+        boneAmount = Utils.getRandomNum(minBones, maxBones);
+        bloodAmount = Math.min((maxScales - scaleAmount + minBlood), maxBlood);
+        fleshAmount = Utils.getRandomNum(minFlesh, maxFlesh);
+
+        scaleAmount *= stageMultiplier;
+        boneAmount *= stageMultiplier;
+        bloodAmount *= stageMultiplier;
+        fleshAmount *= stageMultiplier;
+
+        // resize loot
+        bones.setAmount(boneAmount);
+        blood.setAmount(bloodAmount);
+        flesh.setAmount(fleshAmount);
+        scales.setAmount(scaleAmount);
+
+        // add a lore to the skull
+        LorePresets.addDragonSkullLore(skull, stage, breed.toString());
+
+        // add the loot to the loot table
+        loot.add(bones);
+        loot.add(heart);
+        loot.add(skull);
+        loot.add(scales);
+        loot.add(blood);
+        loot.add(flesh);
+    }
+
+
+    public final DragonBreed getBreed() {
         return breed;
     }
 
-    public Variant getVariant() {
+    public final DragonBreed.Variant getVariant() {
         return variant;
     }
 
-    public int getStage() {
+    public final int getStage() {
         return stage;
     }
 
-    public int getAge() {
+    public final int getAge() {
         return age;
     }
 
-    public void getGender(Gender gender) {
-        this.gender = gender;
+    public final Gender getGender() {
+        return gender;
     }
 
-    public Collection<ItemStack> getLoot() {
+    public final Collection<ItemStack> getLoot() {
         return loot;
     }
 
-    public void setBreed(Breed breed) {
-        this.breed = breed;
-    }
-
-    public void setStage(int stage) {
+    public final void setStage(int stage) {
         this.stage = stage;
     }
 
-    public void setAge(int age) {
+    public final void setAge(int age) {
         this.age = age;
-    }
-
-    public void setVariant(Variant variant) {
-        this.variant = variant;
-    }
-
-    public enum Breed {
-        FIRE,
-        ICE,
-        LIGHTNING
     }
 
     public enum Gender {
         MALE,
         FEMALE
-    }
-
-    public enum Variant {
-        GRAY,
-        EMERALD,
-        RED,
-        BRONZE,
-        SAPPHIRE,
-        BLUE,
-        SILVER,
-        WHITE,
-        AMETHYST,
-        BLACK,
-        ELECTRIC_BLUE,
-        COPPER
     }
 }

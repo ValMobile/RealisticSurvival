@@ -14,29 +14,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.iceandfire;
+package me.val_mobile.data.baubles;
 
-import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.configuration.MemoryConfiguration;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.util.Vector;
+import me.val_mobile.data.RSVConfig;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 
-public abstract class Breath {
+public class PlayerDataConfig extends RSVConfig {
 
-    private Vector velocity;
-    private World world;
-    private Location loc;
+    public static final String PATH = "resources/baubles/playerdata.yml";
+    public static final boolean REPLACE = false;
+    public static final boolean UPDATE = true;
 
-    private int radius;
-
-    private double vMultiplier;
-    private int radiusConstant;
-    private int decayTicks;
-
-    private int ticks = 0;
-
-    public Breath(MemoryConfiguration section,  Dragon dragon) {
-        FileConfiguration config = RSVFiles.getIfUserConfig();
+    public PlayerDataConfig(RealisticSurvivalPlugin plugin) {
+        super(plugin, PATH, REPLACE, UPDATE);
     }
 }

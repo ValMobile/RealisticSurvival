@@ -17,9 +17,6 @@
 package me.val_mobile.commands;
 
 import me.val_mobile.data.RSVConfig;
-import me.val_mobile.iceandfire.FireDragon;
-import me.val_mobile.iceandfire.IceDragon;
-import me.val_mobile.iceandfire.LightningDragon;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.RSVMob;
@@ -263,85 +260,74 @@ public class Commands implements CommandExecutor {
                         }
                         // check if the user typed more than 2 arguments
                         if (args.length > 2) {
-                            RSVMob mob = RSVMob.getMob(args[1]);
-
                             /**
                              * Check if the second argument is the name of a custom mob
                              * example: /realisticsurvival spawnmob ^~%1t --> invalid item name
                              *          /realisticsurvival spawnmob fire_dragon --> valid item name
                              */
-                            if (mob != null) {
-                                if (args.length > 4) {
-                                    if (!(args[2].isEmpty() || args[3].isEmpty() || args[4].isEmpty())) {
+                            if (args.length > 4) {
+                                if (!(args[2].isEmpty() || args[3].isEmpty() || args[4].isEmpty())) {
 
-                                        double x = Double.parseDouble(args[2]);
-                                        double y = Double.parseDouble(args[3]);
-                                        double z = Double.parseDouble(args[4]);
+                                    double x = Double.parseDouble(args[2]);
+                                    double y = Double.parseDouble(args[3]);
+                                    double z = Double.parseDouble(args[4]);
 
-                                        if (args.length > 5) {
-                                            if (!args[5].isEmpty()) {
-                                                World world = Bukkit.getWorld(args[5]);
-                                                Location loc = new Location(world, x, y, z);
-                                                switch (args[5].toLowerCase()) {
-                                                    case "fire_dragon": {
-                                                        new FireDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
-                                                        return true;
-                                                    }
-                                                    case "ice_dragon": {
-                                                        new IceDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
-                                                        return true;
-                                                    }
-                                                    case "lightning_dragon": {
-                                                        new LightningDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
-                                                        return true;
-                                                    }
-                                                    case "sea_serpent": {
-                                                        // wip
-                                                        return true;
-                                                    }
-                                                    default: {
-                                                        return true;
-                                                    }
-                                                }
-                                            }
-                                            return true;
-                                        }
-                                        if (isPlayer) {
-                                            Player player = (Player) sender;
-                                            World world = player.getWorld();
+                                    if (args.length > 5) {
+                                        if (!args[5].isEmpty()) {
+                                            World world = Bukkit.getWorld(args[5]);
                                             Location loc = new Location(world, x, y, z);
+                                            switch (args[1].toLowerCase()) {
+                                                case "fire_dragon" -> {
 
-                                            switch (args[5].toLowerCase()) {
-                                                case "fire_dragon": {
-                                                    new FireDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
-                                                    return true;
                                                 }
-                                                case "ice_dragon": {
+                                                case "ice_dragon" -> {
                                                     new IceDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
-                                                    return true;
                                                 }
-                                                case "lightning_dragon": {
+                                                case "lightning_dragon" -> {
                                                     new LightningDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
-                                                    return true;
                                                 }
-                                                case "sea_serpent": {
-                                                    // wip
-                                                    return true;
+                                                case "sea_serpent" -> {
+                                                    // w
                                                 }
-                                                default: {
-                                                    return true;
+                                                default -> {
                                                 }
                                             }
                                         }
                                         return true;
                                     }
+                                    if (isPlayer) {
+                                        Player player = (Player) sender;
+                                        World world = player.getWorld();
+                                        Location loc = new Location(world, x, y, z);
+
+                                        switch (args[5].toLowerCase()) {
+                                            case "fire_dragon": {
+                                                new FireDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
+                                                return true;
+                                            }
+                                            case "ice_dragon": {
+                                                new IceDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
+                                                return true;
+                                            }
+                                            case "lightning_dragon": {
+                                                new LightningDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
+                                                return true;
+                                            }
+                                            case "sea_serpent": {
+                                                // wip
+                                                return true;
+                                            }
+                                            default: {
+                                                return true;
+                                            }
+                                        }
+                                    }
                                     return true;
                                 }
                                 return true;
                             }
-                            // send the user a message showing how they misspelled the item name
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("MisspelledItemName")));
                             return true;
+                            // send the user a message showing how they misspelled the item name
                         }
                         return true;
                     }

@@ -14,13 +14,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.iceandfire;
+package me.val_mobile.data.toughasnails;
 
-import org.bukkit.configuration.MemoryConfiguration;
+import me.val_mobile.data.RSVConfig;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 
-public class FireBreath extends Breath {
+public class PlayerDataConfig extends RSVConfig {
 
-    public FireBreath(MemoryConfiguration section, Dragon dragon) {
-        super(section, dragon);
+    public static final String PATH = "resources/tan/playerdata.yml";
+    public static final boolean REPLACE = false;
+    public static final boolean UPDATE = true;
+
+    public PlayerDataConfig(RealisticSurvivalPlugin plugin) {
+        super(plugin, PATH, REPLACE, UPDATE);
     }
 }

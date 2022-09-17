@@ -5,7 +5,7 @@ author: Val_Mobile
 description: ${project.description}
 website: ${project.url}
 api-version: 1.16
-softdepend: [RealisticSeasons], [FastAsyncWorldEdit]
+softdepend: [RealisticSeasons]
 
 commands:
   RealisticSurvival:
@@ -16,28 +16,43 @@ commands:
 
 permissions:
   realisticsurvival.toughasnails.resistance.cold:
-    description: Grants the player immunity from getting cold
+    description: Prevents the player from getting cold
     default: not op
   realisticsurvival.toughasnails.resistance.colddamage:
-    description: Grants the player immunity to the health effects of hypothermia
+    description: Prevents the player from taking damage due to hypothermia
+    default: not op
+  realisticsurvival.toughasnails.resistance.coldpotioneffects:
+    description: Prevents the player from receiving status effects due to hypothermia
     default: not op
   realisticsurvival.toughasnails.resistance.coldvisual:
-    description: Grants the player immunity to the visual effects of hypothermia
+    description: Prevents the player's screen from freezing due to hypothermia
     default: not op
   realisticsurvival.toughasnails.resistance.hot:
-    description: Grants the player immunity from getting hot
+    description: Prevents the player from getting hot
     default: not op
   realisticsurvival.toughasnails.resistance.hotdamage:
-    description: Grants the player immunity to health effects of hyperthermia
+    description: Prevents the player from taking damage due to hyperthermia
+    default: not op
+  realisticsurvival.toughasnails.resistance.hotcombustion:
+    description: Prevents the player from being ignited due to hyperthermia
+    default: not op
+  realisticsurvival.toughasnails.resistance.hotpotioneffects:
+    description: Prevents the player from receiving status effects due to hyperthermia
     default: not op
   realisticsurvival.toughasnails.resistance.hotvisual:
-    description: Grants the player immunity to the visual effects of hyperthermia
+    description: Prevents the player's screen from burning due to hypothermia
     default: not op
   realisticsurvival.toughasnails.resistance.thirst:
-    description: Grants the player immunity from getting thirsty
+    description: Prevents the player from getting thirsty
     default: not op
   realisticsurvival.toughasnails.resistance.thirstdamage:
-    description: Grants the player immunity to the health effects of dehydration
+    description: Prevents the player from taking damage due to dehydration
+    default: not op
+  realisticsurvival.toughasnails.resistance.thirstpotioneffects:
+    description: Prevents the player from receiving status effects due to dehydration
+    default: not op
+  realisticsurvival.toughasnails.resistance.thirstvisual:
+    description: Prevents the player's screen from changing due to dehydration
     default: not op
   realisticsurvival.toughasnails.resistance.*:
     description: Wildcard permission
@@ -45,12 +60,16 @@ permissions:
     children:
       realisticsurvival.toughasnails.resistance.cold: true
       realisticsurvival.toughasnails.resistance.colddamage: true
+      realisticsurvival.toughasnails.resistance.coldpotioneffects: true
       realisticsurvival.toughasnails.resistance.coldvisual: true
       realisticsurvival.toughasnails.resistance.hot: true
       realisticsurvival.toughasnails.resistance.hotdamage: true
+      realisticsurvival.toughasnails.resistance.hotpotioneffects: true
       realisticsurvival.toughasnails.resistance.hotvisual: true
       realisticsurvival.toughasnails.resistance.thirst: true
       realisticsurvival.toughasnails.resistance.thirstdamage: true
+      realisticsurvival.toughasnails.resistance.thirstpotioneffects: true
+      realisticsurvival.toughasnails.resistance.thirstvisual: true
   realisticsurvival.command.give:
     description: Allows users to give themselves items from the plugin
     default: op

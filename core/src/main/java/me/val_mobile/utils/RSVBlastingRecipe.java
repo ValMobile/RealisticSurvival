@@ -34,7 +34,7 @@ public class RSVBlastingRecipe extends BlastingRecipe {
                         ? new ItemStack(Material.valueOf(config.getString(index + ".Result.Item")), config.getInt(index + ".Result.Amount")) :
                         RSVItem.getItem(config.getString(index + ".Result.Item")).resize(config.getInt(index + ".Result.Amount")),
                 Objects.equals(config.getString(index + ".Input"), config.getString(index + ".Input").toUpperCase())
-                        ? (Utils.getTags().containsKey(config.getString(index + ".Input")) ? new RecipeChoice.MaterialChoice(Utils.getTags().get(config.getString(index + ".Input"))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(index + ".Input"))))
+                        ? (config.getString(index + ".Input").contains("Tag.") ? new RecipeChoice.MaterialChoice(Utils.getTag(config.getString(index + ".Input"))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(index + ".Input"))))
                         : new RecipeChoice.ExactChoice(RSVItem.getItem(config.getString(index + ".Input"))),
                 (float) config.getDouble(index + ".Experience"),
                 config.getInt(index + ".CookingTime"));

@@ -16,8 +16,10 @@
  */
 package me.val_mobile.data;
 
+import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.data.toughasnails.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.tan.TanModule;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -70,14 +72,6 @@ public class RSVPlayer {
         }
     }
 
-    public void updateData() {
-        Collection<RSVDataModule> mod = dataModules.values();
-
-        for (RSVDataModule module : mod) {
-            module.updateData();
-        }
-    }
-
     public void saveData() {
         Collection<RSVDataModule> modules = dataModules.values();
         for (RSVDataModule module : modules) {
@@ -88,13 +82,16 @@ public class RSVPlayer {
     public RSVDataModule getDataModuleFromName(String name) {
 
         RSVDataModule module = null;
+
         switch (name) {
-            case "Baubles":
-                module = new me.val_mobile.data.baubles.DataModule(plugin, getPlayer());
-            case "ToughasNails":
+            case BaubleModule.NAME: {
+                module = new me.val_mobile.data.baubles.DataModule(getPlayer());
+                break;
+            }
+            case TanModule.NAME: {
                 module = new DataModule(plugin, getPlayer());
-            case "IceandFire":
-                module = new me.val_mobile.data.iceandfire.DataModule(plugin, getPlayer());
+                break;
+            }
         }
         return module;
     }

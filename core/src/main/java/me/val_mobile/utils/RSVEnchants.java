@@ -14,10 +14,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.tan;
+package me.val_mobile.utils;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.EnchantmentWrapper;
 import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
 
@@ -26,9 +25,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
-public class TanEnchants {
+public class RSVEnchants {
 
-    public HashSet<Enchantment> enchants = new HashSet<>();
+    private final static HashSet<Enchantment> enchants = new HashSet<>();
 
     public static final Enchantment WARMING = new EnchantmentWrapper("warming", "Warming", 1);
     public static final Enchantment COOLING = new EnchantmentWrapper("cooling", "Cooling", 1);
@@ -36,9 +35,17 @@ public class TanEnchants {
 
     private final RealisticSurvivalPlugin plugin;
 
-    public TanEnchants(RealisticSurvivalPlugin plugin) {
+    public RSVEnchants(RealisticSurvivalPlugin plugin) {
         this.plugin = plugin;
+        populateEnchants();
     }
+
+    public void registerAllEnchants() {
+        for (Enchantment enchant : enchants) {
+            register(enchant);
+        }
+    }
+
 
     public void register(Enchantment ench) {
         boolean registered = Arrays.stream(Enchantment.values()).collect(Collectors.toList()).contains(ench);
@@ -73,7 +80,7 @@ public class TanEnchants {
         enchants.add(OZZY_LINER);
     }
 
-    public HashSet<Enchantment> getEnchants() {
+    public static HashSet<Enchantment> getEnchants() {
         return enchants;
     }
 }

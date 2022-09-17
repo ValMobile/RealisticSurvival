@@ -34,7 +34,7 @@ public class RSVSmokingRecipe extends SmokingRecipe {
                         ? new ItemStack(Material.valueOf(config.getString(name + ".Result.Item")), config.getInt(name + ".Result.Amount")) :
                         RSVItem.getItem(config.getString(name + ".Result.Item")).resize(config.getInt(name + ".Result.Amount")),
                 Objects.equals(config.getString(name + ".Input"), config.getString(name + ".Input").toUpperCase())
-                        ? (Utils.getTags().containsKey(config.getString(name + ".Input")) ? new RecipeChoice.MaterialChoice(Utils.getTags().get(config.getString(name + ".Input"))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(name + ".Input"))))
+                        ? (config.getString(name + ".Input").contains("Tag.") ? new RecipeChoice.MaterialChoice(Utils.getTag(config.getString(name + ".Input"))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(name + ".Input"))))
                         : new RecipeChoice.ExactChoice(RSVItem.getItem(config.getString(name + ".Input"))),
                 (float) config.getDouble(name + ".Experience"),
                 config.getInt(name + ".CookingTime"));
