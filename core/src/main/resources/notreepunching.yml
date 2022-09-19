@@ -136,24 +136,24 @@ FlintKnapping:
       Chance: 0.3
       Sound:
         Enabled: true
-        Sound: "knapping"
-        Volume: 0.5
+        Sound: "realisticsurvival:knapping"
+        Volume: 1.0
         Pitch: 1.0
     BLACKSTONE:
       Type: "Common"
       Chance: 0.3
       Sound:
         Enabled: true
-        Sound: "knapping"
-        Volume: 0.5
+        Sound: "realisticsurvival:knapping"
+        Volume: 1.0
         Pitch: 1.0
     DEEPSLATE:
       Type: "Common"
       Chance: 0.3
       Sound:
         Enabled: true
-        Sound: "knapping"
-        Volume: 0.5
+        Sound: "realisticsurvival:knapping"
+        Volume: 1.0
         Pitch: 1.0
 
 PlantFiberGathering:
@@ -327,56 +327,6 @@ Items:
   fire_starter:
     Enabled:
       EnableAllVersions: true
-  golden_mattock:
-    Enabled:
-      EnableAllVersions: true
-    Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
-  copper_mattock:
-    Enabled:
-      EnableAllVersions: false
-      Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
-    Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
-  iron_mattock:
-    Enabled:
-      EnableAllVersions: true
-    Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
-  diamond_mattock:
-    Enabled:
-      EnableAllVersions: true
-    Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
-  netherite_mattock:
-    Enabled:
-      EnableAllVersions: true
-    Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
-  macuahuitl:
-    Enabled:
-      EnableAllVersions: true
-    Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
   copper_axe:
     Enabled:
       EnableAllVersions: false
@@ -557,6 +507,56 @@ Items:
     Attributes:
       Armor: 9.0
       Toughness: 2.0
+  golden_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  copper_mattock:
+    Enabled:
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  iron_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  diamond_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  netherite_mattock:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
+  macuahuitl:
+    Enabled:
+      EnableAllVersions: true
+    Attributes:
+      AttackDamage: 4.0
+      AttackSpeed: 2.0
   clay_tool:
     Enabled:
       EnableAllVersions: true

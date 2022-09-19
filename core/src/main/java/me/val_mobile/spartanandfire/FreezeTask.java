@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.RSVModule;
@@ -6,7 +22,6 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -27,7 +42,6 @@ public class FreezeTask extends BukkitRunnable {
     private final boolean playSound;
     private final PotionEffect slowness;
     private final Material frozenMaterial;
-    private final Sound sound;
     private final float volume;
     private final float pitch;
     private final int duration;
@@ -44,7 +58,6 @@ public class FreezeTask extends BukkitRunnable {
         int duration = config.getInt("Dragons.IceDragon.FreezeAbility.Duration.Amplifier") * stageMultiplier;
         this.slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
         this.frozenMaterial = Material.valueOf(config.getString("Dragons.IceDragon.FreezeAbility.EncaseIce.Block"));
-        this.sound = Sound.valueOf(config.getString("Dragons.IceDragon.FreezeAbility.Sound.Sound"));
         this.volume = (float) config.getDouble("Dragons.IceDragon.FreezeAbility.Sound.Volume");
         this.pitch = (float) config.getDouble("Dragons.IceDragon.FreezeAbility.Sound.Pitch");
         this.duration = config.getInt("Dragons.IceDragon.FreezeAbility.FrozenDuration") * stageMultiplier;
@@ -60,7 +73,6 @@ public class FreezeTask extends BukkitRunnable {
         int duration = config.getInt("Items." + itemName + ".FreezeAbility.Slowness.Duration");
         this.slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
         this.frozenMaterial = Material.valueOf(config.getString("Items." + itemName + ".FreezeAbility.EncaseIce.Block"));
-        this.sound = Sound.valueOf(config.getString("Items." + itemName + ".FreezeAbility.Sound.Sound"));
         this.volume = (float) config.getDouble("Items." + itemName + ".FreezeAbility.Sound.Volume");
         this.pitch = (float) config.getDouble("Items." + itemName + ".FreezeAbility.Sound.Pitch");
         this.duration = config.getInt("Items." + itemName + ".FreezeAbility.FrozenDuration");
@@ -94,7 +106,7 @@ public class FreezeTask extends BukkitRunnable {
 
         if (playSound) {
             // play the ice break sound effect
-            entity.getWorld().playSound(loc, sound, volume, pitch);
+            Utils.playSound(loc, config.getString("Dragons.IceDragon.FreezeAbility.Sound.Sound"), volume, pitch);
         }
 
         // remove the ice block after some time

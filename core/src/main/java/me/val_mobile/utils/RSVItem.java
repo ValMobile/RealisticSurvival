@@ -206,6 +206,11 @@ public class RSVItem extends ItemStack {
         return rsvItem;
     }
 
+    public static <T> void addNbtTag(ItemStack item, String key, T obj, PersistentDataType<T, T> type) {
+        RealisticSurvivalPlugin.getUtil().addNbtTag(item, key, obj, type);
+    }
+
+
     public static String getModuleNameFromItem(ItemStack item) {
         return RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvmodule", PersistentDataType.STRING);
     }

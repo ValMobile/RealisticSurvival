@@ -199,72 +199,6 @@ fire_starter:
   NBTTags:
     rsvdurability: 7
     rsvmaxdurability: 7
-golden_mattock:
-  Material: "GOLDEN_AXE"
-  DisplayName: "&fGolden Mattock"
-  CustomModelData: 93650
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
-  NBTTags:
-    rsvdurability: 64
-    rsvmaxdurability: 64
-copper_mattock:
-  Material: "STONE_AXE"
-  DisplayName: "&fCopper Mattock"
-  CustomModelData: 93650
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
-  NBTTags:
-    rsvdurability: 350
-    rsvmaxdurability: 350
-iron_mattock:
-  Material: "IRON_AXE"
-  DisplayName: "&fIron Mattock"
-  CustomModelData: 93650
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
-  NBTTags:
-    rsvdurability: 500
-    rsvmaxdurability: 500
-diamond_mattock:
-  Material: "DIAMOND_AXE"
-  DisplayName: "&fDiamond Mattock"
-  CustomModelData: 93650
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
-  NBTTags:
-    rsvdurability: 3122
-    rsvmaxdurability: 3122
-netherite_mattock:
-  Material: "NETHERITE_AXE"
-  DisplayName: "&fNetherite Mattock"
-  CustomModelData: 93650
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
-  NBTTags:
-    rsvdurability: 4062
-    rsvmaxdurability: 4062
-macuahuitl:
-  Material: "STONE_SWORD"
-  DisplayName: "&fMacuahuitl"
-  CustomModelData: 83689
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
-  NBTTags:
-    rsvdurability: 576
-    rsvmaxdurability: 576
 copper_axe:
   Material: "STONE_AXE"
   DisplayName: "&fCopper Axe"
@@ -364,6 +298,72 @@ copper_boots:
   NBTTags:
     rsvdurability: 130
     rsvmaxdurability: 130
+golden_mattock:
+  Material: "GOLDEN_AXE"
+  DisplayName: "&fGolden Mattock"
+  CustomModelData: 93650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 64
+    rsvmaxdurability: 64
+copper_mattock:
+  Material: "STONE_AXE"
+  DisplayName: "&fCopper Mattock"
+  CustomModelData: 93650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 350
+    rsvmaxdurability: 350
+iron_mattock:
+  Material: "IRON_AXE"
+  DisplayName: "&fIron Mattock"
+  CustomModelData: 93650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 500
+    rsvmaxdurability: 500
+diamond_mattock:
+  Material: "DIAMOND_AXE"
+  DisplayName: "&fDiamond Mattock"
+  CustomModelData: 93650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 3122
+    rsvmaxdurability: 3122
+netherite_mattock:
+  Material: "NETHERITE_AXE"
+  DisplayName: "&fNetherite Mattock"
+  CustomModelData: 93650
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 4062
+    rsvmaxdurability: 4062
+macuahuitl:
+  Material: "STONE_SWORD"
+  DisplayName: "&fMacuahuitl"
+  CustomModelData: 83689
+  ItemFlags:
+    - "HIDE_ATTRIBUTES"
+  Attributes:
+    UseModuleConfig: true
+  NBTTags:
+    rsvdurability: 576
+    rsvmaxdurability: 576
 clay_tool:
   Material: "WOODEN_AXE"
   DisplayName: "&fClay Tool"

@@ -32,12 +32,11 @@ import java.util.UUID;
 
 public class PotionBaubleTask extends BukkitRunnable {
 
+    private static final HashMap<UUID, PotionBaubleTask> tasks = new HashMap<>();
     private final DataModule dataModule;
     private final RSVPlayer rsvPlayer;
     private final RealisticSurvivalPlugin plugin;
     private final PotionBauble potionBauble;
-
-
 
     public PotionBaubleTask(PotionBauble potionBauble, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
@@ -51,6 +50,7 @@ public class PotionBaubleTask extends BukkitRunnable {
 
         potBaubles.add(potionBauble);
         baubles.put(id, potBaubles);
+        tasks.put(id, this);
     }
 
     @Override
@@ -65,11 +65,12 @@ public class PotionBaubleTask extends BukkitRunnable {
         // if the player doesn't have rings of res in his/her inventory
         else {
             // update static hashmap values and cancel the runnable
+            tasks.remove(rsvPlayer.getPlayer().getUniqueId());
             cancel();
         }
     }
 
-    public void startRunnable() {
+    public void start() {
         FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
 
         int tickSpeed = config.getInt("Items." + potionBauble.getName() + ".TickTime"); // get the tick speed
@@ -96,5 +97,16 @@ public class PotionBaubleTask extends BukkitRunnable {
 
     public PotionBauble getPotionBauble() {
         return potionBauble;
+    }
+
+    public static boolean hasTask(UUID id) {
+        if (tasks.containsKey(id)) {
+            return tasks.get(id) != null;
+        }
+        return false;
+    }
+
+    public HashMap<UUID, PotionBaubleTask> getTasks() {
+        return tasks;
     }
 }

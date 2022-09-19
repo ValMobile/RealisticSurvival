@@ -16,17 +16,19 @@
  */
 package me.val_mobile.tan;
 
-import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.data.baubles.BaubleInventory;
-import me.val_mobile.data.baubles.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.*;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Levelled;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -36,14 +38,15 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.CauldronLevelChangeEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
@@ -79,31 +82,16 @@ public class TanEvents extends ModuleEvents implements Listener {
             if (tempEnabled || thirstEnabled) {
                 RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(player.getUniqueId());
                 if (tempEnabled) {
-                    if (TemperatureCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
-                        if (!TemperatureCalculateTask.getPlayers().get(player.getUniqueId())) {
-                            new TemperatureCalculateTask(plugin, rsvplayer).start();
-                        }
-                    }
-                    else {
+                    if (!TemperatureCalculateTask.hasTask(player.getUniqueId())) {
                         new TemperatureCalculateTask(plugin, rsvplayer).start();
                     }
                 }
                 if (thirstEnabled) {
-                    if (ThirstCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
-                        if (!ThirstCalculateTask.getPlayers().get(player.getUniqueId())) {
-                            new ThirstCalculateTask(plugin, rsvplayer).start();
-                        }
-                    }
-                    else {
+                    if (!ThirstCalculateTask.hasTask(player.getUniqueId())) {
                         new ThirstCalculateTask(plugin, rsvplayer).start();
                     }
                 }
-                if (DisplayTask.getPlayers().containsKey(player.getUniqueId())) {
-                    if (!DisplayTask.getPlayers().get(player.getUniqueId())) {
-                        new DisplayTask(plugin, rsvplayer).start();
-                    }
-                }
-                else {
+                if (!DisplayTask.hasTask(player.getUniqueId())) {
                     new DisplayTask(plugin, rsvplayer).start();
                 }
             }
@@ -183,31 +171,16 @@ public class TanEvents extends ModuleEvents implements Listener {
                     if (tempEnabled || thirstEnabled) {
                         RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(player.getUniqueId());
                         if (tempEnabled) {
-                            if (TemperatureCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
-                                if (!TemperatureCalculateTask.getPlayers().get(player.getUniqueId())) {
-                                    new TemperatureCalculateTask(plugin, rsvplayer).start();
-                                }
-                            }
-                            else {
+                            if (!TemperatureCalculateTask.hasTask(player.getUniqueId())) {
                                 new TemperatureCalculateTask(plugin, rsvplayer).start();
                             }
                         }
                         if (thirstEnabled) {
-                            if (ThirstCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
-                                if (!ThirstCalculateTask.getPlayers().get(player.getUniqueId())) {
-                                    new ThirstCalculateTask(plugin, rsvplayer).start();
-                                }
-                            }
-                            else {
+                            if (!ThirstCalculateTask.hasTask(player.getUniqueId())) {
                                 new ThirstCalculateTask(plugin, rsvplayer).start();
                             }
                         }
-                        if (DisplayTask.getPlayers().containsKey(player.getUniqueId())) {
-                            if (!DisplayTask.getPlayers().get(player.getUniqueId())) {
-                                new DisplayTask(plugin, rsvplayer).start();
-                            }
-                        }
-                        else {
+                        if (!DisplayTask.hasTask(player.getUniqueId())) {
                             new DisplayTask(plugin, rsvplayer).start();
                         }
                     }
@@ -267,11 +240,11 @@ public class TanEvents extends ModuleEvents implements Listener {
                                             task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
 
                                             if (config.getBoolean("Thirst.SaturationRestoration.Drinking.Sound.Enabled")) {
-                                                Sound sound = Sound.valueOf(config.getString("Thirst.SaturationRestoration.Drinking.Sound.Sound"));
+                                                String soundName = config.getString("Thirst.SaturationRestoration.Drinking.Sound.Sound");
                                                 float volume = (float) config.getDouble("Thirst.SaturationRestoration.Drinking.Sound.Volume");
                                                 float pitch = (float) config.getDouble("Thirst.SaturationRestoration.Drinking.Sound.Pitch");
 
-                                                player.playSound(playerLoc, sound, volume, pitch);
+                                                Utils.playSound(playerLoc, soundName, volume, pitch);
                                             }
 
 
@@ -357,11 +330,10 @@ public class TanEvents extends ModuleEvents implements Listener {
                                             task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
 
                                             if (config.getBoolean("Thirst.SaturationRestoration.Raining.Sound.Enabled")) {
-                                                Sound sound = Sound.valueOf(config.getString("Thirst.SaturationRestoration.Raining.Sound.Sound"));
+                                                String soundName = config.getString("Thirst.SaturationRestoration.Raining.Sound.Sound");
                                                 float volume = (float) config.getDouble("Thirst.SaturationRestoration.Raining.Sound.Volume");
                                                 float pitch = (float) config.getDouble("Thirst.SaturationRestoration.Raining.Sound.Pitch");
-
-                                                player.playSound(loc, sound, volume, pitch);
+                                                Utils.playSound(loc, soundName, volume, pitch);
                                             }
 
                                             // regular water
@@ -379,12 +351,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                 }
 
                 if (parasites) {
-                    if (ParasiteTask.getPlayers().containsKey(player.getUniqueId())) {
-                        if (!ParasiteTask.getPlayers().get(player.getUniqueId())) {
-                            new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
-                        }
-                    }
-                    else {
+                    if (!ParasiteTask.hasTask(player.getUniqueId())) {
                         new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
                     }
                 }
@@ -392,7 +359,7 @@ public class TanEvents extends ModuleEvents implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onConsume(PlayerItemConsumeEvent event) {
         Player player = event.getPlayer();
 
@@ -410,8 +377,46 @@ public class TanEvents extends ModuleEvents implements Listener {
                         ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
 
                         if (task != null) {
-                            double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + name + ".ThirstPoints");
-                            double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + name + ".SaturationPoints");
+                            double thirstPoints;
+                            double saturationPoints;
+
+                            if (name.equals("canteen_filled")) {
+                                String canteenDrink = RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING);
+                                if ("Unpurified Water".equals(canteenDrink)) {
+                                    thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods.POTION.ThirstPoints");
+                                    saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods.POTION.SaturationPoints");
+
+                                    int durability = RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdurability", PersistentDataType.INTEGER);
+
+                                    if (durability > 0) {
+                                        Utils.changeDurability(item, -1);
+                                    }
+                                    else {
+                                        RSVItem.addNbtTag(item, "rsvitem", "canteen_empty", PersistentDataType.STRING);
+                                        item.setType(Material.GLASS_BOTTLE);
+                                        event.setCancelled(true);
+                                    }
+
+                                    // unpurified water
+                                    if (config.getBoolean("Thirst.Parasites.UnpurifiedWaterBottle.Enabled")) {
+                                        if (Math.random() <= config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance")) {
+                                            if (!ParasiteTask.hasTask(player.getUniqueId())) {
+                                                new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                                            }
+                                        }
+                                    }
+                                }
+                                else {
+                                    canteenDrink = canteenDrink.toLowerCase().replace(' ', '_');
+
+                                    thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + canteenDrink + ".ThirstPoints");
+                                    saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + canteenDrink + ".SaturationPoints");
+                                }
+                            }
+                            else {
+                                thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + name + ".ThirstPoints");
+                                saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + name + ".SaturationPoints");
+                            }
 
                             task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
                             task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
@@ -421,12 +426,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                     // unpurified water
                                     if (config.getBoolean("Thirst.Parasites.UnpurifiedWaterBottle.Enabled")) {
                                         if (Math.random() <= config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance")) {
-                                            if (ParasiteTask.getPlayers().containsKey(player.getUniqueId())) {
-                                                if (!ParasiteTask.getPlayers().get(player.getUniqueId())) {
-                                                    new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
-                                                }
-                                            }
-                                            else {
+                                            if (!ParasiteTask.hasTask(player.getUniqueId())) {
                                                 new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
                                             }
                                         }
@@ -446,10 +446,10 @@ public class TanEvents extends ModuleEvents implements Listener {
                                     player.teleport(newLoc);
 
                                     if (config.getBoolean("Items.juice_chorus_fruit.Teleport.Sound.Enabled")) {
-                                        Sound sound = Sound.valueOf(config.getString("Items.juice_chorus_fruit.Teleport.Sound.Sound"));
+                                        String soundName = config.getString("Items.juice_chorus_fruit.Teleport.Sound.Sound");
                                         float volume = (float) config.getDouble("Items.juice_chorus_fruit.Teleport.Sound.Volume");
                                         float pitch = (float) config.getDouble("Items.juice_chorus_fruit.Teleport.Sound.Pitch");
-                                        player.playSound(loc, sound, volume, pitch);
+                                        Utils.playSound(loc, soundName, volume, pitch);
                                     }
                                 }
                             }
@@ -564,31 +564,16 @@ public class TanEvents extends ModuleEvents implements Listener {
                 if (tempEnabled || thirstEnabled) {
                     RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(player.getUniqueId());
                     if (tempEnabled) {
-                        if (TemperatureCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
-                            if (!TemperatureCalculateTask.getPlayers().get(player.getUniqueId())) {
-                                new TemperatureCalculateTask(plugin, rsvplayer).start();
-                            }
-                        }
-                        else {
+                        if (!TemperatureCalculateTask.hasTask(player.getUniqueId())) {
                             new TemperatureCalculateTask(plugin, rsvplayer).start();
                         }
                     }
                     if (thirstEnabled) {
-                        if (ThirstCalculateTask.getPlayers().containsKey(player.getUniqueId())) {
-                            if (!ThirstCalculateTask.getPlayers().get(player.getUniqueId())) {
-                                new ThirstCalculateTask(plugin, rsvplayer).start();
-                            }
-                        }
-                        else {
+                        if (!ThirstCalculateTask.hasTask(player.getUniqueId())) {
                             new ThirstCalculateTask(plugin, rsvplayer).start();
                         }
                     }
-                    if (DisplayTask.getPlayers().containsKey(player.getUniqueId())) {
-                        if (!DisplayTask.getPlayers().get(player.getUniqueId())) {
-                            new DisplayTask(plugin, rsvplayer).start();
-                        }
-                    }
-                    else {
+                    if (!DisplayTask.hasTask(player.getUniqueId())) {
                         new DisplayTask(plugin, rsvplayer).start();
                     }
                 }
@@ -605,11 +590,7 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                 if (RSVItem.isRSVItem(item)) {
                     if (RSVItem.getNameFromItem(item).equals("thermometer")) {
-                        if (ThermometerTask.getPlayers().containsKey(p.getUniqueId())) {
-                            if (!ThermometerTask.getPlayers().get(p.getUniqueId())) {
-                                new ThermometerTask(plugin, RSVPlayer.getPlayers().get(p.getUniqueId())).start();
-                            }
-                        } else {
+                        if (!ThermometerTask.hasTask(p.getUniqueId())) {
                             new ThermometerTask(plugin, RSVPlayer.getPlayers().get(p.getUniqueId())).start();
                         }
                     }
@@ -629,19 +610,87 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                     if (RSVItem.isRSVItem(item)) {
                         if (RSVItem.getNameFromItem(item).equals("thermometer")) {
-                            if (ThermometerTask.getPlayers().containsKey(p.getUniqueId())) {
-                                if (!ThermometerTask.getPlayers().get(p.getUniqueId())) {
-                                    new ThermometerTask(plugin, RSVPlayer.getPlayers().get(p.getUniqueId())).start();
-                                }
-                            }
-                            else {
+                            if (!ThermometerTask.hasTask(p.getUniqueId())) {
                                 new ThermometerTask(plugin, RSVPlayer.getPlayers().get(p.getUniqueId())).start();
                             }
                         }
                     }
                 }
             }
+        }
+    }
 
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPotionFill(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+
+        if (shouldEventBeRan(player)) {
+            if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                ItemStack item = event.getItem();
+
+                Block b = event.getClickedBlock();
+                Material mat = b.getType();
+
+                if (RSVItem.isRSVItem(item)) {
+                    if (RSVItem.getNameFromItem(item).contains("canteen_empty")) {
+                        if (mat == Material.WATER) {
+                            RSVItem.addNbtTag(item, "rsvitem", "canteen_filled", PersistentDataType.STRING);
+                            RSVItem.addNbtTag(item, "rsvdrink", "Unpurified Water", PersistentDataType.STRING);
+                            Utils.changeDurability(item, 1);
+                        }
+                        else if (mat == Material.CAULDRON) {
+                            BlockData data = b.getBlockData();
+                           if (((Levelled) data).getLevel() > 0) {
+                               RSVItem.addNbtTag(item, "rsvitem", "canteen_filled", PersistentDataType.STRING);
+                               RSVItem.addNbtTag(item, "rsvdrink", "Unpurified Water", PersistentDataType.STRING);
+
+                               Utils.changeDurability(item, 1);
+                               ((Levelled) data).setLevel(((Levelled) data).getLevel() - 1);
+                               b.setBlockData(data);
+                           }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onCauldronFill(CauldronLevelChangeEvent event) {
+        if (event.getEntity() instanceof Player) {
+            ItemStack item = ((Player) event.getEntity()).getInventory().getItemInMainHand();
+
+            if (RSVItem.isRSVItem(item)) {
+                if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_EMPTY) {
+                    if (RSVItem.getNameFromItem(item).contains("juice_")) {
+                        event.setCancelled(true);
+                    }
+                    if (RSVItem.getNameFromItem(item).equals("canteen_filled")) {
+                        if (RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING).equals("Unpurified Water")) {
+                            int durability = RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdurability", PersistentDataType.INTEGER);
+
+                            if (durability > 0) {
+                                Utils.changeDurability(item, -1);
+                            }
+                            else {
+                                RSVItem.addNbtTag(item, "rsvitem", "canteen_empty", PersistentDataType.STRING);
+                                item.setType(Material.GLASS_BOTTLE);
+                                event.setCancelled(true);
+                            }
+                        }
+                        else {
+                            event.setCancelled(true);
+                        }
+                    }
+                }
+                if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_FILL) {
+                    if (RSVItem.getNameFromItem(item).equals("canteen_filled")) {
+                        if (!RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING).equals("Unpurified Water")) {
+                            event.setCancelled(true);
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -190,3 +190,177 @@ fire_starter:
     - "|STICK|STICK"
     - "STICK|STICK"
     - "STICK"
+copper_axe:
+  Type: "Shaped"
+  Result:
+    Item: "copper_axe"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT|STICK"
+    - "|STICK"
+copper_pickaxe:
+  Type: "Shaped"
+  Result:
+    Item: "copper_pickaxe"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "|STICK"
+    - "|STICK"
+copper_shovel:
+  Type: "Shaped"
+  Result:
+    Item: "copper_shovel"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT"
+    - "STICK"
+    - "STICK"
+copper_sword:
+  Type: "Shaped"
+  Result:
+    Item: "copper_sword"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT"
+    - "COPPER_INGOT"
+    - "|STICK"
+copper_hoe:
+  Type: "Shaped"
+  Result:
+    Item: "copper_hoe"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|COPPER_INGOT"
+    - "|STICK"
+    - "|STICK"
+copper_helmet:
+  Type: "Shaped"
+  Result:
+    Item: "copper_helmet"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT||COPPER_INGOT"
+copper_chestplate:
+  Type: "Shaped"
+  Result:
+    Item: "copper_chestplate"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT||COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+copper_leggings:
+  Type: "Shaped"
+  Result:
+    Item: "copper_leggings"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "COPPER_INGOT||COPPER_INGOT"
+    - "COPPER_INGOT||COPPER_INGOT"
+copper_boots:
+  Type: "Shaped"
+  Result:
+    Item: "copper_boots"
+    Amount: 1
+  Ingredients:
+    - "COPPER_INGOT||COPPER_INGOT"
+    - "COPPER_INGOT||COPPER_INGOT"
+golden_mattock:
+  Type: "Shaped"
+  Result:
+    Item: "golden_mattock"
+    Amount: 1
+  Ingredients:
+    - "GOLDEN_AXE|GOLDEN_PICKAXE|GOLDEN_SHOVEL"
+    - "|STICK"
+    - "|STICK"
+copper_mattock:
+  Type: "Shaped"
+  Result:
+    Item: "copper_mattock"
+    Amount: 1
+  Ingredients:
+    - "copper_axe|copper_pickaxe|copper_shovel"
+    - "|STICK"
+    - "|STICK"
+iron_mattock:
+  Type: "Shaped"
+  Result:
+    Item: "iron_mattock"
+    Amount: 1
+  Ingredients:
+    - "IRON_AXE|IRON_AXE|IRON_SHOVEL"
+    - "|STICK"
+    - "|STICK"
+diamond_mattock:
+  Type: "Shaped"
+  Result:
+    Item: "diamond_mattock"
+    Amount: 1
+  Ingredients:
+    - "DIAMOND_AXE|DIAMOND_PICKAXE|DIAMOND_SHOVEL"
+    - "|STICK"
+    - "|STICK"
+netherite_mattock:
+  Type: "Shaped"
+  Result:
+    Item: "netherite_mattock"
+    Amount: 1
+  Ingredients:
+    - "NETHERITE_AXE|NETHERITE_PICKAXE|NETHERITE_SHOVEL"
+    - "|STICK"
+    - "|STICK"
+macuahuitl:
+  Type: "Shaped"
+  Result:
+    Item: "macuahuitl"
+    Amount: 1
+  Ingredients:
+    - "|FERMENTED_SPIDER_EYE|flint_shard"
+    - "|flint_shard|VINE"
+    - "STICK"
+clay_tool:
+  Type: "Shaped"
+  Result:
+    Item: "clay_tool"
+    Amount: 1
+  Ingredients:
+    - "CLAY_BALL"
+    - "STICK"
+    - "STICK"
+clay_bucket:
+  Type: "Shaped"
+  Result:
+    Item: "clay_bucket"
+    Amount: 1
+  Ingredients:
+    - "CLAY_BALL||CLAY_BALL"
+    - "|CLAY_BALL"
+clay_flower_pot:
+  Type: "Shaped"
+  Result:
+    Item: "clay_flower_pot"
+    Amount: 1
+  Ingredients:
+    - "clay_brick||clay_brick"
+    - "|clay_brick"
+ceramic_bucket:
+  Type: "Furnace"
+  Result:
+    Item: "ceramic_bucket"
+    Amount: 1
+  Input: "clay_bucket"
+  Experience: 1.0
+  CookingTime: 160
+ceramic_flower_pot:
+  Type: "Furnace"
+  Result:
+    Item: "FLOWER_POT"
+    Amount: 1
+  Input: "clay_flower_pot"
+  Experience: 1.0
+  CookingTime: 160

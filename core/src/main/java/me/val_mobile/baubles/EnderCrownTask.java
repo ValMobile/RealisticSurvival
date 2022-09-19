@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
@@ -14,9 +30,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.HashMap;
 import java.util.Objects;
+import java.util.UUID;
 
 public class EnderCrownTask extends BukkitRunnable {
+
+    private static final HashMap<UUID, EnderCrownTask> tasks = new HashMap<>();
 
     private final RSVPlayer rsvPlayer;
     private final RealisticSurvivalPlugin plugin;
@@ -38,6 +58,7 @@ public class EnderCrownTask extends BukkitRunnable {
         this.maxHealthPercent = config.getDouble("Items.ender_queens_crown.SummonEndermanAlly.MaxHealthPercent");
         this.waterDamage = config.getDouble("Items.ender_queens_crown.WaterContactDamage");
         start = System.currentTimeMillis();
+        tasks.put(rsvPlayer.getPlayer().getUniqueId(), this);
     }
 
     @Override
@@ -86,12 +107,24 @@ public class EnderCrownTask extends BukkitRunnable {
         // if the player doesn't have rings of res in his/her inventory
         else {
             // update static hashmap values and cancel the runnable
+            tasks.remove(rsvPlayer.getPlayer().getUniqueId());
             cancel();
         }
     }
 
-    public void startRunnable() {
+    public void start() {
         int tickSpeed = config.getInt("Items.ender_queens_crown.TickTime"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
+    }
+
+    public static HashMap<UUID, EnderCrownTask> getTasks() {
+        return tasks;
+    }
+
+    public static boolean hasTask(UUID id) {
+        if (tasks.containsKey(id)) {
+            return tasks.get(id) != null;
+        }
+        return false;
     }
 }

@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.utils;
 
 import org.bukkit.Location;
@@ -7,6 +23,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityCategory;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.SmithingRecipe;
@@ -14,11 +31,9 @@ import org.bukkit.potion.PotionEffectType;
 
 public class v1_17_R1 extends InternalsProvider {
 
-
-
     @Override
     public void spawnEndermanAlly(Player owner, Location loc) {
-
+        new EndermanAlly(owner, loc);
     }
 
     @Override
@@ -50,19 +65,9 @@ public class v1_17_R1 extends InternalsProvider {
 
             if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
                 switch (key.getKey()) {
-                    case "netherite_axe_smithing":
-                    case "netherite_pickaxe_smithing":
-                    case "netherite_shovel_smithing":
-                    case "netherite_sword_smithing":
-                    case "netherite_hoe_smithing":
-                    case "netherite_helmet_smithing":
-                    case "netherite_chestplate_smithing":
-                    case "netherite_leggings_smithing":
-                    case "netherite_boots_smithing": {
-                        inv.setResult(null);
-                    }
-                    default: {
-                        break;
+                    case "netherite_axe_smithing", "netherite_pickaxe_smithing", "netherite_shovel_smithing", "netherite_sword_smithing", "netherite_hoe_smithing", "netherite_helmet_smithing", "netherite_chestplate_smithing", "netherite_leggings_smithing", "netherite_boots_smithing" ->
+                            inv.setResult(null);
+                    default -> {
                     }
                 }
             }
@@ -74,4 +79,10 @@ public class v1_17_R1 extends InternalsProvider {
     public void registerEntities() {
         CustomEntities.registerEntities();
     }
+
+    @Override
+    public void setFreezingView(Player player, int ticks) {
+        player.setFreezeTicks(ticks);
+    }
+
 }

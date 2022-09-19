@@ -18,7 +18,6 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.data.toughasnails.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.ConfigurationSection;
@@ -30,26 +29,26 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
-public class HypothermiaTask extends BukkitRunnable {
+public class ParasiteTask extends BukkitRunnable {
 
-    private final static HashMap<UUID, HypothermiaTask> tasks = new HashMap<>();
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
+    private final static HashMap<UUID, ParasiteTask> players = new HashMap<>();
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
     private final double damage;
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
 
 
-    public HypothermiaTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public ParasiteTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
         this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         this.player = player;
         this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
-        this.damage = config.getDouble("Temperature.Hypothermia.Damage.Amount");
+        this.damage = config.getDouble("Thirst.Dehydration.Damage.Amount");
 
-        ConfigurationSection section = config.getConfigurationSection("Temperature.Hypothermia.PotionEffects.Effects");
+        ConfigurationSection section = config.getConfigurationSection("Thirst.Dehydration.PotionEffects.Effects");
         Set<String> keys = section.getKeys(false);
 
         int dur;
@@ -60,62 +59,56 @@ public class HypothermiaTask extends BukkitRunnable {
             amp = section.getInt(key + ".Amplifier");
             potionEffects.add(new PotionEffect(PotionEffectType.getByName(key), dur, amp));
         }
-        tasks.put(player.getPlayer().getUniqueId(), this);
+        players.put(player.getPlayer().getUniqueId(), this);
     }
 
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        DataModule module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
-        int temperature = (int) Math.round(module.getTemperature());
         GameMode mode = player.getGameMode(); // get the gamemode
 
         if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && allowedWorlds.contains(player.getWorld().toString())) {
-
-            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.colddamage")) {
-                if (config.getBoolean("Temperature.Hypothermia.Damage.Enabled")) {
-                    if (player.getHealth() >= config.getDouble("Temperature.Hypothermia.Damage.Cutoff")) {
+            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
+                if (config.getBoolean("Thirst.Dehydration.Damage.Enabled")) {
+                    if (player.getHealth() >= config.getDouble("Thirst.Dehydration.Damage.Cutoff")) {
                         player.damage(damage);
                     }
                 }
             }
-
-            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldpotioneffects")) {
-                if (config.getBoolean("Temperature.Hypothermia.PotionEffects.Enabled")) {
-                    if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldpotioneffects")) {
-                        player.addPotionEffects(potionEffects);
-                    }
-                }
-            }
-
-            // if the player's temperature is high enough
-            if (temperature > config.getDouble("Temperature.Hypothermia.Temperature")) {
-                tasks.remove(player.getUniqueId());
-                cancel();
-            }
-
         }
         // if the player is in creative or spectator
         else {
             // update static hashmap values and cancel the runnable
-            tasks.remove(player.getUniqueId());
+            players.remove(player.getUniqueId());
+            ThirstCalculateTask.getTasks().get(player.getUniqueId()).setParasitesActive(false);
             cancel();
         }
     }
 
-    public void start() {
-        int tickSpeed = config.getInt("Temperature.Hypothermia.TickSpeed"); // get the tick speed
+    public void startRunnable() {
+        Player player = this.player.getPlayer();
+        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
+            if (config.getBoolean("Thirst.Dehydration.PotionEffects.Enabled")) {
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
+                    player.addPotionEffects(potionEffects);
+                }
+            }
+        }
+
+        ThirstCalculateTask.getTasks().get(player.getUniqueId()).setParasitesActive(true);
+
+        int tickSpeed = config.getInt("Thirst.Dehydration.TickSpeed"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 
-    public static boolean hasTask(UUID id) {
-        if (tasks.containsKey(id)) {
-            return tasks.get(id) != null;
-        }
-        return false;
+    public static HashMap<UUID, ParasiteTask> getPlayers() {
+        return players;
     }
 
-    public static HashMap<UUID, HypothermiaTask> getTasks() {
-        return tasks;
+    public static boolean hasTask(UUID id) {
+        if (players.containsKey(id)) {
+            return players.get(id) != null;
+        }
+        return false;
     }
 }

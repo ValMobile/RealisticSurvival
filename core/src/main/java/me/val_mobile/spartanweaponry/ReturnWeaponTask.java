@@ -1,11 +1,26 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.spartanweaponry;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Item;
@@ -24,7 +39,7 @@ public class ReturnWeaponTask extends BukkitRunnable {
     private final ArmorStand armorStand;
     private final Player player;
 
-    public ReturnWeaponTask(RSVModule module, RealisticSurvivalPlugin plugin, ItemStack itemStack, ArmorStand armorStand, Player player){
+    public ReturnWeaponTask(RSVModule module, ItemStack itemStack, ArmorStand armorStand, Player player){
         this.itemStack = itemStack;
         this.armorStand = armorStand;
         this.player = player;
@@ -45,7 +60,7 @@ public class ReturnWeaponTask extends BukkitRunnable {
         // if player is not online, drop the throwable immediately
         if (!player.isOnline()) {
             dropItem(asLocation);
-            stopTask();
+            stop();
         }
 
         // drop the item if the distance between player and throwable is square root of 150 blocks away
@@ -67,7 +82,7 @@ public class ReturnWeaponTask extends BukkitRunnable {
                 player.sendMessage(message);
             }
 
-            stopTask();
+            stop();
         }
 
         if (distanceBetween(asLocation, pLocation) < 0.5) {
@@ -85,8 +100,14 @@ public class ReturnWeaponTask extends BukkitRunnable {
             else {
                 player.getInventory().addItem(itemStack.clone());
             }
-            player.playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1.0F, 1.0F);
-            stopTask();
+
+            if (config.getBoolean("Items." + name + ".ThrownAttributes.ReturnSound.Enabled")) {
+                String soundName = config.getString("Items." + name + ".ThrownAttributes.ReturnSound.Sound");
+                float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.ReturnSound.Volume");
+                float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.ReturnSound.Pitch");
+                Utils.playSound(player.getLocation(), soundName, volume, pitch);
+            }
+            stop();
         }
     }
 
@@ -102,7 +123,7 @@ public class ReturnWeaponTask extends BukkitRunnable {
         return asLoc.distance(pLoc);
     }
 
-    public void stopTask() { // stop the task once task has been completed
+    public void stop() { // stop the task once task has been completed
         armorStand.remove();
 
         this.cancel();

@@ -50,44 +50,43 @@ public class ModuleRecipes {
 
             String type = recipeConfig.getString(name + ".Type");
 
-            if (userConfig.getBoolean("Recipes." + name + ".Enabled")) {
+            if (userConfig.getBoolean("Recipes." + name + ".Enabled.EnableAllVersions")) {
                 switch (type) {
-                    case "Shaped": {
-                        recipe = new RSVShapedRecipe(recipeConfig, name, plugin);
-                        break;
-                    }
-                    case "Shapeless": {
-                        recipe = new RSVShapelessRecipe(recipeConfig, name, plugin);
-                        break;
-                    }
-                    case "Smithing": {
-                        recipe = new RSVSmithingRecipe(recipeConfig, name, plugin);
-                        break;
-                    }
-                    case "Furnace": {
-                        recipe = new RSVFurnaceRecipe(recipeConfig, name, plugin);
-                        break;
-                    }
-                    case "Campfire": {
-                        recipe = new RSVCampfireRecipe(recipeConfig, name, plugin);
-                        break;
-                    }
-                    case "Smoker": {
-                        recipe = new RSVSmokingRecipe(recipeConfig, name, plugin);
-                        break;
-                    }
-                    case "Stonecutting": {
-                        recipe = new RSVStonecuttingRecipe(recipeConfig, name, plugin);
-                        break;
-                    }
-                    case "Anvil": {
+                    case "Shaped" -> recipe = new RSVShapedRecipe(recipeConfig, name, plugin);
+                    case "Shapeless" -> recipe = new RSVShapelessRecipe(recipeConfig, name, plugin);
+                    case "Smithing" -> recipe = new RSVSmithingRecipe(recipeConfig, name, plugin);
+                    case "Furnace" -> recipe = new RSVFurnaceRecipe(recipeConfig, name, plugin);
+                    case "Campfire" -> recipe = new RSVCampfireRecipe(recipeConfig, name, plugin);
+                    case "Smoker" -> recipe = new RSVSmokingRecipe(recipeConfig, name, plugin);
+                    case "Stonecutting" -> recipe = new RSVStonecuttingRecipe(recipeConfig, name, plugin);
+                    case "Anvil" -> {
                         recipe = new RSVAnvilRecipe(recipeConfig, name);
                         anvilRecipes.add((RSVAnvilRecipe) recipe);
-                        break;
                     }
                 }
                 addRecipe(recipe);
                 recipeMap.putIfAbsent(name, recipe);
+            }
+            else {
+                if (userConfig.contains("Items." + name + ".Enabled.Versions." + plugin.getServer().getVersion())) {
+                    if (userConfig.getBoolean("Items." + name + ".Enabled.Versions." + plugin.getServer().getVersion())) {
+                        switch (type) {
+                            case "Shaped" -> recipe = new RSVShapedRecipe(recipeConfig, name, plugin);
+                            case "Shapeless" -> recipe = new RSVShapelessRecipe(recipeConfig, name, plugin);
+                            case "Smithing" -> recipe = new RSVSmithingRecipe(recipeConfig, name, plugin);
+                            case "Furnace" -> recipe = new RSVFurnaceRecipe(recipeConfig, name, plugin);
+                            case "Campfire" -> recipe = new RSVCampfireRecipe(recipeConfig, name, plugin);
+                            case "Smoker" -> recipe = new RSVSmokingRecipe(recipeConfig, name, plugin);
+                            case "Stonecutting" -> recipe = new RSVStonecuttingRecipe(recipeConfig, name, plugin);
+                            case "Anvil" -> {
+                                recipe = new RSVAnvilRecipe(recipeConfig, name);
+                                anvilRecipes.add((RSVAnvilRecipe) recipe);
+                            }
+                        }
+                        addRecipe(recipe);
+                        recipeMap.putIfAbsent(name, recipe);
+                    }
+                }
             }
         }
     }

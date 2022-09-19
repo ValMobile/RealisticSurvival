@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.ntr;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
@@ -15,6 +31,9 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class FireStarterTask extends BukkitRunnable {
+
+    private static HashMap<UUID, FireStarterTask> tasks = new HashMap<>();
+    private static HashMap<UUID, Long> time = new HashMap<>();
 
     private final Collection<Item> ingredients;
 
@@ -35,9 +54,6 @@ public class FireStarterTask extends BukkitRunnable {
     private final long beginningTime;
     private long elapsed = 0;
 
-    private static HashMap<UUID, FireStarterTask> tasks = new HashMap<>();
-    private static HashMap<UUID, Long> players = new HashMap<>();
-
     public FireStarterTask(RealisticSurvivalPlugin plugin, NtrModule module, Player player, Location loc, Collection<Item> ingredients, boolean isSoulCampfire) {
         this.ingredients = ingredients;
         this.loc = loc;
@@ -54,14 +70,15 @@ public class FireStarterTask extends BukkitRunnable {
         this.emitParticles = config.getBoolean("RemoveVanillaCampfireRecipes.EmitParticles.Enabled");
 
         tasks.put(id, this);
+        time.put(id, System.currentTimeMillis());
     }
 
     @Override
     public void run() {
-        if (!players.containsKey(id)) {
+        if (!time.containsKey(id)) {
             cancel();
         }
-        elapsed = players.get(id) - beginningTime;
+        elapsed = time.get(id) - beginningTime;
 
         if (elapsed > duration) {
             loc.getWorld().getBlockAt(loc).setType((isSoulCampfire) ? Material.SOUL_CAMPFIRE : Material.CAMPFIRE);
@@ -97,7 +114,7 @@ public class FireStarterTask extends BukkitRunnable {
     }
 
     public void stop() {
-        players.remove(id);
+        time.remove(id);
         tasks.remove(id);
         cancel();
     }
@@ -106,11 +123,18 @@ public class FireStarterTask extends BukkitRunnable {
         runTaskTimer(plugin, 0L, 1);
     }
 
-    public static HashMap<UUID, Long> getPlayers() {
-        return players;
+    public static HashMap<UUID, Long> getTime() {
+        return time;
     }
 
     public static HashMap<UUID, FireStarterTask> getTasks() {
         return tasks;
+    }
+
+    public static boolean hasTask(UUID id) {
+        if (tasks.containsKey(id)) {
+            return tasks.get(id) != null;
+        }
+        return false;
     }
 }

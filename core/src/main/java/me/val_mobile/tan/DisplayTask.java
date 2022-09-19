@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVModule;
@@ -18,12 +34,12 @@ import java.util.UUID;
 
 public class DisplayTask extends BukkitRunnable {
 
+    private final static HashMap<UUID, DisplayTask> tasks = new HashMap<>();
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
-    private final static HashMap<UUID, Boolean> players = new HashMap<>();
     private final RSVPlayer player;
-    private final TempThirst tempThirst;
+    private final CharacterValues characterValues;
     private final boolean tempEnabled;
     private final boolean thirstEnabled;
     private final Collection<String> allowedWorlds;
@@ -33,7 +49,7 @@ public class DisplayTask extends BukkitRunnable {
         this.plugin = plugin;
         this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         this.player = player;
-        this.tempThirst = new TempThirst();
+        this.characterValues = new CharacterValues();
         this.tempEnabled = config.getBoolean("Temperature.Enabled");
         this.thirstEnabled = config.getBoolean("Thirst.Enabled");
         this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
@@ -53,16 +69,16 @@ public class DisplayTask extends BukkitRunnable {
             String actionbarText;
 
             if (tempEnabled && thirstEnabled) {
-                actionbarText = tempThirst.getTemperatureThirstActionbar(temperature, thirst, isUnderwater);
+                actionbarText = characterValues.getTemperatureThirstActionbar(temperature, thirst, isUnderwater);
             }
             else {
                 // only temperature is enabled
                 if (tempEnabled) {
-                    actionbarText = tempThirst.getTemperatureOnlyActionbar(temperature);
+                    actionbarText = characterValues.getTemperatureOnlyActionbar(temperature);
                 }
                 // only thirst is enabled
                 else {
-                    actionbarText = tempThirst.getThirstOnlyActionbar(thirst, isUnderwater);
+                    actionbarText = characterValues.getThirstOnlyActionbar(thirst, isUnderwater);
                 }
             }
 
@@ -75,22 +91,22 @@ public class DisplayTask extends BukkitRunnable {
                     if (config.getBoolean("Temperature.Hypothermia.ScreenTinting.Enabled")) {
                         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldvisual")) {
                             if (config.getBoolean("Temperature.Hypothermia.ScreenTinting.UseVanillaFreezeEffect")) {
-                                Utils.setFreezingView(player);
+                                Utils.setFreezingView(player, config.getInt("VisualTickSpeed") + 5);
                             }
                             else {
-                                titleText += tempThirst.getIceVignette(temperature);
+                                titleText += characterValues.getIceVignette(temperature);
                             }
                         }
                     }
 
                     if (config.getBoolean("Temperature.Hyperthermia.ScreenTinting.Enabled")) {
                         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotvisual")) {
-                            titleText += tempThirst.getFireVignette(temperature);
+                            titleText += characterValues.getFireVignette(temperature);
                         }
                     }
 
                     if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotvisual")) {
-                        titleText += tempThirst.getFireVignette(temperature);
+                        titleText += characterValues.getFireVignette(temperature);
                     }
 
                     if (!(Character.valueOf(titleText).equals(' '))) {
@@ -103,7 +119,7 @@ public class DisplayTask extends BukkitRunnable {
         // if the player is in creative or spectator
         else {
             // update static hashmap values and cancel the runnable
-            players.put(player.getUniqueId(), false);
+            tasks.remove(player.getUniqueId());
             cancel();
         }
     }
@@ -111,10 +127,16 @@ public class DisplayTask extends BukkitRunnable {
     public void start() {
         int tickSpeed = config.getInt("VisualTickSpeed"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
-        players.put(player.getPlayer().getUniqueId(), true);
     }
 
-    public static HashMap<UUID, Boolean> getPlayers() {
-        return players;
+    public static boolean hasTask(UUID id) {
+        if (tasks.containsKey(id)) {
+            return tasks.get(id) != null;
+        }
+        return false;
+    }
+
+    public static HashMap<UUID, DisplayTask> getTasks() {
+        return tasks;
     }
 }

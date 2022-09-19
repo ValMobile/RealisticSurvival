@@ -25,13 +25,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class RSVShapedRecipe extends ShapedRecipe {
 
-    private final static List<Character> CHARS = Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I');
+    private final static List<Character> CHARS = List.of('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I');
 
-    private HashMap<Character, Object> ingredients = new HashMap<>();
+    private final HashMap<Character, Object> ingredients = new HashMap<>();
 
     public RSVShapedRecipe(FileConfiguration config, String name, RealisticSurvivalPlugin plugin) {
         super(new NamespacedKey(plugin, config.getString(name + ".Key")),

@@ -21,11 +21,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 /**
  * Tab is a class that creates a tab completer
  * when the user types appropriate commands
@@ -33,14 +35,16 @@ import java.util.List;
  * @version 1.2
  * @since 1.0
  */
-public class Tab implements org.bukkit.command.TabCompleter {
+public class Tab implements TabCompleter {
     // create lists to store strings that will appear in the tab completer
-    HashSet<String> firstArgs = new HashSet<String>();
-    HashSet<String> players = new HashSet<String>();
-    HashSet<String> items = new HashSet<String>();
-    HashSet<String> temperature = new HashSet<String>(26);
-    HashSet<String> thirst = new HashSet<String>(21);
-    HashSet<String> worlds = new HashSet<String>();
+    private final List<String> firstArgs = new ArrayList<>();
+    private final List<String> mobs = new ArrayList<>();
+
+    private final List<String> players = new ArrayList<>();
+    private final List<String> items = new ArrayList<>();
+    private final List<String> temperature = new ArrayList<>(26);
+    private final List<String> thirst = new ArrayList<>(21);
+    private final List<String> worlds = new ArrayList<>();
 
     /**
      * Creates a tab completer depending on what the user types
@@ -65,6 +69,7 @@ public class Tab implements org.bukkit.command.TabCompleter {
                 firstArgs.add("reload");
                 firstArgs.add("give");
                 firstArgs.add("spawnitem");
+                firstArgs.add("spawnmob");
                 firstArgs.add("thirst");
                 firstArgs.add("temperature");
                 firstArgs.add("help");
@@ -92,7 +97,8 @@ public class Tab implements org.bukkit.command.TabCompleter {
                  *
                  * Add every command name to the third list of arguments.
                  */
-                for (String tabName : RSVItem.getNames()) {
+                Set<String> names = RSVItem.getItemMap().keySet();
+                for (String tabName : names) {
                     items.add(tabName);
                 }
             }
@@ -117,6 +123,14 @@ public class Tab implements org.bukkit.command.TabCompleter {
                 for (World world : Bukkit.getWorlds()) {
                     worlds.add(world.getName());
                 }
+            }
+
+            if (mobs.isEmpty()) {
+                mobs.add("fire_dragon");
+                mobs.add("ice_dragon");
+                mobs.add("lightning_dragon");
+                mobs.add("sea_serpent");
+                mobs.add("siren");
             }
 
             List<String> result = new ArrayList<String>(); // create an empty string list which will store the tab completer texts
@@ -144,8 +158,15 @@ public class Tab implements org.bukkit.command.TabCompleter {
                     }
                 }
 
-                if (args[0].equalsIgnoreCase("spawnitem")) {
+                else if (args[0].equalsIgnoreCase("spawnitem")) {
                     for (String a : items) {
+                        if (a.toLowerCase().startsWith(args[1].toLowerCase()))
+                            result.add(a);
+                    }
+                }
+
+                else if (args[0].equalsIgnoreCase("spawnmob")) {
+                    for (String a : mobs) {
                         if (a.toLowerCase().startsWith(args[1].toLowerCase()))
                             result.add(a);
                     }
@@ -187,7 +208,7 @@ public class Tab implements org.bukkit.command.TabCompleter {
             // if more than 3 arguments were typed
             else if (args.length > 3) {
                 if (args.length == 6) {
-                    if (args[0].equalsIgnoreCase("spawnitem")) {
+                    if (args[0].equalsIgnoreCase("spawnitem") || args[0].equalsIgnoreCase("spawnmob")) {
                         for (String a : worlds) {
                             if (a.toLowerCase().startsWith(args[5].toLowerCase()))
                                 result.add(a);

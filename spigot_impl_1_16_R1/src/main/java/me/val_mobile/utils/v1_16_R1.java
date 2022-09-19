@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.utils;
 
 import org.bukkit.Location;
@@ -28,22 +44,10 @@ public class v1_16_R1 extends InternalsProvider {
     @Override
     public boolean isUndead(Entity entity) {
         switch (entity.getType()) {
-            case ZOMBIE:
-            case ZOMBIE_HORSE:
-            case ZOMBIE_VILLAGER:
-            case DROWNED:
-            case HUSK:
-            case PHANTOM:
-            case SKELETON:
-            case SKELETON_HORSE:
-            case WITHER_SKELETON:
-            case WITHER:
-            case ZOGLIN:
-            case ZOMBIFIED_PIGLIN:
-            case STRAY: {
+            case ZOMBIE, ZOMBIE_HORSE, ZOMBIE_VILLAGER, DROWNED, HUSK, PHANTOM, SKELETON, SKELETON_HORSE, WITHER_SKELETON, WITHER, ZOGLIN, ZOMBIFIED_PIGLIN, STRAY -> {
                 return true;
             }
-            default: {
+            default -> {
                 return false;
             }
         }
@@ -66,4 +70,8 @@ public class v1_16_R1 extends InternalsProvider {
     public void registerEntities() {
         CustomEntities.registerEntities();
     }
+
+    @Override
+    public void setFreezingView(Player player, int ticks) {}
+
 }

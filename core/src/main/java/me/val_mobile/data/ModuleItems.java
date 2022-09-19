@@ -25,8 +25,8 @@ import java.util.Set;
 
 public class ModuleItems {
 
-    private RSVModule module;
-    private HashMap<String, RSVItem> items = new HashMap<>();
+    private final RSVModule module;
+    private final HashMap<String, RSVItem> items = new HashMap<>();
     private final RealisticSurvivalPlugin plugin;
 
     public ModuleItems(RSVModule module, RealisticSurvivalPlugin plugin) {
@@ -39,9 +39,17 @@ public class ModuleItems {
         FileConfiguration userConfig = module.getUserConfig().getConfig();
         Set<String> keys = itemConfig.getConfigurationSection("").getKeys(false);
         for (String key : keys) {
-            if (userConfig.getBoolean("Items." + key + ".Enabled")) {
+            if (userConfig.getBoolean("Items." + key + ".Enabled.EnableAllVersions")) {
                 RSVItem item = new RSVItem(module, key, plugin);
                 items.putIfAbsent(key, item);
+            }
+            else {
+                if (userConfig.contains("Items." + key + ".Enabled.Versions." + plugin.getServer().getVersion())) {
+                    if (userConfig.getBoolean("Items." + key + ".Enabled.Versions." + plugin.getServer().getVersion())) {
+                        RSVItem item = new RSVItem(module, key, plugin);
+                        items.putIfAbsent(key, item);
+                    }
+                }
             }
         }
     }

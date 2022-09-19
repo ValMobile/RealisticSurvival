@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVModule;
@@ -22,11 +38,10 @@ import java.util.UUID;
 
 public class TemperatureCalculateTask extends BukkitRunnable {
 
+    private final static HashMap<UUID, TemperatureCalculateTask> tasks = new HashMap<>();
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
-    private final static HashMap<UUID, TemperatureCalculateTask> tasks = new HashMap<>();
-    private final static HashMap<UUID, Boolean> players = new HashMap<>();
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
     private double equilibriumTemp;
@@ -134,16 +149,10 @@ public class TemperatureCalculateTask extends BukkitRunnable {
                         String itemName = RSVItem.getNameFromItem(item);
 
                         switch (itemName) {
-                            case "wool_hood":
-                            case "wool_boots":
-                            case "wool_pants":
-                            case "wool_jacket":
-                            case "jelled_slime_helmet":
-                            case "jelled_slime_chestplate":
-                            case "jelled_slime_leggings":
-                            case "jelled_slime_boots": {
+                            case "wool_hood", "wool_boots", "wool_pants", "wool_jacket", "jelled_slime_helmet", "jelled_slime_chestplate", "jelled_slime_leggings", "jelled_slime_boots" -> {
                                 add("Temperature.Armor." + itemName);
-                                break;
+                            }
+                            default -> {
                             }
                         }
                     }
@@ -200,24 +209,14 @@ public class TemperatureCalculateTask extends BukkitRunnable {
             }
 
             if (temp <= config.getDouble("Temperature.Hypothermia.Temperature")) {
-                if (HypothermiaTask.getPlayers().containsKey(player.getUniqueId())) {
-                    if (!HypothermiaTask.getPlayers().get(player.getUniqueId())) {
-                        new HypothermiaTask(plugin, this.player).startRunnable();
-                    }
-                }
-                else {
-                    new HypothermiaTask(plugin, this.player).startRunnable();
+                if (!HypothermiaTask.hasTask(player.getUniqueId())) {
+                    new HypothermiaTask(plugin, this.player).start();
                 }
             }
 
             if (temp >= config.getDouble("Temperature.Hyperthermia.Temperature")) {
-                if (HyperthermiaTask.getPlayers().containsKey(player.getUniqueId())) {
-                    if (!HyperthermiaTask.getPlayers().get(player.getUniqueId())) {
-                        new HyperthermiaTask(plugin, this.player).startRunnable();
-                    }
-                }
-                else {
-                    new HyperthermiaTask(plugin, this.player).startRunnable();
+                if (!HyperthermiaTask.hasTask(player.getUniqueId())) {
+                    new HyperthermiaTask(plugin, this.player).start();
                 }
             }
 
@@ -229,7 +228,6 @@ public class TemperatureCalculateTask extends BukkitRunnable {
         // if the player is in creative or spectator
         else {
             // update static hashmap values and cancel the runnable
-            players.put(player.getUniqueId(), false);
             tasks.remove(player.getUniqueId());
             cancel();
         }
@@ -261,11 +259,13 @@ public class TemperatureCalculateTask extends BukkitRunnable {
     public void start() {
         int tickSpeed = config.getInt("Temperature.CalculateTickSpeed"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
-        players.put(player.getPlayer().getUniqueId(), true);
     }
 
-    public static HashMap<UUID, Boolean> getPlayers() {
-        return players;
+    public static boolean hasTask(UUID id) {
+        if (tasks.containsKey(id)) {
+            return tasks.get(id) != null;
+        }
+        return false;
     }
 
     public static HashMap<UUID, TemperatureCalculateTask> getTasks() {
@@ -274,5 +274,9 @@ public class TemperatureCalculateTask extends BukkitRunnable {
 
     public double getEquilibriumTemp() {
         return equilibriumTemp;
+    }
+
+    public void setTemp(double temp) {
+        this.temp = temp;
     }
 }

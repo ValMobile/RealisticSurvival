@@ -96,10 +96,7 @@ public class MiscEvents implements Listener {
 
                     if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
                         switch (key.getKey()) {
-                            case "dark_prismarine":
-                            case "prismarine":
-                            case "prismarine_bricks":
-                            case "sea_lantern": {
+                            case "dark_prismarine", "prismarine", "prismarine_bricks", "sea_lantern" -> {
                                 Collection<ItemStack> ingredients = ((ShapedRecipe) r).getIngredientMap().values();
                                 boolean usesRsvItems = false;
 
@@ -114,8 +111,7 @@ public class MiscEvents implements Listener {
                                     event.getInventory().setResult(null);
                                 }
                             }
-                            default: {
-                                break;
+                            default -> {
                             }
                         }
                     }

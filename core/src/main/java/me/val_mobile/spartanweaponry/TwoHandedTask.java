@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.spartanweaponry;
 
 import me.val_mobile.data.RSVModule;
@@ -16,6 +32,7 @@ import java.util.UUID;
 
 public class TwoHandedTask extends BukkitRunnable {
 
+    private static HashMap<UUID, TwoHandedTask> tasks = new HashMap<>();
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
@@ -23,7 +40,6 @@ public class TwoHandedTask extends BukkitRunnable {
     private final UUID id;
     private final String itemName;
 
-    private static HashMap<UUID, String> players = new HashMap<>();
 
     public TwoHandedTask(RSVModule module, RealisticSurvivalPlugin plugin, Player player, String itemName) {
         this.plugin = plugin;
@@ -31,6 +47,7 @@ public class TwoHandedTask extends BukkitRunnable {
         this.id = player.getUniqueId();
         this.itemName = itemName;
         this.effect = new PotionEffect(PotionEffectType.SLOW_DIGGING, config.getInt("Items." + itemName + ".MiningFatigue.Duration"), config.getInt("Items." + itemName + ".MiningFatigue.Amplifier"));
+        tasks.put(id, this);
     }
 
     @Override
@@ -43,21 +60,29 @@ public class TwoHandedTask extends BukkitRunnable {
                 player.addPotionEffect(effect);
             }
             else {
-                players.remove(id);
+                tasks.remove(id);
                 cancel();
             }
         }
         else {
+            tasks.remove(id);
             cancel();
         }
     }
 
-    public void startRunnable() {
+    public void start() {
         int tickSpeed = config.getInt("Items." + itemName + ".MiningFatigue.TickTime"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 
-    public static HashMap<UUID, String> getPlayers() {
-        return players;
+    public static boolean hasTask(UUID id) {
+        if (tasks.containsKey(id)) {
+            return tasks.get(id) != null;
+        }
+        return false;
+    }
+
+    public static HashMap<UUID, TwoHandedTask> getTasks() {
+        return tasks;
     }
 }

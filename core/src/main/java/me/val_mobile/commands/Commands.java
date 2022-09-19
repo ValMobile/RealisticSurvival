@@ -18,8 +18,9 @@ package me.val_mobile.commands;
 
 import me.val_mobile.data.RSVConfig;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.tan.TemperatureCalculateTask;
+import me.val_mobile.tan.ThirstCalculateTask;
 import me.val_mobile.utils.RSVItem;
-import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -32,7 +33,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
-import java.util.Random;
 
 /**
  * Commands is a class that allows users to
@@ -86,9 +86,9 @@ public class Commands implements CommandExecutor {
                 return true;
             }
             switch ((args[0].toLowerCase())) {
-                case "give": {
+                case "give" -> {
                     // check if the player has the permission to give himself/herself items
-                    if (! (sender.hasPermission("realisticsurvival.command.give") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!(sender.hasPermission("realisticsurvival.command.give") || sender.hasPermission("realisticsurvival.command.*"))) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -152,9 +152,9 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 }
-                case "reload": {
+                case "reload" -> {
                     // check if the player has the permission to reload the plugin
-                    if (! (sender.hasPermission("realisticsurvival.command.reload") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!(sender.hasPermission("realisticsurvival.command.reload") || sender.hasPermission("realisticsurvival.command.*"))) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -174,9 +174,9 @@ public class Commands implements CommandExecutor {
                     plugin.reloadConfig();
                     return true;
                 }
-                case "spawnitem": {
+                case "spawnitem" -> {
                     // check if the player has the permission to give himself/herself items
-                    if (! (sender.hasPermission("realisticsurvival.command.spawnitem") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!(sender.hasPermission("realisticsurvival.command.spawnitem") || sender.hasPermission("realisticsurvival.command.*"))) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -241,9 +241,9 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 }
-                case "spawnmob": {
+                case "spawnmob" -> {
                     // check if the player has the permission to summon mobs
-                    if (! (sender.hasPermission("realisticsurvival.command.spawnmob") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!(sender.hasPermission("realisticsurvival.command.spawnmob") || sender.hasPermission("realisticsurvival.command.*"))) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -281,10 +281,8 @@ public class Commands implements CommandExecutor {
 
                                                 }
                                                 case "ice_dragon" -> {
-                                                    new IceDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
                                                 }
                                                 case "lightning_dragon" -> {
-                                                    new LightningDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
                                                 }
                                                 case "sea_serpent" -> {
                                                     // w
@@ -302,15 +300,12 @@ public class Commands implements CommandExecutor {
 
                                         switch (args[5].toLowerCase()) {
                                             case "fire_dragon": {
-                                                new FireDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
                                                 return true;
                                             }
                                             case "ice_dragon": {
-                                                new IceDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
                                                 return true;
                                             }
                                             case "lightning_dragon": {
-                                                new LightningDragon(loc, (int) (new Random().nextDouble() * 4) + 1, plugin);
                                                 return true;
                                             }
                                             case "sea_serpent": {
@@ -333,9 +328,9 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 }
-                case "temperature": {
+                case "temperature" -> {
                     // check if the player has the permission to change temperature
-                    if (! (sender.hasPermission("realisticsurvival.command.temperature") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!(sender.hasPermission("realisticsurvival.command.temperature") || sender.hasPermission("realisticsurvival.command.*"))) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -356,13 +351,16 @@ public class Commands implements CommandExecutor {
                                 int temperature;
                                 try {
                                     temperature = Integer.parseInt(args[2]);
-                                }
-                                catch (Exception e) {
+                                } catch (Exception e) {
                                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
                                     return true;
                                 }
 
-                                Utils.setOrReplaceEntry(PlayerRunnable.getTemperature(), player.getName(), (double) temperature);
+                                TemperatureCalculateTask task = TemperatureCalculateTask.getTasks().get(player.getUniqueId());
+
+                                if (task != null) {
+                                    task.setTemp(temperature);
+                                }
                                 return true;
                             }
                             // send the user a message showing how that the specified player is offline
@@ -375,9 +373,9 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 }
-                case "thirst": {
+                case "thirst" -> {
                     // check if the player has the permission to change thirst
-                    if (! (sender.hasPermission("realisticsurvival.command.thirst") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!(sender.hasPermission("realisticsurvival.command.thirst") || sender.hasPermission("realisticsurvival.command.*"))) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -398,13 +396,16 @@ public class Commands implements CommandExecutor {
                                 int thirst;
                                 try {
                                     thirst = Integer.parseInt(args[2]);
-                                }
-                                catch (Exception e) {
+                                } catch (Exception e) {
                                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
                                     return true;
                                 }
 
-                                Utils.setOrReplaceEntry(PlayerRunnable.getThirst(), player.getName(), (double) thirst);
+                                ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
+
+                                if (task != null) {
+                                    task.setThirstLvl(thirst);
+                                }
                                 return true;
                             }
                             // send the user a message showing how that the specified player is offline
@@ -417,7 +418,7 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 }
-                case "help": {
+                case "help" -> {
                     // check if the player has the permission to change temperature
 
                     if (!(sender.hasPermission("realisticsurvival.command.help") || sender.hasPermission("realisticsurvival.command.*"))) {
@@ -428,7 +429,7 @@ public class Commands implements CommandExecutor {
                     sendHelpMessage(sender);
                     return true;
                 }
-                case "version": {
+                case "version" -> {
                     // check if the player has the permission to change temperature
                     if (!(sender.hasPermission("realisticsurvival.command.version") || sender.hasPermission("realisticsurvival.command.*"))) {
                         // send the player a message explaining that he/she does not have permission to execute the command
@@ -442,7 +443,7 @@ public class Commands implements CommandExecutor {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', version));
                     return true;
                 }
-                default: {
+                default -> {
                     return true;
                 }
             }

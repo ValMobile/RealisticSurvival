@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.RSVModule;
@@ -11,13 +27,13 @@ import java.util.UUID;
 
 public class BurnTask extends BukkitRunnable {
 
+    private static HashMap<UUID, BurnTask> tasks = new HashMap<>();
     private final Entity entity;
     private final RealisticSurvivalPlugin plugin;
     private final FileConfiguration config;
     private int fireTicks;
     private final int tickSpeed;
 
-    private static HashMap<UUID, Boolean> entities = new HashMap<>();
 
     public BurnTask(RealisticSurvivalPlugin plugin, RSVModule module, String itemName, Entity entity) {
         this.entity = entity;
@@ -25,6 +41,7 @@ public class BurnTask extends BukkitRunnable {
         this.config = module.getUserConfig().getConfig();
         this.fireTicks = config.getInt("Items." + itemName + ".InfernoAbility.FireTicks");
         this.tickSpeed = config.getInt("Items." + itemName + ".InfernoAbility.TickSpeed");
+        tasks.put(entity.getUniqueId(), this);
     }
 
     @Override
@@ -38,7 +55,7 @@ public class BurnTask extends BukkitRunnable {
             }
         }
         else {
-            entities.replace(entity.getUniqueId(), true, false);
+            tasks.remove(entity.getUniqueId());
             cancel();
         }
     }
@@ -47,7 +64,14 @@ public class BurnTask extends BukkitRunnable {
         runTaskTimer(plugin, 0L, tickSpeed);
     }
 
-    public static HashMap<UUID, Boolean> getEntities() {
-        return entities;
+    public static HashMap<UUID, BurnTask> getTasks() {
+        return tasks;
+    }
+
+    public static boolean hasTask(UUID id) {
+        if (tasks.containsKey(id)) {
+            return tasks.get(id) != null;
+        }
+        return false;
     }
 }

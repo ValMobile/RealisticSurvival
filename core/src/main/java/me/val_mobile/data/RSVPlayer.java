@@ -84,14 +84,8 @@ public class RSVPlayer {
         RSVDataModule module = null;
 
         switch (name) {
-            case BaubleModule.NAME: {
-                module = new me.val_mobile.data.baubles.DataModule(getPlayer());
-                break;
-            }
-            case TanModule.NAME: {
-                module = new DataModule(plugin, getPlayer());
-                break;
-            }
+            case BaubleModule.NAME -> module = new me.val_mobile.data.baubles.DataModule(getPlayer());
+            case TanModule.NAME -> module = new DataModule(plugin, getPlayer());
         }
         return module;
     }

@@ -113,67 +113,53 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
             TickableBaubleManager manager = TickableBaubleManager.valueOf(itemName.toUpperCase());
 
-            if (manager != null) {
-                Tickable bauble = manager.getBauble();
-                if (baubleMap.containsKey(id)) {
-                    if (!baubleMap.get(id).contains(bauble)) {
-                        switch (manager) {
-                            case POTION_RING_REGENERATION:
-                            case POTION_RING_HASTE:
-                            case POTION_RING_SPEED:
-                            case POTION_RING_STRENGTH:
-                            case POTION_RING_JUMP_BOOST:
-                            case POTION_RING_RESISTANCE:
-                            case MINERS_RING:
-                            case SHIELD_HONOR:
-                            case DRAGONS_EYE:
-                            case STONE_SEA:
-                            case PHANTOM_PRISM: {
-                                new PotionBaubleTask((PotionBauble) bauble, rsvPlayer, plugin).startRunnable();
-                                break;
+            Tickable bauble = manager.getBauble();
+            if (baubleMap.containsKey(id)) {
+                if (!baubleMap.get(id).contains(bauble)) {
+                    switch (manager) {
+                        case POTION_RING_REGENERATION, POTION_RING_HASTE, POTION_RING_SPEED, POTION_RING_STRENGTH, POTION_RING_JUMP_BOOST, POTION_RING_RESISTANCE, MINERS_RING, SHIELD_HONOR, DRAGONS_EYE, STONE_SEA, PHANTOM_PRISM -> {
+                            if (!PotionBaubleTask.hasTask(id)) {
+                                new PotionBaubleTask((PotionBauble) bauble, rsvPlayer, plugin).start();
                             }
-                            case SCARLITE_RING: {
-                                new ScarliteRingTask(rsvPlayer, plugin).startRunnable();
-                                break;
+                        }
+                        case SCARLITE_RING -> {
+                            if (!ScarliteRingTask.hasTask(id)) {
+                                new ScarliteRingTask(rsvPlayer, plugin).start();
                             }
-                            case POLARIZED_STONE: {
-                                new PolarizedStoneTask(rsvPlayer, plugin).startRunnable();
-                                break;
+                        }
+                        case POLARIZED_STONE -> {
+                            if (!PolarizedStoneTask.hasTask(id)) {
+                                new PolarizedStoneTask(rsvPlayer, plugin).start();
                             }
-                            case ENDER_QUEENS_CROWN: {
-                                new EnderCrownTask(module, rsvPlayer, plugin).startRunnable();
-                                break;
+                        }
+                        case ENDER_QUEENS_CROWN -> {
+                            if (!EnderCrownTask.hasTask(id)) {
+                                new EnderCrownTask(module, rsvPlayer, plugin).start();
                             }
                         }
                     }
                 }
-                else {
-                    switch (manager) {
-                        case POTION_RING_REGENERATION:
-                        case POTION_RING_HASTE:
-                        case POTION_RING_SPEED:
-                        case POTION_RING_STRENGTH:
-                        case POTION_RING_JUMP_BOOST:
-                        case POTION_RING_RESISTANCE:
-                        case MINERS_RING:
-                        case SHIELD_HONOR:
-                        case DRAGONS_EYE:
-                        case STONE_SEA:
-                        case PHANTOM_PRISM: {
-                            new PotionBaubleTask((PotionBauble) bauble, rsvPlayer, plugin).startRunnable();
-                            break;
+            }
+            else {
+                switch (manager) {
+                    case POTION_RING_REGENERATION, POTION_RING_HASTE, POTION_RING_SPEED, POTION_RING_STRENGTH, POTION_RING_JUMP_BOOST, POTION_RING_RESISTANCE, MINERS_RING, SHIELD_HONOR, DRAGONS_EYE, STONE_SEA, PHANTOM_PRISM -> {
+                        if (!PotionBaubleTask.hasTask(id)) {
+                            new PotionBaubleTask((PotionBauble) bauble, rsvPlayer, plugin).start();
                         }
-                        case SCARLITE_RING: {
-                            new ScarliteRingTask(rsvPlayer, plugin).startRunnable();
-                            break;
+                    }
+                    case SCARLITE_RING -> {
+                        if (!ScarliteRingTask.hasTask(id)) {
+                            new ScarliteRingTask(rsvPlayer, plugin).start();
                         }
-                        case POLARIZED_STONE: {
-                            new PolarizedStoneTask(rsvPlayer, plugin).startRunnable();
-                            break;
+                    }
+                    case POLARIZED_STONE -> {
+                        if (!PolarizedStoneTask.hasTask(id)) {
+                            new PolarizedStoneTask(rsvPlayer, plugin).start();
                         }
-                        case ENDER_QUEENS_CROWN: {
-                            new EnderCrownTask(module, rsvPlayer, plugin).startRunnable();
-                            break;
+                    }
+                    case ENDER_QUEENS_CROWN -> {
+                        if (!EnderCrownTask.hasTask(id)) {
+                            new EnderCrownTask(module, rsvPlayer, plugin).start();
                         }
                     }
                 }
@@ -347,12 +333,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 // check the cause of the damage
                 switch (cause) {
                     // if the damage is caused by fire
-                    case FIRE:
-                    case FIRE_TICK: {
-                        if (RSVItem.isRSVItem(itemOffHand)) {
-                            offHandName = RSVItem.getNameFromItem(itemOffHand);
-                        }
-
+                    case FIRE, FIRE_TICK -> {
                         if (baubleInv.hasBauble("obsidian_skull")) {
                             // reduce the damage by a specified amount
                             damage *= config.getDouble("Items.obsidian_skull.HeatDamageMultiplier");
@@ -365,20 +346,19 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                         if (ankhShield) {
                             damage *= config.getDouble("Items.ankh_shield.HeatDamageMultiplier");
                         }
-                        break;
                     }
+
                     // if the damage is caused by an explosion
-                    case ENTITY_EXPLOSION:
-                    case BLOCK_EXPLOSION: {
+                    case ENTITY_EXPLOSION, BLOCK_EXPLOSION -> {
                         // if the player has a shield of honor
                         if (baubleInv.hasBauble(("shield_honor"))) {
                             // reduce the damage by a specified amount
                             damage *= config.getDouble("Items.shield_honor.ExplosionDamageMultiplier");
                         }
-                        break;
                     }
+
                     // if the damage is caused by falling
-                    case FALL: {
+                    case FALL -> {
                         if (baubleInv.hasBauble(("balloon"))) {
                             if (player.getFallDistance() <= config.getDouble("Items.balloon.MinFallDistance")) {
                                 // cancel the event to set the fall damage to 0
@@ -391,15 +371,14 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                         if (baubleInv.hasBauble(("balloon"))) {
                             event.setCancelled(true);
                         }
-                        break;
                     }
+
                     // if the damage is caused by a cactus or berry bush
-                    case CONTACT: {
+                    case CONTACT -> {
                         // if the player has a phytoprotostasia amulet
                         if (baubleInv.hasBauble(("phytoprostasia_amulet"))) {
                             event.setCancelled(true);
                         }
-                        break;
                     }
                 }
 
@@ -426,7 +405,15 @@ public class BaubleEvents extends ModuleEvents implements Listener {
             Player player = event.getPlayer();
             if (shouldEventBeRan(player)) {
                 if (event.getBedEnterResult() == PlayerBedEnterEvent.BedEnterResult.OK) {
+                    RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(player.getUniqueId());
 
+                    DataModule dataModule = (DataModule) rsvPlayer.getDataModuleFromName(BaubleModule.NAME);
+
+                    if (dataModule.getBaubleBag().hasBauble("broken_heart")) {
+                        if (!BrokenHeartRepairTask.hasTask(player.getUniqueId())) {
+                            new BrokenHeartRepairTask(plugin, module, rsvPlayer).start();
+                        }
+                    }
                 }
             }
         }
@@ -562,67 +549,72 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                     // check the potion effect
                     switch (newEffect.getType().getName()) {
                         // if the potion effect is hunger
-                        case "HUNGER":
+                        case "HUNGER" -> {
                             // if the player has a forbidden fruit or any of its derivatives
                             if (baubleInv.hasBauble("forbidden_fruit") ||
                                     baubleInv.hasBauble("ankh_charm") || ankhShield) {
                                 // cancel the event to stop the effect from being added
                                 event.setCancelled(true);
                             }
-                            break;
-                        // if the potion effect is hunger
-                        case "SLOW":
+                        }
+
+                        // if the potion effect is slowness
+                        case "SLOW" -> {
                             // if the player has a ring of overclocking or any of its derivatives
                             if (baubleInv.hasBauble("ring_overclocking") || baubleInv.hasBauble("ring_free_action") ||
                                     baubleInv.hasBauble("ankh_charm") || ankhShield) {
                                 // cancel the event to stop the effect from being added
                                 event.setCancelled(true);
                             }
-                            break;
+                        }
+
                         // if the potion effect is poison
-                        case "POISON":
+                        case "POISON" -> {
                             // if the player has a bezoar or any of its derivatives
                             if (baubleInv.hasBauble("bezoar") || baubleInv.hasBauble("mixed_color_dragonscale") ||
                                     baubleInv.hasBauble("ankh_charm") || ankhShield) {
                                 // cancel the event to stop the effect from being added
                                 event.setCancelled(true);
                             }
-                            break;
+                        }
+
                         // if the potion effect is wither
-                        case "WITHER":
+                        case "WITHER" -> {
                             // if the player has a black dragon scale or any of its derivatives
                             if (baubleInv.hasBauble("black_dragonscale_bauble") || baubleInv.hasBauble("mixed_color_dragonscale") ||
                                     baubleInv.hasBauble("ankh_charm") || baubleInv.hasBauble("wither_ring") || ankhShield) {
                                 // cancel the event to stop the effect from being added
                                 event.setCancelled(true);
                             }
-                            break;
+                        }
+
                         // if the potion effect is mining fatigue
-                        case "SLOW_DIGGING":
+                        case "SLOW_DIGGING" -> {
                             // if the player has vitamins or any of its derivatives
                             if (baubleInv.hasBauble("vitamins") || baubleInv.hasBauble("ankh_charm") || ankhShield) {
                                 // cancel the event to stop the effect from being added
                                 event.setCancelled(true);
                             }
-                            break;
+                        }
+
                         // if the potion effect is blindness
-                        case "BLINDNESS":
-                        case "DARKNESS":
+                        case "BLINDNESS", "DARKNESS" -> {
                             // if the player has sunglasses or any of its derivatives
                             if (sunglasses || baubleInv.hasBauble("ankh_charm") || ankhShield) {
                                 // cancel the event to stop the effect from being added
                                 event.setCancelled(true);
                             }
-                            break;
+                        }
+
                         // if the potion effect is levitation
-                        case "LEVITATION":
+                        case "LEVITATION" -> {
                             // if the player has a shulker heart or any of its derivatives
                             if (baubleInv.hasBauble("shulker_heart") || baubleInv.hasBauble("ring_free_action") ||
                                     baubleInv.hasBauble("ankh_charm") || ankhShield) {
                                 // cancel the event to stop the effect from being added
                                 event.setCancelled(true);
                             }
-                            break;
+                        }
                     }
                 }
             }

@@ -40,7 +40,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -62,7 +61,7 @@ public class SwEvents extends ModuleEvents implements Listener {
         ProjectileSource shooter = projectile.getShooter();
 
         if (!event.isCancelled()) {
-            if (!(projectile == null || shooter == null)) {
+            if (!(shooter == null)) {
                 if (shooter instanceof Player) {
                     Player player = (Player) shooter;
                     if (shouldEventBeRan(player) && shouldEventBeRan(projectile)) {
@@ -133,27 +132,24 @@ public class SwEvents extends ModuleEvents implements Listener {
                             String type = name.substring(name.lastIndexOf("_") + 1);
 
                             switch (type) {
-                                case "rapier": {
+                                case "rapier" -> {
                                     if (!Utils.hasArmor(defender)) {
                                         damage *= config.getDouble("Items." + name + ".UnarmoredDamageMultiplier");
                                     }
-                                    break;
                                 }
-                                case "katana": {
+                                case "katana" -> {
                                     if (!Utils.hasChestplate(defender)) {
                                         damage *= config.getDouble("Items." + name + ".ChestDamageMultiplier");
                                     }
-                                    break;
                                 }
-                                case "dagger": {
+                                case "dagger" -> {
                                     if (defender instanceof LivingEntity) {
                                         if (((LivingEntity) defender).hasLineOfSight(attacker)) {
                                             damage *= config.getDouble("Items." + name + ".BackstabDamageMultiplier");
                                         }
                                     }
-                                    break;
                                 }
-                                case "lance": {
+                                case "lance" -> {
                                     double sweepMultiplier = config.getDouble("Items." + name + ".SweepingDamageMultiplier");
 
                                     double ridingMultiplier = config.getDouble("Items." + name + ".RidingDamageBonus");
@@ -176,13 +172,8 @@ public class SwEvents extends ModuleEvents implements Listener {
                                             }
                                         }
                                     }
-                                    break;
                                 }
-                                case "greatsword":
-                                case "longsword":
-                                case "saber":
-                                case "glaive":
-                                case "quarterstaff": {
+                                case "greatsword", "longsword", "saber", "glaive", "quarterstaff" -> {
                                     List<Entity> entities = defender.getNearbyEntities(1.0, 0.25, 1.0);
 
                                     double multiplier = config.getDouble("Items." + name + ".SweepingDamageMultiplier");
@@ -200,9 +191,8 @@ public class SwEvents extends ModuleEvents implements Listener {
                                             }
                                         }
                                     }
-                                    break;
                                 }
-                                case "hammer": {
+                                case "hammer" -> {
                                     if (defender instanceof LivingEntity) {
                                         int duration = config.getInt("Items." + name + ".Nausea.Duration");
                                         int amplifier = config.getInt("Items." + name + ".Nausea.Amplifier");
@@ -213,17 +203,15 @@ public class SwEvents extends ModuleEvents implements Listener {
                                     }
 
                                     double kbMultiplier = config.getDouble("Items." + name + ".KnockbackMultiplier");
-                                    RealisticSurvivalPlugin.getUtil().setZeroKb(defender);
-                                    break;
+                                    RealisticSurvivalPlugin.getUtil().setKbMultiplier(defender, kbMultiplier);
                                 }
-                                case "warhammer": {
+                                case "warhammer" -> {
                                     double armorPiercing = config.getDouble("Items." + name + ".ArmorPiercing");
                                     double dif = event.getFinalDamage() - event.getDamage();
 
                                     damage += dif * armorPiercing;
-                                    break;
                                 }
-                                case "club": {
+                                case "club" -> {
                                     if (defender instanceof LivingEntity) {
                                         int duration = config.getInt("Items." + name + ".Nausea.Duration");
                                         int amplifier = config.getInt("Items." + name + ".Nausea.Amplifier");
@@ -232,9 +220,8 @@ public class SwEvents extends ModuleEvents implements Listener {
 
                                         ((LivingEntity) defender).addPotionEffect(nausea);
                                     }
-                                    break;
                                 }
-                                case "halberd": {
+                                case "halberd" -> {
                                     int shieldCooldown = config.getInt("Items." + name + ".ShieldBreach.Cooldown");
                                     double chance = config.getDouble("Items." + name + ".ShieldBreach.Chance");
                                     if (defender instanceof Player) {
@@ -244,9 +231,8 @@ public class SwEvents extends ModuleEvents implements Listener {
                                             }
                                         }
                                     }
-                                    break;
                                 }
-                                case "mace": {
+                                case "mace" -> {
                                     if (defender instanceof LivingEntity) {
                                         if (Utils.isUndead(defender)) {
                                             damage *= config.getDouble("Items." + name + ".UndeadDamageMultiplier");
@@ -254,11 +240,9 @@ public class SwEvents extends ModuleEvents implements Listener {
                                         }
                                     }
                                 }
-                                default: {
-                                    break;
+                                default -> {
                                 }
                             }
-
                         }
                     }
                 }
@@ -307,11 +291,7 @@ public class SwEvents extends ModuleEvents implements Listener {
                         FileConfiguration config = module.getUserConfig().getConfig();
 
                         switch (type) {
-                            case "greatsword":
-                            case "spear":
-                            case "halberd":
-                            case "pike":
-                            case "lance": {
+                            case "greatsword", "spear", "halberd", "pike", "lance" -> {
                                 double range = config.getDouble("Items." + name + ".Range");
 
                                 List<Entity> entities = player.getNearbyEntities(range, range, range);
@@ -329,13 +309,8 @@ public class SwEvents extends ModuleEvents implements Listener {
                                         }
                                     }
                                 }
-                                break;
                             }
-                            case "dagger":
-                            case "throwing_knife":
-                            case "tomahawk":
-                            case "javelin":
-                            case "boomerang": {
+                            case "dagger", "throwing_knife", "tomahawk", "javelin", "boomerang" -> {
                                 if (!player.isSneaking()) {
                                     boolean rotateWeapon = config.getBoolean("Items." + name + ".ThrowingAttributes.Rotate");
                                     boolean returnWeapon = config.getBoolean("Items." + name + ".ThrowingAttributes.Return");
@@ -344,10 +319,8 @@ public class SwEvents extends ModuleEvents implements Listener {
                                     new ThrowWeaponTask(module, plugin, player, itemMainHand, rotateWeapon, piercing, returnWeapon).run();
                                     player.getInventory().setItemInMainHand(null);
                                 }
-                                break;
                             }
-                            default: {
-                                break;
+                            default -> {
                             }
                         }
                     }
@@ -368,26 +341,13 @@ public class SwEvents extends ModuleEvents implements Listener {
                         String type = name.substring(name.lastIndexOf("_") + 1);
 
                         switch (type) {
-                            case "longsword":
-                            case "katana":
-                            case "greatsword":
-                            case "warhammer":
-                            case "halberd":
-                            case "pike": {
+                            case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike" -> {
                                 UUID id = player.getUniqueId();
-                                HashMap<UUID, String> players = TwoHandedTask.getPlayers();
-
-                                if (!players.containsKey(id)) {
-                                    players.put(id, name);
-                                    new TwoHandedTask(module, plugin, player, name).startRunnable();
+                                if (!TwoHandedTask.hasTask(id)) {
+                                    new TwoHandedTask(module, plugin, player, name).start();
                                 }
-                                else {
-                                    players.replace(id, players.get(id), name);
-                                }
-                                break;
                             }
-                            default: {
-                                break;
+                            default -> {
                             }
                         }
                     }

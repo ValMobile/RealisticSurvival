@@ -1,9 +1,25 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVModule;
 import org.bukkit.configuration.file.FileConfiguration;
 
-public class TempThirst {
+public class CharacterValues {
 
     private final char TEMPERATURE0;
     private final char TEMPERATURE1;
@@ -52,7 +68,7 @@ public class TempThirst {
 
     private final FileConfiguration config;
 
-    public TempThirst() {
+    public CharacterValues() {
         this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         
         TEMPERATURE0 = config.getString("CharacterOverrides.Temperature0").toCharArray()[0];
@@ -168,16 +184,16 @@ public class TempThirst {
 
     public char getThirstDrop(int i) {
         switch (i) {
-            case 0: {
+            case 0 -> {
                 return ABOVE_WATER_EMPTY_THIRST_DROP;
             }
-            case 1: {
+            case 1 -> {
                 return ABOVE_WATER_HALF_THIRST_DROP;
             }
-            case 2: {
+            case 2 -> {
                 return ABOVE_WATER_FULL_THIRST_DROP;
             }
-            default: {
+            default -> {
                 if (i < 0) {
                     return ABOVE_WATER_EMPTY_THIRST_DROP;
                 }
@@ -188,25 +204,25 @@ public class TempThirst {
 
     public char getIceVignette(int temperature) {
         switch (temperature) {
-            case 0: {
+            case 0 -> {
                 return FREEZING_VIEW;
             }
-            case 1: {
+            case 1 -> {
                 return ICE_VIGNETTE5;
             }
-            case 2: {
+            case 2 -> {
                 return ICE_VIGNETTE4;
             }
-            case 3: {
+            case 3 -> {
                 return ICE_VIGNETTE3;
             }
-            case 4: {
+            case 4 -> {
                 return ICE_VIGNETTE2;
             }
-            case 5: {
+            case 5 -> {
                 return ICE_VIGNETTE1;
             }
-            default: {
+            default -> {
                 if (temperature < 0) {
                     return FREEZING_VIEW;
                 }
@@ -217,25 +233,25 @@ public class TempThirst {
 
     public char getFireVignette(int temperature) {
         switch (temperature) {
-            case 20: {
+            case 20 -> {
                 return FIRE_VIGNETTE1;
             }
-            case 21: {
+            case 21 -> {
                 return FIRE_VIGNETTE2;
             }
-            case 22: {
+            case 22 -> {
                 return FIRE_VIGNETTE3;
             }
-            case 23: {
+            case 23 -> {
                 return FIRE_VIGNETTE4;
             }
-            case 24: {
+            case 24 -> {
                 return FIRE_VIGNETTE5;
             }
-            case 25: {
+            case 25 -> {
                 return BURNING_VIEW;
             }
-            default: {
+            default -> {
                 if (temperature > 25) {
                     return FIRE_VIGNETTE5;
                 }
@@ -246,85 +262,85 @@ public class TempThirst {
     
     public char getTemperature(int i) {
         switch (i) {
-            case 0: {
+            case 0 -> {
                 return TEMPERATURE0;
             }
-            case 1: {
+            case 1 -> {
                 return TEMPERATURE1;
             }
-            case 2: {
+            case 2 -> {
                 return TEMPERATURE2;
             }
-            case 3: {
+            case 3 -> {
                 return TEMPERATURE3;
             }
-            case 4: {
+            case 4 -> {
                 return TEMPERATURE4;
             }
-            case 5: {
+            case 5 -> {
                 return TEMPERATURE5;
             }
-            case 6: {
+            case 6 -> {
                 return TEMPERATURE6;
             }
-            case 7: {
+            case 7 -> {
                 return TEMPERATURE7;
             }
-            case 8: {
+            case 8 -> {
                 return TEMPERATURE8;
             }
-            case 9: {
+            case 9 -> {
                 return TEMPERATURE9;
             }
-            case 10: {
+            case 10 -> {
                 return TEMPERATURE10;
             }
-            case 11: {
+            case 11 -> {
                 return TEMPERATURE11;
             }
-            case 12: {
+            case 12 -> {
                 return TEMPERATURE12;
             }
-            case 13: {
+            case 13 -> {
                 return TEMPERATURE13;
             }
-            case 14: {
+            case 14 -> {
                 return TEMPERATURE14;
             }
-            case 15: {
+            case 15 -> {
                 return TEMPERATURE15;
             }
-            case 16: {
+            case 16 -> {
                 return TEMPERATURE16;
             }
-            case 17: {
+            case 17 -> {
                 return TEMPERATURE17;
             }
-            case 18: {
+            case 18 -> {
                 return TEMPERATURE18;
             }
-            case 19: {
+            case 19 -> {
                 return TEMPERATURE19;
             }
-            case 20: {
+            case 20 -> {
                 return TEMPERATURE20;
             }
-            case 21: {
+            case 21 -> {
                 return TEMPERATURE21;
             }
-            case 22: {
+            case 22 -> {
                 return TEMPERATURE22;
             }
-            case 23: {
+            case 23 -> {
                 return TEMPERATURE23;
             }
-            case 24: {
+            case 24 -> {
                 return TEMPERATURE24;
             }
-            case 25: {
+            case 25 -> {
                 return TEMPERATURE25;
             }
-            default: {
+            default -> {
                 if (i < 0) {
                     return TEMPERATURE0;
                 }

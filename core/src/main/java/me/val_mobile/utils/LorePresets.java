@@ -458,214 +458,96 @@ public class LorePresets {
 
     public static void addGearStats(List<String> lore, Attribute atr, Double value) {
         switch (atr) {
-            case GENERIC_ATTACK_DAMAGE:
+            case GENERIC_ATTACK_DAMAGE -> {
                 if (Math.floor(value) == value) {
                     lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + value.intValue() + " Attack Damage"));
-                }
-                else {
+                } else {
                     lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + value + " Attack Damage"));
                 }
-                break;
-            case GENERIC_ATTACK_SPEED:
+            }
+            case GENERIC_ATTACK_SPEED -> {
                 if (Math.floor(value) == value) {
                     lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + value.intValue() + " Attack Speed"));
-                }
-                else {
+                } else {
                     lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + value + " Attack Speed"));
                 }
-                break;
-            case GENERIC_ARMOR:
+            }
+            case GENERIC_ARMOR -> {
                 if (Math.floor(value) == value) {
-                    lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + value.intValue() + " Armor"));
+                    lore.add(ChatColor.translateAlternateColorCodes('&', "&9+" + value.intValue() + " Armor"));
+                } else {
+                    lore.add(ChatColor.translateAlternateColorCodes('&', "&9+" + value + " Armor"));
                 }
-                else {
-                    lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + value + " Armor"));
-                }
-                break;
-            case GENERIC_ARMOR_TOUGHNESS:
+            }
+            case GENERIC_ARMOR_TOUGHNESS -> {
                 if (Math.floor(value) == value) {
-                    lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + value.intValue() + " Armor Toughness"));
+                    lore.add(ChatColor.translateAlternateColorCodes('&', "&9+" + value.intValue() + " Armor Toughness"));
+                } else {
+                    lore.add(ChatColor.translateAlternateColorCodes('&', "&9+" + value + " Armor Toughness"));
                 }
-                else {
-                    lore.add(ChatColor.translateAlternateColorCodes('&',"&9+" + value + " Armor Toughness"));
-                }
-                break;
+            }
         }
     }
 
     public static void useLorePreset(List<String> lore, String weaponType) {
         switch (weaponType) {
-            case "RAPIER":
-                addRapierLore(lore);
-                break;
-            case "SABER":
-                addSaberLore(lore);
-                break;
-            case "KATANA":
-                addKatanaLore(lore);
-                break;
-            case "GREATSWORD":
-                addGreatswordLore(lore);
-                break;
-            case "LONGSWORD":
-                addLongswordLore(lore);
-                break;
-            case "SPEAR":
-                addSpearLore(lore);
-                break;
-            case "GLAIVE":
-                addGlaiveLore(lore);
-                break;
-            case "BOOMERANG":
-                addBoomerangLore(lore);
-                break;
-            case "DAGGER":
-                addDaggerLore(lore);
-                break;
-            case "HALBERD":
-                addHalberdLore(lore);
-                break;
-            case "HAMMER":
-                addHammerLore(lore);
-                break;
-            case "JAVELIN":
-                addJavelinLore(lore);
-                break;
-            case "LANCE":
-                addLanceLore(lore);
-                break;
-            case "MACE":
-                addMaceLore(lore);
-                break;
-            case "PIKE":
-                addPikeLore(lore);
-                break;
-            case "QUARTERSTAFF":
-                addQuarterstaffLore(lore);
-                break;
-            case "TOMAHAWK":
-                addTomahawkLore(lore);
-                break;
-            case "THROWING_KNIFE":
-                addThrowingKnifeLore(lore);
-                break;
-            case "WARHAMMER":
-                addWarhammerLore(lore);
-                break;
-            case "BATTLEAXE":
-                addBattleaxeLore(lore);
-                break;
-            case "CLUB":
-                addClubLore(lore);
-                break;
-            case "LONGBOW":
-                addLongbowLore(lore);
-                break;
-            case "CROSSBOW":
-                addCrossbowLore(lore);
-                break;
-            case "FLAMED_DRAGONBONE":
-                addFlamedDragonboneLore(lore);
-                break;
-            case "ICED_DRAGONBONE":
-                addIcedDragonboneLore(lore);
-                break;
-            case "LIGHTNING_DRAGONBONE":
-                addLightningDragonboneLore(lore);
-                break;
-            case "FIRE_DRAGONSTEEL":
-                addFireDragonsteelLore(lore);
-                break;
-            case "ICE_DRAGONSTEEL":
-                addIceDragonsteelLore(lore);
-                break;
-            case "LIGHTNING_DRAGONSTEEL":
-                addLightningDragonsteelLore(lore);
-                break;
-            case "BLUE_DRAGON_SCALE":
-                addBlueDragonscaleLore(lore);
-                break;
-            case "BRONZE_DRAGON_SCALE":
-                addBronzeDragonscaleLore(lore);
-                break;
-            case "GRAY_DRAGON_SCALE":
-                addGrayDragonscaleLore(lore);
-                break;
-            case "GREEN_DRAGON_SCALE":
-                addGreenDragonscaleLore(lore);
-                break;
-            case "RED_DRAGON_SCALE":
-                addRedDragonscaleLore(lore);
-                break;
-            case "SAPPHIRE_DRAGON_SCALE":
-                addSapphireDragonscaleLore(lore);
-                break;
-            case "SILVER_DRAGON_SCALE":
-                addSilverDragonscaleLore(lore);
-                break;
-            case "WHITE_DRAGON_SCALE":
-                addWhiteDragonscaleLore(lore);
-                break;
-            case "AMETHYST_DRAGON_SCALE":
-                addAmethystDragonscaleLore(lore);
-                break;
-            case "BLACK_DRAGON_SCALE":
-                addBlackDragonscaleLore(lore);
-                break;
-            case "COPPER_DRAGON_SCALE":
-                addCopperDragonscaleLore(lore);
-                break;
-            case "ELECTRIC_DRAGON_SCALE":
-                addElectricDragonscaleLore(lore);
-                break;
-            case "BLUE_SEA_SERPENT_SCALE":
-                addBlueSeaSerpentScaleLore(lore);
-                break;
-            case "BRONZE_SEA_SERPENT_SCALE":
-                addBronzeSeaSerpentScaleLore(lore);
-                break;
-            case "DEEPBLUE_SEA_SERPENT_SCALE":
-                addDeepblueSeaSerpentScaleLore(lore);
-                break;
-            case "GREEN_SEA_SERPENT_SCALE":
-                addGreenSeaSerpentScaleLore(lore);
-                break;
-            case "PURPLE_SEA_SERPENT_SCALE":
-                addPurpleSeaSerpentScaleLore(lore);
-                break;
-            case "RED_SEA_SERPENT_SCALE":
-                addRedSeaSerpentScaleLore(lore);
-                break;
-            case "TEAL_SEA_SERPENT_SCALE":
-                addTealSeaSerpentScaleLore(lore);
-                break;
-            case "DRAGON_PROTECTION":
-                addDragonProtectionLore(lore);
-                break;
-            case "TIDE_GUARDIAN_BREATHING":
-                addTideGuardianBreathingLore(lore);
-                break;
-            case "LEGENDARY_WEAPON":
-                addLegendaryWeaponLore(lore);
-                break;
-            case "FLAMED_EXTRA_DAMAGE":
-                addFlamedExtraDamageLore(lore);
-                break;
-            case "ICED_EXTRA_DAMAGE":
-                addIcedExtraDamageLore(lore);
-                break;
-            case "LIGHTNING_EXTRA_DAMAGE":
-                addLightningExtraDamageLore(lore);
-                break;
-            case "FIRE_DRAGON_ABILITY":
-                addFireDragonAbilityLore(lore);
-                break;
-            case "ICE_DRAGON_ABILITY":
-                addIceDragonAbilityLore(lore);
-                break;
-            case "LIGHTNING_DRAGON_ABILITY":
-                addLightningDragonAbilityLore(lore);
-                break;
+            case "RAPIER" -> addRapierLore(lore);
+            case "SABER" -> addSaberLore(lore);
+            case "KATANA" -> addKatanaLore(lore);
+            case "GREATSWORD" -> addGreatswordLore(lore);
+            case "LONGSWORD" -> addLongswordLore(lore);
+            case "SPEAR" -> addSpearLore(lore);
+            case "GLAIVE" -> addGlaiveLore(lore);
+            case "BOOMERANG" -> addBoomerangLore(lore);
+            case "DAGGER" -> addDaggerLore(lore);
+            case "HALBERD" -> addHalberdLore(lore);
+            case "HAMMER" -> addHammerLore(lore);
+            case "JAVELIN" -> addJavelinLore(lore);
+            case "LANCE" -> addLanceLore(lore);
+            case "MACE" -> addMaceLore(lore);
+            case "PIKE" -> addPikeLore(lore);
+            case "QUARTERSTAFF" -> addQuarterstaffLore(lore);
+            case "TOMAHAWK" -> addTomahawkLore(lore);
+            case "THROWING_KNIFE" -> addThrowingKnifeLore(lore);
+            case "WARHAMMER" -> addWarhammerLore(lore);
+            case "BATTLEAXE" -> addBattleaxeLore(lore);
+            case "CLUB" -> addClubLore(lore);
+            case "LONGBOW" -> addLongbowLore(lore);
+            case "CROSSBOW" -> addCrossbowLore(lore);
+            case "FLAMED_DRAGONBONE" -> addFlamedDragonboneLore(lore);
+            case "ICED_DRAGONBONE" -> addIcedDragonboneLore(lore);
+            case "LIGHTNING_DRAGONBONE" -> addLightningDragonboneLore(lore);
+            case "FIRE_DRAGONSTEEL" -> addFireDragonsteelLore(lore);
+            case "ICE_DRAGONSTEEL" -> addIceDragonsteelLore(lore);
+            case "LIGHTNING_DRAGONSTEEL" -> addLightningDragonsteelLore(lore);
+            case "BLUE_DRAGON_SCALE" -> addBlueDragonscaleLore(lore);
+            case "BRONZE_DRAGON_SCALE" -> addBronzeDragonscaleLore(lore);
+            case "GRAY_DRAGON_SCALE" -> addGrayDragonscaleLore(lore);
+            case "GREEN_DRAGON_SCALE" -> addGreenDragonscaleLore(lore);
+            case "RED_DRAGON_SCALE" -> addRedDragonscaleLore(lore);
+            case "SAPPHIRE_DRAGON_SCALE" -> addSapphireDragonscaleLore(lore);
+            case "SILVER_DRAGON_SCALE" -> addSilverDragonscaleLore(lore);
+            case "WHITE_DRAGON_SCALE" -> addWhiteDragonscaleLore(lore);
+            case "AMETHYST_DRAGON_SCALE" -> addAmethystDragonscaleLore(lore);
+            case "BLACK_DRAGON_SCALE" -> addBlackDragonscaleLore(lore);
+            case "COPPER_DRAGON_SCALE" -> addCopperDragonscaleLore(lore);
+            case "ELECTRIC_DRAGON_SCALE" -> addElectricDragonscaleLore(lore);
+            case "BLUE_SEA_SERPENT_SCALE" -> addBlueSeaSerpentScaleLore(lore);
+            case "BRONZE_SEA_SERPENT_SCALE" -> addBronzeSeaSerpentScaleLore(lore);
+            case "DEEPBLUE_SEA_SERPENT_SCALE" -> addDeepblueSeaSerpentScaleLore(lore);
+            case "GREEN_SEA_SERPENT_SCALE" -> addGreenSeaSerpentScaleLore(lore);
+            case "PURPLE_SEA_SERPENT_SCALE" -> addPurpleSeaSerpentScaleLore(lore);
+            case "RED_SEA_SERPENT_SCALE" -> addRedSeaSerpentScaleLore(lore);
+            case "TEAL_SEA_SERPENT_SCALE" -> addTealSeaSerpentScaleLore(lore);
+            case "DRAGON_PROTECTION" -> addDragonProtectionLore(lore);
+            case "TIDE_GUARDIAN_BREATHING" -> addTideGuardianBreathingLore(lore);
+            case "LEGENDARY_WEAPON" -> addLegendaryWeaponLore(lore);
+            case "FLAMED_EXTRA_DAMAGE" -> addFlamedExtraDamageLore(lore);
+            case "ICED_EXTRA_DAMAGE" -> addIcedExtraDamageLore(lore);
+            case "LIGHTNING_EXTRA_DAMAGE" -> addLightningExtraDamageLore(lore);
+            case "FIRE_DRAGON_ABILITY" -> addFireDragonAbilityLore(lore);
+            case "ICE_DRAGON_ABILITY" -> addIceDragonAbilityLore(lore);
+            case "LIGHTNING_DRAGON_ABILITY" -> addLightningDragonAbilityLore(lore);
         }
     }
 }

@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVModule;
@@ -17,11 +33,10 @@ import java.util.UUID;
 
 public class ThirstCalculateTask extends BukkitRunnable {
 
+    private final static HashMap<UUID, ThirstCalculateTask> tasks = new HashMap<>();
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
-    private final static HashMap<UUID, ThirstCalculateTask> tasks = new HashMap<>();
-    private final static HashMap<UUID, Boolean> players = new HashMap<>();
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
     private double thirstLvl;
@@ -51,6 +66,7 @@ public class ThirstCalculateTask extends BukkitRunnable {
         this.exhaustionLvl = module.getThirstExhaustion();
         this.peMultiplier = config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value");
         this.tickSpeed = config.getInt("Thirst.CalculateTickSpeed"); // get the tick speed
+        tasks.put(player.getPlayer().getUniqueId(), this);
     }
 
     @Override
@@ -87,15 +103,8 @@ public class ThirstCalculateTask extends BukkitRunnable {
             }
 
             if (thirstLvl <= config.getDouble("Thirst.Dehydration.Thirst")) {
-                HashMap<UUID, Boolean> dehyTasks = DehydrationTask.getPlayers();
-
-                if (dehyTasks.containsKey(player.getUniqueId())) {
-                    if (!dehyTasks.get(player.getUniqueId())) {
-                        new DehydrationTask(plugin, this.player).startRunnable();
-                    }
-                }
-                else {
-                    new DehydrationTask(plugin, this.player).startRunnable();
+                if (!DehydrationTask.hasTask(player.getUniqueId())) {
+                    new DehydrationTask(plugin, this.player).start();
                 }
             }
 
@@ -112,7 +121,6 @@ public class ThirstCalculateTask extends BukkitRunnable {
         // if the player is in creative or spectator
         else {
             // update static hashmap values and cancel the runnable
-            players.put(player.getUniqueId(), false);
             tasks.remove(player.getUniqueId());
             cancel();
         }
@@ -158,17 +166,18 @@ public class ThirstCalculateTask extends BukkitRunnable {
         this.tickTimer = tickTimer;
     }
 
+    public void start() {
+        this.runTaskTimer(plugin, 0L, tickSpeed);
+    }
+
     public static HashMap<UUID, ThirstCalculateTask> getTasks() {
         return tasks;
     }
 
-    public static HashMap<UUID, Boolean> getPlayers() {
-        return players;
-    }
-
-    public void start() {
-        this.runTaskTimer(plugin, 0L, tickSpeed);
-        players.put(player.getPlayer().getUniqueId(), true);
-        tasks.put(player.getPlayer().getUniqueId(), this);
+    public static boolean hasTask(UUID id) {
+        if (tasks.containsKey(id)) {
+            return tasks.get(id) != null;
+        }
+        return false;
     }
 }

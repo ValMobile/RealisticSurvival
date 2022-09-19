@@ -209,9 +209,9 @@ canteen_filled:
   DisplayName: "&fFilled Canteen"
   CustomModelData: 83650
   Lore:
-    - "Drink: Water"
+    - "Drink: Unpurified Water"
     - "&98&7/&95"
   NBTTags:
-    rsvdrink: "Water"
+    rsvdrink: "Unpurified Water"
     rsvdurability: 5
     rsvmaxdurability: 5

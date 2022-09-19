@@ -754,9 +754,14 @@ Items:
       Piercing: true
       Rotate: true
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -773,9 +778,14 @@ Items:
       Piercing: true
       Rotate: true
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -796,9 +806,14 @@ Items:
       Piercing: true
       Rotate: true
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -828,9 +843,14 @@ Items:
       Piercing: true
       Rotate: true
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -855,9 +875,14 @@ Items:
       Piercing: true
       Rotate: true
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -877,9 +902,14 @@ Items:
       Piercing: true
       Rotate: true
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -909,9 +939,14 @@ Items:
       Piercing: true
       Rotate: true
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -938,9 +973,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -958,9 +998,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -982,9 +1027,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -1015,9 +1065,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -1043,9 +1098,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -1066,9 +1126,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -1100,9 +1165,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -1506,9 +1576,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -1525,9 +1600,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -1548,9 +1628,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -1580,9 +1665,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -1607,9 +1697,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -1629,9 +1724,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -1661,9 +1761,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2139,9 +2244,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2158,9 +2268,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2181,9 +2296,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2213,9 +2333,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2240,9 +2365,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2262,9 +2392,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2294,9 +2429,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2323,9 +2463,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2342,9 +2487,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2365,9 +2515,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2397,9 +2552,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2424,9 +2584,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2446,9 +2611,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0
@@ -2478,9 +2648,14 @@ Items:
       Piercing: true
       Rotate: false
       Return: true
-      Sound:
+      ThrownSound:
         Enabled: true
         Sound: "ENTITY_WITCH_THROW"
+        Volume: 1.0
+        Pitch: 1.0
+      ReturnSound:
+        Enabled: true
+        Sound: "ENTITY_ITEM_PICKUP"
         Volume: 1.0
         Pitch: 1.0
       MaxDistance: 60.0

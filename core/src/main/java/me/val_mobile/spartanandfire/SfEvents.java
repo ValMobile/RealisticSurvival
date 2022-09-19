@@ -29,15 +29,11 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.HashMap;
-import java.util.UUID;
-
 public class SfEvents extends ModuleEvents implements Listener {
 
     private final RealisticSurvivalPlugin plugin;
     private final SfModule module;
 
-    // constructing the DragonGearEvents class
     public SfEvents(SfModule module, RealisticSurvivalPlugin plugin) {
         super(module, plugin);
         this.plugin = plugin;
@@ -62,7 +58,7 @@ public class SfEvents extends ModuleEvents implements Listener {
                 // find out what defender the attacker is
                 switch (attacker.getType()) {
                     // if the attacker is a player
-                    case PLAYER: {
+                    case PLAYER -> {
                         Player player = (Player) event.getDamager(); // get the player
 
                         ItemStack itemMainHand = player.getInventory().getItemInMainHand(); // get the item in the player's main hand
@@ -73,31 +69,26 @@ public class SfEvents extends ModuleEvents implements Listener {
                             String type = name.substring(0, name.lastIndexOf("_"));
 
                             switch (type) {
-                                case "dragonbone_flamed": {
+                                case "dragonbone_flamed" -> {
                                     if (util.hasNbtTag(defender, "rsvmob")) {
                                         if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                         }
                                     }
 
-                                    HashMap<UUID, Boolean> entities = BurnTask.getEntities();
-                                    UUID id = defender.getUniqueId();
-                                    if (!entities.containsKey(id)) {
+                                    if (!BurnTask.hasTask(defender.getUniqueId())) {
                                         new BurnTask(plugin, module, name, defender).start();
-                                        entities.put(id, true);
                                     }
-                                    break;
                                 }
-                                case "dragonbone_iced": {
+                                case "dragonbone_iced" -> {
                                     if (util.hasNbtTag(defender, "rsvmob")) {
                                         if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                         }
                                     }
                                     new FreezeTask(plugin, module, name, defender).start();
-                                    break;
                                 }
-                                case "dragonbone_lightning": {
+                                case "dragonbone_lightning" -> {
                                     if (util.hasNbtTag(defender, "rsvmob")) {
                                         if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("lightning_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
@@ -114,59 +105,41 @@ public class SfEvents extends ModuleEvents implements Listener {
                                     }
 
                                     if (defender instanceof Damageable) {
-                                        HashMap<UUID, Boolean> entities = ElectrocuteTask.getEntities();
-                                        UUID id = defender.getUniqueId();
-                                        if (!entities.containsKey(id)) {
+                                        if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
                                             new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                            entities.put(id, true);
                                         }
                                     }
-                                    break;
                                 }
-                                case "dragonsteel_fire": {
-                                    HashMap<UUID, Boolean> entities = BurnTask.getEntities();
-                                    UUID id = defender.getUniqueId();
-                                    if (!entities.containsKey(id)) {
+                                case "dragonsteel_fire" -> {
+                                    if (!BurnTask.hasTask(defender.getUniqueId())) {
                                         new BurnTask(plugin, module, name, defender).start();
-                                        entities.put(id, true);
                                     }
-                                    break;
                                 }
-                                case "dragonsteel_ice": {
+                                case "dragonsteel_ice" -> {
                                     new FreezeTask(plugin, module, name, defender).start();
-                                    break;
                                 }
-                                case "dragonsteel_lightning": {
+                                case "dragonsteel_lightning" -> {
                                     if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
                                         Location loc = defender.getLocation();
                                         if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
                                             loc.getWorld().strikeLightningEffect(loc);
-                                        }
-                                        else {
+                                        } else {
                                             loc.getWorld().strikeLightning(loc);
                                         }
                                     }
 
                                     if (defender instanceof Damageable) {
-                                        HashMap<UUID, Boolean> entities = ElectrocuteTask.getEntities();
-                                        UUID id = defender.getUniqueId();
-                                        if (!entities.containsKey(id)) {
+                                        if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
                                             new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                            entities.put(id, true);
                                         }
                                     }
-                                    break;
                                 }
-                                default: {
-                                    break;
+                                default -> {
                                 }
                             }
                         }
-                        break;
                     }
-                    case ARROW:
-                    case SPECTRAL_ARROW:
-                    case FIREWORK: {
+                    case ARROW, SPECTRAL_ARROW, FIREWORK -> {
                         Projectile arrow = (Projectile) attacker;
                         if (arrow.getShooter() != null) {
                             Entity shooter = (Entity) arrow.getShooter();
@@ -185,31 +158,26 @@ public class SfEvents extends ModuleEvents implements Listener {
                                     if (weaponType.equals("bow") || weaponType.equals("crossbow")) {
                                         damage *= config.getDouble("Items." + name + ".AttackDamageMultiplier");
                                         switch (materialType) {
-                                            case "dragonbone_flamed": {
+                                            case "dragonbone_flamed" -> {
                                                 if (util.hasNbtTag(defender, "rsvmob")) {
                                                     if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
                                                         event.setDamage(event.getDamage() + config.getDouble("Items." + name + ".DragonBonusDamage"));
                                                     }
                                                 }
 
-                                                HashMap<UUID, Boolean> entities = BurnTask.getEntities();
-                                                UUID id = defender.getUniqueId();
-                                                if (!entities.containsKey(id)) {
+                                                if (!BurnTask.hasTask(defender.getUniqueId())) {
                                                     new BurnTask(plugin, module, name, defender).start();
-                                                    entities.put(id, true);
                                                 }
-                                                break;
                                             }
-                                            case "dragonbone_iced": {
+                                            case "dragonbone_iced" -> {
                                                 if (util.hasNbtTag(defender, "rsvmob")) {
                                                     if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
                                                         event.setDamage(event.getDamage() + config.getDouble("Items." + name + ".DragonBonusDamage"));
                                                     }
                                                 }
                                                 new FreezeTask(plugin, module, name, defender).start();
-                                                break;
                                             }
-                                            case "dragonbone_lightning": {
+                                            case "dragonbone_lightning" -> {
                                                 if (util.hasNbtTag(defender, "rsvmob")) {
                                                     if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("llightning_dragon")) {
                                                         event.setDamage(event.getDamage() + config.getDouble("Items." + name + ".DragonBonusDamage"));
@@ -221,66 +189,49 @@ public class SfEvents extends ModuleEvents implements Listener {
 
                                                     if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
                                                         loc.getWorld().strikeLightningEffect(loc);
-                                                    }
-                                                    else {
+                                                    } else {
                                                         loc.getWorld().strikeLightning(loc);
                                                     }
                                                 }
 
                                                 if (defender instanceof Damageable) {
-                                                    HashMap<UUID, Boolean> entities = ElectrocuteTask.getEntities();
-                                                    UUID id = defender.getUniqueId();
-                                                    if (!entities.containsKey(id)) {
+                                                    if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
                                                         new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                                        entities.put(id, true);
                                                     }
                                                 }
-                                                break;
                                             }
-                                            case "dragonsteel_fire": {
-                                                HashMap<UUID, Boolean> entities = BurnTask.getEntities();
-                                                UUID id = defender.getUniqueId();
-                                                if (!entities.containsKey(id)) {
+                                            case "dragonsteel_fire" -> {
+                                                if (!BurnTask.hasTask(defender.getUniqueId())) {
                                                     new BurnTask(plugin, module, name, defender).start();
-                                                    entities.put(id, true);
                                                 }
-                                                break;
                                             }
-                                            case "dragonsteel_ice": {
+                                            case "dragonsteel_ice" -> {
                                                 new FreezeTask(plugin, module, name, defender).start();
-                                                break;
                                             }
-                                            case "dragonsteel_lightning": {
+                                            case "dragonsteel_lightning" -> {
                                                 if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
                                                     Location loc = defender.getLocation();
 
                                                     if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
                                                         loc.getWorld().strikeLightningEffect(loc);
-                                                    }
-                                                    else {
+                                                    } else {
                                                         loc.getWorld().strikeLightning(loc);
                                                     }
                                                 }
 
                                                 if (defender instanceof Damageable) {
-                                                    HashMap<UUID, Boolean> entities = ElectrocuteTask.getEntities();
-                                                    UUID id = defender.getUniqueId();
-                                                    if (!entities.containsKey(id)) {
+                                                    if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
                                                         new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                                        entities.put(id, true);
                                                     }
                                                 }
-                                                break;
                                             }
-                                            default: {
-                                                break;
+                                            default -> {
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-                        break;
                     }
                 }
                 event.setDamage(damage);

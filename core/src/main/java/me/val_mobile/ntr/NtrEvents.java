@@ -33,21 +33,32 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
+import org.bukkit.event.block.CauldronLevelChangeEvent;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.persistence.PersistentDataType;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
 
 public class NtrEvents extends ModuleEvents implements Listener {
 
+    private final FileConfiguration config;
     private final ModuleItems moduleItems;
     private final NtrModule module;
     private final RealisticSurvivalPlugin plugin;
@@ -56,10 +67,11 @@ public class NtrEvents extends ModuleEvents implements Listener {
         super(module, plugin);
         this.module = module;
         this.plugin = plugin;
+        this.config = module.getUserConfig().getConfig();
         this.moduleItems = module.getModuleItems();
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
 
@@ -108,8 +120,6 @@ public class NtrEvents extends ModuleEvents implements Listener {
             ItemStack item = event.getItem();
             Action action = event.getAction();
             UUID id = player.getUniqueId();
-            HashMap<UUID, Long> players = FireStarterTask.getPlayers();
-            HashMap<UUID, FireStarterTask> tasks = FireStarterTask.getTasks();
 
             if (config.getBoolean("FlintKnapping.Enabled")) {
                 if (Utils.isItemReal(item)) {
@@ -173,7 +183,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
 
                         Collection<Item> ingredients = new ArrayList<>();
 
-                        if (ingredients.size() <= requiredFuel + requiredKindling + requiredSoulItems) {
+                        if (entities.size() <= requiredFuel + requiredKindling + requiredSoulItems + 5) {
                             for (Entity e : entities) {
                                 if (e instanceof Item) {
                                     ItemStack drop = ((Item) e).getItemStack();
@@ -201,24 +211,13 @@ public class NtrEvents extends ModuleEvents implements Listener {
                             }
 
                             if (fuel >= requiredFuel && kindling >= requiredKindling) {
-                                if (players.containsKey(id)) {
-                                    players.put(id, System.currentTimeMillis());
-                                }
-                                else {
+                                if (!FireStarterTask.hasTask(id)) {
                                     new FireStarterTask(plugin, module, player, loc.add(0D, 0.6D, 0D), ingredients, soul >= requiredSoulItems).start();
                                 }
-                                return;
                             }
                         }
                     }
                 }
-            }
-            if (tasks.containsKey(id)) {
-                tasks.get(id).cancel();
-                tasks.remove(player.getUniqueId());
-            }
-            if (players.containsKey(id)) {
-                players.remove(id);
             }
         }
     }
@@ -263,19 +262,9 @@ public class NtrEvents extends ModuleEvents implements Listener {
 
                         if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
                             switch (key.getKey()) {
-                                case "acacia_planks":
-                                case "birch_planks":
-                                case "crimson_planks":
-                                case "dark_oak_planks":
-                                case "jungle_planks":
-                                case "mangrove_planks":
-                                case "oak_planks":
-                                case "spruce_planks":
-                                case "warped_planks": {
-                                    event.getInventory().setResult(null);
-                                }
-                                default: {
-                                    break;
+                                case "acacia_planks", "birch_planks", "crimson_planks", "dark_oak_planks", "jungle_planks", "mangrove_planks", "oak_planks", "spruce_planks", "warped_planks" ->
+                                        event.getInventory().setResult(null);
+                                default -> {
                                 }
                             }
                         }
@@ -288,12 +277,8 @@ public class NtrEvents extends ModuleEvents implements Listener {
 
                         if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
                             switch (key.getKey()) {
-                                case "campfire":
-                                case "soul_campfire": {
-                                    event.getInventory().setResult(null);
-                                }
-                                default: {
-                                    break;
+                                case "campfire", "soul_campfire" -> event.getInventory().setResult(null);
+                                default -> {
                                 }
                             }
                         }
@@ -306,6 +291,92 @@ public class NtrEvents extends ModuleEvents implements Listener {
 
                         if (key.getNamespace().equals(NamespacedKey.MINECRAFT) && key.getKey().equals("flower_pot")) {
                             event.getInventory().setResult(null);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onBucketFill(PlayerBucketFillEvent event) {
+        Player p = event.getPlayer();
+
+        if (shouldEventBeRan(p)) {
+            ItemStack item = event.getItemStack();
+            if (RSVItem.isRSVItem(item)) {
+                if (RSVItem.getNameFromItem(item).equals("ceramic_bucket")) {
+                    String bucketType = event.getBucket().toString().toLowerCase();
+                    RSVItem.addNbtTag(item, "rsvitem", "ceramic_" + bucketType, PersistentDataType.STRING);
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onBucketEmpty(PlayerBucketEmptyEvent event) {
+        if (!event.isCancelled()) {
+            Player p = event.getPlayer();
+
+            if (shouldEventBeRan(p)) {
+                ItemStack item = event.getItemStack();
+                if (RSVItem.isRSVItem(item)) {
+                    if (RSVItem.getNameFromItem(item).contains("ceramic_") && !RSVItem.getNameFromItem(item).equals("ceramic_bucket")) {
+                        RSVItem.addNbtTag(item, "rsvitem", "ceramic_bucket", PersistentDataType.STRING);
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onCauldronFill(CauldronLevelChangeEvent event) {
+        if (event.getEntity() instanceof Player) {
+            ItemStack item = ((Player) event.getEntity()).getInventory().getItemInMainHand();
+
+            if (RSVItem.isRSVItem(item)) {
+                if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BUCKET_EMPTY) {
+                    if (RSVItem.getNameFromItem(item).contains("ceramic_bucket_")) {
+                        RSVItem.addNbtTag(item, "rsvitem", "ceramic_bucket", PersistentDataType.STRING);
+                    }
+                }
+            }
+        }
+    }
+
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemSwap(PlayerItemHeldEvent event) {
+        if (!event.isCancelled()) {
+            Player p = event.getPlayer();
+            if (shouldEventBeRan(p)) {
+                ItemStack item = p.getInventory().getItem(event.getNewSlot());
+
+                if (RSVItem.isRSVItem(item)) {
+                    if (RSVItem.getNameFromItem(item).equals("ceramic_lava_bucket")) {
+                        if (!CeramicBucketMeltTask.hasTask(p.getUniqueId())) {
+                            new CeramicBucketMeltTask(plugin, module, p).start();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemPickup(EntityPickupItemEvent event) {
+        if (!event.isCancelled()) {
+            Entity e = event.getEntity();
+            if (e instanceof Player) {
+                if (shouldEventBeRan(e)) {
+                    Player p = (Player) e;
+                    ItemStack item = event.getItem().getItemStack();
+
+                    if (RSVItem.isRSVItem(item)) {
+                        if (RSVItem.getNameFromItem(item).equals("ceramic_lava_bucket")) {
+                            if (!CeramicBucketMeltTask.hasTask(p.getUniqueId())) {
+                                new CeramicBucketMeltTask(plugin, module, p).start();
+                            }
                         }
                     }
                 }

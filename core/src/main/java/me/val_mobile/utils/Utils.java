@@ -80,18 +80,13 @@ public class Utils {
     }
 
     public static String toLowercaseAttributeName(String name) {
-        switch (name) {
-            case "GENERIC_ATTACK_DAMAGE":
-                return "generic.attackDamage";
-            case "GENERIC_ATTACK_SPEED":
-                return "generic.attackSpeed";
-            case "GENERIC_ARMOR":
-                return "generic.armor";
-            case "GENERIC_ARMOR_TOUGHNESS":
-                return "generic.armorToughness";
-            default:
-                return null;
-        }
+        return switch (name) {
+            case "GENERIC_ATTACK_DAMAGE" -> "generic.attackDamage";
+            case "GENERIC_ATTACK_SPEED" -> "generic.attackSpeed";
+            case "GENERIC_ARMOR" -> "generic.armor";
+            case "GENERIC_ARMOR_TOUGHNESS" -> "generic.armorToughness";
+            default -> null;
+        };
     }
 
     public static double getCorrectAttributeValue(Attribute attribute, double requestedValue) {
@@ -407,81 +402,50 @@ public class Utils {
     }
 
     public static PotionEffectType valueOfPotionEffectType(String potionEffectType) {
-        switch (potionEffectType) {
-            case "ABSORPTION":
-                return PotionEffectType.ABSORPTION;
-            case "BAD_OMEN":
-                return PotionEffectType.BAD_OMEN;
-            case "BLINDNESS":
-                return PotionEffectType.BLINDNESS;
-            case "CONDUIT_POWER":
-                return PotionEffectType.CONDUIT_POWER;
-            case "CONFUSION":
-                return PotionEffectType.CONFUSION;
-            case "DAMAGE_RESISTANCE":
-                return PotionEffectType.DAMAGE_RESISTANCE;
-            case "DOLPHINS_GRACE":
-                return PotionEffectType.DOLPHINS_GRACE;
-            case "FAST_DIGGING":
-                return PotionEffectType.FAST_DIGGING;
-            case "FIRE_RESISTANCE":
-                return PotionEffectType.FIRE_RESISTANCE;
-            case "GLOWING":
-                return PotionEffectType.GLOWING;
-            case "HARM":
-                return PotionEffectType.HARM;
-            case "HEAL":
-                return PotionEffectType.HEAL;
-            case "HEALTH_BOOST":
-                return PotionEffectType.HEALTH_BOOST;
-            case "HERO_OF_THE_VILLAGE":
-                return PotionEffectType.HERO_OF_THE_VILLAGE;
-            case "HUNGER":
-                return PotionEffectType.HUNGER;
-            case "INCREASE_DAMAGE":
-                return PotionEffectType.INCREASE_DAMAGE;
-            case "INVISIBILITY":
-                return PotionEffectType.INVISIBILITY;
-            case "JUMP":
-                return PotionEffectType.JUMP;
-            case "LEVITATION":
-                return PotionEffectType.LEVITATION;
-            case "LUCK":
-                return PotionEffectType.LUCK;
-            case "NIGHT_VISION":
-                return PotionEffectType.NIGHT_VISION;
-            case "POISON":
-                return PotionEffectType.POISON;
-            case "REGENERATION":
-                return PotionEffectType.REGENERATION;
-            case "SATURATION":
-                return PotionEffectType.SATURATION;
-            case "SLOW":
-                return PotionEffectType.SLOW;
-            case "SLOW_DIGGING":
-                return PotionEffectType.SLOW_DIGGING;
-            case "SPEED":
-                return PotionEffectType.SPEED;
-            case "UNLUCK":
-                return PotionEffectType.UNLUCK;
-            case "WATER_BREATHING":
-                return PotionEffectType.WATER_BREATHING;
-            case "WEAKNESS":
-                return PotionEffectType.WEAKNESS;
-            case "WITHER":
-                return PotionEffectType.WITHER;
-            default:
-                return null;
-        }
+        return switch (potionEffectType) {
+            case "ABSORPTION" -> PotionEffectType.ABSORPTION;
+            case "BAD_OMEN" -> PotionEffectType.BAD_OMEN;
+            case "BLINDNESS" -> PotionEffectType.BLINDNESS;
+            case "CONDUIT_POWER" -> PotionEffectType.CONDUIT_POWER;
+            case "CONFUSION" -> PotionEffectType.CONFUSION;
+            case "DAMAGE_RESISTANCE" -> PotionEffectType.DAMAGE_RESISTANCE;
+            case "DOLPHINS_GRACE" -> PotionEffectType.DOLPHINS_GRACE;
+            case "FAST_DIGGING" -> PotionEffectType.FAST_DIGGING;
+            case "FIRE_RESISTANCE" -> PotionEffectType.FIRE_RESISTANCE;
+            case "GLOWING" -> PotionEffectType.GLOWING;
+            case "HARM" -> PotionEffectType.HARM;
+            case "HEAL" -> PotionEffectType.HEAL;
+            case "HEALTH_BOOST" -> PotionEffectType.HEALTH_BOOST;
+            case "HERO_OF_THE_VILLAGE" -> PotionEffectType.HERO_OF_THE_VILLAGE;
+            case "HUNGER" -> PotionEffectType.HUNGER;
+            case "INCREASE_DAMAGE" -> PotionEffectType.INCREASE_DAMAGE;
+            case "INVISIBILITY" -> PotionEffectType.INVISIBILITY;
+            case "JUMP" -> PotionEffectType.JUMP;
+            case "LEVITATION" -> PotionEffectType.LEVITATION;
+            case "LUCK" -> PotionEffectType.LUCK;
+            case "NIGHT_VISION" -> PotionEffectType.NIGHT_VISION;
+            case "POISON" -> PotionEffectType.POISON;
+            case "REGENERATION" -> PotionEffectType.REGENERATION;
+            case "SATURATION" -> PotionEffectType.SATURATION;
+            case "SLOW" -> PotionEffectType.SLOW;
+            case "SLOW_DIGGING" -> PotionEffectType.SLOW_DIGGING;
+            case "SPEED" -> PotionEffectType.SPEED;
+            case "UNLUCK" -> PotionEffectType.UNLUCK;
+            case "WATER_BREATHING" -> PotionEffectType.WATER_BREATHING;
+            case "WEAKNESS" -> PotionEffectType.WEAKNESS;
+            case "WITHER" -> PotionEffectType.WITHER;
+            default -> null;
+        };
     }
 
     public static boolean isItemReal(ItemStack item) {
         return !(item == null || item.getType() == Material.AIR);
     }
 
-    public static void setFreezingView(Player player) {
-        internals.setFreezingView(player);
+    public static void setFreezingView(Player player, int ticks) {
+        internals.setFreezingView(player, ticks);
     }
+
 
     public <T> void addNbtTag(Entity entity, String key, T value, PersistentDataType<T,T> type) {
 
@@ -536,8 +500,12 @@ public class Utils {
         return itemMeta.getPersistentDataContainer().has(nkey, PersistentDataType.STRING);
     }
 
+    public void setKbMultiplier(Entity entity, double multiplier) {
+        new KbTask(plugin, entity, multiplier).start();
+    }
+
     public void setZeroKb(Entity entity) {
-        new KbTask(plugin, entity, 0D).start();
+        setKbMultiplier(entity, 0D);
     }
 
     public static boolean doublesEquals(double v, double v1) {
@@ -639,8 +607,7 @@ public class Utils {
         }
 
         switch (DROP_TYPE.valueOf(section.getString("Type").toUpperCase())) {
-            case RARE:
-            case COMMON: {
+            case RARE, COMMON -> {
                 double chance = section.getDouble("Chance");
                 double rawAmount = (1D / (lvl + 2D) + (lvl + 1D) / 2D) * chance;
                 int actualAmount = (int) Math.floor(rawAmount);
@@ -654,9 +621,8 @@ public class Utils {
 
                     loc.getWorld().dropItemNaturally(loc, drop);
                 }
-                break;
             }
-            case RANGE: {
+            case RANGE -> {
                 int min = section.getInt("MinAmount");
                 int max = section.getInt("MaxAmount");
 
@@ -664,10 +630,8 @@ public class Utils {
 
                 drop.setAmount(amount);
                 loc.getWorld().dropItemNaturally(loc, drop);
-                break;
             }
-            default: {
-                break;
+            default -> {
             }
         }
     }
@@ -677,8 +641,6 @@ public class Utils {
     }
 
     public static void harvestLooting(ConfigurationSection section, ItemStack drop, ItemStack tool, Location loc) {
-        Random r = new Random();
-
         int lvl = 0;
 
         if (tool != null) {
@@ -689,19 +651,17 @@ public class Utils {
         }
 
         switch (DROP_TYPE.valueOf(section.getString("Type").toUpperCase())) {
-            case RARE: {
+            case RARE -> {
                 double chance = section.getDouble("Chance");
                 // rare drops
                 if (Math.random() <= chance + lvl * 0.01) {
                     loc.getWorld().dropItemNaturally(loc, drop);
-                }
-                else {
+                } else {
                     if (Math.random() <= (lvl / (lvl + 1D)))
                         loc.getWorld().dropItemNaturally(loc, drop);
                 }
-                break;
             }
-            case COMMON: {
+            case COMMON -> {
                 double chance = section.getDouble("Chance");
 
                 if (Math.random() <= chance + lvl * 0.01) {
@@ -721,9 +681,8 @@ public class Utils {
                         loc.getWorld().dropItemNaturally(loc, drop);
                     }
                 }
-                break;
             }
-            case RANGE: {
+            case RANGE -> {
                 int min = section.getInt("MinAmount");
                 int max = section.getInt("MaxAmount");
 
@@ -731,28 +690,18 @@ public class Utils {
 
                 drop.setAmount(amount);
                 loc.getWorld().dropItemNaturally(loc, drop);
-                break;
             }
-            default: {
-                break;
+            default -> {
             }
         }
     }
 
     public static boolean isNetherite(Material material) {
         switch (material) {
-            case NETHERITE_AXE:
-            case NETHERITE_BOOTS:
-            case NETHERITE_HELMET:
-            case NETHERITE_CHESTPLATE:
-            case NETHERITE_LEGGINGS:
-            case NETHERITE_PICKAXE:
-            case NETHERITE_SWORD:
-            case NETHERITE_SHOVEL:
-            case NETHERITE_HOE: {
+            case NETHERITE_AXE, NETHERITE_BOOTS, NETHERITE_HELMET, NETHERITE_CHESTPLATE, NETHERITE_LEGGINGS, NETHERITE_PICKAXE, NETHERITE_SWORD, NETHERITE_SHOVEL, NETHERITE_HOE -> {
                 return true;
             }
-            default: {
+            default -> {
                 return false;
             }
         }
@@ -760,18 +709,10 @@ public class Utils {
 
     public static boolean isDiamond(Material material) {
         switch (material) {
-            case DIAMOND_AXE:
-            case DIAMOND_BOOTS:
-            case DIAMOND_HELMET:
-            case DIAMOND_CHESTPLATE:
-            case DIAMOND_LEGGINGS:
-            case DIAMOND_PICKAXE:
-            case DIAMOND_SWORD:
-            case DIAMOND_SHOVEL:
-            case DIAMOND_HOE: {
+            case DIAMOND_AXE, DIAMOND_BOOTS, DIAMOND_HELMET, DIAMOND_CHESTPLATE, DIAMOND_LEGGINGS, DIAMOND_PICKAXE, DIAMOND_SWORD, DIAMOND_SHOVEL, DIAMOND_HOE -> {
                 return true;
             }
-            default: {
+            default -> {
                 return false;
             }
         }
@@ -902,12 +843,27 @@ public class Utils {
 
             List<String> lore = meta.getLore();
 
+            boolean changedDurability = false;
+            boolean changedJuice = !RealisticSurvivalPlugin.getUtil().hasNbtTag(item, "rsvdrink");
+
             for (int i = 0; i < lore.size(); i++) {
                 if (lore.get(i).contains("Durability: ")) {
                     lore.set(i, lore.get(i).replace(String.valueOf(oldDurability), String.valueOf(newDurability)));
+                    changedDurability = true;
+                }
+                if (lore.get(i).contains("Drink: ")) {
+                    if (!changedJuice) {
+                        lore.set(i, "Drink: " + RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING));
+                        changedJuice = true;
+                    }
+                }
+                if (changedDurability && changedJuice) {
                     break;
                 }
             }
+
+            meta.setLore(lore);
+            item.setItemMeta(meta);
         }
     }
 
