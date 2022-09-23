@@ -220,10 +220,6 @@ netherite_longbow:
   CustomModelData: 83658
   Lore:
     - "LOREPRESET.LONGBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 2600
     rsvmaxdurability: 2600
@@ -233,10 +229,6 @@ netherite_crossbow:
   CustomModelData: 83657
   Lore:
     - "LOREPRESET.CROSSBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 2600
     rsvmaxdurability: 2600
@@ -446,10 +438,6 @@ diamond_longbow:
   CustomModelData: 83659
   Lore:
     - "LOREPRESET.LONGBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 2341
     rsvmaxdurability: 2341
@@ -459,10 +447,6 @@ diamond_crossbow:
   CustomModelData: 83658
   Lore:
     - "LOREPRESET.CROSSBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 2341
     rsvmaxdurability: 2341
@@ -672,10 +656,6 @@ iron_longbow:
   CustomModelData: 83660
   Lore:
     - "LOREPRESET.LONGBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 375
     rsvmaxdurability: 375
@@ -685,10 +665,6 @@ iron_crossbow:
   CustomModelData: 83659
   Lore:
     - "LOREPRESET.CROSSBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 375
     rsvmaxdurability: 375
@@ -898,10 +874,6 @@ gold_longbow:
   CustomModelData: 83661
   Lore:
     - "LOREPRESET.LONGBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 32
     rsvmaxdurability: 32
@@ -911,10 +883,6 @@ gold_crossbow:
   CustomModelData: 83660
   Lore:
     - "LOREPRESET.CROSSBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 32
     rsvmaxdurability: 32
@@ -1324,10 +1292,6 @@ wooden_longbow:
   CustomModelData: 83662
   Lore:
     - "LOREPRESET.LONGBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 88
     rsvmaxdurability: 88
@@ -1337,10 +1301,6 @@ wooden_crossbow:
   CustomModelData: 83661
   Lore:
     - "LOREPRESET.CROSSBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 88
     rsvmaxdurability: 88
@@ -1360,10 +1320,6 @@ leather_longbow:
   CustomModelData: 83663
   Lore:
     - "LOREPRESET.LONGBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 192
     rsvmaxdurability: 192
@@ -1373,10 +1329,6 @@ leather_crossbow:
   CustomModelData: 83662
   Lore:
     - "LOREPRESET.CROSSBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 192
     rsvmaxdurability: 192
@@ -1646,10 +1598,6 @@ copper_longbow:
   CustomModelData: 83664
   Lore:
     - "LOREPRESET.LONGBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 245
     rsvmaxdurability: 245
@@ -1659,10 +1607,6 @@ copper_crossbow:
   CustomModelData: 83663
   Lore:
     - "LOREPRESET.CROSSBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 245
     rsvmaxdurability: 245

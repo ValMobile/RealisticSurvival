@@ -4,10 +4,25 @@
 
 ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
 
+# Customize messages
+Initialize:
+  Enabled: true
+  Message: "&6[Realistic Survival] &fInitializing &b%NAME% &fmodule"                # All placeholders: %NAME%
+Shutdown:
+  Enabled: true
+  Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"
+
 # Customize the Ice and Fire gear and the mobs
 
 Dragons:
   FireDragon:
+    Enabled:
+      Chance: 0.33
+      Variants:
+        Gray: true
+        Emerald: true
+        Red: true
+        Bronze: true
     BreathAttack:
       Chance: 0.8   # Only other attack is explosion, if this is set to 1.0 then all attacks will be breath and none will be explosion
       # The following settings already work well for a good dragon fight
@@ -66,6 +81,7 @@ Dragons:
         Stage5: 2.0
     InfernoAbility:
       FireTicks: 400
+      TickSpeed: 1
       StageMultipliers: # Multiplies the fire ticks by the specified value
         Stage1: 1.0
         Stage2: 1.25
@@ -100,6 +116,13 @@ Dragons:
         Stage4: 1.75
         Stage5: 2.0
   IceDragon:
+    Enabled:
+      Chance: 0.33
+      Variants:
+        Sapphire: true
+        Blue: true
+        Silver: true
+        White: true
     BreathAttack:
       Chance: 0.8
       Particle: "SNOWBALL"
@@ -199,6 +222,12 @@ Dragons:
         Stage4: 1.75
         Stage5: 2.0
   LightningDragon:
+    Enabled:    # Chance of spawning a lightning dragon is (1 - chance of spawning other dragon breeds)
+      Variants:
+        Amethyst: true
+        Black: true
+        ElectricBlue: true
+        Copper: true
     BreathAttack:
       Chance: 0.8
       Particle: "END_ROD"
@@ -297,12 +326,63 @@ Dragons:
         Stage3: 1.5
         Stage4: 1.75
         Stage5: 2.0
+
+SeaSerpents:
+  Enabled:
+    Enabled: true
+    Variants:
+      Blue: true
+      Bronze: true
+      DeepBlue: true
+      Green: true
+      Purple: true
+      Red: true
+      Teal: true
+  SpawnChance: 0.01           # Replaces squid spawns
+  JumpHeight: 30
+  LaserAttack:
+    Damage: 8.0
+    MaxRange: 50.0
+    Particle: "WATER_BUBBLE"
+  MeleeAttack:
+    Damage: 10.0
+  Drops:
+    Scales:
+      Min: 8
+      Max: 20
+
+Sirens:
+  Enabled: true
+  SpawnChance: 0.05           # Replaces squid spawns
+  MaxHearingDistance: 50
+  PullPlayer:
+    Enabled: true
+    Velocity: 1.0
+  PlayMusic:
+    Enabled: true
+    Sound: "realisticsurvival:"
+    Volume: 1.0
+    Pitch: 1.0
+  ChangeScreen:
+    Enabled: true
+    Character: ' '  # Default Unicode value:
+  Drops:
+    ShinyScales:
+      Type: "Common"
+      Chance: 0.50
+
 Abilities:
   TideGuardian:
     WaterBreathing:
+      Enabled: true
       MaxAmplifier: 3
+      MaxDuration: 270
+      MustSubmerge: true    # Should the effect only activate if the player is in water?
     Strength:
+      Enabled: true
       MaxAmplifier: 3
+      MaxDuration : 270
+      MustSubmerge: true
     TickTime: 20
 
 # BonusDamage - How much extra damage is done to the opposite dragon type
@@ -315,17 +395,12 @@ Abilities:
 # Ex: An amplifier of 0 corresponds to Slowness I
 # Duration and FrozenDuration measured in ticks (20 ticks = 1 second)
 
-# DamageReduction - How much is the damage of dragon attacks reduced per each piece of armor
+# DamageReduction - How much are dragon attack damages reduced by
 # 1.0 = full damage reduction
 Items:
   dragonbone:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 6
-        MaxAmount: 18
   witherbone:
     Enabled:
       EnableAllVersions: true
@@ -334,256 +409,105 @@ Items:
         Type: "Range"
         MinAmount: 20
         MaxAmount: 40
+      WITHER_SKELETON:
+        Type: "Rare"
+        Chance: 0.01
   dragonscale_blue:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   dragonscale_bronze:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   dragonscale_gray:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   dragonscale_green:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   dragonscale_red:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   dragonscale_sapphire:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   dragonscale_silver:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   dragonscale_white:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   dragonscale_amethyst:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   dragonscale_black:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   dragonscale_copper:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   dragonscale_electric:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   sea_serpent_scale_blue:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ELDER_GUARDIAN:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   sea_serpent_scale_bronze:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ELDER_GUARDIAN:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   sea_serpent_scale_deepblue:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ELDER_GUARDIAN:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   sea_serpent_scale_green:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ELDER_GUARDIAN:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   sea_serpent_scale_purple:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ELDER_GUARDIAN:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   sea_serpent_scale_red:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ELDER_GUARDIAN:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   sea_serpent_scale_teal:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ELDER_GUARDIAN:
-        Type: "Range"
-        MinAmount: 12
-        MaxAmount: 20
   shiny_scale:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      GUARDIAN:
-        Type: "Range"
-        MinAmount: 1
-        MaxAmount: 3
   dragon_blood_fire:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 3
-        MaxAmount: 8
   dragon_blood_ice:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 3
-        MaxAmount: 8
   dragon_blood_lightning:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 3
-        MaxAmount: 8
   dragon_heart_fire:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Common"
-        Chance: 1.00
   dragon_heart_ice:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Common"
-        Chance: 1.00
   dragon_heart_lightning:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Common"
-        Chance: 1.00
   dragon_skull_fire:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Common"
-        Chance: 1.00
   dragon_skull_ice:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Common"
-        Chance: 1.00
   dragon_skull_lightning:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Common"
-        Chance: 1.00
   dragon_flesh_fire:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 3
-        MaxAmount: 8
   dragon_flesh_ice:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 3
-        MaxAmount: 8
   dragon_flesh_lightning:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      ENDER_DRAGON:
-        Type: "Range"
-        MinAmount: 3
-        MaxAmount: 8
   dragonsteel_fire_ingot:
     Enabled:
       EnableAllVersions: true

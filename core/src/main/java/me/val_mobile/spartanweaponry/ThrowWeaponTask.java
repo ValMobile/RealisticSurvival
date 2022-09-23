@@ -81,10 +81,10 @@ public class ThrowWeaponTask extends BukkitRunnable {
             armorStand.setCustomNameVisible(false);
             armorStand.setPersistent(false);
 
-            if (config.getBoolean("Items." + name + ".ThrownAttributes.Sound.Enabled")) {
-                String soundName = config.getString("Items." + name + ".ThrownAttributes.Sound.Sound");
-                float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.Sound.Volume");
-                float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.Sound.Pitch");
+            if (config.getBoolean("Items." + name + ".ThrownAttributes.ThrownSound.Enabled")) {
+                String soundName = config.getString("Items." + name + ".ThrownAttributes.ThrownSound.Sound");
+                float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.ThrownSound.Volume");
+                float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.ThrownSound.Pitch");
                 Utils.playSound(thrower.getLocation(), soundName, volume, pitch);
             }
 
@@ -116,6 +116,14 @@ public class ThrowWeaponTask extends BukkitRunnable {
             else {
                 dropWeaponTask(armorStand, player, itemStack.clone());
             }
+
+            if (config.getBoolean("Items." + name + ".ThrownAttributes.HitGroundSound.Enabled")) {
+                String soundName = config.getString("Items." + name + ".ThrownAttributes.HitGroundSound.Sound");
+                float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitGroundSound.Volume");
+                float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitGroundSound.Pitch");
+                Utils.playSound(armorStand.getLocation(), soundName, volume, pitch);
+            }
+
             cancel();
         }
 
@@ -130,6 +138,13 @@ public class ThrowWeaponTask extends BukkitRunnable {
                 }
             }
 
+            if (config.getBoolean("Items." + name + ".ThrownAttributes.HitMobSound.Enabled")) {
+                String soundName = config.getString("Items." + name + ".ThrownAttributes.HitMobSound.Sound");
+                float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitMobSound.Volume");
+                float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitMobSound.Pitch");
+                Utils.playSound(armorStand.getLocation(), soundName, volume, pitch);
+            }
+
             if (returnWeapon && !piercing) {
                 returnWeapon();
                 cancel();
@@ -140,6 +155,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
                 cancel();
             }
         }
+
 
         // drop the weapon if the distance is greater 60 blocks
         if (armorStand.getLocation().distanceSquared(player.getLocation()) > maxDistance) {

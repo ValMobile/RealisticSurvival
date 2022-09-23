@@ -31,8 +31,8 @@ public class RSVPlayer {
 
     private UUID uuid;
     private final RealisticSurvivalPlugin plugin;
-    private HashMap<String, RSVDataModule> dataModules = new HashMap<>();
-    private static HashMap<UUID, RSVPlayer> players = new HashMap<>();
+    private final HashMap<String, RSVDataModule> dataModules = new HashMap<>();
+    private static final HashMap<UUID, RSVPlayer> players = new HashMap<>();
 
     public RSVPlayer(RealisticSurvivalPlugin plugin, Player player) {
         this.uuid = player.getUniqueId();
@@ -40,7 +40,11 @@ public class RSVPlayer {
         Collection<RSVModule> modules = RSVModule.getModules().values();
         for (RSVModule module : modules) {
             if (module.isEnabled()) {
-                dataModules.putIfAbsent(module.getName(), getDataModuleFromName(module.getName()));
+                RSVDataModule dataModule = getDataModuleFromName(module.getName());
+
+                if (dataModule != null) {
+                    dataModules.put(module.getName(), dataModule);
+                }
             }
         }
 
@@ -80,13 +84,13 @@ public class RSVPlayer {
     }
 
     public RSVDataModule getDataModuleFromName(String name) {
-
-        RSVDataModule module = null;
-
-        switch (name) {
-            case BaubleModule.NAME -> module = new me.val_mobile.data.baubles.DataModule(getPlayer());
-            case TanModule.NAME -> module = new DataModule(plugin, getPlayer());
+        if (name.equals(BaubleModule.NAME)) {
+            return new me.val_mobile.data.baubles.DataModule(getPlayer());
         }
-        return module;
+        else if (name.equals(TanModule.NAME)) {
+            return new DataModule(plugin, getPlayer());
+        }
+
+        return null;
     }
 }

@@ -29,12 +29,6 @@
                                     <include>me.Val_Mobile:realisticsurvival-*</include>
                                 </includes>
                             </artifactSet>
-                            <relocations>
-                                <relocation>
-                                    <pattern>org.bstats</pattern>
-                                    <shadedPattern>me.val_mobile.realisticsurvival</shadedPattern>
-                                </relocation>
-                            </relocations>
                         </configuration>
                     </execution>
                 </executions>
@@ -42,14 +36,11 @@
         </plugins>
     </build>
     <dependencies>
-        <!-- bStats -->
         <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>3.0.0</version>
-            <scope>compile</scope>
+            <groupId>me.Val_Mobile</groupId>
+            <artifactId>realisticsurvival-core</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
-
         <dependency>
             <groupId>me.Val_Mobile</groupId>
             <artifactId>realisticsurvival-spigot_impl_1_19_R3</artifactId>

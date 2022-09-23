@@ -16,6 +16,9 @@
  */
 package me.val_mobile.utils;
 
+import me.val_mobile.iceandfire.DragonVariant;
+import me.val_mobile.iceandfire.SeaSerpentVariant;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
 import org.bukkit.Tag;
 import org.bukkit.entity.Entity;
@@ -26,6 +29,25 @@ import org.bukkit.potion.PotionEffectType;
 public abstract class InternalsProvider {
 
     public abstract void spawnEndermanAlly(Player owner, Location loc);
+    public abstract void spawnFireDragon(Location loc, RealisticSurvivalPlugin plugin);
+    public abstract void spawnFireDragon(Location loc, int stage, RealisticSurvivalPlugin plugin);
+    public abstract void spawnFireDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin);
+    public abstract void spawnFireDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin);
+
+    public abstract void spawnIceDragon(Location loc, RealisticSurvivalPlugin plugin);
+    public abstract void spawnIceDragon(Location loc, int stage, RealisticSurvivalPlugin plugin);
+    public abstract void spawnIceDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin);
+    public abstract void spawnIceDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin);
+
+    public abstract void spawnLightningDragon(Location loc, RealisticSurvivalPlugin plugin);
+    public abstract void spawnLightningDragon(Location loc, int stage, RealisticSurvivalPlugin plugin);
+    public abstract void spawnLightningDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin);
+    public abstract void spawnLightningDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin);
+
+    public abstract void spawnSeaSerpent(Location loc, RealisticSurvivalPlugin plugin);
+    public abstract void spawnSeaSerpent(Location loc, SeaSerpentVariant variant, RealisticSurvivalPlugin plugin);
+
+    public abstract void spawnSiren(Location loc, RealisticSurvivalPlugin plugin);
 
     public abstract Tag getTag(String name);
 

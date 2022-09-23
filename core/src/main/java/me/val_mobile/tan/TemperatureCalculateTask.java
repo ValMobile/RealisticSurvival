@@ -69,7 +69,7 @@ public class TemperatureCalculateTask extends BukkitRunnable {
         Player player = this.player.getPlayer();
         GameMode mode = player.getGameMode(); // get the gamemode
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE || !player.isOnline() && allowedWorlds.contains(player.getWorld().toString())) {
+        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE || !player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
             double oldTemp = temp;
             regulate = 0D;
             change = 0D;

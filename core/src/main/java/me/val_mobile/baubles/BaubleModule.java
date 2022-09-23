@@ -43,19 +43,19 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
 
     @Override
     public void initialize() {
-        FileConfiguration config = getUserConfig().getConfig();
-        if (config.getBoolean("Shutdown.Enabled")) {
-            String message = ChatColor.translateAlternateColorCodes('&', config.getString("Shutdown.Message"));
-            message = message.replaceAll("%NAME%", NAME);
-
-            plugin.getLogger().info(message);
-        }
-
         setUserConfig(new UserConfig(plugin));
         setItemConfig(new ItemConfig(plugin));
         setRecipeConfig(new RecipesConfig(plugin));
         setModuleItems(new ModuleItems(this, plugin));
         setModuleRecipes(new ModuleRecipes(this, plugin));
+
+        FileConfiguration config = getUserConfig().getConfig();
+        if (config.getBoolean("Initialize.Enabled")) {
+            String message = ChatColor.translateAlternateColorCodes('&', config.getString("Initialize.Message"));
+            message = message.replaceAll("%NAME%", NAME);
+
+            plugin.getLogger().info(message);
+        }
 
         events = new BaubleEvents(this, plugin);
 

@@ -16,7 +16,6 @@
  */
 package me.val_mobile.misc;
 
-import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -55,11 +54,13 @@ public class UpdateChecker {
         Logger logger = plugin.getLogger();
 
         getVersion(latestVersion -> {
-            double currentVersion = Utils.getNumberFromUpdate(plugin.getDescription().getVersion());
+            String currentVersion = plugin.getDescription().getVersion();
 
-            double spigotVersion = Utils.getNumberFromUpdate((latestVersion));
+            String spigotVersion = latestVersion;
 
-            List<String> messages = Utils.doublesEquals(currentVersion, spigotVersion) ? plugin.getConfig().getStringList("CorrectVersion") : (currentVersion < spigotVersion ? plugin.getConfig().getStringList("OutdatedVersion") : plugin.getConfig().getStringList("DeveloperBuildVersion"));
+            int compareTo = currentVersion.compareTo(spigotVersion);
+
+            List<String> messages = compareTo == 0 ? plugin.getConfig().getStringList("CorrectVersion") : compareTo < 0 ? plugin.getConfig().getStringList("OutdatedVersion") : plugin.getConfig().getStringList("DeveloperBuildVersion");
 
             for (String message : messages) {
                 logger.info(ChatColor.translateAlternateColorCodes('&', message));

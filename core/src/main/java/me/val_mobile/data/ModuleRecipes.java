@@ -43,7 +43,7 @@ public class ModuleRecipes {
         FileConfiguration recipeConfig = module.getRecipeConfig().getConfig();
         FileConfiguration userConfig = module.getUserConfig().getConfig();
 
-        Set<String> keys = recipeConfig.getConfigurationSection("").getKeys(false);
+        Set<String> keys = recipeConfig.getKeys(false);
 
         for (String name : keys) {
             Recipe recipe = null;
@@ -63,13 +63,14 @@ public class ModuleRecipes {
                         recipe = new RSVAnvilRecipe(recipeConfig, name);
                         anvilRecipes.add((RSVAnvilRecipe) recipe);
                     }
+
                 }
                 addRecipe(recipe);
                 recipeMap.putIfAbsent(name, recipe);
             }
             else {
-                if (userConfig.contains("Items." + name + ".Enabled.Versions." + plugin.getServer().getVersion())) {
-                    if (userConfig.getBoolean("Items." + name + ".Enabled.Versions." + plugin.getServer().getVersion())) {
+                if (userConfig.contains("Recipes." + name + ".Enabled.Versions." + plugin.getServer().getVersion())) {
+                    if (userConfig.getBoolean("Recipes." + name + ".Enabled.Versions." + plugin.getServer().getVersion())) {
                         switch (type) {
                             case "Shaped" -> recipe = new RSVShapedRecipe(recipeConfig, name, plugin);
                             case "Shapeless" -> recipe = new RSVShapelessRecipe(recipeConfig, name, plugin);

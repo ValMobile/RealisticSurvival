@@ -17,8 +17,6 @@
 package me.val_mobile.misc;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bstats.bukkit.Metrics;
-import org.bstats.charts.MultiLineChart;
 import org.bukkit.Bukkit;
 
 import java.util.HashMap;
@@ -34,7 +32,7 @@ public class BStats {
     }
 
     public void recordData() {
-        metrics.addCustomChart(new MultiLineChart("players_and_servers", () -> {
+        metrics.addCustomChart(new Metrics.MultiLineChart("players_and_servers", () -> {
             Map<String, Integer> valueMap = new HashMap<>();
             valueMap.put("servers", 1);
             valueMap.put("players", Bukkit.getOnlinePlayers().size());

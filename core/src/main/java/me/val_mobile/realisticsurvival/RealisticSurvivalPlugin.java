@@ -19,6 +19,8 @@ package me.val_mobile.realisticsurvival;
 import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.commands.Commands;
 import me.val_mobile.commands.Tab;
+import me.val_mobile.data.PluginConfig;
+import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.misc.BStats;
@@ -30,6 +32,8 @@ import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.spartanweaponry.SwModule;
 import me.val_mobile.tan.TanModule;
 import me.val_mobile.utils.RSVEnchants;
+import me.val_mobile.utils.ToolHandler;
+import me.val_mobile.utils.ToolUtils;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -39,15 +43,17 @@ import java.util.Collection;
 
 public class RealisticSurvivalPlugin extends JavaPlugin {
 
+    public static ToolUtils toolUtils;
+    public static ToolHandler toolHandler;
     private static Utils util;
-    public static final double VERSION = 1.23;
+    private PluginConfig config;
 
     @Override
     public void onEnable() {
 
-        this.saveDefaultConfig();
+        this.config = new PluginConfig(this);
 
-        util = RealisticSurvivalPlugin.getUtil();
+        util = new Utils(this);
 
         BStats bStats = new BStats(this);
         UpdateChecker updateChecker = new UpdateChecker(this, 93795);
@@ -57,22 +63,36 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         updateChecker.checkUpdate();
 
         PluginManager pm = this.getServer().getPluginManager();
-        FileConfiguration config = this.getConfig();
+
+        toolHandler = new ToolHandler();
+        toolUtils = new ToolUtils(this);
+        toolUtils.initMap();
 
         IceFireModule module = new IceFireModule(this);
+        module.initialize();
+
         SwModule swModule = new SwModule(this);
+        swModule.initialize();
+
         BaubleModule baubleModule = new BaubleModule(this);
+        baubleModule.initialize();
+
         NtrModule ntrModule = new NtrModule(this);
+        ntrModule.initialize();
+
         SfModule sfModule = new SfModule(this);
+        sfModule.initialize();
+
         TanModule tanModule = new TanModule(this);
+        tanModule.initialize();
 
         RSVEnchants enchants = new RSVEnchants(this);
         enchants.registerAllEnchants();
 
-        if (config.getBoolean("ResourcePack.Enabled"))
+        if (config.getConfig().getBoolean("ResourcePack.Enabled"))
             pm.registerEvents(resourcePack, this);
 
-        if (config.getBoolean("BStats"))
+        if (config.getConfig().getBoolean("BStats"))
             bStats.recordData();
 
         pm.registerEvents(miscEvents, this);
@@ -85,10 +105,20 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         Collection<RSVPlayer> players = RSVPlayer.getPlayers().values();
+        Collection<RSVModule> modules = RSVModule.getModules().values();
 
         for (RSVPlayer player : players) {
             player.saveData();
         }
+
+        for (RSVModule module : modules) {
+            module.shutdown();
+        }
+    }
+
+    @Override
+    public FileConfiguration getConfig() {
+        return config.getConfig();
     }
 
     @Override

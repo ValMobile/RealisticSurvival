@@ -17,7 +17,7 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.iceandfire.DragonBreed;
+import me.val_mobile.iceandfire.DragonVariant;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.spartanandfire.ElectrocuteTask;
@@ -36,23 +36,23 @@ public class LightningDragon extends Dragon {
     private final FileConfiguration config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
 
     public LightningDragon(Location loc, RealisticSurvivalPlugin plugin) {
-        super(loc, LIGHTNING, plugin);
+        super(loc, LIGHTNING);
         this.plugin = plugin;
     }
 
     public LightningDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-        super(loc, LIGHTNING, stage, plugin);
+        super(loc, LIGHTNING, stage);
         this.plugin = plugin;
     }
 
-    public LightningDragon(Location loc, DragonBreed.Variant variant, RealisticSurvivalPlugin plugin) {
-        super(loc, LIGHTNING, variant, plugin);
+    public LightningDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+        super(loc, LIGHTNING, variant);
 
         this.plugin = plugin;
     }
 
-    public LightningDragon(Location loc, DragonBreed.Variant variant, int stage, RealisticSurvivalPlugin plugin) {
-        super(loc, LIGHTNING, variant, stage, plugin);
+    public LightningDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+        super(loc, LIGHTNING, variant, stage);
 
         this.plugin = plugin;
     }
@@ -77,7 +77,9 @@ public class LightningDragon extends Dragon {
         else {
             loc.getWorld().strikeLightning(loc);
         }
-        new ElectrocuteTask(plugin, getStage(), entity).start();
+        if (!ElectrocuteTask.hasTask(entity.getUniqueId())) {
+            new ElectrocuteTask(plugin, getStage(), entity).start();
+        }
     }
 
     @Override

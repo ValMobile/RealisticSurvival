@@ -62,7 +62,7 @@ public class ThermometerTask extends BukkitRunnable {
         Player player = this.player.getPlayer();
         GameMode mode = player.getGameMode(); // get the gamemode
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE || !player.isOnline() && allowedWorlds.contains(player.getWorld().toString()) && isHoldingThermometer()) {
+        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE || !player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && isHoldingThermometer()) {
             equilibriumTemp = task.getEquilibriumTemp();
 
             if (equilibriumTemp > MAXIMUM_TEMPERATURE) {

@@ -35,7 +35,7 @@ public class RSVShapelessRecipe extends ShapelessRecipe {
     private final Collection<Object> ingredients = new ArrayList<>();
 
     public RSVShapelessRecipe(FileConfiguration config, String name, RealisticSurvivalPlugin plugin) {
-        super(new NamespacedKey(plugin, config.getString(name + ".Key")),
+        super(new NamespacedKey(plugin, name),
                 Objects.equals(config.getString(name + ".Result.Item"), config.getString(name + ".Result.Item").toUpperCase())
                         ? new ItemStack(Material.valueOf(config.getString(name + ".Result.Item")), config.getInt(name + ".Result.Amount")) :
                         RSVItem.getItem(config.getString(name + ".Result.Item")).resize(config.getInt(name + ".Result.Amount")));

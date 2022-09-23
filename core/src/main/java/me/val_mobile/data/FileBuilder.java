@@ -21,7 +21,7 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import java.io.File;
 
 public class FileBuilder {
-    private File file;
+    protected File file;
     private boolean REPLACE;
 
     private final RealisticSurvivalPlugin plugin;

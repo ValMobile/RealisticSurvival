@@ -16,21 +16,25 @@
  */
 package me.val_mobile.iceandfire;
 
-import static me.val_mobile.iceandfire.DragonVariant.*;
+import me.val_mobile.data.RSVModule;
 
-public enum DragonBreed {
+public enum SeaSerpentVariant {
 
-    FIRE(GRAY, EMERALD, RED, BRONZE),
-    ICE(SAPPHIRE, BLUE, SILVER, WHITE),
-    LIGHTNING(AMETHYST, BLACK, ELECTRIC_BLUE, COPPER);
+    BLUE("SeaSerpents.Enabled.Variants.Blue"),
+    BRONZE("SeaSerpents.Enabled.Variants.Bronze"),
+    DEEPBLUE("SeaSerpents.Enabled.Variants.DeepBlue"),
+    GREEN("SeaSerpents.Enabled.Variants.Green"),
+    PURPLE("SeaSerpents.Enabled.Variants.Purple"),
+    RED("SeaSerpents.Enabled.Variants.Red"),
+    TEAL("SeaSerpents.Enabled.Variants.Teal");
 
-    private final DragonVariant[] variants;
+    private final boolean enabled;
 
-    DragonBreed(DragonVariant... variants) {
-        this.variants = variants;
+    SeaSerpentVariant(String configPath) {
+        this.enabled = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig().getBoolean(configPath);
     }
 
-    public DragonVariant[] getVariants() {
-        return variants;
+    public boolean isEnabled() {
+        return enabled;
     }
 }

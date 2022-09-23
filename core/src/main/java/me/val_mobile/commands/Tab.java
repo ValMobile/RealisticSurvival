@@ -32,7 +32,7 @@ import java.util.Set;
  * Tab is a class that creates a tab completer
  * when the user types appropriate commands
  * @author Val_Mobile
- * @version 1.2
+ * @version 1.2.3
  * @since 1.0
  */
 public class Tab implements TabCompleter {
@@ -72,6 +72,7 @@ public class Tab implements TabCompleter {
                 firstArgs.add("spawnmob");
                 firstArgs.add("thirst");
                 firstArgs.add("temperature");
+                firstArgs.add("resetitem");
                 firstArgs.add("help");
                 firstArgs.add("version");
             }
@@ -133,7 +134,7 @@ public class Tab implements TabCompleter {
                 mobs.add("siren");
             }
 
-            List<String> result = new ArrayList<String>(); // create an empty string list which will store the tab completer texts
+            List<String> result = new ArrayList<>(); // create an empty string list which will store the tab completer texts
 
             // if 1 argument was typed
             if (args.length == 1) {

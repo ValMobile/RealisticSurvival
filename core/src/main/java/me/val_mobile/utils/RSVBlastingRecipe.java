@@ -28,15 +28,15 @@ import java.util.Objects;
 
 public class RSVBlastingRecipe extends BlastingRecipe {
 
-    public RSVBlastingRecipe(FileConfiguration config, int index, RealisticSurvivalPlugin plugin) {
-        super(new NamespacedKey(plugin, config.getString(index + ".Key")),
-                Objects.equals(config.getString(index + ".Result.Item"), config.getString(index + ".Result.Item").toUpperCase())
-                        ? new ItemStack(Material.valueOf(config.getString(index + ".Result.Item")), config.getInt(index + ".Result.Amount")) :
-                        RSVItem.getItem(config.getString(index + ".Result.Item")).resize(config.getInt(index + ".Result.Amount")),
-                Objects.equals(config.getString(index + ".Input"), config.getString(index + ".Input").toUpperCase())
-                        ? (config.getString(index + ".Input").contains("Tag.") ? new RecipeChoice.MaterialChoice(Utils.getTag(config.getString(index + ".Input"))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(index + ".Input"))))
-                        : new RecipeChoice.ExactChoice(RSVItem.getItem(config.getString(index + ".Input"))),
-                (float) config.getDouble(index + ".Experience"),
-                config.getInt(index + ".CookingTime"));
+    public RSVBlastingRecipe(FileConfiguration config, String name, RealisticSurvivalPlugin plugin) {
+        super(new NamespacedKey(plugin, name),
+                Objects.equals(config.getString(name + ".Result.Item"), config.getString(name + ".Result.Item").toUpperCase())
+                        ? new ItemStack(Material.valueOf(config.getString(name + ".Result.Item")), config.getInt(name + ".Result.Amount")) :
+                        RSVItem.getItem(config.getString(name + ".Result.Item")).resize(config.getInt(name + ".Result.Amount")),
+                Objects.equals(config.getString(name + ".Input"), config.getString(name + ".Input").toUpperCase())
+                        ? (config.getString(name + ".Input").contains("Tag.") ? new RecipeChoice.MaterialChoice(Utils.getTag(config.getString(name + ".Input"))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(name + ".Input"))))
+                        : new RecipeChoice.ExactChoice(RSVItem.getItem(config.getString(name + ".Input"))),
+                (float) config.getDouble(name + ".Experience"),
+                config.getInt(name + ".CookingTime"));
     }
 }

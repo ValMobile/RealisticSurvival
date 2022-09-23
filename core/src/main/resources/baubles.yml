@@ -143,29 +143,29 @@ Items:
       EnableAllVersions: true
     MobDrops:
       HUSK:
-        Rare: true
-        Value: 0.025
+        Type: "Rare"
+        Chance: 0.025
   vitamins:
     Enabled:
       EnableAllVersions: true
     MobDrops:
       ELDER_GUARDIAN:
-        Rare: true
-        Value: 1.00
+        Type: "Rare"
+        Chance: 1.00
   ring_overclocking:
     Enabled:
       EnableAllVersions: true
     MobDrops:
       STRAY:
-        Rare: true
-        Value: 0.03
+        Type: "Rare"
+        Chance: 0.03
   shulker_heart:
     Enabled:
       EnableAllVersions: true
     MobDrops:
       SHULKER:
-        Rare: true
-        Value: 1.00
+        Type: "Rare"
+        Chance: 1.00
   ring_free_action:
     Enabled:
       EnableAllVersions: true
@@ -175,16 +175,16 @@ Items:
       EnableAllVersions: true
     MobDrops:
       CAVE_SPIDER:
-        Rare: true
-        Value: 0.05
+        Type: "Rare"
+        Chance: 0.05
   # Note 1.00 = 100%
   ender_dragonscale:
     Enabled:
       EnableAllVersions: true
     MobDrops:
       ENDER_DRAGON:
-        Rare: true
-        Value: 1.00
+        Type: "Rare"
+        Chance: 1.00
   cracked_black_dragonscale:
     Enabled:
       EnableAllVersions: true
@@ -299,7 +299,7 @@ Items:
   flare:
     Enabled:
       EnableAllVersions: true
-  phytoprotostasia_amulet:
+  phytoprostasia_amulet:
     Enabled:
       EnableAllVersions: true
   emerald_ring:
@@ -578,7 +578,7 @@ Recipes:
     Enabled:
       EnableAllVersions: true
     Unlock: true
-  phytoprotostasia_amulet:
+  phytoprostasia_amulet:
     Enabled:
       EnableAllVersions: true
     Unlock: true

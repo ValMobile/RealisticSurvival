@@ -42,6 +42,7 @@ public class FreezeTask extends BukkitRunnable {
     private final boolean playSound;
     private final PotionEffect slowness;
     private final Material frozenMaterial;
+    private final String soundName;
     private final float volume;
     private final float pitch;
     private final int duration;
@@ -60,6 +61,7 @@ public class FreezeTask extends BukkitRunnable {
         this.frozenMaterial = Material.valueOf(config.getString("Dragons.IceDragon.FreezeAbility.EncaseIce.Block"));
         this.volume = (float) config.getDouble("Dragons.IceDragon.FreezeAbility.Sound.Volume");
         this.pitch = (float) config.getDouble("Dragons.IceDragon.FreezeAbility.Sound.Pitch");
+        this.soundName = config.getString("Dragons.IceDragon.FreezeAbility.Sound.Sound");
         this.duration = config.getInt("Dragons.IceDragon.FreezeAbility.FrozenDuration") * stageMultiplier;
     }
 
@@ -75,6 +77,7 @@ public class FreezeTask extends BukkitRunnable {
         this.frozenMaterial = Material.valueOf(config.getString("Items." + itemName + ".FreezeAbility.EncaseIce.Block"));
         this.volume = (float) config.getDouble("Items." + itemName + ".FreezeAbility.Sound.Volume");
         this.pitch = (float) config.getDouble("Items." + itemName + ".FreezeAbility.Sound.Pitch");
+        this.soundName = config.getString("Items." + itemName + ".FreezeAbility.Sound.Sound");
         this.duration = config.getInt("Items." + itemName + ".FreezeAbility.FrozenDuration");
     }
 
@@ -106,7 +109,7 @@ public class FreezeTask extends BukkitRunnable {
 
         if (playSound) {
             // play the ice break sound effect
-            Utils.playSound(loc, config.getString("Dragons.IceDragon.FreezeAbility.Sound.Sound"), volume, pitch);
+            Utils.playSound(loc, soundName, volume, pitch);
         }
 
         // remove the ice block after some time

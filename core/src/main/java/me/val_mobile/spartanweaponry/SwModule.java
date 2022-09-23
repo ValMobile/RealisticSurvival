@@ -40,14 +40,21 @@ public class SwModule extends RSVModule {
 
     @Override
     public void initialize() {
-        plugin.getLogger().info("Initializing " + getName() + " Module");
-
         setUserConfig(new UserConfig(plugin));
         setItemConfig(new ItemConfig(plugin));
         setRecipeConfig(new RecipesConfig(plugin));
 
         setModuleItems(new ModuleItems(this, plugin));
         setModuleRecipes(new ModuleRecipes(this, plugin));
+
+        FileConfiguration config = getUserConfig().getConfig();
+        if (config.getBoolean("Initialize.Enabled")) {
+            String message = ChatColor.translateAlternateColorCodes('&', config.getString("Initialize.Message"));
+            message = message.replaceAll("%NAME%", NAME);
+
+            plugin.getLogger().info(message);
+        }
+
         events = new SwEvents(this, plugin);
 
         getModuleItems().initialize();

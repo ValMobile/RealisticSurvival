@@ -14,12 +14,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.tan;
+package me.val_mobile.utils;
 
 import me.val_mobile.data.RSVModule;
+import me.val_mobile.iceandfire.IceFireModule;
+import me.val_mobile.tan.TanModule;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class CharacterValues {
+
 
     private final char TEMPERATURE0;
     private final char TEMPERATURE1;
@@ -65,6 +68,13 @@ public class CharacterValues {
     private final char FIRE_VIGNETTE4;
     private final char FIRE_VIGNETTE5;
     private final char BURNING_VIEW;
+    private final char DEHYDRATED_VIEW;
+    private final char THIRST_VIGNETTE1;
+    private final char THIRST_VIGNETTE2;
+    private final char THIRST_VIGNETTE3;
+    private final char THIRST_VIGNETTE4;
+    private final char THIRST_VIGNETTE5;
+    private final char SIREN_VIEW;
 
     private final FileConfiguration config;
 
@@ -115,6 +125,13 @@ public class CharacterValues {
         FIRE_VIGNETTE4 = config.getString("CharacterOverrides.FireVignette4").toCharArray()[0];
         FIRE_VIGNETTE5 = config.getString("CharacterOverrides.FireVignette5").toCharArray()[0];
         BURNING_VIEW = config.getString("CharacterOverrides.BurningView").toCharArray()[0];
+        DEHYDRATED_VIEW = config.getString("CharacterOverrides.DehydratedView").toCharArray()[0];
+        THIRST_VIGNETTE1 = config.getString("CharacterOverrides.ThirstVignette1").toCharArray()[0];
+        THIRST_VIGNETTE2 = config.getString("CharacterOverrides.ThirstVignette2").toCharArray()[0];
+        THIRST_VIGNETTE3 = config.getString("CharacterOverrides.ThirstVignette3").toCharArray()[0];
+        THIRST_VIGNETTE4 = config.getString("CharacterOverrides.ThirstVignette4").toCharArray()[0];
+        THIRST_VIGNETTE5 = config.getString("CharacterOverrides.ThirstVignette5").toCharArray()[0];
+        SIREN_VIEW = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig().getString("Sirens.ChangeScreen.Character").toCharArray()[0];
     }
 
     public String getTemperatureOnlyActionbar(int temperature) {
@@ -259,6 +276,35 @@ public class CharacterValues {
             }
         }
     }
+
+    public char getThirstVignette(int thirst) {
+        switch (thirst) {
+            case 0 -> {
+                return DEHYDRATED_VIEW;
+            }
+            case 1 -> {
+                return THIRST_VIGNETTE5;
+            }
+            case 2 -> {
+                return THIRST_VIGNETTE4;
+            }
+            case 3 -> {
+                return THIRST_VIGNETTE3;
+            }
+            case 4 -> {
+                return THIRST_VIGNETTE2;
+            }
+            case 25 -> {
+                return THIRST_VIGNETTE1;
+            }
+            default -> {
+                if (thirst < 0) {
+                    return DEHYDRATED_VIEW;
+                }
+                return ' ';
+            }
+        }
+    }
     
     public char getTemperature(int i) {
         switch (i) {
@@ -347,5 +393,9 @@ public class CharacterValues {
                 return TEMPERATURE25;
             }
         }
+    }
+
+    public char getSirenView() {
+        return SIREN_VIEW;
     }
 }

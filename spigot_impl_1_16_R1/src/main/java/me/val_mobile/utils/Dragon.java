@@ -19,6 +19,7 @@ package me.val_mobile.utils;
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.DragonBreed;
+import me.val_mobile.iceandfire.DragonVariant;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import net.minecraft.server.v1_16_R1.*;
@@ -39,19 +40,17 @@ import java.util.UUID;
 
 public abstract class Dragon extends EntityEnderDragon implements RSVMob {
 
-    private final RealisticSurvivalPlugin plugin;
     private final DragonBreed breed;
     private int stage;
     private int age;
     private final Gender gender;
-    private DragonBreed.Variant variant;
+    private DragonVariant variant;
     private final Collection<ItemStack> loot = new ArrayList<>();
     private final UUID uuid;
     protected final RSVModule module;
 
-    public Dragon(Location loc, DragonBreed breed, RealisticSurvivalPlugin plugin) {
+    public Dragon(Location loc, DragonBreed breed) {
         super(EntityTypes.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
-        this.plugin = plugin;
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
 
         this.uuid = getUniqueID();
@@ -70,15 +69,14 @@ public abstract class Dragon extends EntityEnderDragon implements RSVMob {
         addNbtData();
     }
 
-    public Dragon(Location loc, DragonBreed breed, DragonBreed.Variant variant, RealisticSurvivalPlugin plugin) {
+    public Dragon(Location loc, DragonBreed breed, DragonVariant variant) {
         super(EntityTypes.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
-        this.plugin = plugin;
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
 
         this.uuid = getUniqueID();
 
         this.module = RSVModule.getModule(IceFireModule.NAME);
-        this.variant = variant;
+        this.variant = variant.isEnabled() ? variant : null;
         this.breed = breed;
         this.stage = Utils.getRandomNum(1, 5);
         this.age = Utils.getRandomNum(stage * 100, stage * 100 + 99);
@@ -91,15 +89,20 @@ public abstract class Dragon extends EntityEnderDragon implements RSVMob {
         addNbtData();
     }
 
-    public Dragon(Location loc, DragonBreed breed, int stage, RealisticSurvivalPlugin plugin) {
+    public Dragon(Location loc, DragonBreed breed, int stage) {
         super(EntityTypes.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
-        this.plugin = plugin;
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
 
         this.uuid = getUniqueID();
 
         this.module = RSVModule.getModule(IceFireModule.NAME);
-        this.variant = breed.getVariants()[Utils.getRandomNum(0, breed.getVariants().length - 1)];
+
+        DragonVariant[] allVariants = breed.getVariants();
+
+        do {
+            variant = allVariants[Utils.getRandomNum(0, allVariants.length)];
+        } while(!variant.isEnabled());
+
         this.breed = breed;
         this.stage = stage;
         this.age = Utils.getRandomNum(stage * 100, stage * 100 + 99);
@@ -112,15 +115,14 @@ public abstract class Dragon extends EntityEnderDragon implements RSVMob {
         addNbtData();
     }
 
-    public Dragon(Location loc, DragonBreed breed, DragonBreed.Variant variant, int stage, RealisticSurvivalPlugin plugin) {
+    public Dragon(Location loc, DragonBreed breed, DragonVariant variant, int stage) {
         super(EntityTypes.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
-        this.plugin = plugin;
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
 
         this.uuid = getUniqueID();
 
         this.module = RSVModule.getModule(IceFireModule.NAME);
-        this.variant = variant;
+        this.variant = variant.isEnabled() ? variant : null;;
         this.breed = breed;
         this.stage = stage;
         this.age = Utils.getRandomNum(stage * 100, stage * 100 + 99);
@@ -255,7 +257,7 @@ public abstract class Dragon extends EntityEnderDragon implements RSVMob {
         return breed;
     }
 
-    public final DragonBreed.Variant getVariant() {
+    public final DragonVariant getVariant() {
         return variant;
     }
 

@@ -16,8 +16,11 @@
  */
 package me.val_mobile.utils;
 
+import me.val_mobile.iceandfire.DragonVariant;
+import me.val_mobile.iceandfire.SeaSerpentVariant;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.spartanweaponry.KbTask;
+import me.val_mobile.utils.ToolHandler.Tool;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
@@ -68,53 +71,39 @@ public class Utils {
         this.plugin = plugin;
     }
 
-    public static Vector randomizeVelocity(Vector velocity) {
-        Vector newVelocity = velocity.clone();
-        Random r = new Random();
-
-        newVelocity.setX((newVelocity.getX() * Math.random()) + 0.5);
-        newVelocity.setY((newVelocity.getY() * Math.random()) + 0.5);
-        newVelocity.setZ((newVelocity.getZ() * Math.random()) + 0.5);
-
-        return newVelocity;
-    }
-
-    public static String toLowercaseAttributeName(String name) {
-        return switch (name) {
-            case "GENERIC_ATTACK_DAMAGE" -> "generic.attackDamage";
-            case "GENERIC_ATTACK_SPEED" -> "generic.attackSpeed";
-            case "GENERIC_ARMOR" -> "generic.armor";
-            case "GENERIC_ARMOR_TOUGHNESS" -> "generic.armorToughness";
-            default -> null;
+    public static String toLowercaseAttributeName(Attribute atr) {
+        return switch (atr) {
+            case GENERIC_ATTACK_DAMAGE -> "generic.attack_damage";
+            case GENERIC_ATTACK_SPEED -> "generic.attack_speed";
+            case GENERIC_ATTACK_KNOCKBACK -> "generic.attack_knockback";
+            case GENERIC_ARMOR -> "generic.armor";
+            case GENERIC_ARMOR_TOUGHNESS -> "generic.armor_toughness";
+            case GENERIC_FLYING_SPEED -> "generic.flying_speed";
+            case GENERIC_FOLLOW_RANGE -> "generic.follow_range";
+            case GENERIC_KNOCKBACK_RESISTANCE -> "generic.knockback_resistance";
+            case GENERIC_LUCK -> "generic.luck";
+            case GENERIC_MAX_HEALTH -> "generic.max_health";
+            case GENERIC_MOVEMENT_SPEED -> "generic.movement_speed";
+            case HORSE_JUMP_STRENGTH -> "horse.jump_strength";
+            case ZOMBIE_SPAWN_REINFORCEMENTS -> "zombie.spawn_reinforcements";
         };
     }
 
     public static double getCorrectAttributeValue(Attribute attribute, double requestedValue) {
-        switch (attribute) {
-            case GENERIC_ATTACK_DAMAGE:
-                return requestedValue + ATTACK_DAMAGE_CONSTANT;
-            case GENERIC_ATTACK_SPEED:
-                return requestedValue + ATTACK_SPEED_CONSTANT;
-            case GENERIC_ARMOR:
-            case GENERIC_ARMOR_TOUGHNESS:
-                return requestedValue;
-            default:
-                return Double.parseDouble(null);
-        }
+        return switch (attribute) {
+            case GENERIC_ATTACK_DAMAGE -> requestedValue + ATTACK_DAMAGE_CONSTANT;
+            case GENERIC_ATTACK_SPEED -> requestedValue + ATTACK_SPEED_CONSTANT;
+            case GENERIC_ARMOR, GENERIC_ARMOR_TOUGHNESS -> requestedValue;
+            default -> 0;
+        };
     }
 
     public static boolean isHelmet(Material material) {
         switch (material) {
-            case CHAINMAIL_HELMET:
-            case DIAMOND_HELMET:
-            case GOLDEN_HELMET:
-            case IRON_HELMET:
-            case LEATHER_HELMET:
-            case NETHERITE_HELMET:
-            case TURTLE_HELMET: {
+            case CHAINMAIL_HELMET, DIAMOND_HELMET, GOLDEN_HELMET, IRON_HELMET, LEATHER_HELMET, NETHERITE_HELMET, TURTLE_HELMET -> {
                 return true;
             }
-            default: {
+            default -> {
                 return false;
             }
         }
@@ -122,15 +111,10 @@ public class Utils {
 
     public static boolean isChestplate(Material material) {
         switch (material) {
-            case CHAINMAIL_CHESTPLATE:
-            case DIAMOND_CHESTPLATE:
-            case GOLDEN_CHESTPLATE:
-            case IRON_CHESTPLATE:
-            case LEATHER_CHESTPLATE:
-            case NETHERITE_CHESTPLATE: {
+            case CHAINMAIL_CHESTPLATE, DIAMOND_CHESTPLATE, GOLDEN_CHESTPLATE, IRON_CHESTPLATE, LEATHER_CHESTPLATE, NETHERITE_CHESTPLATE -> {
                 return true;
             }
-            default: {
+            default -> {
                 return false;
             }
         }
@@ -138,15 +122,10 @@ public class Utils {
 
     public static boolean isLeggings(Material material) {
         switch (material) {
-            case CHAINMAIL_LEGGINGS:
-            case DIAMOND_LEGGINGS:
-            case GOLDEN_LEGGINGS:
-            case IRON_LEGGINGS:
-            case LEATHER_LEGGINGS:
-            case NETHERITE_LEGGINGS: {
+            case CHAINMAIL_LEGGINGS, DIAMOND_LEGGINGS, GOLDEN_LEGGINGS, IRON_LEGGINGS, LEATHER_LEGGINGS, NETHERITE_LEGGINGS -> {
                 return true;
             }
-            default: {
+            default -> {
                 return false;
             }
         }
@@ -154,25 +133,17 @@ public class Utils {
 
     public static boolean isBoots(Material material) {
         switch (material) {
-            case CHAINMAIL_BOOTS:
-            case DIAMOND_BOOTS:
-            case GOLDEN_BOOTS:
-            case IRON_BOOTS:
-            case LEATHER_BOOTS:
-            case NETHERITE_BOOTS: {
+            case CHAINMAIL_BOOTS, DIAMOND_BOOTS, GOLDEN_BOOTS, IRON_BOOTS, LEATHER_BOOTS, NETHERITE_BOOTS -> {
                 return true;
             }
-            default: {
+            default -> {
                 return false;
             }
         }
     }
 
     public static boolean isArmor(Material material) {
-        return (material.toString().contains("HELMET") ||
-                material.toString().contains("CHESTPLATE") ||
-                material.toString().contains("LEGGINGS") ||
-                material.toString().contains("BOOTS"));
+        return isHelmet(material) || isChestplate(material) || isLeggings(material) || isBoots(material);
     }
 
     public static EquipmentSlot getCorrectEquipmentSlot(Attribute attribute, Material material) {
@@ -200,102 +171,68 @@ public class Utils {
         }
     }
 
-    public static String translateInformalAttributeName(String name) {
-        switch (name) {
-            case "AttackDamage":
-                return "GENERIC_ATTACK_DAMAGE";
-            case "AttackSpeed":
-                return "GENERIC_ATTACK_SPEED";
-            case "Armor":
-                return "GENERIC_ARMOR";
-            case "Toughness":
-                return "GENERIC_ARMOR_TOUGHNESS";
-            default:
-                return null;
-        }
+    public static Attribute translateInformalAttributeName(String name) {
+        return switch (name) {
+            case "AttackDamage" -> Attribute.GENERIC_ATTACK_DAMAGE;
+            case "AttackKnockback" -> Attribute.GENERIC_ATTACK_KNOCKBACK;
+            case "AttackSpeed" -> Attribute.GENERIC_ATTACK_SPEED;
+            case "Armor" -> Attribute.GENERIC_ARMOR;
+            case "Toughness" -> Attribute.GENERIC_ARMOR_TOUGHNESS;
+            case "FlyingSpeed" -> Attribute.GENERIC_FLYING_SPEED;
+            case "FollowRange" -> Attribute.GENERIC_FOLLOW_RANGE;
+            case "KnockbackResistance" -> Attribute.GENERIC_KNOCKBACK_RESISTANCE;
+            case "Luck" -> Attribute.GENERIC_LUCK;
+            case "MaxHealth" -> Attribute.GENERIC_MAX_HEALTH;
+            case "MovementSpeed" -> Attribute.GENERIC_MOVEMENT_SPEED;
+            case "HorseJumpStrength" -> Attribute.HORSE_JUMP_STRENGTH;
+            case "ZombieSpawnReinforcements" -> Attribute.ZOMBIE_SPAWN_REINFORCEMENTS;
+            default -> Attribute.valueOf(name);
+        };
     }
 
     public static String getMinecraftEnchName(String keyName) {
-        switch (keyName) {
-            case "ARROW_DAMAGE":
-                return "Power";
-            case "ARROW_FIRE":
-                return "Flame";
-            case "ARROW_INFINITE":
-                return "Infinity";
-            case "ARROW_KNOCKBACK":
-                return "Punch";
-            case "BINDING_CURSE":
-                return "Curse of Binding";
-            case "DAMAGE_ALL":
-                return "Sharpness";
-            case "DAMAGE_ARTHROPODS":
-                return "Bane of Arthropods";
-            case "DAMAGE_UNDEAD":
-                return "Smite";
-            case "DEPTH_STRIDER":
-                return "Depth Strider";
-            case "DIG_SPEED":
-                return "Efficiency";
-            case "DURABILITY":
-                return "Unbreaking";
-            case "FIRE_ASPECT":
-                return "Fire Aspect";
-            case "FROST_WALKER":
-                return "Frost Walker";
-            case "KNOCKBACK":
-                return "Knockback";
-            case "LOOT_BONUS_BLOCKS":
-                return "Fortune";
-            case "LOOT_BONUS_MOBS":
-                return "Looting";
-            case "LUCK":
-                return "Luck of the Sea";
-            case "LURE":
-                return "Lure";
-            case "MENDING":
-                return "Mending";
-            case "OXYGEN":
-                return "Respiration";
-            case "PROTECTION_ENVIRONMENTAL":
-                return "Protection";
-            case "PROTECTION_EXPLOSIONS":
-                return "Blast Protection";
-            case "PROTECTION_FALL":
-                return "Feather Falling";
-            case "PROTECTION_FIRE":
-                return "Fire Protection";
-            case "PROTECTION_PROJECTILE":
-                return "Projectile Protection";
-            case "SILK_TOUCH":
-                return "Silk Touch";
-            case "SWEEPING_EDGE":
-                return "Sweeping Edge";
-            case "THORNS":
-                return "Thorns";
-            case "VANISHING_CURSE":
-                return "Curse of Vanishing";
-            case "WATER_WORKER":
-                return "Aqua Affinity";
-            case "SOUL_SPEED":
-                return "Soul Speed";
-            case "PIERCING":
-                return "Piercing";
-            case "QUICK_CHARGE":
-                return "Quick Charge";
-            case "MULTISHOT":
-                return "Multishot";
-            case "CHANNELING":
-                return "Channeling";
-            case "RIPTIDE":
-                return "Riptide";
-            case "IMPALING":
-                return "Impaling";
-            case "LOYALTY":
-                return "Loyalty";
-            default:
-                return null;
-        }
+        return switch (keyName) {
+            case "ARROW_DAMAGE" -> "Power";
+            case "ARROW_FIRE" -> "Flame";
+            case "ARROW_INFINITE" -> "Infinity";
+            case "ARROW_KNOCKBACK" -> "Punch";
+            case "BINDING_CURSE" -> "Curse of Binding";
+            case "DAMAGE_ALL" -> "Sharpness";
+            case "DAMAGE_ARTHROPODS" -> "Bane of Arthropods";
+            case "DAMAGE_UNDEAD" -> "Smite";
+            case "DEPTH_STRIDER" -> "Depth Strider";
+            case "DIG_SPEED" -> "Efficiency";
+            case "DURABILITY" -> "Unbreaking";
+            case "FIRE_ASPECT" -> "Fire Aspect";
+            case "FROST_WALKER" -> "Frost Walker";
+            case "KNOCKBACK" -> "Knockback";
+            case "LOOT_BONUS_BLOCKS" -> "Fortune";
+            case "LOOT_BONUS_MOBS" -> "Looting";
+            case "LUCK" -> "Luck of the Sea";
+            case "LURE" -> "Lure";
+            case "MENDING" -> "Mending";
+            case "OXYGEN" -> "Respiration";
+            case "PROTECTION_ENVIRONMENTAL" -> "Protection";
+            case "PROTECTION_EXPLOSIONS" -> "Blast Protection";
+            case "PROTECTION_FALL" -> "Feather Falling";
+            case "PROTECTION_FIRE" -> "Fire Protection";
+            case "PROTECTION_PROJECTILE" -> "Projectile Protection";
+            case "SILK_TOUCH" -> "Silk Touch";
+            case "SWEEPING_EDGE" -> "Sweeping Edge";
+            case "THORNS" -> "Thorns";
+            case "VANISHING_CURSE" -> "Curse of Vanishing";
+            case "WATER_WORKER" -> "Aqua Affinity";
+            case "SOUL_SPEED" -> "Soul Speed";
+            case "PIERCING" -> "Piercing";
+            case "QUICK_CHARGE" -> "Quick Charge";
+            case "SWIFT_SNEAK" -> "Swift Sneak";
+            case "MULTISHOT" -> "Multishot";
+            case "CHANNELING" -> "Channeling";
+            case "RIPTIDE" -> "Riptide";
+            case "IMPALING" -> "Impaling";
+            case "LOYALTY" -> "Loyalty";
+            default -> null;
+        };
     }
 
     public static boolean isHoldingAxe(Player player) {
@@ -303,15 +240,10 @@ public class Utils {
         if (isItemReal(itemMainHand)) {
             Material mat = itemMainHand.getType();
             switch (mat) {
-                case DIAMOND_AXE:
-                case IRON_AXE:
-                case WOODEN_AXE:
-                case STONE_AXE:
-                case GOLDEN_AXE:
-                case NETHERITE_AXE: {
+                case DIAMOND_AXE, IRON_AXE, WOODEN_AXE, STONE_AXE, GOLDEN_AXE, NETHERITE_AXE -> {
                     return true;
                 }
-                default: {
+                default -> {
                     return false;
                 }
             }
@@ -324,15 +256,10 @@ public class Utils {
         if (isItemReal(itemMainHand)) {
             Material mat = itemMainHand.getType();
             switch (mat) {
-                case DIAMOND_PICKAXE:
-                case IRON_PICKAXE:
-                case WOODEN_PICKAXE:
-                case STONE_PICKAXE:
-                case GOLDEN_PICKAXE:
-                case NETHERITE_PICKAXE: {
+                case DIAMOND_PICKAXE, IRON_PICKAXE, WOODEN_PICKAXE, STONE_PICKAXE, GOLDEN_PICKAXE, NETHERITE_PICKAXE -> {
                     return true;
                 }
-                default: {
+                default -> {
                     return false;
                 }
             }
@@ -361,81 +288,30 @@ public class Utils {
     }
 
     public static Color valueOfColor(String color) {
-        switch (color) {
-            case "AQUA":
-                return Color.AQUA;
-            case "BLACK":
-                return Color.BLACK;
-            case "BLUE":
-                return Color.BLUE;
-            case "FUCHSIA":
-                return Color.FUCHSIA;
-            case "GRAY":
-                return Color.GRAY;
-            case "GREEN":
-                return Color.GREEN;
-            case "LIME":
-                return Color.LIME;
-            case "MAROON":
-                return Color.MAROON;
-            case "NAVY":
-                return Color.NAVY;
-            case "OLIVE":
-                return Color.OLIVE;
-            case "ORANGE":
-                return Color.ORANGE;
-            case "PURPLE":
-                return Color.PURPLE;
-            case "RED":
-                return Color.RED;
-            case "SILVER":
-                return Color.SILVER;
-            case "TEAL":
-                return Color.TEAL;
-            case "WHITE":
-                return Color.WHITE;
-            case "YELLOW":
-                return Color.YELLOW;
-            default:
-                return null;
-        }
+        return switch (color) {
+            case "AQUA" -> Color.AQUA;
+            case "BLACK" -> Color.BLACK;
+            case "BLUE" -> Color.BLUE;
+            case "FUCHSIA" -> Color.FUCHSIA;
+            case "GRAY" -> Color.GRAY;
+            case "GREEN" -> Color.GREEN;
+            case "LIME" -> Color.LIME;
+            case "MAROON" -> Color.MAROON;
+            case "NAVY" -> Color.NAVY;
+            case "OLIVE" -> Color.OLIVE;
+            case "ORANGE" -> Color.ORANGE;
+            case "PURPLE" -> Color.PURPLE;
+            case "RED" -> Color.RED;
+            case "SILVER" -> Color.SILVER;
+            case "TEAL" -> Color.TEAL;
+            case "WHITE" -> Color.WHITE;
+            case "YELLOW" -> Color.YELLOW;
+            default -> null;
+        };
     }
 
     public static PotionEffectType valueOfPotionEffectType(String potionEffectType) {
-        return switch (potionEffectType) {
-            case "ABSORPTION" -> PotionEffectType.ABSORPTION;
-            case "BAD_OMEN" -> PotionEffectType.BAD_OMEN;
-            case "BLINDNESS" -> PotionEffectType.BLINDNESS;
-            case "CONDUIT_POWER" -> PotionEffectType.CONDUIT_POWER;
-            case "CONFUSION" -> PotionEffectType.CONFUSION;
-            case "DAMAGE_RESISTANCE" -> PotionEffectType.DAMAGE_RESISTANCE;
-            case "DOLPHINS_GRACE" -> PotionEffectType.DOLPHINS_GRACE;
-            case "FAST_DIGGING" -> PotionEffectType.FAST_DIGGING;
-            case "FIRE_RESISTANCE" -> PotionEffectType.FIRE_RESISTANCE;
-            case "GLOWING" -> PotionEffectType.GLOWING;
-            case "HARM" -> PotionEffectType.HARM;
-            case "HEAL" -> PotionEffectType.HEAL;
-            case "HEALTH_BOOST" -> PotionEffectType.HEALTH_BOOST;
-            case "HERO_OF_THE_VILLAGE" -> PotionEffectType.HERO_OF_THE_VILLAGE;
-            case "HUNGER" -> PotionEffectType.HUNGER;
-            case "INCREASE_DAMAGE" -> PotionEffectType.INCREASE_DAMAGE;
-            case "INVISIBILITY" -> PotionEffectType.INVISIBILITY;
-            case "JUMP" -> PotionEffectType.JUMP;
-            case "LEVITATION" -> PotionEffectType.LEVITATION;
-            case "LUCK" -> PotionEffectType.LUCK;
-            case "NIGHT_VISION" -> PotionEffectType.NIGHT_VISION;
-            case "POISON" -> PotionEffectType.POISON;
-            case "REGENERATION" -> PotionEffectType.REGENERATION;
-            case "SATURATION" -> PotionEffectType.SATURATION;
-            case "SLOW" -> PotionEffectType.SLOW;
-            case "SLOW_DIGGING" -> PotionEffectType.SLOW_DIGGING;
-            case "SPEED" -> PotionEffectType.SPEED;
-            case "UNLUCK" -> PotionEffectType.UNLUCK;
-            case "WATER_BREATHING" -> PotionEffectType.WATER_BREATHING;
-            case "WEAKNESS" -> PotionEffectType.WEAKNESS;
-            case "WITHER" -> PotionEffectType.WITHER;
-            default -> null;
-        };
+        return internals.valueOfPotionEffectType(potionEffectType);
     }
 
     public static boolean isItemReal(ItemStack item) {
@@ -593,12 +469,10 @@ public class Utils {
         while (text.indexOf(".") != text.lastIndexOf(".")) {
             text = text.substring(0, text.lastIndexOf(".")) + text.substring(text.lastIndexOf(".") + 1);
         }
-        return Double.valueOf(text);
+        return Double.parseDouble(text);
     }
 
     public static void harvestFortune(ConfigurationSection section, ItemStack drop, ItemStack tool, Location loc) {
-        Random r = new Random();
-
         int lvl = 0;
 
         if (tool != null) {
@@ -798,21 +672,72 @@ public class Utils {
         return false;
     }
 
-    public static void incrementDurability(ItemStack item, int amount) {
-        ItemMeta meta = item.getItemMeta();
-
-        boolean hasCustomDurability = RSVItem.hasCustomDurability(item);
-        boolean hasMaxCustomDurability = RSVItem.hasMaxCustomDurability(item);
-
-        int rsvDurability = RSVItem.getCustomDurability(item);
-        int rsvMaxDurability = RSVItem.getMaxCustomDurability(item);
-
-        int maxMcDurability = item.getType().getMaxDurability();
-        int mcDurability = maxMcDurability - ((Damageable) meta).getDamage();
-    }
-
     public static void spawnEndermanAlly(Player owner, Location loc) {
         internals.spawnEndermanAlly(owner, loc);
+    }
+
+    public static void spawnFireDragon(Location loc, RealisticSurvivalPlugin plugin) {
+        internals.spawnFireDragon(loc, plugin);
+    }
+
+    public static void spawnFireDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
+        internals.spawnFireDragon(loc, stage, plugin);
+    }
+
+    public static void spawnFireDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+        internals.spawnFireDragon(loc, variant, plugin);
+    }
+
+    public static void spawnFireDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+        internals.spawnFireDragon(loc, variant, stage, plugin);
+    }
+
+    public static void spawnIceDragon(Location loc, RealisticSurvivalPlugin plugin) {
+        internals.spawnIceDragon(loc, plugin);
+    }
+
+    public static void spawnIceDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
+        internals.spawnIceDragon(loc, stage, plugin);
+    }
+
+    public static void spawnIceDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+        internals.spawnIceDragon(loc, variant, plugin);
+    }
+
+    public static void spawnIceDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+        internals.spawnIceDragon(loc, variant, stage, plugin);
+    }
+
+    public static void spawnLightningDragon(Location loc, RealisticSurvivalPlugin plugin) {
+        internals.spawnLightningDragon(loc, plugin);
+    }
+
+    public static void spawnLightningDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
+        internals.spawnLightningDragon(loc, stage, plugin);
+    }
+
+    public static void spawnLightningDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+        internals.spawnLightningDragon(loc, variant, plugin);
+    }
+
+    public static void spawnLightningDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+        internals.spawnLightningDragon(loc, variant, stage, plugin);
+    }
+
+    public static void spawnSeaSerpent(Location loc, RealisticSurvivalPlugin plugin) {
+        internals.spawnSeaSerpent(loc, plugin);
+    }
+
+    public static void spawnSeaSerpent(Location loc, SeaSerpentVariant variant, RealisticSurvivalPlugin plugin) {
+        internals.spawnSeaSerpent(loc, variant, plugin);
+    }
+
+    public static void spawnSiren(Location loc, RealisticSurvivalPlugin plugin) {
+        internals.spawnSiren(loc, plugin);
+    }
+
+    public static Tool getBestTool(Material mat) {
+        return RealisticSurvivalPlugin.toolHandler.getBestToolType(mat);
     }
 
     public static void registerEntities() {

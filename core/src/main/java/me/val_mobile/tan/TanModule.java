@@ -44,6 +44,13 @@ public class TanModule extends RSVModule {
 
     @Override
     public void initialize() {
+        setUserConfig(new UserConfig(plugin));
+        setItemConfig(new ItemConfig(plugin));
+        setRecipeConfig(new RecipesConfig(plugin));
+
+        setModuleItems(new ModuleItems(this, plugin));
+        setModuleRecipes(new ModuleRecipes(this, plugin));
+
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Initialize.Enabled")) {
             String message = ChatColor.translateAlternateColorCodes('&', config.getString("Initialize.Message"));
@@ -52,12 +59,6 @@ public class TanModule extends RSVModule {
             plugin.getLogger().info(message);
         }
 
-        setUserConfig(new UserConfig(plugin));
-        setItemConfig(new ItemConfig(plugin));
-        setRecipeConfig(new RecipesConfig(plugin));
-
-        setModuleItems(new ModuleItems(this, plugin));
-        setModuleRecipes(new ModuleRecipes(this, plugin));
         events = new TanEvents(this, plugin);
 
         getModuleItems().initialize();

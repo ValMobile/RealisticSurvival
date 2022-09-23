@@ -17,10 +17,10 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.iceandfire.DragonBreed;
+import me.val_mobile.iceandfire.DragonVariant;
 import me.val_mobile.iceandfire.IceFireModule;
-import me.val_mobile.iceandfire.InfernoTask;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.spartanandfire.BurnTask;
 import net.minecraft.server.v1_16_R1.EntityTypes;
 import net.minecraft.server.v1_16_R1.World;
 import org.bukkit.Location;
@@ -35,25 +35,25 @@ public class FireDragon extends Dragon {
     private final FileConfiguration config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
 
     public FireDragon(Location loc, RealisticSurvivalPlugin plugin) {
-        super(loc, FIRE, plugin);
+        super(loc, FIRE);
 
         this.plugin = plugin;
     }
 
     public FireDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-        super(loc, FIRE, stage, plugin);
+        super(loc, FIRE, stage);
 
         this.plugin = plugin;
     }
 
-    public FireDragon(Location loc, DragonBreed.Variant variant, RealisticSurvivalPlugin plugin) {
-        super(loc, FIRE, variant, plugin);
+    public FireDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+        super(loc, FIRE, variant);
 
         this.plugin = plugin;
     }
 
-    public FireDragon(Location loc, DragonBreed.Variant variant, int stage, RealisticSurvivalPlugin plugin) {
-        super(loc, FIRE, variant, stage, plugin);
+    public FireDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+        super(loc, FIRE, variant, stage);
 
         this.plugin = plugin;
     }
@@ -72,7 +72,9 @@ public class FireDragon extends Dragon {
     @Override
     public void performSpecialAbility(LivingEntity entity) {
         double stageMultiplier = config.getDouble("Dragons.FireDragon.InfernoAbility.StageMultiplier.Stage" + getStage());
-        new InfernoTask(entity, (int) (config.getInt("Dragons.FireDragon.InfernoAbility.FireTicks") * stageMultiplier), plugin).start();
+        if (!BurnTask.hasTask(entity.getUniqueId())) {
+            new BurnTask(plugin, entity, (int) (config.getInt("Dragons.FireDragon.InfernoAbility.FireTicks") * stageMultiplier), config.getInt("Dragons.FireDragon.InfernoAbility.TickSpeed")).start();
+        }
     }
 
     @Override

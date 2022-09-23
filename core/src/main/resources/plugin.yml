@@ -1,9 +1,9 @@
 main: me.val_mobile.realisticsurvival.RealisticSurvivalPlugin
-name: ${project.name}
-version: ${project.version}
+name: RealisticSurvival
+version: 1.2.3
 author: Val_Mobile
-description: ${project.description}
-website: ${project.url}
+description: A Spigot plugin that aims to increase the difficulty of normal vanilla Minecraft
+website: https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795
 api-version: 1.16
 softdepend: [RealisticSeasons]
 
@@ -15,6 +15,14 @@ commands:
     permission: realisticsurvival.command.*
 
 permissions:
+  realisticsurvival.iceandfire.resistance.sirenvisual:
+    description: Prevents the player's screen from changing due to sirens
+    default: not op
+  realisticsurvival.iceandfire.resistance.*:
+    description: Wildcard permission
+    default: not op
+    children:
+      realisticsurvival.iceandfire.resistance.sirenvisual: true
   realisticsurvival.toughasnails.resistance.cold:
     description: Prevents the player from getting cold
     default: not op
@@ -88,6 +96,9 @@ permissions:
   realisticsurvival.command.temperature:
     description: Allows users to change the temperature of other players
     default: op
+  realisticsurvival.command.resetitem:
+    description: Allows users to reset their item to use in recipes
+    default: not op
   realisticsurvival.command.help:
     description: Allows users to access the help command
     default: not op
@@ -104,5 +115,6 @@ permissions:
       realisticsurvival.command.reload: true
       realisticsurvival.command.thirst: true
       realisticsurvival.command.temperature: true
+      realisticsurvival.command.resetitem: true
       realisticsurvival.command.help: true
       realisticsurvival.command.version: true

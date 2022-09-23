@@ -1,6 +1,6 @@
 #################################################################################################################################
 #																																#
-#	Realistic Survival Plugin	MC 1.17 - 1.19																			        #
+#	Realistic Survival Plugin	MC 1.16 - 1.19																			        #
 #	Version 1.2.3	            Made by: Val_Mobile											                                    #
 #																																#
 #################################################################################################################################
@@ -26,6 +26,7 @@ Help:
   - "&6/realisticsurvival &fspawnmob mob x y z &b*&fworld"
   - "&6/realisticsurvival &ftemperature player amount"
   - "&6/realisticsurvival &fthirst player amount"
+  - "&6/realisticsurvival &fresetitem"
   - "&b* &fmeans that argument is optional"
   - "&6/rsv &fcan be used as a shorthand"
 CorrectVersion:
@@ -52,7 +53,7 @@ ResourcePack:
   Enabled: true
   # If you upgrade to newer versions, the URL will need to be manually updated to the newest one,
   # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
-  Url: "https://www.dropbox.com/s/g0eqk0bdw9qjhcv/Realistic%20Survival%20RP%201.2.3.zip?dl=1"
+  Url: "https://www.dropbox.com/s/f4cu6cwpg25tfxs/Realistic%20Survival%20RP%201.2.3%20DEV.zip?dl=1"
 UnlockRecipes: true
 NoTreePunching:
   Enabled: true
@@ -72,18 +73,24 @@ SpartanWeaponry:
     world: true
     world_nether: true
     world_the_end: true
-SpartanAndFire:
+SpartanandFire:
   Enabled: true # Spartan Weaponry and Ice and Fire must be set to true if enabled
   Worlds:
     world: true
     world_nether: true
     world_the_end: true
-IceAndFire:
+IceandFire:
   Enabled: true
   Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
 ToughAsNails:
   Enabled: true
   Worlds:
+    world: true
+    world_nether: true
+    world_the_end: true
 
 #######################################
 #          Miscellaneous              #

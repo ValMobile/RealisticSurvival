@@ -17,7 +17,7 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.iceandfire.DragonBreed;
+import me.val_mobile.iceandfire.DragonVariant;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.spartanandfire.FreezeTask;
@@ -35,25 +35,25 @@ public class IceDragon extends Dragon {
     private final FileConfiguration config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
 
     public IceDragon(Location loc, RealisticSurvivalPlugin plugin) {
-        super(loc, ICE, plugin);
+        super(loc, ICE);
 
         this.plugin = plugin;
     }
 
     public IceDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-        super(loc, ICE, stage, plugin);
+        super(loc, ICE, stage);
 
         this.plugin = plugin;
     }
 
-    public IceDragon(Location loc, DragonBreed.Variant variant, RealisticSurvivalPlugin plugin) {
-        super(loc, ICE, variant, plugin);
+    public IceDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+        super(loc, ICE, variant);
 
         this.plugin = plugin;
     }
 
-    public IceDragon(Location loc, DragonBreed.Variant variant, int stage, RealisticSurvivalPlugin plugin) {
-        super(loc, ICE, variant, stage, plugin);
+    public IceDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+        super(loc, ICE, variant, stage);
 
         this.plugin = plugin;
     }
@@ -67,6 +67,7 @@ public class IceDragon extends Dragon {
     public void performMeleeAttack(LivingEntity entity) {
         double stageMultiplier = config.getDouble("Dragons.IceDragon.MeleeAttack.StageMultiplier.Stage" + getStage());
         entity.damage(config.getDouble("Dragons.IceDragon.MeleeAttack.BaseDamage") * stageMultiplier, this.getBukkitEntity());
+        new FreezeTask(plugin, getStage(), entity).start();
     }
 
     @Override

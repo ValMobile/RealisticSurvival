@@ -272,10 +272,6 @@ dragonbone_longbow:
   CustomModelData: 83651
   Lore:
     - "LOREPRESET.LONGBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 2490
 dragonbone_crossbow:
@@ -284,10 +280,6 @@ dragonbone_crossbow:
   CustomModelData: 83650
   Lore:
     - "LOREPRESET.CROSSBOW"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 2490
 dragonbone_flamed_rapier:
@@ -574,10 +566,6 @@ dragonbone_flamed_longbow:
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.FLAMED_DRAGONBONE"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 3000
 dragonbone_flamed_crossbow:
@@ -587,10 +575,6 @@ dragonbone_flamed_crossbow:
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.FLAMED_DRAGONBONE"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 3000
 dragonbone_iced_rapier:
@@ -628,10 +612,6 @@ dragonbone_iced_greatsword:
   Lore:
     - "LOREPRESET.GREATSWORD"
     - "LOREPRESET.ICED_DRAGONBONE"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
@@ -880,10 +860,6 @@ dragonbone_iced_longbow:
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.ICED_DRAGONBONE"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 3000
 dragonbone_iced_crossbow:
@@ -893,10 +869,6 @@ dragonbone_iced_crossbow:
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.ICED_DRAGONBONE"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 3000
 dragonbone_lightning_rapier:
@@ -1186,10 +1158,6 @@ dragonbone_lightning_longbow:
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 3000
 dragonbone_lightning_crossbow:
@@ -1199,10 +1167,6 @@ dragonbone_lightning_crossbow:
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 3000
 dragonsteel_fire_rapier:
@@ -1492,10 +1456,6 @@ dragonsteel_fire_longbow:
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000
@@ -1506,10 +1466,6 @@ dragonsteel_fire_crossbow:
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000
@@ -1800,10 +1756,6 @@ dragonsteel_ice_longbow:
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.ICE_DRAGONSTEEL"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000
@@ -1814,10 +1766,6 @@ dragonsteel_ice_crossbow:
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.ICE_DRAGONSTEEL"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000
@@ -2108,10 +2056,6 @@ dragonsteel_lightning_longbow:
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000
@@ -2122,10 +2066,6 @@ dragonsteel_lightning_crossbow:
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000

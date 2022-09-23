@@ -975,15 +975,21 @@ CharacterOverrides:
   Temperature23: ''                           # Default Unicode Value: \uE782
   Temperature24: ''                           # Default Unicode Value: \uE782
   Temperature25: ''                           # Default Unicode Value: \uE782
-  FreezingView: ''                             # Default Unicode Value:
-  IceVignette1: ''                             # Default Unicode Value: \uE831
-  IceVignette2: ''                             # Default Unicode Value: \uE832
-  IceVignette3: ''                             # Default Unicode Value: \uE833
-  IceVignette4: ''                             # Default Unicode Value: \uE834
-  IceVignette5: ''                             # Default Unicode Value: \uE835
-  FireVignette1: ''                            # Default Unicode Value: \uE821
-  FireVignette2: ''                            # Default Unicode Value: \uE822
-  FireVignette3: ''                            # Default Unicode Value: \uE823
-  FireVignette4: ''                            # Default Unicode Value: \uE824
-  FireVignette5: ''                            # Default Unicode Value: \uE825
-  BurningView: ''                              # Default Unicode Value: \uE787 (ascent: 100, height: 200) and \uE788 (ascent: 200, height: 400)
+  FreezingView: ''                             # Default Unicode Value: \uE788
+  IceVignette1: ''                           # Default Unicode Value: \uE831
+  IceVignette2: ''                           # Default Unicode Value: \uE832
+  IceVignette3: ''                            # Default Unicode Value: \uE833
+  IceVignette4: ''                            # Default Unicode Value: \uE834
+  IceVignette5: ''                            # Default Unicode Value: \uE835
+  FireVignette1: ''                           # Default Unicode Value: \uE821
+  FireVignette2: ''                           # Default Unicode Value: \uE822
+  FireVignette3: ''                           # Default Unicode Value: \uE823
+  FireVignette4: ''                           # Default Unicode Value: \uE824
+  FireVignette5: ''                           # Default Unicode Value: \uE825
+  BurningView: ''                              # Default Unicode Value: \uE787
+  DehydratedView: ' '                           # Default Unicode Value:
+  ThirstVignette1: ' '                          # Default Unicode Value:
+  ThirstVignette2: ' '                          # Default Unicode Value:
+  ThirstVignette3: ' '                          # Default Unicode Value:
+  ThirstVignette4: ' '                          # Default Unicode Value:
+  ThirstVignette5: ' '                          # Default Unicode Value:

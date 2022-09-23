@@ -62,8 +62,10 @@ public class BaubleInventory extends GUI {
         Collection<ItemStack> baubles = getBaubles().values();
 
         for (ItemStack bauble : baubles) {
-            if (RSVItem.getNameFromItem(bauble).equals(name)) {
-                return true;
+            if (RSVItem.isRSVItem(bauble)) {
+                if (RSVItem.getNameFromItem(bauble).equals(name)) {
+                    return true;
+                }
             }
         }
         return false;

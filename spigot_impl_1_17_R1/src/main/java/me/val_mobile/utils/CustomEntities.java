@@ -26,11 +26,8 @@ import net.minecraft.util.datafix.fixes.References;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
-import net.minecraft.world.entity.monster.ElderGuardian;
-import net.minecraft.world.entity.monster.Guardian;
-import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Guardian;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -39,12 +36,13 @@ import java.util.Map;
 
 public enum CustomEntities {
 
-    ENDERMAN_ALLY("enderman_ally", org.bukkit.entity.EntityType.ENDERMAN.getTypeId(), EntityType.ENDERMAN, Enderman.class, EndermanAlly.class),
-    FIRE_DRAGON("fire_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EnderDragon.class, FireDragon.class),
-    ICE_DRAGON("ice_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EnderDragon.class, IceDragon.class),
-    LIGHTNING_DRAGON("lightning_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EnderDragon.class, LightningDragon.class),
-    SEA_SERPENT("sea_serpent", org.bukkit.entity.EntityType.ELDER_GUARDIAN.getTypeId(), EntityType.ELDER_GUARDIAN, ElderGuardian.class, SeaSerpent.class),
-    SIREN("siren", org.bukkit.entity.EntityType.GUARDIAN.getTypeId(), EntityType.GUARDIAN, Guardian.class, Siren.class);
+//    ENDERMAN_ALLY("enderman_ally", org.bukkit.entity.EntityType.ENDERMAN.getTypeId(), EntityType.ENDERMAN, Enderman.class, EndermanAlly.class),
+//    FIRE_DRAGON("fire_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EnderDragon.class, FireDragon.class),
+//    ICE_DRAGON("ice_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EnderDragon.class, IceDragon.class),
+//    LIGHTNING_DRAGON("lightning_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EnderDragon.class, LightningDragon.class),
+//    SEA_SERPENT("sea_serpent", org.bukkit.entity.EntityType.ELDER_GUARDIAN.getTypeId(), EntityType.ELDER_GUARDIAN, ElderGuardian.class, SeaSerpent.class),
+//    SIREN("siren", org.bukkit.entity.EntityType.GUARDIAN.getTypeId(), EntityType.GUARDIAN, Guardian.class, Siren.class);
+TEST("test", org.bukkit.entity.EntityType.GUARDIAN.getTypeId(), EntityType.GUARDIAN, net.minecraft.world.entity.monster.Guardian.class, Guardian.class);
 
     public static List<Entity> customEntities = new ArrayList<>();
 
@@ -68,12 +66,12 @@ public enum CustomEntities {
     public static void registerEntities() {
         Map<String, Type<?>> types = (Map<String, Type<?>>) DataFixers.getDataFixer().getSchema(DataFixUtils.makeKey(SharedConstants.getCurrentVersion().getWorldVersion())).findChoiceType(References.ENTITY).types();
 //        unfreezeRegistry();
-        registerEntity("fire_dragon", FireDragon::new, types);
-        registerEntity("ice_dragon", IceDragon::new, types);
-        registerEntity("lightning_dragon", LightningDragon::new, types);
-        registerEntity("enderman_ally", EndermanAlly::new, types);
-        registerEntity("sea_serpent", SeaSerpent::new, types);
-        registerEntity("siren", Siren::new, types);
+//        registerEntity("fire_dragon", FireDragon::new, types);
+//        registerEntity("ice_dragon", IceDragon::new, types);
+//        registerEntity("lightning_dragon", LightningDragon::new, types);
+//        registerEntity("enderman_ally", EndermanAlly::new, types);
+//        registerEntity("sea_serpent", SeaSerpent::new, types);
+//        registerEntity("siren", Siren::new, types);
 //        Registry.ENTITY_TYPE.freeze();
     }
 

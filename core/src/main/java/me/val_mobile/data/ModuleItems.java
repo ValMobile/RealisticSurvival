@@ -37,7 +37,7 @@ public class ModuleItems {
     public void initialize() {
         FileConfiguration itemConfig = module.getItemConfig().getConfig();
         FileConfiguration userConfig = module.getUserConfig().getConfig();
-        Set<String> keys = itemConfig.getConfigurationSection("").getKeys(false);
+        Set<String> keys = itemConfig.getKeys(false);
         for (String key : keys) {
             if (userConfig.getBoolean("Items." + key + ".Enabled.EnableAllVersions")) {
                 RSVItem item = new RSVItem(module, key, plugin);

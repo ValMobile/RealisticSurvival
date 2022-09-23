@@ -180,7 +180,7 @@ matchbox:
     Amount: 1
   Ingredients:
     - "PAPER|PAPER|PAPER"
-    - "WOODEN_SLABS|WOODEN_SLABS|WOODEN_SLABS"
+    - "Tag.WOODEN_SLABS|Tag.WOODEN_SLABS|Tag.WOODEN_SLABS"
 fire_starter:
   Type: "Shaped"
   Result:

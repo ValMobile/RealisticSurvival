@@ -20,6 +20,7 @@ import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.ToolHandler.Tool;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -232,14 +233,19 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 if (RSVItem.isRSVItem(item)) {
                     if (RSVItem.getModuleNameFromItem(item).equals(NtrModule.NAME)) {
                         if (RSVItem.getNameFromItem(item).contains("mattock")) {
-                            Material material = item.getType();
 
                             Block block = event.getBlock();
                             Material blockMat = block.getType();
 
-//                            if (!block.(item)) {
-                                // TODO: Add mattock code from https://github.com/JEFF-Media-GbR/Spigot-BestTools/blob/a5c333622f727bc5d7839e1faec3c46e6793a1b4/src/main/java/de/jeff_media/BestTools/BestToolsHandler.java#L116
-//                            }
+                            Tool tool = Utils.getBestTool(blockMat);
+
+                            switch (tool) {
+                                case NONE, SHEARS -> {}
+                                default -> {
+                                    String type = item.getType().toString();
+                                    item.setType(Material.valueOf(type.substring(0, type.indexOf("_")) + tool));
+                                }
+                            }
                         }
                     }
                 }

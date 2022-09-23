@@ -14,36 +14,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.iceandfire;
+package me.val_mobile.data;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.entity.Entity;
-import org.bukkit.scheduler.BukkitRunnable;
 
-public class InfernoTask extends BukkitRunnable {
+public class PluginConfig extends RSVConfig {
 
-    private final RealisticSurvivalPlugin plugin;
-    private final Entity entity;
-    private int ticks;
+    public static final String PATH = "config.yml";
+    public static final boolean REPLACE = false;
+    public static final boolean UPDATE = true;
 
-    public InfernoTask(Entity entity, int ticks, RealisticSurvivalPlugin plugin) {
-        this.plugin = plugin;
-        this.entity = entity;
-        this.ticks = ticks;
-    }
-
-    @Override
-    public void run() {
-        if (entity.getFireTicks() < ticks) {
-            entity.setFireTicks(ticks);
-        }
-        ticks--;
-        if (ticks < 0 || entity.isDead()) {
-            cancel();
-        }
-    }
-
-    public void start() {
-        this.runTaskTimer(plugin, 0, 1);
+    public PluginConfig(RealisticSurvivalPlugin plugin) {
+        super(plugin, PATH, REPLACE, UPDATE);
     }
 }

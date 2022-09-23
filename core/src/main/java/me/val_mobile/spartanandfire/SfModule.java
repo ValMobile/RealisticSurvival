@@ -32,7 +32,7 @@ public class SfModule extends RSVModule {
 
     private SfEvents events;
 
-    public static final String NAME = "SpartanAndFire";
+    public static final String NAME = "SpartanandFire";
 
     public SfModule(RealisticSurvivalPlugin plugin) {
         super(NAME, plugin);
@@ -41,6 +41,13 @@ public class SfModule extends RSVModule {
 
     @Override
     public void initialize() {
+        setUserConfig(new UserConfig(plugin));
+        setItemConfig(new ItemConfig(plugin));
+        setRecipeConfig(new RecipesConfig(plugin));
+
+        setModuleItems(new ModuleItems(this, plugin));
+        setModuleRecipes(new ModuleRecipes(this, plugin));
+
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Initialize.Enabled")) {
             String message = ChatColor.translateAlternateColorCodes('&', config.getString("Initialize.Message"));
@@ -49,12 +56,6 @@ public class SfModule extends RSVModule {
             plugin.getLogger().info(message);
         }
 
-        setUserConfig(new UserConfig(plugin));
-        setItemConfig(new ItemConfig(plugin));
-        setRecipeConfig(new RecipesConfig(plugin));
-
-        setModuleItems(new ModuleItems(this, plugin));
-        setModuleRecipes(new ModuleRecipes(this, plugin));
         events = new SfEvents(this, plugin);
 
         getModuleItems().initialize();

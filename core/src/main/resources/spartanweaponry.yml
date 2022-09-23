@@ -79,7 +79,21 @@ Items:
       DamageDurability: 2
   copper_rapier:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 2.75
       AttackSpeed: 2.4
@@ -136,7 +150,6 @@ Items:
     Enabled:
       EnableAllVersions: true
     Attributes:
-      TickTime: 20
       AttackDamage: 3.5
       AttackSpeed: 2.0
     MiningFatigue:
@@ -159,6 +172,20 @@ Items:
   copper_katana:
     Enabled:
       EnableAllVersions: true
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 4.25
       AttackSpeed: 2.0
@@ -242,7 +269,21 @@ Items:
     SweepingDamageMultiplier: 1.0
   copper_greatsword:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 6.25
       AttackSpeed: 1.4
@@ -325,7 +366,21 @@ Items:
     SweepingDamageMultiplier: 0.25
   copper_longsword:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 6.75
       AttackSpeed: 1.4
@@ -389,7 +444,21 @@ Items:
     Reach: 7.0
   copper_spear:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 6.25
       AttackSpeed: 1.4
@@ -453,7 +522,21 @@ Items:
     ChestDamageMultiplier: 2.0
   copper_saber:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 4.25
       AttackSpeed: 1.6
@@ -496,7 +579,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:boomerang_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -520,7 +613,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:boomerang_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -544,7 +647,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:boomerang_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -568,7 +681,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:boomerang_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -582,7 +705,21 @@ Items:
       Velocity: 10.0
   copper_boomerang:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 1.0
       AttackSpeed: 2.0
@@ -592,7 +729,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:boomerang_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -616,7 +763,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:boomerang_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -640,7 +797,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:boomerang_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:boomerang_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -667,7 +834,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:dagger_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -692,7 +869,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:dagger_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -717,7 +904,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:dagger_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -742,7 +939,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:dagger_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -757,7 +964,21 @@ Items:
     BackstabDamageMultiplier: 3.0
   copper_dagger:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 4.0
       AttackSpeed: 2.5
@@ -767,7 +988,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:dagger_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -792,7 +1023,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:dagger_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -817,7 +1058,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:dagger_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:dagger_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -879,7 +1130,21 @@ Items:
     SweepingDamageMultiplier: 0.5
   copper_glaive:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 6.25
       AttackSpeed: 1.0
@@ -963,7 +1228,21 @@ Items:
     ShieldBreachChance: 0.9
   copper_halberd:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 7.25
       AttackSpeed: 1.2
@@ -1042,7 +1321,21 @@ Items:
       Duration: 100
   copper_hammer:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 8.0
       AttackSpeed: 0.8
@@ -1085,7 +1378,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:javelin_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1109,7 +1412,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:javelin_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1133,7 +1446,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:javelin_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1157,7 +1480,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:javelin_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1171,7 +1504,21 @@ Items:
       Velocity: 10.0
   copper_javelin:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 1.2
@@ -1181,7 +1528,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:javelin_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1205,7 +1562,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:javelin_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1229,7 +1596,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:javelin_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:javelin_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1278,7 +1655,21 @@ Items:
     RidingDamageBonus: 2.0
   copper_lance:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 1.0
@@ -1333,7 +1724,21 @@ Items:
     UndeadDamageMultiplier: 1.5
   copper_mace:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 5.25
       AttackSpeed: 1.2
@@ -1401,7 +1806,21 @@ Items:
     Reach: 8.5
   copper_pike:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 5.5
       AttackSpeed: 1.4
@@ -1477,7 +1896,21 @@ Items:
     SweepingDamageMultiplier: 0.5
   copper_quarterstaff:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 5.25
       AttackSpeed: 1.4
@@ -1520,7 +1953,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:tomahawk_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1544,7 +1987,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:tomahawk_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1568,7 +2021,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:tomahawk_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1592,7 +2055,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:tomahawk_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1606,7 +2079,21 @@ Items:
       Velocity: 10.0
   copper_tomahawk:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 4.25
       AttackSpeed: 0.9
@@ -1616,7 +2103,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:tomahawk_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1640,7 +2137,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:tomahawk_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1664,7 +2171,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:tomahawk_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:tomahawk_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1691,7 +2208,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:throwing_knife_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1715,7 +2242,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:throwing_knife_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1739,7 +2276,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:throwing_knife_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1763,7 +2310,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:throwing_knife_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1777,7 +2334,21 @@ Items:
       Velocity: 10.0
   copper_throwing_knife:
     Enabled:
-      EnableAllVersions: true
+      EnableAllVersions: false
+      Versions:
+        1.16: false
+        1.16.1: false
+        1.16.2: false
+        1.16.3: false
+        1.16.4: false
+        1.16.5: false
+        1.17: true
+        1.17.1: true
+        1.18: true
+        1.18.1: true
+        1.19: true
+        1.19.1: true
+        1.19.2: true
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 2.5
@@ -1787,7 +2358,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:throwing_knife_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1811,7 +2392,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:throwing_knife_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:
@@ -1835,7 +2426,17 @@ Items:
       Return: true
       ThrownSound:
         Enabled: true
-        Sound: "ENTITY_WITCH_THROW"
+        Sound: "realisticsurvival:throwing_knife_throw"
+        Volume: 1.0
+        Pitch: 1.0
+      HitMobSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_mob"
+        Volume: 1.0
+        Pitch: 1.0
+      HitGroundSound:
+        Enabled: true
+        Sound: "realisticsurvival:throwing_knife_hit_ground"
         Volume: 1.0
         Pitch: 1.0
       ReturnSound:

@@ -1315,10 +1315,6 @@ dragonbone_bow:
   Material: "BOW"
   DisplayName: "&fDragonbone Bow"
   CustomModelData: 83650
-  ItemFlags:
-    - "HIDE_ATTRIBUTES"
-  Attributes:
-    UseModuleConfig: true
   NBTTags:
     rsvdurability: 584
     rsvmaxdurability: 584

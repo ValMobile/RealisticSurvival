@@ -30,7 +30,8 @@ public class IceFireModule extends me.val_mobile.data.RSVModule {
     private final RealisticSurvivalPlugin plugin;
 
     public static final String NAME = "IceandFire";
-    private DragonGearEvents dragonGear;
+    private IceFireEvents events;
+
 
     public IceFireModule(RealisticSurvivalPlugin plugin) {
         super(NAME, plugin);
@@ -39,25 +40,25 @@ public class IceFireModule extends me.val_mobile.data.RSVModule {
 
     @Override
     public void initialize() {
-        FileConfiguration config = getUserConfig().getConfig();
-        if (config.getBoolean("Shutdown.Enabled")) {
-            String message = ChatColor.translateAlternateColorCodes('&', config.getString("Shutdown.Message"));
-            message = message.replaceAll("%NAME%", NAME);
-
-            plugin.getLogger().info(message);
-        }
-
         setUserConfig(new UserConfig(plugin));
         setItemConfig(new ItemConfig(plugin));
         setRecipeConfig(new RecipesConfig(plugin));
         setModuleItems(new ModuleItems(this, plugin));
         setModuleRecipes(new ModuleRecipes(this, plugin));
 
-        dragonGear = new DragonGearEvents(this, plugin);
+        FileConfiguration config = getUserConfig().getConfig();
+        if (config.getBoolean("Initialize.Enabled")) {
+            String message = ChatColor.translateAlternateColorCodes('&', config.getString("Initialize.Message"));
+            message = message.replaceAll("%NAME%", NAME);
+
+            plugin.getLogger().info(message);
+        }
+
+        events = new IceFireEvents(this, plugin);
 
         getModuleItems().initialize();
         getModuleRecipes().initialize();
-        dragonGear.initialize();
+        events.initialize();
     }
 
     @Override
@@ -71,7 +72,7 @@ public class IceFireModule extends me.val_mobile.data.RSVModule {
         }
     }
 
-    public DragonGearEvents getDragonGearEvent() {
-        return dragonGear;
+    public IceFireEvents getDragonGearEvent() {
+        return events;
     }
 }

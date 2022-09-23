@@ -31,6 +31,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 import java.util.Collection;
 
@@ -38,7 +39,7 @@ import java.util.Collection;
  * Commands is a class that allows users to
  * access the plugin's commands in-game
  * @author Val_Mobile
- * @version 1.2
+ * @version 1.2.3
  * @since 1.0
  */
 public class Commands implements CommandExecutor {
@@ -277,47 +278,31 @@ public class Commands implements CommandExecutor {
                                             World world = Bukkit.getWorld(args[5]);
                                             Location loc = new Location(world, x, y, z);
                                             switch (args[1].toLowerCase()) {
-                                                case "fire_dragon" -> {
-
-                                                }
-                                                case "ice_dragon" -> {
-                                                }
-                                                case "lightning_dragon" -> {
-                                                }
-                                                case "sea_serpent" -> {
-                                                    // w
-                                                }
+                                                case "fire_dragon" -> Utils.spawnFireDragon(loc, plugin);
+                                                case "ice_dragon" -> Utils.spawnIceDragon(loc, plugin);
+                                                case "lightning_dragon" -> Utils.spawnLightningDragon(loc, plugin);
+                                                case "sea_serpent" -> Utils.spawnSeaSerpent(loc, plugin);
+                                                case "siren" -> Utils.spawnSiren(loc, plugin);
                                                 default -> {
                                                 }
                                             }
                                         }
                                         return true;
                                     }
+
                                     if (isPlayer) {
                                         Player player = (Player) sender;
                                         World world = player.getWorld();
                                         Location loc = new Location(world, x, y, z);
 
                                         switch (args[5].toLowerCase()) {
-                                            case "fire_dragon": {
-                                                return true;
-                                            }
-                                            case "ice_dragon": {
-                                                return true;
-                                            }
-                                            case "lightning_dragon": {
-                                                return true;
-                                            }
-                                            case "sea_serpent": {
-                                                // wip
-                                                return true;
-                                            }
-                                            default: {
-                                                return true;
-                                            }
+                                            case "fire_dragon" -> Utils.spawnFireDragon(loc, plugin);
+                                            case "ice_dragon" -> Utils.spawnIceDragon(loc, plugin);
+                                            case "lightning_dragon" -> Utils.spawnLightningDragon(loc, plugin);
+                                            case "sea_serpent" -> Utils.spawnSeaSerpent(loc, plugin);
+                                            case "siren" -> Utils.spawnSiren(loc, plugin);
                                         }
                                     }
-                                    return true;
                                 }
                                 return true;
                             }
@@ -415,6 +400,26 @@ public class Commands implements CommandExecutor {
                         // send the user a message showing how they misspelled the specified player's name
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("MisspelledPlayer")));
                         return true;
+                    }
+                    return true;
+                }
+                case "resetitem" -> {
+                    // check if the player has the permission to change temperature
+
+                    if (!(sender.hasPermission("realisticsurvival.command.resetitem") || sender.hasPermission("realisticsurvival.command.*"))) {
+                        // send the player a message explaining that he/she does not have permission to execute the command
+                        sendNoPermissionMessage(sender);
+                        return true;
+                    }
+                    if (sender instanceof Player) {
+                        Player player = ((Player) sender).getPlayer();
+                        PlayerInventory inv = player.getInventory();
+                        ItemStack itemMainHand = inv.getItemInMainHand();
+
+                        if (RSVItem.isRSVItem(itemMainHand)) {
+                            inv.setItemInMainHand(RSVItem.convertItemStackToRSVItem(itemMainHand, plugin));
+                            player.updateInventory();
+                        }
                     }
                     return true;
                 }

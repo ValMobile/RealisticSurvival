@@ -69,7 +69,7 @@ public class RSVEnchants {
         if (registered) {
             String raw = plugin.getConfig().getString("RegisteredEnchant");
 
-            raw = raw.replaceAll("%enchant%", ench.getKey().getKey());
+            raw = raw.replaceAll("%ENCHANT%", ench.getKey().getKey());
             plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', raw));
         }
     }

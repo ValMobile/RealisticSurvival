@@ -16,6 +16,9 @@
  */
 package me.val_mobile.utils;
 
+import me.val_mobile.iceandfire.DragonVariant;
+import me.val_mobile.iceandfire.SeaSerpentVariant;
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
@@ -23,7 +26,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityCategory;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.SmithingRecipe;
@@ -31,9 +33,83 @@ import org.bukkit.potion.PotionEffectType;
 
 public class v1_19_R2 extends InternalsProvider {
 
-    @Override
     public void spawnEndermanAlly(Player owner, Location loc) {
-        new EndermanAlly(owner, loc);
+//        new EndermanAlly(owner, loc);
+    }
+
+    @Override
+    public void spawnFireDragon(Location loc, RealisticSurvivalPlugin plugin) {
+//        new FireDragon(loc, plugin);
+    }
+
+    @Override
+    public void spawnFireDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
+//        new FireDragon(loc, stage, plugin);
+    }
+
+    @Override
+    public void spawnFireDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+//        new FireDragon(loc, variant, plugin);
+    }
+
+    @Override
+    public void spawnFireDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+//        new FireDragon(loc, variant, stage, plugin);
+    }
+
+    @Override
+    public void spawnIceDragon(Location loc, RealisticSurvivalPlugin plugin) {
+//        new IceDragon(loc, plugin);
+    }
+
+    @Override
+    public void spawnIceDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
+//        new IceDragon(loc, stage, plugin);
+    }
+
+    @Override
+    public void spawnIceDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+//        new IceDragon(loc, variant, plugin);
+    }
+
+    @Override
+    public void spawnIceDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+//        new IceDragon(loc, variant, stage, plugin);
+    }
+
+    @Override
+    public void spawnLightningDragon(Location loc, RealisticSurvivalPlugin plugin) {
+//        new LightningDragon(loc, plugin);
+    }
+
+    @Override
+    public void spawnLightningDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
+//        new LightningDragon(loc, stage, plugin);
+    }
+
+    @Override
+    public void spawnLightningDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+//        new LightningDragon(loc, variant, plugin);
+    }
+
+    @Override
+    public void spawnLightningDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+//        new LightningDragon(loc, variant, plugin);
+    }
+
+    @Override
+    public void spawnSeaSerpent(Location loc, RealisticSurvivalPlugin plugin) {
+//        new SeaSerpent(loc, plugin);
+    }
+
+    @Override
+    public void spawnSeaSerpent(Location loc, SeaSerpentVariant variant, RealisticSurvivalPlugin plugin) {
+//        new SeaSerpent(loc, variant, plugin);
+    }
+
+    @Override
+    public void spawnSiren(Location loc, RealisticSurvivalPlugin plugin) {
+//        new Siren(loc, plugin);
     }
 
     @Override

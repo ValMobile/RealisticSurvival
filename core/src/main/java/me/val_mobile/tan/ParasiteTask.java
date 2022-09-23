@@ -67,7 +67,7 @@ public class ParasiteTask extends BukkitRunnable {
         Player player = this.player.getPlayer();
         GameMode mode = player.getGameMode(); // get the gamemode
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && allowedWorlds.contains(player.getWorld().toString())) {
+        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && allowedWorlds.contains(player.getWorld().getName())) {
             if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
                 if (config.getBoolean("Thirst.Dehydration.Damage.Enabled")) {
                     if (player.getHealth() >= config.getDouble("Thirst.Dehydration.Damage.Cutoff")) {

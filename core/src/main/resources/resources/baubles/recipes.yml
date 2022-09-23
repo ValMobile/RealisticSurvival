@@ -271,7 +271,7 @@ wrath_pendant:
   Ingredients:
     - "|BONE"
     - "BONE|sin_pendant|BONE"
-    - "|SKULL"
+    - "|SKELETON_SKULL"
 pride_pendant:
   Type: "Shapeless"
   Result:
@@ -307,10 +307,10 @@ sin_pendant:
     - "spectral_silt|STRING|spectral_silt"
     - "spectral_silt|silver_ingot|spectral_silt"
     - "spectral_silt|spectral_silt|spectral_silt"
-phytoprotostasia_amulet:
+phytoprostasia_amulet:
   Type: "Shaped"
   Result:
-    Item: "phytoprotostasia_amulet"
+    Item: "phytoprostasia_amulet"
     Amount: 1
   Ingredients:
     - "STRING|STRING|STRING"
@@ -409,9 +409,9 @@ stone_sea:
     Item: "stone_sea"
     Amount: 1
   Ingredients:
-    - "FISH|glowing_ingot|FISH"
+    - "Tag.ITEMS_FISHES|glowing_ingot|Tag.ITEMS_FISHES"
     - "glowing_ingot|PRISMARINE_CRYSTALS|glowing_ingot"
-    - "FISH|glowing_ingot|FISH"
+    - "Tag.ITEMS_FISHES|glowing_ingot|Tag.ITEMS_FISHES"
 polarized_stone:
   Type: "Shaped"
   Result:
@@ -493,7 +493,7 @@ lucky_horseshoe:
     - "GOLD_INGOT|spectral_silt|GOLD_INGOT"
     - "spectral_silt|GOLD_INGOT|spectral_silt"
 spectral_silt_broken_heart:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -501,7 +501,7 @@ spectral_silt_broken_heart:
     - "broken_heart"
     - "disintegration_tablet"
 spectral_silt_balloon:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -509,7 +509,7 @@ spectral_silt_balloon:
     - "balloon"
     - "disintegration_tablet"
 spectral_silt_cobalt_shield:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -517,7 +517,7 @@ spectral_silt_cobalt_shield:
     - "cobalt_shield"
     - "disintegration_tablet"
 spectral_silt_obsidian_shield:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -525,7 +525,7 @@ spectral_silt_obsidian_shield:
     - "obsidian_shield"
     - "disintegration_tablet"
 spectral_silt_magic_mirror:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -533,7 +533,7 @@ spectral_silt_magic_mirror:
     - "magic_mirror"
     - "disintegration_tablet"
 spectral_silt_wormhole_mirror:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -541,7 +541,7 @@ spectral_silt_wormhole_mirror:
     - "wormhole_mirror"
     - "disintegration_tablet"
 spectral_silt_lucky_horseshoe:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -549,7 +549,7 @@ spectral_silt_lucky_horseshoe:
     - "lucky_horseshoe"
     - "disintegration_tablet"
 spectral_silt_sunglasses:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -557,7 +557,7 @@ spectral_silt_sunglasses:
     - "sunglasses"
     - "disintegration_tablet"
 spectral_silt_cross_necklace:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -565,7 +565,7 @@ spectral_silt_cross_necklace:
     - "cross_necklace"
     - "disintegration_tablet"
 spectral_silt_sin_pendant:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -573,7 +573,7 @@ spectral_silt_sin_pendant:
     - "sin_pendant"
     - "disintegration_tablet"
 spectral_silt_flare_gun:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "flare_gun"
     Amount: 1
@@ -581,7 +581,7 @@ spectral_silt_flare_gun:
     - "broken_heart"
     - "disintegration_tablet"
 spectral_silt_cracked_black_dragonscale:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -589,7 +589,7 @@ spectral_silt_cracked_black_dragonscale:
     - "cracked_black_dragonscale"
     - "disintegration_tablet"
 spectral_silt_diamond_block:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -597,7 +597,7 @@ spectral_silt_diamond_block:
     - "DIAMOND_BLOCK"
     - "disintegration_tablet"
 spectral_silt_emerald_block:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -605,7 +605,7 @@ spectral_silt_emerald_block:
     - "EMERALD_BLOCK"
     - "disintegration_tablet"
 spectral_silt_phantom_prism:
-  Type: "Shapeless"
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1

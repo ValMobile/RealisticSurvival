@@ -76,7 +76,7 @@ public class ThirstCalculateTask extends BukkitRunnable {
         GameMode mode = player.getGameMode(); // get the gamemode
         double currentLvl = thirstLvl;
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE || !player.isOnline() && allowedWorlds.contains(player.getWorld().toString())) {
+        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE || !player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
             if (isJumping && player.isSprinting()) {
                 exhaustionLvl = parasitesActive ? config.getDouble("Thirst.ExhaustionLevelIncrease.JumpingWhileSprinting") * peMultiplier : config.getDouble("Thirst.ExhaustionLevelIncrease.JumpingWhileSprinting");
             }

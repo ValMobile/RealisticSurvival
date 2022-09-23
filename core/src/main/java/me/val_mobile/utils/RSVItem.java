@@ -55,6 +55,7 @@ public class RSVItem extends ItemStack {
 
         Utils util = RealisticSurvivalPlugin.getUtil();
         this.name = name;
+        this.module = module.getName();
 
         String materialPath = name + ".Material";
         String displayNamePath = name + ".DisplayName";
@@ -73,8 +74,6 @@ public class RSVItem extends ItemStack {
         ConfigurationSection enchantments = config.getConfigurationSection(enchantmentsPath);
         ConfigurationSection attributes = config.getConfigurationSection(attributesPath);
         ConfigurationSection nbtTags = config.getConfigurationSection(nbtTagsPath);
-
-        this.module = module.getName();
 
         ItemMeta meta = this.getItemMeta();
         List<String> newLore = new ArrayList<>();
@@ -129,7 +128,7 @@ public class RSVItem extends ItemStack {
         if (attributes != null) {
             boolean useModuleConfig = config.getBoolean(attributesPath + ".UseModuleConfig");
             FileConfiguration atrConfig = useModuleConfig ? module.getUserConfig().getConfig() : config;
-            attributesPath = useModuleConfig ? "Items." + attributesPath : attributesPath;
+            attributesPath = useModuleConfig ? "Items." + name + ".Attributes" : attributesPath;
 
             LorePresets.addGearLore(newLore, material);
 
@@ -137,15 +136,14 @@ public class RSVItem extends ItemStack {
             keys.remove("UseModuleConfig");
 
             for (String s : keys) {
-                Attribute atr = Attribute.valueOf(s);
-                String atrName = Utils.toLowercaseAttributeName(s);
+                Attribute atr = Utils.translateInformalAttributeName(s);
+                String atrName = Utils.toLowercaseAttributeName(atr);
                 double displayValue = atrConfig.getDouble(attributesPath + "." + s);
                 double correctValue = Utils.getCorrectAttributeValue(atr, displayValue);
-                AttributeModifier.Operation op = AttributeModifier.Operation.ADD_NUMBER;
                 EquipmentSlot slot = Utils.getCorrectEquipmentSlot(atr, material);
 
-                AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, op, slot);
-                if (!(atr == null || atrName == null)) {
+                if (!(atrName == null)) {
+                    AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, AttributeModifier.Operation.ADD_NUMBER, slot);
                     LorePresets.addGearStats(newLore, atr, displayValue);
                     meta.addAttributeModifier(atr, atrMod);
                 }
@@ -154,6 +152,8 @@ public class RSVItem extends ItemStack {
 
         meta.setLore(newLore);
         meta.setCustomModelData(customModelData);
+
+        this.setItemMeta(meta);
 
         if (nbtTags != null) {
             for (String s : nbtTags.getKeys(false)) {
@@ -172,7 +172,7 @@ public class RSVItem extends ItemStack {
         util.addNbtTag(this, "rsvitem", this.name, PersistentDataType.STRING);
         util.addNbtTag(this, "rsvmodule", this.module, PersistentDataType.STRING);
 
-        this.setItemMeta(meta);
+        itemMap.put(name, this);
     }
 
     public RSVItem resize(int amount) {
@@ -181,7 +181,14 @@ public class RSVItem extends ItemStack {
     }
 
     public static boolean isRSVItem(ItemStack item) {
-        return RealisticSurvivalPlugin.getUtil().hasNbtTag(item, "rsvitem");
+        if (Utils.isItemReal(item)) {
+            return RealisticSurvivalPlugin.getUtil().hasNbtTag(item, "rsvitem");
+        }
+        return false;
+    }
+
+    public static boolean isRSVItem(String name) {
+        return itemMap.containsKey(name);
     }
 
     public static RSVItem convertItemStackToRSVItem(ItemStack item, RealisticSurvivalPlugin plugin) {

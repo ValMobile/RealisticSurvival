@@ -55,7 +55,7 @@ import java.util.*;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2
+ * @version 1.2.3
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -322,9 +322,9 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
                 double damage = event.getDamage();
 
-                boolean cobaltShield = baubleInv.hasBauble("cobalt_shield") || offHandName.equals("cobalt_shield") ? true : false;
-                boolean obsShield = baubleInv.hasBauble("obsidian_shield") || offHandName.equals("obsidian_shield") ? true : false;
-                boolean ankhShield = baubleInv.hasBauble("ankh_shield") || offHandName.equals("ankh_shield") ? true : false;
+                boolean cobaltShield = baubleInv.hasBauble("cobalt_shield") || offHandName.equals("cobalt_shield");
+                boolean obsShield = baubleInv.hasBauble("obsidian_shield") || offHandName.equals("obsidian_shield");
+                boolean ankhShield = baubleInv.hasBauble("ankh_shield") || offHandName.equals("ankh_shield");
 
                 if (cobaltShield || obsShield || ankhShield) {
                     RealisticSurvivalPlugin.getUtil().setZeroKb(player);
@@ -375,7 +375,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
                     // if the damage is caused by a cactus or berry bush
                     case CONTACT -> {
-                        // if the player has a phytoprotostasia amulet
+                        // if the player has a phytoprostasia amulet
                         if (baubleInv.hasBauble(("phytoprostasia_amulet"))) {
                             event.setCancelled(true);
                         }
@@ -494,14 +494,16 @@ public class BaubleEvents extends ModuleEvents implements Listener {
         if (shouldEventBeRan(entity)) {
             FileConfiguration config = module.getUserConfig().getConfig();
 
-            Collection<String> drops = Arrays.asList("forbidden_fruit", "vitamins", "ring_overclocking", "shulker_heart", "bezoar", "ender_dragonscale");
+            Collection<String> drops = List.of("forbidden_fruit", "vitamins", "ring_overclocking", "shulker_heart", "bezoar", "ender_dragonscale");
             for (String drop : drops) {
                 ConfigurationSection section = config.getConfigurationSection("Items." + drop + ".MobDrops");
                 Set<String> keys = section.getKeys(false);
 
                 for (String key : keys) {
                     if (entity.getType() == EntityType.valueOf(key)) {
-                        Utils.harvestLooting(config.getConfigurationSection("Items." + drop + ".MobDrops." + key), RSVItem.getItem(drop), entity.getKiller().getInventory().getItemInMainHand(), entity.getLocation());
+                        if (entity.getKiller() != null) {
+                            Utils.harvestLooting(config.getConfigurationSection("Items." + drop + ".MobDrops." + key), RSVItem.getItem(drop), entity.getKiller().getInventory().getItemInMainHand(), entity.getLocation());
+                        }
                     }
                 }
             }
@@ -541,8 +543,8 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                     helmetName = RSVItem.getNameFromItem(helmet);
                 }
 
-                boolean ankhShield = baubleInv.hasBauble("ankh_shield") || offHandName.equals("ankh_shield") ? true : false;
-                boolean sunglasses = baubleInv.hasBauble("sunglasses") || helmetName.equals("sunglasses") ? true : false;
+                boolean ankhShield = baubleInv.hasBauble("ankh_shield") || offHandName.equals("ankh_shield");
+                boolean sunglasses = baubleInv.hasBauble("sunglasses") || helmetName.equals("sunglasses");
 
                 // if the new potion effect exists
                 if (newEffect != null) {

@@ -21,7 +21,7 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 
 public class PlayerDataConfig extends RSVConfig {
 
-    public static final String PATH = "resources/tan/playerdata.yml";
+    public static final String PATH = "resources/toughasnails/playerdata.yml";
     public static final boolean REPLACE = false;
     public static final boolean UPDATE = true;
 

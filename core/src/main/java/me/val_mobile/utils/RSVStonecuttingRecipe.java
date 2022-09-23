@@ -29,7 +29,7 @@ import java.util.Objects;
 public class RSVStonecuttingRecipe extends StonecuttingRecipe {
 
     public RSVStonecuttingRecipe(FileConfiguration config, String name, RealisticSurvivalPlugin plugin) {
-        super(new NamespacedKey(plugin, config.getString(name + ".Key")),
+        super(new NamespacedKey(plugin, name),
                 Objects.equals(config.getString(name + ".Result.Item"), config.getString(name + ".Result.Item").toUpperCase())
                         ? new ItemStack(Material.valueOf(config.getString(name + ".Result.Item")), config.getInt(name + ".Result.Amount")) :
                         RSVItem.getItem(config.getString(name + ".Result.Item")).resize(config.getInt(name + ".Result.Amount")),

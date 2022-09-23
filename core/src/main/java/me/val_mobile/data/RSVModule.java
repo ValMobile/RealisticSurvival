@@ -25,10 +25,10 @@ import java.util.*;
 
 public abstract class RSVModule {
 
-    private static HashMap<String, RSVModule> modules = new HashMap<>();
+    private static final HashMap<String, RSVModule> modules = new HashMap<>();
 
-    private boolean isEnabled;
-    private String name;
+    private final boolean isEnabled;
+    private final String name;
 
     private ModuleItems moduleItems;
     private ModuleRecipes moduleRecipes;
@@ -37,10 +37,11 @@ public abstract class RSVModule {
     private RSVConfig itemConfig;
     private RSVConfig recipesConfig;
 
-    private Collection<String> allowedWorlds = new ArrayList<>();
+    private final Collection<String> allowedWorlds = new ArrayList<>();
 
     public RSVModule(String name, RealisticSurvivalPlugin plugin) {
         FileConfiguration config = plugin.getConfig();
+        this.name = name;
         this.isEnabled = config.getBoolean(name + ".Enabled");
 
         if (isEnabled) {
@@ -59,7 +60,6 @@ public abstract class RSVModule {
                     allowedWorlds.add(worldName);
                 }
             }
-            initialize();
         }
         modules.put(name, this);
     }
@@ -72,16 +72,8 @@ public abstract class RSVModule {
         return isEnabled;
     }
 
-    public void setEnabled(boolean status) {
-        isEnabled = status;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Collection<String> getAllowedWorlds() {
