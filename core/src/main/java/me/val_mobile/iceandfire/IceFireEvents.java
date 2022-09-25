@@ -159,8 +159,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                         }
                                     }
                                 }
-                                default -> {
-                                }
+                                default -> {}
                             }
                         }
                     }

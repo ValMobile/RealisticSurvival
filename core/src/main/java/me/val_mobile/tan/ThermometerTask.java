@@ -46,6 +46,7 @@ public class ThermometerTask extends BukkitRunnable {
     private final Collection<String> allowedWorlds;
     private final TemperatureCalculateTask task;
     private double equilibriumTemp;
+    private final Location originalCompassTarget;
 
 
     public ThermometerTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
@@ -55,6 +56,7 @@ public class ThermometerTask extends BukkitRunnable {
         this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
         this.task = TemperatureCalculateTask.getTasks().get(player.getPlayer().getUniqueId());
         tasks.put(player.getPlayer().getUniqueId(), this);
+        this.originalCompassTarget = player.getPlayer().getCompassTarget();
     }
 
     @Override
@@ -62,7 +64,7 @@ public class ThermometerTask extends BukkitRunnable {
         Player player = this.player.getPlayer();
         GameMode mode = player.getGameMode(); // get the gamemode
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE || !player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && isHoldingThermometer()) {
+        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName()) && isHoldingThermometer() && task != null) {
             equilibriumTemp = task.getEquilibriumTemp();
 
             if (equilibriumTemp > MAXIMUM_TEMPERATURE) {
@@ -73,23 +75,20 @@ public class ThermometerTask extends BukkitRunnable {
             }
 
             Location loc = player.getLocation();
-            ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-            CompassMeta meta = (CompassMeta) itemMainHand.getItemMeta();
 
             double rad = Math.PI * (1D - equilibriumTemp/MAXIMUM_TEMPERATURE);
 
             double horizontal = Math.cos(rad) * 1000;
             double vertical = Math.sin(rad) * 1000;
 
-            Vector dir = new Vector(horizontal, 0, vertical).rotateAroundX(Math.toRadians(loc.getYaw()) + Math.PI/2);
-
-            meta.setLodestone(loc.add(dir));
-            itemMainHand.setItemMeta(meta);
+            Vector dir = new Vector(horizontal, 0, vertical).rotateAroundY(Math.toRadians(loc.getYaw()) + Math.PI/2);
+            player.setCompassTarget(loc.add(dir));
         }
         // if the player is in creative or spectator
         else {
             // update static hashmap values and cancel the runnable
             tasks.remove(player.getUniqueId());
+            player.setCompassTarget(originalCompassTarget);
             cancel();
         }
     }
@@ -103,9 +102,7 @@ public class ThermometerTask extends BukkitRunnable {
         ItemStack itemMainHand = player.getPlayer().getInventory().getItemInMainHand();
 
         if (RSVItem.isRSVItem(itemMainHand)) {
-            if (RSVItem.getNameFromItem(itemMainHand).equals("thermometer")) {
-                return true;
-            }
+            return RSVItem.getNameFromItem(itemMainHand).equals("thermometer");
         }
 
         return false;

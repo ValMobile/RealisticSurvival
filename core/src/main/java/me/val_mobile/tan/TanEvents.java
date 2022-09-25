@@ -656,38 +656,44 @@ public class TanEvents extends ModuleEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onCauldronFill(CauldronLevelChangeEvent event) {
-        if (event.getEntity() instanceof Player) {
-            ItemStack item = ((Player) event.getEntity()).getInventory().getItemInMainHand();
+        Entity e = event.getEntity();
+        if (shouldEventBeRan(e)) {
+            if (e instanceof Player) {
+                Player player = (Player) e;
+                ItemStack item = player.getInventory().getItemInMainHand();
 
-            if (RSVItem.isRSVItem(item)) {
-                if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_EMPTY) {
-                    if (RSVItem.getNameFromItem(item).contains("juice_")) {
-                        event.setCancelled(true);
-                    }
-                    if (RSVItem.getNameFromItem(item).equals("canteen_filled")) {
-                        if (RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING).equals("Unpurified Water")) {
-                            int durability = RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdurability", PersistentDataType.INTEGER);
+                if (RSVItem.isRSVItem(item)) {
+                    if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_EMPTY) {
+                        if (RSVItem.getNameFromItem(item).contains("juice_")) {
+                            event.setCancelled(true);
+                        }
+                        if (RSVItem.getNameFromItem(item).equals("canteen_filled")) {
+                            if (RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING).equals("Unpurified Water")) {
+                                int durability = RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdurability", PersistentDataType.INTEGER);
 
-                            if (durability > 0) {
-                                Utils.changeDurability(item, -1);
+                                if (durability > 0) {
+                                    Utils.changeDurability(item, -1);
+                                }
+                                else {
+                                    RSVItem.addNbtTag(item, "rsvitem", "canteen_empty", PersistentDataType.STRING);
+                                    RSVItem.addNbtTag(item, "rsvdrink", "", PersistentDataType.STRING);
+                                    item.setType(Material.GLASS_BOTTLE);
+                                    event.setCancelled(true);
+                                }
                             }
                             else {
-                                RSVItem.addNbtTag(item, "rsvitem", "canteen_empty", PersistentDataType.STRING);
-                                item.setType(Material.GLASS_BOTTLE);
                                 event.setCancelled(true);
                             }
                         }
-                        else {
-                            event.setCancelled(true);
-                        }
                     }
-                }
-                if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_FILL) {
-                    if (RSVItem.getNameFromItem(item).equals("canteen_filled")) {
-                        if (!RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING).equals("Unpurified Water")) {
-                            event.setCancelled(true);
+                    if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_FILL) {
+                        if (RSVItem.getNameFromItem(item).equals("canteen_empty")) {
+                            RSVItem.addNbtTag(item, "rsvitem", "canteen_filled", PersistentDataType.STRING);
+                            RSVItem.addNbtTag(item, "rsvdrink", "Unpurified Water", PersistentDataType.STRING);
+                            item.setType(Material.POTION);
+                            Utils.changeDurability(item, 1);
                         }
                     }
                 }

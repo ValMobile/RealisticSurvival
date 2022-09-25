@@ -161,7 +161,7 @@ public class CharacterValues {
 
         thirst = (thirst < 0) ? 0 : Math.min(thirst, 20);
 
-        String s = "";
+        StringBuilder s = new StringBuilder();
 
         int numHalf;
         int numEmpty;
@@ -177,18 +177,18 @@ public class CharacterValues {
 
 
         for (int i = 0; i < (20 - numHalf - numEmpty * 2) / 2; i++) {
-            s += FULL_THIRST_DROP;
+            s.append(FULL_THIRST_DROP);
         }
 
         if (numHalf == 1) {
-            s = HALF_THIRST_DROP + s;
+            s.insert(0, HALF_THIRST_DROP);
         }
 
         for (int i = 0; i < numEmpty; i++) {
-            s = EMPTY_THIRST_DROP + s;
+            s.insert(0, EMPTY_THIRST_DROP);
         }
 
-        return s;
+        return s.toString();
     }
 
     public char getBurningView() {

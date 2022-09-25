@@ -43,9 +43,9 @@ public class ThirstCalculateTask extends BukkitRunnable {
     private double saturationLvl;
     private int tickTimer;
     private double exhaustionLvl;
+    private DataModule module;
 
     private final int tickSpeed;
-    private final DataModule module;
     private boolean isJumping = false;
     private boolean parasitesActive = false;
     private final double peMultiplier;
@@ -73,10 +73,11 @@ public class ThirstCalculateTask extends BukkitRunnable {
     public void run() {
         Player player = this.player.getPlayer();
         Difficulty difficulty = player.getPlayer().getWorld().getDifficulty();
+        this.module = (DataModule) this.player.getDataModuleFromName(TanModule.NAME);
         GameMode mode = player.getGameMode(); // get the gamemode
         double currentLvl = thirstLvl;
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE || !player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
+        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE || player.isOnline()) && allowedWorlds.contains(player.getWorld().getName())) {
             if (isJumping && player.isSprinting()) {
                 exhaustionLvl = parasitesActive ? config.getDouble("Thirst.ExhaustionLevelIncrease.JumpingWhileSprinting") * peMultiplier : config.getDouble("Thirst.ExhaustionLevelIncrease.JumpingWhileSprinting");
             }
@@ -93,7 +94,12 @@ public class ThirstCalculateTask extends BukkitRunnable {
 
             if (exhaustionLvl >= 4) {
                 exhaustionLvl -= 4;
-                saturationLvl = saturationLvl <= 0 ? 0 : saturationLvl - 1;
+                if (saturationLvl > 0) {
+                    saturationLvl = Math.min(thirstLvl, saturationLvl - 1);
+                }
+                else {
+                    thirstLvl--;
+                }
             }
 
             tickTimer += tickSpeed;
@@ -117,10 +123,14 @@ public class ThirstCalculateTask extends BukkitRunnable {
             module.setThirstExhaustion(exhaustionLvl);
             module.setThirstSaturation(saturationLvl);
             module.setThirst(thirstLvl);
+            module.saveData();
+            RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
         }
         // if the player is in creative or spectator
         else {
             // update static hashmap values and cancel the runnable
+            module.saveData();
+            RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
             tasks.remove(player.getUniqueId());
             cancel();
         }

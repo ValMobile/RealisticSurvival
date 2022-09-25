@@ -63,7 +63,6 @@ public class ReturnWeaponTask extends BukkitRunnable {
             stop();
         }
 
-        // drop the item if the distance between player and throwable is square root of 150 blocks away
         if (distanceBetween(asLocation, pLocation) > maxReturnDistance) {
             Location dropLoc = dropItem(asLocation);
 
@@ -118,7 +117,6 @@ public class ReturnWeaponTask extends BukkitRunnable {
         return droppedItem.getLocation();
     }
 
-    // get the distance between two locations and return the square root of the distance
     public double distanceBetween(Location asLoc, Location pLoc){
         return asLoc.distance(pLoc);
     }

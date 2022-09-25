@@ -69,8 +69,8 @@ public class ModuleRecipes {
                 recipeMap.putIfAbsent(name, recipe);
             }
             else {
-                if (userConfig.contains("Recipes." + name + ".Enabled.Versions." + plugin.getServer().getVersion())) {
-                    if (userConfig.getBoolean("Recipes." + name + ".Enabled.Versions." + plugin.getServer().getVersion())) {
+                if (userConfig.contains("Recipes." + name + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion())) {
+                    if (userConfig.getBoolean("Recipes." + name + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion())) {
                         switch (type) {
                             case "Shaped" -> recipe = new RSVShapedRecipe(recipeConfig, name, plugin);
                             case "Shapeless" -> recipe = new RSVShapelessRecipe(recipeConfig, name, plugin);

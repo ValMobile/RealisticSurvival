@@ -621,3 +621,12 @@ spectral_silt_flare:
     - "flare|flare|flare"
     - "flare|disintegration_tablet|flare"
     - "flare|flare|flare"
+bauble_bag:
+  Type: "Shaped"
+  Result:
+    Item: "bauble_bag"
+    Amount: 1
+  Ingredients:
+    - "|LEATHER"
+    - "LEATHER|IRON_INGOT|LEATHER"
+    - "LEATHER|LEATHER|LEATHER"

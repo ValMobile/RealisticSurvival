@@ -44,8 +44,8 @@ public class ModuleItems {
                 items.putIfAbsent(key, item);
             }
             else {
-                if (userConfig.contains("Items." + key + ".Enabled.Versions." + plugin.getServer().getVersion())) {
-                    if (userConfig.getBoolean("Items." + key + ".Enabled.Versions." + plugin.getServer().getVersion())) {
+                if (userConfig.contains("Items." + key + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion())) {
+                    if (userConfig.getBoolean("Items." + key + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion())) {
                         RSVItem item = new RSVItem(module, key, plugin);
                         items.putIfAbsent(key, item);
                     }

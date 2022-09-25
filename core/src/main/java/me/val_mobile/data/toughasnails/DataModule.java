@@ -27,8 +27,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 import static me.val_mobile.tan.TemperatureCalculateTask.NEUTRAL_TEMPERATURE;
-import static me.val_mobile.tan.ThirstCalculateTask.DEFAULT_SATURATION;
-import static me.val_mobile.tan.ThirstCalculateTask.MINIMUM_THIRST;
+import static me.val_mobile.tan.ThirstCalculateTask.*;
 
 public class DataModule implements RSVDataModule {
 
@@ -99,21 +98,30 @@ public class DataModule implements RSVDataModule {
         String exhaustionPath = id + ".ThirstExhaustion";
         String tickTimer = id + ".ThirstTickTimer";
 
-        if (!config.getConfigurationSection("").contains(id.toString())) {
+        if (!config.contains(id.toString()))
             config.createSection(id.toString());
+        if (!config.contains(tempPath)) {
             config.createSection(tempPath);
-            config.createSection(thirstPath);
-            config.createSection(saturationPath);
-            config.createSection(exhaustionPath);
-            config.createSection(tickTimer);
             config.set(tempPath, NEUTRAL_TEMPERATURE);
-            config.set(thirstPath, MINIMUM_THIRST);
-            config.set(saturationPath, DEFAULT_SATURATION);
-            config.set(exhaustionPath, 0D);
-            config.set(tickTimer, 0);
-
-            saveFile();
         }
+        if (!config.contains(thirstPath)) {
+            config.createSection(thirstPath);
+            config.set(thirstPath, MAXIMUM_THIRST);
+        }
+        if (!config.contains(saturationPath)) {
+            config.createSection(saturationPath);
+            config.set(saturationPath, DEFAULT_SATURATION);
+        }
+        if (!config.contains(exhaustionPath)) {
+            config.createSection(exhaustionPath);
+            config.set(exhaustionPath, 0D);
+        }
+        if (!config.contains(tickTimer)) {
+            config.createSection(tickTimer);
+            config.set(tickTimer, 0);
+        }
+
+        saveFile(config);
         this.temperature = config.getDouble(tempPath);
         this.thirst = config.getDouble(thirstPath);
         this.thirstSaturation = config.getDouble(saturationPath);
@@ -125,18 +133,42 @@ public class DataModule implements RSVDataModule {
     public void saveData() {
         FileConfiguration config = this.config.getConfig();
 
-        config.set(id + ".Temperature", temperature);
-        config.set(id + ".Thirst", thirst);
-        config.set(id + ".ThirstSaturation", thirstSaturation);
-        config.set(id + ".ThirstExhaustion", thirstExhaustion);
-        config.set(id + ".ThirstTickTimer", thirstTickTimer);
+        String tempPath = id + ".Temperature";
+        String thirstPath = id + ".Thirst";
+        String saturationPath = id + ".ThirstSaturation";
+        String exhaustionPath = id + ".ThirstExhaustion";
+        String tickTimer = id + ".ThirstTickTimer";
 
-        saveFile();
+        if (!config.contains(id.toString()))
+            config.createSection(id.toString());
+        if (!config.contains(tempPath)) {
+            config.createSection(tempPath);
+        }
+        if (!config.contains(thirstPath)) {
+            config.createSection(thirstPath);
+        }
+        if (!config.contains(saturationPath)) {
+            config.createSection(saturationPath);
+        }
+        if (!config.contains(exhaustionPath)) {
+            config.createSection(exhaustionPath);
+        }
+        if (!config.contains(tickTimer)) {
+            config.createSection(tickTimer);
+        }
+
+        config.set(tempPath, temperature);
+        config.set(thirstPath, thirst);
+        config.set(saturationPath, thirstSaturation);
+        config.set(exhaustionPath, thirstExhaustion);
+        config.set(tickTimer, thirstTickTimer);
+
+        saveFile(config);
     }
 
-    public void saveFile() {
+    public void saveFile(FileConfiguration config) {
         try {
-            config.getConfig().save(this.config.getFile());
+            config.save(this.config.getFile());
         } catch (IOException e) {
             e.printStackTrace();
         }

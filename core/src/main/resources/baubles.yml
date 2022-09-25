@@ -448,6 +448,9 @@ Items:
   potion_fire_resistance:
     Enabled:
       EnableAllVersions: true
+  bauble_bag:
+    Enabled:
+      EnableAllVersions: true
 
 Recipes:
   dragons_eye_fire_dragon:
@@ -722,3 +725,6 @@ Recipes:
     Enabled:
       EnableAllVersions: true
     Unlock: true
+  bauble_bag:
+    Enabled:
+      EnableAllVersions: true

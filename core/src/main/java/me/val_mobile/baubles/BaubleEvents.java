@@ -35,11 +35,13 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerVelocityEvent;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
@@ -178,28 +180,30 @@ public class BaubleEvents extends ModuleEvents implements Listener {
         Player player = (Player) event.getWhoClicked(); // get the player
 
         if (shouldEventBeRan(player)) {
-            ItemStack corner = event.getClickedInventory().getItem(0);
-            ItemStack cursor = event.getCursor();
-            ItemStack current = event.getCurrentItem();
+            if (event.getClickedInventory() != null) {
+                ItemStack corner = event.getClickedInventory().getItem(0);
+                ItemStack cursor = event.getCursor();
+                ItemStack current = event.getCurrentItem();
 
-            Utils util = RealisticSurvivalPlugin.getUtil();
+                Utils util = RealisticSurvivalPlugin.getUtil();
 
-            if (RSVItem.isRSVItem(corner)) {
-                if (Objects.equals(RSVItem.getNameFromItem(corner), "gui_glass")) {
-                    if (cursor == null || !(util.hasNbtTag(cursor, "rsvbaubleslot") && RSVItem.isRSVItem(current))) {
-                        event.setCancelled(true);
-                    }
-                    if (cursor.getAmount() > 1 || current.getAmount() > 1) {
-                        event.setCancelled(true);
-                    }
-                    if (Objects.equals(RSVItem.getNameFromItem(current), "gui_glass")) {
-                        event.setCancelled(true);
-                    }
-                    String cursorTag = util.getNbtTag(cursor, "rsvbaubleslot", PersistentDataType.STRING);
-                    BaubleSlot slot = BaubleSlot.valueOf(util.getNbtTag(current, "rsvbaubleslot", PersistentDataType.STRING).toUpperCase());
-                    if (cursorTag.equals(slot.getTag()) || cursorTag.equals("Any")) {
-                        event.setCurrentItem(null);
-                        Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, cursor, BaubleChangeEvent.BaubleChange.ADDITION));
+                if (RSVItem.isRSVItem(corner)) {
+                    if (Objects.equals(RSVItem.getNameFromItem(corner), "gui_glass")) {
+                        if (cursor == null || !(util.hasNbtTag(cursor, "rsvbaubleslot") && RSVItem.isRSVItem(current))) {
+                            event.setCancelled(true);
+                        }
+                        if (cursor.getAmount() > 1 || current.getAmount() > 1) {
+                            event.setCancelled(true);
+                        }
+                        if (Objects.equals(RSVItem.getNameFromItem(current), "gui_glass")) {
+                            event.setCancelled(true);
+                        }
+                        String cursorTag = util.getNbtTag(cursor, "rsvbaubleslot", PersistentDataType.STRING);
+                        BaubleSlot slot = BaubleSlot.valueOf(util.getNbtTag(current, "rsvbaubleslot", PersistentDataType.STRING).toUpperCase());
+                        if (cursorTag.equals(slot.getTag()) || cursorTag.equals("Any")) {
+                            event.setCurrentItem(null);
+                            Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, cursor, BaubleChangeEvent.BaubleChange.ADDITION));
+                        }
                     }
                 }
             }
@@ -621,6 +625,23 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 }
             }
 
+        }
+    }
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent event) {
+        Player p = event.getPlayer();
+        if (shouldEventBeRan(p)) {
+            if (event.getAction() == Action.RIGHT_CLICK_AIR) {
+                ItemStack itemMainHand = p.getInventory().getItemInMainHand();
+
+                if (RSVItem.isRSVItem(itemMainHand)) {
+                    if (RSVItem.getNameFromItem(itemMainHand).equals("bauble_bag")) {
+                        DataModule module = (DataModule) RSVPlayer.getPlayers().get(p.getUniqueId()).getDataModuleFromName(getModule().getName());
+                        p.openInventory(module.getBaubleBag().getInv());
+                    }
+                }
+            }
         }
     }
 }

@@ -169,9 +169,10 @@ public class RSVShapedRecipe extends ShapedRecipe {
         if (text.isEmpty())
             return null;
         // text is a material
+        if (text.contains("Tag.")) {
+            return Utils.getTag(text.substring(4));
+        }
         else if (Objects.equals(text, text.toUpperCase())) {
-            if (text.contains("Tag."))
-                return Utils.getTag(text);
             return new ItemStack(Material.valueOf(text));
         }
         // text is an item

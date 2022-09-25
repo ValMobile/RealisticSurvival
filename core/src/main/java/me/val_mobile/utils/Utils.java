@@ -71,6 +71,54 @@ public class Utils {
         this.plugin = plugin;
     }
 
+    public String getMinecraftVersion() {
+        String s = plugin.getServer().getVersion();
+
+        if (s.contains("1.19.2")) {
+            return "1.19.2";
+        }
+        if (s.contains("1.19.1")) {
+            return "1.19.1";
+        }
+        if (s.contains("1.19")) {
+            return "1.19";
+        }
+        if (s.contains("1.18.2")) {
+            return "1.18.2";
+        }
+        if (s.contains("1.18.1")) {
+            return "1.18.1";
+        }
+        if (s.contains("1.18")) {
+            return "1.18";
+        }
+        if (s.contains("1.17.1")) {
+            return "1.17.1";
+        }
+        if (s.contains("1.17")) {
+            return "1.17";
+        }
+        if (s.contains("1.16.5")) {
+            return "1.16.5";
+        }
+        if (s.contains("1.16.4")) {
+            return "1.16.4";
+        }
+        if (s.contains("1.16.3")) {
+            return "1.16.3";
+        }
+        if (s.contains("1.16.2")) {
+            return "1.16.2";
+        }
+        if (s.contains("1.16.1")) {
+            return "1.16.1";
+        }
+        if (s.contains("1.16")) {
+            return "1.16";
+        }
+        return "";
+    }
+
     public static String toLowercaseAttributeName(Attribute atr) {
         return switch (atr) {
             case GENERIC_ATTACK_DAMAGE -> "generic.attack_damage";
@@ -754,11 +802,13 @@ public class Utils {
     }
 
     public static void playSound(Location loc, String soundName, float volume, float pitch) {
-        if (StringUtils.isAllLowerCase(soundName)) {
-            loc.getWorld().playSound(loc, soundName, volume, pitch);
-        }
-        else {
-            loc.getWorld().playSound(loc, Sound.valueOf(soundName), volume, pitch);
+        if (soundName.contains("_")) {
+            if (StringUtils.isAllUpperCase(soundName.substring(0, soundName.indexOf("_")))) {
+                loc.getWorld().playSound(loc, Sound.valueOf(soundName), volume, pitch);
+            }
+            else {
+                loc.getWorld().playSound(loc, soundName, volume, pitch);
+            }
         }
     }
 

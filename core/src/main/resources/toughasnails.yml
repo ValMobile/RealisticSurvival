@@ -720,7 +720,7 @@ Items:
   thermometer:
     Enabled:
       EnableAllVersions: true
-    TickSpeed: 20        # How often will the compass update your temperature in ticks
+    TickSpeed: 1        # How often will the compass update your temperature in ticks
   wool_hood:
     Enabled:
       EnableAllVersions: true
@@ -941,7 +941,7 @@ CharacterOverrides:
   # All placeholders: %TEMP%, %THIRST%
 
   TemperatureActionbar: "              %TEMP%              "          # Template for sending overriden text to the actionbar when only temperature is enabled
-  ThirstActionbar: "              %THIRST% "               # Template for sending overriden text to the actionbar when only thirst is enabled
+  ThirstActionbar: "                 %THIRST% "               # Template for sending overriden text to the actionbar when only thirst is enabled
   TemperatureThirstActionbar: "              %TEMP%%THIRST% "    #  Template for sending overriden text to the actionbar when temperature and thirst are enabled
   AboveWaterFullThirstDrop: ''                          # Default Unicode Value: \uE784
   AboveWaterHalfThirstDrop: ''                         # Default Unicode Value: \uE790

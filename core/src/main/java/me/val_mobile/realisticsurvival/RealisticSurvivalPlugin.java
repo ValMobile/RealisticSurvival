@@ -39,6 +39,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.Collection;
 
 public class RealisticSurvivalPlugin extends JavaPlugin {
@@ -119,6 +120,10 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     @Override
     public FileConfiguration getConfig() {
         return config.getConfig();
+    }
+
+    public File getConfigFile() {
+        return config.getFile();
     }
 
     @Override

@@ -67,10 +67,10 @@ public class DehydrationTask extends BukkitRunnable {
     public void run() {
         Player player = this.player.getPlayer();
         DataModule module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
-        int thirst = (int) Math.round(module.getThirst());
+        double thirst = module.getThirst();
         GameMode mode = player.getGameMode(); // get the gamemode
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && allowedWorlds.contains(player.getWorld().getName()) && player.isOnline()) {
+        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName())) {
 
             if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
                 if (config.getBoolean("Thirst.Dehydration.Damage.Enabled")) {

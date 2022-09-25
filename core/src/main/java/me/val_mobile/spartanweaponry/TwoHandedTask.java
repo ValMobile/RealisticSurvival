@@ -19,6 +19,7 @@ package me.val_mobile.spartanweaponry;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -55,7 +56,7 @@ public class TwoHandedTask extends BukkitRunnable {
         Player player = Bukkit.getPlayer(id);
         ItemStack itemMainhand = player.getInventory().getItemInMainHand();
 
-        if (RSVItem.isRSVItem(itemMainhand)) {
+        if (RSVItem.isRSVItem(itemMainhand) && Utils.isItemReal(player.getInventory().getItemInOffHand())) {
             if (RSVItem.getNameFromItem(itemMainhand).equals(itemName)) {
                 player.addPotionEffect(effect);
             }

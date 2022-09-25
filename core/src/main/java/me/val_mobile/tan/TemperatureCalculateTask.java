@@ -48,7 +48,7 @@ public class TemperatureCalculateTask extends BukkitRunnable {
     private double regulate = 0D;
     private double change = 0D;
     private double temp;
-    private final DataModule module;
+    private DataModule module;
     public static final double MINIMUM_TEMPERATURE = 0.0;
     public static final double MAXIMUM_TEMPERATURE = 25.0;
 
@@ -68,8 +68,9 @@ public class TemperatureCalculateTask extends BukkitRunnable {
     public void run() {
         Player player = this.player.getPlayer();
         GameMode mode = player.getGameMode(); // get the gamemode
+        this.module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE || !player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
+        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName())) {
             double oldTemp = temp;
             regulate = 0D;
             change = 0D;
@@ -98,7 +99,7 @@ public class TemperatureCalculateTask extends BukkitRunnable {
             double daytimeChange = 3 * (biomeTemp + Utils.getDayMultiplier(pWorld));
             change += daytimeChange;
 
-            double tempMaxChange = config.getDouble("Temperature.Environment.MaxChange");
+            double tempMaxChange = config.getDouble("Temperature.MaxChange");
             int cubeLength = config.getInt("Temperature.Environment.CubeLength");
 
             for (int x = -(cubeLength - 1); x < cubeLength; x++) {
@@ -177,7 +178,7 @@ public class TemperatureCalculateTask extends BukkitRunnable {
                 }
             }
 
-            double normalTemp = temp + change;
+            double normalTemp = NEUTRAL_TEMPERATURE + change;
             double regulatedTemp = temp;
 
             if (normalTemp != NEUTRAL_TEMPERATURE) {
@@ -224,10 +225,15 @@ public class TemperatureCalculateTask extends BukkitRunnable {
                 Bukkit.getServer().getPluginManager().callEvent(new TemperatureChangeEvent(player, oldTemp, temp));
             }
             module.setTemperature(temp);
+            module.saveData();
+            RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
         }
         // if the player is in creative or spectator
         else {
             // update static hashmap values and cancel the runnable
+            module.setTemperature(temp);
+            module.saveData();
+            RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
             tasks.remove(player.getUniqueId());
             cancel();
         }
@@ -274,6 +280,10 @@ public class TemperatureCalculateTask extends BukkitRunnable {
 
     public double getEquilibriumTemp() {
         return equilibriumTemp;
+    }
+
+    public double getTemp() {
+        return temp;
     }
 
     public void setTemp(double temp) {

@@ -22,6 +22,8 @@ import me.val_mobile.data.toughasnails.DataModule;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.tan.TanModule;
+import me.val_mobile.tan.TemperatureCalculateTask;
+import me.val_mobile.tan.ThirstCalculateTask;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
@@ -38,7 +40,6 @@ import java.util.UUID;
 public class DisplayTask extends BukkitRunnable {
 
     private final static HashMap<UUID, DisplayTask> tasks = new HashMap<>();
-    private final DataModule module;
     private final FileConfiguration tanConfig;
     private final FileConfiguration ifConfig;
 
@@ -66,7 +67,6 @@ public class DisplayTask extends BukkitRunnable {
         this.thirstEnabled = tanConfig.getBoolean("Thirst.Enabled");
         this.tanAllowedWorlds = tanModule.getAllowedWorlds();
         this.ifAllowedWorlds = ifModule.getAllowedWorlds();
-        this.module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
     }
 
     @Override
@@ -93,8 +93,15 @@ public class DisplayTask extends BukkitRunnable {
             }
 
             if (tanAllowedWorlds.contains(player.getWorld().getName())) {
-                double temperature = module.getTemperature();
-                double thirst = module.getThirst();
+                double temperature = TemperatureCalculateTask.NEUTRAL_TEMPERATURE;
+                double thirst = ThirstCalculateTask.MAXIMUM_THIRST;
+                if (TemperatureCalculateTask.hasTask(player.getUniqueId())) {
+                    temperature = TemperatureCalculateTask.getTasks().get(player.getUniqueId()).getTemp();
+                }
+                if (ThirstCalculateTask.hasTask(player.getUniqueId())) {
+                    thirst = ThirstCalculateTask.getTasks().get(player.getUniqueId()).getThirstLvl();
+                }
+
                 boolean isUnderwater = player.getRemainingAir() < 300;
 
                 if (tempEnabled && thirstEnabled) {

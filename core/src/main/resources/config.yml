@@ -10,7 +10,7 @@
 #          Messages                   #
 #######################################
 
-Reload: "&6[Realistic Survival] &fPlugin reloaded!"
+Reload: "&6[Realistic Survival] &fPlugin reloaded! Note that some config changes require a server restart to take effect."
 NoPermission: "&cYou do not have permission to do this!"
 NoOnlinePlayer: "&cThe specified player is not online!"
 MisspelledPlayer: "&cThe specified player's name was misspelled"

@@ -34,18 +34,21 @@ public class PotionBauble extends Tickable {
 
         FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
         ConfigurationSection section = config.getConfigurationSection("Items." + name + ".Effects");
-        Set<String> keys = section.getKeys(false);
 
-        int dur;
-        int amp;
-        int ampInc;
+        if (section != null) {
+            Set<String> keys = section.getKeys(false);
 
-        for (String key : keys) {
-            dur = section.getInt(key + ".Duration");
-            amp = section.getInt(key + ".Amplifier");
-            ampInc = section.getInt(key + ".AmplifierIncrement");
+            int dur;
+            int amp;
+            int ampInc;
 
-            effects.add(new PotionBaubleEffect(PotionEffectType.getByName(key), dur, amp, ampInc));
+            for (String key : keys) {
+                dur = section.getInt(key + ".Duration");
+                amp = section.getInt(key + ".Amplifier");
+                ampInc = section.getInt(key + ".AmplifierIncrement");
+
+                effects.add(new PotionBaubleEffect(PotionEffectType.getByName(key), dur, amp, ampInc));
+            }
         }
     }
 

@@ -56,16 +56,22 @@ public class DataModule implements RSVDataModule {
     public void retrieveData() {
         FileConfiguration config = this.config.getConfig();
 
-        if (config.getConfigurationSection("").contains(id.toString())) {
-            ItemStack[] items = loadItemStacks();
+        if (config.contains(id.toString())) {
+            if (config.contains(id + ".Items")) {
+                ItemStack[] items = loadItemStacks();
 
-            if (items != null) {
-                Inventory inv = baubleBag.getInv();
-                BaubleSlot[] slots = BaubleSlot.values();
+                if (items != null) {
+                    Inventory inv = baubleBag.getInv();
+                    BaubleSlot[] slots = BaubleSlot.values();
 
-                for (int i = 0; i < items.length; i++) {
-                    inv.setItem(slots[i].getValue(), items[i]);
+                    for (int i = 0; i < items.length; i++) {
+                        inv.setItem(slots[i].getValue(), items[i]);
+                    }
                 }
+            }
+            else {
+                config.createSection(id + ".Items");
+                saveFile(config);
             }
         }
         else {
@@ -74,7 +80,7 @@ public class DataModule implements RSVDataModule {
             config.createSection(id.toString());
             config.createSection(itemsPath);
 
-            saveFile();
+            saveFile(config);
         }
     }
 
@@ -84,7 +90,7 @@ public class DataModule implements RSVDataModule {
 
         config.set(id + ".Items", baubleBag.getBaubles().values().toArray());
 
-        saveFile();
+        saveFile(config);
     }
 
     public ItemStack[] loadItemStacks() {
@@ -93,9 +99,9 @@ public class DataModule implements RSVDataModule {
         return object instanceof Collection ? ((Collection<ItemStack>) object).toArray(new ItemStack[0]) : null;
     }
 
-    public void saveFile() {
+    public void saveFile(FileConfiguration config) {
         try {
-            config.getConfig().save(this.config.getFile());
+            config.save(this.config.getFile());
         } catch (IOException e) {
             e.printStackTrace();
         }

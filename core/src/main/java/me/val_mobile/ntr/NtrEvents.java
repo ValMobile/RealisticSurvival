@@ -121,102 +121,212 @@ public class NtrEvents extends ModuleEvents implements Listener {
             ItemStack item = event.getItem();
             Action action = event.getAction();
             UUID id = player.getUniqueId();
+            Block block = event.getClickedBlock();
 
-            if (config.getBoolean("FlintKnapping.Enabled")) {
-                if (Utils.isItemReal(item)) {
-                    if (item.getType() == Material.FLINT && action == Action.LEFT_CLICK_BLOCK) {
-                        Block block = event.getClickedBlock();
-                        Material material = block.getType();
+            if (action == Action.LEFT_CLICK_BLOCK) {
+                Material blockMat = block.getType();
+                if (config.getBoolean("FlintKnapping.Enabled")) {
+                    if (Utils.isItemReal(item)) {
+                        if (item.getType() == Material.FLINT) {
+                            if (config.getConfigurationSection("FlintKnapping.BlockDrops").getKeys(false).contains(blockMat.toString())) {
+                                ItemStack flintShard = moduleItems.getItems().get("flint_shard");
 
-                        if (config.getConfigurationSection("FlintKnapping.BlockDrops").getKeys(false).contains(material.toString())) {
-                            ItemStack flintShard = moduleItems.getItems().get("flint_shard");
+                                Utils.harvestLooting(config.getConfigurationSection("FlintKnapping.BlockDrops." + blockMat), flintShard, null, block.getLocation().add(0D, 0.15D, 0D));
 
-                            Utils.harvestLooting(config.getConfigurationSection("FlintKnapping.BlockDrops." + material), flintShard, null, block.getLocation().add(0D, 0.15D, 0D));
-
-                            if (config.getBoolean("FlintKnapping.BlockDrops." + material + ".Sound.Enabled")) {
-                                Utils.playSound(player.getLocation(), config.getString("FlintKnapping.BlockDrops." + material + ".Sound.Sound"), (float) config.getDouble("FlintKnapping.BlockDrops." + material + ".Sound.Volume"),  (float) config.getDouble("FlintKnapping.BlockDrops." + material + ".Sound.Pitch"));
+                                if (config.getBoolean("FlintKnapping.BlockDrops." + blockMat + ".Sound.Enabled")) {
+                                    Utils.playSound(player.getLocation(), config.getString("FlintKnapping.BlockDrops." + blockMat + ".Sound.Sound"), (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Volume"),  (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Pitch"));
+                                }
+                                block.setType(Material.AIR);
                             }
                         }
                     }
                 }
             }
-            if (config.getBoolean("RemoveVanillaPlankRecipes.Enabled")) {
-                if (Utils.isItemReal(item)) {
-                    if (Utils.isHoldingAxe(player) && action == Action.RIGHT_CLICK_BLOCK) {
-                        Block block = event.getClickedBlock();
-                        Material mat = block.getType();
-                        if (Tag.LOGS.isTagged(mat)) {
-                            Location blockLoc = block.getLocation();
-                            Location pLoc = player.getLocation();
-                            if (Utils.getBlockFace(player) == BlockFace.UP && Math.abs(pLoc.getY() - blockLoc.getY()) < 1D && pLoc.distance(blockLoc) < 1D) {
-                                if (Math.random() <= config.getDouble("RemoveVanillaPlankRecipes.AxePlankChance")) {
-                                    ItemStack drop = new ItemStack(Material.valueOf(mat.toString().replace("LOG", "PLANKS")));
-                                    Utils.harvestFortune(config.getConfigurationSection("RemoveVanillaPlankRecipes.BlockDrops"), drop, event.getItem(), block.getLocation());
+            else if (action == Action.RIGHT_CLICK_BLOCK) {
+                Material blockMat = block.getType();
+                if (config.getBoolean("RemoveVanillaPlankRecipes.Enabled")) {
+                    if (Utils.isItemReal(item)) {
+                        if (Utils.isHoldingAxe(player)) {
+                            if (Tag.LOGS.isTagged(blockMat)) {
+                                Location blockLoc = block.getLocation();
+                                Location pLoc = player.getLocation();
+                                if (Utils.getBlockFace(player) == BlockFace.UP && Math.abs(pLoc.getY() - blockLoc.getY()) < 1D && pLoc.distance(blockLoc) < 1D) {
+                                    if (Math.random() <= config.getDouble("RemoveVanillaPlankRecipes.AxePlankChance")) {
+                                        ItemStack drop = new ItemStack(Material.valueOf(blockMat.toString().replace("LOG", "PLANKS")));
+                                        Utils.harvestFortune(config.getConfigurationSection("RemoveVanillaPlankRecipes.BlockDrops"), drop, event.getItem(), block.getLocation());
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-            if (config.getBoolean("RemoveVanillaCampfireRecipes.Enabled")) {
-                if (RSVItem.isRSVItem(item) && action == Action.RIGHT_CLICK_BLOCK) {
-                    if (RSVItem.getNameFromItem(item).equals("fire_starter")) {
-                        double maxDistance = config.getDouble("RemoveVanillaCampfireRecipes.MaxDistance");
+                if (config.getBoolean("RemoveVanillaCampfireRecipes.Enabled")) {
+                    if (RSVItem.isRSVItem(item)) {
+                        if (RSVItem.getNameFromItem(item).equals("fire_starter")) {
+                            double maxDistance = config.getDouble("RemoveVanillaCampfireRecipes.MaxDistance");
 
-                        boolean needsFuel = config.getBoolean("RemoveVanillaCampfireRecipes.Fuel.Required");
-                        boolean needsKindling = config.getBoolean("RemoveVanillaCampfireRecipes.Kindling.Required");
+                            boolean needsFuel = config.getBoolean("RemoveVanillaCampfireRecipes.Fuel.Required");
+                            boolean needsKindling = config.getBoolean("RemoveVanillaCampfireRecipes.Kindling.Required");
 
-                        int requiredFuel = needsFuel ? config.getInt("RemoveVanillaCampfireRecipes.Fuel.Amount") : 0;
-                        int requiredKindling = needsKindling ? config.getInt("RemoveVanillaCampfireRecipes.Kindling.Amount") : 0;
-                        int requiredSoulItems = config.getInt("RemoveVanillaCampfireRecipes.SoulItems.Amount");
+                            int requiredFuel = needsFuel ? config.getInt("RemoveVanillaCampfireRecipes.Fuel.Amount") : 0;
+                            int requiredKindling = needsKindling ? config.getInt("RemoveVanillaCampfireRecipes.Kindling.Amount") : 0;
+                            int requiredSoulItems = config.getInt("RemoveVanillaCampfireRecipes.SoulItems.Amount");
 
-                        int fuel = 0;
-                        int kindling = 0;
-                        int soul = 0;
+                            int fuel = 0;
+                            int kindling = 0;
+                            int soul = 0;
 
-                        List<String> fuelMats = config.getStringList("RemoveVanillaCampfireRecipes.Kindling.Required");
-                        List<String> kindlingMats = config.getStringList("RemoveVanillaCampfireRecipes.Kindling.Required");
-                        List<String> soulItems = config.getStringList("RemoveVanillaCampfireRecipes.SoulItems");
+                            List<String> fuelMats = config.getStringList("RemoveVanillaCampfireRecipes.Kindling.Required");
+                            List<String> kindlingMats = config.getStringList("RemoveVanillaCampfireRecipes.Kindling.Required");
+                            List<String> soulItems = config.getStringList("RemoveVanillaCampfireRecipes.SoulItems");
 
-                        Location loc = event.getClickedBlock().getLocation();
+                            Location loc = event.getClickedBlock().getLocation();
 
-                        Collection<Entity> entities = loc.getWorld().getNearbyEntities(loc, maxDistance, maxDistance, maxDistance);
+                            Collection<Entity> entities = loc.getWorld().getNearbyEntities(loc, maxDistance, maxDistance, maxDistance);
 
-                        Collection<Item> ingredients = new ArrayList<>();
+                            Collection<Item> ingredients = new ArrayList<>();
 
-                        if (entities.size() <= requiredFuel + requiredKindling + requiredSoulItems + 5) {
-                            for (Entity e : entities) {
-                                if (e instanceof Item) {
-                                    ItemStack drop = ((Item) e).getItemStack();
+                            if (entities.size() <= requiredFuel + requiredKindling + requiredSoulItems + 5) {
+                                for (Entity e : entities) {
+                                    if (e instanceof Item) {
+                                        ItemStack drop = ((Item) e).getItemStack();
 
-                                    if (needsFuel) {
-                                        if (fuelMats.contains(drop.getType().toString())) {
-                                            if (fuel < requiredFuel) {
-                                                fuel += drop.getAmount();
+                                        if (needsFuel) {
+                                            if (fuelMats.contains(drop.getType().toString())) {
+                                                if (fuel < requiredFuel) {
+                                                    fuel += drop.getAmount();
+                                                }
+                                                ingredients.add((Item) e);
                                             }
-                                            ingredients.add((Item) e);
                                         }
-                                    }
-                                    if (needsKindling) {
-                                        if (kindlingMats.contains(drop.getType().toString())) {
-                                            if (kindling < requiredKindling) {
-                                                kindling += drop.getAmount();
+                                        if (needsKindling) {
+                                            if (kindlingMats.contains(drop.getType().toString())) {
+                                                if (kindling < requiredKindling) {
+                                                    kindling += drop.getAmount();
+                                                }
+                                                ingredients.add((Item) e);
                                             }
-                                            ingredients.add((Item) e);
                                         }
-                                    }
-                                    if (soulItems.contains(drop.getType().toString())) {
-                                        soul += drop.getAmount();
+                                        if (soulItems.contains(drop.getType().toString())) {
+                                            soul += drop.getAmount();
+                                        }
                                     }
                                 }
-                            }
 
-                            if (fuel >= requiredFuel && kindling >= requiredKindling) {
-                                if (!FireStarterTask.hasTask(id)) {
-                                    new FireStarterTask(plugin, module, player, loc.add(0D, 0.6D, 0D), ingredients, soul >= requiredSoulItems).start();
+                                if (fuel >= requiredFuel && kindling >= requiredKindling) {
+                                    if (!FireStarterTask.hasTask(id)) {
+                                        new FireStarterTask(plugin, module, player, loc.add(0D, 0.6D, 0D), ingredients, soul >= requiredSoulItems).start();
+                                    }
                                 }
                             }
                         }
+                    }
+                }
+
+                if (RSVItem.isRSVItem(item)) {
+                    switch (RSVItem.getNameFromItem(item)) {
+                        case "copper-mattock", "iron_mattock", "golden_mattock", "diamond_mattock", "netherite_mattock" -> {
+                            Block b = event.getClickedBlock();
+                            Material blockMaterial = b.getType();
+                            String matName = item.getType().toString();
+
+                            boolean isNotHoe = !matName.contains("HOE");
+                            boolean isNotShovel = !matName.contains("SHOVEL");
+                            boolean isNotAxe = !matName.contains("AXE");
+
+                            if (isNotHoe || isNotShovel) {
+                                if (isNotHoe && isNotShovel) {
+                                    switch (blockMaterial) {
+                                        case GRASS_BLOCK, DIRT -> {
+                                            if (player.isSneaking()) {
+                                                b.setType(Material.GRASS_PATH);
+                                            }
+                                            else {
+                                                b.setType(Material.FARMLAND);
+                                            }
+                                            Utils.changeDurability(item, -1);
+                                        }
+                                        case COARSE_DIRT, PODZOL, MYCELIUM -> {
+                                            if (player.isSneaking()) {
+                                                b.setType(Material.GRASS_PATH);
+                                            }
+                                            else {
+                                                b.setType(Material.DIRT);
+                                            }
+                                            Utils.changeDurability(item, -1);
+                                        }
+                                        case GRASS_PATH -> {
+                                            b.setType(Material.FARMLAND);
+                                            Utils.changeDurability(item, -1);
+                                        }
+                                        default -> {}
+                                    }
+                                    // support for rooted dirt
+                                    if (blockMaterial.toString().equals("ROOTED_DIRT")) {
+                                        if (player.isSneaking()) {
+                                            b.setType(Material.GRASS_PATH);
+                                        }
+                                        else {
+                                            player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.valueOf("HANGING_ROOTS")));
+                                            b.setType(Material.DIRT);
+                                        }
+                                        Utils.changeDurability(item, -1);
+                                    }
+                                }
+                                // it is a shovel
+                                else if (isNotHoe) {
+                                    switch (blockMaterial) {
+                                        case GRASS_BLOCK, DIRT -> {
+                                            if (player.isSneaking()) {
+                                                b.setType(Material.FARMLAND);
+                                            }
+                                            Utils.changeDurability(item, -1);
+                                        }
+                                        case COARSE_DIRT, PODZOL, MYCELIUM -> {
+                                            if (player.isSneaking()) {
+                                                b.setType(Material.DIRT);
+                                            }
+                                            Utils.changeDurability(item, -1);
+                                        }
+                                        default -> {}
+                                    }
+                                    // support for rooted dirt
+                                    if (blockMaterial.toString().equals("ROOTED_DIRT")) {
+                                        if (player.isSneaking()) {
+                                            player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.valueOf("HANGING_ROOTS")));
+                                            b.setType(Material.DIRT);
+                                        }
+                                        Utils.changeDurability(item, -1);
+                                    }
+                                }
+                                // it is a hoe
+                                else {
+                                    switch (blockMaterial) {
+                                        case GRASS_BLOCK, DIRT, COARSE_DIRT, PODZOL, MYCELIUM -> {
+                                            if (player.isSneaking()) {
+                                                b.setType(Material.GRASS_PATH);
+                                            }
+                                            Utils.changeDurability(item, -1);
+                                        }
+                                        default -> {}
+                                    }
+                                    // support for rooted dirt
+                                    if (blockMaterial.toString().equals("ROOTED_DIRT")) {
+                                        if (player.isSneaking()) {
+                                            b.setType(Material.GRASS_PATH);
+                                        }
+                                        Utils.changeDurability(item, -1);
+                                    }
+                                }
+                            }
+                            else if (isNotAxe) {
+                                if (Tag.LOGS.isTagged(blockMaterial) && !blockMaterial.toString().contains("STRIPPED")) {
+                                    b.setType(Material.valueOf("STRIPPED_" + blockMaterial));
+                                    Utils.changeDurability(item, -1);
+                                }
+                            }
+                        }
+                        default -> {}
                     }
                 }
             }
@@ -243,7 +353,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                 case NONE, SHEARS -> {}
                                 default -> {
                                     String type = item.getType().toString();
-                                    item.setType(Material.valueOf(type.substring(0, type.indexOf("_")) + tool));
+                                    item.setType(Material.valueOf(type.substring(0, type.indexOf("_") + 1) + tool));
                                 }
                             }
                         }
@@ -270,8 +380,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                             switch (key.getKey()) {
                                 case "acacia_planks", "birch_planks", "crimson_planks", "dark_oak_planks", "jungle_planks", "mangrove_planks", "oak_planks", "spruce_planks", "warped_planks" ->
                                         event.getInventory().setResult(null);
-                                default -> {
-                                }
+                                default -> {}
                             }
                         }
                     }
@@ -284,8 +393,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                         if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
                             switch (key.getKey()) {
                                 case "campfire", "soul_campfire" -> event.getInventory().setResult(null);
-                                default -> {
-                                }
+                                default -> {}
                             }
                         }
                     }
@@ -301,19 +409,49 @@ public class NtrEvents extends ModuleEvents implements Listener {
                     }
                 }
             }
+
+            if (config.getBoolean("Pottery.Enabled")) {
+                ItemStack[] matrix = event.getInventory().getMatrix();
+                ItemStack clayTool = matrix[0];
+                ItemStack clay = matrix[1];
+
+                if (RSVItem.isRSVItem(clayTool)) {
+                    if (RSVItem.getNameFromItem(clayTool).equals("clay_tool")) {
+                        if (Utils.isItemReal(clay)) {
+                            if (clay.getType() == Material.CLAY_BALL) {
+                                int clayAmount = clay.getAmount();
+
+                                if (RSVItem.getCustomDurability(clayTool) - clayAmount <= 0) {
+                                    int dif = clayAmount - RSVItem.getCustomDurability(clayTool);
+                                    Utils.changeDurability(clayTool, -dif);
+                                    event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(dif));
+                                    event.getInventory().setItem(0, null);
+                                    event.getInventory().setItem(1, null);
+                                }
+                                else {
+                                    Utils.changeDurability(clayTool, -clayAmount);
+                                    event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(clayAmount));
+                                    event.getInventory().setItem(1, null);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onBucketFill(PlayerBucketFillEvent event) {
         Player p = event.getPlayer();
-
-        if (shouldEventBeRan(p)) {
-            ItemStack item = event.getItemStack();
-            if (RSVItem.isRSVItem(item)) {
-                if (RSVItem.getNameFromItem(item).equals("ceramic_bucket")) {
-                    String bucketType = event.getBucket().toString().toLowerCase();
-                    RSVItem.addNbtTag(item, "rsvitem", "ceramic_" + bucketType, PersistentDataType.STRING);
+        if (!event.isCancelled()) {
+            if (shouldEventBeRan(p)) {
+                ItemStack item = event.getItemStack();
+                if (RSVItem.isRSVItem(item)) {
+                    if (RSVItem.getNameFromItem(item).equals("ceramic_bucket")) {
+                        String bucketType = event.getBucket().toString().toLowerCase();
+                        event.setItemStack(RSVItem.getItem("ceramic_" + bucketType));
+                    }
                 }
             }
         }
@@ -328,22 +466,28 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 ItemStack item = event.getItemStack();
                 if (RSVItem.isRSVItem(item)) {
                     if (RSVItem.getNameFromItem(item).contains("ceramic_") && !RSVItem.getNameFromItem(item).equals("ceramic_bucket")) {
-                        RSVItem.addNbtTag(item, "rsvitem", "ceramic_bucket", PersistentDataType.STRING);
+                        event.setItemStack(RSVItem.getItem("ceramic_bucket"));
                     }
                 }
             }
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onCauldronFill(CauldronLevelChangeEvent event) {
-        if (event.getEntity() instanceof Player) {
-            ItemStack item = ((Player) event.getEntity()).getInventory().getItemInMainHand();
+        if (!event.isCancelled()) {
+            Entity e = event.getEntity();
+            if (shouldEventBeRan(e)) {
+                if (e instanceof Player) {
+                    Player player = (Player) e;
+                    ItemStack item = player.getInventory().getItemInMainHand();
 
-            if (RSVItem.isRSVItem(item)) {
-                if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BUCKET_EMPTY) {
-                    if (RSVItem.getNameFromItem(item).contains("ceramic_bucket_")) {
-                        RSVItem.addNbtTag(item, "rsvitem", "ceramic_bucket", PersistentDataType.STRING);
+                    if (RSVItem.isRSVItem(item)) {
+                        if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BUCKET_EMPTY) {
+                            if (RSVItem.getNameFromItem(item).contains("ceramic_bucket_")) {
+                                player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_bucket"));
+                            }
+                        }
                     }
                 }
             }
@@ -362,27 +506,6 @@ public class NtrEvents extends ModuleEvents implements Listener {
                     if (RSVItem.getNameFromItem(item).equals("ceramic_lava_bucket")) {
                         if (!CeramicBucketMeltTask.hasTask(p.getUniqueId())) {
                             new CeramicBucketMeltTask(plugin, module, p).start();
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onItemPickup(EntityPickupItemEvent event) {
-        if (!event.isCancelled()) {
-            Entity e = event.getEntity();
-            if (e instanceof Player) {
-                if (shouldEventBeRan(e)) {
-                    Player p = (Player) e;
-                    ItemStack item = event.getItem().getItemStack();
-
-                    if (RSVItem.isRSVItem(item)) {
-                        if (RSVItem.getNameFromItem(item).equals("ceramic_lava_bucket")) {
-                            if (!CeramicBucketMeltTask.hasTask(p.getUniqueId())) {
-                                new CeramicBucketMeltTask(plugin, module, p).start();
-                            }
                         }
                     }
                 }

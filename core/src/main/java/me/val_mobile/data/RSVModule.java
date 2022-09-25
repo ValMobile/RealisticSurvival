@@ -21,6 +21,7 @@ import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.io.IOException;
 import java.util.*;
 
 public abstract class RSVModule {
@@ -60,6 +61,12 @@ public abstract class RSVModule {
                     allowedWorlds.add(worldName);
                 }
             }
+        }
+
+        try {
+            config.save(plugin.getConfigFile());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         modules.put(name, this);
     }

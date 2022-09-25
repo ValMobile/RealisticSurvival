@@ -32,8 +32,10 @@ import org.bukkit.util.EulerAngle;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 public class ThrowWeaponTask extends BukkitRunnable {
 
@@ -46,29 +48,26 @@ public class ThrowWeaponTask extends BukkitRunnable {
     private final boolean rotateWeapon;
     private final boolean piercing;
     private final boolean returnWeapon;
+    private final RSVModule module;
     private final RealisticSurvivalPlugin plugin;
 
-    private final ReturnWeaponTask returnWeaponTask;
+    private final Vector vector;
+    private static final HashMap<UUID, ThrowWeaponTask> tasks = new HashMap<>();
 
-    private Vector vector;
-
-    public ThrowWeaponTask(RSVModule module, RealisticSurvivalPlugin plugin, Player player, ItemStack itemStack, boolean rotateWeapon, boolean piercing, boolean returnWeapon) {
-        this(module, plugin, player, itemStack, rotateWeapon, piercing, returnWeapon, new Vector(0, 0, 0));
-    }
-
-    public ThrowWeaponTask(RSVModule module, RealisticSurvivalPlugin plugin, Player player, ItemStack itemStack, boolean rotateWeapon, boolean piercing, boolean returnWeapon, Vector vector) {
+    public ThrowWeaponTask(RSVModule module, RealisticSurvivalPlugin plugin, Player player, ItemStack itemStack, double maxDistance, boolean rotateWeapon, boolean piercing, boolean returnWeapon, Vector velocity) {
         this.config = module.getUserConfig().getConfig();
+        this.module = module;
         this.name = RSVItem.getNameFromItem(itemStack);
-        this.maxDistance = config.getDouble("Items." + name + ".ThrownAttributes.MaxDistance");
+        this.maxDistance = maxDistance;
         this.plugin = plugin;
         this.player = player;
         this.itemStack = itemStack;
         this.rotateWeapon = rotateWeapon;
         this.piercing = piercing;
         this.returnWeapon = returnWeapon;
-        this.vector = vector;
+        this.vector = velocity.multiply(1/20);
         this.armorStand = spawnArmorstand(player, itemStack);
-        this.returnWeaponTask = new ReturnWeaponTask(module, itemStack, armorStand, player);
+        tasks.put(player.getUniqueId(), this);
     }
 
     public ArmorStand spawnArmorstand(Player thrower, ItemStack itemStack) {
@@ -98,7 +97,6 @@ public class ThrowWeaponTask extends BukkitRunnable {
     @Override
     public void run() {
         armorStand.teleport(armorStand.getLocation().add(vector));
-
         // rotate floating item by 45 degrees per tick
         if (rotateWeapon) {
             armorStand.setRightArmPose(Utils.setRightArmAngle(armorStand, 45, 0, 0));
@@ -123,7 +121,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
                 float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitGroundSound.Pitch");
                 Utils.playSound(armorStand.getLocation(), soundName, volume, pitch);
             }
-
+            tasks.remove(player.getUniqueId());
             cancel();
         }
 
@@ -147,11 +145,13 @@ public class ThrowWeaponTask extends BukkitRunnable {
 
             if (returnWeapon && !piercing) {
                 returnWeapon();
+                tasks.remove(player.getUniqueId());
                 cancel();
             }
 
             if (!piercing) {
                 dropWeaponTask(armorStand, player, itemStack.clone());
+                tasks.remove(player.getUniqueId());
                 cancel();
             }
         }
@@ -160,7 +160,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
         // drop the weapon if the distance is greater 60 blocks
         if (armorStand.getLocation().distanceSquared(player.getLocation()) > maxDistance) {
             if (config.getBoolean("MaxDistanceReached.Enabled")) {
-                String message = ChatColor.translateAlternateColorCodes('&', "MaxDistanceReached.Message");
+                String message = ChatColor.translateAlternateColorCodes('&', config.getString("MaxDistanceReached.Message"));
                 message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(maxDistance)));
                 player.sendMessage(message);
             }
@@ -176,8 +176,6 @@ public class ThrowWeaponTask extends BukkitRunnable {
 
         as.remove();
 
-        cancel();
-
         if (config.getBoolean("WeaponDropped.Enabled")) {
             String message = ChatColor.translateAlternateColorCodes('&', config.getString("WeaponDropped.Message"));
             message = message.replaceAll("%X-COORD%", String.valueOf((int) loc.getX()));
@@ -187,12 +185,18 @@ public class ThrowWeaponTask extends BukkitRunnable {
             player.sendMessage(message);
         }
 
+        tasks.remove(player.getUniqueId());
+        cancel();
     }
 
     public void returnWeapon() {
         cancel();
 
-        returnWeaponTask.runTaskTimer(plugin, 4L, 1L);
+        new ReturnWeaponTask(module, itemStack, armorStand, player).runTaskTimer(plugin, 4L, 1L);
+    }
+
+    public void start() {
+        runTaskTimer(plugin, 0, 1);
     }
 
     public void centeredThrow(){
@@ -205,5 +209,16 @@ public class ThrowWeaponTask extends BukkitRunnable {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public static HashMap<UUID, ThrowWeaponTask> getTasks() {
+        return tasks;
+    }
+
+    public static boolean hasTask(UUID id) {
+        if (tasks.containsKey(id)) {
+            return tasks.get(id) != null;
+        }
+        return false;
     }
 }

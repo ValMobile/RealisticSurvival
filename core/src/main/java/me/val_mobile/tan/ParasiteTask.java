@@ -46,9 +46,9 @@ public class ParasiteTask extends BukkitRunnable {
         this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         this.player = player;
         this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
-        this.damage = config.getDouble("Thirst.Dehydration.Damage.Amount");
+        this.damage = config.getDouble("Thirst.Parasites.Damage");
 
-        ConfigurationSection section = config.getConfigurationSection("Thirst.Dehydration.PotionEffects.Effects");
+        ConfigurationSection section = config.getConfigurationSection("Thirst.Parasites.PotionEffects.Effects");
         Set<String> keys = section.getKeys(false);
 
         int dur;
@@ -67,13 +67,9 @@ public class ParasiteTask extends BukkitRunnable {
         Player player = this.player.getPlayer();
         GameMode mode = player.getGameMode(); // get the gamemode
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && allowedWorlds.contains(player.getWorld().getName())) {
+        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName())) {
             if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
-                if (config.getBoolean("Thirst.Dehydration.Damage.Enabled")) {
-                    if (player.getHealth() >= config.getDouble("Thirst.Dehydration.Damage.Cutoff")) {
-                        player.damage(damage);
-                    }
-                }
+                player.damage(damage);
             }
         }
         // if the player is in creative or spectator
@@ -88,7 +84,7 @@ public class ParasiteTask extends BukkitRunnable {
     public void startRunnable() {
         Player player = this.player.getPlayer();
         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
-            if (config.getBoolean("Thirst.Dehydration.PotionEffects.Enabled")) {
+            if (config.getBoolean("Thirst.Parasites.PotionEffects.Enabled")) {
                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
                     player.addPotionEffects(potionEffects);
                 }
@@ -97,7 +93,7 @@ public class ParasiteTask extends BukkitRunnable {
 
         ThirstCalculateTask.getTasks().get(player.getUniqueId()).setParasitesActive(true);
 
-        int tickSpeed = config.getInt("Thirst.Dehydration.TickSpeed"); // get the tick speed
+        int tickSpeed = config.getInt("Thirst.Parasites.TickSpeed"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 
