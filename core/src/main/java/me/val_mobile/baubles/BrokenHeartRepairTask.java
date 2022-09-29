@@ -61,7 +61,7 @@ public class BrokenHeartRepairTask extends BukkitRunnable {
 
         if (elapsed > duration) {
             ItemStack brokenHeart = ((DataModule) player.getDataModuleFromName(BaubleModule.NAME)).getBaubleBag().getItem("broken_heart");
-            Utils.changeDurability(brokenHeart, config.getInt("Items.broken_heart.SleepRepair.Amount"));
+            Utils.changeDurability(brokenHeart, config.getInt("Items.broken_heart.SleepRepair.Amount"), false);
 
             players.remove(id);
             tasks.remove(id);

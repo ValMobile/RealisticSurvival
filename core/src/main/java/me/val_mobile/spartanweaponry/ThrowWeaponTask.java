@@ -39,7 +39,7 @@ import java.util.UUID;
 
 public class ThrowWeaponTask extends BukkitRunnable {
 
-    private final double maxDistance;
+    private final double maxDistanceSquared;
     private final FileConfiguration config;
     private final String name;
     private final ArmorStand armorStand;
@@ -50,6 +50,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
     private final boolean returnWeapon;
     private final RSVModule module;
     private final RealisticSurvivalPlugin plugin;
+    private final Location started;
 
     private final Vector vector;
     private static final HashMap<UUID, ThrowWeaponTask> tasks = new HashMap<>();
@@ -58,20 +59,21 @@ public class ThrowWeaponTask extends BukkitRunnable {
         this.config = module.getUserConfig().getConfig();
         this.module = module;
         this.name = RSVItem.getNameFromItem(itemStack);
-        this.maxDistance = maxDistance;
+        this.maxDistanceSquared = Math.pow(maxDistance, 2);
         this.plugin = plugin;
         this.player = player;
         this.itemStack = itemStack;
         this.rotateWeapon = rotateWeapon;
         this.piercing = piercing;
         this.returnWeapon = returnWeapon;
-        this.vector = velocity.multiply(1/20);
+        this.vector = velocity.multiply(1/20D);
+        this.started = player.getLocation().add(0, 0.9, 0);
         this.armorStand = spawnArmorstand(player, itemStack);
         tasks.put(player.getUniqueId(), this);
     }
 
     public ArmorStand spawnArmorstand(Player thrower, ItemStack itemStack) {
-        return thrower.getWorld().spawn(thrower.getLocation().add(0, 0.9, 0), ArmorStand.class, armorStand ->{
+        return thrower.getWorld().spawn(started.clone(), ArmorStand.class, armorStand -> {
             armorStand.setArms(true);
             armorStand.setGravity(false);
             armorStand.setVisible(false);
@@ -96,7 +98,9 @@ public class ThrowWeaponTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        armorStand.teleport(armorStand.getLocation().add(vector));
+        Location loc = armorStand.getLocation().add(vector);
+        armorStand.teleport(loc);
+
         // rotate floating item by 45 degrees per tick
         if (rotateWeapon) {
             armorStand.setRightArmPose(Utils.setRightArmAngle(armorStand, 45, 0, 0));
@@ -158,10 +162,10 @@ public class ThrowWeaponTask extends BukkitRunnable {
 
 
         // drop the weapon if the distance is greater 60 blocks
-        if (armorStand.getLocation().distanceSquared(player.getLocation()) > maxDistance) {
+        if (armorStand.getLocation().distanceSquared(started) > maxDistanceSquared) {
             if (config.getBoolean("MaxDistanceReached.Enabled")) {
                 String message = ChatColor.translateAlternateColorCodes('&', config.getString("MaxDistanceReached.Message"));
-                message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(maxDistance)));
+                message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(Math.sqrt(maxDistanceSquared))));
                 player.sendMessage(message);
             }
             dropWeaponTask(armorStand, player, itemStack.clone());

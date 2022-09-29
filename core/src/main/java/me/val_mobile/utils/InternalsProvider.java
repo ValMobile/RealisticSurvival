@@ -60,4 +60,6 @@ public abstract class InternalsProvider {
     public abstract void registerEntities();
 
     public abstract void setFreezingView(Player player, int ticks);
+
+    public abstract void attack(Player player, Entity entity);
 }

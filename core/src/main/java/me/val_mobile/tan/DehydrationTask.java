@@ -70,7 +70,7 @@ public class DehydrationTask extends BukkitRunnable {
         double thirst = module.getThirst();
         GameMode mode = player.getGameMode(); // get the gamemode
 
-        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName())) {
+        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName())) {
 
             if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
                 if (config.getBoolean("Thirst.Dehydration.Damage.Enabled")) {

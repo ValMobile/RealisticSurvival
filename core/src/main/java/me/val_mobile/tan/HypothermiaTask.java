@@ -70,7 +70,7 @@ public class HypothermiaTask extends BukkitRunnable {
         int temperature = (int) Math.round(module.getTemperature());
         GameMode mode = player.getGameMode(); // get the gamemode
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && allowedWorlds.contains(player.getWorld().getName()) && player.isOnline()) {
+        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && player.isOnline()) {
 
             if (!player.hasPermission("realisticsurvival.toughasnails.resistance.colddamage")) {
                 if (config.getBoolean("Temperature.Hypothermia.Damage.Enabled")) {

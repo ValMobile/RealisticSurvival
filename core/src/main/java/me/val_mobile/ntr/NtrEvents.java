@@ -18,7 +18,9 @@ package me.val_mobile.ntr;
 
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.ModuleItems;
+import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.spartanweaponry.TwoHandedTask;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.ToolHandler.Tool;
 import me.val_mobile.utils.Utils;
@@ -28,6 +30,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -41,15 +44,16 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.CauldronLevelChangeEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.inventory.FurnaceBurnEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
@@ -78,10 +82,135 @@ public class NtrEvents extends ModuleEvents implements Listener {
 
         if (!event.isCancelled()) {
             if (shouldEventBeRan(player)) {
-                FileConfiguration config = module.getUserConfig().getConfig();
                 ItemStack itemMainHand = player.getInventory().getItemInMainHand();
                 Block block = event.getBlock();
-                Material material = block.getBlockData().getMaterial();
+                Material material = block.getType();
+
+                switch (material.toString()) {
+                    case "STONE" -> {
+                        if (Utils.isItemReal(itemMainHand)) {
+                            if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                                if (config.getBoolean("RockMining.Stone.DisableCobblestoneDrop")) {
+                                    if (!block.getDrops(itemMainHand).isEmpty()) {
+                                        ConfigurationSection section = config.getConfigurationSection("RockMining.Stone.BlockDrops");
+                                        Utils.harvestFortune(section, RSVItem.getItem("stone_rock"), itemMainHand, block.getLocation());
+                                    }
+                                    event.setDropItems(false);
+                                }
+                            }
+                        }
+                        else {
+                            event.setDropItems(false);
+                        }
+                    }
+                    case "GRANITE" -> {
+                        if (Utils.isItemReal(itemMainHand)) {
+                            if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                                if (config.getBoolean("RockMining.Granite.DisableGraniteDrop")) {
+                                    if (!block.getDrops(itemMainHand).isEmpty()) {
+                                        ConfigurationSection section = config.getConfigurationSection("RockMining.Granite.BlockDrops");
+                                        Utils.harvestFortune(section, RSVItem.getItem("granite_rock"), itemMainHand, block.getLocation());
+                                    }
+                                    event.setDropItems(false);
+                                }
+                            }
+                        }
+                        else {
+                            event.setDropItems(false);
+                        }
+                    }
+                    case "DIORITE" -> {
+                        if (Utils.isItemReal(itemMainHand)) {
+                            if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                                if (config.getBoolean("RockMining.Diorite.DisableDioriteDrop")) {
+                                    if (!block.getDrops(itemMainHand).isEmpty()) {
+                                        ConfigurationSection section = config.getConfigurationSection("RockMining.Diorite.BlockDrops");
+                                        Utils.harvestFortune(section, RSVItem.getItem("diorite_rock"), itemMainHand, block.getLocation());
+                                    }
+                                    event.setDropItems(false);
+                                }
+                            }
+                        }
+                        else {
+                            event.setDropItems(false);
+                        }
+                    }
+                    case "ANDESITE" -> {
+                        if (Utils.isItemReal(itemMainHand)) {
+                            if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                                if (config.getBoolean("RockMining.Andesite.DisableAndesiteDrop")) {
+                                    if (!block.getDrops(itemMainHand).isEmpty()) {
+                                        ConfigurationSection section = config.getConfigurationSection("RockMining.Andesite.BlockDrops");
+                                        Utils.harvestFortune(section, RSVItem.getItem("andesite_rock"), itemMainHand, block.getLocation());
+                                    }
+                                    event.setDropItems(false);
+                                }
+                            }
+                        }
+                        else {
+                            event.setDropItems(false);
+                        }
+                    }
+                    case "SANDSTONE" -> {
+                        if (Utils.isItemReal(itemMainHand)) {
+                            if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                                if (config.getBoolean("RockMining.Sandstone.DisableSandstoneDrop")) {
+                                    if (!block.getDrops(itemMainHand).isEmpty()) {
+                                        ConfigurationSection section = config.getConfigurationSection("RockMining.Sandstone.BlockDrops");
+                                        Utils.harvestFortune(section, RSVItem.getItem("sandstone_rock"), itemMainHand, block.getLocation());
+                                    }
+                                    event.setDropItems(false);
+                                }
+                            }
+                        }
+                        else {
+                            event.setDropItems(false);
+                        }
+                    }
+                    case "RED_SANDSTONE" -> {
+                        if (Utils.isItemReal(itemMainHand)) {
+                            if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                                if (config.getBoolean("RockMining.RedSandstone.DisableRedSandstoneDrop")) {
+                                    if (!block.getDrops(itemMainHand).isEmpty()) {
+                                        ConfigurationSection section = config.getConfigurationSection("RockMining.RedSandstone.BlockDrops");
+                                        Utils.harvestFortune(section, RSVItem.getItem("red_sandstone_rock"), itemMainHand, block.getLocation());
+                                    }
+                                    event.setDropItems(false);
+                                }
+                            }
+                        }
+                        else {
+                            event.setDropItems(false);
+                        }
+                    }
+                    case "DEEPSLATE" -> {
+                        if (Utils.isItemReal(itemMainHand)) {
+                            if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                                if (config.getBoolean("RockMining.DisableCobbledDeepslateDrop")) {
+                                    event.setDropItems(false);
+                                }
+                            }
+                        }
+                    }
+                    case "BASALT" -> {
+                        if (Utils.isItemReal(itemMainHand)) {
+                            if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                                if (config.getBoolean("RockMining.DisableBasaltDrop")) {
+                                    event.setDropItems(false);
+                                }
+                            }
+                        }
+                    }
+                    case "BLACKSTONE" -> {
+                        if (Utils.isItemReal(itemMainHand)) {
+                            if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                                if (config.getBoolean("RockMining.DisableBlackstoneDrop")) {
+                                    event.setDropItems(false);
+                                }
+                            }
+                        }
+                    }
+                }
 
                 if (config.getBoolean("PreventPunchingWood.Enabled")) {
                     if (config.getStringList("PreventPunchingWood.WoodBlocks").contains(material.toString())) {
@@ -92,17 +221,15 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 }
 
                 if (config.getBoolean("PlantFiberGathering.Enabled")) {
-                    if (config.getStringList("PlantFiberGathering.Blocks").contains(material.toString())) {
-                        if (RSVItem.isRSVItem(itemMainHand)) {
-                            String name = RSVItem.getNameFromItem(itemMainHand);
+                    if (RSVItem.isRSVItem(itemMainHand)) {
+                        String name = RSVItem.getNameFromItem(itemMainHand);
 
-                            if (name.contains("dagger") || name.contains("knife")) {
-                                if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
-                                    if (config.getConfigurationSection("PlantFiberGathering.BlockDrops").getKeys(false).contains(material.toString())) {
-                                        ItemStack plantFiber = moduleItems.getItem("plant_fiber");
-
-                                        Utils.harvestLooting(config.getConfigurationSection("PlantFiberGathering.BlockDrops." + material), plantFiber, null, block.getLocation());
-                                    }
+                        if (name.contains("dagger") || name.contains("knife")) {
+                            if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+                                if (config.getConfigurationSection("PlantFiberGathering.BlockDrops").getKeys(false).contains(material.toString())) {
+                                    ItemStack plantFiber = RSVItem.getItem("plant_fiber");
+                                    Utils.harvestLooting(config.getConfigurationSection("PlantFiberGathering.BlockDrops." + material), plantFiber, itemMainHand, block.getLocation());
+                                    Utils.changeDurability(itemMainHand, -1, true);
                                 }
                             }
                         }
@@ -112,12 +239,11 @@ public class NtrEvents extends ModuleEvents implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
         if (shouldEventBeRan(player)) {
-            FileConfiguration config = module.getUserConfig().getConfig();
             ItemStack item = event.getItem();
             Action action = event.getAction();
             UUID id = player.getUniqueId();
@@ -127,16 +253,22 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 Material blockMat = block.getType();
                 if (config.getBoolean("FlintKnapping.Enabled")) {
                     if (Utils.isItemReal(item)) {
-                        if (item.getType() == Material.FLINT) {
+                        if (item.getType() == Material.FLINT && !RSVItem.isRSVItem(item)) {
                             if (config.getConfigurationSection("FlintKnapping.BlockDrops").getKeys(false).contains(blockMat.toString())) {
                                 ItemStack flintShard = moduleItems.getItems().get("flint_shard");
 
-                                Utils.harvestLooting(config.getConfigurationSection("FlintKnapping.BlockDrops." + blockMat), flintShard, null, block.getLocation().add(0D, 0.15D, 0D));
+                                if (Utils.harvestLooting(config.getConfigurationSection("FlintKnapping.BlockDrops." + blockMat), flintShard, null, block.getLocation().add(0D, 0.15D, 0D))) {
+                                    if (item.getAmount() > 0) {
+                                        item.setAmount(item.getAmount() - 1);
+                                    }
+                                    else {
+                                        item.setType(Material.AIR);
+                                    }
 
-                                if (config.getBoolean("FlintKnapping.BlockDrops." + blockMat + ".Sound.Enabled")) {
-                                    Utils.playSound(player.getLocation(), config.getString("FlintKnapping.BlockDrops." + blockMat + ".Sound.Sound"), (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Volume"),  (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Pitch"));
+                                    if (config.getBoolean("FlintKnapping.BlockDrops." + blockMat + ".Sound.Enabled")) {
+                                        Utils.playSound(player.getLocation(), config.getString("FlintKnapping.BlockDrops." + blockMat + ".Sound.Sound"), (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Volume"),  (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Pitch"));
+                                    }
                                 }
-                                block.setType(Material.AIR);
                             }
                         }
                     }
@@ -144,17 +276,58 @@ public class NtrEvents extends ModuleEvents implements Listener {
             }
             else if (action == Action.RIGHT_CLICK_BLOCK) {
                 Material blockMat = block.getType();
-                if (config.getBoolean("RemoveVanillaPlankRecipes.Enabled")) {
-                    if (Utils.isItemReal(item)) {
-                        if (Utils.isHoldingAxe(player)) {
-                            if (Tag.LOGS.isTagged(blockMat)) {
-                                Location blockLoc = block.getLocation();
-                                Location pLoc = player.getLocation();
-                                if (Utils.getBlockFace(player) == BlockFace.UP && Math.abs(pLoc.getY() - blockLoc.getY()) < 1D && pLoc.distance(blockLoc) < 1D) {
-                                    if (Math.random() <= config.getDouble("RemoveVanillaPlankRecipes.AxePlankChance")) {
-                                        ItemStack drop = new ItemStack(Material.valueOf(blockMat.toString().replace("LOG", "PLANKS")));
-                                        Utils.harvestFortune(config.getConfigurationSection("RemoveVanillaPlankRecipes.BlockDrops"), drop, event.getItem(), block.getLocation());
+
+                if (Utils.isItemReal(item)) {
+                    if (Utils.isHoldingAxe(player)) {
+                        if (Tag.LOGS.isTagged(blockMat)) {
+                            if (RSVItem.isRSVItem(item)) {
+                                if (RSVItem.getNameFromItem(item).contains("mattock")) {
+                                    Tool tool = Utils.getBestTool(blockMat);
+
+                                    switch (tool) {
+                                        case NONE, SHEARS -> {}
+                                        default -> {
+                                            String type = item.getType().toString();
+                                            item.setType(Material.valueOf(type.substring(0, type.indexOf("_") + 1) + tool));
+                                        }
                                     }
+                                }
+                            }
+                            Location blockLoc = block.getLocation();
+                            Location pLoc = player.getLocation();
+                            if (Utils.getBlockFace(player) == BlockFace.UP && pLoc.distance(blockLoc) < 1.5D) {
+                                if (Math.random() <= config.getDouble("Lumberjack.PlankDrops.Chance")) {
+
+                                    ItemStack drop = new ItemStack(Utils.getRespectivePlank(blockMat));
+                                    Utils.harvestFortune(config.getConfigurationSection("Lumberjack.PlankDrops"), drop, event.getItem(), block.getLocation());
+                                    block.setType(Material.AIR);
+                                    event.setCancelled(true);
+                                }
+                            }
+                        }
+                        else if (Tag.PLANKS.isTagged(blockMat)) {
+                            if (RSVItem.isRSVItem(item)) {
+                                if (RSVItem.getNameFromItem(item).contains("mattock")) {
+                                    Tool tool = Utils.getBestTool(blockMat);
+
+                                    switch (tool) {
+                                        case NONE, SHEARS -> {}
+                                        default -> {
+                                            String type = item.getType().toString();
+                                            item.setType(Material.valueOf(type.substring(0, type.indexOf("_") + 1) + tool));
+                                        }
+                                    }
+                                }
+                            }
+                            Location blockLoc = block.getLocation();
+                            Location pLoc = player.getLocation();
+                            if (Utils.getBlockFace(player) == BlockFace.UP && pLoc.distance(blockLoc) < 1.5D) {
+                                if (Math.random() <= config.getDouble("Lumberjack.StickDrops.Chance")) {
+
+                                    ItemStack drop = new ItemStack(Utils.getRespectivePlank(blockMat));
+                                    Utils.harvestFortune(config.getConfigurationSection("Lumberjack.StickDrops"), drop, new ItemStack(Material.STICK), block.getLocation());
+                                    block.setType(Material.AIR);
+                                    event.setCancelled(true);
                                 }
                             }
                         }
@@ -225,7 +398,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
 
                 if (RSVItem.isRSVItem(item)) {
                     switch (RSVItem.getNameFromItem(item)) {
-                        case "copper-mattock", "iron_mattock", "golden_mattock", "diamond_mattock", "netherite_mattock" -> {
+                        case "copper_mattock", "iron_mattock", "golden_mattock", "diamond_mattock", "netherite_mattock" -> {
                             Block b = event.getClickedBlock();
                             Material blockMaterial = b.getType();
                             String matName = item.getType().toString();
@@ -244,7 +417,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                             else {
                                                 b.setType(Material.FARMLAND);
                                             }
-                                            Utils.changeDurability(item, -1);
+                                            Utils.changeDurability(item, -1, true);
                                         }
                                         case COARSE_DIRT, PODZOL, MYCELIUM -> {
                                             if (player.isSneaking()) {
@@ -253,11 +426,11 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                             else {
                                                 b.setType(Material.DIRT);
                                             }
-                                            Utils.changeDurability(item, -1);
+                                            Utils.changeDurability(item, -1, true);
                                         }
                                         case GRASS_PATH -> {
                                             b.setType(Material.FARMLAND);
-                                            Utils.changeDurability(item, -1);
+                                            Utils.changeDurability(item, -1, true);
                                         }
                                         default -> {}
                                     }
@@ -270,7 +443,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                             player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.valueOf("HANGING_ROOTS")));
                                             b.setType(Material.DIRT);
                                         }
-                                        Utils.changeDurability(item, -1);
+                                        Utils.changeDurability(item, -1, true);
                                     }
                                 }
                                 // it is a shovel
@@ -280,13 +453,13 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                             if (player.isSneaking()) {
                                                 b.setType(Material.FARMLAND);
                                             }
-                                            Utils.changeDurability(item, -1);
+                                            Utils.changeDurability(item, -1, true);
                                         }
                                         case COARSE_DIRT, PODZOL, MYCELIUM -> {
                                             if (player.isSneaking()) {
                                                 b.setType(Material.DIRT);
                                             }
-                                            Utils.changeDurability(item, -1);
+                                            Utils.changeDurability(item, -1, true);
                                         }
                                         default -> {}
                                     }
@@ -296,7 +469,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                             player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.valueOf("HANGING_ROOTS")));
                                             b.setType(Material.DIRT);
                                         }
-                                        Utils.changeDurability(item, -1);
+                                        Utils.changeDurability(item, -1, true);
                                     }
                                 }
                                 // it is a hoe
@@ -306,7 +479,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                             if (player.isSneaking()) {
                                                 b.setType(Material.GRASS_PATH);
                                             }
-                                            Utils.changeDurability(item, -1);
+                                            Utils.changeDurability(item, -1, true);
                                         }
                                         default -> {}
                                     }
@@ -315,14 +488,14 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                         if (player.isSneaking()) {
                                             b.setType(Material.GRASS_PATH);
                                         }
-                                        Utils.changeDurability(item, -1);
+                                        Utils.changeDurability(item, -1, true);
                                     }
                                 }
                             }
                             else if (isNotAxe) {
                                 if (Tag.LOGS.isTagged(blockMaterial) && !blockMaterial.toString().contains("STRIPPED")) {
                                     b.setType(Material.valueOf("STRIPPED_" + blockMaterial));
-                                    Utils.changeDurability(item, -1);
+                                    Utils.changeDurability(item, -1, true);
                                 }
                             }
                         }
@@ -366,13 +539,12 @@ public class NtrEvents extends ModuleEvents implements Listener {
     @EventHandler
     public void onCraft(PrepareItemCraftEvent event) {
         if (shouldEventBeRan(event.getView().getPlayer())) {
-            FileConfiguration config = module.getUserConfig().getConfig();
 
             Recipe recipe = event.getRecipe();
 
             if (recipe != null) {
 
-                if (config.getBoolean("RemoveVanillaPlankRecipes.Enabled")) {
+                if (config.getBoolean("Lumberjack.DisablePlankRecipes")) {
                     if (recipe instanceof ShapelessRecipe) {
                         NamespacedKey key = ((ShapelessRecipe) recipe).getKey();
 
@@ -381,6 +553,30 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                 case "acacia_planks", "birch_planks", "crimson_planks", "dark_oak_planks", "jungle_planks", "mangrove_planks", "oak_planks", "spruce_planks", "warped_planks" ->
                                         event.getInventory().setResult(null);
                                 default -> {}
+                            }
+                        }
+                    }
+                }
+
+                if (config.getBoolean("Lumberjack.DisableStickRecipes")) {
+                    if (recipe instanceof ShapedRecipe) {
+                        NamespacedKey key = ((ShapedRecipe) recipe).getKey();
+
+                        if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
+                            if (key.getKey().equals("stick")) {
+                                event.getInventory().setResult(null);
+                            }
+                        }
+                    }
+                }
+
+                if (config.getBoolean("Pottery.RemoveBrickSmeltingRecipe")) {
+                    if (recipe instanceof FurnaceRecipe) {
+                        NamespacedKey key = ((FurnaceRecipe) recipe).getKey();
+
+                        if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
+                            if (key.getKey().equals("brick")) {
+                                event.getInventory().setResult(null);
                             }
                         }
                     }
@@ -410,32 +606,101 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 }
             }
 
-            if (config.getBoolean("Pottery.Enabled")) {
-                ItemStack[] matrix = event.getInventory().getMatrix();
-                ItemStack clayTool = matrix[0];
-                ItemStack clay = matrix[1];
+            ItemStack[] matrix = event.getInventory().getMatrix();
+            int clayToolIndex = -1;
+            int clayIndex = -1;
+            int sawIndex = -1;
+            int woodIndex = -1;
+            int planksIndex = -1;
 
-                if (RSVItem.isRSVItem(clayTool)) {
-                    if (RSVItem.getNameFromItem(clayTool).equals("clay_tool")) {
-                        if (Utils.isItemReal(clay)) {
-                            if (clay.getType() == Material.CLAY_BALL) {
-                                int clayAmount = clay.getAmount();
+            ItemStack item;
+            Material mat;
 
-                                if (RSVItem.getCustomDurability(clayTool) - clayAmount <= 0) {
-                                    int dif = clayAmount - RSVItem.getCustomDurability(clayTool);
-                                    Utils.changeDurability(clayTool, -dif);
-                                    event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(dif));
-                                    event.getInventory().setItem(0, null);
-                                    event.getInventory().setItem(1, null);
-                                }
-                                else {
-                                    Utils.changeDurability(clayTool, -clayAmount);
-                                    event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(clayAmount));
-                                    event.getInventory().setItem(1, null);
-                                }
-                            }
+            for (int i = 0; i < matrix.length; i++) {
+                item = matrix[i];
+                if (Utils.isItemReal(item)) {
+                    mat = item.getType();
+                    if (mat == Material.CLAY_BALL) {
+                        // -2 means there are more than 1 of each item
+                        clayIndex = clayIndex == -1 ? i : -2;
+                    }
+                    else if (Tag.LOGS.isTagged(mat)) {
+                        woodIndex = woodIndex == -1 ? i : -2;
+                    }
+                    else if (Tag.PLANKS.isTagged(mat)) {
+                        planksIndex = planksIndex == -1 ? i : -2;
+                    }
+                    else if (RSVItem.isRSVItem(item)) {
+                        if (RSVItem.getNameFromItem(item).equals("clay_tool")) {
+                            clayToolIndex = clayToolIndex == -1 ? i : -2;
+                        }
+                        if (RSVItem.getNameFromItem(item).contains("saw")) {
+                            sawIndex = sawIndex == -1 ? i : -2;
                         }
                     }
+                }
+            }
+
+            if (config.getBoolean("Pottery.RemoveFlowerPotRecipe") && clayToolIndex > -1 && clayIndex > -1) {
+                ItemStack clayTool = matrix[clayToolIndex];
+                ItemStack clay = matrix[clayIndex];
+
+                int clayAmount = clay.getAmount();
+                int durability = RSVItem.hasCustomDurability(clayTool) ? RSVItem.getCustomDurability(clayTool) : clayTool.getType().getMaxDurability() - ((Damageable) clayTool.getItemMeta()).getDamage();
+
+                if (durability - clayAmount <= 0) {
+                    int dif = clayAmount - RSVItem.getCustomDurability(clayTool);
+                    Utils.changeDurability(clayTool, -dif, true);
+                    event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(dif));
+                    event.getInventory().setItem(clayToolIndex, null);
+                    event.getInventory().setItem(clayIndex, null);
+                }
+                else {
+                    Utils.changeDurability(clayTool, -clayAmount, true);
+                    event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(clayAmount));
+                    event.getInventory().setItem(clayIndex, null);
+                }
+            }
+
+            if (config.getBoolean("Lumberjack.EnableSawPlankRecipes") && sawIndex > -1 && woodIndex > -1) {
+                ItemStack saw = matrix[sawIndex];
+                ItemStack wood = matrix[woodIndex];
+
+                int woodAmount = wood.getAmount();
+                int durability = RSVItem.hasCustomDurability(saw) ? RSVItem.getCustomDurability(saw) : saw.getType().getMaxDurability() - ((Damageable) saw.getItemMeta()).getDamage();
+
+                if (durability - woodAmount <= 0) {
+                    int dif = woodAmount - RSVItem.getCustomDurability(saw);
+                    Utils.changeDurability(saw, -dif, true);
+                    event.getInventory().setResult(new ItemStack(Utils.getRespectivePlank(wood.getType()), dif * 4));
+                    event.getInventory().setItem(sawIndex, null);
+                    event.getInventory().setItem(woodIndex, null);
+                }
+                else {
+                    Utils.changeDurability(saw, -woodAmount, true);
+                    event.getInventory().setResult(new ItemStack(Utils.getRespectivePlank(wood.getType()), woodAmount * 4));
+                    event.getInventory().setItem(woodIndex, null);
+                }
+            }
+
+            if (config.getBoolean("Lumberjack.EnableSawStickRecipes") && sawIndex > -1 && planksIndex > -1) {
+                ItemStack saw = matrix[sawIndex];
+                ItemStack planks = matrix[planksIndex];
+
+                int planksAmount = planks.getAmount();
+                int durability = RSVItem.hasCustomDurability(saw) ? RSVItem.getCustomDurability(saw) : saw.getType().getMaxDurability() - ((Damageable) saw.getItemMeta()).getDamage();
+
+                if (durability - planksAmount <= 0) {
+                    int dif = planksAmount - RSVItem.getCustomDurability(saw);
+                    Utils.changeDurability(saw, -dif, true);
+                    event.getInventory().setResult(new ItemStack(Material.STICK, dif * 4));
+                    event.getInventory().setItem(sawIndex, null);
+                    event.getInventory().setItem(woodIndex, null);
+                }
+                else {
+                    Utils.changeDurability(saw, -planksAmount, true);
+                    event.getInventory().setResult(new ItemStack(Material.STICK, planksAmount * 4));
+                    event.getInventory().setItem(woodIndex, null);
                 }
             }
         }
@@ -506,6 +771,68 @@ public class NtrEvents extends ModuleEvents implements Listener {
                     if (RSVItem.getNameFromItem(item).equals("ceramic_lava_bucket")) {
                         if (!CeramicBucketMeltTask.hasTask(p.getUniqueId())) {
                             new CeramicBucketMeltTask(plugin, module, p).start();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemPickup(EntityPickupItemEvent event) {
+        if (!event.isCancelled()) {
+            if (event.getEntity() instanceof Player) {
+                Player player = (Player) event.getEntity();
+                if (shouldEventBeRan(player)) {
+                    ItemStack item = event.getItem().getItemStack();
+                    if (RSVItem.isRSVItem(item)) {
+                        String name = RSVItem.getNameFromItem(item);
+
+                        if (name.equals("ceramic_lava_bucket")) {
+                            if (!CeramicBucketMeltTask.hasTask(player.getUniqueId())) {
+                                new CeramicBucketMeltTask(plugin, module, player).start();
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onClick(InventoryClickEvent event) {
+        if (!event.isCancelled()) {
+            Player player = (Player) event.getWhoClicked();
+            if (shouldEventBeRan(player)) {
+                ItemStack cursor = event.getCursor();
+                if (event.isLeftClick()) {
+                    if (RSVItem.isRSVItem(cursor)) {
+                        String name = RSVItem.getNameFromItem(cursor);
+
+                        if (name.equals("ceramic_lava_bucket")) {
+                            if (!CeramicBucketMeltTask.hasTask(player.getUniqueId())) {
+                                new CeramicBucketMeltTask(plugin, module, player).start();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onDragClick(InventoryDragEvent event) {
+        if (!event.isCancelled()) {
+            Player player = (Player) event.getWhoClicked();
+            if (shouldEventBeRan(player)) {
+                ItemStack cursor = event.getCursor();
+                if (RSVItem.isRSVItem(cursor)) {
+                    String name = RSVItem.getNameFromItem(cursor);
+
+                    if (name.equals("ceramic_lava_bucket")) {
+                        if (!CeramicBucketMeltTask.hasTask(player.getUniqueId())) {
+                            new CeramicBucketMeltTask(plugin, module, player).start();
                         }
                     }
                 }

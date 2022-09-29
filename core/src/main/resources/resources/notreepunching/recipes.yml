@@ -47,13 +47,12 @@ diamond_knife:
     - "|DIAMOND"
     - "STICK"
 netherite_knife:
-  Type: "Shaped"
+  Type: "Smithing"
   Result:
     Item: "netherite_knife"
     Amount: 1
-  Ingredients:
-    - "|NETHERITE_INGOT"
-    - "STICK"
+  Base: "diamond_knife"
+  Addition: "NETHERITE_INGOT"
 flint_pickaxe:
   Type: "Shaped"
   Result:
@@ -125,14 +124,12 @@ diamond_saw:
     - "|STICK|DIAMOND"
     - "STICK|DIAMOND|"
 netherite_saw:
-  Type: "Shaped"
+  Type: "Smithing"
   Result:
     Item: "netherite_saw"
     Amount: 1
-  Ingredients:
-    - "||STICK"
-    - "|STICK|NETHERITE_INGOT"
-    - "STICK|NETHERITE_INGOT|"
+  Base: "diamond_saw"
+  Addition: "NETHERITE_INGOT"
 andesite:
   Type: "Shaped"
   Result:
@@ -187,9 +184,8 @@ fire_starter:
     Item: "fire_starter"
     Amount: 1
   Ingredients:
-    - "|STICK|STICK"
-    - "STICK|STICK"
-    - "STICK"
+    - "STICK|STRING"
+    - "flint_shard|STICK"
 copper_axe:
   Type: "Shaped"
   Result:
@@ -275,8 +271,8 @@ golden_mattock:
     Item: "golden_mattock"
     Amount: 1
   Ingredients:
-    - "GOLDEN_AXE|GOLDEN_PICKAXE|GOLDEN_SHOVEL"
-    - "|STICK"
+    - "GOLD_INGOT|GOLD_INGOT|GOLD_INGOT"
+    - "|STICK|GOLD_INGOT"
     - "|STICK"
 copper_mattock:
   Type: "Shaped"
@@ -284,8 +280,8 @@ copper_mattock:
     Item: "copper_mattock"
     Amount: 1
   Ingredients:
-    - "copper_axe|copper_pickaxe|copper_shovel"
-    - "|STICK"
+    - "COPPER_INGOT|COPPER_INGOT|COPPER_INGOT"
+    - "|STICK|COPPER_INGOT"
     - "|STICK"
 iron_mattock:
   Type: "Shaped"
@@ -293,8 +289,8 @@ iron_mattock:
     Item: "iron_mattock"
     Amount: 1
   Ingredients:
-    - "IRON_AXE|IRON_AXE|IRON_SHOVEL"
-    - "|STICK"
+    - "IRON_INGOT|IRON_INGOT|IRON_INGOT"
+    - "|STICK|IRON_INGOT"
     - "|STICK"
 diamond_mattock:
   Type: "Shaped"
@@ -302,35 +298,33 @@ diamond_mattock:
     Item: "diamond_mattock"
     Amount: 1
   Ingredients:
-    - "DIAMOND_AXE|DIAMOND_PICKAXE|DIAMOND_SHOVEL"
-    - "|STICK"
+    - "DIAMOND|DIAMOND|DIAMOND"
+    - "|STICK|DIAMOND"
     - "|STICK"
 netherite_mattock:
-  Type: "Shaped"
+  Type: "Smithing"
   Result:
     Item: "netherite_mattock"
     Amount: 1
-  Ingredients:
-    - "NETHERITE_AXE|NETHERITE_PICKAXE|NETHERITE_SHOVEL"
-    - "|STICK"
-    - "|STICK"
+  Base: "diamond_mattock"
+  Addition: "NETHERITE_INGOT"
 macuahuitl:
   Type: "Shaped"
   Result:
     Item: "macuahuitl"
     Amount: 1
   Ingredients:
-    - "|FERMENTED_SPIDER_EYE|flint_shard"
-    - "|flint_shard|VINE"
-    - "STICK"
+    - "|flint_shard|STICK"
+    - "flint_shard|STICK|flint_shard"
+    - "STICK|flint_shard"
 clay_tool:
   Type: "Shaped"
   Result:
     Item: "clay_tool"
     Amount: 1
   Ingredients:
-    - "CLAY_BALL"
-    - "STICK"
+    - "||STICK"
+    - "|STICK|STICK"
     - "STICK"
 clay_bucket:
   Type: "Shaped"
@@ -356,11 +350,43 @@ ceramic_bucket:
   Input: "clay_bucket"
   Experience: 1.0
   CookingTime: 160
+ceramic_bucket_0:
+  Type: "Campfire"
+  Result:
+    Item: "ceramic_bucket"
+    Amount: 1
+  Input: "clay_bucket"
+  Experience: 1.0
+  CookingTime: 160
 ceramic_flower_pot:
   Type: "Furnace"
   Result:
     Item: "FLOWER_POT"
     Amount: 1
   Input: "clay_flower_pot"
+  Experience: 1.0
+  CookingTime: 160
+ceramic_flower_pot_0:
+  Type: "Campfire"
+  Result:
+    Item: "FLOWER_POT"
+    Amount: 1
+  Input: "clay_flower_pot"
+  Experience: 1.0
+  CookingTime: 160
+brick:
+  Type: "Furnace"
+  Result:
+    Item: "BRICK"
+    Amount: 1
+  Input: "clay_brick"
+  Experience: 1.0
+  CookingTime: 160
+brick_0:
+  Type: "Campfire"
+  Result:
+    Item: "BRICK"
+    Amount: 1
+  Input: "clay_brick"
   Experience: 1.0
   CookingTime: 160

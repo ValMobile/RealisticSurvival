@@ -930,10 +930,15 @@ Recipes:
     Enabled:
       EnableAllVersions: true
     Unlock: true
+  ice_block:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
   canteen_empty:
     Enabled:
       EnableAllVersions: true
     Unlock: true
+
 
 
 # Do NOT edit unless you know what you're doing

@@ -22,10 +22,13 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityCategory;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.SmithingRecipe;
@@ -134,18 +137,12 @@ public class v1_19_R3 extends InternalsProvider {
 
     @Override
     public boolean isNetheriteRecipe(SmithingInventory inv) {
-        Recipe recipe = inv.getRecipe();
+        ItemStack base = inv.getItem(0);
+        ItemStack result = inv.getItem(2);
 
-        if (recipe instanceof SmithingRecipe) {
-            NamespacedKey key = ((SmithingRecipe) recipe).getKey();
-
-            if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
-                switch (key.getKey()) {
-                    case "netherite_axe_smithing", "netherite_pickaxe_smithing", "netherite_shovel_smithing", "netherite_sword_smithing", "netherite_hoe_smithing", "netherite_helmet_smithing", "netherite_chestplate_smithing", "netherite_leggings_smithing", "netherite_boots_smithing" ->
-                            inv.setResult(null);
-                    default -> {
-                    }
-                }
+        if (!(result == null || base == null)) {
+            if (Utils.isNetherite(result.getType()) && Utils.isDiamond(base.getType())) {
+                return true;
             }
         }
         return false;
@@ -159,6 +156,11 @@ public class v1_19_R3 extends InternalsProvider {
     @Override
     public void setFreezingView(Player player, int ticks) {
         player.setFreezeTicks(ticks);
+    }
+
+    @Override
+    public void attack(Player player, Entity entity) {
+        ((CraftPlayer) player).getHandle().attack(((CraftEntity) entity).getHandle());
     }
 
 }

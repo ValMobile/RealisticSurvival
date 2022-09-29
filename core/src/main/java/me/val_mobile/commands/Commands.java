@@ -22,10 +22,7 @@ import me.val_mobile.tan.TemperatureCalculateTask;
 import me.val_mobile.tan.ThirstCalculateTask;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -135,6 +132,7 @@ public class Commands implements CommandExecutor {
                                             }
                                         }
                                         player.getInventory().addItem(customItem);
+                                        Utils.playSound(player.getLocation(), "ENTITY_ITEM_PICKUP", 1f, 1f);
                                         return true;
                                     }
                                     // send the user a message showing how they misspelled the item name

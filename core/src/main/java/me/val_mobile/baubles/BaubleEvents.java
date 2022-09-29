@@ -393,7 +393,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 if (player.getHealth() - event.getFinalDamage() <= 0D) {
                     if (baubleInv.hasBauble("broken_heart")) {
                         player.playEffect(EntityEffect.TOTEM_RESURRECT);
-                        Utils.changeDurability(baubleInv.getItem("broken_heart"), 1);
+                        Utils.changeDurability(baubleInv.getItem("broken_heart"), 1, false);
                         event.setCancelled(true);
                     }
                 }

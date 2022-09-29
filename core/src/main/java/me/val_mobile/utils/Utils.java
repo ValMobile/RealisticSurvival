@@ -363,7 +363,7 @@ public class Utils {
     }
 
     public static boolean isItemReal(ItemStack item) {
-        return !(item == null || item.getType() == Material.AIR);
+        return !(item == null || item.getType() == Material.AIR || item.getAmount() < 1);
     }
 
     public static void setFreezingView(Player player, int ticks) {
@@ -562,7 +562,7 @@ public class Utils {
         COMMON, RARE, RANGE
     }
 
-    public static void harvestLooting(ConfigurationSection section, ItemStack drop, ItemStack tool, Location loc) {
+    public static boolean harvestLooting(ConfigurationSection section, ItemStack drop, ItemStack tool, Location loc) {
         int lvl = 0;
 
         if (tool != null) {
@@ -578,9 +578,13 @@ public class Utils {
                 // rare drops
                 if (Math.random() <= chance + lvl * 0.01) {
                     loc.getWorld().dropItemNaturally(loc, drop);
-                } else {
-                    if (Math.random() <= (lvl / (lvl + 1D)))
+                    return true;
+                }
+                else {
+                    if (Math.random() <= (lvl / (lvl + 1D))) {
                         loc.getWorld().dropItemNaturally(loc, drop);
+                        return true;
+                    }
                 }
             }
             case COMMON -> {
@@ -601,6 +605,7 @@ public class Utils {
                         drop.setAmount(actualAmount);
 
                         loc.getWorld().dropItemNaturally(loc, drop);
+                        return true;
                     }
                 }
             }
@@ -612,10 +617,13 @@ public class Utils {
 
                 drop.setAmount(amount);
                 loc.getWorld().dropItemNaturally(loc, drop);
+                return true;
             }
             default -> {
             }
         }
+
+        return false;
     }
 
     public static boolean isNetherite(Material material) {
@@ -640,82 +648,80 @@ public class Utils {
         }
     }
 
-    public static boolean changeDurability(ItemStack item, int change) {
+    public static Material getRespectivePlank(Material wood) {
+        String matName = wood.toString();
+
+        int firstIndex = matName.indexOf("_");
+        int secondIndex = matName.lastIndexOf("_");
+
+        if (firstIndex != secondIndex) {
+            // two underscores
+            return Material.valueOf(matName.substring(firstIndex + 1, secondIndex + 1) + "PLANKS");
+        }
+        else {
+            // one underscore
+            return Material.valueOf(matName.substring(0, firstIndex + 1) + "PLANKS");
+        }
+    }
+
+    public static void attack(Player player, Entity entity) {
+        internals.attack(player, entity);
+    }
+
+    public static boolean changeDurability(ItemStack item, int change, boolean shouldBreak) {
         ItemMeta meta = item.getItemMeta();
         int lvl = meta.getEnchantLevel(Enchantment.DURABILITY);
 
         boolean hasCustomDurability = RSVItem.hasCustomDurability(item) && RSVItem.hasMaxCustomDurability(item);
-        
-        int rsvDurability = RSVItem.getCustomDurability(item);
-        int rsvMaxDurability = RSVItem.getMaxCustomDurability(item);
 
-        int maxMcDurability = item.getType().getMaxDurability();
-        int mcDurability = maxMcDurability - ((Damageable) meta).getDamage();
+        int actualChange = change;
 
-        int actualChange = 0;
-
-        if (change < 0) {
-            change *= -1;
-
-            for (int i = 0; i < change; i++) {
-                if (Math.random() <= (1D / (lvl + 1D))) {
-                    actualChange++;
-                }
-            }
-
-            // actual damageable item in vanilla
-            if (maxMcDurability > 0) {
-                if (hasCustomDurability) {
-                    double mcRatio = (double) mcDurability / maxMcDurability;
-                    double rsvRatio = (double) rsvDurability / rsvMaxDurability;
-
-                    if (!Utils.doublesEquals(mcRatio, rsvRatio)) {
-                        mcDurability = (int) Math.ceil(rsvRatio * maxMcDurability);
+        if (!meta.isUnbreakable()) {
+            // if durability should decrease, check for unbreaking enchant
+            if (change < 0) {
+                if (lvl > 0) {
+                    for (int i = 0; i < -change; i++) {
+                        if (Math.random() > (1D / (lvl + 1D))) {
+                            actualChange++;
+                        }
                     }
-
-                    actualChange = maxMcDurability - mcDurability;
-
-                    ((Damageable) meta).setDamage(actualChange);
                 }
-                else {
-                    ((Damageable) meta).setDamage(((Damageable) meta).getDamage() + actualChange);
-
-                    item.setItemMeta(meta);
-                }
-                return ((Damageable) meta).getDamage() + actualChange >= item.getType().getMaxDurability();
             }
+
+            int maxMcDurability = item.getType().getMaxDurability();
+            int mcDurability;
+
             if (hasCustomDurability) {
-                int newDurability = rsvDurability - actualChange;
+                int rsvDurability = RSVItem.getCustomDurability(item);
+                int rsvMaxDurability = RSVItem.getMaxCustomDurability(item);
 
-                RealisticSurvivalPlugin.getUtil().addNbtTag(item, "rsvdurability", newDurability, PersistentDataType.INTEGER);
-                updateLore(item, rsvDurability, newDurability);
-                return (newDurability < 1);
-            }
-        }
-        else if (change > 0) {
-            actualChange = change;
+                rsvDurability += actualChange;
 
-            if (maxMcDurability > 0) {
-                if (hasCustomDurability) {
-                    double mcRatio = (double) mcDurability / maxMcDurability;
-                    double rsvRatio = (double) rsvDurability / rsvMaxDurability;
+                double rsvRatio = (double)  rsvDurability / rsvMaxDurability;
+                RealisticSurvivalPlugin.getUtil().addNbtTag(item, "rsvdurability", rsvDurability, PersistentDataType.INTEGER);
+                Utils.updateLore(item, rsvDurability - actualChange, rsvDurability);
 
-                    if (!Utils.doublesEquals(mcRatio, rsvRatio)) {
-                        mcDurability = (int) Math.ceil(rsvRatio * maxMcDurability);
-                    }
+                // if vanilla item has durability
+                if (maxMcDurability > 0) {
+                    mcDurability = (int) Math.ceil(rsvRatio * maxMcDurability);
+                    ((Damageable) meta).setDamage(maxMcDurability - mcDurability);
+                }
 
-                    actualChange = maxMcDurability - mcDurability;
-
-                    ((Damageable) meta).setDamage(actualChange);
+                if (rsvDurability <= 0 && shouldBreak) {
+                    item.setAmount(0);
+                    item.setType(Material.AIR);
                 }
             }
-            if (hasCustomDurability) {
-                int newDurability = rsvDurability + actualChange;
+            else {
+                mcDurability = maxMcDurability - ((Damageable) meta).getDamage() + actualChange;
+                ((Damageable) meta).setDamage(maxMcDurability - mcDurability);
 
-                RealisticSurvivalPlugin.getUtil().addNbtTag(item, "rsvdurability", newDurability, PersistentDataType.INTEGER);
-                updateLore(item, rsvDurability, newDurability);
-                return (newDurability < 1);
+                if (mcDurability <= 0 && shouldBreak) {
+                    item.setAmount(0);
+                    item.setType(Material.AIR);
+                }
             }
+            item.setItemMeta(meta);
         }
         return false;
     }

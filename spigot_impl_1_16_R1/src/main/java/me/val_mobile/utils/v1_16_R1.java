@@ -21,6 +21,8 @@ import me.val_mobile.iceandfire.SeaSerpentVariant;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
 import org.bukkit.Tag;
+import org.bukkit.craftbukkit.v1_16_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -151,5 +153,10 @@ public class v1_16_R1 extends InternalsProvider {
 
     @Override
     public void setFreezingView(Player player, int ticks) {}
+
+    @Override
+    public void attack(Player player, Entity entity) {
+        ((CraftPlayer) player).getHandle().attack(((CraftEntity) entity).getHandle());
+    }
 
 }

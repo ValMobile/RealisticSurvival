@@ -22,8 +22,10 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVAnvilRecipe;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
+import net.minecraft.server.v1_16_R1.LevelVersion;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -40,6 +42,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class MiscEvents implements Listener {
@@ -127,49 +130,24 @@ public class MiscEvents implements Listener {
 
         ItemStack baseItem = inv.getItem(0);
 
-        if (baseItem != null) {
-            if (RSVItem.isRSVItem(baseItem)) {
-                if (Utils.isNetheriteRecipe(inv)) {
-                    event.setResult(null);
+        if (RSVItem.isRSVItem(baseItem)) {
+            if (Utils.isNetheriteRecipe(inv)) {
+                event.setResult(null);
+                List<HumanEntity> viewers = event.getViewers();
+
+                for (HumanEntity p : viewers) {
+                    ((Player) p).updateInventory();
                 }
             }
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onDurability(PlayerItemDamageEvent event) {
         ItemStack item = event.getItem();
 
         if (!event.isCancelled()) {
-            if (RSVItem.isRSVItem(item)) {
-                if (RSVItem.hasCustomDurability(item) && RSVItem.hasMaxCustomDurability(item)) {
-                    Utils util = RealisticSurvivalPlugin.getUtil();
-
-                    int damage = event.getDamage();
-
-                    int rsvDurability = RSVItem.getCustomDurability(item);
-                    int rsvMaxDurability = RSVItem.getMaxCustomDurability(item);
-
-                    ItemMeta meta = item.getItemMeta();
-                    int mcDurability = ((Damageable) meta).getDamage();
-                    int maxMcDurability = item.getType().getMaxDurability();
-
-                    mcDurability-=damage;
-                    rsvDurability-=damage;
-
-                    double mcRatio = (double) mcDurability / maxMcDurability;
-                    double rsvRatio = (double) rsvDurability / rsvMaxDurability;
-
-                    if (!Utils.doublesEquals(mcRatio, rsvRatio)) {
-                        mcDurability = (int) Math.ceil(rsvRatio * maxMcDurability);
-                    }
-
-                    event.setDamage(maxMcDurability - mcDurability);
-
-                    item.setItemMeta(meta);
-                    util.addNbtTag(item, "rsvdurability", rsvDurability, PersistentDataType.INTEGER);
-                }
-            }
+            Utils.changeDurability(item, -event.getDamage(), true);
         }
     }
 

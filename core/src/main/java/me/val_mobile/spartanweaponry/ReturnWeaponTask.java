@@ -67,7 +67,7 @@ public class ReturnWeaponTask extends BukkitRunnable {
             Location dropLoc = dropItem(asLocation);
 
             if (config.getBoolean("MaxReturnDistanceReached.Enabled")) {
-                String message = ChatColor.translateAlternateColorCodes('&', "MaxReturnDistanceReached.Message");
+                String message = ChatColor.translateAlternateColorCodes('&', config.getString("MaxReturnDistanceReached.Message"));
                 message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(maxReturnDistance)));
                 player.sendMessage(message);
             }

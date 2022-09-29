@@ -23,6 +23,8 @@ import net.minecraft.util.datafix.fixes.EntityZombieSplitFix;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityCategory;
 import org.bukkit.entity.LivingEntity;
@@ -162,4 +164,8 @@ public class v1_17_R1 extends InternalsProvider {
         player.setFreezeTicks(ticks);
     }
 
+    @Override
+    public void attack(Player player, Entity entity) {
+        ((CraftPlayer) player).getHandle().attack(((CraftEntity) entity).getHandle());
+    }
 }

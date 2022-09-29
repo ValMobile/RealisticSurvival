@@ -38,7 +38,10 @@ public class ParasiteTask extends BukkitRunnable {
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
     private final double damage;
+    private final int duration;
+    private final int tickSpeed;
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
+    private int ticks = 0;
 
 
     public ParasiteTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
@@ -47,6 +50,8 @@ public class ParasiteTask extends BukkitRunnable {
         this.player = player;
         this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
         this.damage = config.getDouble("Thirst.Parasites.Damage");
+        this.duration = config.getInt("Thirst.Parasites.Duration");
+        this.tickSpeed = config.getInt("Thirst.Parasites.TickSpeed");
 
         ConfigurationSection section = config.getConfigurationSection("Thirst.Parasites.PotionEffects.Effects");
         Set<String> keys = section.getKeys(false);
@@ -66,8 +71,9 @@ public class ParasiteTask extends BukkitRunnable {
     public void run() {
         Player player = this.player.getPlayer();
         GameMode mode = player.getGameMode(); // get the gamemode
+        ticks += tickSpeed;
 
-        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName())) {
+        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && !player.isDead() && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName()) && ticks < duration) {
             if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
                 player.damage(damage);
             }
@@ -93,7 +99,6 @@ public class ParasiteTask extends BukkitRunnable {
 
         ThirstCalculateTask.getTasks().get(player.getUniqueId()).setParasitesActive(true);
 
-        int tickSpeed = config.getInt("Thirst.Parasites.TickSpeed"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 

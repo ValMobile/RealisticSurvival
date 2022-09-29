@@ -16,7 +16,7 @@ Shutdown:
 
 PreventPunchingWood:
   Enabled: true
-  # The wooden blocks that should not be broken by fist
+  # The wooden blocks that will drop nothing if broken without an axe
   # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Tag.html
   WoodBlocks:
     - "OAK_LOG"
@@ -60,13 +60,62 @@ PreventPunchingWood:
     - "STRIPPED_MANGROVE_LOG"
     - "STRIPPED_MANGROVE_WOOD"
 
-RemoveVanillaPlankRecipes:
-  Enabled: true
-  AxePlankChance: 0.4       # Chance to break a log into planks when right-clicking a log with an axe
-  BlockDrops:
+RockMining:
+  Stone:
+    DisableCobblestoneDrop: true    # If enabled prevents the user from getting cobblestone directly from mining stone
+    BlockDrops:                     # Stone will drop stone rocks instead of cobblestone
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+  Granite:
+    DisableGraniteDrop: true
+    BlockDrops: # Stone will drop granite rocks instead of granite
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+  Diorite:
+    DisableDioriteDrop: true
+    BlockDrops:
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+  Andesite:
+    DisableAndesiteDrop: true
+    BlockDrops:
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+  Sandstone:
+    DisableSandstoneDrop: true
+    BlockDrops:
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+  RedSandstone:
+    DisableRedSandstoneDrop: true
+    BlockDrops:
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+  DisableCobbledDeepslateDrop: false
+  DisableBlackstoneDrop: false
+  DisableBasaltDrop: false
+
+Lumberjack:
+  DisablePlankRecipes: true
+  DisableStickRecipes: true
+  PlankDrops:
     Type: "Range"
+    Chance: 0.4           # Chance to break a log into planks when right-clicking a log with an axe
     MinAmount: 2
     MaxAmount: 4
+  StickDrops:
+    Type: "Range"
+    Chance: 0.4           # Chance to break a plank into sticks when right-clicking a log with an axe
+    MinAmount: 2
+    MaxAmount: 4
+  EnableSawPlankRecipes: true
+  EnableSawStickRecipes: true
 
 RemoveVanillaCampfireRecipes:
   Enabled: true             # Right-click and hold the fire starter over the fuel and kindling to create campfires
@@ -107,7 +156,9 @@ RemoveVanillaCampfireRecipes:
       - "SOUL_SOIL"
 
 Pottery:
-  RemoveFlowerPotRecipe: true
+  RemoveFlowerPotRecipe: true       # Removes the vanilla recipe where bricks can be crafted into a flower pot
+  RemoveBrickSmeltingRecipe: true   # Removes the vanilla recipe where clay can be smelted into a brick
+  EnableClayToolRecipe: true        # Clay tools are used to craft clay bricks
   CeramicLavaBucketMelting:
     Enabled: true
     TickSpeed: 5
@@ -274,7 +325,7 @@ Items:
       AttackSpeed: 3.0
   stone_rock:
     Enabled:
-      EnableAllVersions: true     # If set to false, cobblestone will be acquired normally
+      EnableAllVersions: true
     BlockDrops: # What blocks should be counted as stone
       STONE:
         Type: "Range"
@@ -512,7 +563,7 @@ Items:
       EnableAllVersions: true
     Attributes:
       AttackDamage: 4.0
-      AttackSpeed: 2.0
+      AttackSpeed: 1.6
   copper_mattock:
     Enabled:
       EnableAllVersions: false
@@ -531,32 +582,32 @@ Items:
         1.19.1: true
         1.19.2: true
     Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
+      AttackDamage: 5.5
+      AttackSpeed: 1.6
   iron_mattock:
     Enabled:
       EnableAllVersions: true
     Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
+      AttackDamage: 6.0
+      AttackSpeed: 1.6
   diamond_mattock:
     Enabled:
       EnableAllVersions: true
     Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
+      AttackDamage: 7.0
+      AttackSpeed: 1.6
   netherite_mattock:
     Enabled:
       EnableAllVersions: true
     Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
+      AttackDamage: 8.0
+      AttackSpeed: 1.6
   macuahuitl:
     Enabled:
       EnableAllVersions: true
     Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
+      AttackDamage: 6.0
+      AttackSpeed: 1.6
   clay_tool:
     Enabled:
       EnableAllVersions: true
@@ -917,7 +968,23 @@ Recipes:
     Enabled:
       EnableAllVersions: true
     Unlock: true
+  clay_flower_pot_0:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
   ceramic_bucket:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  ceramic_bucket_0:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  brick:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  brick_0:
     Enabled:
       EnableAllVersions: true
     Unlock: true

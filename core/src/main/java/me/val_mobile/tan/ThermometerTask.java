@@ -64,7 +64,7 @@ public class ThermometerTask extends BukkitRunnable {
         Player player = this.player.getPlayer();
         GameMode mode = player.getGameMode(); // get the gamemode
 
-        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName()) && isHoldingThermometer() && task != null) {
+        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName()) && task != null) {
             equilibriumTemp = task.getEquilibriumTemp();
 
             if (equilibriumTemp > MAXIMUM_TEMPERATURE) {
@@ -74,15 +74,16 @@ public class ThermometerTask extends BukkitRunnable {
                 equilibriumTemp = MINIMUM_TEMPERATURE;
             }
 
-            Location loc = player.getLocation();
+            Location loc = player.getEyeLocation();
 
             double rad = Math.PI * (1D - equilibriumTemp/MAXIMUM_TEMPERATURE);
 
             double horizontal = Math.cos(rad) * 1000;
             double vertical = Math.sin(rad) * 1000;
 
-            Vector dir = new Vector(horizontal, 0, vertical).rotateAroundY(Math.toRadians(loc.getYaw()) + Math.PI/2);
-            player.setCompassTarget(loc.add(dir));
+            Vector dir = new Vector(horizontal, loc.getY(), vertical).rotateAroundY(Math.toRadians(loc.getYaw()));
+            loc.add(dir);
+            player.setCompassTarget(loc);
         }
         // if the player is in creative or spectator
         else {

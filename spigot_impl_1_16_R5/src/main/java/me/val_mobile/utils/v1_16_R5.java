@@ -22,6 +22,8 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityCategory;
 import org.bukkit.entity.LivingEntity;
@@ -159,4 +161,8 @@ public class v1_16_R5 extends InternalsProvider {
     @Override
     public void setFreezingView(Player player, int ticks) {}
 
+    @Override
+    public void attack(Player player, Entity entity) {
+        ((CraftPlayer) player).getHandle().attack(((CraftEntity) entity).getHandle());
+    }
 }

@@ -122,7 +122,7 @@ public class TemperatureCalculateTask extends BukkitRunnable {
             }
 
             if (pBlock.isLiquid()) {
-                if (pBlock.getBlockData().getMaterial() == Material.LAVA) {
+                if (pBlock.getType() == Material.LAVA) {
                     add("Temperature.Environment.SubmergedLava");
                 }
                 else {
