@@ -76,13 +76,11 @@ public class IceFireEvents extends ModuleEvents implements Listener {
             Utils util = RealisticSurvivalPlugin.getUtil();
             double damage = event.getDamage();
 
-            // find out what entity the attacker is
-            switch (attacker.getType()) {
-                // if the attacker is a player
-                case PLAYER -> {
-                    Player player = (Player) attacker; // get the player
-                    ItemStack itemMainHand = player.getInventory().getItemInMainHand(); // get the item in the player's main hand
+            if (attacker instanceof LivingEntity living) {
+                if (living.getEquipment() != null) {
+                    ItemStack itemMainHand = living.getEquipment().getItemInMainHand(); // get the item in the player's main hand
 
+                    // check if the item is real
                     if (RSVItem.isRSVItem(itemMainHand)) {
                         if (RSVItem.getModuleNameFromItem(itemMainHand).equals(IceFireModule.NAME)) {
                             String name = RSVItem.getNameFromItem(itemMainHand);
@@ -99,6 +97,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                     if (!BurnTask.hasTask(defender.getUniqueId())) {
                                         int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
                                         int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+
                                         new BurnTask(plugin, defender, fireTicks, tickSpeed).start();
                                     }
                                 }
@@ -164,15 +163,37 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                         }
                     }
                 }
-                case ARROW, SPECTRAL_ARROW, FIREWORK -> {
-                    Projectile arrow = (Projectile) attacker;
-                    if (arrow.getShooter() != null) {
-                        Entity shooter = (Entity) arrow.getShooter();
 
-                        if (shooter instanceof LivingEntity) {
-                            LivingEntity player = (LivingEntity) shooter;
+                if (attacker instanceof EnderDragon) {
+                    if (defender instanceof LivingEntity def) {
+                        if (def.getEquipment() != null) {
+                            ItemStack[] items = def.getEquipment().getArmorContents();
+                            double dragonProtection = 0;
 
-                            ItemStack itemMainHand = player.getEquipment().getItemInMainHand();
+                            for (ItemStack item : items) {
+                                // if a real item is in the armor slot
+                                if (RSVItem.isRSVItem(item)) {
+                                    String name = RSVItem.getNameFromItem(item);
+                                    if (name.startsWith("dragonscale") || name.startsWith("dragonsteel")) {
+                                        dragonProtection += config.getDouble("Items." + name + ".DragonDamageReduction");
+                                    }
+                                }
+                            }
+
+                            damage *= (1D - dragonProtection);
+                        }
+                    }
+                }
+            }
+
+            else if (attacker instanceof Arrow || attacker instanceof SpectralArrow || attacker instanceof Firework) {
+                Projectile arrow = (Projectile) attacker;
+                if (arrow.getShooter() != null) {
+                    Entity shooter = (Entity) arrow.getShooter();
+
+                    if (shooter instanceof LivingEntity living) {
+                        if (living.getEquipment() != null) {
+                            ItemStack itemMainHand = living.getEquipment().getItemInMainHand();
 
                             if (RSVItem.isRSVItem(itemMainHand)) {
                                 if (RSVItem.getModuleNameFromItem(itemMainHand).equals(IceFireModule.NAME)) {
@@ -237,7 +258,9 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                                     new BurnTask(plugin, defender, fireTicks, tickSpeed).start();
                                                 }
                                             }
-                                            case "dragonsteel_ice" -> new FreezeTask(plugin, module, name, defender).start();
+                                            case "dragonsteel_ice" -> {
+                                                new FreezeTask(plugin, module, name, defender).start();
+                                            }
                                             case "dragonsteel_lightning" -> {
                                                 if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
                                                     Location loc = defender.getLocation();
@@ -262,24 +285,6 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                 }
                             }
                         }
-                    }
-                }
-                case ENDER_DRAGON -> {
-                    if (defender instanceof Player) {
-                        Player player = (Player) event.getEntity();
-
-                        ItemStack[] items = player.getInventory().getArmorContents();
-                        double dragonProtection = 0;
-                        for (ItemStack item : items) {
-                            // if a real item is in the armor slot
-                            if (RSVItem.isRSVItem(item)) {
-                                String name = RSVItem.getNameFromItem(item);
-                                if (name.startsWith("dragonscale") || name.startsWith("dragonsteel")) {
-                                    dragonProtection += config.getDouble("Items." + name + ".DragonDamageReduction");
-                                }
-                            }
-                        }
-                        damage *= (1D - dragonProtection);
                     }
                 }
             }

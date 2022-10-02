@@ -44,7 +44,7 @@ public class NtrModule extends RSVModule {
         setUserConfig(new UserConfig(plugin));
         setItemConfig(new ItemConfig(plugin));
         setRecipeConfig(new RecipesConfig(plugin));
-        setModuleItems(new ModuleItems(this, plugin));
+        setModuleItems(new ModuleItems(this));
         setModuleRecipes(new ModuleRecipes(this, plugin));
 
         FileConfiguration config = getUserConfig().getConfig();

@@ -19,6 +19,7 @@ package me.val_mobile.tan;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.DisplayTask;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -34,7 +35,7 @@ public class ParasiteTask extends BukkitRunnable {
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
-    private final static HashMap<UUID, ParasiteTask> players = new HashMap<>();
+    private final static HashMap<UUID, ParasiteTask> tasks = new HashMap<>();
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
     private final double damage;
@@ -64,25 +65,34 @@ public class ParasiteTask extends BukkitRunnable {
             amp = section.getInt(key + ".Amplifier");
             potionEffects.add(new PotionEffect(PotionEffectType.getByName(key), dur, amp));
         }
-        players.put(player.getPlayer().getUniqueId(), this);
+        tasks.put(player.getPlayer().getUniqueId(), this);
     }
 
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        GameMode mode = player.getGameMode(); // get the gamemode
-        ticks += tickSpeed;
+        if (player != null) {
+            GameMode mode = player.getGameMode(); // get the gamemode
+            ticks += tickSpeed;
 
-        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && !player.isDead() && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName()) && ticks < duration) {
-            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
-                player.damage(damage);
+            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && !player.isDead() && player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && ticks < duration) {
+                DisplayTask.getTasks().get(player.getUniqueId()).setParasitesActive(true);
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
+                    player.damage(damage);
+                }
+            }
+            else {
+                tasks.remove(player.getUniqueId());
+                ThirstCalculateTask.getTasks().get(player.getUniqueId()).setParasitesActive(false);
+                DisplayTask.getTasks().get(player.getUniqueId()).setParasitesActive(false);
+                cancel();
             }
         }
         // if the player is in creative or spectator
         else {
-            // update static hashmap values and cancel the runnable
-            players.remove(player.getUniqueId());
-            ThirstCalculateTask.getTasks().get(player.getUniqueId()).setParasitesActive(false);
+            if (DisplayTask.hasTask(player.getUniqueId()) && DisplayTask.getTasks().get(player.getUniqueId()) != null) {
+                DisplayTask.getTasks().get(player.getUniqueId()).setParasitesActive(false);
+            }
             cancel();
         }
     }
@@ -102,13 +112,13 @@ public class ParasiteTask extends BukkitRunnable {
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 
-    public static HashMap<UUID, ParasiteTask> getPlayers() {
-        return players;
+    public static HashMap<UUID, ParasiteTask> getTasks() {
+        return tasks;
     }
 
     public static boolean hasTask(UUID id) {
-        if (players.containsKey(id)) {
-            return players.get(id) != null;
+        if (tasks.containsKey(id)) {
+            return tasks.get(id) != null;
         }
         return false;
     }

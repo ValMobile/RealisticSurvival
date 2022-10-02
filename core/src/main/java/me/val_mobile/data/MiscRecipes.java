@@ -27,30 +27,27 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 
-public class ModuleRecipes {
+public class MiscRecipes {
 
     private HashMap<String, Recipe> recipeMap = new HashMap<>();
     private Collection<RSVAnvilRecipe> anvilRecipes = new ArrayList<>();
     private final RealisticSurvivalPlugin plugin;
-    private RSVModule module;
 
-    public ModuleRecipes(RSVModule module, RealisticSurvivalPlugin plugin) {
+    public MiscRecipes(RealisticSurvivalPlugin plugin) {
         this.plugin = plugin;
-        this.module = module;
     }
 
     public void initialize() {
-        FileConfiguration recipeConfig = module.getRecipeConfig().getConfig();
-        FileConfiguration userConfig = module.getUserConfig().getConfig();
+        FileConfiguration recipeConfig = RealisticSurvivalPlugin.getMiscRecipesConfig();
 
         Set<String> keys = recipeConfig.getKeys(false);
 
         for (String name : keys) {
             Recipe recipe = null;
 
-            String type = recipeConfig.getString(name + ".Type");
+            if (!name.equals("ConfigId")) {
+                String type = recipeConfig.getString(name + ".Type");
 
-            if (userConfig.getBoolean("Recipes." + name + ".Enabled.EnableAllVersions")) {
                 switch (type) {
                     case "Shaped" -> recipe = new RSVShapedRecipe(recipeConfig, name, plugin);
                     case "Shapeless" -> recipe = new RSVShapelessRecipe(recipeConfig, name, plugin);
@@ -67,28 +64,6 @@ public class ModuleRecipes {
                 }
                 addRecipe(recipe);
                 recipeMap.putIfAbsent(name, recipe);
-            }
-            else {
-                if (userConfig.contains("Recipes." + name + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion())) {
-                    if (userConfig.getBoolean("Recipes." + name + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion())) {
-                        switch (type) {
-                            case "Shaped" -> recipe = new RSVShapedRecipe(recipeConfig, name, plugin);
-                            case "Shapeless" -> recipe = new RSVShapelessRecipe(recipeConfig, name, plugin);
-                            case "Smithing" -> recipe = new RSVSmithingRecipe(recipeConfig, name, plugin);
-                            case "Furnace" -> recipe = new RSVFurnaceRecipe(recipeConfig, name, plugin);
-                            case "Campfire" -> recipe = new RSVCampfireRecipe(recipeConfig, name, plugin);
-                            case "Smoker" -> recipe = new RSVSmokingRecipe(recipeConfig, name, plugin);
-                            case "Stonecutting" -> recipe = new RSVStonecuttingRecipe(recipeConfig, name, plugin);
-                            case "Anvil" -> {
-                                recipe = new RSVAnvilRecipe(recipeConfig, name);
-                                anvilRecipes.add((RSVAnvilRecipe) recipe);
-                            }
-                            default -> {}
-                        }
-                        addRecipe(recipe);
-                        recipeMap.putIfAbsent(name, recipe);
-                    }
-                }
             }
         }
     }

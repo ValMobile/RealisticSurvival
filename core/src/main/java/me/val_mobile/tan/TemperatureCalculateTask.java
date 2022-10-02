@@ -67,174 +67,191 @@ public class TemperatureCalculateTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        GameMode mode = player.getGameMode(); // get the gamemode
-        this.module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
+        if (player != null) {
+            GameMode mode = player.getGameMode(); // get the gamemode
+            this.module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
 
-        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName())) {
-            double oldTemp = temp;
-            regulate = 0D;
-            change = 0D;
-            World pWorld = player.getWorld();
-            Location pLoc = player.getLocation();
-            Block pBlock = pLoc.getBlock();
-            double px = pLoc.getX();
-            double py = pLoc.getY();
-            double pz = pLoc.getZ();
+            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
+                double tempMaxChange = config.getDouble("Temperature.MaxChange");
 
-            double biomeTemp = pWorld.getTemperature((int) px, (int) py, (int) pz); // create a variable to store the temperature
+                double oldTemp = temp;
+                regulate = 0D;
+                change = 0D;
+                World pWorld = player.getWorld();
+                Location pLoc = player.getLocation();
+                Block pBlock = pLoc.getBlock();
+                double px = pLoc.getX();
+                double py = pLoc.getY();
+                double pz = pLoc.getZ();
 
-            if (biomeTemp <= 0.30) {
-                if (biomeTemp < -0.01) {
-                    biomeTemp *= 30;
-                }
-                else if (biomeTemp > 0.01) {
-                    biomeTemp *= -20;
+                double biomeTemp = pWorld.getTemperature((int) px, (int) py, (int) pz); // create a variable to store the temperature
+
+                if (biomeTemp > config.getDouble("Temperature.Environment.BiomeTemperature.HotCutoff")) {
+                    biomeTemp *= config.getDouble("Temperature.Environment.BiomeTemperature.HotMultiplier");
                 }
                 else {
-                    biomeTemp -= 0.1;
-                    biomeTemp *= 20;
-                }
-            }
-
-            double daytimeChange = 3 * (biomeTemp + Utils.getDayMultiplier(pWorld));
-            change += daytimeChange;
-
-            double tempMaxChange = config.getDouble("Temperature.MaxChange");
-            int cubeLength = config.getInt("Temperature.Environment.CubeLength");
-
-            for (int x = -(cubeLength - 1); x < cubeLength; x++) {
-                for (int y = -(cubeLength - 1); y < cubeLength; y++) {
-                    for (int z = -(cubeLength - 1); z < cubeLength; z++) {
-                        Location loc = new Location(player.getWorld(), px + x, py + y, pz + z);
-                        Block block = loc.getBlock();
-
-                        if (block != null) {
-                            String path = "Temperature.Environment.Blocks";
-                            ConfigurationSection section = config.getConfigurationSection(path);
-
-                            String material = block.getBlockData().getMaterial().toString();
-                            if (section.getKeys(false).contains(material)) {
-                                add(path + "." + material);
-                            }
-                        }
+                    // less than hot cutoff
+                    if (biomeTemp >= config.getDouble("Temperature.Environment.BiomeTemperature.WarmCutoff")) {
+                        biomeTemp *= config.getDouble("Temperature.Environment.BiomeTemperature.WarmMultiplier");
                     }
-                }
-            }
-
-            if (pBlock.isLiquid()) {
-                if (pBlock.getType() == Material.LAVA) {
-                    add("Temperature.Environment.SubmergedLava");
-                }
-                else {
-                    add("Temperature.Environment.SubmergedWater");
-                }
-            }
-
-            if (Utils.isExposedToSky(player)) {
-                if (pWorld.hasStorm()) {
-                    add("Temperature.Environment.Storming");
-                }
-                add("Temperature.Environment.Housed");
-
-            }
-
-            if (player.getFireTicks() > 0) {
-                add("Temperature.Environment.Burning");
-            }
-
-            for (ItemStack item : player.getInventory().getArmorContents()) {
-                if (Utils.isItemReal(item)) {
-                    ItemMeta meta = item.getItemMeta();
-
-                    if (RSVItem.isRSVItem(item)) {
-                        String itemName = RSVItem.getNameFromItem(item);
-
-                        switch (itemName) {
-                            case "wool_hood", "wool_boots", "wool_pants", "wool_jacket", "jelled_slime_helmet", "jelled_slime_chestplate", "jelled_slime_leggings", "jelled_slime_boots" -> {
-                                add("Temperature.Armor." + itemName);
-                            }
-                            default -> {
-                            }
-                        }
+                    // less than warm cutoff
+                    else if (biomeTemp >= config.getDouble("Temperature.Environment.BiomeTemperature.ModerateCutoff")) {
+                        biomeTemp *= config.getDouble("Temperature.Environment.BiomeTemperature.ModerateMultiplier");
+                    }
+                    // less than moderate cutoff
+                    else if (biomeTemp >= config.getDouble("Temperature.Environment.BiomeTemperature.CoolCutoff")) {
+                        biomeTemp *= config.getDouble("Temperature.Environment.BiomeTemperature.CoolMultiplier");
+                    }
+                    // less than cool cutoff
+                    else if (biomeTemp >= config.getDouble("Temperature.Environment.BiomeTemperature.ColdCutoff")) {
+                        biomeTemp *= config.getDouble("Temperature.Environment.BiomeTemperature.ColdMultiplier");
                     }
                     else {
-                        Material mat = item.getType();
-                        if (Utils.isArmor(mat)) {
-                            add("Temperature.Armor." + mat);
+                        biomeTemp *= config.getDouble("Temperature.Environment.BiomeTemperature.FrigidMultiplier");
+                    }
+                }
+
+                double daylightChange = pWorld.getEnvironment() == World.Environment.NORMAL ? Math.sin(2 * Math.PI / 24000 * pWorld.getTime() - 3500) * config.getDouble("Temperature.Environment.DaylightCycleMultiplier") : 0D;
+                double worldChange = biomeTemp + daylightChange;
+                change += worldChange;
+
+                int cubeLength = config.getInt("Temperature.Environment.CubeLength");
+
+                for (int x = -(cubeLength - 1); x < cubeLength; x++) {
+                    for (int y = -(cubeLength - 1); y < cubeLength; y++) {
+                        for (int z = -(cubeLength - 1); z < cubeLength; z++) {
+                            Location loc = new Location(player.getWorld(), px + x, py + y, pz + z);
+                            Block block = loc.getBlock();
+
+                            if (!block.isEmpty()) {
+                                String path = "Temperature.Environment.Blocks";
+                                ConfigurationSection section = config.getConfigurationSection(path);
+
+                                String material = block.getBlockData().getMaterial().toString();
+                                if (section.getKeys(false).contains(material)) {
+                                    add(path + "." + material);
+                                }
+                            }
                         }
                     }
+                }
 
-                    if (meta.hasEnchant(RSVEnchants.COOLING)) {
-                        add("Temperature.Enchantments.Cooling");
+                if (pBlock.isLiquid()) {
+                    if (pBlock.getType() == Material.LAVA) {
+                        add("Temperature.Environment.SubmergedLava");
                     }
-
-                    if (meta.hasEnchant(RSVEnchants.WARMING)) {
-                        add("Temperature.Enchantments.Warming");
-                    }
-
-                    if (meta.hasEnchant(RSVEnchants.OZZY_LINER)) {
-                        add("Temperature.Enchantments.OzzyLiner");
+                    else {
+                        add("Temperature.Environment.SubmergedWater");
                     }
                 }
-            }
 
-            double normalTemp = NEUTRAL_TEMPERATURE + change;
-            double regulatedTemp = temp;
+                if (Utils.isExposedToSky(player)) {
+                    if (pWorld.hasStorm()) {
+                        add("Temperature.Environment.Storming");
+                    }
+                    add("Temperature.Environment.Housed");
 
-            if (normalTemp != NEUTRAL_TEMPERATURE) {
-                if (normalTemp > NEUTRAL_TEMPERATURE) {
-                    regulatedTemp = Math.max(normalTemp - regulate, NEUTRAL_TEMPERATURE);
+                }
 
+                if (player.getFireTicks() > 0) {
+                    add("Temperature.Environment.Burning");
+                }
+
+                for (ItemStack item : player.getInventory().getArmorContents()) {
+                    if (Utils.isItemReal(item)) {
+                        ItemMeta meta = item.getItemMeta();
+
+                        if (RSVItem.isRSVItem(item)) {
+                            String itemName = RSVItem.getNameFromItem(item);
+
+                            switch (itemName) {
+                                case "wool_hood", "wool_boots", "wool_pants", "wool_jacket", "jelled_slime_helmet", "jelled_slime_chestplate", "jelled_slime_leggings", "jelled_slime_boots" ->
+                                        add("Temperature.Armor." + itemName);
+                                default -> {}
+                            }
+                        }
+                        else {
+                            Material mat = item.getType();
+                            if (Utils.isArmor(mat)) {
+                                add("Temperature.Armor." + mat);
+                            }
+                        }
+
+                        if (meta.hasEnchant(RSVEnchants.COOLING)) {
+                            add("Temperature.Enchantments.Cooling");
+                        }
+
+                        if (meta.hasEnchant(RSVEnchants.WARMING)) {
+                            add("Temperature.Enchantments.Warming");
+                        }
+
+                        if (meta.hasEnchant(RSVEnchants.OZZY_LINER)) {
+                            add("Temperature.Enchantments.OzzyLiner");
+                        }
+                    }
+                }
+
+                double normalTemp = NEUTRAL_TEMPERATURE + change;
+                double regulatedTemp = temp;
+
+                if (normalTemp != NEUTRAL_TEMPERATURE) {
+                    if (normalTemp > NEUTRAL_TEMPERATURE) {
+                        regulatedTemp = Math.max(normalTemp - regulate, NEUTRAL_TEMPERATURE);
+
+                    }
+                    else {
+                        regulatedTemp = Math.min(normalTemp + regulate, NEUTRAL_TEMPERATURE);
+                    }
+                }
+
+                equilibriumTemp = regulatedTemp;
+
+                if (Math.abs(temp - regulatedTemp) < tempMaxChange) {
+                    temp = regulatedTemp;
                 }
                 else {
-                    regulatedTemp = Math.min(normalTemp + regulate, NEUTRAL_TEMPERATURE);
+                    temp = regulatedTemp > temp ? temp + tempMaxChange : temp - tempMaxChange;
                 }
-            }
 
-            equilibriumTemp = regulatedTemp;
+                if (temp != NEUTRAL_TEMPERATURE) {
+                    if (temp < NEUTRAL_TEMPERATURE && player.hasPermission("realisticsurvival.toughasnails.resistance.cold")) {
+                        temp = NEUTRAL_TEMPERATURE;
+                    }
+                    if (temp > NEUTRAL_TEMPERATURE && player.hasPermission("realisticsurvival.toughasnails.resistance.hot")) {
+                        temp = NEUTRAL_TEMPERATURE;
+                    }
+                }
 
-            if (Math.abs(temp - regulatedTemp) < tempMaxChange) {
-                temp = regulatedTemp;
+                if (temp <= config.getDouble("Temperature.Hypothermia.Temperature")) {
+                    if (!HypothermiaTask.hasTask(player.getUniqueId())) {
+                        new HypothermiaTask(plugin, this.player).start();
+                    }
+                }
+
+                if (temp >= config.getDouble("Temperature.Hyperthermia.Temperature")) {
+                    if (!HyperthermiaTask.hasTask(player.getUniqueId())) {
+                        new HyperthermiaTask(plugin, this.player).start();
+                    }
+                }
+
+                if (temp != oldTemp) {
+                    Bukkit.getServer().getPluginManager().callEvent(new TemperatureChangeEvent(player, oldTemp, temp));
+                }
+                module.setTemperature(temp);
+                module.saveData();
+                RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
             }
             else {
-                temp = regulatedTemp > temp ? temp + tempMaxChange : temp - tempMaxChange;
+                module.setTemperature(temp);
+                module.saveData();
+                RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
+                tasks.remove(player.getUniqueId());
+                cancel();
             }
-
-            if (temp != NEUTRAL_TEMPERATURE) {
-                if (temp < NEUTRAL_TEMPERATURE && player.hasPermission("realisticsurvival.toughasnails.resistance.cold")) {
-                    temp = NEUTRAL_TEMPERATURE;
-                }
-                if (temp > NEUTRAL_TEMPERATURE && player.hasPermission("realisticsurvival.toughasnails.resistance.hot")) {
-                    temp = NEUTRAL_TEMPERATURE;
-                }
-            }
-
-            if (temp <= config.getDouble("Temperature.Hypothermia.Temperature")) {
-                if (!HypothermiaTask.hasTask(player.getUniqueId())) {
-                    new HypothermiaTask(plugin, this.player).start();
-                }
-            }
-
-            if (temp >= config.getDouble("Temperature.Hyperthermia.Temperature")) {
-                if (!HyperthermiaTask.hasTask(player.getUniqueId())) {
-                    new HyperthermiaTask(plugin, this.player).start();
-                }
-            }
-
-            if (temp != oldTemp) {
-                Bukkit.getServer().getPluginManager().callEvent(new TemperatureChangeEvent(player, oldTemp, temp));
-            }
-            module.setTemperature(temp);
-            module.saveData();
-            RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
         }
         // if the player is in creative or spectator
         else {
             // update static hashmap values and cancel the runnable
-            module.setTemperature(temp);
-            module.saveData();
-            RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
-            tasks.remove(player.getUniqueId());
             cancel();
         }
     }

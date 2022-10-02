@@ -39,10 +39,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.event.player.PlayerBedEnterEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerVelocityEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -192,17 +189,21 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                         if (cursor == null || !(util.hasNbtTag(cursor, "rsvbaubleslot") && RSVItem.isRSVItem(current))) {
                             event.setCancelled(true);
                         }
-                        if (cursor.getAmount() > 1 || current.getAmount() > 1) {
-                            event.setCancelled(true);
-                        }
-                        if (Objects.equals(RSVItem.getNameFromItem(current), "gui_glass")) {
-                            event.setCancelled(true);
-                        }
-                        String cursorTag = util.getNbtTag(cursor, "rsvbaubleslot", PersistentDataType.STRING);
-                        BaubleSlot slot = BaubleSlot.valueOf(util.getNbtTag(current, "rsvbaubleslot", PersistentDataType.STRING).toUpperCase());
-                        if (cursorTag.equals(slot.getTag()) || cursorTag.equals("Any")) {
-                            event.setCurrentItem(null);
-                            Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, cursor, BaubleChangeEvent.BaubleChange.ADDITION));
+
+                        if (RSVItem.isRSVItem(current)) {
+                            if (RSVItem.getNameFromItem(current).equals("gui_glass")) {
+                                event.setCancelled(true);
+                            }
+                            else {
+                                if (RSVItem.isRSVItem(cursor)) {
+                                    String cursorTag = util.getNbtTag(cursor, "rsvbaubleslot", PersistentDataType.STRING);
+                                    BaubleSlot slot = BaubleSlot.valueOf(util.getNbtTag(current, "rsvbaubleslot", PersistentDataType.STRING).toUpperCase());
+                                    if (cursorTag.equals(slot.getTag()) || cursorTag.equals("Any")) {
+                                        event.setCurrentItem(null);
+                                        Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, cursor, BaubleChangeEvent.BaubleChange.ADDITION));
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -638,7 +639,27 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 if (RSVItem.isRSVItem(itemMainHand)) {
                     if (RSVItem.getNameFromItem(itemMainHand).equals("bauble_bag")) {
                         DataModule module = (DataModule) RSVPlayer.getPlayers().get(p.getUniqueId()).getDataModuleFromName(getModule().getName());
-                        p.openInventory(module.getBaubleBag().getInv());
+                        p.openInventory(module.getBaubleBag().getInventory());
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onConsume(PlayerItemConsumeEvent event) {
+        if (!event.isCancelled()) {
+            Player p =event.getPlayer();
+            if (shouldEventBeRan(p)) {
+
+                ItemStack item = event.getItem();
+                if (RSVItem.isRSVItem(item)) {
+                    if (RSVItem.getNameFromItem(item).equals("recall_potion")) {
+                        Location loc = p.getBedSpawnLocation() == null ? p.getWorld().getSpawnLocation() : p.getBedSpawnLocation();
+                        p.teleport(loc);
+                    }
+                    else if (RSVItem.getNameFromItem(item).equals("wormhole_potion")) {
+
                     }
                 }
             }

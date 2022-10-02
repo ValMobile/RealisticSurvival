@@ -1325,7 +1325,7 @@ dragonbone_flamed_sword:
   Lore:
     - "LOREPRESET.LEGENDARY_WEAPON"
     - "LOREPRESET.FLAMED_EXTRA_DAMAGE"
-    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.FLAMED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1340,7 +1340,7 @@ dragonbone_iced_sword:
   Lore:
     - "LOREPRESET.LEGENDARY_WEAPON"
     - "LOREPRESET.ICED_EXTRA_DAMAGE"
-    - "LOREPRESET.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.ICED_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1355,7 +1355,7 @@ dragonbone_lightning_sword:
   Lore:
     - "LOREPRESET.LEGENDARY_WEAPON"
     - "LOREPRESET.LIGHTNING_EXTRA_DAMAGE"
-    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LIGHTNING_DRAGONBONE"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1368,7 +1368,7 @@ dragonsteel_fire_sword:
   DisplayName: "&fFire Dragonsteel Sword"
   CustomModelData: 83650
   Lore:
-    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1381,7 +1381,7 @@ dragonsteel_fire_pickaxe:
   DisplayName: "&fFire Dragonsteel Pickaxe"
   CustomModelData: 83650
   Lore:
-    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1394,7 +1394,7 @@ dragonsteel_fire_axe:
   DisplayName: "&fFire Dragonsteel Axe"
   CustomModelData: 83650
   Lore:
-    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1407,7 +1407,7 @@ dragonsteel_fire_shovel:
   DisplayName: "&fFire Dragonsteel Shovel"
   CustomModelData: 83650
   Lore:
-    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1420,7 +1420,7 @@ dragonsteel_fire_hoe:
   DisplayName: "&fFire Dragonsteel Hoe"
   CustomModelData: 83650
   Lore:
-    - "LOREPRESET.FIRE_DRAGON_ABILITY"
+    - "LOREPRESET.FIRE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1433,7 +1433,7 @@ dragonsteel_ice_sword:
   DisplayName: "&fIce Dragonsteel Sword"
   CustomModelData: 83651
   Lore:
-    - "LOREPRESET.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1446,7 +1446,7 @@ dragonsteel_ice_pickaxe:
   DisplayName: "&fIce Dragonsteel Pickaxe"
   CustomModelData: 83651
   Lore:
-    - "LOREPRESET.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1459,7 +1459,7 @@ dragonsteel_ice_axe:
   DisplayName: "&fIce Dragonsteel Axe"
   CustomModelData: 83651
   Lore:
-    - "LOREPRESET.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1472,7 +1472,7 @@ dragonsteel_ice_shovel:
   DisplayName: "&fIce Dragonsteel Shovel"
   CustomModelData: 83651
   Lore:
-    - "LOREPRESET.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1485,7 +1485,7 @@ dragonsteel_ice_hoe:
   DisplayName: "&fIce Dragonsteel Hoe"
   CustomModelData: 83651
   Lore:
-    - "LOREPRESET.ICE_DRAGON_ABILITY"
+    - "LOREPRESET.ICE_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1498,7 +1498,7 @@ dragonsteel_lightning_sword:
   DisplayName: "&fLightning Dragonsteel Sword"
   CustomModelData: 83652
   Lore:
-    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1511,7 +1511,7 @@ dragonsteel_lightning_pickaxe:
   DisplayName: "&fLightning Dragonsteel Pickaxe"
   CustomModelData: 83652
   Lore:
-    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1524,7 +1524,7 @@ dragonsteel_lightning_axe:
   DisplayName: "&fLightning Dragonsteel Axe"
   CustomModelData: 83652
   Lore:
-    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1537,7 +1537,7 @@ dragonsteel_lightning_shovel:
   DisplayName: "&fLightning Dragonsteel Shovel"
   CustomModelData: 83652
   Lore:
-    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -1550,7 +1550,7 @@ dragonsteel_lightning_hoe:
   DisplayName: "&fLightning Dragonsteel Hoe"
   CustomModelData: 83652
   Lore:
-    - "LOREPRESET.LIGHTNING_DRAGON_ABILITY"
+    - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:

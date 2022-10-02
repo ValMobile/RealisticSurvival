@@ -48,7 +48,7 @@ public class TanModule extends RSVModule {
         setItemConfig(new ItemConfig(plugin));
         setRecipeConfig(new RecipesConfig(plugin));
 
-        setModuleItems(new ModuleItems(this, plugin));
+        setModuleItems(new ModuleItems(this));
         setModuleRecipes(new ModuleRecipes(this, plugin));
 
         FileConfiguration config = getUserConfig().getConfig();

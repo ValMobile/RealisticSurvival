@@ -29,15 +29,19 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.io.File;
+
 public class SfEvents extends ModuleEvents implements Listener {
 
     private final RealisticSurvivalPlugin plugin;
     private final SfModule module;
+    private final FileConfiguration config;
 
     public SfEvents(SfModule module, RealisticSurvivalPlugin plugin) {
         super(module, plugin);
         this.plugin = plugin;
         this.module = module;
+        this.config = module.getUserConfig().getConfig();
     }
 
     /**
@@ -49,19 +53,15 @@ public class SfEvents extends ModuleEvents implements Listener {
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         Entity defender = event.getEntity(); // get the defender
         Entity attacker = event.getDamager(); // get the attacker
-        FileConfiguration config = module.getUserConfig().getConfig();
 
         if (!event.isCancelled()) {
             if (shouldEventBeRan(attacker) && shouldEventBeRan(defender)) {
                 Utils util = RealisticSurvivalPlugin.getUtil();
                 double damage = event.getDamage();
-                // find out what defender the attacker is
-                switch (attacker.getType()) {
-                    // if the attacker is a player
-                    case PLAYER -> {
-                        Player player = (Player) event.getDamager(); // get the player
 
-                        ItemStack itemMainHand = player.getInventory().getItemInMainHand(); // get the item in the player's main hand
+                if (attacker instanceof LivingEntity living) {
+                    if (living.getEquipment() != null) {
+                        ItemStack itemMainHand = living.getEquipment().getItemInMainHand(); // get the item in the player's main hand
 
                         // check if the item is real
                         if (RSVItem.isRSVItem(itemMainHand)) {
@@ -141,21 +141,21 @@ public class SfEvents extends ModuleEvents implements Listener {
                                             }
                                         }
                                     }
-                                    default -> {
-                                    }
+                                    default -> {}
                                 }
                             }
                         }
                     }
-                    case ARROW, SPECTRAL_ARROW, FIREWORK -> {
-                        Projectile arrow = (Projectile) attacker;
-                        if (arrow.getShooter() != null) {
-                            Entity shooter = (Entity) arrow.getShooter();
+                }
 
-                            if (shooter instanceof LivingEntity) {
-                                LivingEntity player = (LivingEntity) shooter;
+                else if (attacker instanceof Arrow || attacker instanceof SpectralArrow || attacker instanceof Firework) {
+                    Projectile arrow = (Projectile) attacker;
+                    if (arrow.getShooter() != null) {
+                        Entity shooter = (Entity) arrow.getShooter();
 
-                                ItemStack itemMainHand = player.getEquipment().getItemInMainHand();
+                        if (shooter instanceof LivingEntity living) {
+                            if (living.getEquipment() != null) {
+                                ItemStack itemMainHand = living.getEquipment().getItemInMainHand();
 
                                 if (RSVItem.isRSVItem(itemMainHand)) {
                                     if (RSVItem.getModuleNameFromItem(itemMainHand).equals(SfModule.NAME)) {

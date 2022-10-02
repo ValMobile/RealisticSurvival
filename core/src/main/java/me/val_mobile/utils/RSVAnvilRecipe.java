@@ -22,6 +22,7 @@ import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Objects;
 
@@ -79,8 +80,18 @@ public class RSVAnvilRecipe implements Recipe {
     }
 
     public boolean isValidRecipe(AnvilInventory inv) {
-        if (Objects.equals(inv.getItem(0).getItemMeta(), leftIng.getItemMeta()) && Objects.equals(inv.getItem(1).getItemMeta(), rightIng.getItemMeta())) {
-            return true;
+        ItemStack firstItem = inv.getItem(0);
+        ItemStack secondItem = inv.getItem(1);
+
+        if (firstItem != null && secondItem != null) {
+            ItemMeta firstMeta = firstItem.getItemMeta();
+            ItemMeta secondMeta = secondItem.getItemMeta();
+
+            if (firstMeta != null && secondMeta != null) {
+                if (firstMeta.equals(leftIng.getItemMeta()) && secondMeta.equals(rightIng.getItemMeta())) {
+                    return true;
+                }
+            }
         }
         return false;
     }

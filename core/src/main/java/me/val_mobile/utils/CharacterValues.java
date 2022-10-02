@@ -50,6 +50,10 @@ public class CharacterValues {
     private final char TEMPERATURE23;
     private final char TEMPERATURE24;
     private final char TEMPERATURE25;
+    private final char PARASITES_ABOVE_WATER_FULL_THIRST_DROP;
+    private final char PARASITES_ABOVE_WATER_HALF_THIRST_DROP;
+    private final char PARASITES_UNDERWATER_FULL_THIRST_DROP;
+    private final char PARASITES_UNDERWATER_HALF_THIRST_DROP;
     private final char ABOVE_WATER_FULL_THIRST_DROP;
     private final char ABOVE_WATER_HALF_THIRST_DROP;
     private final char ABOVE_WATER_EMPTY_THIRST_DROP;
@@ -113,6 +117,10 @@ public class CharacterValues {
         UNDERWATER_FULL_THIRST_DROP = config.getString("CharacterOverrides.UnderwaterFullThirstDrop").toCharArray()[0];
         UNDERWATER_HALF_THIRST_DROP = config.getString("CharacterOverrides.UnderwaterHalfThirstDrop").toCharArray()[0];
         UNDERWATER_EMPTY_THIRST_DROP = config.getString("CharacterOverrides.UnderwaterEmptyThirstDrop").toCharArray()[0];
+        PARASITES_ABOVE_WATER_FULL_THIRST_DROP = config.getString("CharacterOverrides.ParasitesAboveWaterFullThirstDrop").toCharArray()[0];
+        PARASITES_ABOVE_WATER_HALF_THIRST_DROP = config.getString("CharacterOverrides.ParasitesAboveWaterHalfThirstDrop").toCharArray()[0];
+        PARASITES_UNDERWATER_FULL_THIRST_DROP = config.getString("CharacterOverrides.ParasitesUnderwaterFullThirstDrop").toCharArray()[0];
+        PARASITES_UNDERWATER_HALF_THIRST_DROP = config.getString("CharacterOverrides.ParasitesUnderwaterHalfThirstDrop").toCharArray()[0];
         FREEZING_VIEW = config.getString("CharacterOverrides.FreezingView").toCharArray()[0];
         ICE_VIGNETTE1 = config.getString("CharacterOverrides.IceVignette1").toCharArray()[0];
         ICE_VIGNETTE2 = config.getString("CharacterOverrides.IceVignette2").toCharArray()[0];
@@ -140,24 +148,33 @@ public class CharacterValues {
         return s;
     }
 
-    public String getThirstOnlyActionbar(int thirst, boolean isUnderwater) {
+    public String getThirstOnlyActionbar(int thirst, boolean isUnderwater, boolean parasitesActive) {
         String s = config.getString("CharacterOverrides.ThirstActionbar");
-        s = s.replaceAll("%THIRST%", String.valueOf(getThirst(thirst, isUnderwater)));
+        s = s.replaceAll("%THIRST%", String.valueOf(getThirst(thirst, isUnderwater, parasitesActive)));
         return s;
     }
 
-    public String getTemperatureThirstActionbar(int temperature, int thirst, boolean isUnderwater) {
+    public String getTemperatureThirstActionbar(int temperature, int thirst, boolean isUnderwater, boolean parasitesActive) {
         String s = config.getString("CharacterOverrides.TemperatureThirstActionbar");
         s = s.replaceAll("%TEMP%", String.valueOf(getTemperature(temperature)));
-        s = s.replaceAll("%THIRST%", String.valueOf(getThirst(thirst, isUnderwater)));
+        s = s.replaceAll("%THIRST%", String.valueOf(getThirst(thirst, isUnderwater, parasitesActive)));
         return s;
     }
     
-    public String getThirst(int thirst, boolean isUnderwater) {
+    public String getThirst(int thirst, boolean isUnderwater, boolean parasitesActive) {
 
-        final char EMPTY_THIRST_DROP = (isUnderwater) ? UNDERWATER_EMPTY_THIRST_DROP : ABOVE_WATER_EMPTY_THIRST_DROP;
-        final char HALF_THIRST_DROP = (isUnderwater) ? UNDERWATER_HALF_THIRST_DROP : ABOVE_WATER_HALF_THIRST_DROP;
-        final char FULL_THIRST_DROP =  (isUnderwater) ? UNDERWATER_FULL_THIRST_DROP : ABOVE_WATER_FULL_THIRST_DROP;
+        final char EMPTY_THIRST_DROP = isUnderwater ? UNDERWATER_EMPTY_THIRST_DROP : ABOVE_WATER_EMPTY_THIRST_DROP;
+        final char HALF_THIRST_DROP;
+        final char FULL_THIRST_DROP;
+        if (parasitesActive) {
+            HALF_THIRST_DROP = isUnderwater ? PARASITES_UNDERWATER_HALF_THIRST_DROP : PARASITES_ABOVE_WATER_HALF_THIRST_DROP;
+            FULL_THIRST_DROP =  isUnderwater ? PARASITES_UNDERWATER_FULL_THIRST_DROP: PARASITES_ABOVE_WATER_FULL_THIRST_DROP;
+        }
+        else {
+            HALF_THIRST_DROP = isUnderwater ? UNDERWATER_HALF_THIRST_DROP : ABOVE_WATER_HALF_THIRST_DROP;
+            FULL_THIRST_DROP =  isUnderwater ? UNDERWATER_FULL_THIRST_DROP : ABOVE_WATER_FULL_THIRST_DROP;
+        }
+
 
         thirst = (thirst < 0) ? 0 : Math.min(thirst, 20);
 
@@ -175,10 +192,7 @@ public class CharacterValues {
             numEmpty = (19 - thirst) / 2;
         }
 
-
-        for (int i = 0; i < (20 - numHalf - numEmpty * 2) / 2; i++) {
-            s.append(FULL_THIRST_DROP);
-        }
+        s.append(String.valueOf(FULL_THIRST_DROP).repeat((20 - numHalf - numEmpty * 2) / 2));
 
         if (numHalf == 1) {
             s.insert(0, HALF_THIRST_DROP);

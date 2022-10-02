@@ -61,7 +61,7 @@ public class DataModule implements RSVDataModule {
                 ItemStack[] items = loadItemStacks();
 
                 if (items != null) {
-                    Inventory inv = baubleBag.getInv();
+                    Inventory inv = baubleBag.getInventory();
                     BaubleSlot[] slots = BaubleSlot.values();
 
                     for (int i = 0; i < items.length; i++) {

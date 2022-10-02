@@ -62,34 +62,41 @@ public class ThermometerTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        GameMode mode = player.getGameMode(); // get the gamemode
+        if (player != null) {
+            GameMode mode = player.getGameMode(); // get the gamemode
 
-        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && allowedWorlds.contains(player.getWorld().getName()) && task != null) {
-            equilibriumTemp = task.getEquilibriumTemp();
+            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && task != null) {
+                equilibriumTemp = task.getEquilibriumTemp();
 
-            if (equilibriumTemp > MAXIMUM_TEMPERATURE) {
-                equilibriumTemp = MAXIMUM_TEMPERATURE;
+                if (equilibriumTemp > MAXIMUM_TEMPERATURE) {
+                    equilibriumTemp = MAXIMUM_TEMPERATURE;
+                }
+                if (equilibriumTemp < MINIMUM_TEMPERATURE) {
+                    equilibriumTemp = MINIMUM_TEMPERATURE;
+                }
+
+                Location loc = player.getEyeLocation();
+
+                double rad = Math.PI * (1D - equilibriumTemp/MAXIMUM_TEMPERATURE);
+
+                double horizontal = Math.cos(rad) * 1000;
+                double vertical = Math.sin(rad) * 1000;
+
+                Vector dir = new Vector(horizontal, loc.getY(), vertical).rotateAroundY(Math.toRadians(loc.getYaw()));
+                loc.add(dir);
+                player.setCompassTarget(loc);
             }
-            if (equilibriumTemp < MINIMUM_TEMPERATURE) {
-                equilibriumTemp = MINIMUM_TEMPERATURE;
+            // if the player is in creative or spectator
+            else {
+                // update static hashmap values and cancel the runnable
+                tasks.remove(player.getUniqueId());
+                player.setCompassTarget(originalCompassTarget);
+                cancel();
             }
-
-            Location loc = player.getEyeLocation();
-
-            double rad = Math.PI * (1D - equilibriumTemp/MAXIMUM_TEMPERATURE);
-
-            double horizontal = Math.cos(rad) * 1000;
-            double vertical = Math.sin(rad) * 1000;
-
-            Vector dir = new Vector(horizontal, loc.getY(), vertical).rotateAroundY(Math.toRadians(loc.getYaw()));
-            loc.add(dir);
-            player.setCompassTarget(loc);
         }
         // if the player is in creative or spectator
         else {
             // update static hashmap values and cancel the runnable
-            tasks.remove(player.getUniqueId());
-            player.setCompassTarget(originalCompassTarget);
             cancel();
         }
     }

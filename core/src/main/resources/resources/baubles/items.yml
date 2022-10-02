@@ -671,10 +671,6 @@ phantom_prism:
 gui_glass:
   Material: "GRAY_STAINED_GLASS_PANE"
   DisplayName: ""
-potion_fire_resistance:
-  Material: "POTION"
-  DisplayName: "&fPotion of Fire Resistance"
-  Effects: "FIRE_RESISTANCE"
 bauble_bag:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fBauble Bag"

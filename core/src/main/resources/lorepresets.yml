@@ -4,21 +4,22 @@
 
 ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
 
-Rapier:
+# Used for Spartan Weaponry and Spartan and Fire weapons
+Rapier:         # All placeholders: %DAMAGE_ABSORBED%, %DURABILITY_TAKEN%, %DAMAGE_BONUS%
   - "&6Damage Absorption"
-  - " &7%RAPIER_ABSORBED% of damage taken dealt"
+  - " &7%DAMAGE_ABSORBED%% of damage taken dealt"
   - " &7in durability from this weapon"
   - "&6Unarmoured Damage Bonus"
-  - " &7%RAPIER_DAMAGE_BONUS% base weapon damage"
+  - " &7+%DAMAGE_BONUS%% base weapon damage"
   - " &7when the foe has no Armor"
-Katana:
+Katana:         # All placeholders: %DAMAGE_BONUS%
   - "&6Two-Handed I"
   - " &7Any item in the opposite hand slot"
   - " &7slows down attack speed"
   - "&6Chest Damage Bonus"
-  - " &7+%KATANA_DAMAGE_BONUS%% base weapon damage"
+  - " &7+%DAMAGE_BONUS%% base weapon damage"
   - " &7when the foe has no Chest Armor"
-Greatsword:
+Greatsword:     # All placeholders: %DAMAGE_BONUS%
   - "&6Two-Handed II"
   - " &7Any item in the opposite hand slot"
   - " &7slows down attack speed"
@@ -27,29 +28,35 @@ Greatsword:
   - " &7Higher reach levels have more range"
   - "&6Wide Attack II"
   - " &7All targets in sweep range"
-  - " &7take %GREATSWORD_BONUS% of standard damage"
-Longsword:
+  - " &7take %DAMAGE_BONUS%% of standard damage"
+Longsword:      # All placeholders: None
   - "&6Two-Handed I"
   - " &7Any item in the opposite hand slot"
   - " &7slows down attack speed"
-Spear:
+  - "&6Wide Attack I"
+  - " &7All targets in sweep range"
+  - " &7take %DAMAGE_BONUS%% of standard damage"
+Spear:          # All placeholders: None
   - "&6Reach I"
   - " &7Increased melee damage range"
   - " &7Higher reach levels have more range"
-Saber:
+Saber:          # All placeholders: %DAMAGE_ABSORBED%, %DURABILITY_TAKEN%, %DAMAGE_BONUS%
   - "&6Damage Absorption"
-  - " &7%SABER_ABSORBED% of damage taken dealt"
+  - " &7%DAMAGE_ABSORBED%% of damage taken dealt"
   - " &7in durability from this weapon"
   - "&6Chest Damage Bonus"
-  - "&7%SABER_BONUS% base weapon damage"
+  - " &7+%DAMAGE_BONUS%% base weapon damage"
   - " &7when the foe has no Chest Armor"
-Boomerang:
+Boomerang:      # All placeholders: None
   - "&6Throwable"
   - " &7This weapon can be thrown at foes"
-Dagger:
+Dagger:         # All placeholders: %DAMAGE_BONUS%
   - "&6Throwable"
   - " &7This weapon can be thrown at foes"
-Glaive:
+  - "&6Backstab Damage Bonus"
+  - " &7+%DAMAGE_BONUS%% base weapon damage"
+  - " &7if the foe looking away"
+Glaive:         # All placeholders: %DAMAGE_BONUS%
   - "&6Two-Handed I"
   - " &7Any item in the opposite hand slot"
   - " &7slows down attack speed"
@@ -58,8 +65,8 @@ Glaive:
   - " &7Higher reach levels have more range"
   - "&6Wide Attack I"
   - " &7All targets in sweep range"
-  - " &7take %GLAIVE_BONUS% of standard damage"
-Halberd:
+  - " &7take %DAMAGE_BONUS%% of standard damage"
+Halberd:        # All placeholders: %SHIELD_BREACH%
   - "&6Two-Handed II"
   - " &7Any item in the opposite hand slot"
   - " &7slows down attack speed"
@@ -68,73 +75,162 @@ Halberd:
   - " &7Higher reach levels have more range"
   - "&6Shield Breach"
   - " &7Chance to breach a foe's shield"
-Hammer:
+Hammer:         # All placeholders: %NAUSEA_AMPLIFIER%, %NAUSEA_DURATION%
   - "&6Enhanced Knockback"
   - " &7Foes get knocked back further away"
   - "&6Nauseous Blow"
-  - " &7Inflicts Nausea %HAMMER_AMPLIFIER% (%HAMMER_DURATION%) on hit,"
+  - " &7Inflicts Nausea %NAUSEA_AMPLIFIER% (%NAUSEA_DURATION%s) on hit,"
   - " &7unless the foe is wearing a Helmet"
-Javelin:
+Javelin:         # All placeholders: %DAMAGE_BONUS%
   - "&6Throwable"
   - " &7This weapon can be thrown at foes"
   - "&6Throwing Damage Bonus"
-  - " &7%JAVELIN_BONUS% damage when the weapon is thrown"
-Lance:
+  - " &7+%DAMAGE_BONUS%% damage when the weapon is thrown"
+Lance:          # All placeholders: %DAMAGE_BONUS%
   - "&6Reach I"
   - " &7Increased melee damage range"
   - " &7Higher reach levels have more range"
   - "&6Riding Damage Bonus"
-  - " &7%LANCE_BONUS% base weapon damage"
+  - " &7+%DAMAGE_BONUS%% base weapon damage"
   - " &7while riding a mount or vehicle"
-Mace:
+Mace:           # All placeholders: %DAMAGE_BONUS%
   - "&6Undead Damage Bonus"
-  - " &7%MACE_BONUS% base weapon damage against Undead foes"
-Pike:
+  - " &7+%DAMAGE_BONUS%% base weapon damage against Undead foes"
+Pike:           # All placeholders: None
   - "&6Two-Handed I"
   - " &7Any item in the opposite hand slot"
   - " &7slows down attack speed"
   - "&6Reach II"
   - " &7Increased melee damage range"
   - " &7Higher reach levels have more range"
-Quarterstaff:
+Quarterstaff:   # All placeholders: %DAMAGE_BONUS%
   - "&6Two-Handed I"
   - " &7Any item in the opposite hand slot"
   - " &7slows down attack speed"
   - "&6Wide Attack I"
   - " &7All targets in sweep range"
-  - " &7take %QUARTERSTAFF_BONUS% of standard damage"
-Tomahawk:
+  - " &7take %DAMAGE_BONUS%% of standard damage"
+Tomahawk:     # All placeholders: %DAMAGE_BONUS%
   - "&6Throwable"
   - " &7This weapon can be thrown at foes"
   - "&6Throwing Damage Bonus"
-  - " &7%TOMAHAWK_BONUS% damage when the weapon is thrown"
-ThrowingKnife:
+  - " &7+%DAMAGE_BONUS%% damage when the weapon is thrown"
+ThrowingKnife:  # All placeholders: %DAMAGE_BONUS%
   - "&6Throwable"
   - " &7This weapon can be thrown at foes"
   - "&6Throwing Damage Bonus"
-  - " &7%THROWING_KNIFE_BONUS% damage when the weapon is thrown"
-Warhammer:
+  - " &7+%DAMAGE_BONUS%% damage when the weapon is thrown"
+Warhammer:      # All placeholders: %ARMOR_PIERCING%
   - "&6Two-Handed I"
   - " &7Any item in the opposite hand slot"
   - " &7slows down attack speed"
   - "&6Armor Piercing"
-  - " &7%WARHAMMER_BONUS% of damage inflicted ignores armor"
-Battleaxe:
+  - " &7%ARMOR_PIERCING%% of damage inflicted ignores armor"
+Battleaxe:      # All placeholders: None
   - "&6Two-Handed I"
   - " &7Any item in the opposite hand slot"
   - " &7slows down attack speed"
   - "&6Versatile"
   - " &7Can be used as an axe"
-Club:
+Club:           # All placeholders: %NAUSEA_AMPLIFIER%, %NAUSEA_DURATION%
   - "&6Nauseous Blow"
-  - " &7Inflicts Nausea %CLUB_AMPLIFIER% (%CLUB_DURATION%) on hit,"
+  - " &7Inflicts Nausea %NAUSEA_AMPLIFIER% (%NAUSEA_DURATION%s) on hit,"
   - " &7unless the foe is wearing a Helmet"
-Longbow:
+Cestus:         # All placeholders: None
+  - "&6Quick Strike"
+  - " &7Deal a flurry of quick blows with a"
+  - " &7very short hurt resistance time"
+Longbow:        # All placeholders: None
   - "&7Long-range version of the standard bow"
   - "&7Takes longer to draw fully"
-Crossbow:
+Crossbow:       # All placeholders: None
   - "&7High damage & Long-ranged. Requires loading before firing. Uses Bolts."
   - "&7Quick shots after firing will affect accuracy."
   - "&7Hold the aim for a pinpoint shot."
+
+# Used for Ice and Fire and Spartan and Fire weapons
+FlamedDragonbone:         # All placeholders: None
+  - "&6Ignites and knocks back targets, deals extra damage to ice dragons"
+IcedDragonbone:           # All placeholders: None
+  - "&6Slows and knocks back targets, deals extra damage to fire dragons"
+LightningDragonbone:      # All placeholders: None
+  - "&6Strikes targets with lightning, deals extra damage to fire and ice dragons"
+FireDragonsteel:          # All placeholders: None
+  - "&6Ignites and knocks back targets"
+IceDragonsteel:           # All placeholders: None
+  - "&6Slows and knocks back targets"
+LightningDragonsteel:     # All placeholders: None
+  - "&6Strikes targets with lightning"
+
+# Used for Ice and Fire weapons and armor
+DragonSkull:              # All placeholders: %STAGE%, %BREED%
+  - ""
+  - "&7%BREED%"
+  - "&7Stage %STAGE%"
+BlueDragonscale:          # All placeholders: None
+  - "&bBlue"
+BronzeDragonscale:        # All placeholders: None
+  - "&6Bronze"
+GrayDragonscale:          # All placeholders: None
+  - "&7Gray"
+GreenDragonscale:         # All placeholders: None
+  - "&2Emerald"
+RedDragonscale:           # All placeholders: None
+  - "&4Red"
+SapphireDragonscale:      # All placeholders: None
+  - "&9Sapphire"
+SilverDragonscale:        # All placeholders: None
+  - "&8Silver"
+WhiteDragonscale:         # All placeholders: None
+  - "&fWhite"
+AmethystDragonscale:      # All placeholders: None
+  - "&dAmethyst"
+BlackDragonscale:         # All placeholders: None
+  - "&8Black"
+CopperDragonscale:        # All placeholders: None
+  - "&6Copper"
+ElectricDragonscale:      # All placeholders: None
+  - "&1Electric Blue"
+BlueSeaSerpentScale:      # All placeholders: None
+  - "&9Blue"
+BronzeSeaSerpentScale:    # All placeholders: None
+  - "&6Bronze"
+DeepBlueSeaSerpentScale:  # All placeholders: None
+  - "&1Deep Blue"
+GreenSeaSerpentScale:     # All placeholders: None
+  - "&2Green"
+PurpleSeaSerpentScale:    # All placeholders: None
+  - "&5Purple"
+RedSeaSerpentScale:       # All placeholders: None
+  - "&4Red"
+TealSeaSerpentScale:      # All placeholders: None
+  - "&bTeal"
+DragonProtection:         # All placeholders: None
+  - "&7Increased protection from dragon breath attacks"
+TideGuardianBreathing:    # All placeholders: None
+  - "&7Provides Water Breathing"
+  - "&7Provides Strength when wet, increasing levels"
+LegendaryWeapon:          # All placeholders: None
+  - "&6Legendary Weapon"
+FlamedExtraDamage:        # All placeholders: %DAMAGE_BONUS%
+  - "&a+%DAMAGE_BONUS% damage against Ice Dragons"
+IcedExtraDamage:          # All placeholders: %DAMAGE_BONUS%
+  - "&a+%DAMAGE_BONUS% damage against Fire Dragons"
+LightningExtraDamage:     # All placeholders: %DAMAGE_BONUS%
+  - "&a+%DAMAGE_BONUS% damage against Fire Dragons and Ice Dragons"
+
+# Miscellaneous
+Weapon:
+  - "&7When in Main Hand:"
+Helmet:
+  - "&7When on Head:"
+Chestplate:
+  - "&7When on Body:"
+Leggings:
+  - "&7When on Legs:"
+Boots:
+  - "&7When on Feet:"
+
+
 
 

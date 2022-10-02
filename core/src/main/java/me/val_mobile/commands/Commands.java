@@ -415,7 +415,7 @@ public class Commands implements CommandExecutor {
                         ItemStack itemMainHand = inv.getItemInMainHand();
 
                         if (RSVItem.isRSVItem(itemMainHand)) {
-                            inv.setItemInMainHand(RSVItem.convertItemStackToRSVItem(itemMainHand, plugin));
+                            inv.setItemInMainHand(RSVItem.convertItemStackToRSVItem(itemMainHand));
                             player.updateInventory();
                         }
                     }

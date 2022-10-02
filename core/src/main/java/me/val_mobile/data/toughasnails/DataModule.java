@@ -32,17 +32,19 @@ import static me.val_mobile.tan.ThirstCalculateTask.*;
 public class DataModule implements RSVDataModule {
 
     private final UUID id;
-    private final PlayerDataConfig config;
-    private final RealisticSurvivalPlugin plugin;
+    private final FileConfiguration userConfig;
+    private final PlayerDataConfig playerDataConfig;
+    private final TanModule module;
     private double temperature;
     private double thirst;
     private double thirstExhaustion;
     private double thirstSaturation;
     private int thirstTickTimer;
 
-    public DataModule(RealisticSurvivalPlugin plugin, Player player) {
-        this.config = ((TanModule) RSVModule.getModule(TanModule.NAME)).getPlayerDataConfig();
-        this.plugin = plugin;
+    public DataModule(Player player) {
+        this.module = (TanModule) RSVModule.getModule(TanModule.NAME);
+        this.userConfig = module.getUserConfig().getConfig();
+        this.playerDataConfig = module.getPlayerDataConfig();
         this.id = player.getUniqueId();
 
         retrieveData();
@@ -90,7 +92,7 @@ public class DataModule implements RSVDataModule {
 
     @Override
     public void retrieveData() {
-        FileConfiguration config = this.config.getConfig();
+        FileConfiguration config = this.playerDataConfig.getConfig();
 
         String tempPath = id + ".Temperature";
         String thirstPath = id + ".Thirst";
@@ -102,15 +104,15 @@ public class DataModule implements RSVDataModule {
             config.createSection(id.toString());
         if (!config.contains(tempPath)) {
             config.createSection(tempPath);
-            config.set(tempPath, NEUTRAL_TEMPERATURE);
+            config.set(tempPath, userConfig.getDouble("Temperature.DefaultTemperature"));
         }
         if (!config.contains(thirstPath)) {
             config.createSection(thirstPath);
-            config.set(thirstPath, MAXIMUM_THIRST);
+            config.set(tempPath, userConfig.getDouble("Thirst.DefaultThirst"));
         }
         if (!config.contains(saturationPath)) {
             config.createSection(saturationPath);
-            config.set(saturationPath, DEFAULT_SATURATION);
+            config.set(saturationPath, userConfig.getDouble("Thirst.DefaultSaturation"));
         }
         if (!config.contains(exhaustionPath)) {
             config.createSection(exhaustionPath);
@@ -131,7 +133,7 @@ public class DataModule implements RSVDataModule {
 
     @Override
     public void saveData() {
-        FileConfiguration config = this.config.getConfig();
+        FileConfiguration config = this.playerDataConfig.getConfig();
 
         String tempPath = id + ".Temperature";
         String thirstPath = id + ".Thirst";
@@ -168,7 +170,7 @@ public class DataModule implements RSVDataModule {
 
     public void saveFile(FileConfiguration config) {
         try {
-            config.save(this.config.getFile());
+            config.save(this.playerDataConfig.getFile());
         } catch (IOException e) {
             e.printStackTrace();
         }

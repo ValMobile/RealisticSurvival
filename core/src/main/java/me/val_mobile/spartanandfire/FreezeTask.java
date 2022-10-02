@@ -46,6 +46,7 @@ public class FreezeTask extends BukkitRunnable {
     private final float volume;
     private final float pitch;
     private final int duration;
+    private final boolean wasOriginallyFrozen;
 
     public FreezeTask(RealisticSurvivalPlugin plugin, int stage, Entity entity) {
         this.entity = entity;
@@ -63,6 +64,7 @@ public class FreezeTask extends BukkitRunnable {
         this.pitch = (float) config.getDouble("Dragons.IceDragon.FreezeAbility.Sound.Pitch");
         this.soundName = config.getString("Dragons.IceDragon.FreezeAbility.Sound.Sound");
         this.duration = config.getInt("Dragons.IceDragon.FreezeAbility.FrozenDuration") * stageMultiplier;
+        this.wasOriginallyFrozen = entity instanceof LivingEntity living && !living.hasAI();
     }
 
     public FreezeTask(RealisticSurvivalPlugin plugin, RSVModule module, String itemName, Entity entity) {
@@ -79,6 +81,7 @@ public class FreezeTask extends BukkitRunnable {
         this.pitch = (float) config.getDouble("Items." + itemName + ".FreezeAbility.Sound.Pitch");
         this.soundName = config.getString("Items." + itemName + ".FreezeAbility.Sound.Sound");
         this.duration = config.getInt("Items." + itemName + ".FreezeAbility.FrozenDuration");
+        this.wasOriginallyFrozen = entity instanceof LivingEntity living && !living.hasAI();
     }
 
     @Override
@@ -96,14 +99,10 @@ public class FreezeTask extends BukkitRunnable {
 
         double height = entity.getHeight();
 
-        double dif;
-
         if (encaseIce) {
-            for (double i = 0D; Utils.doublesEquals(height, i); i+=dif) {
-                FrozenBlock block = new FrozenBlock(loc, frozenMaterial);
-                dif = Math.min(height - i, 1D);
-                loc = loc.add(0D, dif, 0D);
-                blocks.add(block);
+            blocks.add(new FrozenBlock(loc, frozenMaterial));
+            for (int i = 0; i < height - 1; i++) {
+                blocks.add(new FrozenBlock(loc.add(0, 1, 0), frozenMaterial));
             }
         }
 
@@ -114,7 +113,7 @@ public class FreezeTask extends BukkitRunnable {
 
         // remove the ice block after some time
         if (encaseIce) {
-            new UnfreezeTask(plugin, entity, blocks, duration).start();
+            new UnfreezeTask(plugin, entity, blocks, duration, wasOriginallyFrozen).start();
         }
     }
 

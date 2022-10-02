@@ -29,12 +29,14 @@ public class UnfreezeTask extends BukkitRunnable {
     private final Collection<FrozenBlock> blocks;
     private final RealisticSurvivalPlugin plugin;
     private final Entity entity;
+    private final boolean wasOriginallyFrozen;
 
-    public UnfreezeTask(RealisticSurvivalPlugin plugin, Entity entity, Collection<FrozenBlock> blocks, int pause) {
+    public UnfreezeTask(RealisticSurvivalPlugin plugin, Entity entity, Collection<FrozenBlock> blocks, int pause, boolean wasOriginallyFrozen) {
         this.blocks = blocks;
         this.plugin = plugin;
         this.pause = pause;
         this.entity = entity;
+        this.wasOriginallyFrozen = wasOriginallyFrozen;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class UnfreezeTask extends BukkitRunnable {
             block.getBlock().remove();
         }
 
-        if (entity instanceof LivingEntity) {
+        if (entity instanceof LivingEntity && !wasOriginallyFrozen) {
             ((LivingEntity) entity).setAI(true);
         }
     }

@@ -66,49 +66,55 @@ public class HyperthermiaTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        DataModule module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
-        int temperature = (int) Math.round(module.getTemperature());
-        GameMode mode = player.getGameMode(); // get the gamemode
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && player.isOnline()) {
+        if (player != null) {
+            DataModule module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
+            int temperature = (int) Math.round(module.getTemperature());
+            GameMode mode = player.getGameMode(); // get the gamemode
 
-            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotdamage")) {
-                if (config.getBoolean("Temperature.Hyperthermia.Damage.Enabled")) {
-                    if (player.getHealth() >= config.getDouble("Temperature.Hyperthermia.Damage.Cutoff")) {
-                        player.damage(damage);
+            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && player.isOnline()) {
+
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotdamage")) {
+                    if (config.getBoolean("Temperature.Hyperthermia.Damage.Enabled")) {
+                        if (player.getHealth() >= config.getDouble("Temperature.Hyperthermia.Damage.Cutoff")) {
+                            player.damage(damage);
+                        }
                     }
                 }
-            }
 
-            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotpotioneffects")) {
-                if (config.getBoolean("Temperature.Hyperthermia.PotionEffects.Enabled")) {
-                    if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotpotioneffects")) {
-                        player.addPotionEffects(potionEffects);
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotpotioneffects")) {
+                    if (config.getBoolean("Temperature.Hyperthermia.PotionEffects.Enabled")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotpotioneffects")) {
+                            player.addPotionEffects(potionEffects);
+                        }
                     }
                 }
-            }
 
-            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotcombustion")) {
-                if (config.getBoolean("Temperature.Hyperthermia.Ignite.Enabled")) {
-                    int fireTicks = config.getInt("Temperature.Hyperthermia.Ignite.FireTicks");
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotcombustion")) {
+                    if (config.getBoolean("Temperature.Hyperthermia.Ignite.Enabled")) {
+                        int fireTicks = config.getInt("Temperature.Hyperthermia.Ignite.FireTicks");
 
-                    if (player.getFireTicks() < fireTicks) {
-                        player.setFireTicks(fireTicks);
+                        if (player.getFireTicks() < fireTicks) {
+                            player.setFireTicks(fireTicks);
+                        }
                     }
                 }
-            }
 
-            // if the player's temperature is low enough
-            if (temperature < config.getDouble("Temperature.Hyperthermia.Temperature")) {
+                // if the player's temperature is low enough
+                if (temperature < config.getDouble("Temperature.Hyperthermia.Temperature")) {
+                    tasks.remove(player.getUniqueId());
+                    cancel();
+                }
+
+            }
+            // if the player is in creative or spectator
+            else {
+                // update static hashmap values and cancel the runnable
                 tasks.remove(player.getUniqueId());
                 cancel();
             }
-
         }
-        // if the player is in creative or spectator
         else {
-            // update static hashmap values and cancel the runnable
-            tasks.remove(player.getUniqueId());
             cancel();
         }
     }

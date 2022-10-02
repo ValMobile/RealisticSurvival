@@ -16,422 +16,607 @@
  */
 package me.val_mobile.utils;
 
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LorePresets {
 
+    private static final FileConfiguration CONFIG = RealisticSurvivalPlugin.getLorePresetConfig();
+
+    public static void addRapierLore(List<String> lore, ConfigurationSection section) {
+        double percentAbsorbed = section.getDouble("Protection.PercentAbsorbed") * 100D;
+        int durabilityTaken = section.getInt("Protection.DamageDurability");
+        int damageBonus = (int) (section.getDouble("UnarmoredDamageMultiplier") * 100D) - 100;
+
+        List<String> lines = CONFIG.getStringList("Rapier");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_ABSORBED%", new DecimalFormat("##.#").format(percentAbsorbed));
+            line = line.replaceAll("%DURABILITY_TAKEN%", String.valueOf(durabilityTaken));
+            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addKatanaLore(List<String> lore, ConfigurationSection section) {
+        int damageBonus = (int) (section.getDouble("ChestDamageMultiplier") * 100D) - 100;
+
+        List<String> lines = CONFIG.getStringList("Katana");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addGreatswordLore(List<String> lore, ConfigurationSection section) {
+        double damageBonus = section.getDouble("SweepingDamageMultiplier") * 100D;
+
+        List<String> lines = CONFIG.getStringList("Greatsword");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", new DecimalFormat("###.#").format(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addLongswordLore(List<String> lore, ConfigurationSection section) {
+        double damageBonus = section.getDouble("SweepingDamageMultiplier") * 100D;
+
+        List<String> lines = CONFIG.getStringList("Longsword");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", new DecimalFormat("###.#").format(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addSpearLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("Spear");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addSaberLore(List<String> lore, ConfigurationSection section) {
+        double percentAbsorbed = section.getDouble("Protection.PercentAbsorbed") * 100D;
+        int durabilityTaken = section.getInt("Protection.DamageDurability");
+        int damageBonus = (int) (section.getDouble("ChestDamageMultiplier") * 100D) - 100;
+
+        List<String> lines = CONFIG.getStringList("Saber");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_ABSORBED%", new DecimalFormat("##.#").format(percentAbsorbed));
+            line = line.replaceAll("%DURABILITY_TAKEN%", String.valueOf(durabilityTaken));
+            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addBoomerangLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("Boomerang");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addDaggerLore(List<String> lore, ConfigurationSection section) {
+        int damageBonus = (int) (section.getDouble("BackstabDamageMultiplier") * 100D) - 100;
+
+        List<String> lines = CONFIG.getStringList("Dagger");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addGlaiveLore(List<String> lore, ConfigurationSection section) {
+        double damageBonus = section.getDouble("SweepingDamageMultiplier") * 100D;
+
+        List<String> lines = CONFIG.getStringList("Glaive");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", new DecimalFormat("###.#").format(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addHalberdLore(List<String> lore, ConfigurationSection section) {
+        double damageBonus = section.getDouble("ShieldBreachChance") * 100D - 100D;
+
+        List<String> lines = CONFIG.getStringList("Halberd");
+
+        for (String line : lines) {
+            line = line.replaceAll("%SHIELD_BREACH%", new DecimalFormat("##.#").format(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addHammerLore(List<String> lore, ConfigurationSection section) {
+        int amplifier = section.getInt("Nausea.Amplifier") + 1;
+        int duration = section.getInt("Nausea.Duration");
+
+        List<String> lines = CONFIG.getStringList("Hammer");
+
+        for (String line : lines) {
+            line = line.replaceAll("%NAUSEA_AMPLIFIER%", Utils.toRomanNumeral(amplifier));
+            line = line.replaceAll("%NAUSEA_DURATION%", new DecimalFormat("##.#").format(duration / 20D));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addJavelinLore(List<String> lore, ConfigurationSection section) {
+        double damageBonus = (section.getDouble("ThrownAttributes.AttackDamage") / section.getDouble("Attributes.AttackDamage")) * 100D - 100D;
+
+        List<String> lines = CONFIG.getStringList("Javelin");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", new DecimalFormat("###.#").format(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addLanceLore(List<String> lore, ConfigurationSection section) {
+        int damageBonus = (int) (section.getDouble("RidingDamageBonus") * 100D) - 100;
+
+        List<String> lines = CONFIG.getStringList("Lance");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addMaceLore(List<String> lore, ConfigurationSection section) {
+        int damageBonus = (int) (section.getDouble("UndeadDamageMultiplier") * 100D) - 100;
+
+        List<String> lines = CONFIG.getStringList("Mace");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addPikeLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("Pike");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addQuarterstaffLore(List<String> lore, ConfigurationSection section) {
+        double damageBonus = section.getDouble("SweepingDamageMultiplier") * 100D;
+
+        List<String> lines = CONFIG.getStringList("Quarterstaff");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", new DecimalFormat("##.#").format(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addTomahawkLore(List<String> lore, ConfigurationSection section) {
+        double damageBonus = (section.getDouble("ThrownAttributes.AttackDamage") / section.getDouble("Attributes.AttackDamage")) * 100D - 100D;
+
+        List<String> lines = CONFIG.getStringList("Tomahawk");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", new DecimalFormat("###.#").format(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addThrowingKnifeLore(List<String> lore, ConfigurationSection section) {
+        double damageBonus = (section.getDouble("ThrownAttributes.AttackDamage") / section.getDouble("Attributes.AttackDamage")) * 100D - 100D;
+
+        List<String> lines = CONFIG.getStringList("ThrowingKnife");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", new DecimalFormat("###.#").format(damageBonus));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addWarhammerLore(List<String> lore, ConfigurationSection section) {
+        double percentAbsorbed = section.getDouble("ArmorPiercing") * 100D;
+
+        List<String> lines = CONFIG.getStringList("Warhammer");
+
+        for (String line : lines) {
+            line = line.replaceAll("%ARMOR_PIERCING%", new DecimalFormat("##.#").format(percentAbsorbed));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addBattleaxeLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("Battleaxe");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addClubLore(List<String> lore, ConfigurationSection section) {
+        int amplifier = section.getInt("Nausea.Amplifier") + 1;
+        int duration = section.getInt("Nausea.Duration");
+
+        List<String> lines = CONFIG.getStringList("Club");
+
+        for (String line : lines) {
+            line = line.replaceAll("%NAUSEA_AMPLIFIER%", Utils.toRomanNumeral(amplifier));
+            line = line.replaceAll("%NAUSEA_DURATION%", new DecimalFormat("##.#").format(duration / 20D));
+
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addCestusLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("Cestus");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addCrossbowLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("Crossbow");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addLongbowLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("Longbow");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addFlamedDragonboneLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("FlamedDragonbone");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addIcedDragonboneLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("IcedDragonbone");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addLightningDragonboneLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("LightningDragonbone");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addFireDragonsteelLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("FireDragonsteel");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addIceDragonsteelLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("IceDragonsteel");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
+    public static void addLightningDragonsteelLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("LightningDragonsteel");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+    }
+
     public static void addDragonSkullLore(ItemStack item, int stage, String breed) {
-
         ItemMeta meta = item.getItemMeta();
-
         List<String> lore = (!(meta.getLore() == null || meta.getLore().isEmpty())) ? meta.getLore() : new ArrayList<>();
 
-        lore.add(ChatColor.translateAlternateColorCodes('&',""));
+        List<String> lines = CONFIG.getStringList("DragonSkull");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7" + (StringUtils.capitalize(breed.toLowerCase()))));
+        for (String line : lines) {
+            line = line.replaceAll("%BREED%", StringUtils.capitalize(breed.toLowerCase()));
+            line = line.replaceAll("%STAGE%", String.valueOf(stage));
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Stage " + stage));
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
 
         meta.setLore(lore);
         item.setItemMeta(meta);
     }
 
-    public static void addRapierLore(List<String> lore) {
+    public static void addBlueDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("BlueDragonscale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Damage Absorption"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &725.0% of damage taken dealt"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7in durability from this weapon"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Unarmoured Damage Bonus"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7+200% base weapon damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7when the foe has no Armor"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addKatanaLore(List<String> lore) {
+    public static void addBronzeDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("BronzeDragonscale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Chest Damage Bonus"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7+100% base weapon damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7when the foe has no Chest Armor"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addGreatswordLore(List<String> lore) {
+    public static void addGrayDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("GrayDragonscale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed II"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Higher reach levels have more range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Wide Attack II"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7All targets in sweep range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7take 100.0% of standard damage"));
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addLongswordLore(List<String> lore) {
+    public static void addGreenDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("GreenDragonscale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addSpearLore(List<String> lore) {
+    public static void addRedDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("RedDragonscale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Higher reach levels have more range"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addSaberLore(List<String> lore) {
+    public static void addSapphireDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("SapphireDragonscale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Damage Absorption"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &725.0% of damage taken dealt"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7in durability from this weapon"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Chest Damage Bonus"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7+100% base weapon damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7when the foe has no Chest Armor"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addBoomerangLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
+    public static void addSilverDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("SilverDragonscale");
 
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addDaggerLore(List<String> lore) {
+    public static void addWhiteDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("WhiteDragonscale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addGlaiveLore(List<String> lore) {
+    public static void addAmethystDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("AmethystDragonscale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Higher reach levels have more range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Wide Attack I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7All targets in sweep range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7take 50.0% of standard damage"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addHalberdLore(List<String> lore) {
+    public static void addBlackDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("BlackDragonscale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed II"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Higher reach levels have more range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Shield Breach"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Chance to breach a foe's shield"));
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addHammerLore(List<String> lore) {
+    public static void addCopperDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("CopperDragonscale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Enhanced Knockback"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Foes get knocked back further away"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Nauseous Blow"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Inflicts Nausea II (5.0s) on hit,"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7unless the foe is wearing a Helmet"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        };
     }
 
-    public static void addJavelinLore(List<String> lore) {
+    public static void addElectricDragonscaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("ElectricDragonscale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwing Damage Bonus"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7+200% damage when the weapon is thrown"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addLanceLore(List<String> lore) {
+    public static void addBlueSeaSerpentScaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("BlueSeaSerpentScale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Higher reach levels have more range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Riding Damage Bonus"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7+100% base weapon damage"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7while riding a mount or vehicle"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addMaceLore(List<String> lore) {
+    public static void addBronzeSeaSerpentScaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("BronzeSeaSerpentScale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Undead Damage Bonus"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7+50% base weapon damage against Undead foes"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addPikeLore(List<String> lore) {
+    public static void addDeepblueSeaSerpentScaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("DeepBlueSeaSerpentScale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Reach II"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Increased melee damage range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Higher reach levels have more range"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addQuarterstaffLore(List<String> lore) {
+    public static void addGreenSeaSerpentScaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("GreenSeaSerpentScale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Wide Attack I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7All targets in sweep range"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7take 50.0% of standard damage"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addTomahawkLore(List<String> lore) {
+    public static void addPurpleSeaSerpentScaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("PurpleSeaSerpentScale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwing Damage Bonus"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7+100% damage when the weapon is thrown"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addThrowingKnifeLore(List<String> lore) {
+    public static void addRedSeaSerpentScaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("RedSeaSerpentScale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwable"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7This weapon can be thrown at foes"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Throwing Damage Bonus"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7+100% damage when the weapon is thrown"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addBattleaxeLore(List<String> lore) {
+    public static void addTealSeaSerpentScaleLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("TealSeaSerpentScale");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Versatile"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Can be used as an axe"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addClubLore(List<String> lore) {
+    public static void addDragonProtectionLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("DragonProtection");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Nauseous Blow"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Inflicts Nausea II (5.0s) on hit,"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7unless the foe is wearing a Helmet"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addCrossbowLore(List<String> lore) {
+    public static void addTideGuardianBreathingLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("TideGuardianBreathing");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7High damage & Long-ranged. Requires loading before firing. Uses Bolts."));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Quick shots after firing will affect accuracy."));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Hold the aim for a pinpoint shot."));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addLongbowLore(List<String> lore) {
+    public static void addLegendaryWeaponLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("LegendaryWeapon");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Long-range version of the standard bow"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Takes longer to draw fully"));
-
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addWarhammerLore(List<String> lore) {
+    public static void addFlamedExtraDamageLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("FlamedExtraDamage");
 
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Two-Handed I"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7Any item in the opposite hand slot"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &7slows down attack speed"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Armor Piercing"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', " &750.0% of damage inflicted ignores armor"));
+        double bonusDamage = section.getDouble("DragonBonusDamage");
 
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf((int) Math.round(bonusDamage)));
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addFlamedDragonboneLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Ignites and knocks back targets, deals extra damage to ice dragons"));
+    public static void addIcedExtraDamageLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("IcedExtraDamage");
+
+        double bonusDamage = section.getDouble("DragonBonusDamage");
+
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf((int) Math.round(bonusDamage)));
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
-    public static void addIcedDragonboneLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Slows and knocks back targets, deals extra damage to fire dragons"));
-    }
+    public static void addLightningExtraDamageLore(List<String> lore, ConfigurationSection section) {
+        List<String> lines = CONFIG.getStringList("LightningExtraDamage");
 
-    public static void addLightningDragonboneLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Strikes targets with lightning, deals extra damage to fire and ice dragons"));
-    }
+        double bonusDamage = section.getDouble("DragonBonusDamage");
 
-    public static void addFireDragonsteelLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Ignites and knocks back targets"));
-    }
-
-    public static void addIceDragonsteelLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Slows and knocks back targets"));
-    }
-
-    public static void addLightningDragonsteelLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Strikes targets with lightning"));
-    }
-
-    public static void addBlueDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&bBlue"));
-    }
-
-    public static void addBronzeDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Bronze"));
-    }
-
-    public static void addGrayDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Gray"));
-    }
-
-    public static void addGreenDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2Emerald"));
-    }
-
-    public static void addRedDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&4Red"));
-    }
-
-    public static void addSapphireDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&9Sapphire"));
-    }
-
-    public static void addSilverDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&8Silver"));
-    }
-
-    public static void addWhiteDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&fWhite"));
-    }
-
-    public static void addAmethystDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&dAmethyst"));
-    }
-
-    public static void addBlackDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&8Black"));
-    }
-
-    public static void addCopperDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Copper"));
-    }
-
-    public static void addElectricDragonscaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&1Electric Blue"));
-    }
-
-    public static void addBlueSeaSerpentScaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&9Blue"));
-    }
-
-    public static void addBronzeSeaSerpentScaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&6Bronze"));
-    }
-
-    public static void addDeepblueSeaSerpentScaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&1Deep Blue"));
-    }
-
-    public static void addGreenSeaSerpentScaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&2Green"));
-    }
-
-    public static void addPurpleSeaSerpentScaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&5Purple"));
-    }
-
-    public static void addRedSeaSerpentScaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&4Red"));
-    }
-
-    public static void addTealSeaSerpentScaleLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&bTeal"));
-    }
-
-    public static void addDragonProtectionLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7Increased protection from dragon breath attacks"));
-    }
-
-    public static void addTideGuardianBreathingLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Water Breathing"));
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7Provides Strength when wet, increasing levels"));
-    }
-
-    public static void addLegendaryWeaponLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&6Legendary Weapon"));
-    }
-
-    public static void addFlamedExtraDamageLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Ice Dragons"));
-    }
-
-    public static void addFireDragonAbilityLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&4Ignites and knocks back targets"));
-    }
-
-    public static void addIceDragonAbilityLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&bFreezes targets"));
-    }
-
-    public static void addLightningDragonAbilityLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&5Strikes targets with lightning"));
-    }
-
-    public static void addIcedExtraDamageLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+8 damage against Fire Dragons"));
-    }
-
-    public static void addLightningExtraDamageLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&a+4 damage against Fire Dragons and Ice Dragons"));
+        for (String line : lines) {
+            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf((int) Math.round(bonusDamage)));
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
     public static void addWeaponLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
+        List<String> lines = CONFIG.getStringList("Weapon");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
     public static void addHelmetLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
+        List<String> lines = CONFIG.getStringList("Helmet");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
     public static void addChestplateLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
+        List<String> lines = CONFIG.getStringList("Chestplate");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
     public static void addLeggingsLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
+        List<String> lines = CONFIG.getStringList("Leggings");
+
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
     }
 
     public static void addBootsLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
-    }
+        List<String> lines = CONFIG.getStringList("Boots");
 
-    public static void addThrowableLore(List<String> lore) {
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7When thrown:"));
-    }
-
-    public static void addThrowableStatsLore(List<String> lore, Double damage) {
-        if (Math.floor(damage) == damage) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage.intValue() + " Attack Damage"));
-        }
-        else {
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + damage + " Attack Damage"));
+        for (String line : lines) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', line));
         }
     }
 
@@ -439,20 +624,20 @@ public class LorePresets {
         lore.add("");
         if (Utils.isArmor(material)) {
             if (Utils.isHelmet(material)) {
-                lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Head:"));
+                addHelmetLore(lore);
             }
             else if (Utils.isChestplate(material)) {
-                lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Body:"));
+                addChestplateLore(lore);
             }
             else if (Utils.isLeggings(material)) {
-                lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Legs:"));
+                addLeggingsLore(lore);
             }
             else if (Utils.isBoots(material)) {
-                lore.add(ChatColor.translateAlternateColorCodes('&',"&7When on Feet:"));
+                addBootsLore(lore);
             }
         }
         else {
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&7When in Main Hand:"));
+            addWeaponLore(lore);
         }
     }
 
@@ -489,65 +674,63 @@ public class LorePresets {
         }
     }
 
-    public static void useLorePreset(List<String> lore, String weaponType) {
+    public static void useLorePreset(List<String> lore, String weaponType, ConfigurationSection section) {
         switch (weaponType) {
-            case "RAPIER" -> addRapierLore(lore);
-            case "SABER" -> addSaberLore(lore);
-            case "KATANA" -> addKatanaLore(lore);
-            case "GREATSWORD" -> addGreatswordLore(lore);
-            case "LONGSWORD" -> addLongswordLore(lore);
-            case "SPEAR" -> addSpearLore(lore);
-            case "GLAIVE" -> addGlaiveLore(lore);
-            case "BOOMERANG" -> addBoomerangLore(lore);
-            case "DAGGER" -> addDaggerLore(lore);
-            case "HALBERD" -> addHalberdLore(lore);
-            case "HAMMER" -> addHammerLore(lore);
-            case "JAVELIN" -> addJavelinLore(lore);
-            case "LANCE" -> addLanceLore(lore);
-            case "MACE" -> addMaceLore(lore);
-            case "PIKE" -> addPikeLore(lore);
-            case "QUARTERSTAFF" -> addQuarterstaffLore(lore);
-            case "TOMAHAWK" -> addTomahawkLore(lore);
-            case "THROWING_KNIFE" -> addThrowingKnifeLore(lore);
-            case "WARHAMMER" -> addWarhammerLore(lore);
-            case "BATTLEAXE" -> addBattleaxeLore(lore);
-            case "CLUB" -> addClubLore(lore);
-            case "LONGBOW" -> addLongbowLore(lore);
-            case "CROSSBOW" -> addCrossbowLore(lore);
-            case "FLAMED_DRAGONBONE" -> addFlamedDragonboneLore(lore);
-            case "ICED_DRAGONBONE" -> addIcedDragonboneLore(lore);
-            case "LIGHTNING_DRAGONBONE" -> addLightningDragonboneLore(lore);
-            case "FIRE_DRAGONSTEEL" -> addFireDragonsteelLore(lore);
-            case "ICE_DRAGONSTEEL" -> addIceDragonsteelLore(lore);
-            case "LIGHTNING_DRAGONSTEEL" -> addLightningDragonsteelLore(lore);
-            case "BLUE_DRAGON_SCALE" -> addBlueDragonscaleLore(lore);
-            case "BRONZE_DRAGON_SCALE" -> addBronzeDragonscaleLore(lore);
-            case "GRAY_DRAGON_SCALE" -> addGrayDragonscaleLore(lore);
-            case "GREEN_DRAGON_SCALE" -> addGreenDragonscaleLore(lore);
-            case "RED_DRAGON_SCALE" -> addRedDragonscaleLore(lore);
-            case "SAPPHIRE_DRAGON_SCALE" -> addSapphireDragonscaleLore(lore);
-            case "SILVER_DRAGON_SCALE" -> addSilverDragonscaleLore(lore);
-            case "WHITE_DRAGON_SCALE" -> addWhiteDragonscaleLore(lore);
-            case "AMETHYST_DRAGON_SCALE" -> addAmethystDragonscaleLore(lore);
-            case "BLACK_DRAGON_SCALE" -> addBlackDragonscaleLore(lore);
-            case "COPPER_DRAGON_SCALE" -> addCopperDragonscaleLore(lore);
-            case "ELECTRIC_DRAGON_SCALE" -> addElectricDragonscaleLore(lore);
-            case "BLUE_SEA_SERPENT_SCALE" -> addBlueSeaSerpentScaleLore(lore);
-            case "BRONZE_SEA_SERPENT_SCALE" -> addBronzeSeaSerpentScaleLore(lore);
-            case "DEEPBLUE_SEA_SERPENT_SCALE" -> addDeepblueSeaSerpentScaleLore(lore);
-            case "GREEN_SEA_SERPENT_SCALE" -> addGreenSeaSerpentScaleLore(lore);
-            case "PURPLE_SEA_SERPENT_SCALE" -> addPurpleSeaSerpentScaleLore(lore);
-            case "RED_SEA_SERPENT_SCALE" -> addRedSeaSerpentScaleLore(lore);
-            case "TEAL_SEA_SERPENT_SCALE" -> addTealSeaSerpentScaleLore(lore);
-            case "DRAGON_PROTECTION" -> addDragonProtectionLore(lore);
-            case "TIDE_GUARDIAN_BREATHING" -> addTideGuardianBreathingLore(lore);
-            case "LEGENDARY_WEAPON" -> addLegendaryWeaponLore(lore);
-            case "FLAMED_EXTRA_DAMAGE" -> addFlamedExtraDamageLore(lore);
-            case "ICED_EXTRA_DAMAGE" -> addIcedExtraDamageLore(lore);
-            case "LIGHTNING_EXTRA_DAMAGE" -> addLightningExtraDamageLore(lore);
-            case "FIRE_DRAGON_ABILITY" -> addFireDragonAbilityLore(lore);
-            case "ICE_DRAGON_ABILITY" -> addIceDragonAbilityLore(lore);
-            case "LIGHTNING_DRAGON_ABILITY" -> addLightningDragonAbilityLore(lore);
+            case "RAPIER" -> addRapierLore(lore, section);
+            case "SABER" -> addSaberLore(lore, section);
+            case "KATANA" -> addKatanaLore(lore, section);
+            case "GREATSWORD" -> addGreatswordLore(lore, section);
+            case "LONGSWORD" -> addLongswordLore(lore, section);
+            case "SPEAR" -> addSpearLore(lore, section);
+            case "GLAIVE" -> addGlaiveLore(lore, section);
+            case "BOOMERANG" -> addBoomerangLore(lore, section);
+            case "DAGGER" -> addDaggerLore(lore, section);
+            case "HALBERD" -> addHalberdLore(lore, section);
+            case "HAMMER" -> addHammerLore(lore, section);
+            case "JAVELIN" -> addJavelinLore(lore, section);
+            case "LANCE" -> addLanceLore(lore, section);
+            case "MACE" -> addMaceLore(lore, section);
+            case "PIKE" -> addPikeLore(lore, section);
+            case "QUARTERSTAFF" -> addQuarterstaffLore(lore, section);
+            case "TOMAHAWK" -> addTomahawkLore(lore, section);
+            case "THROWING_KNIFE" -> addThrowingKnifeLore(lore, section);
+            case "WARHAMMER" -> addWarhammerLore(lore, section);
+            case "BATTLEAXE" -> addBattleaxeLore(lore, section);
+            case "CLUB" -> addClubLore(lore, section);
+            case "CESTUS" -> addCestusLore(lore, section);
+            case "LONGBOW" -> addLongbowLore(lore, section);
+            case "CROSSBOW" -> addCrossbowLore(lore, section);
+            case "FLAMED_DRAGONBONE" -> addFlamedDragonboneLore(lore, section);
+            case "ICED_DRAGONBONE" -> addIcedDragonboneLore(lore, section);
+            case "LIGHTNING_DRAGONBONE" -> addLightningDragonboneLore(lore, section);
+            case "FIRE_DRAGONSTEEL" -> addFireDragonsteelLore(lore, section);
+            case "ICE_DRAGONSTEEL" -> addIceDragonsteelLore(lore, section);
+            case "LIGHTNING_DRAGONSTEEL" -> addLightningDragonsteelLore(lore, section);
+            case "BLUE_DRAGON_SCALE" -> addBlueDragonscaleLore(lore, section);
+            case "BRONZE_DRAGON_SCALE" -> addBronzeDragonscaleLore(lore, section);
+            case "GRAY_DRAGON_SCALE" -> addGrayDragonscaleLore(lore, section);
+            case "GREEN_DRAGON_SCALE" -> addGreenDragonscaleLore(lore, section);
+            case "RED_DRAGON_SCALE" -> addRedDragonscaleLore(lore, section);
+            case "SAPPHIRE_DRAGON_SCALE" -> addSapphireDragonscaleLore(lore, section);
+            case "SILVER_DRAGON_SCALE" -> addSilverDragonscaleLore(lore, section);
+            case "WHITE_DRAGON_SCALE" -> addWhiteDragonscaleLore(lore, section);
+            case "AMETHYST_DRAGON_SCALE" -> addAmethystDragonscaleLore(lore, section);
+            case "BLACK_DRAGON_SCALE" -> addBlackDragonscaleLore(lore, section);
+            case "COPPER_DRAGON_SCALE" -> addCopperDragonscaleLore(lore, section);
+            case "ELECTRIC_DRAGON_SCALE" -> addElectricDragonscaleLore(lore, section);
+            case "BLUE_SEA_SERPENT_SCALE" -> addBlueSeaSerpentScaleLore(lore, section);
+            case "BRONZE_SEA_SERPENT_SCALE" -> addBronzeSeaSerpentScaleLore(lore, section);
+            case "DEEPBLUE_SEA_SERPENT_SCALE" -> addDeepblueSeaSerpentScaleLore(lore, section);
+            case "GREEN_SEA_SERPENT_SCALE" -> addGreenSeaSerpentScaleLore(lore, section);
+            case "PURPLE_SEA_SERPENT_SCALE" -> addPurpleSeaSerpentScaleLore(lore, section);
+            case "RED_SEA_SERPENT_SCALE" -> addRedSeaSerpentScaleLore(lore, section);
+            case "TEAL_SEA_SERPENT_SCALE" -> addTealSeaSerpentScaleLore(lore, section);
+            case "DRAGON_PROTECTION" -> addDragonProtectionLore(lore, section);
+            case "TIDE_GUARDIAN_BREATHING" -> addTideGuardianBreathingLore(lore, section);
+            case "LEGENDARY_WEAPON" -> addLegendaryWeaponLore(lore, section);
+            case "FLAMED_EXTRA_DAMAGE" -> addFlamedExtraDamageLore(lore, section);
+            case "ICED_EXTRA_DAMAGE" -> addIcedExtraDamageLore(lore, section);
+            case "LIGHTNING_EXTRA_DAMAGE" -> addLightningExtraDamageLore(lore, section);
         }
     }
 }

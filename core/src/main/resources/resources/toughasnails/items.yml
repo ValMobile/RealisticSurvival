@@ -207,7 +207,7 @@ canteen_empty:
 canteen_filled:
   Material: "POTION"
   DisplayName: "&fFilled Canteen"
-  CustomModelData: 83650
+  CustomModelData: 83663
   Lore:
     - "Drink: Unpurified Water"
     - "&98&7/&95"

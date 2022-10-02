@@ -575,10 +575,10 @@ spectral_silt_sin_pendant:
 spectral_silt_flare_gun:
   Type: "Shaped"
   Result:
-    Item: "flare_gun"
+    Item: "spectral_silt"
     Amount: 1
   Ingredients:
-    - "broken_heart"
+    - "flare_gun"
     - "disintegration_tablet"
 spectral_silt_cracked_black_dragonscale:
   Type: "Shaped"

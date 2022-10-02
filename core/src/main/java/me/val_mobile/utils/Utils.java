@@ -39,13 +39,13 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 
 public class Utils {
@@ -366,6 +366,41 @@ public class Utils {
         return !(item == null || item.getType() == Material.AIR || item.getAmount() < 1);
     }
 
+    public static void damagePlayer(org.bukkit.entity.Damageable entity, double damage) {
+        double points = 0;
+        double toughness = 0;
+        int resistance = 0;
+        int epf = 0;
+
+        if (entity instanceof LivingEntity living) {
+            points = living.getAttribute(Attribute.GENERIC_ARMOR).getValue();
+            toughness = living.getAttribute(Attribute.GENERIC_ARMOR_TOUGHNESS).getValue();
+            PotionEffect effect = living.getPotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
+            resistance = effect == null ? 0 : effect.getAmplifier();
+            epf = getEPF(living.getEquipment());
+        }
+        entity.damage(calculateDamageApplied(damage, points, toughness, resistance, epf));
+    }
+
+    public static double calculateDamageApplied(double damage, double points, double toughness, int resistance, int epf) {
+        double withArmorAndToughness = damage * (1 - Math.min(20, Math.max(points / 5, points - damage / (2 + toughness / 4))) / 25);
+        double withResistance = withArmorAndToughness * (1 - (resistance * 0.2));
+        double withEnchants = withResistance * (1 - (Math.min(20.0, epf) / 25));
+        return withEnchants;
+    }
+
+    public static int getEPF(EntityEquipment inv) {
+        ItemStack helm = inv.getHelmet();
+        ItemStack chest = inv.getChestplate();
+        ItemStack legs = inv.getLeggings();
+        ItemStack boot = inv.getBoots();
+
+        return (helm != null ? helm.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) : 0) +
+                (chest != null ? chest.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) : 0) +
+                (legs != null ? legs.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) : 0) +
+                (boot != null ? boot.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) : 0);
+    }
+
     public static void setFreezingView(Player player, int ticks) {
         internals.setFreezingView(player, ticks);
     }
@@ -464,10 +499,6 @@ public class Utils {
         if (blockData instanceof Levelled)
             return ((Levelled) blockData).getLevel() == 0;
         return false;
-    }
-
-    public static double getDayMultiplier(World world) {
-        return (world.getEnvironment() == World.Environment.NORMAL ? Math.sin(2 * Math.PI / 24000 * world.getTime() - 3500) : 1D);
     }
 
     public static boolean isExposedToSky(Player player) {
@@ -846,6 +877,32 @@ public class Utils {
             meta.setLore(lore);
             item.setItemMeta(meta);
         }
+    }
+
+    public static String toRomanNumeral(int num)
+    {
+        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] romanLetters = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        StringBuilder roman = new StringBuilder();
+        for (int i = 0; i < values.length; i++)
+        {
+            while (num >= values[i])
+            {
+                num = num - values[i];
+                roman.append(romanLetters[i]);
+            }
+        }
+        return roman.toString();
+    }
+
+    public static boolean wasBackstabbed(Entity attacker, Entity defender) {
+        Location attackerLoc = attacker.getLocation();
+        Location defenderLoc = defender.getLocation();
+
+        Vector attackerDirection = attackerLoc.getDirection();
+        Vector victimDirection = defenderLoc.getDirection();
+        //determine if the dot product between the vectors is greater than 0
+        return attackerDirection.dot(victimDirection) > 0;
     }
 
     /**

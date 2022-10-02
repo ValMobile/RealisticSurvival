@@ -1,0 +1,12 @@
+#######################################
+#          Miscellaneous Recipes      #
+#######################################
+
+# Used to create recipes that shouldn't belong to any module
+# Has no uses currently
+# Any recipe put here will be created; there is no separate enable like in other recipe config files
+
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
+# Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Recipe-YML-Files
+

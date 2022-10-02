@@ -53,7 +53,7 @@ ResourcePack:
   Enabled: true
   # If you upgrade to newer versions, the URL will need to be manually updated to the newest one,
   # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
-  Url: "https://www.dropbox.com/s/f4cu6cwpg25tfxs/Realistic%20Survival%20RP%201.2.3%20DEV.zip?dl=1"
+  Url: "https://www.dropbox.com/s/cuwgm02w6vp39ox/Realistic%20Survival%20RP%201.2.3%20DEV0.zip?dl=1"
 UnlockRecipes: true
 NoTreePunching:
   Enabled: true

@@ -445,9 +445,6 @@ Items:
   gui_glass:
     Enabled:
       EnableAllVersions: true
-  potion_fire_resistance:
-    Enabled:
-      EnableAllVersions: true
   bauble_bag:
     Enabled:
       EnableAllVersions: true

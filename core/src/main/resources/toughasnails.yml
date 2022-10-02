@@ -34,6 +34,7 @@ VisualTickSpeed: 5
 Temperature:
   Enabled: true
   CalculateTickSpeed: 100   # Time in ticks that the game will check, don't recommend changing unless the server is lagging severely
+  DefaultTemperature: 12.5    # Default temperature a player will spawn with, max = 25.0, min = 0.0
   MaxChange: 0.75  # By how much can a player's temperature change each time temperature is recalculated
   Hypothermia:
     ScreenTinting:                          # Should the screen be tinted light blue when a player has hypothermia?
@@ -77,9 +78,25 @@ Temperature:
       Cutoff: -1.0                  # The player will stop taking damage from hypothermia if their health is below this value
       Amount: 1.0
   Environment:
+    # The vanilla Minecraft biome temperatures are multiplied by different numbers according to their value to create a balanced temperature system
+    # For reference, the hottest biomes are 2.0, the coldest biomes are -0.8, and temperature biomes are around 0.8
+    # NOTE: Do NOT make WarmCutoff more than HotCutoff, or ModerateCutoff more than WarmCutoff, etc
+    BiomeTemperature:
+      HotCutoff: 2.0       # Biomes temperatures above this are multiplied by "HotMultiplier"
+      HotMultiplier: 1.0
+      WarmCutoff: 0.8            # Biomes temperatures between this and "HotCutoff" are multiplied by "WarmMultiplier"
+      WarmMultiplier: 2.0
+      ModerateCutoff: 0.4        # Biomes temperatures between this and "WarmCutoff" are multiplied by "ModerateMultiplier"
+      ModerateMultiplier: 3.0
+      CoolCutoff: 0.0           # Biomes temperatures between this and "ModerateCutoff" are multiplied by "CoolMultiplier"
+      CoolMultiplier: -10.0
+      ColdCutoff: -0.7           # Biomes temperatures between this and "ColdCutoff" are multiplied by "ColdMultiplier"
+      ColdMultiplier: 8.0
+      FrigidMultiplier: 1.0      # Biomes temperatures below "ColdCutoff" are multiplied by this
+    DaylightCycleMultiplier: 3.0    # Increase/decrease to strengthen/weaken the effect of daylight cycles on temperature
     # List blocks that should affect a player's temperature
     # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
-    CubeLength: 4       # What blocks should be checked for in a cubic volume of length "CubeLength"
+    CubeLength: 4       # What blocks should be checked for in a cubic region of length "CubeLength"
     Blocks:
       # 1 temperature bar = 1.0 units
       CAMPFIRE:
@@ -517,8 +534,10 @@ Temperature:
 Thirst:
   Enabled: true
   CalculateTickSpeed: 100   # Time in ticks that the game will check to deplete thirst, don't recommend changing unless the server is lagging severely
+  DefaultThirst: 20.0       # Amount of thirst a player will automatically spawn with, 20.0 = Maximum, 0.0 = Minimum
+  DefaultSaturation: 5.0    # Amount of saturation a player will automatically spawn with
   Dehydration:
-    ScreenTinting: true       # Should the screen be tinted gray when a player has thirst?
+    ScreenTinting: true     # Should the screen be tinted gray when a player has thirst?
     PotionEffects:
       Enabled: false
       Effects:
@@ -533,19 +552,19 @@ Thirst:
     Thirst: 0.4               # At what thirst level or lower should the player be dehydrated
     Damage:
       Enabled: true
-      Cutoff: -1.0                  # The player will stop taking damage from dehydration if their health is below this value
+      Cutoff: -1.0            # The player will stop taking damage from dehydration if their health is below this value
       Amount: 1.0
   Parasites:
     UnpurifiedWaterBottle:
       Enabled: true
-      Chance: 0.1         # The chance of contracting parasites per drink
+      Chance: 0.1             # The chance of contracting parasites per drink
     Rain:
       Enabled: false
       Chance: 0.0
     Drowning:
       Enabled: true
       Chance: 0.1
-    RegularWater:         # Any water that isn't from a cave, river, or ocean
+    RegularWater:             # Any water that isn't from a cave, river, or ocean
       Enabled: true
       Chance: 0.1
     CaveWater:
@@ -559,12 +578,12 @@ Thirst:
       Chance: 0.1
     MultiplyExhaustionRates:
       Enabled: true
-      Value: 2.0    # The exhaustion increase from sources in "ExhaustionLevelIncrease" will be multiplied by the specified value
-    TickSpeed: 100  # Every "TickSpeed" ticks, you'll take damage
-    Duration: 600   # How long parasites will be active for in ticks
+      Value: 2.0              # The exhaustion increase from sources in "ExhaustionLevelIncrease" will be multiplied by the specified value
+    TickSpeed: 100            # Every "TickSpeed" ticks, you'll take damage
+    Duration: 600             # How long parasites will be active for in ticks
     Damage: 1.0
     PotionEffects:
-      Enabled: true
+      Enabled: false
       Effects:
         POISON:
           Amplifier: 0
@@ -954,6 +973,10 @@ CharacterOverrides:
   UnderwaterFullThirstDrop: ''                         # Default Unicode Value: \uE828
   UnderwaterHalfThirstDrop: ''                         # Default Unicode Value: \uE826
   UnderwaterEmptyThirstDrop: ''                        # Default Unicode Value: \uE827
+  ParasitesAboveWaterFullThirstDrop: ''                         # Default Unicode Value: \uE792
+  ParasitesAboveWaterHalfThirstDrop: ''                         # Default Unicode Value: \uE793
+  ParasitesUnderwaterFullThirstDrop: ''                         # Default Unicode Value: \uE794
+  ParasitesUnderwaterHalfThirstDrop: ''                         # Default Unicode Value: \uE795
   Temperature0: ''                            # Default Unicode Value: \uE779
   Temperature1: ''                            # Default Unicode Value: \uE779
   Temperature2: ''                            # Default Unicode Value: \uE779

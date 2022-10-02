@@ -66,39 +66,45 @@ public class HypothermiaTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        DataModule module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
-        int temperature = (int) Math.round(module.getTemperature());
-        GameMode mode = player.getGameMode(); // get the gamemode
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && player.isOnline()) {
+        if (player != null) {
+            DataModule module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
+            int temperature = (int) Math.round(module.getTemperature());
+            GameMode mode = player.getGameMode(); // get the gamemode
 
-            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.colddamage")) {
-                if (config.getBoolean("Temperature.Hypothermia.Damage.Enabled")) {
-                    if (player.getHealth() >= config.getDouble("Temperature.Hypothermia.Damage.Cutoff")) {
-                        player.damage(damage);
+            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && player.isOnline()) {
+
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.colddamage")) {
+                    if (config.getBoolean("Temperature.Hypothermia.Damage.Enabled")) {
+                        if (player.getHealth() >= config.getDouble("Temperature.Hypothermia.Damage.Cutoff")) {
+                            player.damage(damage);
+                        }
                     }
                 }
-            }
 
-            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldpotioneffects")) {
-                if (config.getBoolean("Temperature.Hypothermia.PotionEffects.Enabled")) {
-                    if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldpotioneffects")) {
-                        player.addPotionEffects(potionEffects);
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldpotioneffects")) {
+                    if (config.getBoolean("Temperature.Hypothermia.PotionEffects.Enabled")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldpotioneffects")) {
+                            player.addPotionEffects(potionEffects);
+                        }
                     }
                 }
-            }
 
-            // if the player's temperature is high enough
-            if (temperature > config.getDouble("Temperature.Hypothermia.Temperature")) {
+                // if the player's temperature is high enough
+                if (temperature > config.getDouble("Temperature.Hypothermia.Temperature")) {
+                    tasks.remove(player.getUniqueId());
+                    cancel();
+                }
+
+            }
+            // if the player is in creative or spectator
+            else {
+                // update static hashmap values and cancel the runnable
                 tasks.remove(player.getUniqueId());
                 cancel();
             }
-
         }
-        // if the player is in creative or spectator
         else {
-            // update static hashmap values and cancel the runnable
-            tasks.remove(player.getUniqueId());
             cancel();
         }
     }

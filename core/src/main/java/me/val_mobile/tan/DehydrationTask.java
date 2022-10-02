@@ -66,39 +66,45 @@ public class DehydrationTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        DataModule module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
-        double thirst = module.getThirst();
-        GameMode mode = player.getGameMode(); // get the gamemode
 
-        if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName())) {
+        if (player != null) {
+            DataModule module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
+            double thirst = module.getThirst();
+            GameMode mode = player.getGameMode(); // get the gamemode
 
-            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
-                if (config.getBoolean("Thirst.Dehydration.Damage.Enabled")) {
-                    if (player.getHealth() >= config.getDouble("Thirst.Dehydration.Damage.Cutoff")) {
-                        player.damage(damage);
+            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline() && !player.isDead() && allowedWorlds.contains(player.getWorld().getName())) {
+
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
+                    if (config.getBoolean("Thirst.Dehydration.Damage.Enabled")) {
+                        if (player.getHealth() >= config.getDouble("Thirst.Dehydration.Damage.Cutoff")) {
+                            player.damage(damage);
+                        }
                     }
                 }
-            }
 
-            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
-                if (config.getBoolean("Thirst.Dehydration.PotionEffects.Enabled")) {
-                    if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
-                        player.addPotionEffects(potionEffects);
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
+                    if (config.getBoolean("Thirst.Dehydration.PotionEffects.Enabled")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
+                            player.addPotionEffects(potionEffects);
+                        }
                     }
                 }
-            }
 
-            // if the player's thirst is high enough
-            if (thirst > config.getDouble("Thirst.Dehydration.Thirst")) {
+                // if the player's thirst is high enough
+                if (thirst > config.getDouble("Thirst.Dehydration.Thirst")) {
+                    tasks.remove(player.getUniqueId());
+                    cancel();
+                }
+
+            }
+            // if the player is in creative or spectator
+            else {
+                // update static hashmap values and cancel the runnable
                 tasks.remove(player.getUniqueId());
                 cancel();
             }
-
         }
-        // if the player is in creative or spectator
         else {
-            // update static hashmap values and cancel the runnable
-            tasks.remove(player.getUniqueId());
             cancel();
         }
     }

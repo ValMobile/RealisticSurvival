@@ -600,7 +600,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 8.0
-      Velocity: 10.0
+      Velocity: 20.0
   diamond_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -634,7 +634,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 7.0
-      Velocity: 10.0
+      Velocity: 20.0
   gold_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -668,7 +668,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 4.0
-      Velocity: 10.0
+      Velocity: 20.0
   iron_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -702,7 +702,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 6.0
-      Velocity: 10.0
+      Velocity: 20.0
   copper_boomerang:
     Enabled:
       EnableAllVersions: false
@@ -750,7 +750,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 5.5
-      Velocity: 10.0
+      Velocity: 20.0
   stone_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -784,7 +784,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 5.0
-      Velocity: 10.0
+      Velocity: 20.0
   wooden_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -818,7 +818,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 4.0
-      Velocity: 10.0
+      Velocity: 20.0
 
   # Daggers
 
@@ -855,7 +855,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 6.5
-      Velocity: 10.0
+      Velocity: 20.0
     BackstabDamageMultiplier: 3.0
   diamond_dagger:
     Enabled:
@@ -890,7 +890,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 5.5
-      Velocity: 10.0
+      Velocity: 20.0
     BackstabDamageMultiplier: 3.0
   gold_dagger:
     Enabled:
@@ -925,7 +925,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 2.5
-      Velocity: 10.0
+      Velocity: 20.0
     BackstabDamageMultiplier: 3.0
   iron_dagger:
     Enabled:
@@ -960,7 +960,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 4.5
-      Velocity: 10.0
+      Velocity: 20.0
     BackstabDamageMultiplier: 3.0
   copper_dagger:
     Enabled:
@@ -1009,7 +1009,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 4.0
-      Velocity: 10.0
+      Velocity: 20.0
     BackstabDamageMultiplier: 3.0
   stone_dagger:
     Enabled:
@@ -1044,7 +1044,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 3.5
-      Velocity: 10.0
+      Velocity: 20.0
     BackstabDamageMultiplier: 3.0
   wooden_dagger:
     Enabled:
@@ -1079,7 +1079,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 2.5
-      Velocity: 10.0
+      Velocity: 20.0
     BackstabDamageMultiplier: 3.0
 
   # Glaives
@@ -1288,7 +1288,7 @@ Items:
     KnockbackMultiplier: 2.0
     Nausea:
       Amplifier: 1
-      Duration: 100
+      Duration: 170
   diamond_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1298,7 +1298,7 @@ Items:
     KnockbackMultiplier: 2.0
     Nausea:
       Amplifier: 1
-      Duration: 100
+      Duration: 170
   gold_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1308,7 +1308,7 @@ Items:
     KnockbackMultiplier: 2.0
     Nausea:
       Amplifier: 1
-      Duration: 100
+      Duration: 170
   iron_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1318,7 +1318,7 @@ Items:
     KnockbackMultiplier: 2.0
     Nausea:
       Amplifier: 1
-      Duration: 100
+      Duration: 170
   copper_hammer:
     Enabled:
       EnableAllVersions: false
@@ -1342,7 +1342,7 @@ Items:
     KnockbackMultiplier: 2.0
     Nausea:
       Amplifier: 1
-      Duration: 100
+      Duration: 170
   stone_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1352,7 +1352,7 @@ Items:
     KnockbackMultiplier: 2.0
     Nausea:
       Amplifier: 1
-      Duration: 100
+      Duration: 170
   wooden_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1362,7 +1362,7 @@ Items:
     KnockbackMultiplier: 2.0
     Nausea:
       Amplifier: 1
-      Duration: 100
+      Duration: 170
 
   # Javelins
 
@@ -1399,7 +1399,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 16.5
-      Velocity: 10.0
+      Velocity: 20.0
   diamond_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1433,7 +1433,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 13.5
-      Velocity: 10.0
+      Velocity: 20.0
   gold_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1467,7 +1467,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 4.5
-      Velocity: 10.0
+      Velocity: 20.0
   iron_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1501,7 +1501,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 10.5
-      Velocity: 10.0
+      Velocity: 20.0
   copper_javelin:
     Enabled:
       EnableAllVersions: false
@@ -1549,7 +1549,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 9.0
-      Velocity: 10.0
+      Velocity: 20.0
   stone_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1583,7 +1583,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 7.5
-      Velocity: 10.0
+      Velocity: 20.0
   wooden_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1617,7 +1617,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 4.5
-      Velocity: 10.0
+      Velocity: 20.0
 
   # Lances
 
@@ -1690,7 +1690,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 1.0
     Reach: 7.0
-    RidingDamageMultiplier: 2.0
+    RidingDamageBonus: 2.0
 
   # Maces
 
@@ -1974,7 +1974,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 16.0
-      Velocity: 10.0
+      Velocity: 20.0
   diamond_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2008,7 +2008,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 13.0
-      Velocity: 10.0
+      Velocity: 20.0
   gold_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2042,7 +2042,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 4.0
-      Velocity: 10.0
+      Velocity: 20.0
   iron_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2076,7 +2076,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 10.0
-      Velocity: 10.0
+      Velocity: 20.0
   copper_tomahawk:
     Enabled:
       EnableAllVersions: false
@@ -2124,7 +2124,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 8.5
-      Velocity: 10.0
+      Velocity: 20.0
   stone_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2158,7 +2158,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 7.0
-      Velocity: 10.0
+      Velocity: 20.0
   wooden_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2192,7 +2192,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 4.0
-      Velocity: 10.0
+      Velocity: 20.0
 
   # Throwing Knives
 
@@ -2229,7 +2229,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 11.0
-      Velocity: 10.0
+      Velocity: 20.0
   diamond_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2263,7 +2263,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 9.0
-      Velocity: 10.0
+      Velocity: 20.0
   gold_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2297,7 +2297,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 3.0
-      Velocity: 10.0
+      Velocity: 20.0
   iron_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2331,7 +2331,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 7.0
-      Velocity: 10.0
+      Velocity: 20.0
   copper_throwing_knife:
     Enabled:
       EnableAllVersions: false
@@ -2379,7 +2379,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 6.0
-      Velocity: 10.0
+      Velocity: 20.0
   stone_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2413,7 +2413,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 5.0
-      Velocity: 10.0
+      Velocity: 20.0
   wooden_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2447,7 +2447,7 @@ Items:
       MaxDistance: 60.0
       MaxReturnDistance: 150.0
       AttackDamage: 3.0
-      Velocity: 10.0
+      Velocity: 20.0
 
   # Warhammers
 
@@ -2633,7 +2633,7 @@ Items:
       AttackSpeed: 1.3
     Nausea:
       Amplifier: 1
-      Duration: 100
+      Duration: 170
   wooden_club:
     Enabled:
       EnableAllVersions: true
@@ -2642,7 +2642,7 @@ Items:
       AttackSpeed: 1.3
     Nausea:
       Amplifier: 1
-      Duration: 100
+      Duration: 170
 
   # Cestuses
 

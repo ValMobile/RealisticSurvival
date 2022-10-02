@@ -23,37 +23,21 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.util.HashMap;
 import java.util.Set;
 
-public class ModuleItems {
+public class MiscItems {
 
-    private final RSVModule module;
     private final HashMap<String, RSVItem> items = new HashMap<>();
 
-    public ModuleItems(RSVModule module) {
-        this.module = module;
-    }
+    public MiscItems() {}
 
     public void initialize() {
-        FileConfiguration itemConfig = module.getItemConfig().getConfig();
-        FileConfiguration userConfig = module.getUserConfig().getConfig();
+        FileConfiguration itemConfig = RealisticSurvivalPlugin.getMiscItemsConfig();
         Set<String> keys = itemConfig.getKeys(false);
         for (String key : keys) {
-            if (userConfig.getBoolean("Items." + key + ".Enabled.EnableAllVersions")) {
-                RSVItem item = new RSVItem(module, key);
+            if (!key.equals("ConfigId")) {
+                RSVItem item = new RSVItem(key);
                 items.putIfAbsent(key, item);
             }
-            else {
-                if (userConfig.contains("Items." + key + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion())) {
-                    if (userConfig.getBoolean("Items." + key + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion())) {
-                        RSVItem item = new RSVItem(module, key);
-                        items.putIfAbsent(key, item);
-                    }
-                }
-            }
         }
-    }
-
-    public RSVModule getModule() {
-        return module;
     }
 
     public HashMap<String, RSVItem> getItems() {

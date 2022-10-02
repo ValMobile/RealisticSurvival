@@ -47,6 +47,7 @@ public class DisplayTask extends BukkitRunnable {
     private final RSVPlayer player;
     private final CharacterValues characterValues;
     private boolean underSirenEffect = false;
+    private boolean parasitesActive = false;
     private final boolean tempEnabled;
     private final boolean thirstEnabled;
     private final Collection<String> tanAllowedWorlds;
@@ -67,106 +68,114 @@ public class DisplayTask extends BukkitRunnable {
         this.thirstEnabled = tanConfig.getBoolean("Thirst.Enabled");
         this.tanAllowedWorlds = tanModule.getAllowedWorlds();
         this.ifAllowedWorlds = ifModule.getAllowedWorlds();
+        tasks.put(player.getPlayer().getUniqueId(), this);
     }
 
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        GameMode mode = player.getGameMode(); // get the gamemode
 
-        if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE && player.isOnline()) {
+        if (player != null) {
+            GameMode mode = player.getGameMode(); // get the gamemode
+            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline()) {
+                String actionbarText = "";
+                String titleText = "";
 
-
-            String actionbarText = "";
-            String titleText = "";
-
-            if (ifAllowedWorlds.contains(player.getWorld().getName())) {
-                if (!player.hasPermission("realisticsurvival.iceandfire.resistance.*")) {
-                    if (!player.hasPermission("realisticsurvival.iceandfire.resistance.sirenvisual")) {
-                        if (underSirenEffect) {
-                            if (ifConfig.getBoolean("Sirens.ChangeScreen.Enabled")) {
-                                titleText += characterValues.getSirenView();
+                if (ifAllowedWorlds.contains(player.getWorld().getName())) {
+                    if (!player.hasPermission("realisticsurvival.iceandfire.resistance.*")) {
+                        if (!player.hasPermission("realisticsurvival.iceandfire.resistance.sirenvisual")) {
+                            if (underSirenEffect) {
+                                if (ifConfig.getBoolean("Sirens.ChangeScreen.Enabled")) {
+                                    titleText += characterValues.getSirenView();
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            if (tanAllowedWorlds.contains(player.getWorld().getName())) {
-                double temperature = TemperatureCalculateTask.NEUTRAL_TEMPERATURE;
-                double thirst = ThirstCalculateTask.MAXIMUM_THIRST;
-                if (TemperatureCalculateTask.hasTask(player.getUniqueId())) {
-                    temperature = TemperatureCalculateTask.getTasks().get(player.getUniqueId()).getTemp();
-                }
-                if (ThirstCalculateTask.hasTask(player.getUniqueId())) {
-                    thirst = ThirstCalculateTask.getTasks().get(player.getUniqueId()).getThirstLvl();
-                }
-
-                boolean isUnderwater = player.getRemainingAir() < 300;
-
-                if (tempEnabled && thirstEnabled) {
-                    actionbarText += characterValues.getTemperatureThirstActionbar((int) Math.round(temperature), (int) Math.round(thirst), isUnderwater);
-                }
-                else {
-                    // only temperature is enabled
-                    if (tempEnabled) {
-                        actionbarText += characterValues.getTemperatureOnlyActionbar((int) Math.round(temperature));
+                if (tanAllowedWorlds.contains(player.getWorld().getName())) {
+                    double temperature = TemperatureCalculateTask.NEUTRAL_TEMPERATURE;
+                    double thirst = ThirstCalculateTask.MAXIMUM_THIRST;
+                    if (TemperatureCalculateTask.hasTask(player.getUniqueId())) {
+                        temperature = TemperatureCalculateTask.getTasks().get(player.getUniqueId()).getTemp();
                     }
-                    // only thirst is enabled
+                    if (ThirstCalculateTask.hasTask(player.getUniqueId())) {
+                        thirst = ThirstCalculateTask.getTasks().get(player.getUniqueId()).getThirstLvl();
+                    }
+
+                    boolean isUnderwater = player.getRemainingAir() < 300;
+
+                    if (tempEnabled && thirstEnabled) {
+                        actionbarText += characterValues.getTemperatureThirstActionbar((int) Math.round(temperature), (int) Math.round(thirst), isUnderwater, parasitesActive);
+                    }
                     else {
-                        actionbarText += characterValues.getThirstOnlyActionbar((int) Math.round(thirst), isUnderwater);
+                        // only temperature is enabled
+                        if (tempEnabled) {
+                            actionbarText += characterValues.getTemperatureOnlyActionbar((int) Math.round(temperature));
+                        }
+                        // only thirst is enabled
+                        else {
+                            actionbarText += characterValues.getThirstOnlyActionbar((int) Math.round(thirst), isUnderwater, parasitesActive);
+                        }
+                    }
+
+                    if (!player.hasPermission("realisticsurvival.toughasnails.resistance.*")) {
+                        if (temperature < 6) {
+                            if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.Enabled")) {
+                                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldvisual")) {
+                                    if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.UseVanillaFreezeEffect")) {
+                                        Utils.setFreezingView(player, tanConfig.getInt("VisualTickSpeed") + 5);
+                                    }
+                                    else {
+                                        titleText += characterValues.getIceVignette((int) Math.round(temperature));
+                                    }
+                                }
+                            }
+                        }
+                        if (temperature > 19) {
+                            if (tanConfig.getBoolean("Temperature.Hyperthermia.ScreenTinting.Enabled")) {
+                                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotvisual")) {
+                                    titleText += characterValues.getFireVignette((int) Math.round(temperature));
+                                }
+                            }
+                        }
+
+                        if (thirst < 5) {
+                            if (tanConfig.getBoolean("Thirst.Dehydration.ScreenTinting.Enabled")) {
+                                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstvisual")) {
+                                    titleText += characterValues.getThirstVignette((int) Math.round(thirst));
+                                }
+                            }
+                        }
                     }
                 }
 
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.*")) {
-                    if (temperature < 6) {
-                        if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.Enabled")) {
-                            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldvisual")) {
-                                if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.UseVanillaFreezeEffect")) {
-                                    Utils.setFreezingView(player, tanConfig.getInt("VisualTickSpeed") + 5);
-                                }
-                                else {
-                                    titleText += characterValues.getIceVignette((int) Math.round(temperature));
-                                }
-                            }
-                        }
-                    }
-                    if (temperature > 19) {
-                        if (tanConfig.getBoolean("Temperature.Hyperthermia.ScreenTinting.Enabled")) {
-                            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotvisual")) {
-                                titleText += characterValues.getFireVignette((int) Math.round(temperature));
-                            }
-                        }
-                    }
+                if (!actionbarText.isEmpty()) {
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', actionbarText)));
+                }
 
-                    if (thirst < 5) {
-                        if (tanConfig.getBoolean("Thirst.Dehydration.ScreenTinting.Enabled")) {
-                            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstvisual")) {
-                                titleText += characterValues.getThirstVignette((int) Math.round(thirst));
-                            }
-                        }
-                    }
+                if (!titleText.isEmpty()) {
+                    player.sendTitle(titleText, "", 0, 70, 0);
                 }
             }
-
-            if (!actionbarText.isEmpty()) {
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', actionbarText)));
-            }
-
-            if (!titleText.isEmpty()) {
-                player.sendTitle(titleText, "", 0, 70, 0);
+            // if the player is in creative or spectator
+            else {
+                // update static hashmap values and cancel the runnable
+                tasks.remove(player.getUniqueId());
+                cancel();
             }
         }
-        // if the player is in creative or spectator
         else {
-            // update static hashmap values and cancel the runnable
-            tasks.remove(player.getUniqueId());
             cancel();
         }
     }
 
     public void setUnderSirenEffect(boolean underSirenEffect) {
         this.underSirenEffect = underSirenEffect;
+    }
+
+    public void setParasitesActive(boolean parasitesActive) {
+        this.parasitesActive = parasitesActive;
     }
 
     public void start() {

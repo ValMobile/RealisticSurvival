@@ -1,0 +1,16 @@
+#######################################
+#          Miscellaneous Items        #
+#######################################
+
+# Used to create items that shouldn't belong to any module like potions used for recipes
+# Any item put here will be created; there is no separate enable like in other item config files
+# NOTE: Lore presents cannot be used for miscellaneous items
+
+ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+
+# Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
+
+potion_fire_resistance:
+  Material: "POTION"
+  Effects: "FIRE_RESISTANCE"
+

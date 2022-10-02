@@ -18,6 +18,7 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.RSVPlayer;
+import me.val_mobile.data.toughasnails.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.DisplayTask;
 import me.val_mobile.utils.RSVItem;
@@ -52,6 +53,7 @@ import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import static me.val_mobile.tan.ThirstCalculateTask.DEFAULT_SATURATION;
@@ -151,11 +153,41 @@ public class TanEvents extends ModuleEvents implements Listener {
         Player player = event.getEntity();
 
         if (shouldEventBeRan(player)) {
-            ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
+            UUID id = player.getUniqueId();
+            if (thirstEnabled) {
+                ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(id);
 
-            if (task != null) {
-                task.setThirstLvl(MAXIMUM_THIRST);
-                task.setSaturationLvl(DEFAULT_SATURATION);
+                if (task != null) {
+                    task.setThirstLvl(config.getDouble("Thirst.DefaultThirst"));
+                    task.setSaturationLvl(config.getDouble("Thirst.DefaultSaturation"));
+                }
+            }
+
+            if (tempEnabled) {
+                TemperatureCalculateTask task = TemperatureCalculateTask.getTasks().get(id);
+                if (task != null) {
+                    task.setTemp(config.getDouble("Temperature.DefaultTemperature"));
+                }
+            }
+
+            if (HypothermiaTask.hasTask(id)) {
+                HypothermiaTask.getTasks().get(id).cancel();
+                HypothermiaTask.getTasks().remove(id);
+            }
+
+            if (HyperthermiaTask.hasTask(id)) {
+                HyperthermiaTask.getTasks().get(id).cancel();
+                HyperthermiaTask.getTasks().remove(id);
+            }
+
+            if (DehydrationTask.hasTask(id)) {
+                DehydrationTask.getTasks().get(id).cancel();
+                DehydrationTask.getTasks().remove(id);
+            }
+
+            if (ParasiteTask.hasTask(id)) {
+                ParasiteTask.getTasks().get(id).cancel();
+                ParasiteTask.getTasks().remove(id);
             }
         }
     }

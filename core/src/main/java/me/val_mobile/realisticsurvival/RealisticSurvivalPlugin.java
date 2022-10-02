@@ -19,9 +19,7 @@ package me.val_mobile.realisticsurvival;
 import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.commands.Commands;
 import me.val_mobile.commands.Tab;
-import me.val_mobile.data.PluginConfig;
-import me.val_mobile.data.RSVModule;
-import me.val_mobile.data.RSVPlayer;
+import me.val_mobile.data.*;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.misc.BStats;
 import me.val_mobile.misc.MiscEvents;
@@ -48,11 +46,18 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     public static ToolHandler toolHandler;
     private static Utils util;
     private PluginConfig config;
+    private static LorePresetConfig lorePresetConfig;
+    private static MiscItemsConfig miscItemsConfig;
+    private static MiscRecipesConfig miscRecipesConfig;
+
 
     @Override
     public void onEnable() {
 
         this.config = new PluginConfig(this);
+        lorePresetConfig = new LorePresetConfig(this);
+        miscItemsConfig = new MiscItemsConfig(this);
+        miscRecipesConfig = new MiscRecipesConfig(this);
 
         util = new Utils(this);
 
@@ -68,6 +73,9 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         toolHandler = new ToolHandler();
         toolUtils = new ToolUtils(this);
         toolUtils.initMap();
+
+        new MiscItems().initialize();
+        new MiscRecipes(this).initialize();
 
         IceFireModule module = new IceFireModule(this);
         module.initialize();
@@ -124,6 +132,18 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
 
     public File getConfigFile() {
         return config.getFile();
+    }
+
+    public static FileConfiguration getLorePresetConfig() {
+        return lorePresetConfig.getConfig();
+    }
+
+    public static FileConfiguration getMiscItemsConfig() {
+        return miscItemsConfig.getConfig();
+    }
+
+    public static FileConfiguration getMiscRecipesConfig() {
+        return miscRecipesConfig.getConfig();
     }
 
     @Override

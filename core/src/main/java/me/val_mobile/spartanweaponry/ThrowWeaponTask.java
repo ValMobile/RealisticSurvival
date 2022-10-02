@@ -18,6 +18,9 @@ package me.val_mobile.spartanweaponry;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.spartanandfire.BurnTask;
+import me.val_mobile.spartanandfire.ElectrocuteTask;
+import me.val_mobile.spartanandfire.FreezeTask;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.ChatColor;
@@ -27,6 +30,7 @@ import org.bukkit.Tag;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.RayTraceResult;
@@ -44,7 +48,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
     private final String name;
     private final ArmorStand armorStand;
     private final Player player;
-    private final ItemStack itemStack;
+    private final ItemStack item;
     private final boolean rotateWeapon;
     private final boolean piercing;
     private final boolean returnWeapon;
@@ -55,20 +59,20 @@ public class ThrowWeaponTask extends BukkitRunnable {
     private final Vector vector;
     private static final HashMap<UUID, ThrowWeaponTask> tasks = new HashMap<>();
 
-    public ThrowWeaponTask(RSVModule module, RealisticSurvivalPlugin plugin, Player player, ItemStack itemStack, double maxDistance, boolean rotateWeapon, boolean piercing, boolean returnWeapon, Vector velocity) {
+    public ThrowWeaponTask(RSVModule module, RealisticSurvivalPlugin plugin, Player player, ItemStack item, double maxDistance, boolean rotateWeapon, boolean piercing, boolean returnWeapon, Vector velocity) {
         this.config = module.getUserConfig().getConfig();
         this.module = module;
-        this.name = RSVItem.getNameFromItem(itemStack);
+        this.name = RSVItem.getNameFromItem(item);
         this.maxDistanceSquared = Math.pow(maxDistance, 2);
         this.plugin = plugin;
         this.player = player;
-        this.itemStack = itemStack;
+        this.item = item;
         this.rotateWeapon = rotateWeapon;
         this.piercing = piercing;
         this.returnWeapon = returnWeapon;
         this.vector = velocity.multiply(1/20D);
         this.started = player.getLocation().add(0, 0.9, 0);
-        this.armorStand = spawnArmorstand(player, itemStack);
+        this.armorStand = spawnArmorstand(player, item);
         tasks.put(player.getUniqueId(), this);
     }
 
@@ -116,7 +120,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
                 returnWeapon();
             }
             else {
-                dropWeaponTask(armorStand, player, itemStack.clone());
+                dropWeaponTask(armorStand, player, item.clone());
             }
 
             if (config.getBoolean("Items." + name + ".ThrownAttributes.HitGroundSound.Enabled")) {
@@ -135,8 +139,172 @@ public class ThrowWeaponTask extends BukkitRunnable {
             double attackDamage = config.getDouble("Items." + name + ".ThrownAttributes.AttackDamage");
 
             for (Entity e : entityList) {
-                if (e instanceof Damageable && e.getUniqueId() != player.getUniqueId()) {
-                    ((Damageable) e).damage(attackDamage);
+                if (e instanceof Damageable damageable && e.getUniqueId() != player.getUniqueId()) {
+                    Utils util = RealisticSurvivalPlugin.getUtil();
+                    String name = RSVItem.getNameFromItem(item);
+                    String type = name.substring(0, name.lastIndexOf("_"));
+
+                    if (damageable instanceof Player p) {
+                        if (!p.isBlocking() || Utils.wasBackstabbed(player, p)) {
+                            switch (type) {
+                                case "dragonbone_flamed" -> {
+                                    if (util.hasNbtTag(e, "rsvmob")) {
+                                        if (!util.getNbtTag(e, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
+                                            attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+                                        }
+                                    }
+
+                                    if (!BurnTask.hasTask(e.getUniqueId())) {
+                                        int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
+                                        int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+
+                                        new BurnTask(plugin, e, fireTicks, tickSpeed).start();
+                                    }
+                                }
+                                case "dragonbone_iced" -> {
+                                    if (util.hasNbtTag(e, "rsvmob")) {
+                                        if (!util.getNbtTag(e, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
+                                            attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+                                        }
+                                    }
+                                    new FreezeTask(plugin, module, name, e).start();
+                                }
+                                case "dragonbone_lightning" -> {
+                                    if (util.hasNbtTag(e, "rsvmob")) {
+                                        if (!util.getNbtTag(e, "rsvmob", PersistentDataType.STRING).equals("lightning_dragon")) {
+                                            attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+                                        }
+                                    }
+
+                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
+                                        Location eLoc = e.getLocation();
+                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                                            eLoc.getWorld().strikeLightningEffect(loc);
+                                        } else {
+                                            eLoc.getWorld().strikeLightning(loc);
+                                        }
+                                    }
+
+                                    if (!ElectrocuteTask.hasTask(e.getUniqueId())) {
+                                        new ElectrocuteTask(plugin, module, name, (Damageable) e).start();
+                                    }
+                                }
+                                case "dragonsteel_fire" -> {
+                                    if (!BurnTask.hasTask(e.getUniqueId())) {
+                                        int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
+                                        int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+
+                                        new BurnTask(plugin, e, fireTicks, tickSpeed).start();
+                                    }
+                                }
+                                case "dragonsteel_ice" -> {
+                                    new FreezeTask(plugin, module, name, e).start();
+                                }
+                                case "dragonsteel_lightning" -> {
+                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
+                                        Location eLoc = e.getLocation();
+                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                                            eLoc.getWorld().strikeLightningEffect(loc);
+                                        } else {
+                                            eLoc.getWorld().strikeLightning(loc);
+                                        }
+                                    }
+
+                                    if (!ElectrocuteTask.hasTask(e.getUniqueId())) {
+                                        new ElectrocuteTask(plugin, module, name, (Damageable) e).start();
+                                    }
+                                }
+                                default -> {}
+                            }
+
+                            if (name.contains("dagger")) {
+                                if (Utils.wasBackstabbed(player, p)) {
+                                    attackDamage *= config.getDouble("Items." + name + ".BackstabDamageMultiplier");
+                                }
+                            }
+
+                            Utils.damagePlayer(p, attackDamage);
+                        }
+                    }
+                    else {
+                        switch (type) {
+                            case "dragonbone_flamed" -> {
+                                if (util.hasNbtTag(e, "rsvmob")) {
+                                    if (!util.getNbtTag(e, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
+                                        attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+                                    }
+                                }
+
+                                if (!BurnTask.hasTask(e.getUniqueId())) {
+                                    int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
+                                    int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+
+                                    new BurnTask(plugin, e, fireTicks, tickSpeed).start();
+                                }
+                            }
+                            case "dragonbone_iced" -> {
+                                if (util.hasNbtTag(e, "rsvmob")) {
+                                    if (!util.getNbtTag(e, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
+                                        attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+                                    }
+                                }
+                                new FreezeTask(plugin, module, name, e).start();
+                            }
+                            case "dragonbone_lightning" -> {
+                                if (util.hasNbtTag(e, "rsvmob")) {
+                                    if (!util.getNbtTag(e, "rsvmob", PersistentDataType.STRING).equals("lightning_dragon")) {
+                                        attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+                                    }
+                                }
+
+                                if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
+                                    Location eLoc = e.getLocation();
+                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                                        eLoc.getWorld().strikeLightningEffect(loc);
+                                    } else {
+                                        eLoc.getWorld().strikeLightning(loc);
+                                    }
+                                }
+
+                                if (!ElectrocuteTask.hasTask(e.getUniqueId())) {
+                                    new ElectrocuteTask(plugin, module, name, (Damageable) e).start();
+                                }
+                            }
+                            case "dragonsteel_fire" -> {
+                                if (!BurnTask.hasTask(e.getUniqueId())) {
+                                    int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
+                                    int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+
+                                    new BurnTask(plugin, e, fireTicks, tickSpeed).start();
+                                }
+                            }
+                            case "dragonsteel_ice" -> {
+                                new FreezeTask(plugin, module, name, e).start();
+                            }
+                            case "dragonsteel_lightning" -> {
+                                if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
+                                    Location eLoc = e.getLocation();
+                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                                        eLoc.getWorld().strikeLightningEffect(loc);
+                                    } else {
+                                        eLoc.getWorld().strikeLightning(loc);
+                                    }
+                                }
+
+                                if (!ElectrocuteTask.hasTask(e.getUniqueId())) {
+                                    new ElectrocuteTask(plugin, module, name, (Damageable) e).start();
+                                }
+                            }
+                            default -> {}
+                        }
+
+                        if (name.contains("dagger")) {
+                            if (Utils.wasBackstabbed(player, e)) {
+                                attackDamage *= config.getDouble("Items." + name + ".BackstabDamageMultiplier");
+                            }
+                        }
+                        Utils.damagePlayer(damageable, attackDamage);
+                    }
                 }
             }
 
@@ -154,7 +322,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
             }
 
             if (!piercing) {
-                dropWeaponTask(armorStand, player, itemStack.clone());
+                dropWeaponTask(armorStand, player, item.clone());
                 tasks.remove(player.getUniqueId());
                 cancel();
             }
@@ -168,7 +336,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
                 message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(Math.sqrt(maxDistanceSquared))));
                 player.sendMessage(message);
             }
-            dropWeaponTask(armorStand, player, itemStack.clone());
+            dropWeaponTask(armorStand, player, item.clone());
         }
     }
 
@@ -196,7 +364,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
     public void returnWeapon() {
         cancel();
 
-        new ReturnWeaponTask(module, itemStack, armorStand, player).runTaskTimer(plugin, 4L, 1L);
+        new ReturnWeaponTask(module, item, armorStand, player).runTaskTimer(plugin, 4L, 1L);
     }
 
     public void start() {

@@ -18,7 +18,6 @@ package me.val_mobile.spartanweaponry;
 
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.ntr.CeramicBucketMeltTask;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.utils.RSVItem;
@@ -41,7 +40,6 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
@@ -109,16 +107,13 @@ public class SwEvents extends ModuleEvents implements Listener {
 
                             ItemStack itemMainHand = player.getInventory().getItemInMainHand();
                             if (RSVItem.isRSVItem(itemMainHand)) {
-                                String moduleName = RSVItem.getModuleNameFromItem(itemMainHand);
-                                if (moduleName.equals(SwModule.NAME) || moduleName.equals(SfModule.NAME)) {
-                                    FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModule(SfModule.NAME).getUserConfig().getConfig();
+                                FileConfiguration config = RSVModule.getModule(RSVItem.getModuleNameFromItem(itemMainHand)).getUserConfig().getConfig();
 
-                                    String name = RSVItem.getNameFromItem(itemMainHand);
-                                    String type = name.substring(name.lastIndexOf("_") + 1);
-                                    if (type.equals("longbow") || type.equals("crossbow")) {
-                                        double multiplier = config.getDouble("Items." + name + ".AttackDamageMultiplier");
-                                        damage *= multiplier;
-                                    }
+                                String name = RSVItem.getNameFromItem(itemMainHand);
+                                String type = name.substring(name.lastIndexOf("_") + 1);
+                                if (type.equals("longbow") || type.equals("crossbow")) {
+                                    double multiplier = config.getDouble("Items." + name + ".AttackDamageMultiplier");
+                                    damage *= multiplier;
                                 }
                             }
                         }
@@ -148,10 +143,8 @@ public class SwEvents extends ModuleEvents implements Listener {
                                     }
                                 }
                                 case "dagger" -> {
-                                    if (defender instanceof LivingEntity) {
-                                        if (((LivingEntity) defender).hasLineOfSight(attacker)) {
-                                            damage *= config.getDouble("Items." + name + ".BackstabDamageMultiplier");
-                                        }
+                                    if (Utils.wasBackstabbed(attacker, defender)) {
+                                        damage *= config.getDouble("Items." + name + ".BackstabDamageMultiplier");
                                     }
                                 }
                                 case "lance" -> {
@@ -173,13 +166,19 @@ public class SwEvents extends ModuleEvents implements Listener {
                                     new SweepAttackTask(plugin, entities, attacker, defender, damage * multiplier).start();
                                 }
                                 case "hammer" -> {
-                                    if (defender instanceof LivingEntity) {
+                                    if (defender instanceof LivingEntity living) {
                                         int duration = config.getInt("Items." + name + ".Nausea.Duration");
                                         int amplifier = config.getInt("Items." + name + ".Nausea.Amplifier");
 
                                         PotionEffect nausea = new PotionEffect(PotionEffectType.CONFUSION, duration, amplifier);
-
-                                        ((LivingEntity) defender).addPotionEffect(nausea);
+                                        if (living.getEquipment() != null) {
+                                            if (!Utils.isItemReal(living.getEquipment().getHelmet())) {
+                                                living.addPotionEffect(nausea);
+                                            }
+                                        }
+                                        else {
+                                            living.addPotionEffect(nausea);
+                                        }
                                     }
 
                                     double kbMultiplier = config.getDouble("Items." + name + ".KnockbackMultiplier");
@@ -192,13 +191,19 @@ public class SwEvents extends ModuleEvents implements Listener {
                                     damage += dif * armorPiercing;
                                 }
                                 case "club" -> {
-                                    if (defender instanceof LivingEntity) {
+                                    if (defender instanceof LivingEntity living) {
                                         int duration = config.getInt("Items." + name + ".Nausea.Duration");
                                         int amplifier = config.getInt("Items." + name + ".Nausea.Amplifier");
 
                                         PotionEffect nausea = new PotionEffect(PotionEffectType.CONFUSION, duration, amplifier);
-
-                                        ((LivingEntity) defender).addPotionEffect(nausea);
+                                        if (living.getEquipment() != null) {
+                                            if (!Utils.isItemReal(living.getEquipment().getHelmet())) {
+                                                living.addPotionEffect(nausea);
+                                            }
+                                        }
+                                        else {
+                                            living.addPotionEffect(nausea);
+                                        }
                                     }
                                 }
                                 case "halberd" -> {
@@ -226,28 +231,24 @@ public class SwEvents extends ModuleEvents implements Listener {
                     }
                 }
 
-                if (defender instanceof Player player) {
+                if (defender instanceof LivingEntity living) {
+                    if (living.getEquipment() != null) {
+                        ItemStack itemMainHand = living.getEquipment().getItemInMainHand();
 
-                    ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-
-                    if (RSVItem.isRSVItem(itemMainHand)) {
-                        String moduleName = RSVItem.getModuleNameFromItem(itemMainHand);
-
-                        if (moduleName.equals(SwModule.NAME) || moduleName.equals(SfModule.NAME)) {
-                            FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModule(SfModule.NAME).getUserConfig().getConfig();
+                        if (RSVItem.isRSVItem(itemMainHand)) {
+                            FileConfiguration config = RSVModule.getModule(RSVItem.getModuleNameFromItem(itemMainHand)).getUserConfig().getConfig();
                             String name = RSVItem.getNameFromItem(itemMainHand);
                             String type = name.substring(name.lastIndexOf("_") + 1);
                             if (type.equals("saber") || type.equals("rapier")) {
                                 double multiplier = 1D - config.getDouble("Items." + name + ".Protection.PercentAbsorbed");
-                                int maxDecrement = config.getInt("Items." + name + ".Protection.DamageDurability");
+                                int decrement = config.getInt("Items." + name + ".Protection.DamageDurability");
 
                                 damage *= multiplier;
-                                if (Utils.changeDurability(itemMainHand, maxDecrement, true)) {
-                                    player.getInventory().setItemInMainHand(null);
-                                }
+                                Utils.changeDurability(itemMainHand, -decrement, true);
                             }
                         }
                     }
+
                 }
                 event.setDamage(damage);
             }
@@ -283,7 +284,7 @@ public class SwEvents extends ModuleEvents implements Listener {
                                 }
                             }
                         }
-                        case "dagger", "throwing_knife", "tomahawk", "javelin", "boomerang" -> {
+                        case "dagger", "tomahawk", "javelin", "boomerang" -> {
                             if (!player.isSneaking()) {
                                 boolean rotateWeapon = config.getBoolean("Items." + name + ".ThrownAttributes.Rotate");
                                 boolean returnWeapon = config.getBoolean("Items." + name + ".ThrownAttributes.Return");
@@ -304,6 +305,27 @@ public class SwEvents extends ModuleEvents implements Listener {
                             }
                         }
                         default -> {}
+                    }
+
+                    if (name.contains("throwing_knife")) {
+                        if (!player.isSneaking()) {
+                            boolean rotateWeapon = config.getBoolean("Items." + name + ".ThrownAttributes.Rotate");
+                            boolean returnWeapon = config.getBoolean("Items." + name + ".ThrownAttributes.Return");
+                            boolean piercing = config.getBoolean("Items." + name + ".ThrownAttributes.Piercing");
+                            double maxDistance = config.getDouble("Items." + name + ".ThrownAttributes.MaxDistance");
+                            Location loc = player.getEyeLocation().add(player.getLocation().getDirection());
+
+                            Vector velocity = loc.getDirection().normalize().multiply(config.getDouble("Items." + name + ".ThrownAttributes.Velocity"));
+
+                            if (player.getGameMode() == GameMode.ADVENTURE || player.getGameMode() == GameMode.SURVIVAL) {
+                                Utils.changeDurability(itemMainHand, -1, true);
+                            }
+
+                            if (RSVItem.isRSVItem(itemMainHand)) {
+                                new ThrowWeaponTask(module, plugin, player, itemMainHand, maxDistance, rotateWeapon, piercing, returnWeapon, velocity).start();
+                                player.getInventory().setItemInMainHand(null);
+                            }
+                        }
                     }
                 }
             }

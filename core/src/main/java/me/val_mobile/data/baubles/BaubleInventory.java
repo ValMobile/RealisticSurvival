@@ -30,10 +30,8 @@ public class BaubleInventory extends GUI {
 
     public BaubleInventory(Player player) {
         super(player, 54, "Bauble Bag");
-        Inventory inv = getInv();
-        int size = inv.getSize();
 
-        inv = Bukkit.createInventory(player, size, "Bauble Bag");
+        Inventory inv = getInventory();
 
         inv.setItem(BaubleSlot.HEAD.getValue(), RSVItem.getItem("head_slot"));
         inv.setItem(BaubleSlot.AMULET.getValue(), RSVItem.getItem("amulet_slot"));
@@ -45,6 +43,8 @@ public class BaubleInventory extends GUI {
 
         ItemStack guiGlass = RSVItem.getItem("gui_glass");
 
+        int size = inv.getSize();
+
         for (int i = 0; i < size; i++) {
             if (!Utils.isItemReal(inv.getItem(i))) {
                 inv.setItem(i, guiGlass);
@@ -55,7 +55,7 @@ public class BaubleInventory extends GUI {
     }
 
     public ItemStack getBauble(BaubleSlot baubleSlot) {
-        return getInv().getItem(baubleSlot.getValue());
+        return getInventory().getItem(baubleSlot.getValue());
     }
 
     public boolean hasBauble(String name) {
@@ -86,9 +86,9 @@ public class BaubleInventory extends GUI {
     public HashMap<BaubleSlot, ItemStack> getBaubles() {
         HashMap<BaubleSlot, ItemStack> items = new HashMap<>();
         BaubleSlot[] slots = BaubleSlot.values();
-        Inventory inv = getInv();
+
         for (BaubleSlot slot : slots) {
-            items.put(slot, inv.getItem(slot.getValue()));
+            items.put(slot, getInventory().getItem(slot.getValue()));
         }
 
         return items;

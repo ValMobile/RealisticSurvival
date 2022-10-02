@@ -88,7 +88,7 @@ public class RSVPlayer {
             return new me.val_mobile.data.baubles.DataModule(getPlayer());
         }
         else if (name.equals(TanModule.NAME)) {
-            return new DataModule(plugin, getPlayer());
+            return new DataModule(getPlayer());
         }
 
         return null;
