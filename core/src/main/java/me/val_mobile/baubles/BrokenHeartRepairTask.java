@@ -17,13 +17,14 @@
 package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.data.baubles.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -32,40 +33,55 @@ public class BrokenHeartRepairTask extends BukkitRunnable {
     private static HashMap<UUID, BrokenHeartRepairTask> tasks = new HashMap<>();
     private static HashMap<UUID, Long> players = new HashMap<>();
 
-    private final RSVPlayer player;
+    private final RSVPlayer rsvPlayer;
     private final UUID id;
     private final RealisticSurvivalPlugin plugin;
     private final FileConfiguration config;
+    private final Collection<String> allowedWorlds;
     private final int duration;
 
     private final long beginningTime;
     private long elapsed = 0;
 
-    public BrokenHeartRepairTask(RealisticSurvivalPlugin plugin, BaubleModule module, RSVPlayer player) {
+    public BrokenHeartRepairTask(RealisticSurvivalPlugin plugin, BaubleModule module, RSVPlayer rsvPlayer) {
         this.beginningTime = System.currentTimeMillis();
-        this.player = player;
-        this.id = player.getPlayer().getUniqueId();
+        this.rsvPlayer = rsvPlayer;
+        this.id = rsvPlayer.getPlayer().getUniqueId();
+        this.allowedWorlds = module.getAllowedWorlds();
         this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();
         this.duration = config.getInt("Items.broken_heart.SleepRepair.Duration");
 
-        tasks.put(player.getPlayer().getUniqueId(), this);
+        tasks.put(id, this);
     }
 
     @Override
     public void run() {
-        if (!players.containsKey(id)) {
-            cancel();
-        }
-        elapsed = players.get(id) - beginningTime;
+        Player player = rsvPlayer.getPlayer();
 
-        if (elapsed > duration) {
-            ItemStack brokenHeart = ((DataModule) player.getDataModuleFromName(BaubleModule.NAME)).getBaubleBag().getItem("broken_heart");
-            Utils.changeDurability(brokenHeart, config.getInt("Items.broken_heart.SleepRepair.Amount"), false);
-
+        if (player == null) {
             players.remove(id);
             tasks.remove(id);
             cancel();
+        }
+        else {
+            if (player.isOnline() && !player.isDead() && allowedWorlds.contains(player.getWorld().getName())) {
+                elapsed = players.get(id) - beginningTime;
+
+                if (elapsed > duration) {
+                    ItemStack brokenHeart = rsvPlayer.getBaubleDataModule().getBaubleBag().getItem("broken_heart");
+                    Utils.changeDurability(brokenHeart, config.getInt("Items.broken_heart.SleepRepair.Amount"), false);
+
+                    players.remove(id);
+                    tasks.remove(id);
+                    cancel();
+                }
+            }
+            else {
+                players.remove(id);
+                tasks.remove(id);
+                cancel();
+            }
         }
     }
 

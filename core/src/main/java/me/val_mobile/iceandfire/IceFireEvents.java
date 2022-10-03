@@ -350,7 +350,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                     }
                 }
                 if (RSVItem.isRSVItem(event.getCursor())) {
-                    item = event.getCurrentItem();
+                    item = event.getCursor();
                     if (RSVItem.isRSVItem(item)) {
                         if (RSVItem.getNameFromItem(item).contains("tide_guardian_")) {
                             if (!TideGuardianTask.hasTask(player.getUniqueId())) {

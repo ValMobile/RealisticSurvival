@@ -19,7 +19,6 @@ package me.val_mobile.utils;
 import me.val_mobile.iceandfire.DragonVariant;
 import me.val_mobile.iceandfire.SeaSerpentVariant;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import net.minecraft.util.datafix.fixes.EntityZombieSplitFix;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;

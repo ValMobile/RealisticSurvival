@@ -18,7 +18,6 @@ package me.val_mobile.data.baubles;
 
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -76,8 +75,10 @@ public class BaubleInventory extends GUI {
         Collection<ItemStack> baubles = getBaubles().values();
 
         for (ItemStack bauble : baubles) {
-            if (RSVItem.getNameFromItem(bauble).equals(name)) {
-                sum++;
+            if (RSVItem.isRSVItem(bauble)) {
+                if (RSVItem.getNameFromItem(bauble).equals(name)) {
+                    sum++;
+                }
             }
         }
         return sum;
@@ -101,5 +102,16 @@ public class BaubleInventory extends GUI {
             }
         }
         return null;
+    }
+
+    public void setItem(ItemStack replace, String baubleName) {
+        for (BaubleSlot slot : getBaubles().keySet()) {
+            if (RSVItem.isRSVItem(getInventory().getItem(slot.getValue()))) {
+                if (RSVItem.getNameFromItem(getInventory().getItem(slot.getValue())).equals(baubleName)) {
+                    getInventory().setItem(slot.getValue(), replace);
+                    break;
+                }
+            }
+        }
     }
 }

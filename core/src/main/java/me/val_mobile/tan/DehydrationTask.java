@@ -18,7 +18,6 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.data.toughasnails.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.ConfigurationSection;
@@ -33,6 +32,7 @@ import java.util.*;
 public class DehydrationTask extends BukkitRunnable {
 
     private final static HashMap<UUID, DehydrationTask> tasks = new HashMap<>();
+    private final UUID id;
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
@@ -46,6 +46,7 @@ public class DehydrationTask extends BukkitRunnable {
         this.plugin = plugin;
         this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         this.player = player;
+        this.id = player.getPlayer().getUniqueId();
         this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
         this.damage = config.getDouble("Thirst.Dehydration.Damage.Amount");
 
@@ -60,16 +61,19 @@ public class DehydrationTask extends BukkitRunnable {
             amp = section.getInt(key + ".Amplifier");
             potionEffects.add(new PotionEffect(PotionEffectType.getByName(key), dur, amp));
         }
-        tasks.put(player.getPlayer().getUniqueId(), this);
+        tasks.put(id, this);
     }
 
     @Override
     public void run() {
         Player player = this.player.getPlayer();
 
-        if (player != null) {
-            DataModule module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
-            double thirst = module.getThirst();
+        if (player == null) {
+            tasks.remove(id);
+            cancel();
+        }
+        else {
+            double thirst = this.player.getTanDataModule().getThirst();
             GameMode mode = player.getGameMode(); // get the gamemode
 
             if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline() && !player.isDead() && allowedWorlds.contains(player.getWorld().getName())) {
@@ -92,7 +96,7 @@ public class DehydrationTask extends BukkitRunnable {
 
                 // if the player's thirst is high enough
                 if (thirst > config.getDouble("Thirst.Dehydration.Thirst")) {
-                    tasks.remove(player.getUniqueId());
+                    tasks.remove(id);
                     cancel();
                 }
 
@@ -100,12 +104,9 @@ public class DehydrationTask extends BukkitRunnable {
             // if the player is in creative or spectator
             else {
                 // update static hashmap values and cancel the runnable
-                tasks.remove(player.getUniqueId());
+                tasks.remove(id);
                 cancel();
             }
-        }
-        else {
-            cancel();
         }
     }
 

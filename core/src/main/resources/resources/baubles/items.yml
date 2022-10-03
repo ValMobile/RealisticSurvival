@@ -670,7 +670,7 @@ phantom_prism:
     rsvbaubleslot: "Any"
 gui_glass:
   Material: "GRAY_STAINED_GLASS_PANE"
-  DisplayName: ""
+  DisplayName: "&7"
 bauble_bag:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fBauble Bag"

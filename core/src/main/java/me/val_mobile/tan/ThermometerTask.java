@@ -25,7 +25,6 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.CompassMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -43,6 +42,7 @@ public class ThermometerTask extends BukkitRunnable {
 
     private final RealisticSurvivalPlugin plugin;
     private final RSVPlayer player;
+    private final UUID id;
     private final Collection<String> allowedWorlds;
     private final TemperatureCalculateTask task;
     private double equilibriumTemp;
@@ -53,16 +53,23 @@ public class ThermometerTask extends BukkitRunnable {
         this.plugin = plugin;
         this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         this.player = player;
+        this.id = player.getPlayer().getUniqueId();
         this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
-        this.task = TemperatureCalculateTask.getTasks().get(player.getPlayer().getUniqueId());
-        tasks.put(player.getPlayer().getUniqueId(), this);
+        this.task = TemperatureCalculateTask.getTasks().get(id);
         this.originalCompassTarget = player.getPlayer().getCompassTarget();
+        tasks.put(id, this);
     }
 
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        if (player != null) {
+        if (player == null) {
+            // update static hashmap values and cancel the runnable
+            tasks.remove(id);
+            cancel();
+        }
+        // if the player is in creative or spectator
+        else {
             GameMode mode = player.getGameMode(); // get the gamemode
 
             if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && task != null) {
@@ -89,15 +96,10 @@ public class ThermometerTask extends BukkitRunnable {
             // if the player is in creative or spectator
             else {
                 // update static hashmap values and cancel the runnable
-                tasks.remove(player.getUniqueId());
+                tasks.remove(id);
                 player.setCompassTarget(originalCompassTarget);
                 cancel();
             }
-        }
-        // if the player is in creative or spectator
-        else {
-            // update static hashmap values and cancel the runnable
-            cancel();
         }
     }
 

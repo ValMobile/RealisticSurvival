@@ -29,8 +29,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.io.File;
-
 public class SfEvents extends ModuleEvents implements Listener {
 
     private final RealisticSurvivalPlugin plugin;

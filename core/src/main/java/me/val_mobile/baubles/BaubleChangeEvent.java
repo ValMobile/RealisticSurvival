@@ -47,7 +47,7 @@ public class BaubleChangeEvent extends Event {
     }
 
     public String getBaubleName() {
-        return RSVItem.getModuleNameFromItem(bauble);
+        return RSVItem.getNameFromItem(bauble);
     }
 
     public BaubleChange getChange() {

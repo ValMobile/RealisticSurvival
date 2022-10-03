@@ -847,6 +847,14 @@ public class Utils {
                 loc.getWorld().playSound(loc, soundName, volume, pitch);
             }
         }
+        else {
+            if (StringUtils.isAllUpperCase(soundName)) {
+                loc.getWorld().playSound(loc, Sound.valueOf(soundName), volume, pitch);
+            }
+            else {
+                loc.getWorld().playSound(loc, soundName, volume, pitch);
+            }
+        }
     }
 
     public static void updateLore(ItemStack item, int oldDurability, int newDurability) {

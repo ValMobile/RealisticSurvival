@@ -25,48 +25,76 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 public class PotionBaubleTask extends BukkitRunnable {
 
-    private static final HashMap<UUID, PotionBaubleTask> tasks = new HashMap<>();
+    private static final HashMap<UUID, Collection<PotionBaubleTask>> tasks = new HashMap<>();
     private final DataModule dataModule;
     private final RSVPlayer rsvPlayer;
+    private final UUID id;
+    private final Collection<String> allowedWorlds;
     private final RealisticSurvivalPlugin plugin;
     private final PotionBauble potionBauble;
 
     public PotionBaubleTask(PotionBauble potionBauble, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
+        this.id = rsvPlayer.getPlayer().getUniqueId();
+        this.allowedWorlds = RSVModule.getModule(BaubleModule.NAME).getAllowedWorlds();
         this.plugin = plugin;
         this.potionBauble = potionBauble;
-        this.dataModule = (DataModule) rsvPlayer.getDataModuleFromName("Baubles");
-        UUID id = rsvPlayer.getPlayer().getUniqueId();
+        this.dataModule = rsvPlayer.getBaubleDataModule();
         HashMap<UUID, Collection> baubles = TickableBaubleManager.getBaubles();
 
         Collection<PotionBauble> potBaubles = (baubles.containsKey(id)) ? baubles.get(id) : new ArrayList<>();
 
         potBaubles.add(potionBauble);
         baubles.put(id, potBaubles);
-        tasks.put(id, this);
+        if (tasks.containsKey(id)) {
+            Collection<PotionBaubleTask> colTasks = new ArrayList<>(tasks.get(id));
+            colTasks.add(this);
+            tasks.replace(id, colTasks);
+        }
+        else {
+            tasks.put(id, List.of(this));
+        }
     }
 
     @Override
     public void run() {
-        // if the player has rings of res in his/her inventory
-        int amount = getAmount();
+        Player player = rsvPlayer.getPlayer();
 
-        if (amount > 0) {
-            // effect the player with resistance
-            ability(amount);
-        }
-        // if the player doesn't have rings of res in his/her inventory
-        else {
-            // update static hashmap values and cancel the runnable
-            tasks.remove(rsvPlayer.getPlayer().getUniqueId());
+        if (player == null) {
+            tasks.remove(id);
             cancel();
+        }
+        else {
+            if (!player.isDead() && player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
+                // if the player has rings of res in his/her inventory
+                int amount = getAmount();
+
+                if (amount > 0) {
+                    // effect the player with resistance
+                    ability(amount);
+                }
+                // if the player doesn't have rings of res in his/her inventory
+                else {
+                    // update static hashmap values and cancel the runnable
+                    if (tasks.get(id).size() < 2) {
+                        tasks.remove(id);
+                    }
+                    else {
+                        Collection<PotionBaubleTask> colTasks = tasks.get(id);
+                        colTasks.remove(this);
+                        tasks.put(id, colTasks);
+                    }
+                    cancel();
+                }
+            }
+            else {
+                tasks.remove(id);
+                cancel();
+            }
         }
     }
 
@@ -78,9 +106,7 @@ public class PotionBaubleTask extends BukkitRunnable {
     }
 
     private int getAmount() {
-        TickableBaubleManager manager = TickableBaubleManager.valueOf(potionBauble.getName().toUpperCase());
-
-        return dataModule.getBaubleAmount(manager.getName());
+        return dataModule.getBaubleAmount(potionBauble.getName());
     }
 
     public void ability(int amount) {
@@ -99,14 +125,26 @@ public class PotionBaubleTask extends BukkitRunnable {
         return potionBauble;
     }
 
-    public static boolean hasTask(UUID id) {
+    public static boolean hasTask(UUID id, String name) {
         if (tasks.containsKey(id)) {
-            return tasks.get(id) != null;
+            Collection<PotionBaubleTask> colTasks = tasks.get(id);
+
+            if (colTasks != null) {
+                for (PotionBaubleTask t : colTasks) {
+                    if (t.getPotionBauble().getName().equals(name)) {
+                        return true;
+                    }
+                }
+            }
         }
         return false;
     }
 
-    public HashMap<UUID, PotionBaubleTask> getTasks() {
+    public UUID getId() {
+        return id;
+    }
+
+    public HashMap<UUID, Collection<PotionBaubleTask>> getTasks() {
         return tasks;
     }
 }

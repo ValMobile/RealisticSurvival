@@ -32,7 +32,7 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
 
     public static final String NAME = "Baubles";
 
-    private PlayerDataConfig config;
+    private final PlayerDataConfig config;
     private BaubleEvents events;
 
     public BaubleModule(RealisticSurvivalPlugin plugin) {

@@ -39,6 +39,7 @@ public class ParasiteTask extends BukkitRunnable {
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
     private final double damage;
+    private final UUID id;
     private final int duration;
     private final int tickSpeed;
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
@@ -49,6 +50,7 @@ public class ParasiteTask extends BukkitRunnable {
         this.plugin = plugin;
         this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         this.player = player;
+        this.id = player.getPlayer().getUniqueId();
         this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
         this.damage = config.getDouble("Thirst.Parasites.Damage");
         this.duration = config.getInt("Thirst.Parasites.Duration");
@@ -65,35 +67,38 @@ public class ParasiteTask extends BukkitRunnable {
             amp = section.getInt(key + ".Amplifier");
             potionEffects.add(new PotionEffect(PotionEffectType.getByName(key), dur, amp));
         }
-        tasks.put(player.getPlayer().getUniqueId(), this);
+        tasks.put(id, this);
     }
 
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        if (player != null) {
+        if (player == null) {
+            if (DisplayTask.hasTask(id) && DisplayTask.getTasks().get(id) != null) {
+                DisplayTask.getTasks().get(id).setParasitesActive(false);
+            }
+            tasks.remove(id);
+            cancel();
+        }
+        // if the player is in creative or spectator
+        else {
             GameMode mode = player.getGameMode(); // get the gamemode
             ticks += tickSpeed;
 
             if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && !player.isDead() && player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && ticks < duration) {
-                DisplayTask.getTasks().get(player.getUniqueId()).setParasitesActive(true);
+                DisplayTask.getTasks().get(id).setParasitesActive(true);
                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
                     player.damage(damage);
                 }
             }
             else {
-                tasks.remove(player.getUniqueId());
-                ThirstCalculateTask.getTasks().get(player.getUniqueId()).setParasitesActive(false);
-                DisplayTask.getTasks().get(player.getUniqueId()).setParasitesActive(false);
+                tasks.remove(id);
+                ThirstCalculateTask.getTasks().get(id).setParasitesActive(false);
+                if (DisplayTask.hasTask(id) && DisplayTask.getTasks().get(id) != null) {
+                    DisplayTask.getTasks().get(id).setParasitesActive(false);
+                }
                 cancel();
             }
-        }
-        // if the player is in creative or spectator
-        else {
-            if (DisplayTask.hasTask(player.getUniqueId()) && DisplayTask.getTasks().get(player.getUniqueId()) != null) {
-                DisplayTask.getTasks().get(player.getUniqueId()).setParasitesActive(false);
-            }
-            cancel();
         }
     }
 
@@ -107,7 +112,7 @@ public class ParasiteTask extends BukkitRunnable {
             }
         }
 
-        ThirstCalculateTask.getTasks().get(player.getUniqueId()).setParasitesActive(true);
+        ThirstCalculateTask.getTasks().get(id).setParasitesActive(true);
 
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }

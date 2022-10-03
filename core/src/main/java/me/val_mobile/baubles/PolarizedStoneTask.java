@@ -18,7 +18,6 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.data.baubles.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -28,6 +27,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -36,39 +36,56 @@ public class PolarizedStoneTask extends BukkitRunnable {
     private static final HashMap<UUID, PolarizedStoneTask> tasks = new HashMap<>();
     private final RSVPlayer rsvPlayer;
     private final RealisticSurvivalPlugin plugin;
+    private final UUID id;
+    private final Collection<String> allowedWorlds;
     private final FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
     private double maxRadius = config.getDouble("Items.polarized_stone.MaxRadius");
     private double pullForce = config.getDouble("Items.polarized_stone.PullForce");
 
     public PolarizedStoneTask(RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
+        this.id = rsvPlayer.getPlayer().getUniqueId();
+        this.allowedWorlds = RSVModule.getModule(BaubleModule.NAME).getAllowedWorlds();
         this.plugin = plugin;
-        tasks.put(rsvPlayer.getPlayer().getUniqueId(), this);
+        tasks.put(id, this);
     }
 
     @Override
     public void run() {
-        boolean hasBauble = ((DataModule) rsvPlayer.getDataModuleFromName("Baubles")).hasBauble("polarized_stone");
+        Player p = rsvPlayer.getPlayer();
 
-        if (hasBauble) {
-            // effect the player with resistance
-            Player p = rsvPlayer.getPlayer();
-            Location loc = p.getLocation();
-            for (Entity e : p.getNearbyEntities(maxRadius, maxRadius, maxRadius)) {
-                if (e.getType() == EntityType.EXPERIENCE_ORB || e.getType() == EntityType.DROPPED_ITEM) {
-                    Location eLoc = e.getLocation();
-                    double xDif = loc.getX() - eLoc.getX();
-                    double yDif = loc.getY() - eLoc.getY();
-                    double zDif = loc.getZ() - eLoc.getZ();
-                    e.setVelocity((new Vector(xDif, yDif, zDif)).normalize().multiply(pullForce));
+        if (p == null) {
+            tasks.remove(id);
+            cancel();
+        }
+        else {
+            if (!p.isDead() && p.isOnline() && allowedWorlds.contains(p.getWorld().getName())) {
+                boolean hasBauble = rsvPlayer.getBaubleDataModule().hasBauble("polarized_stone");
+
+                if (hasBauble) {
+                    // effect the player with resistance
+                    Location loc = p.getLocation();
+                    for (Entity e : p.getNearbyEntities(maxRadius, maxRadius, maxRadius)) {
+                        if (e.getType() == EntityType.EXPERIENCE_ORB || e.getType() == EntityType.DROPPED_ITEM) {
+                            Location eLoc = e.getLocation();
+                            double xDif = loc.getX() - eLoc.getX();
+                            double yDif = loc.getY() - eLoc.getY();
+                            double zDif = loc.getZ() - eLoc.getZ();
+                            e.setVelocity((new Vector(xDif, yDif, zDif)).normalize().multiply(pullForce));
+                        }
+                    }
+                }
+                // if the player doesn't have rings of res in his/her inventory
+                else {
+                    // update static hashmap values and cancel the runnable
+                    tasks.remove(id);
+                    cancel();
                 }
             }
-        }
-        // if the player doesn't have rings of res in his/her inventory
-        else {
-            // update static hashmap values and cancel the runnable
-            tasks.remove(rsvPlayer.getPlayer().getUniqueId());
-            cancel();
+            else {
+                tasks.remove(id);
+                cancel();
+            }
         }
     }
 

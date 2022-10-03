@@ -23,32 +23,25 @@ import me.val_mobile.tan.TanModule;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class RSVPlayer {
 
-    private UUID uuid;
     private final RealisticSurvivalPlugin plugin;
-    private final HashMap<String, RSVDataModule> dataModules = new HashMap<>();
+    private final UUID uuid;
+    private final DataModule tanDataModule;
+    private final me.val_mobile.data.baubles.DataModule baubleDataModule;
     private static final HashMap<UUID, RSVPlayer> players = new HashMap<>();
 
     public RSVPlayer(RealisticSurvivalPlugin plugin, Player player) {
-        this.uuid = player.getUniqueId();
         this.plugin = plugin;
-        Collection<RSVModule> modules = RSVModule.getModules().values();
-        for (RSVModule module : modules) {
-            if (module.isEnabled()) {
-                RSVDataModule dataModule = getDataModuleFromName(module.getName());
+        this.uuid = player.getUniqueId();
 
-                if (dataModule != null) {
-                    dataModules.put(module.getName(), dataModule);
-                }
-            }
-        }
+        baubleDataModule = RSVModule.getModule(BaubleModule.NAME).isEnabled() ? new me.val_mobile.data.baubles.DataModule(player) : null;
 
-        retrieveData();
+        tanDataModule = RSVModule.getModule(TanModule.NAME).isEnabled() ? new DataModule(plugin, player) : null;
+
         players.put(uuid, this);
     }
 
@@ -60,37 +53,29 @@ public class RSVPlayer {
         return Bukkit.getPlayer(uuid);
     }
 
-    public void setUUID(Player player) {
-        this.uuid = player.getUniqueId();
-    }
-
-    public HashMap<String, RSVDataModule> getDataModules() {
-        return dataModules;
-    }
-
     public void retrieveData() {
-        Collection<RSVDataModule> mod = dataModules.values();
-
-        for (RSVDataModule module : mod) {
-            module.retrieveData();
+        if (tanDataModule != null) {
+            tanDataModule.retrieveData();
+        }
+        if (baubleDataModule != null) {
+            baubleDataModule.retrieveData();
         }
     }
 
     public void saveData() {
-        Collection<RSVDataModule> modules = dataModules.values();
-        for (RSVDataModule module : modules) {
-            module.saveData();
+        if (tanDataModule != null) {
+            tanDataModule.saveData();
+        }
+        if (baubleDataModule != null) {
+            baubleDataModule.saveData();
         }
     }
 
-    public RSVDataModule getDataModuleFromName(String name) {
-        if (name.equals(BaubleModule.NAME)) {
-            return new me.val_mobile.data.baubles.DataModule(getPlayer());
-        }
-        else if (name.equals(TanModule.NAME)) {
-            return new DataModule(getPlayer());
-        }
+    public DataModule getTanDataModule() {
+        return tanDataModule;
+    }
 
-        return null;
+    public me.val_mobile.data.baubles.DataModule getBaubleDataModule() {
+        return baubleDataModule;
     }
 }

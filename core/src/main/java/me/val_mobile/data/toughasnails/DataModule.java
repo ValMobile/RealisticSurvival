@@ -26,28 +26,24 @@ import org.bukkit.entity.Player;
 import java.io.IOException;
 import java.util.UUID;
 
-import static me.val_mobile.tan.TemperatureCalculateTask.NEUTRAL_TEMPERATURE;
-import static me.val_mobile.tan.ThirstCalculateTask.*;
-
 public class DataModule implements RSVDataModule {
 
     private final UUID id;
     private final FileConfiguration userConfig;
     private final PlayerDataConfig playerDataConfig;
-    private final TanModule module;
     private double temperature;
     private double thirst;
     private double thirstExhaustion;
     private double thirstSaturation;
     private int thirstTickTimer;
+    private final RealisticSurvivalPlugin plugin;
 
-    public DataModule(Player player) {
-        this.module = (TanModule) RSVModule.getModule(TanModule.NAME);
+    public DataModule(RealisticSurvivalPlugin plugin, Player player) {
+        TanModule module = (TanModule) RSVModule.getModule(TanModule.NAME);
+        this.plugin = plugin;
         this.userConfig = module.getUserConfig().getConfig();
         this.playerDataConfig = module.getPlayerDataConfig();
         this.id = player.getUniqueId();
-
-        retrieveData();
     }
 
     public double getTemperature() {
@@ -92,43 +88,50 @@ public class DataModule implements RSVDataModule {
 
     @Override
     public void retrieveData() {
-        FileConfiguration config = this.playerDataConfig.getConfig();
+        FileConfiguration config = playerDataConfig.getConfig();
 
         String tempPath = id + ".Temperature";
         String thirstPath = id + ".Thirst";
         String saturationPath = id + ".ThirstSaturation";
         String exhaustionPath = id + ".ThirstExhaustion";
-        String tickTimer = id + ".ThirstTickTimer";
+        String tickTimerPath = id + ".ThirstTickTimer";
+
+        double defaultTemp = userConfig.getDouble("Temperature.DefaultTemperature");
+        double defaultThirst = userConfig.getDouble("Thirst.DefaultThirst");
+        double defaultSaturation = userConfig.getDouble("Thirst.DefaultSaturation");
+        double defaultExhaustion = userConfig.getDouble("Thirst.DefaultExhaustion");
+        double defaultTickTimer = userConfig.getDouble("Thirst.DefaultExhaustionTickTimer");
 
         if (!config.contains(id.toString()))
             config.createSection(id.toString());
         if (!config.contains(tempPath)) {
             config.createSection(tempPath);
-            config.set(tempPath, userConfig.getDouble("Temperature.DefaultTemperature"));
+            config.set(tempPath, defaultTemp);
         }
         if (!config.contains(thirstPath)) {
             config.createSection(thirstPath);
-            config.set(tempPath, userConfig.getDouble("Thirst.DefaultThirst"));
+            config.set(tempPath, defaultThirst);
         }
         if (!config.contains(saturationPath)) {
             config.createSection(saturationPath);
-            config.set(saturationPath, userConfig.getDouble("Thirst.DefaultSaturation"));
+            config.set(saturationPath, defaultSaturation);
         }
         if (!config.contains(exhaustionPath)) {
             config.createSection(exhaustionPath);
-            config.set(exhaustionPath, 0D);
+            config.set(exhaustionPath, defaultExhaustion);
         }
-        if (!config.contains(tickTimer)) {
-            config.createSection(tickTimer);
-            config.set(tickTimer, 0);
+        if (!config.contains(tickTimerPath)) {
+            config.createSection(tickTimerPath);
+            config.set(tickTimerPath, defaultTickTimer);
         }
 
+        temperature = config.getDouble(tempPath);
+        thirst = config.getDouble(thirstPath);
+        thirstSaturation = config.getDouble(saturationPath);
+        thirstExhaustion = config.getDouble(exhaustionPath);
+        thirstTickTimer = config.getInt(tickTimerPath);
+
         saveFile(config);
-        this.temperature = config.getDouble(tempPath);
-        this.thirst = config.getDouble(thirstPath);
-        this.thirstSaturation = config.getDouble(saturationPath);
-        this.thirstExhaustion = config.getDouble(exhaustionPath);
-        this.thirstTickTimer = config.getInt(tickTimer);
     }
 
     @Override
@@ -170,7 +173,9 @@ public class DataModule implements RSVDataModule {
 
     public void saveFile(FileConfiguration config) {
         try {
-            config.save(this.playerDataConfig.getFile());
+            playerDataConfig.setConfig(config);
+            playerDataConfig.getConfig().save(playerDataConfig.getFile());
+            playerDataConfig.reloadConfig();
         } catch (IOException e) {
             e.printStackTrace();
         }

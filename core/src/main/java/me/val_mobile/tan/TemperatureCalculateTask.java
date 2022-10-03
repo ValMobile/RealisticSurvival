@@ -18,7 +18,6 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.data.toughasnails.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVEnchants;
 import me.val_mobile.utils.RSVItem;
@@ -43,12 +42,12 @@ public class TemperatureCalculateTask extends BukkitRunnable {
 
     private final RealisticSurvivalPlugin plugin;
     private final RSVPlayer player;
+    private final UUID id;
     private final Collection<String> allowedWorlds;
     private double equilibriumTemp;
     private double regulate = 0D;
     private double change = 0D;
     private double temp;
-    private DataModule module;
     public static final double MINIMUM_TEMPERATURE = 0.0;
     public static final double MAXIMUM_TEMPERATURE = 25.0;
 
@@ -58,18 +57,23 @@ public class TemperatureCalculateTask extends BukkitRunnable {
         this.plugin = plugin;
         this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         this.player = player;
+        this.id = player.getPlayer().getUniqueId();
         this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
-        this.module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
-        this.temp = module.getTemperature();
-        tasks.put(player.getPlayer().getUniqueId(), this);
+        this.temp = player.getTanDataModule().getTemperature();
+        tasks.put(id, this);
     }
 
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        if (player != null) {
+        if (player == null) {
+            // update static hashmap values and cancel the runnable
+            tasks.remove(id);
+            cancel();
+        }
+        // if the player is in creative or spectator
+        else {
             GameMode mode = player.getGameMode(); // get the gamemode
-            this.module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
 
             if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
                 double tempMaxChange = config.getDouble("Temperature.MaxChange");
@@ -223,13 +227,13 @@ public class TemperatureCalculateTask extends BukkitRunnable {
                 }
 
                 if (temp <= config.getDouble("Temperature.Hypothermia.Temperature")) {
-                    if (!HypothermiaTask.hasTask(player.getUniqueId())) {
+                    if (!HypothermiaTask.hasTask(id)) {
                         new HypothermiaTask(plugin, this.player).start();
                     }
                 }
 
                 if (temp >= config.getDouble("Temperature.Hyperthermia.Temperature")) {
-                    if (!HyperthermiaTask.hasTask(player.getUniqueId())) {
+                    if (!HyperthermiaTask.hasTask(id)) {
                         new HyperthermiaTask(plugin, this.player).start();
                     }
                 }
@@ -237,22 +241,15 @@ public class TemperatureCalculateTask extends BukkitRunnable {
                 if (temp != oldTemp) {
                     Bukkit.getServer().getPluginManager().callEvent(new TemperatureChangeEvent(player, oldTemp, temp));
                 }
-                module.setTemperature(temp);
-                module.saveData();
-                RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().setTemperature(temp);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().saveData();
             }
             else {
-                module.setTemperature(temp);
-                module.saveData();
-                RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
-                tasks.remove(player.getUniqueId());
+                RSVPlayer.getPlayers().get(id).getTanDataModule().setTemperature(temp);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().saveData();
+                tasks.remove(id);
                 cancel();
             }
-        }
-        // if the player is in creative or spectator
-        else {
-            // update static hashmap values and cancel the runnable
-            cancel();
         }
     }
 

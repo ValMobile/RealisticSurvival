@@ -22,7 +22,6 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVAnvilRecipe;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import net.minecraft.server.v1_16_R1.LevelVersion;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.HumanEntity;
@@ -35,10 +34,8 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.*;
-import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -48,7 +45,6 @@ import java.util.Set;
 public class MiscEvents implements Listener {
 
     private final RealisticSurvivalPlugin plugin;
-
     public MiscEvents(RealisticSurvivalPlugin plugin) {
         this.plugin = plugin;
     }
@@ -57,11 +53,9 @@ public class MiscEvents implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (!RSVPlayer.getPlayers().containsKey(player.getUniqueId())) {
-            RSVPlayer rsvplayer = new RSVPlayer(plugin, player);
+        RSVPlayer rsvplayer = RSVPlayer.getPlayers().containsKey(player.getUniqueId()) ? RSVPlayer.getPlayers().get(player.getUniqueId()) : new RSVPlayer(plugin, player);
+        rsvplayer.retrieveData();
 
-            rsvplayer.retrieveData();
-        }
         Collection<RSVModule> rsvModules = RSVModule.getModules().values();
 
         for (RSVModule module : rsvModules) {
@@ -79,6 +73,13 @@ public class MiscEvents implements Listener {
             }
         }
 
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onLeave(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        RSVPlayer.getPlayers().get(player.getUniqueId()).saveData();
+        RSVPlayer.getPlayers().remove(player.getUniqueId());
     }
 
     @EventHandler
@@ -111,12 +112,10 @@ public class MiscEvents implements Listener {
                                     }
                                 }
 
-                                if (usesRsvItems) {
+                                if (usesRsvItems)
                                     event.getInventory().setResult(null);
-                                }
                             }
-                            default -> {
-                            }
+                            default -> {}
                         }
                     }
                 }

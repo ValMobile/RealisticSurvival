@@ -18,7 +18,6 @@ package me.val_mobile.utils;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.data.toughasnails.DataModule;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.tan.TanModule;
@@ -28,7 +27,6 @@ import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -40,6 +38,7 @@ import java.util.UUID;
 public class DisplayTask extends BukkitRunnable {
 
     private final static HashMap<UUID, DisplayTask> tasks = new HashMap<>();
+    private final UUID id;
     private final FileConfiguration tanConfig;
     private final FileConfiguration ifConfig;
 
@@ -68,14 +67,19 @@ public class DisplayTask extends BukkitRunnable {
         this.thirstEnabled = tanConfig.getBoolean("Thirst.Enabled");
         this.tanAllowedWorlds = tanModule.getAllowedWorlds();
         this.ifAllowedWorlds = ifModule.getAllowedWorlds();
-        tasks.put(player.getPlayer().getUniqueId(), this);
+        this.id = player.getPlayer().getUniqueId();
+        tasks.put(id, this);
     }
 
     @Override
     public void run() {
         Player player = this.player.getPlayer();
 
-        if (player != null) {
+        if (player == null) {
+            tasks.remove(id);
+            cancel();
+        }
+        else {
             GameMode mode = player.getGameMode(); // get the gamemode
             if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline()) {
                 String actionbarText = "";
@@ -94,13 +98,14 @@ public class DisplayTask extends BukkitRunnable {
                 }
 
                 if (tanAllowedWorlds.contains(player.getWorld().getName())) {
-                    double temperature = TemperatureCalculateTask.NEUTRAL_TEMPERATURE;
-                    double thirst = ThirstCalculateTask.MAXIMUM_THIRST;
-                    if (TemperatureCalculateTask.hasTask(player.getUniqueId())) {
-                        temperature = TemperatureCalculateTask.getTasks().get(player.getUniqueId()).getTemp();
+                    double temperature = tanConfig.getDouble("Temperature.DefaultTemperature");
+                    double thirst = tanConfig.getDouble("Temperature.DefaultThirst");
+
+                    if (TemperatureCalculateTask.hasTask(id)) {
+                        temperature = TemperatureCalculateTask.getTasks().get(id).getTemp();
                     }
-                    if (ThirstCalculateTask.hasTask(player.getUniqueId())) {
-                        thirst = ThirstCalculateTask.getTasks().get(player.getUniqueId()).getThirstLvl();
+                    if (ThirstCalculateTask.hasTask(id)) {
+                        thirst = ThirstCalculateTask.getTasks().get(id).getThirstLvl();
                     }
 
                     boolean isUnderwater = player.getRemainingAir() < 300;
@@ -161,12 +166,9 @@ public class DisplayTask extends BukkitRunnable {
             // if the player is in creative or spectator
             else {
                 // update static hashmap values and cancel the runnable
-                tasks.remove(player.getUniqueId());
+                tasks.remove(id);
                 cancel();
             }
-        }
-        else {
-            cancel();
         }
     }
 

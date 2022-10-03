@@ -17,7 +17,6 @@
 package me.val_mobile.data.baubles;
 
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 
 public class WormholeInventory extends GUI {
 

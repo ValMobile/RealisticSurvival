@@ -18,9 +18,7 @@ package me.val_mobile.ntr;
 
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.ModuleItems;
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.spartanweaponry.TwoHandedTask;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.ToolHandler.Tool;
 import me.val_mobile.utils.Utils;
@@ -44,7 +42,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.CauldronLevelChangeEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
-import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
@@ -54,7 +51,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -257,16 +253,16 @@ public class NtrEvents extends ModuleEvents implements Listener {
                             if (config.getConfigurationSection("FlintKnapping.BlockDrops").getKeys(false).contains(blockMat.toString())) {
                                 ItemStack flintShard = moduleItems.getItems().get("flint_shard");
 
+                                if (config.getBoolean("FlintKnapping.BlockDrops." + blockMat + ".Sound.Enabled")) {
+                                    Utils.playSound(player.getLocation(), config.getString("FlintKnapping.BlockDrops." + blockMat + ".Sound.Sound"), (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Volume"),  (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Pitch"));
+                                }
+
                                 if (Utils.harvestLooting(config.getConfigurationSection("FlintKnapping.BlockDrops." + blockMat), flintShard, null, block.getLocation().add(0D, 0.15D, 0D))) {
                                     if (item.getAmount() > 0) {
                                         item.setAmount(item.getAmount() - 1);
                                     }
                                     else {
                                         item.setType(Material.AIR);
-                                    }
-
-                                    if (config.getBoolean("FlintKnapping.BlockDrops." + blockMat + ".Sound.Enabled")) {
-                                        Utils.playSound(player.getLocation(), config.getString("FlintKnapping.BlockDrops." + blockMat + ".Sound.Sound"), (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Volume"),  (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Pitch"));
                                     }
                                 }
                             }

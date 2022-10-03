@@ -20,7 +20,6 @@ import me.val_mobile.iceandfire.DragonVariant;
 import me.val_mobile.iceandfire.SeaSerpentVariant;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
@@ -29,9 +28,7 @@ import org.bukkit.entity.EntityCategory;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
-import org.bukkit.inventory.SmithingRecipe;
 import org.bukkit.potion.PotionEffectType;
 
 public class v1_19_R3 extends InternalsProvider {

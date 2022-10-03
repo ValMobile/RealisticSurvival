@@ -390,21 +390,19 @@ public class SwEvents extends ModuleEvents implements Listener {
             Player player = (Player) event.getWhoClicked();
             if (shouldEventBeRan(player)) {
                 ItemStack currentItem = event.getCurrentItem();
-                if (event.isLeftClick()) {
-                    if (RSVItem.isRSVItem(currentItem)) {
-                        String name = RSVItem.getNameFromItem(currentItem);
-                        String type = name.substring(name.lastIndexOf("_") + 1);
-                        RSVModule module = RSVModule.getModule(RSVItem.getModuleNameFromItem(currentItem));
+                if (RSVItem.isRSVItem(currentItem)) {
+                    String name = RSVItem.getNameFromItem(currentItem);
+                    String type = name.substring(name.lastIndexOf("_") + 1);
+                    RSVModule module = RSVModule.getModule(RSVItem.getModuleNameFromItem(currentItem));
 
-                        switch (type) {
-                            case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike" -> {
-                                UUID id = player.getUniqueId();
-                                if (!TwoHandedTask.hasTask(id)) {
-                                    new TwoHandedTask(module, plugin, player, name).start();
-                                }
+                    switch (type) {
+                        case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike" -> {
+                            UUID id = player.getUniqueId();
+                            if (!TwoHandedTask.hasTask(id)) {
+                                new TwoHandedTask(module, plugin, player, name).start();
                             }
-                            default -> {}
                         }
+                        default -> {}
                     }
                 }
             }

@@ -24,7 +24,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.beans.PersistenceDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

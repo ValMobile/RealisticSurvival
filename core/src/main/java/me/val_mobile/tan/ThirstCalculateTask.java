@@ -18,7 +18,6 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.data.toughasnails.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -38,13 +37,12 @@ public class ThirstCalculateTask extends BukkitRunnable {
 
     private final RealisticSurvivalPlugin plugin;
     private final RSVPlayer player;
+    private final UUID id;
     private final Collection<String> allowedWorlds;
     private double thirstLvl;
     private double saturationLvl;
     private int tickTimer;
     private double exhaustionLvl;
-    private DataModule module;
-
     private final int tickSpeed;
     private boolean isJumping = false;
     private boolean parasitesActive = false;
@@ -58,23 +56,27 @@ public class ThirstCalculateTask extends BukkitRunnable {
         this.plugin = plugin;
         this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         this.player = player;
+        this.id = player.getPlayer().getUniqueId();
         this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
-        this.module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
-        this.thirstLvl = module.getThirst();
-        this.tickTimer = module.getThirstTickTimer();
-        this.saturationLvl = module.getThirstSaturation();
-        this.exhaustionLvl = module.getThirstExhaustion();
+        this.thirstLvl = player.getTanDataModule().getThirst();
+        this.tickTimer = player.getTanDataModule().getThirstTickTimer();
+        this.saturationLvl = player.getTanDataModule().getThirstSaturation();
+        this.exhaustionLvl = player.getTanDataModule().getThirstExhaustion();
         this.peMultiplier = config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value");
         this.tickSpeed = config.getInt("Thirst.CalculateTickSpeed"); // get the tick speed
-        tasks.put(player.getPlayer().getUniqueId(), this);
+        tasks.put(id, this);
     }
 
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        if (player != null) {
+        if (player == null) {
+            tasks.remove(id);
+            cancel();
+        }
+        // if the player is in creative or spectator
+        else {
             Difficulty difficulty = player.getPlayer().getWorld().getDifficulty();
-            this.module = (DataModule) this.player.getDataModuleFromName(TanModule.NAME);
             GameMode mode = player.getGameMode(); // get the gamemode
             double currentLvl = thirstLvl;
 
@@ -110,7 +112,7 @@ public class ThirstCalculateTask extends BukkitRunnable {
                 }
 
                 if (thirstLvl <= config.getDouble("Thirst.Dehydration.Thirst")) {
-                    if (!DehydrationTask.hasTask(player.getUniqueId())) {
+                    if (!DehydrationTask.hasTask(id)) {
                         new DehydrationTask(plugin, this.player).start();
                     }
                 }
@@ -120,23 +122,21 @@ public class ThirstCalculateTask extends BukkitRunnable {
                 }
 
                 isJumping = false;
-                module.setThirstTickTimer(tickTimer);
-                module.setThirstExhaustion(exhaustionLvl);
-                module.setThirstSaturation(saturationLvl);
-                module.setThirst(thirstLvl);
-                module.saveData();
-                RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirst(thirstLvl);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstExhaustion(exhaustionLvl);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstSaturation(saturationLvl);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstTickTimer(tickTimer);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().saveData();
             }
             else {
-                module.saveData();
-                RSVPlayer.getPlayers().get(player.getUniqueId()).getDataModules().put(TanModule.NAME, module);
-                tasks.remove(player.getUniqueId());
+                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirst(thirstLvl);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstExhaustion(exhaustionLvl);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstSaturation(saturationLvl);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstTickTimer(tickTimer);
+                RSVPlayer.getPlayers().get(id).getTanDataModule().saveData();
+                tasks.remove(id);
                 cancel();
             }
-        }
-        // if the player is in creative or spectator
-        else {
-            cancel();
         }
     }
 

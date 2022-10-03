@@ -28,7 +28,7 @@ public enum TickableBaubleManager {
     POTION_RING_SPEED(new PotionBauble("potion_ring_speed")),
     POTION_RING_HASTE(new PotionBauble("potion_ring_haste")),
     POTION_RING_JUMP_BOOST(new PotionBauble("potion_ring_jump_boost")),
-    DRAGONS_EYE(new PotionBauble("potion_ring_dragons_eye")),
+    DRAGONS_EYE(new PotionBauble("dragons_eye")),
     SHIELD_HONOR(new PotionBauble("shield_honor")),
     PHANTOM_PRISM(new PotionBauble("phantom_prism")),
     MINERS_RING(new PotionBauble("miners_ring")),
@@ -54,5 +54,12 @@ public enum TickableBaubleManager {
 
     public static HashMap<UUID, Collection> getBaubles() {
         return baubles;
+    }
+
+    public static boolean hasTask(UUID id) {
+        if (baubles.containsKey(id)) {
+            return baubles.get(id) != null;
+        }
+        return false;
     }
 }

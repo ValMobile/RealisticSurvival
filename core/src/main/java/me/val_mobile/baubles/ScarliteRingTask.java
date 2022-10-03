@@ -18,13 +18,13 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.data.baubles.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -32,39 +32,58 @@ public class ScarliteRingTask extends BukkitRunnable {
 
     private static final HashMap<UUID, ScarliteRingTask> tasks = new HashMap<>();
     private final RSVPlayer rsvPlayer;
+    private final UUID id;
+    private final Collection<String> allowedWorlds;
     private final RealisticSurvivalPlugin plugin;
     private final FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
     private double defaultHealAmount = config.getDouble("Items.scarlite_ring.HealAmount");
 
     public ScarliteRingTask(RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
+        this.allowedWorlds = RSVModule.getModule(BaubleModule.NAME).getAllowedWorlds();
+        this.id = rsvPlayer.getPlayer().getUniqueId();
         this.plugin = plugin;
-        tasks.put(rsvPlayer.getPlayer().getUniqueId(), this);
+        tasks.put(id, this);
     }
 
     @Override
     public void run() {
-        boolean hasBauble = ((DataModule) rsvPlayer.getDataModuleFromName("Baubles")).hasBauble("scarlite_ring");
+        Player player = rsvPlayer.getPlayer();
 
-        if (hasBauble) {
-            // effect the player with resistance
-            Player p = rsvPlayer.getPlayer();
-            double maxHealth = p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
-            double currentHealth = p.getHealth();
-            double dif =  maxHealth - currentHealth;
-            if (dif < defaultHealAmount) {
-                p.setHealth(maxHealth);
-            }
-            else {
-                p.setHealth(currentHealth + defaultHealAmount);
-            }
-        }
-        // if the player doesn't have rings of res in his/her inventory
-        else {
-            // update static hashmap values and cancel the runnable
-            tasks.remove(rsvPlayer.getPlayer().getUniqueId());
+        if (player == null) {
+            tasks.remove(id);
             cancel();
         }
+        else {
+            if (player.isOnline() && !player.isDead() && allowedWorlds.contains(player.getWorld().getName())) {
+                boolean hasBauble = rsvPlayer.getBaubleDataModule().hasBauble("scarlite_ring");
+
+                if (hasBauble) {
+                    // effect the player with resistance
+                    Player p = rsvPlayer.getPlayer();
+                    double maxHealth = p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+                    double currentHealth = p.getHealth();
+                    double dif =  maxHealth - currentHealth;
+                    if (dif < defaultHealAmount) {
+                        p.setHealth(maxHealth);
+                    }
+                    else {
+                        p.setHealth(currentHealth + defaultHealAmount);
+                    }
+                }
+                // if the player doesn't have rings of res in his/her inventory
+                else {
+                    // update static hashmap values and cancel the runnable
+                    tasks.remove(id);
+                    cancel();
+                }
+            }
+            else {
+                tasks.remove(id);
+                cancel();
+            }
+        }
+
     }
 
     public void start() {

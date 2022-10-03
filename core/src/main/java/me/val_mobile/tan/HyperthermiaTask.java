@@ -18,7 +18,6 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.data.toughasnails.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.ConfigurationSection;
@@ -34,6 +33,7 @@ public class HyperthermiaTask extends BukkitRunnable {
 
     private final static HashMap<UUID, HyperthermiaTask> tasks = new HashMap<>();
     private final FileConfiguration config;
+    private final UUID id;
 
     private final RealisticSurvivalPlugin plugin;
     private final RSVPlayer player;
@@ -46,6 +46,7 @@ public class HyperthermiaTask extends BukkitRunnable {
         this.plugin = plugin;
         this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         this.player = player;
+        this.id = player.getPlayer().getUniqueId();
         this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
         this.damage = config.getDouble("Temperature.Hyperthermia.Damage.Amount");
 
@@ -60,16 +61,19 @@ public class HyperthermiaTask extends BukkitRunnable {
             amp = section.getInt(key + ".Amplifier");
             potionEffects.add(new PotionEffect(PotionEffectType.getByName(key), dur, amp));
         }
-        tasks.put(player.getPlayer().getUniqueId(), this);
+        tasks.put(id, this);
     }
 
     @Override
     public void run() {
         Player player = this.player.getPlayer();
 
-        if (player != null) {
-            DataModule module = ((DataModule) this.player.getDataModuleFromName(TanModule.NAME));
-            int temperature = (int) Math.round(module.getTemperature());
+        if (player == null) {
+            tasks.remove(id);
+            cancel();
+        }
+        else {
+            int temperature = (int) Math.round(this.player.getTanDataModule().getTemperature());
             GameMode mode = player.getGameMode(); // get the gamemode
 
             if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && player.isOnline()) {
@@ -102,7 +106,7 @@ public class HyperthermiaTask extends BukkitRunnable {
 
                 // if the player's temperature is low enough
                 if (temperature < config.getDouble("Temperature.Hyperthermia.Temperature")) {
-                    tasks.remove(player.getUniqueId());
+                    tasks.remove(id);
                     cancel();
                 }
 
@@ -110,12 +114,9 @@ public class HyperthermiaTask extends BukkitRunnable {
             // if the player is in creative or spectator
             else {
                 // update static hashmap values and cancel the runnable
-                tasks.remove(player.getUniqueId());
+                tasks.remove(id);
                 cancel();
             }
-        }
-        else {
-            cancel();
         }
     }
 

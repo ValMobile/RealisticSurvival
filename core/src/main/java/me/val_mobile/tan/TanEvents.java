@@ -18,7 +18,6 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.data.toughasnails.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.DisplayTask;
 import me.val_mobile.utils.RSVItem;
@@ -54,9 +53,7 @@ import org.bukkit.util.Vector;
 
 import java.util.Set;
 import java.util.UUID;
-import java.util.function.Predicate;
 
-import static me.val_mobile.tan.ThirstCalculateTask.DEFAULT_SATURATION;
 import static me.val_mobile.tan.ThirstCalculateTask.MAXIMUM_THIRST;
 
 public class TanEvents extends ModuleEvents implements Listener {
@@ -101,7 +98,7 @@ public class TanEvents extends ModuleEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPlayerVelocity(PlayerVelocityEvent event)
+    public void onPlayerVelocity(PlayerMoveEvent event)
     {
         Player player = event.getPlayer(); // get the player
 
@@ -188,6 +185,10 @@ public class TanEvents extends ModuleEvents implements Listener {
             if (ParasiteTask.hasTask(id)) {
                 ParasiteTask.getTasks().get(id).cancel();
                 ParasiteTask.getTasks().remove(id);
+            }
+
+            if (DisplayTask.hasTask(id)) {
+                DisplayTask.getTasks().get(id).setParasitesActive(false);
             }
         }
     }

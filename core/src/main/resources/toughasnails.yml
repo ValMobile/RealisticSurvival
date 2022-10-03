@@ -533,9 +533,11 @@ Temperature:
 
 Thirst:
   Enabled: true
-  CalculateTickSpeed: 100   # Time in ticks that the game will check to deplete thirst, don't recommend changing unless the server is lagging severely
+  CalculateTickSpeed: 90   # Time in ticks that the game will check to deplete thirst, don't recommend changing unless the server is lagging severely
   DefaultThirst: 20.0       # Amount of thirst a player will automatically spawn with, 20.0 = Maximum, 0.0 = Minimum
   DefaultSaturation: 5.0    # Amount of saturation a player will automatically spawn with
+  DefaultExhaustion: 0.0
+  DefaultExhaustionTickTimer: 0
   Dehydration:
     ScreenTinting: true     # Should the screen be tinted gray when a player has thirst?
     PotionEffects:
