@@ -19,7 +19,7 @@ To report bugs, open a [new issue](https://github.com/ValMobile/RealisticSurviva
 
 **Quick Navigation**
 - [💻Download Realistic Survival](https://github.com/ValMobile/RealisticSurvival#-download-realisticsurvival)
-- [✨Redline Hosting](https://github.com/ValMobile/RealisticSurvival#-start-your-minecraft-server-today-only-for-£1.25/gb!)
+- [✨Redline Hosting](https://github.com/ValMobile/RealisticSurvival#-start-your-minecraft-server-today-only-for-125gb)
 - [📷Screenshots](https://github.com/ValMobile/RealisticSurvival#-screenshots)
 - [🎧Discord](https://github.com/ValMobile/RealisticSurvival#-discord)
 - [🤝Contributing to this project](https://github.com/ValMobile/RealisticSurvival#-contributing-to-this-project)
