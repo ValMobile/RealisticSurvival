@@ -18,10 +18,7 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
-import me.val_mobile.data.baubles.ItemConfig;
-import me.val_mobile.data.baubles.PlayerDataConfig;
-import me.val_mobile.data.baubles.RecipesConfig;
-import me.val_mobile.data.baubles.UserConfig;
+import me.val_mobile.data.baubles.*;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -33,6 +30,7 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
     public static final String NAME = "Baubles";
 
     private final PlayerDataConfig config;
+    private WormholeInventory inv;
     private BaubleEvents events;
 
     public BaubleModule(RealisticSurvivalPlugin plugin) {
@@ -62,6 +60,8 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
         getModuleItems().initialize();
         getModuleRecipes().initialize();
         events.initialize();
+
+        inv = new WormholeInventory(plugin);
     }
 
     @Override
@@ -81,5 +81,9 @@ public class BaubleModule extends me.val_mobile.data.RSVModule {
 
     public BaubleEvents getEvents() {
         return events;
+    }
+
+    public WormholeInventory getInv() {
+        return inv;
     }
 }

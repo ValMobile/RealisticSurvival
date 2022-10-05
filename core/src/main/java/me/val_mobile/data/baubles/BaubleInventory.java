@@ -49,8 +49,6 @@ public class BaubleInventory extends GUI {
                 inv.setItem(i, guiGlass);
             }
         }
-
-        getDisallowedItems().add(RSVItem.getItem("gui_glass"));
     }
 
     public ItemStack getBauble(BaubleSlot baubleSlot) {

@@ -14,6 +14,14 @@ Shutdown:
 
 # Customize any bauble items
 
+WormholeInventory:
+  SkullName: "&e%PLAYER_NAME%"    # All placeholders: %PLAYER_NAME%
+  Sound:
+    Enabled: true
+    Sound: "ITEM_CHORUS_FRUIT_TELEPORT"
+    Volume: 0.5
+    Pitch: 1.0
+
 Items:
   # MaxAmplifier - Maximum level of potion effect a player can have get with multiple potion rings
   # Amplifiers are 1 value stronger than they appear
@@ -136,7 +144,6 @@ Items:
     Enabled:
       EnableAllVersions: true
     # Cost to create the obsidian shield from a cobalt shield and obsidian skull in experience levels
-    AnvilCost: 10
     HeatDamageMultiplier: 0.25
   forbidden_fruit:
     Enabled:
@@ -201,7 +208,6 @@ Items:
   ankh_shield:
     Enabled:
       EnableAllVersions: true
-    AnvilCost: 10
     HeatDamageMultiplier: 0.25
   iron_ring:
     Enabled:
@@ -210,9 +216,23 @@ Items:
     Enabled:
       EnableAllVersions: true
     Cooldown: 300
+    Sound:
+      Enabled: true
+      Sound: "ITEM_CHORUS_FRUIT_TELEPORT"
+      Volume: 0.5
+      Pitch: 1.0
+  wormhole_mirror:
+    Enabled:
+      EnableAllVersions: true
+    Cooldown: 300
   recall_potion:
     Enabled:
       EnableAllVersions: true
+    Sound:
+      Enabled: true
+      Sound: "ITEM_CHORUS_FRUIT_TELEPORT"
+      Volume: 0.5
+      Pitch: 1.0
   wormhole_potion:
     Enabled:
       EnableAllVersions: true
@@ -341,8 +361,8 @@ Items:
   stone_sea:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
-    SwimSpeedMultiplier: 2.0
+    TickTime: 5
+    BaseSwimSpeed: 5.0
     Effects:
       WATER_BREATHING:
         AmplifierIncrement: 0

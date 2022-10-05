@@ -90,34 +90,21 @@ public class MiscEvents implements Listener {
             ItemStack result = r.getResult();
 
             if (RSVItem.isRSVItem(result)) {
-
                 String moduleName = RSVItem.getModuleNameFromItem(result);
-                if (!RSVModule.getModule(moduleName).getAllowedWorlds().contains(event.getView().getPlayer().getWorld().getName())) {
-                    event.getInventory().setResult(null);
-                }
+                if (RSVModule.getModule(moduleName).getAllowedWorlds().contains(event.getView().getPlayer().getWorld().getName())) {
+                    if (r instanceof ShapedRecipe shaped) {
+                        NamespacedKey key = shaped.getKey();
 
-                if (r instanceof ShapedRecipe) {
-                    NamespacedKey key = ((ShapedRecipe) r).getKey();
-
-                    if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
-                        switch (key.getKey()) {
-                            case "dark_prismarine", "prismarine", "prismarine_bricks", "sea_lantern" -> {
-                                Collection<ItemStack> ingredients = ((ShapedRecipe) r).getIngredientMap().values();
-                                boolean usesRsvItems = false;
-
-                                for (ItemStack item : ingredients) {
-                                    if (RSVItem.isRSVItem(item)) {
-                                        usesRsvItems = true;
-                                        break;
-                                    }
-                                }
-
-                                if (usesRsvItems)
-                                    event.getInventory().setResult(null);
+                        if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
+                            switch (key.getKey()) {
+                                case "dark_prismarine", "prismarine", "prismarine_bricks", "sea_lantern" -> event.getInventory().setResult(null);
+                                default -> {}
                             }
-                            default -> {}
                         }
                     }
+                }
+                else {
+                    event.getInventory().setResult(null);
                 }
             }
         }
@@ -158,13 +145,19 @@ public class MiscEvents implements Listener {
     @EventHandler
     public void inAnvil(PrepareAnvilEvent event) {
         AnvilInventory inv = event.getInventory(); // get the anvil inventory
+        String worldName = event.getView().getPlayer().getWorld().getName();
+        Collection<String> allowedWorlds;
+        Collection<RSVAnvilRecipe> anvilRecipes;
 
         for (RSVModule module : RSVModule.getModules().values()) {
-            Collection<RSVAnvilRecipe> anvilRecipes = module.getModuleRecipes().getAnvilRecipes();
-            for (RSVAnvilRecipe recipe : anvilRecipes) {
-                if (recipe.isValidRecipe(inv)) {
-                    recipe.useRecipe(event);
-                    break;
+            allowedWorlds = module.getAllowedWorlds();
+            if (allowedWorlds.contains(worldName)) {
+                anvilRecipes = module.getModuleRecipes().getAnvilRecipes();
+                for (RSVAnvilRecipe recipe : anvilRecipes) {
+                    if (recipe.isValidRecipe(inv)) {
+                        recipe.useRecipe(event);
+                        break;
+                    }
                 }
             }
         }
