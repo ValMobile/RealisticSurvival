@@ -22,11 +22,10 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.DisplayTask;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
+import me.val_mobile.utils.Utils.Hand;
 import org.bukkit.*;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.BlockData;
-import org.bukkit.block.data.Levelled;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -41,16 +40,19 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.RayTraceResult;
-import org.bukkit.util.Vector;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -82,12 +84,12 @@ public class TanEvents extends ModuleEvents implements Listener {
                 RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(player.getUniqueId());
                 if (tempEnabled) {
                     if (!TemperatureCalculateTask.hasTask(player.getUniqueId())) {
-                        new TemperatureCalculateTask(plugin, rsvplayer).start();
+                        new TemperatureCalculateTask(module, plugin, rsvplayer).start();
                     }
                 }
                 if (thirstEnabled) {
                     if (!ThirstCalculateTask.hasTask(player.getUniqueId())) {
-                        new ThirstCalculateTask(plugin, rsvplayer).start();
+                        new ThirstCalculateTask(module, plugin, rsvplayer).start();
                     }
                 }
                 if (!DisplayTask.hasTask(player.getUniqueId())) {
@@ -97,55 +99,21 @@ public class TanEvents extends ModuleEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPlayerVelocity(PlayerMoveEvent event)
+    @EventHandler
+    public void onPlayerJump(PlayerMoveEvent event)
     {
         Player player = event.getPlayer(); // get the player
 
-        if (!event.isCancelled()) {
-            if (shouldEventBeRan(player)) {
-                Vector velocity = player.getVelocity(); // get the player's current velocity
+        if (shouldEventBeRan(player)) {
+            ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
 
-                // check if the player is moving up
-                if (velocity.getY() > 0) {
-                    double jumpVelocity = 0.42; // default jump velocity
-
-                    // if the player has the jump boost effect
-                    if (player.hasPotionEffect(PotionEffectType.JUMP)) {
-                        PotionEffect jumpBoost = player.getPotionEffect(PotionEffectType.JUMP);  // get the jump boost effect
-
-                        // add the jump boost to the velocity to factor in the increased velocity
-                        jumpVelocity += ((double) jumpBoost.getAmplifier() + 1) * 0.1;
-                    }
-
-                    Location loc = player.getLocation(); // get the player's location
-                    Block block = loc.getBlock(); // get the block at that location
-                    Material blockMaterial = block.getType(); // get the material of the block
-
-                    // check if the player is not climbing
-                    switch (blockMaterial) {
-                        case LADDER, VINE, TWISTING_VINES, TWISTING_VINES_PLANT, WEEPING_VINES, WEEPING_VINES_PLANT -> {
-                        }
-                        default -> {
-                            // check if the player's jump velocity is equal to the player's Y velocity
-                            if (Utils.doublesEquals(velocity.getY(), jumpVelocity)) {
-                                // check if the player is not flying or swimming
-                                if (!(player.getLocation().getBlock().isLiquid() || player.isRiptiding() || player.isFlying())) {
-                                    ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
-
-                                    if (task != null) {
-                                        task.setJumping(true);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+            if (task != null) {
+                task.setJumping(true);
             }
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
 
@@ -158,12 +126,54 @@ public class TanEvents extends ModuleEvents implements Listener {
                     task.setThirstLvl(config.getDouble("Thirst.DefaultThirst"));
                     task.setSaturationLvl(config.getDouble("Thirst.DefaultSaturation"));
                 }
+
+                if (module.getDehydrationDeath().contains(id)) {
+                    if (config.getBoolean("DehydrationDeath.Enabled")) {
+                        List<String> deathMessages = config.getStringList("DehydrationDeath.Messages");
+
+                        int num = Utils.getRandomNum(0, deathMessages.size() - 1);
+
+                        event.setDeathMessage(ChatColor.translateAlternateColorCodes('&', deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
+                    }
+                    module.getDehydrationDeath().remove(id);
+                }
+                else if (module.getParasiteDeath().contains(id)) {
+                    if (config.getBoolean("ParasiteDeath.Enabled")) {
+                        List<String> deathMessages = config.getStringList("ParasiteDeath.Messages");
+
+                        int num = Utils.getRandomNum(0, deathMessages.size() - 1);
+
+                        event.setDeathMessage(ChatColor.translateAlternateColorCodes('&', deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
+                    }
+                    module.getParasiteDeath().remove(id);
+                }
             }
 
             if (tempEnabled) {
                 TemperatureCalculateTask task = TemperatureCalculateTask.getTasks().get(id);
                 if (task != null) {
                     task.setTemp(config.getDouble("Temperature.DefaultTemperature"));
+                }
+
+                if (module.getHyperthermiaDeath().contains(id)) {
+                    if (config.getBoolean("HyperthermiaDeath.Enabled")) {
+                        List<String> deathMessages = config.getStringList("HyperthermiaDeath.Messages");
+
+                        int num = Utils.getRandomNum(0, deathMessages.size() - 1);
+
+                        event.setDeathMessage(ChatColor.translateAlternateColorCodes('&', deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
+                    }
+                    module.getHyperthermiaDeath().remove(id);
+                }
+                else if (module.getHypothermiaDeath().contains(id)) {
+                    if (config.getBoolean("HypothermiaDeath.Enabled")) {
+                        List<String> deathMessages = config.getStringList("HypothermiaDeath.Messages");
+
+                        int num = Utils.getRandomNum(0, deathMessages.size() - 1);
+
+                        event.setDeathMessage(ChatColor.translateAlternateColorCodes('&', deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
+                    }
+                    module.getHypothermiaDeath().remove(id);
                 }
             }
 
@@ -186,6 +196,14 @@ public class TanEvents extends ModuleEvents implements Listener {
                 ParasiteTask.getTasks().get(id).cancel();
                 ParasiteTask.getTasks().remove(id);
             }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onRespawn(PlayerRespawnEvent event) {
+        Player player = event.getPlayer();
+        if (shouldEventBeRan(player)) {
+            UUID id = player.getUniqueId();
 
             if (DisplayTask.hasTask(id)) {
                 DisplayTask.getTasks().get(id).setParasitesActive(false);
@@ -205,12 +223,12 @@ public class TanEvents extends ModuleEvents implements Listener {
                         RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(player.getUniqueId());
                         if (tempEnabled) {
                             if (!TemperatureCalculateTask.hasTask(player.getUniqueId())) {
-                                new TemperatureCalculateTask(plugin, rsvplayer).start();
+                                new TemperatureCalculateTask(module, plugin, rsvplayer).start();
                             }
                         }
                         if (thirstEnabled) {
                             if (!ThirstCalculateTask.hasTask(player.getUniqueId())) {
-                                new ThirstCalculateTask(plugin, rsvplayer).start();
+                                new ThirstCalculateTask(module, plugin, rsvplayer).start();
                             }
                         }
                         if (!DisplayTask.hasTask(player.getUniqueId())) {
@@ -255,7 +273,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                                     double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Drinking.SaturationPoints");
 
                                                     task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
-                                                    task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
+                                                    task.setSaturationLvl(Math.min(task.getSaturationLvl() + saturationPoints, task.getThirstLvl()));
 
                                                     if (config.getBoolean("Thirst.SaturationRestoration.Drinking.Sound.Enabled")) {
                                                         String soundName = config.getString("Thirst.SaturationRestoration.Drinking.Sound.Sound");
@@ -333,6 +351,57 @@ public class TanEvents extends ModuleEvents implements Listener {
                                 }
                             }
                         }
+
+                        ItemStack item = event.getItem();
+
+                        Block block = event.getClickedBlock();
+
+                        if (block != null) {
+                            Material mat = block.getType();
+
+                            if (RSVItem.isRSVItem(item)) {
+                                if (mat == Material.WATER) {
+                                    String name = RSVItem.getNameFromItem(item);
+                                    if (name.contains("canteen_empty")) {
+                                        if (canFill(item, "Unpurified Water")) {
+                                            Hand hand = getHand(player, name);
+
+                                            if (hand != null) {
+                                                new BukkitRunnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        plugin.getLogger().info("1");
+                                                        if (hand == Hand.MAIN_HAND) {
+                                                            player.getInventory().setItemInMainHand(fillCanteen(item, "Unpurified Water", 1));
+                                                        }
+                                                        else
+                                                            player.getInventory().setItemInOffHand(fillCanteen(item, "Unpurified Water", 1));
+                                                    }
+                                                }.runTaskLater(plugin, 1L);
+                                            }
+                                        }
+                                    }
+                                    if (name.contains("canteen_filled")) {
+                                        if (canFill(item, "Unpurified Water")) {
+                                            Hand hand = getHand(player, name);
+
+                                            if (hand != null) {
+                                                new BukkitRunnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        plugin.getLogger().info("2");
+                                                        if (hand == Hand.MAIN_HAND)
+                                                            player.getInventory().setItemInMainHand(fillCanteen(item, "Unpurified Water", 1));
+                                                        else
+                                                            player.getInventory().setItemInOffHand(fillCanteen(item, "Unpurified Water", 1));
+                                                    }
+                                                }.runTaskLater(plugin, 1L);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     case LEFT_CLICK_AIR -> {
                         if (config.getBoolean("Thirst.SaturationRestoration.Raining.Enabled")) {
@@ -347,7 +416,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                             double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Raining.SaturationPoints");
 
                                             task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
-                                            task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
+                                            task.setSaturationLvl(Math.min(task.getSaturationLvl() + saturationPoints, task.getThirstLvl()));
 
                                             if (config.getBoolean("Thirst.SaturationRestoration.Raining.Sound.Enabled")) {
                                                 String soundName = config.getString("Thirst.SaturationRestoration.Raining.Sound.Sound");
@@ -372,7 +441,7 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                 if (parasites) {
                     if (!ParasiteTask.hasTask(player.getUniqueId())) {
-                        new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                        new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
                     }
                 }
             }
@@ -393,53 +462,18 @@ public class TanEvents extends ModuleEvents implements Listener {
                 Set<String> keys = config.getConfigurationSection("Thirst.SaturationRestoration.Foods").getKeys(false);
 
                 if (name != null) {
-                    if (keys.contains(name)) {
-                        ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
+                    ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
+                    if (task != null) {
+                        if (keys.contains(name)) {
 
-                        if (task != null) {
                             double thirstPoints;
                             double saturationPoints;
 
-                            if (name.equals("canteen_filled")) {
-                                String canteenDrink = RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING);
-                                if ("Unpurified Water".equals(canteenDrink)) {
-                                    thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods.POTION.ThirstPoints");
-                                    saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods.POTION.SaturationPoints");
-
-                                    int durability = RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdurability", PersistentDataType.INTEGER);
-
-                                    if (durability > 0) {
-                                        Utils.changeDurability(item, -1, false);
-                                    }
-                                    else {
-                                        RSVItem.addNbtTag(item, "rsvitem", "canteen_empty", PersistentDataType.STRING);
-                                        item.setType(Material.GLASS_BOTTLE);
-                                        event.setCancelled(true);
-                                    }
-
-                                    // unpurified water
-                                    if (config.getBoolean("Thirst.Parasites.UnpurifiedWaterBottle.Enabled")) {
-                                        if (Math.random() <= config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance")) {
-                                            if (!ParasiteTask.hasTask(player.getUniqueId())) {
-                                                new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
-                                            }
-                                        }
-                                    }
-                                }
-                                else {
-                                    canteenDrink = canteenDrink.toLowerCase().replace(' ', '_');
-
-                                    thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + canteenDrink + ".ThirstPoints");
-                                    saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + canteenDrink + ".SaturationPoints");
-                                }
-                            }
-                            else {
-                                thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + name + ".ThirstPoints");
-                                saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + name + ".SaturationPoints");
-                            }
+                            thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + name + ".ThirstPoints");
+                            saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + name + ".SaturationPoints");
 
                             task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
-                            task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
+                            task.setSaturationLvl(Math.min(task.getSaturationLvl() + saturationPoints, task.getThirstLvl()));
 
                             if (name.equals(item.getType().toString()) && item.getType() == Material.POTION) {
                                 if (((PotionMeta) item.getItemMeta()).getBasePotionData().getType() == PotionType.WATER) {
@@ -447,7 +481,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                     if (config.getBoolean("Thirst.Parasites.UnpurifiedWaterBottle.Enabled")) {
                                         if (Math.random() <= config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance")) {
                                             if (!ParasiteTask.hasTask(player.getUniqueId())) {
-                                                new ParasiteTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                                                new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
                                             }
                                         }
                                     }
@@ -474,6 +508,52 @@ public class TanEvents extends ModuleEvents implements Listener {
                                 }
                             }
                         }
+                        else {
+                            if (name.equals("canteen_filled")) {
+                                final String canteenDrink = RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING);
+                                if (canteenDrink.equals("Unpurified Water")) {
+                                    double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods.POTION.ThirstPoints");
+                                    double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods.POTION.SaturationPoints");
+
+                                    // unpurified water
+                                    if (config.getBoolean("Thirst.Parasites.UnpurifiedWaterBottle.Enabled")) {
+                                        if (Math.random() <= config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance")) {
+                                            if (!ParasiteTask.hasTask(player.getUniqueId())) {
+                                                new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                                            }
+                                        }
+                                    }
+
+                                    task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
+                                    task.setSaturationLvl(Math.min(task.getSaturationLvl() + saturationPoints, task.getThirstLvl()));
+                                }
+                                else {
+                                    String drink = canteenDrink.toLowerCase().replace(' ', '_');
+
+                                    double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + drink + ".ThirstPoints");
+                                    double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods." + drink + ".SaturationPoints");
+
+                                    task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
+                                    task.setSaturationLvl(Math.min(task.getSaturationLvl() + saturationPoints, task.getThirstLvl()));
+                                }
+                                Hand hand = getHand(player, name);
+
+                                if (hand != null) {
+                                    new BukkitRunnable() {
+                                        @Override
+                                        public void run() {
+                                            if (hand == Utils.Hand.MAIN_HAND)
+                                                player.getInventory().setItemInMainHand(fillCanteen(item, canteenDrink, -1));
+                                            else
+                                                player.getInventory().setItemInOffHand(fillCanteen(item, canteenDrink, -1));
+                                            plugin.getLogger().info("3");
+                                        }
+                                    }.runTaskLater(plugin, 1L);
+                                }
+
+                                event.setCancelled(true);
+                            }
+                        }
                     }
                 }
             }
@@ -484,26 +564,47 @@ public class TanEvents extends ModuleEvents implements Listener {
     public void onDamage(EntityDamageEvent event) {
         Entity e = event.getEntity();
 
-        if (!event.isCancelled()) {
-            if (shouldEventBeRan(e)) {
-                if (e instanceof Player) {
-                    ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(e.getUniqueId());
-                    GameMode mode = ((Player) e).getGameMode();
+        if (shouldEventBeRan(e)) {
+            if (e instanceof Player player) {
+                GameMode mode = player.getGameMode();
 
-                    if (mode.equals(GameMode.SURVIVAL) || mode.equals(GameMode.ADVENTURE)) {
+                if (mode.equals(GameMode.SURVIVAL) || mode.equals(GameMode.ADVENTURE)) {
+                    UUID id = player.getUniqueId();
 
-                        if (task != null) {
-                            if (event.getCause() == EntityDamageEvent.DamageCause.DROWNING) {
-                                if (config.getBoolean("Thirst.SaturationRestoration.Drowning.Enabled")) {
-                                    double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Drowning.ThirstPoints");
-                                    double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Drowning.SaturationPoints");
+                    if (thirstEnabled) {
+                        if (event.isCancelled()) {
+                            module.getDehydrationDeath().remove(id);
+                            module.getParasiteDeath().remove(id);
+                        }
+                        else {
+                            ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(id);
 
-                                    task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
-                                    task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
+                            if (task != null) {
+                                if (event.getCause() == EntityDamageEvent.DamageCause.DROWNING) {
+                                    if (config.getBoolean("Thirst.SaturationRestoration.Drowning.Enabled")) {
+                                        double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Drowning.ThirstPoints");
+                                        double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Drowning.SaturationPoints");
+
+                                        task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
+                                        task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
+                                    }
                                 }
+                                double parasiteExhaustionMultiplier = config.getBoolean("Thirst.Parasites.MultiplyExhaustionRates.Enabled") ? config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value") : 1D;
+                                task.setExhaustionLvl(task.getExhaustionLvl() + (config.getDouble("Thirst.ExhaustionLevelIncrease.TakingDamage") * parasiteExhaustionMultiplier));
                             }
-                            double parasiteExhaustionMultiplier = config.getBoolean("Thirst.Parasites.MultiplyExhaustionRates.Enabled") ? config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value") : 1D;
-                            task.setExhaustionLvl(task.getExhaustionLvl() + (config.getDouble("Thirst.ExhaustionLevelIncrease.TakingDamage") * parasiteExhaustionMultiplier));
+                        }
+                        if (player.getHealth() - event.getFinalDamage() > 0D) {
+                            // player will not die
+                            module.getDehydrationDeath().remove(id);
+                            module.getParasiteDeath().remove(id);
+                        }
+                    }
+
+                    if (tempEnabled) {
+                        if (player.getHealth() - event.getFinalDamage() > 0D || event.isCancelled()) {
+                            // player will not die
+                            module.getHyperthermiaDeath().remove(id);
+                            module.getHypothermiaDeath().remove(id);
                         }
                     }
                 }
@@ -520,7 +621,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                     ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(e.getUniqueId());
 
                     if (task != null) {
-                        double parasiteExhaustionMultiplier = config.getBoolean("Thirst.Parasites.MultiplyExhaustionRates.Enabled") ? config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value") : 1D;
+                        double parasiteExhaustionMultiplier = config.getBoolean("Thirst.ExhaustionLevelIncrease.MultiplyExhaustionRates.Enabled") ? config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value") : 1D;
                         task.setExhaustionLvl(task.getExhaustionLvl() + (config.getDouble("Thirst.ExhaustionLevelIncrease.RegeneratingHealth") * parasiteExhaustionMultiplier));
                     }
                 }
@@ -579,12 +680,12 @@ public class TanEvents extends ModuleEvents implements Listener {
                     RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(player.getUniqueId());
                     if (tempEnabled) {
                         if (!TemperatureCalculateTask.hasTask(player.getUniqueId())) {
-                            new TemperatureCalculateTask(plugin, rsvplayer).start();
+                            new TemperatureCalculateTask(module, plugin, rsvplayer).start();
                         }
                     }
                     if (thirstEnabled) {
                         if (!ThirstCalculateTask.hasTask(player.getUniqueId())) {
-                            new ThirstCalculateTask(plugin, rsvplayer).start();
+                            new ThirstCalculateTask(module, plugin, rsvplayer).start();
                         }
                     }
                     if (!DisplayTask.hasTask(player.getUniqueId())) {
@@ -595,20 +696,117 @@ public class TanEvents extends ModuleEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onItemSwap(PlayerItemHeldEvent event) {
-        if (!event.isCancelled()) {
-            Player p = event.getPlayer();
-            if (shouldEventBeRan(p)) {
-                ItemStack item = p.getInventory().getItem(event.getNewSlot());
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onCauldronFill(CauldronLevelChangeEvent event) {
+        Entity entity = event.getEntity();
 
-                if (RSVItem.isRSVItem(item)) {
-                    if (RSVItem.getNameFromItem(item).equals("thermometer")) {
-                        if (!ThermometerTask.hasTask(p.getUniqueId())) {
-                            new ThermometerTask(plugin, RSVPlayer.getPlayers().get(p.getUniqueId())).start();
+        if (entity != null) {
+            if (shouldEventBeRan(entity)) {
+                if (entity instanceof Player player) {
+                    ItemStack item = player.getInventory().getItemInMainHand();
+
+                    if (RSVItem.isRSVItem(item)) {
+                        if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_EMPTY) {
+                            if (RSVItem.getNameFromItem(item).contains("juice_")) {
+                                event.setCancelled(true);
+                            }
+                            if (RSVItem.getNameFromItem(item).equals("canteen_filled")) {
+                                if (canFill(item, "Unpurified Water")) {
+                                    Hand hand = getHand(player, RSVItem.getNameFromItem(item));
+                                    if (hand != null) {
+                                        new BukkitRunnable() {
+                                            @Override
+                                            public void run() {
+                                                plugin.getLogger().info("4");
+                                                if (hand == Utils.Hand.MAIN_HAND)
+                                                    player.getInventory().setItemInMainHand(fillCanteen(item, "Unpurified Water", -1));
+                                                else
+                                                    player.getInventory().setItemInOffHand(fillCanteen(item, "Unpurified Water", -1));
+                                            }
+                                        }.runTaskLater(plugin, 1L);
+                                    }
+                                }
+                                else
+                                    event.setCancelled(true);
+                            }
+                        }
+                        if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_FILL) {
+                            if (RSVItem.getNameFromItem(item).equals("canteen_empty")) {
+                                if (canFill(item, "Unpurified Water")) {
+                                    Hand hand = getHand(player, RSVItem.getNameFromItem(item));
+
+                                    if (hand != null) {
+                                        new BukkitRunnable() {
+                                            @Override
+                                            public void run() {
+                                                plugin.getLogger().info("5");
+                                                if (hand == Utils.Hand.MAIN_HAND)
+                                                    player.getInventory().setItemInMainHand(fillCanteen(item, "Unpurified Water", 1));
+                                                else
+                                                    player.getInventory().setItemInOffHand(fillCanteen(item, "Unpurified Water", 1));
+                                            }
+                                        }.runTaskLater(plugin, 1L);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPrepareCraft(PrepareItemCraftEvent event) {
+        if (shouldEventBeRan(event.getView().getPlayer())) {
+            ItemStack[] matrix = event.getInventory().getMatrix();
+            int canteenIndex = -1;
+            int juiceIndex = -1;
+
+            ItemStack item;
+
+            for (int i = 0; i < matrix.length; i++) {
+                item = matrix[i];
+                if (RSVItem.isRSVItem(item)) {
+                    String name = RSVItem.getNameFromItem(item);
+                    if (name.equals("canteen_empty") || name.equals("canteen_filled")) {
+                        canteenIndex = canteenIndex == -1 ? i : -2;
+                    }
+                    else if (name.contains("juice") || name.equals("purified_water_bottle")) {
+                        juiceIndex = juiceIndex == -1 ? i : -2;
+                    }
+                }
+                else if (Utils.isItemReal(item)) {
+                    if (item.getType() == Material.POTION) {
+                        juiceIndex = juiceIndex == -1 ? i : -2;
+                    }
+                }
+            }
+
+            if (canteenIndex > -1 && juiceIndex > -1) {
+                ItemStack canteen = matrix[canteenIndex];
+                ItemStack juice = matrix[juiceIndex];
+
+                if (canteen.getAmount() == 1 && juice.getAmount() == 1) {
+                    String drinkName = RSVItem.isRSVItem(juice) ? RSVItem.getNameFromItem(juice) : "Unpurified Water";
+
+                    if (canFill(canteen, drinkName)) {
+                        ItemStack copy = canteen.clone();
+                        event.getInventory().setResult(fillCanteen(copy, drinkName, 1));
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemHeld(PlayerItemHeldEvent event) {
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
+            if (shouldEventBeRan(player)) {
+                ItemStack item = player.getInventory().getItem(event.getNewSlot());
+
+                checkAndRunTask(player, item);
             }
         }
     }
@@ -616,18 +814,33 @@ public class TanEvents extends ModuleEvents implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onItemPickup(EntityPickupItemEvent event) {
         if (!event.isCancelled()) {
-            Entity e = event.getEntity();
-            if (e instanceof Player) {
-                if (shouldEventBeRan(e)) {
-                    Player p = (Player) e;
+            Entity entity = event.getEntity();
+            if (entity instanceof Player player) {
+                if (shouldEventBeRan(player)) {
                     ItemStack item = event.getItem().getItemStack();
+                    checkAndRunTask(player, item);
+                }
+            }
+        }
+    }
 
-                    if (RSVItem.isRSVItem(item)) {
-                        if (RSVItem.getNameFromItem(item).equals("thermometer")) {
-                            if (!ThermometerTask.hasTask(p.getUniqueId())) {
-                                new ThermometerTask(plugin, RSVPlayer.getPlayers().get(p.getUniqueId())).start();
-                            }
-                        }
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onClick(InventoryClickEvent event) {
+        if (!event.isCancelled()) {
+            Player player = (Player) event.getWhoClicked();
+            if (shouldEventBeRan(player)) {
+                ItemStack cursor = event.getCursor();
+
+                int heldSlot = player.getInventory().getHeldItemSlot();
+                int slot = event.getSlot();
+
+                if (slot == heldSlot) {
+                    checkAndRunTask(player, cursor);
+                }
+
+                if (event.isShiftClick()) {
+                    if (event.getView().getTopInventory().getType() != InventoryType.PLAYER) {
+                        checkAndRunTask(player, event.getCurrentItem());
                     }
                 }
             }
@@ -635,82 +848,103 @@ public class TanEvents extends ModuleEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onPotionFill(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
+    public void onItemSwap(PlayerSwapHandItemsEvent event) {
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
 
-        if (shouldEventBeRan(player)) {
-            if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                ItemStack item = event.getItem();
+            if (shouldEventBeRan(player)) {
+                ItemStack item = event.getMainHandItem();
+                checkAndRunTask(player, item);
+            }
+        }
+    }
 
-                Block b = event.getClickedBlock();
-                Material mat = b.getType();
-
-                if (RSVItem.isRSVItem(item)) {
-                    if (RSVItem.getNameFromItem(item).contains("canteen_empty")) {
-                        if (mat == Material.WATER) {
-                            RSVItem.addNbtTag(item, "rsvitem", "canteen_filled", PersistentDataType.STRING);
-                            RSVItem.addNbtTag(item, "rsvdrink", "Unpurified Water", PersistentDataType.STRING);
-                            Utils.changeDurability(item, 1, false);
-                        }
-                        else if (mat == Material.CAULDRON) {
-                            BlockData data = b.getBlockData();
-                           if (((Levelled) data).getLevel() > 0) {
-                               RSVItem.addNbtTag(item, "rsvitem", "canteen_filled", PersistentDataType.STRING);
-                               RSVItem.addNbtTag(item, "rsvdrink", "Unpurified Water", PersistentDataType.STRING);
-
-                               Utils.changeDurability(item, 1, false);
-                               ((Levelled) data).setLevel(((Levelled) data).getLevel() - 1);
-                               b.setBlockData(data);
-                           }
-                        }
-                    }
+    private void checkAndRunTask(Player player, ItemStack item) {
+        if (RSVItem.isRSVItem(item)) {
+            if (RSVItem.getNameFromItem(item).equals("thermometer")) {
+                if (!ThermometerTask.hasTask(player.getUniqueId())) {
+                    new ThermometerTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
                 }
             }
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onCauldronFill(CauldronLevelChangeEvent event) {
-        Entity e = event.getEntity();
-        if (shouldEventBeRan(e)) {
-            if (e instanceof Player) {
-                Player player = (Player) e;
-                ItemStack item = player.getInventory().getItemInMainHand();
+    private boolean canFill(ItemStack canteen, String newDrink) {
+        String originalDrink = RealisticSurvivalPlugin.getUtil().getNbtTag(canteen, "rsvdrink", PersistentDataType.STRING);
+        if (!originalDrink.equals("None")) {
+            return originalDrink.equals(newDrink);
+        }
+        return true;
+    }
 
-                if (RSVItem.isRSVItem(item)) {
-                    if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_EMPTY) {
-                        if (RSVItem.getNameFromItem(item).contains("juice_")) {
-                            event.setCancelled(true);
-                        }
-                        if (RSVItem.getNameFromItem(item).equals("canteen_filled")) {
-                            if (RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING).equals("Unpurified Water")) {
-                                int durability = RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdurability", PersistentDataType.INTEGER);
+    private ItemStack fillCanteen(ItemStack canteen, String drink, int change) {
+        Utils util = RealisticSurvivalPlugin.getUtil();
 
-                                if (durability > 0) {
-                                    Utils.changeDurability(item, -1, false);
-                                }
-                                else {
-                                    RSVItem.addNbtTag(item, "rsvitem", "canteen_empty", PersistentDataType.STRING);
-                                    RSVItem.addNbtTag(item, "rsvdrink", "", PersistentDataType.STRING);
-                                    item.setType(Material.GLASS_BOTTLE);
-                                    event.setCancelled(true);
-                                }
-                            }
-                            else {
-                                event.setCancelled(true);
-                            }
-                        }
-                    }
-                    if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_FILL) {
-                        if (RSVItem.getNameFromItem(item).equals("canteen_empty")) {
-                            RSVItem.addNbtTag(item, "rsvitem", "canteen_filled", PersistentDataType.STRING);
-                            RSVItem.addNbtTag(item, "rsvdrink", "Unpurified Water", PersistentDataType.STRING);
-                            item.setType(Material.POTION);
-                            Utils.changeDurability(item, 1, false);
-                        }
-                    }
+        int durability = RSVItem.getCustomDurability(canteen);
+
+        int sum = durability + change;
+
+        ItemMeta meta = canteen.getItemMeta();
+        if (sum < 0) {
+            if (meta.getDisplayName().equals(RSVItem.getItem("canteen_filled").getItemMeta().getDisplayName())) {
+                meta.setDisplayName(RSVItem.getItem("canteen_empty").getItemMeta().getDisplayName());
+            }
+            int modelData = RSVItem.getItem("canteen_empty").getItemMeta().getCustomModelData();
+            if (!meta.hasCustomModelData()) {
+                meta.setCustomModelData(modelData);
+                canteen.setItemMeta(meta);
+            }
+            else {
+                if (meta.getCustomModelData() != modelData) {
+                    meta.setCustomModelData(modelData);
+                    canteen.setItemMeta(meta);
                 }
             }
+
+            util.addNbtTag(canteen, "rsvitem", "canteen_empty", PersistentDataType.STRING);
+            util.addNbtTag(canteen, "rsvdrink", "None", PersistentDataType.STRING);
+
+            canteen.setType(Material.GLASS_BOTTLE);
         }
+        else {
+            if (meta.getDisplayName().equals(RSVItem.getItem("canteen_empty").getItemMeta().getDisplayName())) {
+                meta.setDisplayName(RSVItem.getItem("canteen_filled").getItemMeta().getDisplayName());
+            }
+
+            int modelData = RSVItem.getItem("canteen_filled").getItemMeta().getCustomModelData();
+            if (!meta.hasCustomModelData()) {
+                meta.setCustomModelData(modelData);
+                canteen.setItemMeta(meta);
+            }
+            else {
+                if (meta.getCustomModelData() != modelData) {
+                    meta.setCustomModelData(modelData);
+                    canteen.setItemMeta(meta);
+                }
+            }
+
+            util.addNbtTag(canteen, "rsvitem", "canteen_filled", PersistentDataType.STRING);
+            util.addNbtTag(canteen, "rsvdrink", drink, PersistentDataType.STRING);
+            canteen.setType(Material.POTION);
+        }
+        Utils.changeDurability(canteen, change, false);
+        return canteen;
+    }
+
+    private Hand getHand(Player player, String rsvName) {
+        ItemStack mainHand = player.getInventory().getItemInMainHand();
+        ItemStack offHand = player.getInventory().getItemInOffHand();
+
+        if (RSVItem.isRSVItem(mainHand)) {
+            if (RSVItem.getNameFromItem(mainHand).equals(rsvName)) {
+                return Utils.Hand.MAIN_HAND;
+            }
+        }
+        if (RSVItem.isRSVItem(offHand)) {
+            if (RSVItem.getNameFromItem(offHand).equals(rsvName)) {
+                return Utils.Hand.OFF_HAND;
+            }
+        }
+        return null;
     }
 }

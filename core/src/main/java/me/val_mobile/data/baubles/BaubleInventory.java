@@ -18,12 +18,14 @@ package me.val_mobile.data.baubles;
 
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 
 public class BaubleInventory extends GUI {
 
@@ -32,13 +34,15 @@ public class BaubleInventory extends GUI {
 
         Inventory inv = getInventory();
 
-        inv.setItem(BaubleSlot.HEAD.getValue(), RSVItem.getItem("head_slot"));
-        inv.setItem(BaubleSlot.AMULET.getValue(), RSVItem.getItem("amulet_slot"));
-        inv.setItem(BaubleSlot.BODY.getValue(), RSVItem.getItem("body_slot"));
-        inv.setItem(BaubleSlot.FIRST_RING.getValue(), RSVItem.getItem("ring_slot"));
-        inv.setItem(BaubleSlot.SECOND_RING.getValue(), RSVItem.getItem("ring_slot"));
-        inv.setItem(BaubleSlot.CHARM.getValue(), RSVItem.getItem("charm_slot"));
-        inv.setItem(BaubleSlot.BELT.getValue(), RSVItem.getItem("belt_slot"));
+        BaubleSlot[] values = BaubleSlot.values();
+
+        for (BaubleSlot slot : values) {
+            for (int i : slot.getValues()) {
+                if (!RSVItem.isRSVItem(inv.getItem(i))) {
+                    inv.setItem(i, slot.getItem());
+                }
+            }
+        }
 
         ItemStack guiGlass = RSVItem.getItem("gui_glass");
 
@@ -49,18 +53,77 @@ public class BaubleInventory extends GUI {
                 inv.setItem(i, guiGlass);
             }
         }
-
-        getDisallowedItems().add(RSVItem.getItem("gui_glass"));
     }
 
-    public ItemStack getBauble(BaubleSlot baubleSlot) {
-        return getInventory().getItem(baubleSlot.getValue());
+    public Collection<ItemStack> getAllBaubles() {
+        Collection<ItemStack> items = new ArrayList<>();
+        BaubleSlot[] values = BaubleSlot.values();
+
+        for (BaubleSlot slot: values) {
+            for (int i : slot.getValues()) {
+                ItemStack item = getInventory().getItem(i);
+                if (RSVItem.isRSVItem(item)) {
+                    items.add(item);
+                }
+            }
+        }
+
+        return items;
+    }
+
+    public void removeAndDropAllBaubles(Location loc) {
+        BaubleSlot[] values = BaubleSlot.values();
+        World world = loc.getWorld();
+        Inventory inv = getInventory();
+
+        for (BaubleSlot slot: values) {
+            for (int i : slot.getValues()) {
+                ItemStack item = inv.getItem(i);
+                if (RSVItem.isRSVItem(item)) {
+                    switch (RSVItem.getNameFromItem(item)) {
+                        case "gui_glass", "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" -> {}
+                        default -> {
+                            world.dropItemNaturally(loc, item);
+                            inv.setItem(i, slot.getItem());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void removeAllBaubles() {
+        BaubleSlot[] values = BaubleSlot.values();
+        Inventory inv = getInventory();
+
+        for (BaubleSlot slot: values) {
+            for (int i : slot.getValues()) {
+                inv.setItem(i, slot.getItem());
+            }
+        }
+    }
+
+    public Collection<String> getAllBaubleNames() {
+        Collection<String> items = new ArrayList<>();
+        BaubleSlot[] values = BaubleSlot.values();
+        Inventory inv = getInventory();
+
+        for (BaubleSlot slot: values) {
+            for (int i : slot.getValues()) {
+                ItemStack item = inv.getItem(i);
+                if (RSVItem.isRSVItem(item)) {
+                    items.add(RSVItem.getNameFromItem(item));
+                }
+            }
+        }
+
+        return items;
     }
 
     public boolean hasBauble(String name) {
-        Collection<ItemStack> baubles = getBaubles().values();
+        Collection<ItemStack> baubleCol = getAllBaubles();
 
-        for (ItemStack bauble : baubles) {
+        for (ItemStack bauble : baubleCol) {
             if (RSVItem.isRSVItem(bauble)) {
                 if (RSVItem.getNameFromItem(bauble).equals(name)) {
                     return true;
@@ -72,9 +135,9 @@ public class BaubleInventory extends GUI {
 
     public int getBaubleAmount(String name) {
         int sum = 0;
-        Collection<ItemStack> baubles = getBaubles().values();
+        Collection<ItemStack> baubleCol = getAllBaubles();
 
-        for (ItemStack bauble : baubles) {
+        for (ItemStack bauble : baubleCol) {
             if (RSVItem.isRSVItem(bauble)) {
                 if (RSVItem.getNameFromItem(bauble).equals(name)) {
                     sum++;
@@ -84,34 +147,15 @@ public class BaubleInventory extends GUI {
         return sum;
     }
 
-    public HashMap<BaubleSlot, ItemStack> getBaubles() {
-        HashMap<BaubleSlot, ItemStack> items = new HashMap<>();
-        BaubleSlot[] slots = BaubleSlot.values();
-
-        for (BaubleSlot slot : slots) {
-            items.put(slot, getInventory().getItem(slot.getValue()));
-        }
-
-        return items;
-    }
-
     public ItemStack getItem(String name) {
-        for (ItemStack item : getBaubles().values()) {
-            if (RSVItem.getNameFromItem(item).equals(name)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    public void setItem(ItemStack replace, String baubleName) {
-        for (BaubleSlot slot : getBaubles().keySet()) {
-            if (RSVItem.isRSVItem(getInventory().getItem(slot.getValue()))) {
-                if (RSVItem.getNameFromItem(getInventory().getItem(slot.getValue())).equals(baubleName)) {
-                    getInventory().setItem(slot.getValue(), replace);
-                    break;
+        Collection<ItemStack> items = getAllBaubles();
+        for (ItemStack item : items) {
+            if (RSVItem.isRSVItem(item)) {
+                if (RSVItem.getNameFromItem(item).equals(name)) {
+                    return item;
                 }
             }
         }
+        return null;
     }
 }

@@ -14,13 +14,24 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.data.baubles;
+package me.val_mobile.utils;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
+import org.bukkit.event.player.PlayerEvent;
 
-public class WormholeInventory extends GUI {
+public class PlayerJumpEvent extends PlayerEvent {
+    private static final HandlerList handlers = new HandlerList();
+    public PlayerJumpEvent(Player player) {
+        super(player);
+    }
 
-    public WormholeInventory(Player player, int size, String name) {
-        super(player, size, name);
+    @Override
+    public HandlerList getHandlers() {
+        return handlers;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
     }
 }

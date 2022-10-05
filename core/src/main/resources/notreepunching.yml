@@ -2,7 +2,7 @@
 #          No Tree Punching           #
 #######################################
 
-ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -13,6 +13,29 @@ Shutdown:
   Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"               # All placeholders: %NAME%
 
 # Customize the No Tree Punching features
+
+UpdateNetheriteItems:   # Specify which factors will be transferred over when a diamond mattock is crafted into a netherite mattock via smithing table
+  Enabled: true
+  UpdateMaterial: true
+  UpdateMaterialData: false
+  UpdateDisplayName: true
+  UpdateLore: true
+  UpdateUnbreakability: true
+  UpdateAttributeModifiers: true
+  UpdateLocalizedName: true
+  UpdateCustomModelData: true
+  UpdateEnchants:
+    Enabled: true
+    PreserveExistingEnchants: true
+  UpdateItemFlags:
+    Enabled: true
+    PreserveExistingItemFlags: true
+  UpdateVanillaDurability: false
+  UpdateNbtTags:
+    Enabled: true
+    UpdateModule: true
+    UpdateCustomDurability: false
+    UpdateCustomMaxDurability: true
 
 PreventPunchingWood:
   Enabled: true
@@ -163,6 +186,9 @@ Pottery:
     Enabled: true
     TickSpeed: 5
     Time: 160       # Time it takes for the ceramic lava bucket to melt and disappear in ticks
+    PourLava:       # Should lava be poured on a player after bucket melts, will not pour if player's location is solid
+      Enabled: true
+      OnlyReplacePassableBlocks: true
     BurningSound:
       Enabled: true
       Chance: 0.15  # Probability every "TickSpeed" that a burning sound will be made
@@ -172,7 +198,7 @@ Pottery:
     EmitParticles:
       Enabled: true
       Chance: 0.15  # Probability every "TickSpeed" that a particle will be emitted
-      Particle: "SMOKE_NORMAL"
+      Particle: "LAVA"
       MinCount: 1
       MaxCount: 3
       x-Offset: 0.2
@@ -396,8 +422,8 @@ Items:
         1.19.1: true
         1.19.2: true
     Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
+      AttackDamage: 9.0
+      AttackSpeed: 0.9
   copper_pickaxe:
     Enabled:
       EnableAllVersions: false
@@ -416,8 +442,8 @@ Items:
         1.19.1: true
         1.19.2: true
     Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
+      AttackDamage: 2.75
+      AttackSpeed: 1.2
   copper_shovel:
     Enabled:
       EnableAllVersions: false
@@ -436,8 +462,8 @@ Items:
         1.19.1: true
         1.19.2: true
     Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
+      AttackDamage: 3.0
+      AttackSpeed: 1.0
   copper_sword:
     Enabled:
       EnableAllVersions: false
@@ -456,8 +482,8 @@ Items:
         1.19.1: true
         1.19.2: true
     Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
+      AttackDamage: 5.0
+      AttackSpeed: 1.6
   copper_hoe:
     Enabled:
       EnableAllVersions: false
@@ -476,8 +502,8 @@ Items:
         1.19.1: true
         1.19.2: true
     Attributes:
-      AttackDamage: 4.0
-      AttackSpeed: 2.0
+      AttackDamage: 1.0
+      AttackSpeed: 2.5
   copper_helmet:
     Enabled:
       EnableAllVersions: false
@@ -496,8 +522,8 @@ Items:
         1.19.1: true
         1.19.2: true
     Attributes:
-      Armor: 9.0
-      Toughness: 2.0
+      Armor: 1.0
+      Toughness: 0.0
   copper_chestplate:
     Enabled:
       EnableAllVersions: false
@@ -516,8 +542,8 @@ Items:
         1.19.1: true
         1.19.2: true
     Attributes:
-      Armor: 9.0
-      Toughness: 2.0
+      Armor: 3.0
+      Toughness: 0.0
   copper_leggings:
     Enabled:
       EnableAllVersions: false
@@ -536,8 +562,8 @@ Items:
         1.19.1: true
         1.19.2: true
     Attributes:
-      Armor: 9.0
-      Toughness: 2.0
+      Armor: 3.0
+      Toughness: 0.0
   copper_boots:
     Enabled:
       EnableAllVersions: false
@@ -556,8 +582,8 @@ Items:
         1.19.1: true
         1.19.2: true
     Attributes:
-      Armor: 9.0
-      Toughness: 2.0
+      Armor: 1.0
+      Toughness: 0.0
   golden_mattock:
     Enabled:
       EnableAllVersions: true
@@ -582,7 +608,7 @@ Items:
         1.19.1: true
         1.19.2: true
     Attributes:
-      AttackDamage: 5.5
+      AttackDamage: 5.0
       AttackSpeed: 1.6
   iron_mattock:
     Enabled:
@@ -968,7 +994,11 @@ Recipes:
     Enabled:
       EnableAllVersions: true
     Unlock: true
-  clay_flower_pot_0:
+  ceramic_flower_pot:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  ceramic_flower_pot_0:
     Enabled:
       EnableAllVersions: true
     Unlock: true
@@ -985,6 +1015,14 @@ Recipes:
       EnableAllVersions: true
     Unlock: true
   brick_0:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  netherite_saw:
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
+  netherite_knife:
     Enabled:
       EnableAllVersions: true
     Unlock: true

@@ -26,12 +26,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class RSVAnvilRecipe implements Recipe {
 
-    private String name;
-    private ItemStack result;
-    private ItemStack leftIng;
-    private ItemStack rightIng;
-    private int repairCost;
-    private int maxRepairCost;
+    private final String name;
+    private final ItemStack result;
+    private final ItemStack leftIng;
+    private final ItemStack rightIng;
+    private final int repairCost;
+    private final int maxRepairCost;
 
     public RSVAnvilRecipe(FileConfiguration config, String name) {
         this.name = name;
@@ -86,9 +86,7 @@ public class RSVAnvilRecipe implements Recipe {
             ItemMeta secondMeta = secondItem.getItemMeta();
 
             if (firstMeta != null && secondMeta != null) {
-                if (firstMeta.equals(leftIng.getItemMeta()) && secondMeta.equals(rightIng.getItemMeta())) {
-                    return true;
-                }
+                return firstMeta.equals(leftIng.getItemMeta()) && secondMeta.equals(rightIng.getItemMeta());
             }
         }
         return false;

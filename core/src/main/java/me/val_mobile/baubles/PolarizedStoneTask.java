@@ -16,7 +16,6 @@
  */
 package me.val_mobile.baubles;
 
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
@@ -29,49 +28,51 @@ import org.bukkit.util.Vector;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class PolarizedStoneTask extends BukkitRunnable {
 
-    private static final HashMap<UUID, PolarizedStoneTask> tasks = new HashMap<>();
+    private static final Map<UUID, PolarizedStoneTask> tasks = new HashMap<>();
     private final RSVPlayer rsvPlayer;
     private final RealisticSurvivalPlugin plugin;
     private final UUID id;
     private final Collection<String> allowedWorlds;
-    private final FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
-    private double maxRadius = config.getDouble("Items.polarized_stone.MaxRadius");
-    private double pullForce = config.getDouble("Items.polarized_stone.PullForce");
+    private final FileConfiguration config;
+    private final double maxRadius;
+    private final double pullForce;
 
-    public PolarizedStoneTask(RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
+    public PolarizedStoneTask(BaubleModule module, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
         this.id = rsvPlayer.getPlayer().getUniqueId();
-        this.allowedWorlds = RSVModule.getModule(BaubleModule.NAME).getAllowedWorlds();
+        this.allowedWorlds = module.getAllowedWorlds();
+        this.config = module.getUserConfig().getConfig();
         this.plugin = plugin;
+        this.maxRadius = config.getDouble("Items.polarized_stone.MaxRadius");
+        this.pullForce = config.getDouble("Items.polarized_stone.PullForce");
         tasks.put(id, this);
     }
 
     @Override
     public void run() {
-        Player p = rsvPlayer.getPlayer();
+        Player player = rsvPlayer.getPlayer();
 
-        if (p == null) {
+        if (player == null) {
             tasks.remove(id);
             cancel();
         }
         else {
-            if (!p.isDead() && p.isOnline() && allowedWorlds.contains(p.getWorld().getName())) {
-                boolean hasBauble = rsvPlayer.getBaubleDataModule().hasBauble("polarized_stone");
-
-                if (hasBauble) {
+            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
+                if (rsvPlayer.getBaubleDataModule().hasBauble("polarized_stone")) {
                     // effect the player with resistance
-                    Location loc = p.getLocation();
-                    for (Entity e : p.getNearbyEntities(maxRadius, maxRadius, maxRadius)) {
-                        if (e.getType() == EntityType.EXPERIENCE_ORB || e.getType() == EntityType.DROPPED_ITEM) {
-                            Location eLoc = e.getLocation();
-                            double xDif = loc.getX() - eLoc.getX();
-                            double yDif = loc.getY() - eLoc.getY();
-                            double zDif = loc.getZ() - eLoc.getZ();
-                            e.setVelocity((new Vector(xDif, yDif, zDif)).normalize().multiply(pullForce));
+                    Location pLoc = player.getLocation();
+                    Vector pVector = pLoc.toVector();
+                    for (Entity entity : player.getNearbyEntities(maxRadius, maxRadius, maxRadius)) {
+                        if (entity.getType() == EntityType.EXPERIENCE_ORB || entity.getType() == EntityType.DROPPED_ITEM) {
+                            Location eLoc = entity.getLocation();
+                            Vector eVector = eLoc.toVector();
+
+                            entity.teleport(entity.getLocation().subtract(eVector.subtract(pVector).normalize().multiply(pullForce)).setDirection(pLoc.getDirection()));
                         }
                     }
                 }
@@ -101,7 +102,7 @@ public class PolarizedStoneTask extends BukkitRunnable {
         return false;
     }
 
-    public HashMap<UUID, PolarizedStoneTask> getTasks() {
+    public static Map<UUID, PolarizedStoneTask> getTasks() {
         return tasks;
     }
 }

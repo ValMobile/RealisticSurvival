@@ -16,9 +16,16 @@
  */
 package me.val_mobile.baubles;
 
-public class TickableBauble extends Tickable {
+public class TickableBauble implements Tickable {
+
+    private final String name;
 
     public TickableBauble(String name) {
-        super(name);
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

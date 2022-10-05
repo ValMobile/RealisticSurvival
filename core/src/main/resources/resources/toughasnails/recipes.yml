@@ -2,7 +2,7 @@
 #          Tough as Nails Recipes     #
 #######################################
 
-ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Recipe-YML-Files
 
@@ -47,6 +47,7 @@ jelled_slime_boots:
     Item: "jelled_slime_boots"
     Amount: 1
   Ingredients:
+    - ""
     - "jelled_slime||jelled_slime"
     - "jelled_slime||jelled_slime"
 wool_hood:
@@ -81,6 +82,7 @@ wool_boots:
     Item: "wool_boots"
     Amount: 1
   Ingredients:
+    - ""
     - "Tag.WOOL||Tag.WOOL"
     - "Tag.WOOL||Tag.WOOL"
 charcoal_filter:

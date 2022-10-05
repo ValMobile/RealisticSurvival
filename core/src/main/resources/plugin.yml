@@ -1,6 +1,6 @@
 main: me.val_mobile.realisticsurvival.RealisticSurvivalPlugin
 name: RealisticSurvival
-version: 1.2.3
+version: 1.2.3-DEV-0
 author: Val_Mobile
 description: A Spigot plugin that aims to increase the difficulty of normal vanilla Minecraft
 website: https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795
@@ -98,13 +98,16 @@ permissions:
     default: op
   realisticsurvival.command.resetitem:
     description: Allows users to reset their item to use in recipes
-    default: not op
+    default: op
+  realisticsurvival.command.updateitem:
+    description: Allows users to update their item
+    default: op
   realisticsurvival.command.help:
     description: Allows users to access the help command
-    default: not op
+    default: op
   realisticsurvival.command.version:
     description: Allows users to access the plugin version
-    default: not op
+    default: op
   realisticsurvival.command.*:
     description: Wildcard permission
     default: op
@@ -116,5 +119,6 @@ permissions:
       realisticsurvival.command.thirst: true
       realisticsurvival.command.temperature: true
       realisticsurvival.command.resetitem: true
+      realisticsurvival.command.updateitem: true
       realisticsurvival.command.help: true
       realisticsurvival.command.version: true

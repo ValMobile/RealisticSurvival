@@ -45,7 +45,7 @@ import java.util.Set;
  * IceFireEvents is a class containing listener methods
  * that activate fire, ice, and lighting dragon weapon abilities
  * @author Val_Mobile
- * @version 1.2.3
+ * @version 1.2.3-DEV-0
  * @since 1.0
  */
 public class IceFireEvents extends ModuleEvents implements Listener {

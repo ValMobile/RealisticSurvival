@@ -2,7 +2,7 @@
 #          Baubles                    #
 #######################################
 
-ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -13,6 +13,18 @@ Shutdown:
   Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"               # All placeholders: %NAME%
 
 # Customize any bauble items
+
+WormholeInventory:
+  SkullName: "&e%PLAYER_NAME%"    # All placeholders: %PLAYER_NAME%
+  Sound:
+    Enabled: true
+    Sound: "ITEM_CHORUS_FRUIT_TELEPORT"
+    Volume: 0.5
+    Pitch: 1.0
+
+DropBaublesUponDeath:
+  Enabled: true
+  IgnoreKeepInventoryGamerule: false
 
 Items:
   # MaxAmplifier - Maximum level of potion effect a player can have get with multiple potion rings
@@ -136,7 +148,6 @@ Items:
     Enabled:
       EnableAllVersions: true
     # Cost to create the obsidian shield from a cobalt shield and obsidian skull in experience levels
-    AnvilCost: 10
     HeatDamageMultiplier: 0.25
   forbidden_fruit:
     Enabled:
@@ -169,7 +180,6 @@ Items:
   ring_free_action:
     Enabled:
       EnableAllVersions: true
-    AnvilCost: 10
   bezoar:
     Enabled:
       EnableAllVersions: true
@@ -194,14 +204,12 @@ Items:
   mixed_color_dragonscale:
     Enabled:
       EnableAllVersions: true
-    AnvilCost: 10
   ankh_charm:
     Enabled:
       EnableAllVersions: true
   ankh_shield:
     Enabled:
       EnableAllVersions: true
-    AnvilCost: 10
     HeatDamageMultiplier: 0.25
   iron_ring:
     Enabled:
@@ -210,9 +218,25 @@ Items:
     Enabled:
       EnableAllVersions: true
     Cooldown: 300
+    TickTime: 5
+    Sound:
+      Enabled: true
+      Sound: "ITEM_CHORUS_FRUIT_TELEPORT"
+      Volume: 0.5
+      Pitch: 1.0
+  wormhole_mirror:
+    Enabled:
+      EnableAllVersions: true
+    Cooldown: 300
+    TickTime: 5
   recall_potion:
     Enabled:
       EnableAllVersions: true
+    Sound:
+      Enabled: true
+      Sound: "ITEM_CHORUS_FRUIT_TELEPORT"
+      Volume: 0.5
+      Pitch: 1.0
   wormhole_potion:
     Enabled:
       EnableAllVersions: true
@@ -229,6 +253,58 @@ Items:
   spectral_silt:
     Enabled:
       EnableAllVersions: true
+    MobDrops:
+      BLAZE:
+        Type: "Rare"
+        Chance: 0.01
+      CAVE_SPIDER:
+        Type: "Rare"
+        Chance: 0.01
+      ENDERMAN:
+        Type: "Rare"
+        Chance: 0.01
+      EVOKER:
+        Type: "Rare"
+        Chance: 0.02
+      GHAST:
+        Type: "Rare"
+        Chance: 0.02
+      ILLUSIONER:
+        Type: "Rare"
+        Chance: 0.01
+      PIGLIN_BRUTE:
+        Type: "Rare"
+        Chance: 0.02
+      PILLAGER:
+        Type: "Rare"
+        Chance: 0.01
+      RAVAGER:
+        Type: "Rare"
+        Chance: 0.02
+      VEX:
+        Type: "Rare"
+        Chance: 0.01
+      VINDICATOR:
+        Type: "Rare"
+        Chance: 0.01
+      WITHER_SKELETON:
+        Type: "Rare"
+        Chance: 0.01
+      ELDER_GUARDIAN:
+        Type: "Common"
+        Chance: 0.8
+      WARDEN:
+        Type: "Range"
+        MinAmount: 4
+        MaxAmount: 7
+      WITHER:
+        Type: "Range"
+        MinAmount: 2
+        MaxAmount: 4
+      ENDER_DRAGON:
+        Type: "Range"
+        MinAmount: 2
+        MaxAmount: 4
   disintegration_tablet:
     Enabled:
       EnableAllVersions: true
@@ -252,7 +328,7 @@ Items:
       EnableAllVersions: true
     ExtraDamage: 2.0
     Effects:
-      STRENGTH:
+      INCREASE_DAMAGE:
         AmplifierIncrement: 1
         Amplifier: 0
         Duration: 270
@@ -264,7 +340,7 @@ Items:
     Enabled:
       EnableAllVersions: true
     Effects:
-      STRENGTH:
+      INCREASE_DAMAGE:
         AmplifierIncrement: 1
         Amplifier: 0
         Duration: 270
@@ -276,7 +352,7 @@ Items:
     Enabled:
       EnableAllVersions: true
     Effects:
-      STRENGTH:
+      INCREASE_DAMAGE:
         AmplifierIncrement: 1
         Amplifier: 0
         Duration: 270
@@ -326,23 +402,99 @@ Items:
   stone_negative_gravity:
     Enabled:
       EnableAllVersions: true
+    ReenableGravity: true
+    Flight:
+      Increment: 0.1
+      MaxDownwardVelocity: -2.0     # Sneak and left click air to go down
+      MaxUpwardVelocity: 2.0        # Left click air without sneaking to go up
+    Instability:                    # Occurs when a player simply holds the stone in their main hand without equipping it in the bauble bag
+      MaxDownwardVelocity: -0.10
+      MaxUpwardVelocity: 0.10
+    TickTime: 5
+    MobDrops:
+      ALLAY:
+        Type: "Rare"
+        Chance: 0.01
+      BAT:
+        Type: "Rare"
+        Chance: 0.01
+      BEE:
+        Type: "Rare"
+        Chance: 0.01
+      BLAZE:
+        Type: "Rare"
+        Chance: 0.01
+      GHAST:
+        Type: "Rare"
+        Chance: 0.01
+      PARROT:
+        Type: "Rare"
+        Chance: 0.01
+      PHANTOM:
+        Type: "Rare"
+        Chance: 0.01
+      VEX:
+        Type: "Rare"
+        Chance: 0.01
+      WITHER:
+        Type: "Rare"
+        Chance: 0.10
+      ENDER_DRAGON:
+        Type: "Rare"
+        Chance: 0.10
   stone_inertia_null:
     Enabled:
       EnableAllVersions: true
+    MobDrops:
+      CAT:
+        Type: "Rare"
+        Chance: 0.01
+      IRON_GOLEM:
+        Type: "Rare"
+        Chance: 0.01
+      OCELOT:
+        Type: "Rare"
+        Chance: 0.01
+      SNOWMAN:
+        Type: "Rare"
+        Chance: 0.01
+      WARDEN:
+        Type: "Rare"
+        Chance: 0.10
   stone_greater_inertia:
     Enabled:
       EnableAllVersions: true
-    MovementSpeedMultiplier: 1.5
+    WalkSpeedMultiplier: 1.0
+    MinFallDistance: 8.0
+    FallDamageMultiplier: 0.25
     JumpVelocityMultiplier: 2.0
     KnockbackPercent: 0.5
+    TickTime: 5
+    MobDrops:
+      SLIME:
+        Type: "Rare"
+        Chance: 0.01
+      MAGMA_CUBE:
+        Type: "Rare"
+        Chance: 0.01
+      WITCH:
+        Type: "Rare"
+        Chance: 0.01
+      HORSE:
+        Type: "Rare"
+        Chance: 0.10
   ring_enchanted_eyes:
     Enabled:
       EnableAllVersions: true
   stone_sea:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
-    SwimSpeedMultiplier: 2.0
+    TickTime: 1
+    BaseSwimSpeed: 10.0
+    HorizontalSpeedIncrement: 0.05
+    VerticalSpeedIncrement: 0.2
+    MaxHorizontalSpeed: 100.0
+    MaxVerticalSpeed: 3.0
     Effects:
       WATER_BREATHING:
         AmplifierIncrement: 0
@@ -355,7 +507,7 @@ Items:
   polarized_stone:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickTime: 1
     MaxRadius: 10.0
     PullForce: 1.0
   ring_fairies:
@@ -372,6 +524,37 @@ Items:
     JumpVelocityMultiplier: 0.5
     StepHeight: 0.35
     ReachMultiplier: 0.4
+    MobDrops:
+      ALLAY:
+        Type: "Rare"
+        Chance: 0.01
+      BAT:
+        Type: "Rare"
+        Chance: 0.01
+      BEE:
+        Type: "Rare"
+        Chance: 0.01
+      BLAZE:
+        Type: "Rare"
+        Chance: 0.01
+      GHAST:
+        Type: "Rare"
+        Chance: 0.01
+      PARROT:
+        Type: "Rare"
+        Chance: 0.01
+      PHANTOM:
+        Type: "Rare"
+        Chance: 0.01
+      VEX:
+        Type: "Rare"
+        Chance: 0.01
+      WITHER:
+        Type: "Rare"
+        Chance: 0.10
+      ENDER_DRAGON:
+        Type: "Rare"
+        Chance: 0.10
   ring_dwarves:
     Enabled:
       EnableAllVersions: true
@@ -381,6 +564,13 @@ Items:
       Value: 0.1
       Amount: 1.0
     FortuneLevel: 1.0
+    MobDrops:
+      SILVERFISH:
+        Type: "Rare"
+        Chance: 0.01
+      ZOMBIFIED_PIGLIN:
+        Type: "Rare"
+        Chance: 0.01
   wither_ring:
     Enabled:
       EnableAllVersions: true
@@ -412,6 +602,16 @@ Items:
         AmplifierIncrement: 0
         Amplifier: 0
         Duration: 270
+    MobDrops:
+      SILVERFISH:
+        Type: "Rare"
+        Chance: 0.10
+      WANDERING_TRADER:
+        Type: "Rare"
+        Chance: 0.10
+      WITCH:
+        Type: "Rare"
+        Chance: 0.01
   warped_scroll:
     Enabled:
       EnableAllVersions: true

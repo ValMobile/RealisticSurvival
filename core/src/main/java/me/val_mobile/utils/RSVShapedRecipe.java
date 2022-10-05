@@ -32,9 +32,9 @@ import java.util.Objects;
 
 public class RSVShapedRecipe extends ShapedRecipe {
 
-    private final static List<Character> CHARS = List.of('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I');
+    private static final List<Character> CHARS = List.of('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I');
 
-    private final HashMap<Character, Object> ingredients = new HashMap<>();
+    private final Map<Character, Object> ingredients = new HashMap<>();
 
     public RSVShapedRecipe(FileConfiguration config, String name, RealisticSurvivalPlugin plugin) {
         super(new NamespacedKey(plugin, name),

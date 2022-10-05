@@ -18,7 +18,7 @@ body:
       label: '❗ Checklist'
       description: Please go through this checklist before creating the issue.
       options:
-        - label: I am using the official english version of Realistic Survival and did not modify the jar.
+        - label: I am using the official version of Realistic Survival and did not modify the jar.
           required: true
         - label: I am using an up-to-date "dev-build" (not "Spigot") version of Realistic Survival.
           required: true
@@ -109,8 +109,6 @@ body:
         - 1.18.x
         - 1.17.x
         - 1.16.x
-        - 1.15.x
-        - 1.14.x
         - (Older versions are not supported)
 
   - id: realistic-survival-version

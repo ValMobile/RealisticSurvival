@@ -28,16 +28,16 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class TideGuardianTask extends BukkitRunnable {
 
-    private static final HashMap<UUID, TideGuardianTask> tasks = new HashMap<>();
+    private static final Map<UUID, TideGuardianTask> tasks = new HashMap<>();
     private final FileConfiguration config;
     private final Player player;
     private final RealisticSurvivalPlugin plugin;
     private boolean containsTideArmor = false;
-    private ItemStack[] items;
     private final Collection<String> allowedWorlds;
 
     private final int maxStrAmp;
@@ -49,11 +49,6 @@ public class TideGuardianTask extends BukkitRunnable {
     private final boolean breathingEnabled;
     private final boolean strRequiresWater;
     private final boolean breathingRequiresWater;
-    private int strAmp;
-    private int strDur;
-
-    private int breathingAmp;
-    private int breathingDur;
 
     public TideGuardianTask(IceFireModule module, Player player, RealisticSurvivalPlugin plugin) {
         this.player = player;
@@ -74,11 +69,11 @@ public class TideGuardianTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        items = player.getInventory().getArmorContents();
-        breathingDur = 0;
-        breathingAmp = 0;
-        strDur = 0;
-        strAmp = 0;
+        ItemStack[] items = player.getInventory().getArmorContents();
+        int breathingDur = 0;
+        int breathingAmp = 0;
+        int strDur = 0;
+        int strAmp = 0;
 
         for (ItemStack item : items) {
             if (RSVItem.isRSVItem(item)) {
@@ -110,7 +105,7 @@ public class TideGuardianTask extends BukkitRunnable {
                     player.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, breathingDur, breathingAmp));
                 }
             }
-            if (strEnabled) {
+            if (breathingEnabled) {
                 if (strEnabled) {
                     if (player.getLocation().getBlock().getType() == Material.WATER) {
                         player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, strDur, strAmp));
@@ -142,7 +137,7 @@ public class TideGuardianTask extends BukkitRunnable {
         return false;
     }
 
-    public HashMap<UUID, TideGuardianTask> getTasks() {
+    public Map<UUID, TideGuardianTask> getTasks() {
         return tasks;
     }
 }

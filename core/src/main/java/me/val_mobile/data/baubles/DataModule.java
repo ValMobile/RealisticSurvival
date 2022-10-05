@@ -62,10 +62,9 @@ public class DataModule implements RSVDataModule {
 
                 if (items != null) {
                     Inventory inv = baubleBag.getInventory();
-                    BaubleSlot[] slots = BaubleSlot.values();
 
                     for (int i = 0; i < items.length; i++) {
-                        inv.setItem(slots[i].getValue(), items[i]);
+                        inv.setItem(i, items[i]);
                     }
                 }
             }
@@ -88,7 +87,7 @@ public class DataModule implements RSVDataModule {
     public void saveData() {
         FileConfiguration config = this.config.getConfig();
 
-        config.set(id + ".Items", baubleBag.getBaubles().values().toArray());
+        config.set(id + ".Items", baubleBag.getInventory().getContents());
 
         saveFile(config);
     }
@@ -96,7 +95,7 @@ public class DataModule implements RSVDataModule {
     public ItemStack[] loadItemStacks() {
         Object object = config.getConfig().get(id + ".Items");
 
-        return object instanceof Collection ? ((Collection<ItemStack>) object).toArray(new ItemStack[0]) : null;
+        return object instanceof Collection ? ((Collection<ItemStack>) object).toArray(new ItemStack[baubleBag.getInventory().getSize()]) : null;
     }
 
     public void saveFile(FileConfiguration config) {

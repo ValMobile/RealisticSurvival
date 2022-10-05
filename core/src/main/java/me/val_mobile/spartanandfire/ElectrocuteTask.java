@@ -24,11 +24,12 @@ import org.bukkit.entity.Damageable;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class ElectrocuteTask extends BukkitRunnable {
 
-    private static HashMap<UUID, ElectrocuteTask> tasks = new HashMap<>();
+    private static Map<UUID, ElectrocuteTask> tasks = new HashMap<>();
     private final Damageable entity;
     private final RealisticSurvivalPlugin plugin;
     private final FileConfiguration config;
@@ -74,7 +75,7 @@ public class ElectrocuteTask extends BukkitRunnable {
         runTaskTimer(plugin, 0L, tickSpeed);
     }
 
-    public static HashMap<UUID, ElectrocuteTask> getTasks() {
+    public static Map<UUID, ElectrocuteTask> getTasks() {
         return tasks;
     }
 

@@ -32,7 +32,7 @@ public class NtrModule extends RSVModule {
 
     private NtrEvents events;
 
-    public final static String NAME = "NoTreePunching";
+    public static final String NAME = "NoTreePunching";
 
     public NtrModule(RealisticSurvivalPlugin plugin) {
         super(NAME, plugin);

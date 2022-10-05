@@ -26,7 +26,7 @@ import java.util.*;
 
 public abstract class RSVModule {
 
-    private static final HashMap<String, RSVModule> modules = new HashMap<>();
+    private static final Map<String, RSVModule> modules = new HashMap<>();
 
     private final boolean isEnabled;
     private final String name;
@@ -38,7 +38,7 @@ public abstract class RSVModule {
     private RSVConfig itemConfig;
     private RSVConfig recipesConfig;
 
-    private final Collection<String> allowedWorlds = new ArrayList<>();
+    private final Set<String> allowedWorlds = new HashSet<>();
 
     public RSVModule(String name, RealisticSurvivalPlugin plugin) {
         FileConfiguration config = plugin.getConfig();
@@ -83,11 +83,11 @@ public abstract class RSVModule {
         return name;
     }
 
-    public Collection<String> getAllowedWorlds() {
+    public Set<String> getAllowedWorlds() {
         return allowedWorlds;
     }
 
-    public static HashMap<String, RSVModule> getModules() {
+    public static Map<String, RSVModule> getModules() {
         return modules;
     }
 

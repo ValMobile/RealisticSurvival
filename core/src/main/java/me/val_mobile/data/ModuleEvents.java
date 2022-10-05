@@ -42,7 +42,7 @@ public abstract class ModuleEvents implements Listener {
     }
 
     public boolean shouldEventBeRan(World world) {
-        return module.getAllowedWorlds().contains(world);
+        return module.getAllowedWorlds().contains(world.getName());
     }
 
     public RSVModule getModule() {

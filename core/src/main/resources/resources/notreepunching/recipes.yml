@@ -2,7 +2,7 @@
 #          NoTreePunching Recipes     #
 #######################################
 
-ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Recipe-YML-Files
 
@@ -46,13 +46,6 @@ diamond_knife:
   Ingredients:
     - "|DIAMOND"
     - "STICK"
-netherite_knife:
-  Type: "Smithing"
-  Result:
-    Item: "netherite_knife"
-    Amount: 1
-  Base: "diamond_knife"
-  Addition: "NETHERITE_INGOT"
 flint_pickaxe:
   Type: "Shaped"
   Result:
@@ -123,13 +116,6 @@ diamond_saw:
     - "||STICK"
     - "|STICK|DIAMOND"
     - "STICK|DIAMOND|"
-netherite_saw:
-  Type: "Smithing"
-  Result:
-    Item: "netherite_saw"
-    Amount: 1
-  Base: "diamond_saw"
-  Addition: "NETHERITE_INGOT"
 andesite:
   Type: "Shaped"
   Result:
@@ -263,6 +249,7 @@ copper_boots:
     Item: "copper_boots"
     Amount: 1
   Ingredients:
+    - ""
     - "COPPER_INGOT||COPPER_INGOT"
     - "COPPER_INGOT||COPPER_INGOT"
 golden_mattock:
@@ -301,13 +288,6 @@ diamond_mattock:
     - "DIAMOND|DIAMOND|DIAMOND"
     - "|STICK|DIAMOND"
     - "|STICK"
-netherite_mattock:
-  Type: "Smithing"
-  Result:
-    Item: "netherite_mattock"
-    Amount: 1
-  Base: "diamond_mattock"
-  Addition: "NETHERITE_INGOT"
 macuahuitl:
   Type: "Shaped"
   Result:

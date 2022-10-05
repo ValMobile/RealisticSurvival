@@ -32,7 +32,7 @@ import java.util.Set;
  * Tab is a class that creates a tab completer
  * when the user types appropriate commands
  * @author Val_Mobile
- * @version 1.2.3
+ * @version 1.2.3-DEV-0
  * @since 1.0
  */
 public class Tab implements TabCompleter {
@@ -73,6 +73,7 @@ public class Tab implements TabCompleter {
                 firstArgs.add("thirst");
                 firstArgs.add("temperature");
                 firstArgs.add("resetitem");
+                firstArgs.add("updateitem");
                 firstArgs.add("help");
                 firstArgs.add("version");
             }

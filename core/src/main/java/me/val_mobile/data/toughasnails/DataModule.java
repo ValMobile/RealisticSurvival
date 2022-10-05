@@ -18,7 +18,6 @@ package me.val_mobile.data.toughasnails;
 
 import me.val_mobile.data.RSVDataModule;
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.tan.TanModule;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -36,11 +35,9 @@ public class DataModule implements RSVDataModule {
     private double thirstExhaustion;
     private double thirstSaturation;
     private int thirstTickTimer;
-    private final RealisticSurvivalPlugin plugin;
 
-    public DataModule(RealisticSurvivalPlugin plugin, Player player) {
+    public DataModule(Player player) {
         TanModule module = (TanModule) RSVModule.getModule(TanModule.NAME);
-        this.plugin = plugin;
         this.userConfig = module.getUserConfig().getConfig();
         this.playerDataConfig = module.getPlayerDataConfig();
         this.id = player.getUniqueId();
@@ -100,36 +97,56 @@ public class DataModule implements RSVDataModule {
         double defaultThirst = userConfig.getDouble("Thirst.DefaultThirst");
         double defaultSaturation = userConfig.getDouble("Thirst.DefaultSaturation");
         double defaultExhaustion = userConfig.getDouble("Thirst.DefaultExhaustion");
-        double defaultTickTimer = userConfig.getDouble("Thirst.DefaultExhaustionTickTimer");
+        int defaultTickTimer = userConfig.getInt("Thirst.DefaultExhaustionTickTimer");
 
-        if (!config.contains(id.toString()))
+        if (!config.contains(id.toString())) {
             config.createSection(id.toString());
-        if (!config.contains(tempPath)) {
+        }
+
+        if (config.contains(tempPath)) {
+            temperature = config.getDouble(tempPath);
+        }
+        else {
             config.createSection(tempPath);
             config.set(tempPath, defaultTemp);
-        }
-        if (!config.contains(thirstPath)) {
-            config.createSection(thirstPath);
-            config.set(tempPath, defaultThirst);
-        }
-        if (!config.contains(saturationPath)) {
-            config.createSection(saturationPath);
-            config.set(saturationPath, defaultSaturation);
-        }
-        if (!config.contains(exhaustionPath)) {
-            config.createSection(exhaustionPath);
-            config.set(exhaustionPath, defaultExhaustion);
-        }
-        if (!config.contains(tickTimerPath)) {
-            config.createSection(tickTimerPath);
-            config.set(tickTimerPath, defaultTickTimer);
+            temperature = defaultTemp;
         }
 
-        temperature = config.getDouble(tempPath);
-        thirst = config.getDouble(thirstPath);
-        thirstSaturation = config.getDouble(saturationPath);
-        thirstExhaustion = config.getDouble(exhaustionPath);
-        thirstTickTimer = config.getInt(tickTimerPath);
+        if (config.contains(thirstPath)) {
+            thirst = config.getDouble(thirstPath);
+        }
+        else {
+            config.createSection(thirstPath);
+            config.set(tempPath, defaultThirst);
+            thirst = defaultThirst;
+        }
+
+        if (config.contains(saturationPath)) {
+            thirstSaturation = config.getDouble(saturationPath);
+        }
+        else {
+            config.createSection(saturationPath);
+            config.set(saturationPath, defaultSaturation);
+            thirstSaturation = defaultSaturation;
+        }
+
+        if (config.contains(exhaustionPath)) {
+            thirstExhaustion = config.getDouble(exhaustionPath);
+        }
+        else {
+            config.createSection(exhaustionPath);
+            config.set(exhaustionPath, defaultExhaustion);
+            thirstExhaustion = defaultExhaustion;
+        }
+
+        if (config.contains(tickTimerPath)) {
+            thirstTickTimer = config.getInt(tickTimerPath);
+        }
+        else {
+            config.createSection(tickTimerPath);
+            config.set(tickTimerPath, defaultTickTimer);
+            thirstTickTimer = defaultTickTimer;
+        }
 
         saveFile(config);
     }
@@ -173,9 +190,7 @@ public class DataModule implements RSVDataModule {
 
     public void saveFile(FileConfiguration config) {
         try {
-            playerDataConfig.setConfig(config);
-            playerDataConfig.getConfig().save(playerDataConfig.getFile());
-            playerDataConfig.reloadConfig();
+            config.save(this.playerDataConfig.getFile());
         } catch (IOException e) {
             e.printStackTrace();
         }

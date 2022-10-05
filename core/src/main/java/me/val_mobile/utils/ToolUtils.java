@@ -21,8 +21,8 @@ import me.val_mobile.utils.ToolHandler.Tool;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class ToolUtils {
@@ -145,7 +145,7 @@ public class ToolUtils {
         //uToolMap = Map.copyOf(main.toolHandler.toolMap); // Java 10+ only
     }
 
-    private void addToMap(String name, ArrayList<Material> list) {
+    private void addToMap(String name, List<Material> list) {
         Material mat = Material.getMaterial(name);
         if (mat != null) {
             list.add(mat);

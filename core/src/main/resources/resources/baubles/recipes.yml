@@ -2,7 +2,7 @@
 #          Baubles Recipes            #
 #######################################
 
-ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Recipe-YML-Files
 
@@ -493,7 +493,7 @@ lucky_horseshoe:
     - "GOLD_INGOT|spectral_silt|GOLD_INGOT"
     - "spectral_silt|GOLD_INGOT|spectral_silt"
 spectral_silt_broken_heart:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -501,7 +501,7 @@ spectral_silt_broken_heart:
     - "broken_heart"
     - "disintegration_tablet"
 spectral_silt_balloon:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -509,7 +509,7 @@ spectral_silt_balloon:
     - "balloon"
     - "disintegration_tablet"
 spectral_silt_cobalt_shield:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -517,7 +517,7 @@ spectral_silt_cobalt_shield:
     - "cobalt_shield"
     - "disintegration_tablet"
 spectral_silt_obsidian_shield:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -525,7 +525,7 @@ spectral_silt_obsidian_shield:
     - "obsidian_shield"
     - "disintegration_tablet"
 spectral_silt_magic_mirror:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -533,7 +533,7 @@ spectral_silt_magic_mirror:
     - "magic_mirror"
     - "disintegration_tablet"
 spectral_silt_wormhole_mirror:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -541,7 +541,7 @@ spectral_silt_wormhole_mirror:
     - "wormhole_mirror"
     - "disintegration_tablet"
 spectral_silt_lucky_horseshoe:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -549,7 +549,7 @@ spectral_silt_lucky_horseshoe:
     - "lucky_horseshoe"
     - "disintegration_tablet"
 spectral_silt_sunglasses:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -557,7 +557,7 @@ spectral_silt_sunglasses:
     - "sunglasses"
     - "disintegration_tablet"
 spectral_silt_cross_necklace:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -565,7 +565,7 @@ spectral_silt_cross_necklace:
     - "cross_necklace"
     - "disintegration_tablet"
 spectral_silt_sin_pendant:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -573,7 +573,7 @@ spectral_silt_sin_pendant:
     - "sin_pendant"
     - "disintegration_tablet"
 spectral_silt_flare_gun:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -581,7 +581,7 @@ spectral_silt_flare_gun:
     - "flare_gun"
     - "disintegration_tablet"
 spectral_silt_cracked_black_dragonscale:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -589,7 +589,7 @@ spectral_silt_cracked_black_dragonscale:
     - "cracked_black_dragonscale"
     - "disintegration_tablet"
 spectral_silt_diamond_block:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -597,7 +597,7 @@ spectral_silt_diamond_block:
     - "DIAMOND_BLOCK"
     - "disintegration_tablet"
 spectral_silt_emerald_block:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -605,7 +605,7 @@ spectral_silt_emerald_block:
     - "EMERALD_BLOCK"
     - "disintegration_tablet"
 spectral_silt_phantom_prism:
-  Type: "Shaped"
+  Type: "Shapeless"
   Result:
     Item: "spectral_silt"
     Amount: 1
@@ -628,5 +628,29 @@ bauble_bag:
     Amount: 1
   Ingredients:
     - "|LEATHER"
-    - "LEATHER|IRON_INGOT|LEATHER"
+    - "LEATHER|spectral_silt|LEATHER"
     - "LEATHER|LEATHER|LEATHER"
+recall_potion:
+  Type: "Brewing"
+  Result:
+    Item: "recall_potion"
+    Amount: 1
+  Potion: "awkward_potion"
+  Ingredient: "warped_scroll"
+  Fuel: "BLAZE_POWDER"
+  FuelPower: 40
+  FuelCharge: 1
+  Perfect: false
+  Duration: 400
+wormhole_potion:
+  Type: "Brewing"
+  Result:
+    Item: "wormhole_potion"
+    Amount: 1
+  Potion: "recall_potion"
+  Ingredient: "ENDER_EYE"
+  Fuel: "BLAZE_POWDER"
+  FuelPower: 40
+  FuelCharge: 1
+  Perfect: false
+  Duration: 400

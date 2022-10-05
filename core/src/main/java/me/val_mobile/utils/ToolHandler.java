@@ -20,23 +20,25 @@ import org.bukkit.Material;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ToolHandler {
 
-    protected final HashMap<Material,Tool> toolMap = new HashMap<>();
+    protected final Map<Material,Tool> toolMap = new HashMap<>();
 
     // TODO: Cache valid tool materials here
-    protected final ArrayList<Material> pickaxes = new ArrayList<>();
-    protected final ArrayList<Material> axes = new ArrayList<>();
-    protected final ArrayList<Material> hoes = new ArrayList<>();
-    protected final ArrayList<Material> shovels = new ArrayList<>();
-    protected final ArrayList<Material> swords = new ArrayList<>();
+    protected final List<Material> pickaxes = new ArrayList<>();
+    protected final List<Material> axes = new ArrayList<>();
+    protected final List<Material> hoes = new ArrayList<>();
+    protected final List<Material> shovels = new ArrayList<>();
+    protected final List<Material> swords = new ArrayList<>();
 
-    protected final ArrayList<Material> allTools = new ArrayList<>();
-    protected final ArrayList<Material> instaBreakableByHand = new ArrayList<>();
+    protected final List<Material> allTools = new ArrayList<>();
+    protected final List<Material> instaBreakableByHand = new ArrayList<>();
 
 
-    protected final ArrayList<Material> weapons = new ArrayList<>();
+    protected final List<Material> weapons = new ArrayList<>();
 
     public ToolHandler() {}
 

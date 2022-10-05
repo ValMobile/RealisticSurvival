@@ -18,9 +18,11 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.attribute.Attribute;
+import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Collection;
@@ -28,23 +30,29 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class ScarliteRingTask extends BukkitRunnable {
+public class StoneNegativeGravityTask extends BukkitRunnable {
 
-    private static final Map<UUID, ScarliteRingTask> tasks = new HashMap<>();
+    private static final Map<UUID, StoneNegativeGravityTask> tasks = new HashMap<>();
     private final RSVPlayer rsvPlayer;
+    private final RealisticSurvivalPlugin plugin;
     private final UUID id;
     private final Collection<String> allowedWorlds;
-    private final RealisticSurvivalPlugin plugin;
     private final FileConfiguration config;
-    private final double defaultHealAmount;
+    private final double maxDownwardVelocity;
+    private final double maxUpwardVelocity;
+    private final boolean wasGravityInitiallyOn;
+    private final boolean reenableGravity;
 
-    public ScarliteRingTask(BaubleModule module, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
+    public StoneNegativeGravityTask(BaubleModule module, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
+        this.id = rsvPlayer.getPlayer().getUniqueId();
         this.config = module.getUserConfig().getConfig();
         this.allowedWorlds = module.getAllowedWorlds();
-        this.id = rsvPlayer.getPlayer().getUniqueId();
         this.plugin = plugin;
-        this.defaultHealAmount = config.getDouble("Items.scarlite_ring.HealAmount");
+        this.wasGravityInitiallyOn = rsvPlayer.getPlayer().hasGravity();
+        this.reenableGravity = config.getBoolean("Items.stone_negative_gravity.ReenableGravity");
+        this.maxDownwardVelocity = config.getDouble("Items.stone_negative_gravity.Instability.MaxDownwardVelocity");
+        this.maxUpwardVelocity = config.getDouble("Items.stone_negative_gravity.Instability.MaxUpwardVelocity");
         tasks.put(id, this);
     }
 
@@ -58,36 +66,42 @@ public class ScarliteRingTask extends BukkitRunnable {
         }
         else {
             if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
-                if (rsvPlayer.getBaubleDataModule().hasBauble("scarlite_ring")) {
-                    // effect the player with resistance
-                    Player p = rsvPlayer.getPlayer();
-                    double maxHealth = p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
-                    double currentHealth = p.getHealth();
-                    double dif =  maxHealth - currentHealth;
-                    if (dif < defaultHealAmount) {
-                        p.setHealth(maxHealth);
-                    }
-                    else {
-                        p.setHealth(currentHealth + defaultHealAmount);
-                    }
+                if (rsvPlayer.getBaubleDataModule().hasBauble("stone_negative_gravity") || isHoldingStone()) {
+                    player.setGravity(false);
+
+                    boolean isUnstable = isHoldingStone();
+
+                    if (isUnstable)
+                        player.setVelocity(player.getVelocity().setY(Utils.getRandomNum(maxDownwardVelocity, maxUpwardVelocity)));
                 }
                 // if the player doesn't have rings of res in his/her inventory
                 else {
                     // update static hashmap values and cancel the runnable
+                    if (reenableGravity) {
+                        player.setGravity(true);
+                    }
+                    else {
+                        player.setGravity(wasGravityInitiallyOn);
+                    }
                     tasks.remove(id);
                     cancel();
                 }
             }
             else {
+                if (reenableGravity) {
+                    player.setGravity(true);
+                }
+                else {
+                    player.setGravity(wasGravityInitiallyOn);
+                }
                 tasks.remove(id);
                 cancel();
             }
         }
-
     }
 
     public void start() {
-        int tickSpeed = config.getInt("Items.scarlite_ring.TickTime"); // get the tick speed
+        int tickSpeed = config.getInt("Items.stone_negative_gravity.TickTime"); // get the tick speed
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 
@@ -98,7 +112,18 @@ public class ScarliteRingTask extends BukkitRunnable {
         return false;
     }
 
-    public static Map<UUID, ScarliteRingTask> getTasks() {
+    public static Map<UUID, StoneNegativeGravityTask> getTasks() {
         return tasks;
+    }
+
+    private boolean isHoldingStone() {
+        Player player = rsvPlayer.getPlayer();
+        ItemStack item = player.getInventory().getItemInMainHand();
+
+        if (RSVItem.isRSVItem(item)) {
+            return RSVItem.getNameFromItem(item).equals("stone_negative_gravity");
+        }
+
+        return false;
     }
 }

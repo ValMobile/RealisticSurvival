@@ -21,11 +21,12 @@ import me.val_mobile.utils.RSVItem;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class MiscItems {
 
-    private final HashMap<String, RSVItem> items = new HashMap<>();
+    private final Map<String, RSVItem> items = new HashMap<>();
 
     public MiscItems() {}
 
@@ -40,7 +41,7 @@ public class MiscItems {
         }
     }
 
-    public HashMap<String, RSVItem> getItems() {
+    public Map<String, RSVItem> getItems() {
         return items;
     }
 

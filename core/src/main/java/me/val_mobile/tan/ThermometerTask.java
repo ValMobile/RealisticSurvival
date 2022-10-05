@@ -30,6 +30,7 @@ import org.bukkit.util.Vector;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import static me.val_mobile.tan.TemperatureCalculateTask.MAXIMUM_TEMPERATURE;
@@ -37,7 +38,7 @@ import static me.val_mobile.tan.TemperatureCalculateTask.MINIMUM_TEMPERATURE;
 
 public class ThermometerTask extends BukkitRunnable {
 
-    private final static HashMap<UUID, ThermometerTask> tasks = new HashMap<>();
+    private static final Map<UUID, ThermometerTask> tasks = new HashMap<>();
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
@@ -126,7 +127,7 @@ public class ThermometerTask extends BukkitRunnable {
     }
 
 
-    public static HashMap<UUID, ThermometerTask> getTasks() {
+    public static Map<UUID, ThermometerTask> getTasks() {
         return tasks;
     }
 }

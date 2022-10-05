@@ -162,7 +162,7 @@ public class SfEvents extends ModuleEvents implements Listener {
 
                                         String weaponType = name.substring(name.lastIndexOf("_") + 1);
 
-                                        if (weaponType.equals("bow") || weaponType.equals("crossbow")) {
+                                        if (weaponType.equals("longbow") || weaponType.equals("crossbow")) {
                                             damage *= config.getDouble("Items." + name + ".AttackDamageMultiplier");
                                             switch (materialType) {
                                                 case "dragonbone_flamed" -> {

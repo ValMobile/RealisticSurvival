@@ -16,7 +16,6 @@
  */
 package me.val_mobile.tan;
 
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Bukkit;
@@ -28,11 +27,13 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class ThirstCalculateTask extends BukkitRunnable {
 
-    private final static HashMap<UUID, ThirstCalculateTask> tasks = new HashMap<>();
+    private static final Map<UUID, ThirstCalculateTask> tasks = new HashMap<>();
+    private final TanModule module;
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
@@ -52,12 +53,13 @@ public class ThirstCalculateTask extends BukkitRunnable {
     public static final double MAXIMUM_THIRST = 20.0;
     public static final double MINIMUM_THIRST = 0.0;
 
-    public ThirstCalculateTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public ThirstCalculateTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
-        this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
+        this.module = module;
+        this.config = module.getUserConfig().getConfig();
         this.player = player;
         this.id = player.getPlayer().getUniqueId();
-        this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
+        this.allowedWorlds = module.getAllowedWorlds();
         this.thirstLvl = player.getTanDataModule().getThirst();
         this.tickTimer = player.getTanDataModule().getThirstTickTimer();
         this.saturationLvl = player.getTanDataModule().getThirstSaturation();
@@ -113,7 +115,7 @@ public class ThirstCalculateTask extends BukkitRunnable {
 
                 if (thirstLvl <= config.getDouble("Thirst.Dehydration.Thirst")) {
                     if (!DehydrationTask.hasTask(id)) {
-                        new DehydrationTask(plugin, this.player).start();
+                        new DehydrationTask(module, plugin, this.player).start();
                     }
                 }
 
@@ -184,7 +186,7 @@ public class ThirstCalculateTask extends BukkitRunnable {
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 
-    public static HashMap<UUID, ThirstCalculateTask> getTasks() {
+    public static Map<UUID, ThirstCalculateTask> getTasks() {
         return tasks;
     }
 

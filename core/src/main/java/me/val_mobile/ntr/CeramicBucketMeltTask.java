@@ -21,24 +21,26 @@ import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class CeramicBucketMeltTask extends BukkitRunnable {
 
-
-    private static HashMap<UUID, CeramicBucketMeltTask> tasks = new HashMap<>();
-    private static HashMap<UUID, Long> players = new HashMap<>();
+    private static final Map<UUID, CeramicBucketMeltTask> tasks = new HashMap<>();
     private final Player player;
     private final UUID id;
     private final RealisticSurvivalPlugin plugin;
     private final FileConfiguration config;
     private final int duration;
+    private final Set<String> allowedWorlds;
 
     private final double soundChance;
     private final boolean emitSound;
@@ -46,11 +48,9 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
     private final double particleChance;
     private final boolean emitParticles;
 
-    private final long beginningTime;
-    private long elapsed = 0;
+    private int ticks = 0;
 
     public CeramicBucketMeltTask(RealisticSurvivalPlugin plugin, NtrModule module, Player player) {
-        this.beginningTime = System.currentTimeMillis();
         this.player = player;
         this.id = player.getUniqueId();
         this.plugin = plugin;
@@ -58,7 +58,7 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
         this.duration = config.getInt("Pottery.CeramicLavaBucketMelting.Time");
         this.soundChance = config.getDouble("Pottery.CeramicLavaBucketMelting.BurningSound.Chance");
         this.emitSound = config.getBoolean("Pottery.CeramicLavaBucketMelting.BurningSound.Enabled");
-
+        this.allowedWorlds = module.getAllowedWorlds();
         this.particleChance = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.Chance");
         this.emitParticles = config.getBoolean("Pottery.CeramicLavaBucketMelting.EmitParticles.Enabled");
 
@@ -67,49 +67,51 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
 
     @Override
     public void run() {
-
-        if (!players.containsKey(id)) {
-            cancel();
-        }
-        elapsed = players.get(id) - beginningTime;
-
-        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-        if (RSVItem.isRSVItem(itemMainHand)) {
+        if (player == null) {
             stop();
         }
+        else {
+            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && isHoldingCeramicLavaBucket()) {
+                ticks++;
 
-        String name = RSVItem.getNameFromItem(itemMainHand);
+                if (ticks > duration) {
+                    if (config.getBoolean("Pottery.CeramicLavaBucketMelting.PourLava.Enabled")) {
+                        Block block = player.getLocation().getBlock();
+                        if (block.isPassable() && config.getBoolean("Pottery.CeramicLavaBucketMelting.PourLava.OnlyReplacePassableBlocks")) {
+                            block.setType(Material.LAVA);
+                        }
+                    }
+                    player.getInventory().setItemInMainHand(null);
+                    stop();
+                }
+                else {
+                    if (emitSound) {
+                        if (Math.random() <= soundChance) {
+                            String soundName = config.getString("Pottery.CeramicLavaBucketMelting.BurningSound.Sound");
+                            float volume = (float) config.getDouble("Pottery.CeramicLavaBucketMelting.BurningSound.Volume");
+                            float pitch = (float) config.getDouble("Pottery.CeramicLavaBucketMelting.BurningSound.Pitch");
 
-        if (!((name.equals("ceramic_bucket") || name.equals("ceramic_lava_bucket")) && itemMainHand.getType() == Material.LAVA_BUCKET)) {
-            stop();
-        }
+                            Utils.playSound(player.getLocation(), soundName, volume, pitch);
+                        }
+                    }
 
-        if (elapsed > duration) {
-            player.getInventory().setItemInMainHand(null);
-            stop();
-        }
+                    if (emitParticles) {
+                        if (Math.random() <= particleChance) {
+                            Particle particle = Particle.valueOf(config.getString("Pottery.CeramicLavaBucketMelting.EmitParticles.Particle"));
+                            int min = config.getInt("Pottery.CeramicLavaBucketMelting.EmitParticles.MinCount");
+                            int max = config.getInt("Pottery.CeramicLavaBucketMelting.EmitParticles.MaxCount");
 
-        if (emitSound) {
-            if (Math.random() <= soundChance) {
-                String soundName = config.getString("Pottery.CeramicLavaBucketMelting.BurningSound.Sound");
-                float volume = (float) config.getDouble("Pottery.CeramicLavaBucketMelting.BurningSound.Volume");
-                float pitch = (float) config.getDouble("Pottery.CeramicLavaBucketMelting.BurningSound.Pitch");
+                            double xOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.x-Offset");
+                            double yOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.y-Offset");
+                            double zOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.z-Offset");
 
-                Utils.playSound(player.getLocation(), soundName, volume, pitch);
+                            player.getWorld().spawnParticle(particle, player.getLocation(), Math.toIntExact(Math.round((Math.random() * max))) + min, xOffset, yOffset, zOffset);
+                        }
+                    }
+                }
             }
-        }
-
-        if (emitParticles) {
-            if (Math.random() <= particleChance) {
-                Particle particle = Particle.valueOf(config.getString("Pottery.CeramicLavaBucketMelting.EmitParticles.Particle"));
-                int min = config.getInt("Pottery.CeramicLavaBucketMelting.EmitParticles.MinCount");
-                int max = config.getInt("Pottery.CeramicLavaBucketMelting.EmitParticles.MaxCount");
-
-                double xOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.x-Offset");
-                double yOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.y-Offset");
-                double zOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.z-Offset");
-
-                player.getWorld().spawnParticle(particle, player.getLocation(), Math.toIntExact(Math.round((Math.random() * max))) + min, xOffset, yOffset, zOffset);
+            else {
+                stop();
             }
         }
     }
@@ -119,22 +121,26 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
     }
 
     public void stop() {
-        players.remove(id);
         tasks.remove(id);
         cancel();
     }
 
-    public static HashMap<UUID, Long> getPlayers() {
-        return players;
-    }
-
-    public static HashMap<UUID, CeramicBucketMeltTask> getTasks() {
+    public static Map<UUID, CeramicBucketMeltTask> getTasks() {
         return tasks;
     }
 
     public static boolean hasTask(UUID id) {
         if (tasks.containsKey(id)) {
             return tasks.get(id) != null;
+        }
+        return false;
+    }
+
+    private boolean isHoldingCeramicLavaBucket() {
+        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+
+        if (RSVItem.isRSVItem(itemMainHand)) {
+            return RSVItem.getNameFromItem(itemMainHand).equals("ceramic_lava_bucket");
         }
         return false;
     }

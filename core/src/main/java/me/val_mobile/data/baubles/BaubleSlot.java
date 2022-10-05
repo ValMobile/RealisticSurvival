@@ -16,26 +16,33 @@
  */
 package me.val_mobile.data.baubles;
 
+import me.val_mobile.utils.RSVItem;
+
 public enum BaubleSlot {
 
-    HEAD(12, "Head"),
-    AMULET(21, "Amulet"),
-    BODY(30, "Body"),
-    FIRST_RING(14, "Ring"),
-    SECOND_RING(23, "Ring"),
-    CHARM(32, "Charm"),
-    BELT(31, "Belt");
+    HEAD("Head", RSVItem.getItem("head_slot"), 12),
+    AMULET("Amulet", RSVItem.getItem("amulet_slot"), 21),
+    BODY("Body", RSVItem.getItem("body_slot"), 30),
+    RING("Ring", RSVItem.getItem("ring_slot"), 14, 23),
+    CHARM("Charm", RSVItem.getItem("charm_slot"), 32),
+    BELT("Belt", RSVItem.getItem("belt_slot"), 31);
 
-    private int val;
-    private String tag;
+    private final int[] vals;
+    private final String tag;
+    private final RSVItem item;
 
-    BaubleSlot(int val, String tag) {
-        this.val = val;
+    BaubleSlot(String tag, RSVItem item, int... vals) {
+        this.vals = vals;
         this.tag = tag;
+        this.item = item;
     }
 
-    public int getValue() {
-        return val;
+    public int[] getValues() {
+        return vals;
+    }
+
+    public RSVItem getItem() {
+        return item;
     }
 
     public String getTag() {

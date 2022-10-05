@@ -19,15 +19,17 @@ package me.val_mobile.baubles;
 import me.val_mobile.data.RSVModule;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
-public class PotionBauble extends Tickable {
+public class PotionBauble extends TickableBauble {
 
-    private Collection<PotionBaubleEffect> effects = new ArrayList<>();
+    private final Collection<PotionBaubleEffect> effects = new ArrayList<>();
 
     public PotionBauble(String name) {
         super(name);
@@ -49,6 +51,16 @@ public class PotionBauble extends Tickable {
 
                 effects.add(new PotionBaubleEffect(PotionEffectType.getByName(key), dur, amp, ampInc));
             }
+        }
+    }
+
+    public void ability(Player player, int amount) {
+        for (PotionBaubleEffect effect : effects) {
+            int baseAmp = effect.getAmplifier();
+            int inc = effect.getIncrement();
+            int amp = baseAmp + (amount - 1) * inc;
+
+            player.addPotionEffect(new PotionEffect(effect.getType(), effect.getDuration(), amp));
         }
     }
 

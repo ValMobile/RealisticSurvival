@@ -29,14 +29,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class EnderCrownTask extends BukkitRunnable {
 
-    private static final HashMap<UUID, EnderCrownTask> tasks = new HashMap<>();
+    private static final Map<UUID, EnderCrownTask> tasks = new HashMap<>();
 
     private final RSVPlayer rsvPlayer;
     private final UUID id;
@@ -74,10 +71,8 @@ public class EnderCrownTask extends BukkitRunnable {
             cancel();
         }
         else {
-            if (player.isOnline() && !player.isDead() && allowedWorlds.contains(player.getWorld().getName())) {
-                boolean hasBauble = rsvPlayer.getBaubleDataModule().hasBauble("ender_queens_crown");
-
-                if (hasBauble) {
+            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
+                if (rsvPlayer.getBaubleDataModule().hasBauble("ender_queens_crown")) {
                     // effect the player with resistance
                     Player p = rsvPlayer.getPlayer();
                     Location loc = p.getLocation();
@@ -136,7 +131,7 @@ public class EnderCrownTask extends BukkitRunnable {
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 
-    public static HashMap<UUID, EnderCrownTask> getTasks() {
+    public static Map<UUID, EnderCrownTask> getTasks() {
         return tasks;
     }
 

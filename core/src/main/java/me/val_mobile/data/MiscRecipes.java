@@ -22,48 +22,75 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class MiscRecipes {
 
-    private HashMap<String, Recipe> recipeMap = new HashMap<>();
-    private Collection<RSVAnvilRecipe> anvilRecipes = new ArrayList<>();
+    private final Map<String, Recipe> recipeMap = new HashMap<>();
+    private final Set<RSVAnvilRecipe> anvilRecipes = new HashSet<>();
     private final RealisticSurvivalPlugin plugin;
+    private final FileConfiguration config;
 
     public MiscRecipes(RealisticSurvivalPlugin plugin) {
         this.plugin = plugin;
+        this.config = RealisticSurvivalPlugin.getMiscRecipesConfig();
     }
 
     public void initialize() {
-        FileConfiguration recipeConfig = RealisticSurvivalPlugin.getMiscRecipesConfig();
 
-        Set<String> keys = recipeConfig.getKeys(false);
+        Set<String> keys = config.getKeys(false);
 
         for (String name : keys) {
-            Recipe recipe = null;
+            Recipe recipe;
 
             if (!name.equals("ConfigId")) {
-                String type = recipeConfig.getString(name + ".Type");
+                String type = config.getString(name + ".Type");
 
-                switch (type) {
-                    case "Shaped" -> recipe = new RSVShapedRecipe(recipeConfig, name, plugin);
-                    case "Shapeless" -> recipe = new RSVShapelessRecipe(recipeConfig, name, plugin);
-                    case "Smithing" -> recipe = new RSVSmithingRecipe(recipeConfig, name, plugin);
-                    case "Furnace" -> recipe = new RSVFurnaceRecipe(recipeConfig, name, plugin);
-                    case "Campfire" -> recipe = new RSVCampfireRecipe(recipeConfig, name, plugin);
-                    case "Smoker" -> recipe = new RSVSmokingRecipe(recipeConfig, name, plugin);
-                    case "Stonecutting" -> recipe = new RSVStonecuttingRecipe(recipeConfig, name, plugin);
-                    case "Anvil" -> {
-                        recipe = new RSVAnvilRecipe(recipeConfig, name);
-                        anvilRecipes.add((RSVAnvilRecipe) recipe);
-                    }
-                    default -> {}
+                if (type != null) {
+                    recipe = getRecipe(type, name);
+                    addRecipe(recipe);
+                    recipeMap.putIfAbsent(name, recipe);
                 }
-                addRecipe(recipe);
-                recipeMap.putIfAbsent(name, recipe);
+            }
+        }
+    }
+
+    public Recipe getRecipe(String type, String recipeName) {
+        switch (type) {
+            case "Shaped" -> {
+                return new RSVShapedRecipe(config, recipeName, plugin);
+            }
+            case "Shapeless" -> {
+                return new RSVShapelessRecipe(config, recipeName, plugin);
+            }
+            case "Smithing" -> {
+                return new RSVSmithingRecipe(config, recipeName, plugin);
+            }
+            case "Furnace" -> {
+                return new RSVFurnaceRecipe(config, recipeName, plugin);
+            }
+            case "Campfire" -> {
+                return new RSVCampfireRecipe(config, recipeName, plugin);
+            }
+            case "Smoker" -> {
+                return new RSVSmokingRecipe(config, recipeName, plugin);
+            }
+            case "Stonecutting" -> {
+                return new RSVStonecuttingRecipe(config, recipeName, plugin);
+            }
+            case "Anvil" -> {
+                RSVAnvilRecipe recipe = new RSVAnvilRecipe(config, recipeName);
+                anvilRecipes.add(recipe);
+                return recipe;
+            }
+            case "Brewing" -> {
+                return null;
+            }
+            default -> {
+                return null;
             }
         }
     }
@@ -111,11 +138,11 @@ public class MiscRecipes {
         }
     }
 
-    public HashMap<String, Recipe> getRecipeMap() {
+    public Map<String, Recipe> getRecipeMap() {
         return recipeMap;
     }
 
-    public Collection<RSVAnvilRecipe> getAnvilRecipes() {
+    public Set<RSVAnvilRecipe> getAnvilRecipes() {
         return anvilRecipes;
     }
 

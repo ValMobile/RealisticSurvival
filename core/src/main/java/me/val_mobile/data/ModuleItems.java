@@ -21,12 +21,13 @@ import me.val_mobile.utils.RSVItem;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class ModuleItems {
 
     private final RSVModule module;
-    private final HashMap<String, RSVItem> items = new HashMap<>();
+    private final Map<String, RSVItem> items = new HashMap<>();
 
     public ModuleItems(RSVModule module) {
         this.module = module;
@@ -56,7 +57,7 @@ public class ModuleItems {
         return module;
     }
 
-    public HashMap<String, RSVItem> getItems() {
+    public Map<String, RSVItem> getItems() {
         return items;
     }
 

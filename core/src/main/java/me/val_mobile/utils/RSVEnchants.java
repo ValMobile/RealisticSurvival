@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 public class RSVEnchants {
 
-    private final static HashSet<Enchantment> enchants = new HashSet<>();
+    private static final HashSet<Enchantment> enchants = new HashSet<>();
 
     public static final Enchantment WARMING = new EnchantmentWrapper("warming", "Warming", 1);
     public static final Enchantment COOLING = new EnchantmentWrapper("cooling", "Cooling", 1);

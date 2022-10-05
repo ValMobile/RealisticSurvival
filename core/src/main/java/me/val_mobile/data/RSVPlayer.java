@@ -18,34 +18,32 @@ package me.val_mobile.data;
 
 import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.data.toughasnails.DataModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.tan.TanModule;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class RSVPlayer {
 
-    private final RealisticSurvivalPlugin plugin;
     private final UUID uuid;
     private final DataModule tanDataModule;
     private final me.val_mobile.data.baubles.DataModule baubleDataModule;
-    private static final HashMap<UUID, RSVPlayer> players = new HashMap<>();
+    private static final Map<UUID, RSVPlayer> players = new HashMap<>();
 
-    public RSVPlayer(RealisticSurvivalPlugin plugin, Player player) {
-        this.plugin = plugin;
+    public RSVPlayer(Player player) {
         this.uuid = player.getUniqueId();
 
         baubleDataModule = RSVModule.getModule(BaubleModule.NAME).isEnabled() ? new me.val_mobile.data.baubles.DataModule(player) : null;
 
-        tanDataModule = RSVModule.getModule(TanModule.NAME).isEnabled() ? new DataModule(plugin, player) : null;
+        tanDataModule = RSVModule.getModule(TanModule.NAME).isEnabled() ? new DataModule(player) : null;
 
         players.put(uuid, this);
     }
 
-    public static HashMap<UUID, RSVPlayer> getPlayers() {
+    public static Map<UUID, RSVPlayer> getPlayers() {
         return players;
     }
 

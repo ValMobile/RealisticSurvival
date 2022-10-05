@@ -2,7 +2,7 @@
 #          Baubles Items              #
 #######################################
 
-ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -353,6 +353,8 @@ spectral_silt:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fSpectral Silt"
   CustomModelData: 83680
+  Enchantments:
+    DURABILITY: 1
   Lore:
     - "&9Crafting component"
 disintegration_tablet:
@@ -362,9 +364,9 @@ disintegration_tablet:
   Lore:
     - "&9Craft with dungeon loot to convert it into spectral silt"
 broken_heart:
-  Material: "TOTEM_OF_UNDYING"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fBroken Heart"
-  CustomModelData: 83650
+  CustomModelData: 83739
   Lore:
     - "&7Durability: 3/3"
     - "&9Lethal damage destroys empty heart containers instead."
@@ -383,7 +385,6 @@ cross_necklace:
   Lore:
     - "&9Increases length of invicibility when damaged."
     - "&9Sleep to regenerate heart containers."
-    - "&aHow did this happen?"
     - ""
     - "&6Bauble (Amulet)"
   NBTTags:
@@ -393,9 +394,8 @@ wrath_pendant:
   DisplayName: "&fWrath Pendant"
   CustomModelData: 83683
   Lore:
-    - "&9Gives +%WRATH_PENDANT_BONUS_DAMAGE% damage."
+    - "&9Gives extra damage."
     - "&9Grants sinful buff (+damage, +armor) after you deal a critical hit."
-    - "&aHow did this happen?"
     - ""
     - "&6Bauble (Amulet)"
   NBTTags:
@@ -415,7 +415,6 @@ gluttony_pendant:
   DisplayName: "&fGluttony Pendant"
   CustomModelData: 83685
   Lore:
-    - "&9Eat faster."
     - "&9Gives sinful buff (+damage, +armor) while you eat."
     - ""
     - "&6Bauble (Amulet)"
@@ -624,37 +623,37 @@ return_scroll:
   CustomModelData: 83714
 body_slot:
   Material: "PRISMARINE_SHARD"
-  DisplayName: ""
+  DisplayName: "&7"
   CustomModelData: 83718
   NBTTags:
     rsvbaubleslot: "Body"
 charm_slot:
   Material: "PRISMARINE_SHARD"
-  DisplayName: ""
+  DisplayName: "&7"
   CustomModelData: 83719
   NBTTags:
     rsvbaubleslot: "Charm"
 belt_slot:
   Material: "PRISMARINE_SHARD"
-  DisplayName: ""
+  DisplayName: "&7"
   CustomModelData: 83720
   NBTTags:
     rsvbaubleslot: "Belt"
 ring_slot:
   Material: "PRISMARINE_SHARD"
-  DisplayName: ""
+  DisplayName: "&7"
   CustomModelData: 83721
   NBTTags:
     rsvbaubleslot: "Ring"
 head_slot:
   Material: "PRISMARINE_SHARD"
-  DisplayName: ""
+  DisplayName: "&7"
   CustomModelData: 83722
   NBTTags:
     rsvbaubleslot: "Head"
 amulet_slot:
   Material: "PRISMARINE_SHARD"
-  DisplayName: ""
+  DisplayName: "&7"
   CustomModelData: 83723
   NBTTags:
     rsvbaubleslot: "Amulet"

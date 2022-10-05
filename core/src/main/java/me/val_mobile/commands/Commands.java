@@ -39,7 +39,7 @@ import java.util.Collection;
  * Commands is a class that allows users to
  * access the plugin's commands in-game
  * @author Val_Mobile
- * @version 1.2.3
+ * @version 1.2.3-DEV-0
  * @since 1.0
  */
 public class Commands implements CommandExecutor {
@@ -68,11 +68,7 @@ public class Commands implements CommandExecutor {
         // check if the user typed /realisticsurvival, case-insensitive
         if (label.equalsIgnoreCase("realisticsurvival") || label.equalsIgnoreCase("rsv")) {
 
-            boolean isPlayer = false;
-
-            if (sender instanceof Player) {
-                isPlayer = true;
-            }
+            boolean isPlayer = sender instanceof Player;
 
             // check if the user only typed /realisticsurvival with no arguments
             if (args.length == 0) {
@@ -405,8 +401,6 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "resetitem" -> {
-                    // check if the player has the permission to change temperature
-
                     if (!(sender.hasPermission("realisticsurvival.command.resetitem") || sender.hasPermission("realisticsurvival.command.*"))) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
@@ -424,9 +418,25 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 }
-                case "help" -> {
-                    // check if the player has the permission to change temperature
+                case "updateitem" -> {
+                    if (!(sender.hasPermission("realisticsurvival.command.updateitem") || sender.hasPermission("realisticsurvival.command.*"))) {
+                        // send the player a message explaining that he/she does not have permission to execute the command
+                        sendNoPermissionMessage(sender);
+                        return true;
+                    }
 
+                    if (sender instanceof Player) {
+                        Player player = ((Player) sender).getPlayer();
+                        PlayerInventory inv = player.getInventory();
+                        ItemStack itemMainHand = inv.getItemInMainHand();
+
+                        if (RSVItem.isRSVItem(itemMainHand)) {
+                            RealisticSurvivalPlugin.getUtil().updateItem(itemMainHand);
+                        }
+                    }
+                    return true;
+                }
+                case "help" -> {
                     if (!(sender.hasPermission("realisticsurvival.command.help") || sender.hasPermission("realisticsurvival.command.*"))) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
@@ -436,7 +446,6 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "version" -> {
-                    // check if the player has the permission to change temperature
                     if (!(sender.hasPermission("realisticsurvival.command.version") || sender.hasPermission("realisticsurvival.command.*"))) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
@@ -445,8 +454,8 @@ public class Commands implements CommandExecutor {
 
                     String version = plugin.getConfig().getString("Version");
                     version = version.replaceAll("%PLUGIN_VERSION%", plugin.getDescription().getVersion());
-                    version = version.replaceAll("%SERVER_VERSION%", Bukkit.getVersion());
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', version));
+                    Bukkit.getServer().dispatchCommand(sender, "version");
                     return true;
                 }
                 default -> {

@@ -2,7 +2,7 @@
 #          Tough as Nails Items       #
 #######################################
 
-ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -198,8 +198,8 @@ canteen_empty:
   DisplayName: "&fEmpty Canteen"
   CustomModelData: 83650
   Lore:
-    - "Drink: None"
-    - "Durability: &90&7/&95"
+    - "&7Drink: None"
+    - "&7Durability: 0/5"
   NBTTags:
     rsvdrink: "None"
     rsvdurability: 0
@@ -209,8 +209,8 @@ canteen_filled:
   DisplayName: "&fFilled Canteen"
   CustomModelData: 83663
   Lore:
-    - "Drink: Unpurified Water"
-    - "&98&7/&95"
+    - "&7Drink: Unpurified Water"
+    - "&7Durability: 5/5"
   NBTTags:
     rsvdrink: "Unpurified Water"
     rsvdurability: 5

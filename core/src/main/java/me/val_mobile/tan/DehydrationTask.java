@@ -16,7 +16,6 @@
  */
 package me.val_mobile.tan;
 
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.GameMode;
@@ -31,7 +30,7 @@ import java.util.*;
 
 public class DehydrationTask extends BukkitRunnable {
 
-    private final static HashMap<UUID, DehydrationTask> tasks = new HashMap<>();
+    private static final Map<UUID, DehydrationTask> tasks = new HashMap<>();
     private final UUID id;
     private final FileConfiguration config;
 
@@ -39,15 +38,17 @@ public class DehydrationTask extends BukkitRunnable {
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
     private final double damage;
+    private final TanModule module;
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
 
 
-    public DehydrationTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public DehydrationTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
-        this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
+        this.module = module;
+        this.config = module.getUserConfig().getConfig();
         this.player = player;
         this.id = player.getPlayer().getUniqueId();
-        this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
+        this.allowedWorlds = module.getAllowedWorlds();
         this.damage = config.getDouble("Thirst.Dehydration.Damage.Amount");
 
         ConfigurationSection section = config.getConfigurationSection("Thirst.Dehydration.PotionEffects.Effects");
@@ -81,6 +82,9 @@ public class DehydrationTask extends BukkitRunnable {
                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
                     if (config.getBoolean("Thirst.Dehydration.Damage.Enabled")) {
                         if (player.getHealth() >= config.getDouble("Thirst.Dehydration.Damage.Cutoff")) {
+                            if (player.getHealth() - damage <= 0) {
+                                module.getDehydrationDeath().add(id);
+                            }
                             player.damage(damage);
                         }
                     }
@@ -122,7 +126,7 @@ public class DehydrationTask extends BukkitRunnable {
         return false;
     }
 
-    public static HashMap<UUID, DehydrationTask> getTasks() {
+    public static Map<UUID, DehydrationTask> getTasks() {
         return tasks;
     }
 }

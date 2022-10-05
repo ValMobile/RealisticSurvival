@@ -137,10 +137,12 @@ public class v1_16_R1 extends InternalsProvider {
     public boolean isNetheriteRecipe(SmithingInventory inv) {
         ItemStack base = inv.getItem(0);
         ItemStack result = inv.getItem(2);
-
+        
         if (!(result == null || base == null)) {
             if (Utils.isNetherite(result.getType()) && Utils.isDiamond(base.getType())) {
-                return true;
+                if (RSVItem.isRSVItem(result)) {
+                    return RSVItem.getItem(RSVItem.getNameFromItem(result)).getItemMeta().getCustomModelData() != result.getItemMeta().getCustomModelData();
+                }
             }
         }
         return false;
@@ -158,5 +160,4 @@ public class v1_16_R1 extends InternalsProvider {
     public void attack(Player player, Entity entity) {
         ((CraftPlayer) player).getHandle().attack(((CraftEntity) entity).getHandle());
     }
-
 }

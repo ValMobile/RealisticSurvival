@@ -145,8 +145,7 @@ public class v1_18_R2 extends InternalsProvider {
                 switch (key.getKey()) {
                     case "netherite_axe_smithing", "netherite_pickaxe_smithing", "netherite_shovel_smithing", "netherite_sword_smithing", "netherite_hoe_smithing", "netherite_helmet_smithing", "netherite_chestplate_smithing", "netherite_leggings_smithing", "netherite_boots_smithing" ->
                             inv.setResult(null);
-                    default -> {
-                    }
+                    default -> {}
                 }
             }
         }

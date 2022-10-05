@@ -16,7 +16,6 @@
  */
 package me.val_mobile.tan;
 
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.DisplayTask;
@@ -32,10 +31,10 @@ import java.util.*;
 
 public class ParasiteTask extends BukkitRunnable {
 
+    private final TanModule module;
     private final FileConfiguration config;
-
     private final RealisticSurvivalPlugin plugin;
-    private final static HashMap<UUID, ParasiteTask> tasks = new HashMap<>();
+    private static final Map<UUID, ParasiteTask> tasks = new HashMap<>();
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
     private final double damage;
@@ -46,13 +45,14 @@ public class ParasiteTask extends BukkitRunnable {
     private int ticks = 0;
 
 
-    public ParasiteTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public ParasiteTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
-        this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
+        this.module = module;
+        this.config = module.getUserConfig().getConfig();
         this.player = player;
         this.id = player.getPlayer().getUniqueId();
-        this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
-        this.damage = config.getDouble("Thirst.Parasites.Damage");
+        this.allowedWorlds = module.getAllowedWorlds();
+        this.damage = config.getDouble("Thirst.Parasites.Damage.Amount");
         this.duration = config.getInt("Thirst.Parasites.Duration");
         this.tickSpeed = config.getInt("Thirst.Parasites.TickSpeed");
 
@@ -88,6 +88,15 @@ public class ParasiteTask extends BukkitRunnable {
             if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && !player.isDead() && player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && ticks < duration) {
                 DisplayTask.getTasks().get(id).setParasitesActive(true);
                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
+                    if (player.getHealth() - damage <= 0) {
+                        if (player.getHealth() >= config.getDouble("Thirst.Parasites.Damage.Cutoff")) {
+                            if (player.getHealth() - damage <= 0) {
+                                module.getParasiteDeath().add(id);
+                            }
+                            player.damage(damage);
+                        }
+                    }
+
                     player.damage(damage);
                 }
             }
@@ -117,7 +126,7 @@ public class ParasiteTask extends BukkitRunnable {
         this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 
-    public static HashMap<UUID, ParasiteTask> getTasks() {
+    public static Map<UUID, ParasiteTask> getTasks() {
         return tasks;
     }
 

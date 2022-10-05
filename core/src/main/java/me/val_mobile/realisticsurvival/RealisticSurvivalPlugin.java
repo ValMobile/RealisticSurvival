@@ -64,7 +64,7 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         BStats bStats = new BStats(this);
         UpdateChecker updateChecker = new UpdateChecker(this, 93795);
         ResourcePackEvents resourcePack = new ResourcePackEvents(this);
-        MiscEvents miscEvents = new MiscEvents(this);
+        MiscEvents miscEvents = new MiscEvents();
 
         updateChecker.checkUpdate();
 

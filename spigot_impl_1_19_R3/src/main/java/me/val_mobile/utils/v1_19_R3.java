@@ -20,6 +20,7 @@ import me.val_mobile.iceandfire.DragonVariant;
 import me.val_mobile.iceandfire.SeaSerpentVariant;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
@@ -27,8 +28,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityCategory;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
+import org.bukkit.inventory.SmithingRecipe;
 import org.bukkit.potion.PotionEffectType;
 
 public class v1_19_R3 extends InternalsProvider {
@@ -125,21 +127,25 @@ public class v1_19_R3 extends InternalsProvider {
     @Override
     public boolean isUndead(Entity entity) {
         if (entity instanceof LivingEntity) {
-            if (((LivingEntity) entity).getCategory() == EntityCategory.UNDEAD) {
-                return true;
-            }
+            return ((LivingEntity) entity).getCategory() == EntityCategory.UNDEAD;
         }
         return false;
     }
 
     @Override
     public boolean isNetheriteRecipe(SmithingInventory inv) {
-        ItemStack base = inv.getItem(0);
-        ItemStack result = inv.getItem(2);
+        Recipe recipe = inv.getRecipe();
 
-        if (!(result == null || base == null)) {
-            if (Utils.isNetherite(result.getType()) && Utils.isDiamond(base.getType())) {
-                return true;
+        if (recipe instanceof SmithingRecipe) {
+            NamespacedKey key = ((SmithingRecipe) recipe).getKey();
+
+            if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
+                switch (key.getKey()) {
+                    case "netherite_axe_smithing", "netherite_pickaxe_smithing", "netherite_shovel_smithing", "netherite_sword_smithing", "netherite_hoe_smithing", "netherite_helmet_smithing", "netherite_chestplate_smithing", "netherite_leggings_smithing", "netherite_boots_smithing" -> {
+                        return true;
+                    }
+                    default -> {}
+                }
             }
         }
         return false;

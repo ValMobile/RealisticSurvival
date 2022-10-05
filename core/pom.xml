@@ -13,7 +13,7 @@
     <parent>
         <groupId>me.Val_Mobile</groupId>
         <artifactId>realisticsurvival-parent</artifactId>
-        <version>1.2.3</version>
+        <version>1.2.3-DEV-0</version>
     </parent>
     <build>
         <plugins>

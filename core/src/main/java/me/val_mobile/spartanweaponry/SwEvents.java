@@ -36,9 +36,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -338,21 +339,7 @@ public class SwEvents extends ModuleEvents implements Listener {
             Player player = event.getPlayer();
             if (shouldEventBeRan(player)) {
                 ItemStack item = player.getInventory().getItem(event.getNewSlot());
-                if (RSVItem.isRSVItem(item)) {
-                    String name = RSVItem.getNameFromItem(item);
-                    String type = name.substring(name.lastIndexOf("_") + 1);
-                    RSVModule module = RSVModule.getModule(RSVItem.getModuleNameFromItem(item));
-
-                    switch (type) {
-                        case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike" -> {
-                            UUID id = player.getUniqueId();
-                            if (!TwoHandedTask.hasTask(id)) {
-                                new TwoHandedTask(module, plugin, player, name).start();
-                            }
-                        }
-                        default -> {}
-                    }
-                }
+                checkAndRunTask(player, item);
             }
         }
     }
@@ -363,24 +350,9 @@ public class SwEvents extends ModuleEvents implements Listener {
             if (event.getEntity() instanceof Player player) {
                 if (shouldEventBeRan(player)) {
                     ItemStack item = event.getItem().getItemStack();
-                    if (RSVItem.isRSVItem(item)) {
-                        String name = RSVItem.getNameFromItem(item);
-                        String type = name.substring(name.lastIndexOf("_") + 1);
-                        RSVModule module = RSVModule.getModule(RSVItem.getModuleNameFromItem(item));
-
-                        switch (type) {
-                            case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike" -> {
-                                UUID id = player.getUniqueId();
-                                if (!TwoHandedTask.hasTask(id)) {
-                                    new TwoHandedTask(module, plugin, player, name).start();
-                                }
-                            }
-                            default -> {}
-                        }
-                    }
+                    checkAndRunTask(player, item);
                 }
             }
-
         }
     }
 
@@ -389,20 +361,31 @@ public class SwEvents extends ModuleEvents implements Listener {
         if (!event.isCancelled()) {
             Player player = (Player) event.getWhoClicked();
             if (shouldEventBeRan(player)) {
-                ItemStack currentItem = event.getCurrentItem();
-                if (RSVItem.isRSVItem(currentItem)) {
-                    String name = RSVItem.getNameFromItem(currentItem);
-                    String type = name.substring(name.lastIndexOf("_") + 1);
-                    RSVModule module = RSVModule.getModule(RSVItem.getModuleNameFromItem(currentItem));
+                ItemStack cursor = event.getCursor();
 
-                    switch (type) {
-                        case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike" -> {
-                            UUID id = player.getUniqueId();
-                            if (!TwoHandedTask.hasTask(id)) {
-                                new TwoHandedTask(module, plugin, player, name).start();
-                            }
+                int heldSlot = player.getInventory().getHeldItemSlot();
+                int rawSlot = event.getRawSlot();
+                int slot = event.getSlot();
+
+                if (rawSlot == 45) {
+                    if (Utils.isItemReal(cursor)) {
+                        ItemStack mainHand = player.getInventory().getItemInMainHand();
+
+                        checkAndRunTask(player, mainHand);
+                    }
+                }
+
+                if (slot == heldSlot) {
+                    if (Utils.isItemReal(player.getInventory().getItemInOffHand())) {
+                        checkAndRunTask(player, cursor);
+                    }
+                }
+
+                if (event.isShiftClick()) {
+                    if (event.getView().getTopInventory().getType() != InventoryType.PLAYER) {
+                        if (Utils.isItemReal(player.getInventory().getItemInOffHand())) {
+                            checkAndRunTask(player, event.getCurrentItem());
                         }
-                        default -> {}
                     }
                 }
             }
@@ -410,26 +393,31 @@ public class SwEvents extends ModuleEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onDragClick(InventoryDragEvent event) {
+    public void onItemSwap(PlayerSwapHandItemsEvent event) {
         if (!event.isCancelled()) {
-            Player player = (Player) event.getWhoClicked();
-            if (shouldEventBeRan(player)) {
-                ItemStack cursor = event.getCursor();
-                if (RSVItem.isRSVItem(cursor)) {
-                    String name = RSVItem.getNameFromItem(cursor);
-                    String type = name.substring(name.lastIndexOf("_") + 1);
-                    RSVModule module = RSVModule.getModule(RSVItem.getModuleNameFromItem(cursor));
+            Player player = event.getPlayer();
 
-                    switch (type) {
-                        case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike" -> {
-                            UUID id = player.getUniqueId();
-                            if (!TwoHandedTask.hasTask(id)) {
-                                new TwoHandedTask(module, plugin, player, name).start();
-                            }
-                        }
-                        default -> {}
+            if (shouldEventBeRan(player)) {
+                ItemStack item = event.getMainHandItem();
+                checkAndRunTask(player, item);
+            }
+        }
+    }
+
+    private void checkAndRunTask(Player player, ItemStack item) {
+        if (RSVItem.isRSVItem(item)) {
+            String name = RSVItem.getNameFromItem(item);
+            String type = name.substring(name.lastIndexOf("_") + 1);
+            RSVModule module = RSVModule.getModule(RSVItem.getModuleNameFromItem(item));
+
+            switch (type) {
+                case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike", "battleaxe", "glaive" -> {
+                    UUID id = player.getUniqueId();
+                    if (!TwoHandedTask.hasTask(id)) {
+                        new TwoHandedTask(module, plugin, player, name).start();
                     }
                 }
+                default -> {}
             }
         }
     }

@@ -18,6 +18,7 @@ package me.val_mobile.baubles;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public enum TickableBaubleManager {
@@ -35,12 +36,17 @@ public enum TickableBaubleManager {
     STONE_SEA(new PotionBauble("stone_sea")),
     SCARLITE_RING(new TickableBauble("scarlite_ring")),
     POLARIZED_STONE(new TickableBauble("polarized_stone")),
-    ENDER_QUEENS_CROWN(new TickableBauble("ender_queens_crown"));
+    ENDER_QUEENS_CROWN(new TickableBauble("ender_queens_crown")),
+    STONE_NEGATIVE_GRAVITY(new TickableBauble("stone_negative_gravity")),
+    STONE_GREATER_INERTIA(new TickableBauble("stone_greater_inertia")),
+    GLUTTONY_PENDANT(new PotionBauble("gluttony_pendant")),
+    WRATH_PENDANT(new PotionBauble("wrath_pendant")),
+    PRIDE_PENDANT(new PotionBauble("pride_pendant"));
 
-    private static HashMap<UUID, Collection> baubles = new HashMap<>();
-    private Tickable bauble;
+    private static final Map<UUID, Collection<TickableBauble>> baubles = new HashMap<>();
+    private final TickableBauble bauble;
 
-    TickableBaubleManager(Tickable bauble) {
+    TickableBaubleManager(TickableBauble bauble) {
         this.bauble = bauble;
     }
 
@@ -52,7 +58,7 @@ public enum TickableBaubleManager {
         return bauble;
     }
 
-    public static HashMap<UUID, Collection> getBaubles() {
+    public static Map<UUID, Collection<TickableBauble>> getBaubles() {
         return baubles;
     }
 

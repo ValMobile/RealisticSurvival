@@ -16,7 +16,6 @@
  */
 package me.val_mobile.tan;
 
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVEnchants;
@@ -33,13 +32,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class TemperatureCalculateTask extends BukkitRunnable {
 
-    private final static HashMap<UUID, TemperatureCalculateTask> tasks = new HashMap<>();
+    private static final Map<UUID, TemperatureCalculateTask> tasks = new HashMap<>();
+    private final TanModule module;
     private final FileConfiguration config;
-
     private final RealisticSurvivalPlugin plugin;
     private final RSVPlayer player;
     private final UUID id;
@@ -53,12 +53,13 @@ public class TemperatureCalculateTask extends BukkitRunnable {
 
     public static final double NEUTRAL_TEMPERATURE = 12.5;
 
-    public TemperatureCalculateTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public TemperatureCalculateTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
-        this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
+        this.module = module;
+        this.config = module.getUserConfig().getConfig();
         this.player = player;
         this.id = player.getPlayer().getUniqueId();
-        this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
+        this.allowedWorlds = module.getAllowedWorlds();
         this.temp = player.getTanDataModule().getTemperature();
         tasks.put(id, this);
     }
@@ -228,13 +229,13 @@ public class TemperatureCalculateTask extends BukkitRunnable {
 
                 if (temp <= config.getDouble("Temperature.Hypothermia.Temperature")) {
                     if (!HypothermiaTask.hasTask(id)) {
-                        new HypothermiaTask(plugin, this.player).start();
+                        new HypothermiaTask(module, plugin, this.player).start();
                     }
                 }
 
                 if (temp >= config.getDouble("Temperature.Hyperthermia.Temperature")) {
                     if (!HyperthermiaTask.hasTask(id)) {
-                        new HyperthermiaTask(plugin, this.player).start();
+                        new HyperthermiaTask(module, plugin, this.player).start();
                     }
                 }
 
@@ -288,7 +289,7 @@ public class TemperatureCalculateTask extends BukkitRunnable {
         return false;
     }
 
-    public static HashMap<UUID, TemperatureCalculateTask> getTasks() {
+    public static Map<UUID, TemperatureCalculateTask> getTasks() {
         return tasks;
     }
 

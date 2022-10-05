@@ -2,7 +2,7 @@
 #          Tough As Nails             #
 #######################################
 
-ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -11,11 +11,18 @@ Initialize:
 Shutdown:
   Enabled: true
   Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"               # All placeholders: %NAME%
+
+# One message from the "Messages" list will be randomly selected as the death message
 DehydrationDeath:
   Enabled: true
   Messages:                                                                         # All placeholders: %PLAYER_NAME%
     - "&f%PLAYER_NAME% died of dehydration."
     - "&f%PLAYER_NAME% ran out of water."
+ParasiteDeath:
+  Enabled: true
+  Messages:                                                                         # All placeholders: %PLAYER_NAME%
+    - "&f%PLAYER_NAME% died of parasite poisoning."
+    - "&f%PLAYER_NAME% should have drank clean water."
 HyperthermiaDeath:
   Enabled: true
   Messages:                                                                         # All placeholders: %PLAYER_NAME%
@@ -119,16 +126,16 @@ Temperature:
         Value: 0.4
       LAVA:
         IsRegulatory: false
-        Value: 0.5
+        Value: 0.3
       LAVA_CAULDRON:
         IsRegulatory: false
-        Value: 0.1
+        Value: 0.3
       WATER:
         IsRegulatory: false
-        Value: -0.1
+        Value: -0.02
       WATER_CAULDRON:
         IsRegulatory: false
-        Value: -0.1
+        Value: -0.02
       SNOW:
         IsRegulatory: false
         Value: -0.05
@@ -559,31 +566,33 @@ Thirst:
   Parasites:
     UnpurifiedWaterBottle:
       Enabled: true
-      Chance: 0.1             # The chance of contracting parasites per drink
+      Chance: 0.05            # The chance of contracting parasites per drink
     Rain:
       Enabled: false
       Chance: 0.0
     Drowning:
       Enabled: true
-      Chance: 0.1
+      Chance: 0.05
     RegularWater:             # Any water that isn't from a cave, river, or ocean
       Enabled: true
-      Chance: 0.1
+      Chance: 0.05
     CaveWater:
       Enabled: true
-      Chance: 0.1
+      Chance: 0.05
     RiverWater:
       Enabled: true
-      Chance: 0.05
+      Chance: 0.025
     SeaWater:
       Enabled: true
-      Chance: 0.1
+      Chance: 0.05
     MultiplyExhaustionRates:
       Enabled: true
       Value: 2.0              # The exhaustion increase from sources in "ExhaustionLevelIncrease" will be multiplied by the specified value
     TickSpeed: 100            # Every "TickSpeed" ticks, you'll take damage
     Duration: 600             # How long parasites will be active for in ticks
-    Damage: 1.0
+    Damage:
+      Amount: 1.0
+      Cutoff: -1.0
     PotionEffects:
       Enabled: false
       Effects:

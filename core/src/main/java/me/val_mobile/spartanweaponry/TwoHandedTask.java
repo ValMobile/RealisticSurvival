@@ -29,11 +29,12 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class TwoHandedTask extends BukkitRunnable {
 
-    private static HashMap<UUID, TwoHandedTask> tasks = new HashMap<>();
+    private static Map<UUID, TwoHandedTask> tasks = new HashMap<>();
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
@@ -57,12 +58,15 @@ public class TwoHandedTask extends BukkitRunnable {
         ItemStack itemMainhand = player.getInventory().getItemInMainHand();
 
         if (RSVItem.isRSVItem(itemMainhand) && Utils.isItemReal(player.getInventory().getItemInOffHand())) {
-            if (RSVItem.getNameFromItem(itemMainhand).equals(itemName)) {
-                player.addPotionEffect(effect);
-            }
-            else {
-                tasks.remove(id);
-                cancel();
+            String name = RSVItem.getNameFromItem(itemMainhand);
+            String type = name.substring(name.lastIndexOf("_") + 1);
+
+            switch (type) {
+                case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike", "battleaxe", "glaive" -> player.addPotionEffect(effect);
+                default -> {
+                    tasks.remove(id);
+                    cancel();
+                }
             }
         }
         else {
@@ -73,7 +77,7 @@ public class TwoHandedTask extends BukkitRunnable {
 
     public void start() {
         int tickSpeed = config.getInt("Items." + itemName + ".MiningFatigue.TickTime"); // get the tick speed
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        this.runTaskTimer(plugin, 1L, tickSpeed);
     }
 
     public static boolean hasTask(UUID id) {
@@ -83,7 +87,7 @@ public class TwoHandedTask extends BukkitRunnable {
         return false;
     }
 
-    public static HashMap<UUID, TwoHandedTask> getTasks() {
+    public static Map<UUID, TwoHandedTask> getTasks() {
         return tasks;
     }
 }

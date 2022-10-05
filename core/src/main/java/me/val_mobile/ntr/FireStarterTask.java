@@ -26,16 +26,14 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 public class FireStarterTask extends BukkitRunnable {
 
-    private static HashMap<UUID, FireStarterTask> tasks = new HashMap<>();
-    private static HashMap<UUID, Long> time = new HashMap<>();
-
+    private static final Map<UUID, FireStarterTask> tasks = new HashMap<>();
     private final Collection<Item> ingredients;
+    private final Player player;
+    private final Set<String> allowedWorlds;
 
     private final UUID id;
     private final RealisticSurvivalPlugin plugin;
@@ -49,18 +47,16 @@ public class FireStarterTask extends BukkitRunnable {
 
     private final double particleChance;
     private final boolean emitParticles;
-
-
-    private final long beginningTime;
-    private long elapsed = 0;
+    private int ticks = 0;
 
     public FireStarterTask(RealisticSurvivalPlugin plugin, NtrModule module, Player player, Location loc, Collection<Item> ingredients, boolean isSoulCampfire) {
         this.ingredients = ingredients;
         this.loc = loc;
-        this.beginningTime = System.currentTimeMillis();
         this.id = player.getUniqueId();
         this.plugin = plugin;
+        this.player = player;
         this.config = module.getUserConfig().getConfig();
+        this.allowedWorlds = module.getAllowedWorlds();
         this.duration = config.getInt("RemoveVanillaCampfireRecipes.Time");
         this.isSoulCampfire = isSoulCampfire;
         this.soundChance = config.getDouble("RemoveVanillaCampfireRecipes.BurningSound.Chance");
@@ -70,51 +66,59 @@ public class FireStarterTask extends BukkitRunnable {
         this.emitParticles = config.getBoolean("RemoveVanillaCampfireRecipes.EmitParticles.Enabled");
 
         tasks.put(id, this);
-        time.put(id, System.currentTimeMillis());
     }
 
     @Override
     public void run() {
-        if (!time.containsKey(id)) {
-            cancel();
-        }
-        elapsed = time.get(id) - beginningTime;
-
-        if (elapsed > duration) {
-            loc.getWorld().getBlockAt(loc).setType((isSoulCampfire) ? Material.SOUL_CAMPFIRE : Material.CAMPFIRE);
-            for (Item drop : ingredients) {
-                drop.remove();
-            }
+        if (player == null) {
             stop();
         }
+        else {
+            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
+                ticks++;
 
-        if (emitSound) {
-            if (Math.random() <= soundChance) {
-                String soundName = config.getString("RemoveVanillaCampfireRecipes.BurningSound.Sound");
-                float volume = (float) config.getDouble("RemoveVanillaCampfireRecipes.BurningSound.Volume");
-                float pitch = (float) config.getDouble("RemoveVanillaCampfireRecipes.BurningSound.Pitch");
+                if (ticks > duration) {
+                    loc.getWorld().getBlockAt(loc).setType((isSoulCampfire) ? Material.SOUL_CAMPFIRE : Material.CAMPFIRE);
+                    for (Item drop : ingredients) {
+                        if (drop != null) {
+                            drop.remove();
+                        }
+                    }
+                    stop();
+                }
+                else {
+                    if (emitSound) {
+                        if (Math.random() <= soundChance) {
+                            String soundName = config.getString("RemoveVanillaCampfireRecipes.BurningSound.Sound");
+                            float volume = (float) config.getDouble("RemoveVanillaCampfireRecipes.BurningSound.Volume");
+                            float pitch = (float) config.getDouble("RemoveVanillaCampfireRecipes.BurningSound.Pitch");
 
-                Utils.playSound(loc, soundName, volume, pitch);
+                            Utils.playSound(loc, soundName, volume, pitch);
+                        }
+                    }
+
+                    if (emitParticles) {
+                        if (Math.random() <= particleChance) {
+                            Particle particle = Particle.valueOf(config.getString("RemoveVanillaCampfireRecipes.EmitParticles.Particle"));
+                            int min = config.getInt("RemoveVanillaCampfireRecipes.EmitParticles.MinCount");
+                            int max = config.getInt("RemoveVanillaCampfireRecipes.EmitParticles.MaxCount");
+
+                            double xOffset = config.getDouble("RemoveVanillaCampfireRecipes.EmitParticles.x-Offset");
+                            double yOffset = config.getDouble("RemoveVanillaCampfireRecipes.EmitParticles.y-Offset");
+                            double zOffset = config.getDouble("RemoveVanillaCampfireRecipes.EmitParticles.z-Offset");
+
+                            loc.getWorld().spawnParticle(particle, loc, Math.toIntExact(Math.round((Math.random() * max))) + min, xOffset, yOffset, zOffset);
+                        }
+                    }
+                }
             }
-        }
-
-        if (emitParticles) {
-            if (Math.random() <= particleChance) {
-                Particle particle = Particle.valueOf(config.getString("RemoveVanillaCampfireRecipes.EmitParticles.Particle"));
-                int min = config.getInt("RemoveVanillaCampfireRecipes.EmitParticles.MinCount");
-                int max = config.getInt("RemoveVanillaCampfireRecipes.EmitParticles.MaxCount");
-
-                double xOffset = config.getDouble("RemoveVanillaCampfireRecipes.EmitParticles.x-Offset");
-                double yOffset = config.getDouble("RemoveVanillaCampfireRecipes.EmitParticles.y-Offset");
-                double zOffset = config.getDouble("RemoveVanillaCampfireRecipes.EmitParticles.z-Offset");
-
-                loc.getWorld().spawnParticle(particle, loc, Math.toIntExact(Math.round((Math.random() * max))) + min, xOffset, yOffset, zOffset);
+            else {
+                stop();
             }
         }
     }
 
     public void stop() {
-        time.remove(id);
         tasks.remove(id);
         cancel();
     }
@@ -123,11 +127,7 @@ public class FireStarterTask extends BukkitRunnable {
         runTaskTimer(plugin, 0L, 1);
     }
 
-    public static HashMap<UUID, Long> getTime() {
-        return time;
-    }
-
-    public static HashMap<UUID, FireStarterTask> getTasks() {
+    public static Map<UUID, FireStarterTask> getTasks() {
         return tasks;
     }
 

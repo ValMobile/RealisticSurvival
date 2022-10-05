@@ -27,6 +27,10 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
 public class TanModule extends RSVModule {
 
     private final RealisticSurvivalPlugin plugin;
@@ -35,6 +39,10 @@ public class TanModule extends RSVModule {
     private TanEvents events;
 
     public static final String NAME = "ToughAsNails";
+    private final Set<UUID> hypothermiaDeath = new HashSet<>();
+    private final Set<UUID> hyperthermiaDeath = new HashSet<>();
+    private final Set<UUID> dehydrationDeath = new HashSet<>();
+    private final Set<UUID> parasiteDeath = new HashSet<>();
 
     public TanModule(RealisticSurvivalPlugin plugin) {
         super(NAME, plugin);
@@ -85,4 +93,19 @@ public class TanModule extends RSVModule {
         return events;
     }
 
+    public Set<UUID> getDehydrationDeath() {
+        return dehydrationDeath;
+    }
+
+    public Set<UUID> getHyperthermiaDeath() {
+        return hyperthermiaDeath;
+    }
+
+    public Set<UUID> getHypothermiaDeath() {
+        return hypothermiaDeath;
+    }
+
+    public Set<UUID> getParasiteDeath() {
+        return parasiteDeath;
+    }
 }

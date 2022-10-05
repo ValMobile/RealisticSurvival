@@ -21,7 +21,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class PotionBaubleEffect extends PotionEffect {
 
-    private int increment;
+    private final int increment;
 
     public PotionBaubleEffect(PotionEffectType type, int duration, int amplifier, int increment) {
         super(type, duration, amplifier);

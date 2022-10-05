@@ -22,25 +22,29 @@ import me.val_mobile.data.baubles.BaubleInventory;
 import me.val_mobile.data.baubles.BaubleSlot;
 import me.val_mobile.data.baubles.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.PlayerJumpEvent;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.Bukkit;
-import org.bukkit.EntityEffect;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
+import org.bukkit.*;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Enderman;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.event.world.TimeSkipEvent;
+import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -53,7 +57,7 @@ import java.util.*;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.3
+ * @version 1.2.3-DEV-0
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -63,6 +67,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
      * The util class must be injected because its non-static methods are needed
      */
     private final RealisticSurvivalPlugin plugin;
+    private final FileConfiguration config;
     private final BaubleModule module;
 
     // constructing the BaubleEvents class
@@ -70,6 +75,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
         super(module, plugin);
         this.plugin = plugin;
         this.module = module;
+        this.config = module.getUserConfig().getConfig();
     }
 
     /**
@@ -83,18 +89,86 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
         ItemStack droppedItem = event.getItemDrop().getItemStack();
         ItemStack cornerItem = player.getOpenInventory().getTopInventory().getItem(0);
+
         if (shouldEventBeRan(player)) {
             if (RSVItem.isRSVItem(cornerItem)) {
                 if (Objects.equals(RSVItem.getNameFromItem(cornerItem), "gui_glass")) {
                     if (RSVItem.isRSVItem(droppedItem)) {
-                        if (Objects.equals(RSVItem.getNameFromItem(droppedItem), "gui_glass")) {
-                            event.setCancelled(true);
+                        switch (RSVItem.getNameFromItem(droppedItem)) {
+                            case "gui_glass", "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" ->
+                                    event.setCancelled(true);
+                            default -> {
+                                if (Objects.equals(RSVItem.getModuleNameFromItem(droppedItem), BaubleModule.NAME)) {
+                                    Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, droppedItem, BaubleChangeEvent.BaubleChange.REMOVAL));
+                                }
+                            }
                         }
-                        if (Objects.equals(RSVItem.getModuleNameFromItem(droppedItem), BaubleModule.NAME)) {
-                            Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, droppedItem, BaubleChangeEvent.BaubleChange.REMOVAL));
+                    }
+                    else {
+                        if (Utils.isItemReal(droppedItem)) {
+                            if (droppedItem.getType() == Material.PLAYER_HEAD) {
+                                event.setCancelled(true);
+                            }
                         }
                     }
                 }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player p = event.getPlayer();
+        if (shouldEventBeRan(p)) {
+            if (!module.getInv().containsPlayer(p)) {
+                module.getInv().addPlayer(p);
+            }
+
+            UUID id = event.getPlayer().getUniqueId();
+
+            RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
+
+            Collection<ItemStack> baubles = rsvPlayer.getBaubleDataModule().getBaubleBag().getAllBaubles();
+
+            for (ItemStack item : baubles) {
+                Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(p, item, BaubleChangeEvent.BaubleChange.ADDITION));
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        Player p = event.getPlayer();
+        if (shouldEventBeRan(p)) {
+            if (module.getInv().containsPlayer(p)) {
+                module.getInv().removePlayer(p);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onWorldChange(PlayerChangedWorldEvent event) {
+        Player p = event.getPlayer();
+        if (shouldEventBeRan(p)) {
+            if (!shouldEventBeRan(event.getFrom())) {
+                if (!module.getInv().containsPlayer(p)) {
+                    module.getInv().addPlayer(p);
+                }
+
+                UUID id = event.getPlayer().getUniqueId();
+
+                RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
+
+                Collection<ItemStack> baubles = rsvPlayer.getBaubleDataModule().getBaubleBag().getAllBaubles();
+
+                for (ItemStack item : baubles) {
+                    Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(p, item, BaubleChangeEvent.BaubleChange.ADDITION));
+                }
+            }
+        }
+        else {
+            if (module.getInv().containsPlayer(p)) {
+                module.getInv().removePlayer(p);
             }
         }
     }
@@ -121,19 +195,28 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 Tickable bauble = manager.getBauble();
                 if (bauble != null) {
                     switch (manager) {
-                        case POTION_RING_REGENERATION, POTION_RING_HASTE, POTION_RING_SPEED, POTION_RING_STRENGTH, POTION_RING_JUMP_BOOST, POTION_RING_RESISTANCE, MINERS_RING, SHIELD_HONOR, DRAGONS_EYE, STONE_SEA, PHANTOM_PRISM -> {
+                        case POTION_RING_REGENERATION, POTION_RING_HASTE, POTION_RING_SPEED, POTION_RING_STRENGTH, POTION_RING_JUMP_BOOST, POTION_RING_RESISTANCE, MINERS_RING, SHIELD_HONOR, DRAGONS_EYE, PHANTOM_PRISM, PRIDE_PENDANT -> {
                             if (!PotionBaubleTask.hasTask(id, manager.toString().toLowerCase())) {
-                                new PotionBaubleTask((PotionBauble) bauble, rsvPlayer, plugin).start();
+                                new PotionBaubleTask(module, (PotionBauble) bauble, rsvPlayer, plugin).start();
+                            }
+                        }
+                        case STONE_SEA -> {
+                            if (!StoneSeaTask.hasTask(id)) {
+                                new StoneSeaTask(module, rsvPlayer, plugin).start();
+                            }
+
+                            if (!PotionBaubleTask.hasTask(id, manager.toString().toLowerCase())) {
+                                new PotionBaubleTask(module, (PotionBauble) bauble, rsvPlayer, plugin).start();
                             }
                         }
                         case SCARLITE_RING -> {
                             if (!ScarliteRingTask.hasTask(id)) {
-                                new ScarliteRingTask(rsvPlayer, plugin).start();
+                                new ScarliteRingTask(module, rsvPlayer, plugin).start();
                             }
                         }
                         case POLARIZED_STONE -> {
                             if (!PolarizedStoneTask.hasTask(id)) {
-                                new PolarizedStoneTask(rsvPlayer, plugin).start();
+                                new PolarizedStoneTask(module, rsvPlayer, plugin).start();
                             }
                         }
                         case ENDER_QUEENS_CROWN -> {
@@ -141,8 +224,45 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                 new EnderCrownTask(module, rsvPlayer, plugin).start();
                             }
                         }
+                        case STONE_NEGATIVE_GRAVITY -> {
+                            if (!StoneNegativeGravityTask.hasTask(id)) {
+                                new StoneNegativeGravityTask(module, rsvPlayer, plugin).start();
+                            }
+                        }
+                        case STONE_GREATER_INERTIA -> {
+                            if (!StoneGreaterInertiaTask.hasTask(id)) {
+                                new StoneGreaterInertiaTask(module, rsvPlayer, plugin).start();
+                            }
+                        }
                         default -> {}
                     }
+                }
+            }
+            else {
+                if (itemName.equals("broken_heart")) {
+                    module.getBrokenHeartPlayers().add(id);
+                }
+            }
+        }
+        else {
+            if (itemName.equals("broken_heart")) {
+                module.getBrokenHeartPlayers().remove(id);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onDeath(PlayerDeathEvent event) {
+        Player player = event.getEntity();
+        if (shouldEventBeRan(player)) {
+            if (config.getBoolean("DropBaublesUponDeath.Enabled")) {
+                if (player.getWorld().getGameRuleValue(GameRule.KEEP_INVENTORY)) {
+                    if (config.getBoolean("DropBaublesUponDeath.IgnoreKeepInventoryGamerule")) {
+                        RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().removeAndDropAllBaubles(player.getLocation());
+                    }
+                }
+                else {
+                    RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().removeAndDropAllBaubles(player.getLocation());
                 }
             }
         }
@@ -159,9 +279,23 @@ public class BaubleEvents extends ModuleEvents implements Listener {
         Player player = (Player) event.getWhoClicked(); // get the player
 
         if (shouldEventBeRan(player)) {
+            ItemStack cursor = event.getCursor();
+
+            int heldSlot = player.getInventory().getHeldItemSlot();
+            int slot = event.getSlot();
+
+            if (slot == heldSlot) {
+                checkAndRunTask(player, cursor);
+            }
+
+            if (event.isShiftClick()) {
+                if (event.getView().getTopInventory().getType() != InventoryType.PLAYER) {
+                    checkAndRunTask(player, event.getCurrentItem());
+                }
+            }
+
             if (event.getClickedInventory() != null) {
                 ItemStack corner = event.getClickedInventory().getItem(0);
-                ItemStack cursor = event.getCursor();
                 ItemStack current = event.getCurrentItem();
 
                 Utils util = RealisticSurvivalPlugin.getUtil();
@@ -174,6 +308,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                             if (currentName.equals("gui_glass"))
                                 event.setCancelled(true);
                             else {
+                                int rawSlot = event.getRawSlot();
                                 if (RSVItem.isRSVItem(cursor)) {
                                     String cursorName = RSVItem.getNameFromItem(cursor);
                                     if (RSVItem.getNameFromItem(cursor).equals("gui_glass"))
@@ -183,26 +318,33 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
                                         switch (cursorName) {
                                             // cursor was a slot
-                                            case "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" -> {
-                                                event.setCancelled(true);
-                                            }
+                                            case "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" ->
+                                                    event.setCancelled(true);
                                             // current was a slot
                                             default -> {
-                                                if (currentName.equals(cursorName)) {
+                                                BaubleSlot currentSlot = null;
+
+                                                BaubleSlot[] slots = BaubleSlot.values();
+
+                                                outer:
+                                                for (BaubleSlot s : slots) {
+                                                    for (int i : s.getValues()) {
+                                                        if (i == rawSlot) {
+                                                            currentSlot = s;
+                                                            break outer;
+                                                        }
+                                                    }
+                                                }
+
+                                                if (currentSlot == null) {
                                                     event.setCancelled(true);
                                                 }
                                                 else {
-                                                    String currentSlot = util.getNbtTag(current, "rsvbaubleslot", PersistentDataType.STRING).toUpperCase();
-
-                                                    if (currentSlot.equals("RING")) {
-                                                        currentSlot = event.getSlot() == BaubleSlot.FIRST_RING.getValue() ? BaubleSlot.FIRST_RING.toString() : BaubleSlot.SECOND_RING.toString();
-                                                    }
-                                                    BaubleSlot slot = BaubleSlot.valueOf(currentSlot);
-                                                    if (cursorTag.equals(slot.getTag()) || cursorTag.equals("Any")) {
-                                                        event.setCurrentItem(null);
-                                                        Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, cursor, BaubleChangeEvent.BaubleChange.ADDITION));
-                                                    } else if (cursorTag.contains("Ring") && slot.getTag().contains("Ring")) {
-                                                        event.setCurrentItem(null);
+                                                    if (cursorTag.equals(currentSlot.getTag()) || cursorTag.equals("Any")) {
+                                                        switch (currentName) {
+                                                            case "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" -> event.setCurrentItem(null);
+                                                            default -> {}
+                                                        }
                                                         Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, cursor, BaubleChangeEvent.BaubleChange.ADDITION));
                                                     } else
                                                         event.setCancelled(true);
@@ -221,69 +363,41 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                             case "head_slot", "body_slot", "amulet_slot", "ring_slot", "charm_slot", "belt_slot" -> {event.setCancelled(true);}
                                             default -> {
                                                 // taking bauble out
-                                                switch (event.getRawSlot()) {
-                                                    case 12 -> {
-                                                        new BukkitRunnable() {
-                                                            @Override
-                                                            public void run() {
-                                                                event.getWhoClicked().setItemOnCursor(current.clone());
-                                                                RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().getInventory().setItem(12, RSVItem.getItem("head_slot"));
-                                                            }
-                                                        }.runTaskLater(plugin, 1L);
+                                                outer:
+                                                for (BaubleSlot baubleslot : BaubleSlot.values()) {
+                                                    for (int i : baubleslot.getValues()) {
+                                                        if (i == rawSlot) {
+                                                            new BukkitRunnable() {
+                                                                @Override
+                                                                public void run() {
+                                                                    event.getWhoClicked().setItemOnCursor(current);
+                                                                    RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().getInventory().setItem(i, baubleslot.getItem());
+                                                                }
+                                                            }.runTaskLater(plugin, 1L);
+                                                            break outer;
+                                                        }
                                                     }
-                                                    case 21 -> {
-                                                        new BukkitRunnable() {
-                                                            @Override
-                                                            public void run() {
-                                                                event.getWhoClicked().setItemOnCursor(current.clone());
-                                                                RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().getInventory().setItem(21, RSVItem.getItem("amulet_slot"));
-                                                            }
-                                                        }.runTaskLater(plugin, 1L);
-                                                    }
-                                                    case 30 -> {
-                                                        new BukkitRunnable() {
-                                                            @Override
-                                                            public void run() {
-                                                                event.getWhoClicked().setItemOnCursor(current.clone());
-                                                                RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().getInventory().setItem(30, RSVItem.getItem("body_slot"));
-                                                            }
-                                                        }.runTaskLater(plugin, 1L);
-                                                    }
-                                                    case 14, 23 -> {
-                                                        int slot = event.getSlot();
-                                                        new BukkitRunnable() {
-                                                            @Override
-                                                            public void run() {
-                                                                event.getWhoClicked().setItemOnCursor(current.clone());
-                                                                RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().getInventory().setItem(slot, RSVItem.getItem("ring_slot"));
-                                                            }
-                                                        }.runTaskLater(plugin, 1L);
-
-                                                    }
-                                                    case 32 -> {
-                                                        new BukkitRunnable() {
-                                                            @Override
-                                                            public void run() {
-                                                                event.getWhoClicked().setItemOnCursor(current.clone());
-                                                                RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().getInventory().setItem(32, RSVItem.getItem("charm_slot"));
-                                                            }
-                                                        }.runTaskLater(plugin, 1L);
-
-                                                    }
-                                                    case 31 -> {
-                                                        new BukkitRunnable() {
-                                                            @Override
-                                                            public void run() {
-                                                                event.getWhoClicked().setItemOnCursor(current.clone());
-                                                                RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().getInventory().setItem(31, RSVItem.getItem("belt_slot"));
-                                                            }
-                                                        }.runTaskLater(plugin, 1L);
-                                                    }
-                                                    default -> {}
                                                 }
                                             }
                                         }
                                     }
+                                }
+                            }
+                        }
+                        else {
+                            if (Utils.isItemReal(current)) {
+                                if (current.getType() == Material.PLAYER_HEAD) {
+                                    UUID id = ((SkullMeta) current.getItemMeta()).getOwningPlayer().getUniqueId();
+                                    if (!player.getUniqueId().equals(id)) {
+                                        player.teleport(Bukkit.getPlayer(id));
+                                        if (config.getBoolean("WormholeInventory.Sound.Enabled")) {
+                                            String soundName = config.getString("WormholeInventory.Sound.Sound");
+                                            float volume = (float) config.getDouble("WormholeInventory.Sound.Volume");
+                                            float pitch = (float) config.getDouble("WormholeInventory.Sound.Pitch");
+                                            Utils.playSound(Bukkit.getPlayer(id).getLocation(), soundName, volume, pitch);
+                                        }
+                                    }
+                                    event.setCancelled(true);
                                 }
                             }
                         }
@@ -301,16 +415,14 @@ public class BaubleEvents extends ModuleEvents implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onTarget(EntityTargetEvent event) {
         // if the attacker is an enderman and the aggressor is a player
-        if (event.getEntity() instanceof Enderman && event.getTarget() instanceof Player) {
-            Player player = (Player) event.getTarget(); // get the player
-
+        if (event.getEntity() instanceof Enderman && event.getTarget() instanceof Player player) {
             if (shouldEventBeRan(player)) {
                 // if the player has an ender queen's crown in his/her inventory
                 RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(player.getUniqueId());
                 DataModule module = rsvPlayer.getBaubleDataModule();
-                if (module.getBaubleBag().hasBauble("ender_queens_crown")) {
+
+                if (module.getBaubleBag().hasBauble("ender_queens_crown"))
                     event.setCancelled(true);
-                }
             }
         }
     }
@@ -323,29 +435,40 @@ public class BaubleEvents extends ModuleEvents implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        // if the attacker is a player
-        if (event.getDamager() instanceof Player) {
-            Player player = (Player) event.getDamager(); // get the player
+        if (!event.isCancelled()) {
+            // if the attacker is a player
+            if (event.getDamager() instanceof Player player) {
+                if (shouldEventBeRan(player)) {
+                    Entity entity = event.getEntity(); // get the attacked entity
+                    double damage = event.getFinalDamage();
+                    // if the entity is able to receive potion effects
+                    if (entity instanceof LivingEntity living) {
+                        RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(player.getUniqueId());
+                        DataModule module = rsvPlayer.getBaubleDataModule();
+                        BaubleInventory inv = module.getBaubleBag();
 
-            if (shouldEventBeRan(player)) {
-                Entity entity = event.getEntity(); // get the attacked entity
+                        if (inv.hasBauble("wrath_pendant") && Utils.areCriticalHitConditionsMet(player, event.getDamage(), event.getFinalDamage()))
+                            ((PotionBauble) TickableBaubleManager.WRATH_PENDANT.getBauble()).ability(player, inv.getBaubleAmount("wrath_pendant"));
 
-                // if the entity is able to receive potion effects
-                if (entity instanceof LivingEntity) {
-                    RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(player.getUniqueId());
-                    DataModule module = rsvPlayer.getBaubleDataModule();
+                        if (inv.hasBauble("poison_stone")) {
+                            boolean isAffected = false;
+                            ConfigurationSection section = config.getConfigurationSection("Items.poison_stone.Effects");
+                            Set<String> keys = section.getKeys(false);
 
-                    if (module.getBaubleBag().hasBauble("poison_stone")) {
-                        ConfigurationSection section = this.module.getUserConfig().getConfig().getConfigurationSection("Items.poison_stone.Effects");
-                        Set<String> keys = section.getKeys(false);
+                            for (String key : keys) {
+                                if (living.hasPotionEffect(PotionEffectType.getByName(key))) {
+                                    isAffected = true;
+                                }
+                                living.addPotionEffect(new PotionEffect(PotionEffectType.getByName(key), section.getInt(key + ".Duration"),  section.getInt(key + ".Amplifier")));
+                            }
 
-                        for (String key : keys) {
-                            ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.getByName(key), section.getInt(key + ".Duration"),  section.getInt(key + ".Amplifier")));
+                            if (isAffected)
+                                damage *= config.getDouble("Items.poison_stone.AttackDamageMultiplier");
                         }
                     }
+                    event.setDamage(damage);
                 }
             }
-
         }
     }
 
@@ -358,13 +481,10 @@ public class BaubleEvents extends ModuleEvents implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamage(EntityDamageEvent event) {
         // if the damaged entity is a player
-        if (event.getEntity() instanceof Player) {
+        if (event.getEntity() instanceof Player player) {
             EntityDamageEvent.DamageCause cause = event.getCause(); // get the damage cause
-            Player player = (Player) event.getEntity(); // get the player
 
             if (shouldEventBeRan(player)) {
-                FileConfiguration config = module.getUserConfig().getConfig();
-
                 PlayerInventory inv = player.getInventory(); // get the player's inventory
                 ItemStack itemOffHand = inv.getItemInOffHand(); // get the item in the player's off hand
 
@@ -376,9 +496,8 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 String offHandName = "";
 
                 // if the item exists
-                if (RSVItem.isRSVItem(itemOffHand)) {
+                if (RSVItem.isRSVItem(itemOffHand))
                     offHandName = RSVItem.getNameFromItem(itemOffHand);
-                }
 
                 double damage = event.getDamage();
 
@@ -386,59 +505,72 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 boolean obsShield = baubleInv.hasBauble("obsidian_shield") || offHandName.equals("obsidian_shield");
                 boolean ankhShield = baubleInv.hasBauble("ankh_shield") || offHandName.equals("ankh_shield");
 
-                if (cobaltShield || obsShield || ankhShield) {
-                    RealisticSurvivalPlugin.getUtil().setZeroKb(player);
-                }
+                double kbMultiplier = -1;
+
+                if (baubleInv.hasBauble("stone_greater_inertia"))
+                    kbMultiplier = config.getDouble("Items.stone_greater_inertia.KnockbackPercent");
+
+                if (cobaltShield || obsShield || ankhShield || baubleInv.hasBauble("stone_inertia_null"))
+                    kbMultiplier = 0;
+
+                if (kbMultiplier >= 0)
+                    RealisticSurvivalPlugin.getUtil().setKbMultiplier(player, kbMultiplier);
 
                 // check the cause of the damage
                 switch (cause) {
                     // if the damage is caused by fire
                     case FIRE, FIRE_TICK -> {
-                        if (baubleInv.hasBauble("obsidian_skull")) {
+                        if (baubleInv.hasBauble("obsidian_skull"))
                             // reduce the damage by a specified amount
                             damage *= config.getDouble("Items.obsidian_skull.HeatDamageMultiplier");
-                        }
 
-                        if (obsShield) {
+                        if (obsShield)
                             damage *= config.getDouble("Items.obsidian_shield.HeatDamageMultiplier");
-                        }
 
-                        if (ankhShield) {
+                        if (ankhShield)
                             damage *= config.getDouble("Items.ankh_shield.HeatDamageMultiplier");
-                        }
                     }
 
                     // if the damage is caused by an explosion
                     case ENTITY_EXPLOSION, BLOCK_EXPLOSION -> {
                         // if the player has a shield of honor
-                        if (baubleInv.hasBauble(("shield_honor"))) {
+                        if (baubleInv.hasBauble("shield_honor"))
                             // reduce the damage by a specified amount
                             damage *= config.getDouble("Items.shield_honor.ExplosionDamageMultiplier");
-                        }
                     }
 
                     // if the damage is caused by falling
                     case FALL -> {
-                        if (baubleInv.hasBauble(("balloon"))) {
-                            if (player.getFallDistance() <= config.getDouble("Items.balloon.MinFallDistance")) {
-                                // cancel the event to set the fall damage to 0
-                                event.setCancelled(true);
-                            }
+                        double minFallDistance = 0D;
+                        double damageMultiplier = 1D;
+                        if (baubleInv.hasBauble("balloon")) {
+                            minFallDistance = config.getDouble("Items.balloon.MinFallDistance");
+
                             // reduce the damage by a specified amount
-                            damage *= config.getDouble("Items.balloon.FallDamageMultiplier");
+                            damageMultiplier *= config.getDouble("Items.balloon.FallDamageMultiplier");
 
                         }
-                        if (baubleInv.hasBauble(("balloon"))) {
-                            event.setCancelled(true);
+
+                        if (baubleInv.hasBauble("stone_greater_inertia")) {
+                            minFallDistance += config.getDouble("Items.stone_greater_inertia.MinFallDistance");
+                            damageMultiplier *= config.getDouble("Items.stone_greater_inertia.FallDamageMultiplier");
                         }
+
+                        damage *= damageMultiplier;
+
+                        if (player.getFallDistance() <= minFallDistance)
+                            // cancel the event to set the fall damage to 0
+                            event.setCancelled(true);
+
+                        if (baubleInv.hasBauble("lucky_horseshoe") || baubleInv.hasBauble("stone_inertia_null"))
+                            event.setCancelled(true);
                     }
 
                     // if the damage is caused by a cactus or berry bush
                     case CONTACT -> {
                         // if the player has a phytoprostasia amulet
-                        if (baubleInv.hasBauble(("phytoprostasia_amulet"))) {
+                        if (baubleInv.hasBauble(("phytoprostasia_amulet")))
                             event.setCancelled(true);
-                        }
                     }
                 }
 
@@ -448,11 +580,10 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
                 if (player.getHealth() - event.getFinalDamage() <= 0D) {
                     if (baubleInv.hasBauble("broken_heart")) {
-                        ItemStack item = baubleInv.getItem("broken_heart").clone();
+                        ItemStack item = baubleInv.getItem("broken_heart");
                         if (RSVItem.getCustomDurability(item) >= 1) {
                             Utils.changeDurability(item, -1, false);
                             player.playEffect(EntityEffect.TOTEM_RESURRECT);
-                            baubleInv.setItem(item, "broken_heart");
                             event.setCancelled(true);
                         }
                     }
@@ -483,57 +614,134 @@ public class BaubleEvents extends ModuleEvents implements Listener {
         }
     }
 
-    /**
-     * Activates the balloon ability if a player jumps
-     * @param event The event called when a player moves
-     */
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPlayerVelocity(PlayerMoveEvent event)
-    {
-        Player player = event.getPlayer(); // get the player
-
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onSkip(TimeSkipEvent event) {
         if (!event.isCancelled()) {
-            if (shouldEventBeRan(player)) {
-                FileConfiguration config = module.getUserConfig().getConfig();
+            World world = event.getWorld();
 
-                RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(player.getUniqueId());
-                DataModule module = rsvPlayer.getBaubleDataModule();
+            if (shouldEventBeRan(world)) {
+                if (event.getSkipReason() == TimeSkipEvent.SkipReason.NIGHT_SKIP) {
+                    Collection<UUID> ids = module.getBrokenHeartPlayers();
 
-                BaubleInventory baubleInv = module.getBaubleBag();
+                    for (UUID id : ids) {
+                        RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
 
-                // if the player has a balloon
-                if (baubleInv.hasBauble("balloon")) {
-                    Vector velocity = player.getVelocity(); // get the player's current velocity
+                        DataModule dataModule = rsvPlayer.getBaubleDataModule();
 
-                    // check if the player is moving up
-                    if (velocity.getY() > 0) {
-                        double jumpVelocity = 0.42; // default jump velocity
-
-                        // if the player has the jump boost effect
-                        if (player.hasPotionEffect(PotionEffectType.JUMP)) {
-                            PotionEffect jumpBoost = player.getPotionEffect(PotionEffectType.JUMP);  // get the jump boost effect
-
-                            // add the jump boost to the velocity to factor in the increased velocity
-                            jumpVelocity += ((double) jumpBoost.getAmplifier() + 1) * 0.1;
+                        if (dataModule.getBaubleBag().hasBauble("broken_heart")) {
+                            Utils.changeDurability(dataModule.getBaubleBag().getItem("broken_heart"), 1, false);
                         }
 
-                        Location loc = player.getLocation(); // get the player's location
-                        Block block = loc.getBlock(); // get the block at that location
-                        Material blockMaterial = block.getType(); // get the material of the block
+                        if (BrokenHeartRepairTask.hasTask(id)) {
+                            BrokenHeartRepairTask.getTasks().get(id).stop();
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-                        // check if the player is not climbing
-                        switch (blockMaterial) {
-                            case LADDER, VINE, TWISTING_VINES, TWISTING_VINES_PLANT, WEEPING_VINES, WEEPING_VINES_PLANT -> {}
-                            default -> {
-                                // check if the player's jump velocity is equal to the player's Y velocity
-                                if (Utils.doublesEquals(velocity.getY(), jumpVelocity)) {
-                                    // check if the player is not flying or swimming
-                                    if (!(player.getLocation().getBlock().isLiquid() || player.isRiptiding() || player.isFlying())) {
-                                        // increase the velocity
-                                        velocity.setY(jumpVelocity * config.getDouble("Items.balloon.JumpVelocityMultiplier"));
+    /**
+     * Activates the balloon ability if a player jumps
+     * @param event The event called when a player jumps
+     */
+    @EventHandler
+    public void onPlayerJump(PlayerJumpEvent event) {
+        Player player = event.getPlayer(); // get the player
 
-                                        // set the player's velocity to that velocity
-                                        player.setVelocity(velocity);
+        if (shouldEventBeRan(player)) {
+            RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(player.getUniqueId());
+            DataModule module = rsvPlayer.getBaubleDataModule();
+
+            BaubleInventory baubleInv = module.getBaubleBag();
+
+            double jumpVelocity = 0.42; // default jump velocity
+
+            // if the player has the jump boost effect
+            if (player.hasPotionEffect(PotionEffectType.JUMP)) {
+                PotionEffect jumpBoost = player.getPotionEffect(PotionEffectType.JUMP);  // get the jump boost effect
+
+                // add the jump boost to the velocity to factor in the increased velocity
+                jumpVelocity += ((double) jumpBoost.getAmplifier() + 1) * 0.1;
+            }
+
+            // if the player has a balloon
+            if (baubleInv.hasBauble("balloon"))
+                jumpVelocity *= config.getDouble("Items.balloon.JumpVelocityMultiplier");
+
+            if (baubleInv.hasBauble("stone_greater_inertia"))
+                jumpVelocity *= config.getDouble("Items.stone_greater_inertia.JumpVelocityMultiplier");
+
+            // set the player's velocity to that velocity
+            if (!Utils.doublesEquals(jumpVelocity, 0.42)) {
+                player.setVelocity(player.getVelocity().setY(jumpVelocity));
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onCraft(CraftItemEvent event) {
+        if (!event.isCancelled()) {
+            Player player = (Player) event.getView().getPlayer();
+
+            if (shouldEventBeRan(player)) {
+                if (event.getRecipe() instanceof ShapelessRecipe shapeless) {
+                    NamespacedKey key = shapeless.getKey();
+                    if (key.getNamespace().equals("realisticsurvival")) {
+                        switch (key.getKey()) {
+                            case "spectral_silt_broken_heart", "spectral_silt_balloon", "spectral_silt_cobalt_shield",
+                                "spectral_silt_obsidian_shield", "spectral_silt_magic_mirror", "spectral_silt_wormhole_mirror",
+                                    "spectral_silt_lucky_horseshoe", "spectral_silt_sunglasses", "spectral_silt_cross_necklace",
+                                    "spectral_silt_sin_pendant", "spectral_silt_flare_gun", "spectral_silt_cracked_black_dragonscale",
+                                    "spectral_silt_diamond_block", "spectral_silt_emerald_block", "spectral_silt_cross_phantom_prism" -> {
+                                CraftingInventory inv = event.getInventory();
+                                ItemStack[] matrix = inv.getMatrix();
+
+                                outer:
+                                for (ItemStack item : matrix) {
+                                    if (RSVItem.isRSVItem(item)) {
+                                        if (RSVItem.getNameFromItem(item).equals("disintegration_tablet")) {
+                                            ItemStack[] contents = player.getInventory().getContents();
+
+                                            for (ItemStack i : contents) {
+                                                if (!Utils.isItemReal(i)) {
+                                                    player.getInventory().addItem(item);
+                                                    break outer;
+                                                }
+                                            }
+
+                                            player.getWorld().dropItemNaturally(player.getLocation(), item);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            default -> {}
+                        }
+                    }
+                }
+                if (event.getRecipe() instanceof ShapedRecipe shaped) {
+                    NamespacedKey key = shaped.getKey();
+                    if (key.getNamespace().equals("realisticsurvival")) {
+                        if (key.getKey().equals("spectral_silt_flare")) {
+                            CraftingInventory inv = event.getInventory();
+                            ItemStack[] matrix = inv.getMatrix();
+
+                            outer:
+                            for (ItemStack item : matrix) {
+                                if (RSVItem.isRSVItem(item)) {
+                                    if (RSVItem.getNameFromItem(item).equals("disintegration_tablet")) {
+                                        ItemStack[] contents = player.getInventory().getContents();
+
+                                        for (ItemStack i : contents) {
+                                            if (!Utils.isItemReal(i)) {
+                                                player.getInventory().addItem(item);
+                                                break outer;
+                                            }
+                                        }
+
+                                        player.getWorld().dropItemNaturally(player.getLocation(), item);
+                                        break;
                                     }
                                 }
                             }
@@ -554,18 +762,14 @@ public class BaubleEvents extends ModuleEvents implements Listener {
         LivingEntity entity = event.getEntity();
 
         if (shouldEventBeRan(entity)) {
-            FileConfiguration config = module.getUserConfig().getConfig();
-
-            Collection<String> drops = List.of("forbidden_fruit", "vitamins", "ring_overclocking", "shulker_heart", "bezoar", "ender_dragonscale");
+            final Collection<String> drops = List.of("forbidden_fruit", "vitamins", "ring_overclocking", "shulker_heart", "bezoar", "ender_dragonscale", "spectral_silt", "stone_negative_gravity", "stone_inertia_null", "stone_greater_inertia", "phantom_prism", "ring_fairies", "ring_dwarves");
             for (String drop : drops) {
                 ConfigurationSection section = config.getConfigurationSection("Items." + drop + ".MobDrops");
                 Set<String> keys = section.getKeys(false);
 
-                for (String key : keys) {
-                    if (entity.getType() == EntityType.valueOf(key)) {
-                        if (entity.getKiller() != null) {
-                            Utils.harvestLooting(config.getConfigurationSection("Items." + drop + ".MobDrops." + key), RSVItem.getItem(drop), entity.getKiller().getInventory().getItemInMainHand(), entity.getLocation());
-                        }
+                if (keys.contains(entity.getType().toString())) {
+                    if (entity.getKiller() != null) {
+                        Utils.harvestLooting(config.getConfigurationSection("Items." + drop + ".MobDrops." + entity.getType()), RSVItem.getItem(drop), entity.getKiller().getInventory().getItemInMainHand(), entity.getLocation());
                     }
                 }
             }
@@ -579,11 +783,8 @@ public class BaubleEvents extends ModuleEvents implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPotionEffect(EntityPotionEffectEvent event) {
-
         // if the entity affected is a player
-        if (event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity(); // cast the entity to a player
-
+        if (event.getEntity() instanceof Player player) {
             if (shouldEventBeRan(player)) {
                 PotionEffect newEffect = event.getNewEffect(); // get the new effect
                 ItemStack itemOffHand = player.getInventory().getItemInOffHand(); // get the new effect
@@ -694,9 +895,81 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 ItemStack itemMainHand = p.getInventory().getItemInMainHand();
 
                 if (RSVItem.isRSVItem(itemMainHand)) {
-                    if (RSVItem.getNameFromItem(itemMainHand).equals("bauble_bag")) {
-                        DataModule module = RSVPlayer.getPlayers().get(p.getUniqueId()).getBaubleDataModule();
-                        p.openInventory(module.getBaubleBag().getInventory());
+                    switch (RSVItem.getNameFromItem(itemMainHand)) {
+                        case "bauble_bag" -> {
+                            DataModule module = RSVPlayer.getPlayers().get(p.getUniqueId()).getBaubleDataModule();
+                            p.openInventory(module.getBaubleBag().getInventory());
+                        }
+                        case "magic_mirror" -> {
+                            if (!MagicMirrorTask.hasTask(p.getUniqueId())) {
+                                p.openInventory(module.getInv().getInventory());
+
+                                Location loc = p.getBedSpawnLocation() == null ? p.getWorld().getSpawnLocation() : p.getBedSpawnLocation();
+                                p.teleport(loc);
+
+                                if (config.getBoolean("Items.magic_mirror.Sound.Enabled")) {
+                                    String soundName = config.getString("Items.magic_mirror.Sound.Sound");
+                                    float volume = (float) config.getDouble("Items.magic_mirror.Sound.Volume");
+                                    float pitch = (float) config.getDouble("Items.magic_mirror.Sound.Pitch");
+                                    Utils.playSound(loc, soundName, volume, pitch);
+                                }
+
+                                new MagicMirrorTask(p, plugin).start();
+                            }
+                        }
+                        case "wormhole_mirror" -> {
+                            if (!WormholeMirrorTask.hasTask(p.getUniqueId())) {
+                                p.openInventory(module.getInv().getInventory());
+                                new WormholeMirrorTask(module, p, plugin).start();
+                            }
+                        }
+                    }
+                }
+            }
+            else if (event.getAction() == Action.LEFT_CLICK_AIR) {
+                UUID id = p.getUniqueId();
+                RSVPlayer player = RSVPlayer.getPlayers().get(id);
+
+                DataModule module = player.getBaubleDataModule();
+
+                if (module.getBaubleBag().hasBauble("stone_negative_gravity")) {
+                    Vector velocity = p.getVelocity();
+                    double increment = config.getDouble("Items.stone_negative_gravity.Flight.Increment");
+                    double temp;
+
+                    if (p.isSneaking()) {
+                        temp = velocity.getY() - increment;
+                        if (temp >= config.getDouble("Items.stone_negative_gravity.Flight.MaxDownwardVelocity")) {
+                            p.setVelocity(velocity.setY(velocity.getY() - increment));
+                        }
+                    }
+                    else {
+                        temp = velocity.getY() + increment;
+                        if (temp <= config.getDouble("Items.stone_negative_gravity.Flight.MaxUpwardVelocity")) {
+                            p.setVelocity(velocity.setY(velocity.getY() + increment));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onRegenerate(EntityRegainHealthEvent event) {
+        if (!event.isCancelled()) {
+            if (event.getEntity() instanceof Player player) {
+                if (shouldEventBeRan(player)) {
+                    if (player.getHealth() + event.getAmount() >= player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
+                        UUID id = player.getUniqueId();
+                        RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(id);
+
+                        BaubleInventory inv = rsvplayer.getBaubleDataModule().getBaubleBag();
+
+                        if (inv.hasBauble("pride_pendant")) {
+                            if (!PotionBaubleTask.hasTask(id, "pride_pendant")) {
+                                Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, inv.getItem("pride_pendant"), BaubleChangeEvent.BaubleChange.ADDITION));
+                            }
+                        }
                     }
                 }
             }
@@ -707,17 +980,78 @@ public class BaubleEvents extends ModuleEvents implements Listener {
     public void onConsume(PlayerItemConsumeEvent event) {
         if (!event.isCancelled()) {
             Player p =event.getPlayer();
-            if (shouldEventBeRan(p)) {
 
+            if (shouldEventBeRan(p)) {
                 ItemStack item = event.getItem();
                 if (RSVItem.isRSVItem(item)) {
                     if (RSVItem.getNameFromItem(item).equals("recall_potion")) {
                         Location loc = p.getBedSpawnLocation() == null ? p.getWorld().getSpawnLocation() : p.getBedSpawnLocation();
                         p.teleport(loc);
-                    }
-                    else if (RSVItem.getNameFromItem(item).equals("wormhole_potion")) {
 
+                        if (config.getBoolean("Items.recall_potion.Sound.Enabled")) {
+                            String soundName = config.getString("Items.recall_potion.Sound.Sound");
+                            float volume = (float) config.getDouble("Items.recall_potion.Sound.Volume");
+                            float pitch = (float) config.getDouble("Items.recall_potion.Sound.Pitch");
+                            Utils.playSound(loc, soundName, volume, pitch);
+                        }
                     }
+                    else if (RSVItem.getNameFromItem(item).equals("wormhole_potion"))
+                        p.openInventory(module.getInv().getInventory());
+                }
+
+                UUID id = p.getUniqueId();
+                RSVPlayer player = RSVPlayer.getPlayers().get(id);
+
+                BaubleInventory inv = player.getBaubleDataModule().getBaubleBag();
+
+                if (inv.hasBauble("gluttony_pendant"))
+                    ((PotionBauble) TickableBaubleManager.GLUTTONY_PENDANT.getBauble()).ability(p, inv.getBaubleAmount("gluttony_pendant"));
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemHeld(PlayerItemHeldEvent event) {
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
+            if (shouldEventBeRan(player)) {
+                ItemStack item = player.getInventory().getItem(event.getNewSlot());
+
+                checkAndRunTask(player, item);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemPickup(EntityPickupItemEvent event) {
+        if (!event.isCancelled()) {
+            Entity entity = event.getEntity();
+            if (entity instanceof Player player) {
+                if (shouldEventBeRan(player)) {
+                    ItemStack item = event.getItem().getItemStack();
+                    checkAndRunTask(player, item);
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemSwap(PlayerSwapHandItemsEvent event) {
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
+
+            if (shouldEventBeRan(player)) {
+                ItemStack item = event.getMainHandItem();
+                checkAndRunTask(player, item);
+            }
+        }
+    }
+
+    private void checkAndRunTask(Player player, ItemStack item) {
+        if (RSVItem.isRSVItem(item)) {
+            if (RSVItem.getNameFromItem(item).equals("stone_negative_gravity")) {
+                if (!StoneNegativeGravityTask.hasTask(player.getUniqueId())) {
+                    new StoneNegativeGravityTask(module, RSVPlayer.getPlayers().get(player.getUniqueId()), plugin).start();
                 }
             }
         }

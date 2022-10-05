@@ -43,7 +43,7 @@ public class RSVItem extends ItemStack {
 
     private static final String LOREPRESET = "LOREPRESET";
 
-    private static HashMap<String, RSVItem> itemMap = new HashMap<>();
+    private static Map<String, RSVItem> itemMap = new HashMap<>();
 
     private final String name;
     private final String module;
@@ -80,7 +80,7 @@ public class RSVItem extends ItemStack {
 
         if (material == Material.POTION) {
             String colorPath = name + ".Color";
-            String effectsPath = name + ".Effects";
+            String effectsPath = name + ".PotionType";
 
             if (config.getString(colorPath) != null) {
                 Color color = Utils.valueOfColor(config.getString(colorPath));
@@ -156,7 +156,7 @@ public class RSVItem extends ItemStack {
                 String key = s;
                 String value = config.getString(nbtTagsPath + "." + s);
                 if (!(key == null || key.isEmpty() || value == null || value.isEmpty())) {
-                    if (key.equals("rsvdurability")) {
+                    if (org.apache.commons.lang.math.NumberUtils.isDigits(value)) {
                         util.addNbtTag(this, key, Integer.parseInt(value), PersistentDataType.INTEGER);
                     }
                     else {
@@ -281,7 +281,7 @@ public class RSVItem extends ItemStack {
                 String key = s;
                 String value = config.getString(nbtTagsPath + "." + s);
                 if (!(key == null || key.isEmpty() || value == null || value.isEmpty())) {
-                    if (key.equals("rsvdurability")) {
+                    if (org.apache.commons.lang.math.NumberUtils.isDigits(value)) {
                         util.addNbtTag(this, key, Integer.parseInt(value), PersistentDataType.INTEGER);
                     }
                     else {
@@ -337,7 +337,7 @@ public class RSVItem extends ItemStack {
         return name;
     }
 
-    public static HashMap<String, RSVItem> getItemMap() {
+    public static Map<String, RSVItem> getItemMap() {
         return itemMap;
     }
 

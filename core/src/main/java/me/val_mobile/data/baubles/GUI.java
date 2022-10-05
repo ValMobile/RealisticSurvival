@@ -18,30 +18,16 @@ package me.val_mobile.data.baubles;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 public abstract class GUI {
 
     private final Inventory inv;
-    private final Collection<ItemStack> disallowedItems = new ArrayList<>();
-
     public GUI(Player player, int size, String name) {
         inv = Bukkit.createInventory(player, size, name);
     }
 
-    public Collection<ItemStack> getDisallowedItems() {
-        return disallowedItems;
-    }
-
     public Inventory getInventory() {
         return inv;
-    }
-
-    public void shouldCancel(InventoryClickEvent event) {
     }
 }

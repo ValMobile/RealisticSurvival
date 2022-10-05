@@ -25,8 +25,6 @@ import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Tag;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
@@ -36,10 +34,7 @@ import org.bukkit.util.EulerAngle;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class ThrowWeaponTask extends BukkitRunnable {
 
@@ -57,7 +52,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
     private final Location started;
 
     private final Vector vector;
-    private static final HashMap<UUID, ThrowWeaponTask> tasks = new HashMap<>();
+    private static final Map<UUID, ThrowWeaponTask> tasks = new HashMap<>();
 
     public ThrowWeaponTask(RSVModule module, RealisticSurvivalPlugin plugin, Player player, ItemStack item, double maxDistance, boolean rotateWeapon, boolean piercing, boolean returnWeapon, Vector velocity) {
         this.config = module.getUserConfig().getConfig();
@@ -115,22 +110,24 @@ public class ThrowWeaponTask extends BukkitRunnable {
 
         // check if the raytrace result has a block within the max distance
         // if it hits a block, the weapon is either returned or dropped
-        if (result != null && Objects.requireNonNull(result.getHitBlock()).getType() != Material.GRASS && !Tag.FLOWERS.isTagged(result.getHitBlock().getType())) {
-            if (returnWeapon) {
-                returnWeapon();
-            }
-            else {
-                dropWeaponTask(armorStand, player, item.clone());
-            }
+        if (result != null) {
+            if (result.getHitBlock() != null && !result.getHitBlock().isPassable()) {
+                if (returnWeapon) {
+                    returnWeapon();
+                }
+                else {
+                    dropWeaponTask(armorStand, player, item.clone());
+                }
 
-            if (config.getBoolean("Items." + name + ".ThrownAttributes.HitGroundSound.Enabled")) {
-                String soundName = config.getString("Items." + name + ".ThrownAttributes.HitGroundSound.Sound");
-                float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitGroundSound.Volume");
-                float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitGroundSound.Pitch");
-                Utils.playSound(armorStand.getLocation(), soundName, volume, pitch);
+                if (config.getBoolean("Items." + name + ".ThrownAttributes.HitGroundSound.Enabled")) {
+                    String soundName = config.getString("Items." + name + ".ThrownAttributes.HitGroundSound.Sound");
+                    float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitGroundSound.Volume");
+                    float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitGroundSound.Pitch");
+                    Utils.playSound(armorStand.getLocation(), soundName, volume, pitch);
+                }
+                tasks.remove(player.getUniqueId());
+                cancel();
             }
-            tasks.remove(player.getUniqueId());
-            cancel();
         }
 
         // check if there are nearby entities around the given bounding box
@@ -383,7 +380,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
         return player;
     }
 
-    public static HashMap<UUID, ThrowWeaponTask> getTasks() {
+    public static Map<UUID, ThrowWeaponTask> getTasks() {
         return tasks;
     }
 

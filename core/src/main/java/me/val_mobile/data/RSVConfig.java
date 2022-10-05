@@ -23,12 +23,12 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class RSVConfig extends FileBuilder {
 
-    private static Collection<RSVConfig> configList = new ArrayList<>();
+    private static final Set<RSVConfig> configList = new HashSet<>();
     private boolean renamed;
 
     private final String path;
@@ -113,7 +113,7 @@ public class RSVConfig extends FileBuilder {
         setConfig(YamlConfiguration.loadConfiguration(file));
     }
 
-    public static Collection<RSVConfig> getConfigList() {
+    public static Set<RSVConfig> getConfigList() {
         return configList;
     }
 }

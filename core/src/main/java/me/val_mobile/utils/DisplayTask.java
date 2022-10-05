@@ -33,11 +33,12 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class DisplayTask extends BukkitRunnable {
 
-    private final static HashMap<UUID, DisplayTask> tasks = new HashMap<>();
+    private static final Map<UUID, DisplayTask> tasks = new HashMap<>();
     private final UUID id;
     private final FileConfiguration tanConfig;
     private final FileConfiguration ifConfig;
@@ -192,7 +193,7 @@ public class DisplayTask extends BukkitRunnable {
         return false;
     }
 
-    public static HashMap<UUID, DisplayTask> getTasks() {
+    public static Map<UUID, DisplayTask> getTasks() {
         return tasks;
     }
 }

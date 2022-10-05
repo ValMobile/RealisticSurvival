@@ -2,7 +2,7 @@
 #          Spartan's Weaponry         #
 #######################################
 
-ConfigId: "1.2.3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -24,7 +24,28 @@ WeaponDropped:
   Enabled: true
   Message: "&fWeapon dropped at &bx&f: &b%X-COORD%&f, &by&f: &b%Y-COORD%&f, &bz&f: &b%Z-COORD%&f."    # All placeholders: %X-COORD%, %Y_COORD%, %Z-COORD%
 
-
+UpdateNetheriteItems:   # Specify which factors will be transferred over when a diamond weapon is crafted into a netherite weapon via smithing table
+  Enabled: true
+  UpdateMaterial: true
+  UpdateMaterialData: false
+  UpdateDisplayName: true
+  UpdateLore: true
+  UpdateUnbreakability: true
+  UpdateAttributeModifiers: true
+  UpdateLocalizedName: true
+  UpdateCustomModelData: true
+  UpdateEnchants:
+    Enabled: true
+    PreserveExistingEnchants: true
+  UpdateItemFlags:
+    Enabled: true
+    PreserveExistingItemFlags: true
+  UpdateVanillaDurability: false
+  UpdateNbtTags:
+    Enabled: true
+    UpdateModule: true
+    UpdateCustomDurability: false
+    UpdateCustomMaxDurability: true
 
 # Customize weapon and armor traits of the Spartan Weaponry items
 # Ignore the dragonbone or dragonsteel items, they are in beta

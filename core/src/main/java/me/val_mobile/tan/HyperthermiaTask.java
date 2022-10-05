@@ -16,7 +16,6 @@
  */
 package me.val_mobile.tan;
 
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.GameMode;
@@ -31,7 +30,8 @@ import java.util.*;
 
 public class HyperthermiaTask extends BukkitRunnable {
 
-    private final static HashMap<UUID, HyperthermiaTask> tasks = new HashMap<>();
+    private static final Map<UUID, HyperthermiaTask> tasks = new HashMap<>();
+    private final TanModule module;
     private final FileConfiguration config;
     private final UUID id;
 
@@ -42,12 +42,13 @@ public class HyperthermiaTask extends BukkitRunnable {
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
 
 
-    public HyperthermiaTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public HyperthermiaTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
-        this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
+        this.module = module;
+        this.config = module.getUserConfig().getConfig();
         this.player = player;
         this.id = player.getPlayer().getUniqueId();
-        this.allowedWorlds = RSVModule.getModule(TanModule.NAME).getAllowedWorlds();
+        this.allowedWorlds = module.getAllowedWorlds();
         this.damage = config.getDouble("Temperature.Hyperthermia.Damage.Amount");
 
         ConfigurationSection section = config.getConfigurationSection("Temperature.Hyperthermia.PotionEffects.Effects");
@@ -81,6 +82,9 @@ public class HyperthermiaTask extends BukkitRunnable {
                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotdamage")) {
                     if (config.getBoolean("Temperature.Hyperthermia.Damage.Enabled")) {
                         if (player.getHealth() >= config.getDouble("Temperature.Hyperthermia.Damage.Cutoff")) {
+                            if (player.getHealth() - damage <= 0) {
+                                module.getHyperthermiaDeath().add(id);
+                            }
                             player.damage(damage);
                         }
                     }
@@ -132,7 +136,7 @@ public class HyperthermiaTask extends BukkitRunnable {
         return false;
     }
 
-    public static HashMap<UUID, HyperthermiaTask> getTasks() {
+    public static Map<UUID, HyperthermiaTask> getTasks() {
         return tasks;
     }
 }

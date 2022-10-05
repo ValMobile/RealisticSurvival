@@ -22,12 +22,15 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.ToolHandler.Tool;
 import me.val_mobile.utils.Utils;
+import me.val_mobile.utils.Utils.Hand;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.Furnace;
+import org.bukkit.block.data.Levelled;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -40,17 +43,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
-import org.bukkit.event.block.CauldronLevelChangeEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.event.inventory.PrepareItemCraftEvent;
-import org.bukkit.event.player.PlayerBucketEmptyEvent;
-import org.bukkit.event.player.PlayerBucketFillEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemHeldEvent;
+import org.bukkit.event.inventory.*;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -533,70 +531,42 @@ public class NtrEvents extends ModuleEvents implements Listener {
     }
 
     @EventHandler
-    public void onCraft(PrepareItemCraftEvent event) {
+    public void onPrepareCraft(PrepareItemCraftEvent event) {
         if (shouldEventBeRan(event.getView().getPlayer())) {
-
             Recipe recipe = event.getRecipe();
 
             if (recipe != null) {
+                if (recipe instanceof ShapelessRecipe shapeless) {
+                    NamespacedKey key = shapeless.getKey();
 
-                if (config.getBoolean("Lumberjack.DisablePlankRecipes")) {
-                    if (recipe instanceof ShapelessRecipe) {
-                        NamespacedKey key = ((ShapelessRecipe) recipe).getKey();
-
-                        if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
-                            switch (key.getKey()) {
-                                case "acacia_planks", "birch_planks", "crimson_planks", "dark_oak_planks", "jungle_planks", "mangrove_planks", "oak_planks", "spruce_planks", "warped_planks" ->
-                                        event.getInventory().setResult(null);
-                                default -> {}
+                    if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
+                        switch (key.getKey()) {
+                            case "acacia_planks", "birch_planks", "crimson_planks", "dark_oak_planks", "jungle_planks", "mangrove_planks", "oak_planks", "spruce_planks", "warped_planks" -> {
+                                if (config.getBoolean("Lumberjack.DisablePlankRecipes"))
+                                    event.getInventory().setResult(null);
                             }
+                            default -> {}
                         }
                     }
                 }
+                else if (recipe instanceof ShapedRecipe shaped) {
+                    NamespacedKey key = shaped.getKey();
 
-                if (config.getBoolean("Lumberjack.DisableStickRecipes")) {
-                    if (recipe instanceof ShapedRecipe) {
-                        NamespacedKey key = ((ShapedRecipe) recipe).getKey();
-
-                        if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
-                            if (key.getKey().equals("stick")) {
-                                event.getInventory().setResult(null);
+                    if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
+                        switch (key.getKey()) {
+                            case "stick" -> {
+                                if (config.getBoolean("Lumberjack.DisableStickRecipes"))
+                                    event.getInventory().setResult(null);
                             }
-                        }
-                    }
-                }
-
-                if (config.getBoolean("Pottery.RemoveBrickSmeltingRecipe")) {
-                    if (recipe instanceof FurnaceRecipe) {
-                        NamespacedKey key = ((FurnaceRecipe) recipe).getKey();
-
-                        if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
-                            if (key.getKey().equals("brick")) {
-                                event.getInventory().setResult(null);
+                            case "campfire", "soul_campfire" -> {
+                                if (config.getBoolean("RemoveVanillaCampfireRecipes.Enabled"))
+                                    event.getInventory().setResult(null);
                             }
-                        }
-                    }
-                }
-
-                if (config.getBoolean("RemoveVanillaCampfireRecipes.Enabled")) {
-                    if (recipe instanceof ShapedRecipe) {
-                        NamespacedKey key = ((ShapedRecipe) recipe).getKey();
-
-                        if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
-                            switch (key.getKey()) {
-                                case "campfire", "soul_campfire" -> event.getInventory().setResult(null);
-                                default -> {}
+                            case "flower_pot" -> {
+                                if (config.getBoolean("Pottery.RemoveFlowerPotRecipe"))
+                                    event.getInventory().setResult(null);
                             }
-                        }
-                    }
-                }
-
-                if (config.getBoolean("Pottery.RemoveFlowerPotRecipe")) {
-                    if (recipe instanceof ShapedRecipe) {
-                        NamespacedKey key = ((ShapedRecipe) recipe).getKey();
-
-                        if (key.getNamespace().equals(NamespacedKey.MINECRAFT) && key.getKey().equals("flower_pot")) {
-                            event.getInventory().setResult(null);
+                            default -> {}
                         }
                     }
                 }
@@ -642,19 +612,14 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 ItemStack clay = matrix[clayIndex];
 
                 int clayAmount = clay.getAmount();
-                int durability = RSVItem.hasCustomDurability(clayTool) ? RSVItem.getCustomDurability(clayTool) : clayTool.getType().getMaxDurability() - ((Damageable) clayTool.getItemMeta()).getDamage();
+                int durability = RSVItem.getCustomDurability(clayTool);
 
                 if (durability - clayAmount <= 0) {
                     int dif = clayAmount - RSVItem.getCustomDurability(clayTool);
-                    Utils.changeDurability(clayTool, -dif, true);
                     event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(dif));
-                    event.getInventory().setItem(clayToolIndex, null);
-                    event.getInventory().setItem(clayIndex, null);
                 }
                 else {
-                    Utils.changeDurability(clayTool, -clayAmount, true);
                     event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(clayAmount));
-                    event.getInventory().setItem(clayIndex, null);
                 }
             }
 
@@ -663,19 +628,14 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 ItemStack wood = matrix[woodIndex];
 
                 int woodAmount = wood.getAmount();
-                int durability = RSVItem.hasCustomDurability(saw) ? RSVItem.getCustomDurability(saw) : saw.getType().getMaxDurability() - ((Damageable) saw.getItemMeta()).getDamage();
+                int durability = RSVItem.getCustomDurability(saw);
 
                 if (durability - woodAmount <= 0) {
                     int dif = woodAmount - RSVItem.getCustomDurability(saw);
-                    Utils.changeDurability(saw, -dif, true);
                     event.getInventory().setResult(new ItemStack(Utils.getRespectivePlank(wood.getType()), dif * 4));
-                    event.getInventory().setItem(sawIndex, null);
-                    event.getInventory().setItem(woodIndex, null);
                 }
                 else {
-                    Utils.changeDurability(saw, -woodAmount, true);
                     event.getInventory().setResult(new ItemStack(Utils.getRespectivePlank(wood.getType()), woodAmount * 4));
-                    event.getInventory().setItem(woodIndex, null);
                 }
             }
 
@@ -684,19 +644,14 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 ItemStack planks = matrix[planksIndex];
 
                 int planksAmount = planks.getAmount();
-                int durability = RSVItem.hasCustomDurability(saw) ? RSVItem.getCustomDurability(saw) : saw.getType().getMaxDurability() - ((Damageable) saw.getItemMeta()).getDamage();
+                int durability = RSVItem.getCustomDurability(saw);
 
                 if (durability - planksAmount <= 0) {
                     int dif = planksAmount - RSVItem.getCustomDurability(saw);
-                    Utils.changeDurability(saw, -dif, true);
                     event.getInventory().setResult(new ItemStack(Material.STICK, dif * 4));
-                    event.getInventory().setItem(sawIndex, null);
-                    event.getInventory().setItem(woodIndex, null);
                 }
                 else {
-                    Utils.changeDurability(saw, -planksAmount, true);
                     event.getInventory().setResult(new ItemStack(Material.STICK, planksAmount * 4));
-                    event.getInventory().setItem(woodIndex, null);
                 }
             }
         }
@@ -704,14 +659,48 @@ public class NtrEvents extends ModuleEvents implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onBucketFill(PlayerBucketFillEvent event) {
-        Player p = event.getPlayer();
+        Player player = event.getPlayer();
         if (!event.isCancelled()) {
-            if (shouldEventBeRan(p)) {
-                ItemStack item = event.getItemStack();
+            if (shouldEventBeRan(player)) {
+                ItemStack item = player.getInventory().getItemInMainHand();
                 if (RSVItem.isRSVItem(item)) {
                     if (RSVItem.getNameFromItem(item).equals("ceramic_bucket")) {
-                        String bucketType = event.getBucket().toString().toLowerCase();
+                        String bucketType = event.getItemStack().getType().toString().toLowerCase();
                         event.setItemStack(RSVItem.getItem("ceramic_" + bucketType));
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+        Player player = event.getPlayer();
+        if (!event.isCancelled()) {
+            if (shouldEventBeRan(player)) {
+                ItemStack item = player.getInventory().getItemInMainHand();
+                if (RSVItem.isRSVItem(item)) {
+                    if (RSVItem.getNameFromItem(item).equals("ceramic_bucket")) {
+                        String entityName = event.getRightClicked().getName();
+                        String bucketType;
+                        plugin.getLogger().info("Entity Name: " + entityName);
+                        switch (entityName) {
+                            case "Pufferfish", "Salmon", "Cod", "Tropical Fish", "Axolotl", "Tadpole" -> {
+                                bucketType = entityName.toLowerCase() + "_bucket";
+                                if (Utils.isItemReal(RSVItem.getItem("ceramic_" + bucketType))) {
+                                    player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_" + bucketType));
+                                }
+                                event.setCancelled(true);
+                            }
+                            case "Cow" -> {
+                                bucketType = "milk_bucket";
+                                if (Utils.isItemReal(RSVItem.getItem("ceramic_" + bucketType))) {
+                                    player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_" + bucketType));
+                                }
+                                event.setCancelled(true);
+                            }
+                        }
+
                     }
                 }
             }
@@ -721,12 +710,12 @@ public class NtrEvents extends ModuleEvents implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onBucketEmpty(PlayerBucketEmptyEvent event) {
         if (!event.isCancelled()) {
-            Player p = event.getPlayer();
+            Player player = event.getPlayer();
 
-            if (shouldEventBeRan(p)) {
-                ItemStack item = event.getItemStack();
+            if (shouldEventBeRan(player)) {
+                ItemStack item = player.getInventory().getItemInMainHand();
                 if (RSVItem.isRSVItem(item)) {
-                    if (RSVItem.getNameFromItem(item).contains("ceramic_") && !RSVItem.getNameFromItem(item).equals("ceramic_bucket")) {
+                    if (RSVItem.getNameFromItem(item).contains("ceramic_")) {
                         event.setItemStack(RSVItem.getItem("ceramic_bucket"));
                     }
                 }
@@ -735,41 +724,127 @@ public class NtrEvents extends ModuleEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onCauldronFill(CauldronLevelChangeEvent event) {
-        if (!event.isCancelled()) {
-            Entity e = event.getEntity();
-            if (shouldEventBeRan(e)) {
-                if (e instanceof Player) {
-                    Player player = (Player) e;
-                    ItemStack item = player.getInventory().getItemInMainHand();
+    public void onInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
 
+        if (shouldEventBeRan(player)) {
+            if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                Block block = event.getClickedBlock();
+
+                if (block != null) {
+                    ItemStack item = event.getItem();
+                    String mat = block.getType().toString();
                     if (RSVItem.isRSVItem(item)) {
-                        if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BUCKET_EMPTY) {
-                            if (RSVItem.getNameFromItem(item).contains("ceramic_bucket_")) {
-                                player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_bucket"));
+                        String rsvName = RSVItem.getNameFromItem(item);
+                        switch (mat) {
+                            case "CAULDRON" -> {
+                                // check for 1.16
+                                if (RealisticSurvivalPlugin.getUtil().getMinecraftVersion().contains("1.16")) {
+                                    int level = ((Levelled) block.getBlockData()).getLevel();
+                                    if (rsvName.equals("ceramic_bucket")) {
+                                        if (level >= 3) {
+                                            // turn into water ceramic bucket
+
+                                            Hand hand = getHand(player, rsvName);
+                                            if (hand != null) {
+                                                new BukkitRunnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        if (hand == Hand.MAIN_HAND)
+                                                            player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_water_bucket"));
+                                                        else
+                                                            player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_water_bucket"));
+                                                    }
+                                                }.runTaskLater(plugin, 1L);
+                                            }
+                                        }
+                                    } else if (rsvName.equals("ceramic_water_bucket")) {
+                                        if (level <= 0) {
+                                            // turn into empty ceramic bucket
+                                            Hand hand = getHand(player, rsvName);
+                                            if (hand != null) {
+                                                new BukkitRunnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        if (hand == Hand.MAIN_HAND)
+                                                            player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_bucket"));
+                                                        else
+                                                            player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_bucket"));
+                                                    }
+                                                }.runTaskLater(plugin, 1L);
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if (rsvName.equals("ceramic_water_bucket") || rsvName.equals("ceramic_lava_bucket")) {
+                                        // turn into empty ceramic bucket
+                                        Hand hand = getHand(player, rsvName);
+                                        if (hand != null) {
+                                            new BukkitRunnable() {
+                                                @Override
+                                                public void run() {
+                                                    if (hand == Hand.MAIN_HAND)
+                                                        player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_bucket"));
+                                                    else
+                                                        player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_bucket"));
+                                                }
+                                            }.runTaskLater(plugin, 1L);
+                                        }
+                                    }
+                                }
+                            }
+                            case "LAVA_CAULDRON" -> {
+                                if (rsvName.equals("ceramic_bucket")) {
+                                    // turn into lava ceramic bucket
+                                    Hand hand = getHand(player, rsvName);
+                                    if (hand != null) {
+                                        new BukkitRunnable() {
+                                            @Override
+                                            public void run() {
+                                                if (hand == Hand.MAIN_HAND) {
+                                                    player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_lava_bucket"));
+                                                    checkAndRunTask(player, player.getInventory().getItemInMainHand());
+                                                }
+                                                else
+                                                    player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_lava_bucket"));
+                                            }
+                                        }.runTaskLater(plugin, 1L);
+                                    }
+                                }
+                            }
+                            case "WATER_CAULDRON" -> {
+                                if (rsvName.equals("ceramic_bucket")) {
+                                    // turn into lava ceramic bucket
+                                    Hand hand = getHand(player, rsvName);
+                                    if (hand != null) {
+                                        new BukkitRunnable() {
+                                            @Override
+                                            public void run() {
+                                                if (hand == Hand.MAIN_HAND)
+                                                    player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_water_bucket"));
+                                                else
+                                                    player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_water_bucket"));
+                                                plugin.getLogger().info("3");
+                                            }
+                                        }.runTaskLater(plugin, 1L);
+                                    }
+                                }
                             }
                         }
                     }
                 }
+
             }
         }
     }
 
-
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onItemSwap(PlayerItemHeldEvent event) {
+    public void onItemHeld(PlayerItemHeldEvent event) {
         if (!event.isCancelled()) {
-            Player p = event.getPlayer();
-            if (shouldEventBeRan(p)) {
-                ItemStack item = p.getInventory().getItem(event.getNewSlot());
-
-                if (RSVItem.isRSVItem(item)) {
-                    if (RSVItem.getNameFromItem(item).equals("ceramic_lava_bucket")) {
-                        if (!CeramicBucketMeltTask.hasTask(p.getUniqueId())) {
-                            new CeramicBucketMeltTask(plugin, module, p).start();
-                        }
-                    }
-                }
+            Player player = event.getPlayer();
+            if (shouldEventBeRan(player)) {
+                ItemStack item = player.getInventory().getItem(event.getNewSlot());
+                checkAndRunTask(player, item);
             }
         }
     }
@@ -777,22 +852,12 @@ public class NtrEvents extends ModuleEvents implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onItemPickup(EntityPickupItemEvent event) {
         if (!event.isCancelled()) {
-            if (event.getEntity() instanceof Player) {
-                Player player = (Player) event.getEntity();
+            if (event.getEntity() instanceof Player player) {
                 if (shouldEventBeRan(player)) {
                     ItemStack item = event.getItem().getItemStack();
-                    if (RSVItem.isRSVItem(item)) {
-                        String name = RSVItem.getNameFromItem(item);
-
-                        if (name.equals("ceramic_lava_bucket")) {
-                            if (!CeramicBucketMeltTask.hasTask(player.getUniqueId())) {
-                                new CeramicBucketMeltTask(plugin, module, player).start();
-                            }
-                        }
-                    }
+                    checkAndRunTask(player, item);
                 }
             }
-
         }
     }
 
@@ -802,13 +867,161 @@ public class NtrEvents extends ModuleEvents implements Listener {
             Player player = (Player) event.getWhoClicked();
             if (shouldEventBeRan(player)) {
                 ItemStack cursor = event.getCursor();
-                if (event.isLeftClick()) {
-                    if (RSVItem.isRSVItem(cursor)) {
-                        String name = RSVItem.getNameFromItem(cursor);
+                InventoryView view = event.getView();
+                Inventory top = view.getTopInventory();
+                InventoryType type = top.getType();
 
-                        if (name.equals("ceramic_lava_bucket")) {
-                            if (!CeramicBucketMeltTask.hasTask(player.getUniqueId())) {
-                                new CeramicBucketMeltTask(plugin, module, player).start();
+                int heldSlot = player.getInventory().getHeldItemSlot();
+                int slot = event.getSlot();
+
+                if (slot == heldSlot) {
+                    checkAndRunTask(player, cursor);
+                }
+
+                if (event.isShiftClick()) {
+                    if (event.getView().getTopInventory().getType() != InventoryType.PLAYER) {
+                        checkAndRunTask(player, event.getCurrentItem());
+                    }
+                }
+
+                if (type == InventoryType.CRAFTING || type == InventoryType.WORKBENCH) {
+                    if (top instanceof CraftingInventory craftInv) {
+                        if (event.getRawSlot() == 0) {
+                            ItemStack temp = null;
+                            ItemStack tool = null;
+
+                            ItemStack[] matrix = craftInv.getMatrix();
+                            ItemStack result = craftInv.getResult();
+
+                            boolean hasSaw = false;
+
+                            ItemStack copy = null;
+
+                            if (result != null) {
+                                if (Tag.PLANKS.isTagged(result.getType())) {
+                                    boolean hasLogs = false;
+                                    for (ItemStack itemStack : matrix) {
+                                        if (itemStack != null) {
+                                            if (Tag.LOGS.isTagged(itemStack.getType())) {
+                                                temp = itemStack;
+                                                hasLogs = true;
+                                            }
+                                            if (RSVItem.isRSVItem(itemStack)) {
+                                                if (RSVItem.getNameFromItem(itemStack).contains("saw")) {
+                                                    tool = itemStack;
+                                                    hasSaw = true;
+                                                }
+                                            }
+                                            if (hasSaw && hasLogs) {
+                                                int planksAmount = result.getAmount();
+                                                int durability = RSVItem.getCustomDurability(tool);
+
+                                                if (durability - planksAmount <= 0) {
+                                                    int dif = planksAmount - RSVItem.getCustomDurability(tool);
+                                                    Utils.changeDurability(tool, -dif, true);
+                                                    temp.setAmount(temp.getAmount() - dif);
+
+                                                    copy = temp;
+                                                } else {
+                                                    Utils.changeDurability(tool, -temp.getAmount(), true);
+                                                    temp.setAmount(0);
+
+                                                    copy = tool;
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (result.getType() == Material.STICK) {
+                                    boolean hasPlanks = false;
+                                    for (ItemStack itemStack : matrix) {
+                                        if (itemStack != null) {
+                                            if (Tag.PLANKS.isTagged(itemStack.getType())) {
+                                                temp = itemStack;
+                                                hasPlanks = true;
+                                            }
+                                            if (RSVItem.isRSVItem(itemStack)) {
+                                                if (RSVItem.getNameFromItem(itemStack).contains("saw")) {
+                                                    tool = itemStack;
+                                                    hasSaw = true;
+                                                }
+                                            }
+                                            if (hasSaw && hasPlanks) {
+                                                int sticksAmount = result.getAmount();
+                                                int durability = RSVItem.getCustomDurability(tool);
+
+                                                if (durability - sticksAmount <= 0) {
+                                                    int dif = sticksAmount - RSVItem.getCustomDurability(tool);
+                                                    Utils.changeDurability(tool, -dif, true);
+                                                    temp.setAmount(temp.getAmount() - dif);
+
+                                                    copy = temp;
+                                                } else {
+                                                    Utils.changeDurability(tool, -temp.getAmount(), true);
+                                                    temp.setAmount(0);
+
+                                                    copy = tool;
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (RSVItem.isRSVItem(result)) {
+                                    if (RSVItem.getNameFromItem(result).equals("clay_brick")) {
+                                        boolean hasClayTool = false;
+                                        boolean hasClay = false;
+                                        for (ItemStack itemStack : matrix) {
+                                            if (itemStack != null) {
+                                                if (itemStack.getType() == Material.CLAY_BALL) {
+                                                    temp = itemStack;
+                                                    hasClay = true;
+                                                }
+                                                if (RSVItem.isRSVItem(itemStack)) {
+                                                    if (RSVItem.getNameFromItem(itemStack).equals("clay_tool")) {
+                                                        tool = itemStack;
+                                                        hasClayTool = true;
+                                                    }
+                                                }
+                                                if (hasClayTool && hasClay) {
+                                                    int clayBrickAmount = result.getAmount();
+                                                    int durability = RSVItem.hasCustomDurability(tool) ? RSVItem.getCustomDurability(tool) : tool.getType().getMaxDurability() - ((Damageable) tool.getItemMeta()).getDamage();
+
+                                                    if (durability - clayBrickAmount <= 0) {
+                                                        int dif = clayBrickAmount - RSVItem.getCustomDurability(tool);
+                                                        Utils.changeDurability(tool, -dif, true);
+                                                        temp.setAmount(temp.getAmount() - dif);
+
+                                                        copy = temp;
+                                                    } else {
+                                                        Utils.changeDurability(tool, -temp.getAmount(), true);
+                                                        temp.setAmount(0);
+
+                                                        copy = tool;
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (!(copy == null)) {
+                                ItemStack[] contents = player.getInventory().getContents();
+                                boolean full = true;
+                                for (ItemStack i : contents) {
+                                    if (!Utils.isItemReal(i)) {
+                                        player.getInventory().addItem(copy);
+                                        full = false;
+                                        break;
+                                    }
+                                }
+
+                                if (full) {
+                                    player.getWorld().dropItemNaturally(player.getLocation(), copy);
+                                }
                             }
                         }
                     }
@@ -817,22 +1030,70 @@ public class NtrEvents extends ModuleEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onDragClick(InventoryDragEvent event) {
-        if (!event.isCancelled()) {
-            Player player = (Player) event.getWhoClicked();
-            if (shouldEventBeRan(player)) {
-                ItemStack cursor = event.getCursor();
-                if (RSVItem.isRSVItem(cursor)) {
-                    String name = RSVItem.getNameFromItem(cursor);
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onBurn(FurnaceBurnEvent event) {
+        if (shouldEventBeRan(event.getBlock().getWorld())) {
+            FurnaceInventory inv = ((Furnace) event.getBlock().getState()).getSnapshotInventory();
+            ItemStack smeltedItem = inv.getSmelting();
 
-                    if (name.equals("ceramic_lava_bucket")) {
-                        if (!CeramicBucketMeltTask.hasTask(player.getUniqueId())) {
-                            new CeramicBucketMeltTask(plugin, module, player).start();
-                        }
+            if (Utils.isItemReal(smeltedItem)) {
+                if (smeltedItem.getType() == Material.CLAY_BALL) {
+                    if (config.getBoolean("Pottery.RemoveBrickSmeltingRecipe")) {
+                        event.setCancelled(true);
                     }
                 }
             }
         }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onSmelt(FurnaceSmeltEvent event) {
+        if (shouldEventBeRan(event.getBlock().getWorld())) {
+            if (event.getResult().getType() == Material.BRICK && event.getSource().getType() == Material.CLAY_BALL) {
+                if (config.getBoolean("Pottery.RemoveBrickSmeltingRecipe")) {
+                    event.setCancelled(true);
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemSwap(PlayerSwapHandItemsEvent event) {
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
+
+            if (shouldEventBeRan(player)) {
+                ItemStack item = event.getOffHandItem();
+                checkAndRunTask(player, item);
+            }
+        }
+    }
+
+    private void checkAndRunTask(Player player, ItemStack item) {
+        if (RSVItem.isRSVItem(item)) {
+            if (RSVItem.getNameFromItem(item).equals("ceramic_lava_bucket")) {
+                UUID id = player.getUniqueId();
+                if (!CeramicBucketMeltTask.hasTask(id)) {
+                    new CeramicBucketMeltTask(plugin, module, player).start();
+                }
+            }
+        }
+    }
+
+    private Hand getHand(Player player, String rsvName) {
+        ItemStack mainHand = player.getInventory().getItemInMainHand();
+        ItemStack offHand = player.getInventory().getItemInOffHand();
+
+        if (RSVItem.isRSVItem(mainHand)) {
+            if (RSVItem.getNameFromItem(mainHand).equals(rsvName)) {
+                return Utils.Hand.MAIN_HAND;
+            }
+        }
+        if (RSVItem.isRSVItem(offHand)) {
+            if (RSVItem.getNameFromItem(offHand).equals(rsvName)) {
+                return Utils.Hand.OFF_HAND;
+            }
+        }
+        return null;
     }
 }

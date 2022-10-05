@@ -14,55 +14,46 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.spartanandfire;
+package me.val_mobile.baubles;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.entity.Entity;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class BurnTask extends BukkitRunnable {
+public class WormholeMirrorTask extends BukkitRunnable {
 
-    private static Map<UUID, BurnTask> tasks = new HashMap<>();
-    private final Entity entity;
+    private static final Map<UUID, WormholeMirrorTask> tasks = new HashMap<>();
     private final RealisticSurvivalPlugin plugin;
-    private int fireTicks;
+    private final UUID id;
+    private int ticks;
+    private final int duration;
     private final int tickSpeed;
 
-
-    public BurnTask(RealisticSurvivalPlugin plugin, Entity entity, int fireTicks, int tickSpeed) {
-        this.entity = entity;
+    public WormholeMirrorTask(BaubleModule module, Player player, RealisticSurvivalPlugin plugin) {
+        this.id = player.getUniqueId();
         this.plugin = plugin;
-        this.fireTicks = fireTicks;
-        this.tickSpeed = tickSpeed;
-        tasks.put(entity.getUniqueId(), this);
+        FileConfiguration config = module.getUserConfig().getConfig();
+        this.duration = config.getInt("Items.wormhole_mirror.Cooldown");
+        this.tickSpeed = config.getInt("Items.wormhole_mirror.TickTime"); // get the tick speed
+        tasks.put(id, this);
     }
 
     @Override
     public void run() {
-        if (fireTicks > 0 || entity.isDead()) {
-            // if the entity is going to burn for less than the specified fire ticks
-            if (entity.getFireTicks() < fireTicks) {
-                // set the entity on fire
-                entity.setFireTicks(fireTicks);
-                fireTicks -= tickSpeed;
-            }
-        }
-        else {
-            tasks.remove(entity.getUniqueId());
+        if (ticks > duration) {
+            tasks.remove(id);
             cancel();
         }
+        ticks += tickSpeed;
     }
 
     public void start() {
-        runTaskTimer(plugin, 0L, tickSpeed);
-    }
-
-    public static Map<UUID, BurnTask> getTasks() {
-        return tasks;
+        this.runTaskTimer(plugin, 0L, tickSpeed);
     }
 
     public static boolean hasTask(UUID id) {
@@ -70,5 +61,9 @@ public class BurnTask extends BukkitRunnable {
             return tasks.get(id) != null;
         }
         return false;
+    }
+
+    public static Map<UUID, WormholeMirrorTask> getTasks() {
+        return tasks;
     }
 }
