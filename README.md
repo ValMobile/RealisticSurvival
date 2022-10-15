@@ -1,4 +1,9 @@
 # Realistic Survival
+[![SpigotMC badge](https://i.imgur.com/3kXfij6.png)](https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795/)
+[![Paypal badge](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=MCSBPJP4B5KHL) 
+[![Discord badge](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/mMt3f4usqK)
+[![Patreon badge](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/realisticsurvival)
+
 *Looking for the download link? **[Click here](https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795/)***
 
 Realistic Survival is a plugin inspired by RLCraft that aims to 
