@@ -89,17 +89,23 @@ or WorldGuard. I am not responsible for any damage caused by Realistic Survival 
 
 Realistic Survival uses source textures and ideas from many mods.  
 All credits go to the following people:
+ - Azanor13 of [Baubles](https://www.curseforge.com/minecraft/mc-mods/baubles)
+ - gr8pefish and BBoldt for [Bauble Bag Texture](https://www.curseforge.com/minecraft/mc-mods/iron-backpacks)
+ - Cursed1nferno of [Bountiful Baubles](https://www.curseforge.com/minecraft/mc-mods/bountifulbaubles)
+ - TeamCoFH and Drullkus for [Copper Tool and Armor Textures](https://www.curseforge.com/minecraft/mc-mods/thermal-foundation)
+ - Lycanite and Shivaxi of [Lycanite's Mobs](https://www.curseforge.com/minecraft/mc-mods/lycanites-mobs)
  - Raptorfarian and Alexthe666 of [Ice and Fire](https://www.curseforge.com/minecraft/mc-mods/ice-and-fire-dragons)
- - ObliviousSpartan and xwerffx of [Spartan Weaponry](https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry)
  - Raptorfarian and Janivire of [Spartan and Fire [1.12.2]](https://www.curseforge.com/minecraft/mc-mods/spartan-and-fire)
  - Kreloxcz and ChoglixVT of [Spartan and Fire [1.16.5]](https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry-ice-and-fire)
- - Cursed1nferno of [Bountiful Baubles](https://www.curseforge.com/minecraft/mc-mods/bountifulbaubles)
- - Azanor13 of [Baubles](https://www.curseforge.com/minecraft/mc-mods/baubles)
+ - ObliviousSpartan of [Spartan Shields](https://www.curseforge.com/minecraft/mc-mods/spartan-shields)
+ - ObliviousSpartan and xwerffx of [Spartan Weaponry](https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry)
+ - CreativeMD, fonnymunkey, and ariafreeze for [Tint Textures](https://www.curseforge.com/minecraft/mc-mods/enhancedvisuals)
  - XzeroAir and sonicx8000 of [Trinkets and Baubles](https://www.curseforge.com/minecraft/mc-mods/trinkets-and-baubles)
  - Tmtravlr of [Quality Tools](https://www.curseforge.com/minecraft/mc-mods/quality-tools)
- - AlcatrazEscape of [No Tree Punching](https://www.curseforge.com/minecraft/mc-mods/no-tree-punching)
+ - AlcatrazEscapee of [No Tree Punching](https://www.curseforge.com/minecraft/mc-mods/no-tree-punching)
  - TheAdubbz of [Tough As Nails](https://www.curseforge.com/minecraft/mc-mods/tough-as-nails)
  - FN-FAL113 for [Throwable Weapon Code](https://github.com/FN-FAL113/FN-FAL-s-Amplifications/tree/main/src/main/java/ne/fnfal113/fnamplifications/gems/implementation)
+ - BlayTheNinth and CFGrafanaStats of [Waystones](https://www.curseforge.com/minecraft/mc-mods/waystones)
  - Shivaxi of [RLCraft modpack](https://www.curseforge.com/minecraft/modpacks/rlcraft)
 
 *Note that Realistic Survival is not affiliated with Mojang Studios, Minecraft, 
