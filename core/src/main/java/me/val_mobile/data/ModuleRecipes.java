@@ -98,7 +98,7 @@ public class ModuleRecipes {
                 return recipe;
             }
             case "Brewing" -> {
-                RSVBrewingRecipe recipe = new RSVBrewingRecipe(recipeConfig, recipeName);
+                RSVBrewingRecipe recipe = new RSVBrewingRecipe(plugin, recipeConfig, recipeName);
                 brewingRecipes.add(recipe);
                 return recipe;
             }

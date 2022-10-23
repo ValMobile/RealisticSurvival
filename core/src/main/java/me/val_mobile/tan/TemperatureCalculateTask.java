@@ -23,6 +23,9 @@ import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Levelled;
+import org.bukkit.block.data.Lightable;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -127,14 +130,49 @@ public class TemperatureCalculateTask extends BukkitRunnable {
                         for (int z = -(cubeLength - 1); z < cubeLength; z++) {
                             Location loc = new Location(player.getWorld(), px + x, py + y, pz + z);
                             Block block = loc.getBlock();
+                            BlockData data = block.getBlockData();
 
                             if (!block.isEmpty()) {
                                 String path = "Temperature.Environment.Blocks";
                                 ConfigurationSection section = config.getConfigurationSection(path);
 
-                                String material = block.getBlockData().getMaterial().toString();
+                                String material = data.getMaterial().toString();
                                 if (section.getKeys(false).contains(material)) {
-                                    add(path + "." + material);
+                                    if (data instanceof Lightable lightable) {
+                                        if (section.contains(material + ".Lit")) {
+                                            if (section.getBoolean(material + ".Lit") == lightable.isLit()) {
+                                                add(path + "." + material);
+                                            }
+                                        }
+                                        else {
+                                            add(path + "." + material);
+                                        }
+                                    }
+                                    else if (data instanceof Levelled levelled) {
+                                        if (block.isLiquid()) {
+                                            if (section.contains(material + ".MaximumLevel")) {
+                                                if (levelled.getLevel() <= section.getInt(material + ".MaximumLevel")) {
+                                                    add(path + "." + material);
+                                                }
+                                            }
+                                            else {
+                                                add(path + "." + material);
+                                            }
+                                        }
+                                        else {
+                                            if (section.contains(material + ".MinimumLevel")) {
+                                                if (levelled.getLevel() >= section.getInt(material + ".MinimumLevel")) {
+                                                    add(path + "." + material);
+                                                }
+                                            }
+                                            else {
+                                                add(path + "." + material);
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        add(path + "." + material);
+                                    }
                                 }
                             }
                         }
@@ -154,8 +192,9 @@ public class TemperatureCalculateTask extends BukkitRunnable {
                     if (pWorld.hasStorm()) {
                         add("Temperature.Environment.Storming");
                     }
+                }
+                else {
                     add("Temperature.Environment.Housed");
-
                 }
 
                 if (player.getFireTicks() > 0) {
@@ -227,15 +266,35 @@ public class TemperatureCalculateTask extends BukkitRunnable {
                     }
                 }
 
-                if (temp <= config.getDouble("Temperature.Hypothermia.Temperature")) {
-                    if (!HypothermiaTask.hasTask(id)) {
-                        new HypothermiaTask(module, plugin, this.player).start();
+                if (config.getBoolean("Temperature.Hypothermia.Enabled")) {
+                    if (temp <= config.getDouble("Temperature.Hypothermia.Temperature")) {
+                        if (!HypothermiaTask.hasTask(id)) {
+                            new HypothermiaTask(module, plugin, this.player).start();
+                        }
                     }
                 }
 
-                if (temp >= config.getDouble("Temperature.Hyperthermia.Temperature")) {
-                    if (!HyperthermiaTask.hasTask(id)) {
-                        new HyperthermiaTask(module, plugin, this.player).start();
+                if (config.getBoolean("Temperature.Hyperthermia.Enabled")) {
+                    if (temp >= config.getDouble("Temperature.Hyperthermia.Temperature")) {
+                        if (!HyperthermiaTask.hasTask(id)) {
+                            new HyperthermiaTask(module, plugin, this.player).start();
+                        }
+                    }
+                }
+
+                if (config.getBoolean("Temperature.Sweating.Enabled")) {
+                    if (temp >= config.getDouble("Temperature.Sweating.MinimumTemperature")) {
+                        if (!SweatTask.hasTask(id)) {
+                            new SweatTask(module, plugin, this.player).start();
+                        }
+                    }
+                }
+
+                if (config.getBoolean("Temperature.ColdBreath.Enabled")) {
+                    if (temp <= config.getDouble("Temperature.ColdBreath.MaximumTemperature")) {
+                        if (!ColdBreathTask.hasTask(id)) {
+                            new ColdBreathTask(module, plugin, this.player).start();
+                        }
                     }
                 }
 

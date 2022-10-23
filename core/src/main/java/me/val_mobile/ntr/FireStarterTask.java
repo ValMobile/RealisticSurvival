@@ -18,6 +18,7 @@ package me.val_mobile.ntr;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -37,16 +38,28 @@ public class FireStarterTask extends BukkitRunnable {
 
     private final UUID id;
     private final RealisticSurvivalPlugin plugin;
-    private final FileConfiguration config;
     private final Location loc;
     private final int duration;
     private final boolean isSoulCampfire;
 
     private final double soundChance;
     private final boolean emitSound;
+    private final String sound;
+    private final float volume;
+    private final float pitch;
 
     private final double particleChance;
     private final boolean emitParticles;
+    private final Particle particle;
+    private final int minCount;
+    private final int maxCount;
+    private final double xOffset;
+    private final double yOffset;
+    private final double zOffset;
+    private final double extra;
+    private Particle.DustOptions dust;
+
+
     private int ticks = 0;
 
     public FireStarterTask(RealisticSurvivalPlugin plugin, NtrModule module, Player player, Location loc, Collection<Item> ingredients, boolean isSoulCampfire) {
@@ -55,15 +68,47 @@ public class FireStarterTask extends BukkitRunnable {
         this.id = player.getUniqueId();
         this.plugin = plugin;
         this.player = player;
-        this.config = module.getUserConfig().getConfig();
+        FileConfiguration config = module.getUserConfig().getConfig();
         this.allowedWorlds = module.getAllowedWorlds();
-        this.duration = config.getInt("RemoveVanillaCampfireRecipes.Time");
+        this.duration = config.getInt("FireStarter.Time");
         this.isSoulCampfire = isSoulCampfire;
-        this.soundChance = config.getDouble("RemoveVanillaCampfireRecipes.BurningSound.Chance");
-        this.emitSound = config.getBoolean("RemoveVanillaCampfireRecipes.BurningSound.Enabled");
+        this.soundChance = config.getDouble("FireStarter.BurningSound.Chance");
+        this.emitSound = config.getBoolean("FireStarter.BurningSound.Enabled");
+        this.sound = config.getString("FireStarter.BurningSound.Sound");
+        this.volume = (float) config.getDouble("FireStarter.BurningSound.Volume");
+        this.pitch = (float) config.getDouble("FireStarter.BurningSound.Pitch");
 
-        this.particleChance = config.getDouble("RemoveVanillaCampfireRecipes.EmitParticles.Chance");
-        this.emitParticles = config.getBoolean("RemoveVanillaCampfireRecipes.EmitParticles.Enabled");
+        this.particleChance = config.getDouble("FireStarter.EmitParticles.Chance");
+        this.emitParticles = config.getBoolean("FireStarter.EmitParticles.Enabled");
+        this.minCount = config.getInt("FireStarter.EmitParticles.MinCount");
+        this.maxCount = config.getInt("FireStarter.EmitParticles.MaxCount");
+
+        this.xOffset = config.getDouble("FireStarter.EmitParticles.x-Offset");
+        this.yOffset = config.getDouble("FireStarter.EmitParticles.y-Offset");
+        this.zOffset = config.getDouble("FireStarter.EmitParticles.z-Offset");
+
+        this.extra = config.getDouble("FireStarter.EmitParticles.Extra");
+        this.particle = Particle.valueOf(config.getString("FireStarter.EmitParticles.Particle"));
+
+        if (particle == Particle.REDSTONE) {
+            String color = config.getString("FireStarter.EmitParticles.DustOptionColor");
+            float size = (float) config.getDouble("FireStarter.EmitParticles.DustOptionSize");
+
+            if (color.contains("|")) {
+                int first = color.indexOf("|");
+                int second = color.lastIndexOf("|");
+
+                int red = Integer.parseInt(color.substring(0, first));
+                int green = Integer.parseInt(color.substring(first + 1, second));
+                int blue = Integer.parseInt(color.substring(second + 1));
+
+                dust = new Particle.DustOptions(Color.fromRGB(red, green, blue), size);
+            }
+            else {
+                dust = new Particle.DustOptions(Utils.valueOfColor(color), size);
+            }
+        }
+
 
         tasks.put(id, this);
     }
@@ -80,41 +125,23 @@ public class FireStarterTask extends BukkitRunnable {
                 if (ticks > duration) {
                     loc.getWorld().getBlockAt(loc).setType((isSoulCampfire) ? Material.SOUL_CAMPFIRE : Material.CAMPFIRE);
                     for (Item drop : ingredients) {
-                        if (drop != null) {
+                        if (drop != null)
                             drop.remove();
-                        }
                     }
                     stop();
                 }
                 else {
-                    if (emitSound) {
-                        if (Math.random() <= soundChance) {
-                            String soundName = config.getString("RemoveVanillaCampfireRecipes.BurningSound.Sound");
-                            float volume = (float) config.getDouble("RemoveVanillaCampfireRecipes.BurningSound.Volume");
-                            float pitch = (float) config.getDouble("RemoveVanillaCampfireRecipes.BurningSound.Pitch");
+                    if (emitSound)
+                        if (Math.random() <= soundChance)
+                            Utils.playSound(loc, sound, volume, pitch);
 
-                            Utils.playSound(loc, soundName, volume, pitch);
-                        }
-                    }
-
-                    if (emitParticles) {
-                        if (Math.random() <= particleChance) {
-                            Particle particle = Particle.valueOf(config.getString("RemoveVanillaCampfireRecipes.EmitParticles.Particle"));
-                            int min = config.getInt("RemoveVanillaCampfireRecipes.EmitParticles.MinCount");
-                            int max = config.getInt("RemoveVanillaCampfireRecipes.EmitParticles.MaxCount");
-
-                            double xOffset = config.getDouble("RemoveVanillaCampfireRecipes.EmitParticles.x-Offset");
-                            double yOffset = config.getDouble("RemoveVanillaCampfireRecipes.EmitParticles.y-Offset");
-                            double zOffset = config.getDouble("RemoveVanillaCampfireRecipes.EmitParticles.z-Offset");
-
-                            loc.getWorld().spawnParticle(particle, loc, Math.toIntExact(Math.round((Math.random() * max))) + min, xOffset, yOffset, zOffset);
-                        }
-                    }
+                    if (emitParticles)
+                        if (Math.random() <= particleChance)
+                            loc.getWorld().spawnParticle(particle, loc, Utils.getRandomNum(minCount, maxCount), xOffset, yOffset, zOffset, extra, dust);
                 }
             }
-            else {
+            else
                 stop();
-            }
         }
     }
 

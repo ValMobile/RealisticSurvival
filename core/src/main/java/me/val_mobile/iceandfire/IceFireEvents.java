@@ -24,7 +24,6 @@ import me.val_mobile.spartanandfire.FreezeTask;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -32,20 +31,17 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.Set;
-
 /**
  * IceFireEvents is a class containing listener methods
  * that activate fire, ice, and lighting dragon weapon abilities
  * @author Val_Mobile
- * @version 1.2.3-DEV-0
+ * @version 1.2.3-DEV-1
  * @since 1.0
  */
 public class IceFireEvents extends ModuleEvents implements Listener {
@@ -290,26 +286,6 @@ public class IceFireEvents extends ModuleEvents implements Listener {
             }
 
             event.setDamage(damage);
-        }
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onEntityDeath(EntityDeathEvent event) {
-        LivingEntity e = event.getEntity();
-
-        if (shouldEventBeRan(e)) {
-            ConfigurationSection section = config.getConfigurationSection("Items.witherbone.MobDrops");
-            Set<String> keys = section.getKeys(false);
-            String type = e.getType().toString();
-
-            Player killer = e.getKiller();
-            if (killer != null) {
-                if (keys.contains(type)) {
-                    section = section.getConfigurationSection(type);
-
-                    Utils.harvestLooting(section, RSVItem.getItem("witherbone"), killer.getInventory().getItemInMainHand(), e.getLocation());
-                }
-            }
         }
     }
 

@@ -2,7 +2,7 @@
 #          Tough As Nails             #
 #######################################
 
-ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -34,6 +34,14 @@ HypothermiaDeath:
     - "&f%PLAYER_NAME% died of hypothermia."
     - "&f%PLAYER_NAME% froze to death."
 
+# Used to specify custom item drops for any mob
+# By default, there is no reason to use this, so the chance is set to 0.00
+MobDrops:
+  WITHER:
+    magma_shard:
+      Type: "Rare"
+      Chance: 0.00
+
 VisualTickSpeed: 5
 
 # Customize various aspects of the temperature and thirst systems
@@ -43,7 +51,38 @@ Temperature:
   CalculateTickSpeed: 100   # Time in ticks that the game will check, don't recommend changing unless the server is lagging severely
   DefaultTemperature: 12.5    # Default temperature a player will spawn with, max = 25.0, min = 0.0
   MaxChange: 0.75  # By how much can a player's temperature change each time temperature is recalculated
+  Sweating:
+    Enabled: true
+    TickSpeed: 20
+    MinimumTemperature: 18.0
+    Chance: 0.15  # Probability every "TickSpeed" that a particle will be emitted
+    Particle: "FALLING_WATER"
+    # Dust options only apply if you set the particle to a redstone dust particle
+    DustOptionColor: "GRAY"     # Can also be set as a RGB value (ex: "128|128|128" for gray)
+    DustOptionSize: 1.0
+    MinCount: 1
+    MaxCount: 3
+    x-Offset: 0.1
+    y-Offset: 0.1
+    z-Offset: 0.1
+    Extra: 0.1                  # The extra data for this particle, depends on the particle used (normally speed)
+  ColdBreath:
+    Enabled: true
+    TickSpeed: 20
+    MaximumTemperature: 7.0
+    Chance: 0.15  # Probability every "TickSpeed" that a particle will be emitted
+    Particle: "REDSTONE"
+    # Dust options only apply if you set the particle to a redstone dust particle
+    DustOptionColor: "156|157|151"     # Can also be set as a RGB value (ex: "128|128|128" for gray)
+    DustOptionSize: 1.0
+    MinCount: 1
+    MaxCount: 3
+    x-Offset: 0.1
+    y-Offset: 0.1
+    z-Offset: 0.1
+    Extra: 0.1
   Hypothermia:
+    Enabled: true
     ScreenTinting:                          # Should the screen be tinted light blue when a player has hypothermia?
       Enabled: true
       UseVanillaFreezeEffect: false         # [1.17+ ONLY] If set to true, uses the vanilla frozen effect that one gets when submerged in powdered snow instead of the custom tint
@@ -64,12 +103,15 @@ Temperature:
       Cutoff: -1.0                  # The player will stop taking damage from hypothermia if their health is below this value
       Amount: 1.0
   Hyperthermia:
+    Enabled: true
     ScreenTinting: true # Should the screen be tinted orange when a player has hyperthermia?
     Ignite:             # Should the player be set on fire?
       Enabled: false
+      FireResistanceImmunity: true
       FireTicks: 160
     PotionEffects:
       Enabled: false
+      FireResistanceImmunity: true
       Effects:
         SLOW:
           Amplifier: 2
@@ -82,6 +124,7 @@ Temperature:
     Temperature: 24.0               # At what temperature or higher should the player be in hyperthermia?
     Damage:
       Enabled: true
+      FireResistanceImmunity: true
       Cutoff: -1.0                  # The player will stop taking damage from hypothermia if their health is below this value
       Amount: 1.0
   Environment:
@@ -109,6 +152,7 @@ Temperature:
       CAMPFIRE:
         IsRegulatory: false
         Value: 2.0
+        Lit: true                # If set to true, campfire will only affect temperature if it is lit
       TORCH:
         IsRegulatory: false
         Value: 0.1
@@ -124,21 +168,29 @@ Temperature:
       FIRE:
         IsRegulatory: false
         Value: 0.4
+      CAULDRON:               # Used for backward compatibility
+        IsRegulatory: false
+        Value: -0.02
+        MinimumLevel: 1       # In 1.16.x versions, WATER_CAULDRON does not exist as a material enum so CAULDRON must be used instead
       LAVA:
         IsRegulatory: false
         Value: 0.3
+        MaximumLevel: 7       # Only lava blocks with a level equal to or below this will affect temperature: View https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/data/Levelled.html for more info
       LAVA_CAULDRON:
         IsRegulatory: false
         Value: 0.3
       WATER:
         IsRegulatory: false
-        Value: -0.02
+        Value: -0.02          # Only water blocks with a level equal to or below this will affect temperature: View https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/data/Levelled.html for more info
+        MaximumLevel: 7
       WATER_CAULDRON:
         IsRegulatory: false
         Value: -0.02
+        MinimumLevel: 1
       SNOW:
         IsRegulatory: false
         Value: -0.05
+        MinimumLevel: 1
       SNOW_BLOCK:
         IsRegulatory: false
         Value: -0.1
@@ -163,6 +215,7 @@ Temperature:
       SOUL_CAMPFIRE:
         IsRegulatory: false
         Value: -2.0
+        Lit: true
       SOUL_TORCH:
         IsRegulatory: false
         Value: -0.1
@@ -546,6 +599,7 @@ Thirst:
   DefaultExhaustion: 0.0
   DefaultExhaustionTickTimer: 0
   Dehydration:
+    Enabled: true
     ScreenTinting: true     # Should the screen be tinted gray when a player has thirst?
     PotionEffects:
       Enabled: false
@@ -843,11 +897,6 @@ Items:
   charcoal_filter:
     Enabled:
       EnableAllVersions: true
-  water_bottle:
-    Enabled:
-      EnableAllVersions: true
-    ReplenishAmount: 1.0
-    OverrideLimit: false
   canteen_empty:
     Enabled:
       EnableAllVersions: true

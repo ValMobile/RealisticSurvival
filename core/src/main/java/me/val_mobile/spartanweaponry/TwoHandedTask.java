@@ -34,7 +34,7 @@ import java.util.UUID;
 
 public class TwoHandedTask extends BukkitRunnable {
 
-    private static Map<UUID, TwoHandedTask> tasks = new HashMap<>();
+    private static final Map<UUID, TwoHandedTask> tasks = new HashMap<>();
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
@@ -55,23 +55,30 @@ public class TwoHandedTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = Bukkit.getPlayer(id);
-        ItemStack itemMainhand = player.getInventory().getItemInMainHand();
 
-        if (RSVItem.isRSVItem(itemMainhand) && Utils.isItemReal(player.getInventory().getItemInOffHand())) {
-            String name = RSVItem.getNameFromItem(itemMainhand);
-            String type = name.substring(name.lastIndexOf("_") + 1);
-
-            switch (type) {
-                case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike", "battleaxe", "glaive" -> player.addPotionEffect(effect);
-                default -> {
-                    tasks.remove(id);
-                    cancel();
-                }
-            }
-        }
-        else {
+        if (player == null) {
             tasks.remove(id);
             cancel();
+        }
+        else {
+            ItemStack itemMainhand = player.getInventory().getItemInMainHand();
+
+            if (RSVItem.isRSVItem(itemMainhand) && Utils.isItemReal(player.getInventory().getItemInOffHand())) {
+                String name = RSVItem.getNameFromItem(itemMainhand);
+                String type = name.substring(name.lastIndexOf("_") + 1);
+
+                switch (type) {
+                    case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike", "battleaxe", "glaive" -> player.addPotionEffect(effect);
+                    default -> {
+                        tasks.remove(id);
+                        cancel();
+                    }
+                }
+            }
+            else {
+                tasks.remove(id);
+                cancel();
+            }
         }
     }
 

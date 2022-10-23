@@ -2,7 +2,7 @@
 #          Ice and Fire               #
 #######################################
 
-ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -11,6 +11,18 @@ Initialize:
 Shutdown:
   Enabled: true
   Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"
+
+# Used to specify custom item drops for any mob
+MobDrops:
+  WITHER:
+    witherbone:
+      Type: "Range"
+      MinAmount: 20
+      MaxAmount: 40
+  WITHER_SKELETON:
+    witherbone:
+      Type: "Rare"
+      Chance: 0.01
 
 # Customize the Ice and Fire gear and the mobs
 
@@ -404,14 +416,6 @@ Items:
   witherbone:
     Enabled:
       EnableAllVersions: true
-    MobDrops:
-      WITHER:
-        Type: "Range"
-        MinAmount: 20
-        MaxAmount: 40
-      WITHER_SKELETON:
-        Type: "Rare"
-        Chance: 0.01
   dragonscale_blue:
     Enabled:
       EnableAllVersions: true

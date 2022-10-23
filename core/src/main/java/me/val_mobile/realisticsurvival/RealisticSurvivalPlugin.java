@@ -47,24 +47,33 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     private static Utils util;
     private PluginConfig config;
     private static LorePresetConfig lorePresetConfig;
-    private static MiscItemsConfig miscItemsConfig;
-    private static MiscRecipesConfig miscRecipesConfig;
+    private MiscItemsConfig miscItemsConfig;
+    private MiscRecipesConfig miscRecipesConfig;
+    private MiscRecipes miscRecipes;
+    private MiscItems miscItems;
+
+//    private static RSVConfig langConfig;
 
 
     @Override
     public void onEnable() {
-
         this.config = new PluginConfig(this);
+
         lorePresetConfig = new LorePresetConfig(this);
         miscItemsConfig = new MiscItemsConfig(this);
         miscRecipesConfig = new MiscRecipesConfig(this);
+
+//        String lang = config.getConfig().getString("Language");
+//
+//        Locale.setDefault(new Locale(lang.substring(0, lang.indexOf("-")), lang.substring(lang.indexOf("-") + 1)));
+//        ResourceBundle bundle = ResourceBundle.getBundle("messages", Locale.getDefault());
 
         util = new Utils(this);
 
         BStats bStats = new BStats(this);
         UpdateChecker updateChecker = new UpdateChecker(this, 93795);
         ResourcePackEvents resourcePack = new ResourcePackEvents(this);
-        MiscEvents miscEvents = new MiscEvents();
+        MiscEvents miscEvents = new MiscEvents(this);
 
         updateChecker.checkUpdate();
 
@@ -74,8 +83,11 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         toolUtils = new ToolUtils(this);
         toolUtils.initMap();
 
-        new MiscItems().initialize();
-        new MiscRecipes(this).initialize();
+        this.miscItems = new MiscItems(this);
+        this.miscRecipes = new MiscRecipes(this);
+
+        miscItems.initialize();
+        miscRecipes.initialize();
 
         IceFireModule module = new IceFireModule(this);
         module.initialize();
@@ -138,11 +150,11 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         return lorePresetConfig.getConfig();
     }
 
-    public static FileConfiguration getMiscItemsConfig() {
+    public FileConfiguration getMiscItemsConfig() {
         return miscItemsConfig.getConfig();
     }
 
-    public static FileConfiguration getMiscRecipesConfig() {
+    public FileConfiguration getMiscRecipesConfig() {
         return miscRecipesConfig.getConfig();
     }
 
@@ -154,4 +166,27 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     public static Utils getUtil() {
         return util;
     }
+
+    public MiscItems getMiscItems() {
+        return miscItems;
+    }
+
+    public MiscRecipes getMiscRecipes() {
+        return miscRecipes;
+    }
+
+    //    private String translate(final String string) {
+//        try {
+//            try {
+//                return customBundle.getString(string);
+//            } catch (final MissingResourceException ex) {
+//                return localeBundle.getString(string);
+//            }
+//        } catch (final MissingResourceException ex) {
+//            if (ess == null || ess.getSettings().isDebug()) {
+//                ess.getLogger().log(Level.WARNING, String.format("Missing translation key \"%s\" in translation file %s", ex.getKey(), localeBundle.getLocale().toString()), ex);
+//            }
+//            return defaultBundle.getString(string);
+//        }
+//    }
 }

@@ -17,24 +17,58 @@
 package me.val_mobile.data;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.Utils;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.plugin.PluginManager;
+
+import java.util.Set;
 
 public abstract class ModuleEvents implements Listener {
 
     private final RealisticSurvivalPlugin plugin;
-    private RSVModule module;
+    private final RSVModule module;
+    private final FileConfiguration config;
 
     public ModuleEvents(RSVModule module, RealisticSurvivalPlugin plugin) {
         this.module = module;
         this.plugin = plugin;
+        this.config = module.getUserConfig().getConfig();
     }
 
     public void initialize() {
         PluginManager pm = plugin.getServer().getPluginManager();
         pm.registerEvents(this, plugin);
+    }
+
+    @EventHandler
+    public void onMobDrop(EntityDeathEvent event) {
+        LivingEntity entity = event.getEntity();
+
+        if (shouldEventBeRan(entity)) {
+            String eName = entity.getType().toString();
+            Set<String> entityKeys = config.getConfigurationSection("MobDrops").getKeys(false);
+            if (entityKeys.contains(eName)) {
+                Set<String> itemKeys = config.getConfigurationSection("MobDrops." + eName).getKeys(false);
+
+                for (String item : itemKeys) {
+                    if (RSVItem.isRSVItem(item)) {
+                        if (entity.getKiller() == null) {
+                            Utils.harvestLooting(config.getConfigurationSection("MobDrops." + eName + "." + item), RSVItem.getItem(item), null, entity.getLocation());
+                        }
+                        else {
+                            Utils.harvestLooting(config.getConfigurationSection("MobDrops." + eName + "." + item), RSVItem.getItem(item), entity.getKiller().getInventory().getItemInMainHand(), entity.getLocation());
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public boolean shouldEventBeRan(Entity e) {

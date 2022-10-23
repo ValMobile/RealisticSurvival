@@ -19,6 +19,7 @@ package me.val_mobile.ntr;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
@@ -44,9 +45,22 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
 
     private final double soundChance;
     private final boolean emitSound;
-
+    private final String sound;
+    private final float volume;
+    private final float pitch;
     private final double particleChance;
     private final boolean emitParticles;
+    private final int minCount;
+    private final int maxCount;
+    private final double xOffset;
+    private final double yOffset;
+    private final double zOffset;
+    private final double extra;
+    private final Particle particle;
+    private Particle.DustOptions dust;
+
+    private final boolean shouldPourLava;
+    private final boolean shouldOnlyReplacePassableBlocks;
 
     private int ticks = 0;
 
@@ -55,12 +69,46 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
         this.id = player.getUniqueId();
         this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();
+        this.allowedWorlds = module.getAllowedWorlds();
         this.duration = config.getInt("Pottery.CeramicLavaBucketMelting.Time");
+
         this.soundChance = config.getDouble("Pottery.CeramicLavaBucketMelting.BurningSound.Chance");
         this.emitSound = config.getBoolean("Pottery.CeramicLavaBucketMelting.BurningSound.Enabled");
-        this.allowedWorlds = module.getAllowedWorlds();
+        this.sound = config.getString("Pottery.CeramicLavaBucketMelting.BurningSound.Sound");
+        this.volume = (float) config.getDouble("Pottery.CeramicLavaBucketMelting.BurningSound.Volume");
+        this.pitch = (float) config.getDouble("Pottery.CeramicLavaBucketMelting.BurningSound.Pitch");
+
         this.particleChance = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.Chance");
         this.emitParticles = config.getBoolean("Pottery.CeramicLavaBucketMelting.EmitParticles.Enabled");
+        this.minCount = config.getInt("Pottery.CeramicLavaBucketMelting.EmitParticles.MinCount");
+        this.maxCount = config.getInt("Pottery.CeramicLavaBucketMelting.EmitParticles.MaxCount");
+        this.xOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.x-Offset");
+        this.yOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.y-Offset");
+        this.zOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.z-Offset");
+        this.extra = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.Extra");
+        this.particle = Particle.valueOf(config.getString("Pottery.CeramicLavaBucketMelting.EmitParticles.Particle"));
+
+        if (particle == Particle.REDSTONE) {
+            String color = config.getString("Pottery.CeramicLavaBucketMelting.EmitParticles.DustOptionColor");
+            float size = (float) config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.DustOptionSize");
+
+            if (color.contains("|")) {
+                int first = color.indexOf("|");
+                int second = color.lastIndexOf("|");
+
+                int red = Integer.parseInt(color.substring(0, first));
+                int green = Integer.parseInt(color.substring(first + 1, second));
+                int blue = Integer.parseInt(color.substring(second + 1));
+
+                dust = new Particle.DustOptions(Color.fromRGB(red, green, blue), size);
+            }
+            else {
+                dust = new Particle.DustOptions(Utils.valueOfColor(color), size);
+            }
+        }
+
+        this.shouldPourLava = config.getBoolean("Pottery.CeramicLavaBucketMelting.PourLava.Enabled");
+        this.shouldOnlyReplacePassableBlocks = config.getBoolean("Pottery.CeramicLavaBucketMelting.PourLava.OnlyReplacePassableBlocks");
 
         tasks.put(id, this);
     }
@@ -75,39 +123,22 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
                 ticks++;
 
                 if (ticks > duration) {
-                    if (config.getBoolean("Pottery.CeramicLavaBucketMelting.PourLava.Enabled")) {
+                    if (shouldPourLava) {
                         Block block = player.getLocation().getBlock();
-                        if (block.isPassable() && config.getBoolean("Pottery.CeramicLavaBucketMelting.PourLava.OnlyReplacePassableBlocks")) {
+                        if (block.isPassable() && shouldOnlyReplacePassableBlocks)
                             block.setType(Material.LAVA);
-                        }
                     }
                     player.getInventory().setItemInMainHand(null);
                     stop();
                 }
                 else {
-                    if (emitSound) {
-                        if (Math.random() <= soundChance) {
-                            String soundName = config.getString("Pottery.CeramicLavaBucketMelting.BurningSound.Sound");
-                            float volume = (float) config.getDouble("Pottery.CeramicLavaBucketMelting.BurningSound.Volume");
-                            float pitch = (float) config.getDouble("Pottery.CeramicLavaBucketMelting.BurningSound.Pitch");
+                    if (emitSound)
+                        if (Math.random() <= soundChance)
+                            Utils.playSound(player.getLocation(), sound, volume, pitch);
 
-                            Utils.playSound(player.getLocation(), soundName, volume, pitch);
-                        }
-                    }
-
-                    if (emitParticles) {
-                        if (Math.random() <= particleChance) {
-                            Particle particle = Particle.valueOf(config.getString("Pottery.CeramicLavaBucketMelting.EmitParticles.Particle"));
-                            int min = config.getInt("Pottery.CeramicLavaBucketMelting.EmitParticles.MinCount");
-                            int max = config.getInt("Pottery.CeramicLavaBucketMelting.EmitParticles.MaxCount");
-
-                            double xOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.x-Offset");
-                            double yOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.y-Offset");
-                            double zOffset = config.getDouble("Pottery.CeramicLavaBucketMelting.EmitParticles.z-Offset");
-
-                            player.getWorld().spawnParticle(particle, player.getLocation(), Math.toIntExact(Math.round((Math.random() * max))) + min, xOffset, yOffset, zOffset);
-                        }
-                    }
+                    if (emitParticles)
+                        if (Math.random() <= particleChance)
+                            player.spawnParticle(particle, player.getLocation(), Utils.getRandomNum(minCount, maxCount), xOffset, yOffset, zOffset, extra, dust);
                 }
             }
             else {

@@ -39,7 +39,11 @@ import java.util.Set;
 
 public class MiscEvents implements Listener {
 
-    public MiscEvents() {}
+    private final RealisticSurvivalPlugin plugin;
+
+    public MiscEvents(RealisticSurvivalPlugin plugin) {
+        this.plugin = plugin;
+    }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onJoin(PlayerJoinEvent event) {
@@ -126,9 +130,7 @@ public class MiscEvents implements Listener {
                                 event.setResult(null);
                         }
                     }
-                    default -> {
-                        event.setResult(null);
-                    }
+                    default -> event.setResult(null);
                 }
             }
         }
@@ -140,7 +142,9 @@ public class MiscEvents implements Listener {
 
         if (!event.isCancelled()) {
             if (RSVItem.isRSVItem(item)) {
-                Utils.changeDurability(item, -event.getDamage(), true);
+                if (RSVItem.hasCustomDurability(item)) {
+                    Utils.changeDurability(item, -event.getDamage(), true);
+                }
             }
         }
     }
@@ -174,6 +178,7 @@ public class MiscEvents implements Listener {
         String worldName = event.getView().getPlayer().getWorld().getName();
         Set<String> allowedWorlds;
         Set<RSVAnvilRecipe> anvilRecipes;
+        boolean ran = false;
 
         for (RSVModule module : RSVModule.getModules().values()) {
             allowedWorlds = module.getAllowedWorlds();
@@ -182,8 +187,19 @@ public class MiscEvents implements Listener {
                 for (RSVAnvilRecipe recipe : anvilRecipes) {
                     if (recipe.isValidRecipe(inv)) {
                         recipe.useRecipe(event);
+                        ran = true;
                         break;
                     }
+                }
+            }
+        }
+
+        if (!ran) {
+            anvilRecipes = plugin.getMiscRecipes().getAnvilRecipes();
+            for (RSVAnvilRecipe recipe : anvilRecipes) {
+                if (recipe.isValidRecipe(inv)) {
+                    recipe.useRecipe(event);
+                    break;
                 }
             }
         }
@@ -193,105 +209,98 @@ public class MiscEvents implements Listener {
     public void onBrew(InventoryClickEvent event) {
         Inventory inv = event.getClickedInventory();
 
-        if (!(inv == null || inv.getType() != InventoryType.BREWING)) {
-            if ((event.getClick() == ClickType.LEFT || event.getClick() == ClickType.RIGHT)) {
-                ItemStack is = event.getCurrentItem(); // GETS ITEMSTACK THAT IS BEING CLICKED
-                ItemStack is2 = event.getCursor(); // GETS CURRENT ITEMSTACK HELD ON MOUSE
+        if (inv instanceof BrewerInventory brewInv) {
+            ClickType click = event.getClick();
+            if (click == ClickType.LEFT || click == ClickType.RIGHT) {
+                ItemStack current = event.getCurrentItem(); // GETS ITEMSTACK THAT IS BEING CLICKED
+                ItemStack cursor = event.getCursor(); // GETS CURRENT ITEMSTACK HELD ON MOUSE
 
-                if (event.getClick() == ClickType.RIGHT && is.isSimilar(is2)) {
-                    return;
-                }
+                if (!(click == ClickType.RIGHT && current.isSimilar(cursor))) {
+                    Player player = (Player) event.getView().getPlayer();
 
-                event.setCancelled(true);
+                    boolean compare = current.isSimilar(cursor);
+                    ClickType type = event.getClick();
 
-                Player p = (Player)(event.getView().getPlayer());
+                    int currentAmount = current.getAmount();
+                    int cursorAmount = cursor.getAmount();
 
-                boolean compare = is.isSimilar(is2);
-                ClickType type = event.getClick();
+                    int stack = current.getMaxStackSize();
+                    int half = currentAmount / 2;
 
-                int firstAmount = is.getAmount();
-                int secondAmount = is2.getAmount();
+                    int clickedSlot = event.getSlot();
 
-                int stack = is.getMaxStackSize();
-                int half = firstAmount / 2;
-
-                int clickedSlot = event.getSlot();
-
-                if (type == ClickType.LEFT) {
-
-                    if (is == null || (is != null && is.getType() == Material.AIR)) {
-
-                        p.setItemOnCursor(is);
-                        inv.setItem(clickedSlot, is2);
-
-                    } else if (compare) {
-
-                        int used = stack - firstAmount;
-                        if (secondAmount <= used) {
-
-                            is.setAmount(firstAmount + secondAmount);
-                            p.setItemOnCursor(null);
-
-                        } else {
-
-                            is2.setAmount(secondAmount - used);
-                            is.setAmount(firstAmount + used);
-                            p.setItemOnCursor(is2);
-
+                    if (type == ClickType.LEFT) {
+                        if (!Utils.isItemReal(current)) {
+                            player.setItemOnCursor(current);
+                            inv.setItem(clickedSlot, cursor);
                         }
+                        else if (compare) {
+                            int used = stack - currentAmount;
+                            if (cursorAmount <= used) {
+                                current.setAmount(currentAmount + cursorAmount);
+                                player.setItemOnCursor(null);
+                            }
+                            else {
+                                cursor.setAmount(cursorAmount - used);
+                                current.setAmount(currentAmount + used);
+                                player.setItemOnCursor(cursor);
+                            }
+                        }
+                        else {
+                            inv.setItem(clickedSlot, cursor);
+                            player.setItemOnCursor(current);
+                        }
+                    }
+                    else {
+                        if (!Utils.isItemReal(current)) {
+                            player.setItemOnCursor(current);
+                            inv.setItem(clickedSlot, cursor);
+                        }
+                        else if (Utils.isItemReal(current) && !Utils.isItemReal(cursor)) {
+                            ItemStack isClone = current.clone();
+                            isClone.setAmount(current.getAmount() % 2 == 0 ? currentAmount - half : currentAmount - half - 1);
+                            player.setItemOnCursor(isClone);
 
-                    } else if (!compare) {
-
-                        inv.setItem(clickedSlot, is2);
-                        p.setItemOnCursor(is);
-
+                            current.setAmount(currentAmount - half);
+                        }
+                        else if (compare) {
+                            if ((currentAmount + 1) <= stack) {
+                                cursor.setAmount(cursorAmount - 1);
+                                current.setAmount(currentAmount + 1);
+                            }
+                        }
+                        else {
+                            inv.setItem(clickedSlot, cursor);
+                            player.setItemOnCursor(current);
+                        }
                     }
 
-                } else if (type == ClickType.RIGHT) {
+                    if (brewInv.getIngredient() != null) {
+                        String worldName = player.getWorld().getName();
+                        Set<String> allowedWorlds;
+                        Set<RSVBrewingRecipe> brewingRecipes;
 
-                    if (is == null || (is != null && is.getType() == Material.AIR)) {
+                        boolean ran = false;
 
-                        p.setItemOnCursor(is);
-                        inv.setItem(clickedSlot, is2);
-
-                    } else if ((is != null && is.getType() != Material.AIR) &&
-                            (is2 == null || (is2 != null && is2.getType() == Material.AIR))) {
-
-                        ItemStack isClone = is.clone();
-                        isClone.setAmount(is.getAmount() % 2 == 0 ? firstAmount - half : firstAmount - half - 1);
-                        p.setItemOnCursor(isClone);
-
-                        is.setAmount(firstAmount - half);
-
-                    } else if (compare) {
-
-                        if ((firstAmount + 1) <= stack) {
-
-                            is2.setAmount(secondAmount - 1);
-                            is.setAmount(firstAmount + 1);
-
+                        for (RSVModule module : RSVModule.getModules().values()) {
+                            allowedWorlds = module.getAllowedWorlds();
+                            if (allowedWorlds.contains(worldName)) {
+                                brewingRecipes = module.getModuleRecipes().getBrewingRecipes();
+                                for (RSVBrewingRecipe recipe : brewingRecipes) {
+                                    if (recipe.isValidRecipe(brewInv)) {
+                                        recipe.startBrewing(brewInv);
+                                        ran = true;
+                                        break;
+                                    }
+                                }
+                            }
                         }
 
-                    } else if (!compare) {
-
-                        inv.setItem(clickedSlot, is2);
-                        p.setItemOnCursor(is);
-                    }
-
-                }
-
-                if (((BrewerInventory) inv).getIngredient() != null) {
-                    String worldName = event.getView().getPlayer().getWorld().getName();
-                    Set<String> allowedWorlds;
-                    Set<RSVBrewingRecipe> brewingRecipes;
-
-                    for (RSVModule module : RSVModule.getModules().values()) {
-                        allowedWorlds = module.getAllowedWorlds();
-                        if (allowedWorlds.contains(worldName)) {
-                            brewingRecipes = module.getModuleRecipes().getBrewingRecipes();
+                        if (!ran) {
+                            brewingRecipes = plugin.getMiscRecipes().getBrewingRecipes();
                             for (RSVBrewingRecipe recipe : brewingRecipes) {
-                                if (recipe.isValidRecipe((BrewerInventory) inv)) {
-                                    recipe.startBrewing((BrewerInventory) inv);
+                                if (recipe.isValidRecipe(brewInv)) {
+                                    recipe.startBrewing(brewInv);
                                     break;
                                 }
                             }

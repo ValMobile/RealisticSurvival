@@ -2,7 +2,7 @@
 #          Baubles Items              #
 #######################################
 
-ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -313,6 +313,8 @@ recall_potion:
   CustomModelData: 83650
   Lore:
     - "&9Teleports you to your spawn point."
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
 wormhole_mirror:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fWormhole Mirror"
@@ -328,6 +330,8 @@ wormhole_potion:
   Lore:
     - "&9Teleports you to other players."
     - "&aYou suddenly feel very alone."
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
 lucky_horseshoe:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fLucky Horseshoe"
@@ -355,6 +359,8 @@ spectral_silt:
   CustomModelData: 83680
   Enchantments:
     DURABILITY: 1
+  ItemFlags:
+    - "HIDE_ENCHANTS"
   Lore:
     - "&9Crafting component"
 disintegration_tablet:
@@ -674,3 +680,13 @@ bauble_bag:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fBauble Bag"
   CustomModelData: 83738
+next_page:
+  Material: "GREEN_STAINED_GLASS_PANE"
+  DisplayName: "&eNext Page"
+  Lore:
+    - "&eClick to go the next page."
+back_page:
+  Material: "RED_STAINED_GLASS_PANE"
+  DisplayName: "&eBack Page"
+  Lore:
+    - "&eClick to go back."

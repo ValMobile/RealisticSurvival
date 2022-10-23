@@ -20,11 +20,11 @@ import me.val_mobile.iceandfire.DragonVariant;
 import me.val_mobile.iceandfire.SeaSerpentVariant;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.SmithingInventory;
-import org.bukkit.potion.PotionEffectType;
 
 public abstract class InternalsProvider {
 
@@ -49,9 +49,7 @@ public abstract class InternalsProvider {
 
     public abstract void spawnSiren(Location loc, RealisticSurvivalPlugin plugin);
 
-    public abstract Tag getTag(String name);
-
-    public abstract PotionEffectType valueOfPotionEffectType(String potionEffectType);
+    public abstract Tag<Material> getTag(String name);
 
     public abstract boolean isUndead(Entity entity);
 

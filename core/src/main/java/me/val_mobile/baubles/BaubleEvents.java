@@ -51,13 +51,16 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.3-DEV-0
+ * @version 1.2.3-DEV-1
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -389,12 +392,16 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                 if (current.getType() == Material.PLAYER_HEAD) {
                                     UUID id = ((SkullMeta) current.getItemMeta()).getOwningPlayer().getUniqueId();
                                     if (!player.getUniqueId().equals(id)) {
-                                        player.teleport(Bukkit.getPlayer(id));
-                                        if (config.getBoolean("WormholeInventory.Sound.Enabled")) {
-                                            String soundName = config.getString("WormholeInventory.Sound.Sound");
-                                            float volume = (float) config.getDouble("WormholeInventory.Sound.Volume");
-                                            float pitch = (float) config.getDouble("WormholeInventory.Sound.Pitch");
-                                            Utils.playSound(Bukkit.getPlayer(id).getLocation(), soundName, volume, pitch);
+                                        Player destination = Bukkit.getPlayer(id);
+
+                                        if (destination != null) {
+                                            player.teleport(destination);
+                                            if (config.getBoolean("WormholeInventory.Sound.Enabled")) {
+                                                String soundName = config.getString("WormholeInventory.Sound.Sound");
+                                                float volume = (float) config.getDouble("WormholeInventory.Sound.Volume");
+                                                float pitch = (float) config.getDouble("WormholeInventory.Sound.Pitch");
+                                                Utils.playSound(Bukkit.getPlayer(id).getLocation(), soundName, volume, pitch);
+                                            }
                                         }
                                     }
                                     event.setCancelled(true);
@@ -746,30 +753,6 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                 }
                             }
                         }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Drops bauble items if certain entities die
-     * @param event The event called when an entity dies
-     * @see Utils
-     */
-    @EventHandler
-    public void onEntityDeath(EntityDeathEvent event) {
-        LivingEntity entity = event.getEntity();
-
-        if (shouldEventBeRan(entity)) {
-            final Collection<String> drops = List.of("forbidden_fruit", "vitamins", "ring_overclocking", "shulker_heart", "bezoar", "ender_dragonscale", "spectral_silt", "stone_negative_gravity", "stone_inertia_null", "stone_greater_inertia", "phantom_prism", "ring_fairies", "ring_dwarves");
-            for (String drop : drops) {
-                ConfigurationSection section = config.getConfigurationSection("Items." + drop + ".MobDrops");
-                Set<String> keys = section.getKeys(false);
-
-                if (keys.contains(entity.getType().toString())) {
-                    if (entity.getKiller() != null) {
-                        Utils.harvestLooting(config.getConfigurationSection("Items." + drop + ".MobDrops." + entity.getType()), RSVItem.getItem(drop), entity.getKiller().getInventory().getItemInMainHand(), entity.getLocation());
                     }
                 }
             }

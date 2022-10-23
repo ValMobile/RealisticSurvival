@@ -2,7 +2,7 @@
 #          No Tree Punching           #
 #######################################
 
-ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -11,6 +11,14 @@ Initialize:
 Shutdown:
   Enabled: true
   Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"               # All placeholders: %NAME%
+
+# Used to specify custom item drops for any mob
+# By default, there is no reason to use this, so the chance is set to 0.00
+MobDrops:
+  WITHER:
+    flint_shard:
+      Type: "Rare"
+      Chance: 0.00
 
 # Customize the No Tree Punching features
 
@@ -140,10 +148,12 @@ Lumberjack:
   EnableSawPlankRecipes: true
   EnableSawStickRecipes: true
 
-RemoveVanillaCampfireRecipes:
+FireStarter:
+  RemoveVanillaCampfireRecipes: true
   Enabled: true             # Right-click and hold the fire starter over the fuel and kindling to create campfires
-  Time: 300                 # Time needed to create a campfire
+  Time: 200                 # Time needed to create a campfire
   MaxDistance: 0.4          # Maximum distance that the fuel and kindling items can be from one another
+  MaxItems: 20              # Max items that can be on the ground
   BurningSound:
     Enabled: true
     Chance: 0.15  # Probability every "TickSpeed" that a burning sound will be made
@@ -154,11 +164,15 @@ RemoveVanillaCampfireRecipes:
     Enabled: true
     Chance: 0.15  # Probability every "TickSpeed" that a particle will be emitted
     Particle: "SMOKE_NORMAL"
+    # Dust options only apply if you set the particle to a redstone dust particle
+    DustOptionColor: "GRAY"     # Can also be set as a RGB value (ex: "128|128|128" for gray)
+    DustOptionSize: 1.0
     MinCount: 1
     MaxCount: 3
     x-Offset: 0.2
     y-Offset: 0.2
     z-Offset: 0.2
+    Extra: 0.1
   Fuel:
     Required: true
     Amount: 1
@@ -172,7 +186,7 @@ RemoveVanillaCampfireRecipes:
       - "STICK"
       - "SAPLINGS"
       - "STRING"
-  SoulItems:                # Required in addition to the above items to create soul campfires
+  SoulItems: # Required in addition to the above items to create soul campfires
     Amount: 1
     Materials:
       - "SOUL_SAND"
@@ -199,11 +213,14 @@ Pottery:
       Enabled: true
       Chance: 0.15  # Probability every "TickSpeed" that a particle will be emitted
       Particle: "LAVA"
+      DustOptionColor: "GRAY"
+      DustOptionSize: 1.0
       MinCount: 1
       MaxCount: 3
       x-Offset: 0.2
       y-Offset: 0.2
       z-Offset: 0.2
+      Extra: 0.1
 
 FlintKnapping:
   Enabled: true

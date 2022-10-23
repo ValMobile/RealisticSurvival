@@ -16,15 +16,16 @@
  */
 package me.val_mobile.utils;
 
+import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class RSVBrewingRecipe implements Recipe {
 
+    private final RealisticSurvivalPlugin plugin;
     protected final ItemStack result;
     protected final ItemStack potion;
     protected final ItemStack ingredient;
@@ -34,11 +35,11 @@ public class RSVBrewingRecipe implements Recipe {
     protected final int fuelCharge;
 
     protected final String name;
-    protected final boolean perfect;
     protected BrewClock clock;
     protected final int duration;
+    protected final boolean perfect;
 
-    public RSVBrewingRecipe(FileConfiguration config, String name) {
+    public RSVBrewingRecipe(RealisticSurvivalPlugin plugin, FileConfiguration config, String name) {
         this.name = name;
 
         String resultName = config.getString(name + ".Result.Item");
@@ -58,6 +59,7 @@ public class RSVBrewingRecipe implements Recipe {
         this.result = RSVItem.isRSVItem(resultName) ? RSVItem.getItem(resultName).resize(resultAmount) : new ItemStack(Material.valueOf(resultName), resultAmount);
 
         this.duration = config.getInt(name + ".Duration");
+        this.plugin = plugin;
     }
 
     public ItemStack getIngredient() {
@@ -88,31 +90,19 @@ public class RSVBrewingRecipe implements Recipe {
         this.clock = clock;
     }
 
-    public boolean isPerfect() {
-        return perfect;
-    }
 
     public boolean isValidRecipe(BrewerInventory inv) {
         ItemStack invFuel = inv.getFuel();
         ItemStack invIng = inv.getIngredient();
 
-        if (Utils.isItemReal(invFuel)) {
-            if (!perfect && ingredient.getType() == invIng.getType()) {
-                return true;
-            }
-            return perfect && ingredient.isSimilar(invIng);
+        if (Utils.isItemReal(invFuel) && Utils.isItemReal(invIng)) {
+            return invFuel.isSimilar(fuel) && invIng.isSimilar(ingredient);
         }
-        else {
-            if (!perfect && ingredient.getType() == invIng.getType() &&
-                    fuel.getType() == invFuel.getType()) {
-                return true;
-            }
-            return perfect && ingredient.isSimilar(invIng) && fuel.isSimilar(invFuel);
-        }
+        return false;
     }
 
     public void startBrewing(BrewerInventory inventory) {
-        clock = new BrewClock(this, inventory, duration);
+        clock = new BrewClock(plugin, this, inventory, duration);
     }
 
     public int getFuelPower() {
@@ -126,13 +116,5 @@ public class RSVBrewingRecipe implements Recipe {
     @Override
     public ItemStack getResult() {
         return result;
-    }
-
-    public class BrewClock extends BukkitRunnable {
-
-        public BrewClock(RSVBrewingRecipe recipe, BrewerInventory inventory, int time) {}
-
-        @Override
-        public void run() {}
     }
 }

@@ -43,15 +43,15 @@ public class RSVItem extends ItemStack {
 
     private static final String LOREPRESET = "LOREPRESET";
 
-    private static Map<String, RSVItem> itemMap = new HashMap<>();
+    private static final Map<String, RSVItem> itemMap = new HashMap<>();
 
     private final String name;
     private final String module;
 
-    public RSVItem(String name) {
-        super(Material.valueOf(RealisticSurvivalPlugin.getMiscItemsConfig().getString(name + ".Material")));
+    public RSVItem(RealisticSurvivalPlugin plugin, String name) {
+        super(Material.valueOf(plugin.getMiscItemsConfig().getString(name + ".Material")));
 
-        FileConfiguration config = RealisticSurvivalPlugin.getMiscItemsConfig();
+        FileConfiguration config = plugin.getMiscItemsConfig();
 
         Utils util = RealisticSurvivalPlugin.getUtil();
         this.name = name;
@@ -111,12 +111,14 @@ public class RSVItem extends ItemStack {
         }
 
         if (enchantments != null) {
-            for (String s : enchantments.getKeys(false)) {
-                String mcName = Utils.getMinecraftEnchName(s).toLowerCase();
+            Set<String> enchantKeys = enchantments.getKeys(false);
+            for (String s : enchantKeys) {
+                String mcName = Utils.getMinecraftEnchName(s);
                 Enchantment ench = EnchantmentWrapper.getByKey(NamespacedKey.minecraft(mcName));
                 int value = config.getInt(enchantmentsPath + "." + s);
+
                 if (!(ench == null || value <= 0)) {
-                    this.addUnsafeEnchantment(ench, value);
+                    meta.addEnchant(ench, value, true);
                 }
             }
         }
@@ -236,12 +238,14 @@ public class RSVItem extends ItemStack {
         }
 
         if (enchantments != null) {
-            for (String s : enchantments.getKeys(false)) {
-                String mcName = Utils.getMinecraftEnchName(s).toLowerCase();
+            Set<String> enchantKeys = enchantments.getKeys(false);
+            for (String s : enchantKeys) {
+                String mcName = Utils.getMinecraftEnchName(s);
                 Enchantment ench = EnchantmentWrapper.getByKey(NamespacedKey.minecraft(mcName));
                 int value = config.getInt(enchantmentsPath + "." + s);
+
                 if (!(ench == null || value <= 0)) {
-                    this.addUnsafeEnchantment(ench, value);
+                    meta.addEnchant(ench, value, true);
                 }
             }
         }
@@ -353,11 +357,7 @@ public class RSVItem extends ItemStack {
         return RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdurability", PersistentDataType.INTEGER);
     }
 
-    public static boolean hasMaxCustomDurability(ItemStack item) {
-        return RealisticSurvivalPlugin.getUtil().hasNbtTag(item, "rsvmaxdurability");
-    }
-
     public static boolean hasCustomDurability(ItemStack item) {
-        return RealisticSurvivalPlugin.getUtil().hasNbtTag(item, "rsvdurability");
+        return RealisticSurvivalPlugin.getUtil().hasNbtTag(item, "rsvdurability") && RealisticSurvivalPlugin.getUtil().hasNbtTag(item, "rsvmaxdurability");
     }
 }

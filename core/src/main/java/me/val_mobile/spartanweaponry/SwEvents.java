@@ -39,6 +39,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -48,7 +49,6 @@ import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -61,13 +61,26 @@ public class SwEvents extends ModuleEvents implements Listener {
         this.plugin = plugin;
     }
 
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        if (shouldEventBeRan(player)) {
+            ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+            ItemStack itemOffHand = player.getInventory().getItemInOffHand();
+            if (RSVItem.isRSVItem(itemMainHand) && Utils.isItemReal(itemOffHand)) {
+                checkAndRunTask(player, itemMainHand);
+            }
+        }
+    }
+
+
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onProjectileLaunch(ProjectileLaunchEvent event) {
         Projectile projectile = event.getEntity();
         ProjectileSource shooter = projectile.getShooter();
 
         if (!event.isCancelled()) {
-            if (!(shooter == null)) {
+            if (shooter != null) {
                 if (shooter instanceof Player player) {
                     if (shouldEventBeRan(player) && shouldEventBeRan(projectile)) {
                         ItemStack itemMainHand = player.getInventory().getItemInMainHand();
@@ -210,21 +223,15 @@ public class SwEvents extends ModuleEvents implements Listener {
                                 case "halberd" -> {
                                     int shieldCooldown = config.getInt("Items." + name + ".ShieldBreach.Cooldown");
                                     double chance = config.getDouble("Items." + name + ".ShieldBreach.Chance");
-                                    if (defender instanceof Player) {
-                                        if (((Player) defender).isBlocking()) {
-                                            if (new Random().nextDouble() <= chance) {
-                                                ((Player) defender).setCooldown(Material.SHIELD, shieldCooldown);
-                                            }
-                                        }
-                                    }
+                                    if (defender instanceof Player player)
+                                        if (player.isBlocking())
+                                            if (Math.random() <= chance)
+                                                player.setCooldown(Material.SHIELD, shieldCooldown);
                                 }
                                 case "mace" -> {
-                                    if (defender instanceof LivingEntity) {
-                                        if (Utils.isUndead(defender)) {
+                                    if (defender instanceof LivingEntity)
+                                        if (Utils.isUndead(defender))
                                             damage *= config.getDouble("Items." + name + ".UndeadDamageMultiplier");
-
-                                        }
-                                    }
                                 }
                                 default -> {}
                             }
@@ -265,53 +272,38 @@ public class SwEvents extends ModuleEvents implements Listener {
                 ItemStack itemMainHand = player.getInventory().getItemInMainHand();
                 if (RSVItem.isRSVItem(itemMainHand)) {
                     String name = RSVItem.getNameFromItem(itemMainHand);
-                    String type = name.substring(name.lastIndexOf("_") + 1);
 
-                    RSVModule module = RSVModule.getModule(RSVItem.getModuleNameFromItem(itemMainHand));
-                    FileConfiguration config = module.getUserConfig().getConfig();
+                    if (name.contains("_")) {
+                        String type = name.substring(name.lastIndexOf("_") + 1);
 
-                    switch (type) {
-                        case "greatsword", "spear", "halberd", "pike", "lance" -> {
-                            double range = config.getDouble("Items." + name + ".Reach");
+                        RSVModule module = RSVModule.getModule(RSVItem.getModuleNameFromItem(itemMainHand));
+                        FileConfiguration config = module.getUserConfig().getConfig();
 
-                            Location eye = player.getEyeLocation().add(player.getLocation().getDirection());
-                            Predicate<Entity> filter = entity -> !entity.getUniqueId().equals(player.getUniqueId());
-                            RayTraceResult result = player.getWorld().rayTrace(player.getEyeLocation(), eye.getDirection(), range, FluidCollisionMode.NEVER, false, 0, filter);
+                        boolean isThrowing = false;
+                        switch (type) {
+                            case "greatsword", "spear", "halberd", "pike", "lance" -> {
+                                double range = config.getDouble("Items." + name + ".Reach");
 
-                            if (result != null) {
-                                Entity defender = result.getHitEntity();
-                                if (defender != null) {
-                                    Utils.attack(player, defender);
+                                Location eye = player.getEyeLocation().add(player.getLocation().getDirection());
+                                Predicate<Entity> filter = entity -> !entity.getUniqueId().equals(player.getUniqueId());
+                                RayTraceResult result = player.getWorld().rayTrace(player.getEyeLocation(), eye.getDirection(), range, FluidCollisionMode.NEVER, false, 0, filter);
+
+                                if (result != null) {
+                                    Entity defender = result.getHitEntity();
+                                    if (defender != null) {
+                                        Utils.attack(player, defender);
+                                    }
                                 }
                             }
+                            case "dagger", "tomahawk", "javelin", "boomerang", "throwing_knife" -> isThrowing = !player.isSneaking();
+                            default -> isThrowing = name.endsWith("throwing_knife") && !player.isSneaking();
                         }
-                        case "dagger", "tomahawk", "javelin", "boomerang" -> {
-                            if (!player.isSneaking()) {
-                                boolean rotateWeapon = config.getBoolean("Items." + name + ".ThrownAttributes.Rotate");
-                                boolean returnWeapon = config.getBoolean("Items." + name + ".ThrownAttributes.Return");
-                                boolean piercing = config.getBoolean("Items." + name + ".ThrownAttributes.Piercing");
-                                double maxDistance = config.getDouble("Items." + name + ".ThrownAttributes.MaxDistance");
-                                Location loc = player.getEyeLocation().add(player.getLocation().getDirection());
 
-                                Vector velocity = loc.getDirection().normalize().multiply(config.getDouble("Items." + name + ".ThrownAttributes.Velocity"));
-
-                                if (player.getGameMode() == GameMode.ADVENTURE || player.getGameMode() == GameMode.SURVIVAL) {
-                                    Utils.changeDurability(itemMainHand, -1, true);
-                                }
-
-                                if (RSVItem.isRSVItem(itemMainHand)) {
-                                    new ThrowWeaponTask(module, plugin, player, itemMainHand, maxDistance, rotateWeapon, piercing, returnWeapon, velocity).start();
-                                    player.getInventory().setItemInMainHand(null);
-                                }
-                            }
-                        }
-                        default -> {}
-                    }
-
-                    if (name.contains("throwing_knife")) {
-                        if (!player.isSneaking()) {
+                        if (isThrowing) {
                             boolean rotateWeapon = config.getBoolean("Items." + name + ".ThrownAttributes.Rotate");
-                            boolean returnWeapon = config.getBoolean("Items." + name + ".ThrownAttributes.Return");
+                            boolean returnWeaponCollideBlocks = config.getBoolean("Items." + name + ".ThrownAttributes.ReturnAfterHittingBlock");
+                            boolean returnWeaponCollideEntities = config.getBoolean("Items." + name + ".ThrownAttributes.ReturnAfterHittingEntity");
+                            boolean returnWeaponTooFar = config.getBoolean("Items." + name + ".ThrownAttributes.ReturnAfterTravelingMaxDistance");
                             boolean piercing = config.getBoolean("Items." + name + ".ThrownAttributes.Piercing");
                             double maxDistance = config.getDouble("Items." + name + ".ThrownAttributes.MaxDistance");
                             Location loc = player.getEyeLocation().add(player.getLocation().getDirection());
@@ -323,7 +315,7 @@ public class SwEvents extends ModuleEvents implements Listener {
                             }
 
                             if (RSVItem.isRSVItem(itemMainHand)) {
-                                new ThrowWeaponTask(module, plugin, player, itemMainHand, maxDistance, rotateWeapon, piercing, returnWeapon, velocity).start();
+                                new ThrowWeaponTask(module, plugin, player, itemMainHand, maxDistance, rotateWeapon, piercing, returnWeaponCollideBlocks, returnWeaponCollideEntities, returnWeaponTooFar, velocity).start();
                                 player.getInventory().setItemInMainHand(null);
                             }
                         }

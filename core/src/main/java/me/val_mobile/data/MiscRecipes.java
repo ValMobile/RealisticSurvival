@@ -31,12 +31,13 @@ public class MiscRecipes {
 
     private final Map<String, Recipe> recipeMap = new HashMap<>();
     private final Set<RSVAnvilRecipe> anvilRecipes = new HashSet<>();
+    private final Set<RSVBrewingRecipe> brewingRecipes = new HashSet<>();
     private final RealisticSurvivalPlugin plugin;
     private final FileConfiguration config;
 
     public MiscRecipes(RealisticSurvivalPlugin plugin) {
         this.plugin = plugin;
-        this.config = RealisticSurvivalPlugin.getMiscRecipesConfig();
+        this.config = plugin.getMiscRecipesConfig();
     }
 
     public void initialize() {
@@ -87,7 +88,9 @@ public class MiscRecipes {
                 return recipe;
             }
             case "Brewing" -> {
-                return null;
+                RSVBrewingRecipe recipe = new RSVBrewingRecipe(plugin, config, recipeName);
+                brewingRecipes.add(recipe);
+                return recipe;
             }
             default -> {
                 return null;
@@ -144,6 +147,10 @@ public class MiscRecipes {
 
     public Set<RSVAnvilRecipe> getAnvilRecipes() {
         return anvilRecipes;
+    }
+
+    public Set<RSVBrewingRecipe> getBrewingRecipes() {
+        return brewingRecipes;
     }
 
     public Recipe getRecipe(String name) {

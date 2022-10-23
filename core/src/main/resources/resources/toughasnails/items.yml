@@ -2,7 +2,7 @@
 #          Tough as Nails Items       #
 #######################################
 
-ConfigId: "1.2.3-DEV-0"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -189,10 +189,6 @@ charcoal_filter:
   Material: "PAPER"
   DisplayName: "&fCharcoal Filter"
   CustomModelData: 83650
-water_bottle:
-  Material: "POTION"
-  DisplayName: "&fWater Bottle"
-  Color: "BLUE"
 canteen_empty:
   Material: "GLASS_BOTTLE"
   DisplayName: "&fEmpty Canteen"
@@ -211,6 +207,8 @@ canteen_filled:
   Lore:
     - "&7Drink: Unpurified Water"
     - "&7Durability: 5/5"
+  ItemFlags:
+    - "HIDE_POTION_EFFECTS"
   NBTTags:
     rsvdrink: "Unpurified Water"
     rsvdurability: 5

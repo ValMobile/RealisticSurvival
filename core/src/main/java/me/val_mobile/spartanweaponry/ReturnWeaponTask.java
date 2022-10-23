@@ -52,61 +52,63 @@ public class ReturnWeaponTask extends BukkitRunnable {
     public void run() {
         Location asLocation = armorStand.getLocation();
         Vector asVector = asLocation.toVector();
-        Location pLocation = player.getLocation();
-        Vector pVector = pLocation.toVector();
-
-        armorStand.teleport(asLocation.subtract(asVector.subtract(pVector).normalize()).setDirection(pLocation.getDirection()));
-
         // if player is not online, drop the throwable immediately
-        if (!player.isOnline()) {
+
+        if (!player.isOnline() || player == null) {
             dropItem(asLocation);
             stop();
         }
+        else {
+            Location pLocation = player.getLocation();
+            Vector pVector = pLocation.toVector();
 
-        if (distanceBetween(asLocation, pLocation) > maxReturnDistance) {
-            Location dropLoc = dropItem(asLocation);
+            armorStand.teleport(asLocation.subtract(asVector.subtract(pVector).normalize()).setDirection(pLocation.getDirection()));
 
-            if (config.getBoolean("MaxReturnDistanceReached.Enabled")) {
-                String message = ChatColor.translateAlternateColorCodes('&', config.getString("MaxReturnDistanceReached.Message"));
-                message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(maxReturnDistance)));
-                player.sendMessage(message);
-            }
+            if (distanceBetween(asLocation, pLocation) > maxReturnDistance) {
+                Location dropLoc = dropItem(asLocation);
 
-            if (config.getBoolean("WeaponDropped.Enabled")) {
-                String message = ChatColor.translateAlternateColorCodes('&', config.getString("WeaponDropped.Message"));
-                message = message.replaceAll("%X-COORD%", String.valueOf((int) dropLoc.getX()));
-                message = message.replaceAll("%Y-COORD%", String.valueOf((int) dropLoc.getY()));
-                message = message.replaceAll("%Z-COORD%", String.valueOf((int) dropLoc.getZ()));
-
-                player.sendMessage(message);
-            }
-
-            stop();
-        }
-
-        if (distanceBetween(asLocation, pLocation) < 0.5) {
-            if (player.getInventory().firstEmpty() == -1) {
-
-                if (config.getBoolean("FullInventoryWeaponDropped.Enabled")) {
-                    String message = ChatColor.translateAlternateColorCodes('&', config.getString("FullInventoryWeaponDropped.Message"));
-                    message = message.replaceAll("%X-COORD%", String.valueOf((int) pLocation.getX()));
-                    message = message.replaceAll("%Y-COORD%", String.valueOf((int) pLocation.getY()));
-                    message = message.replaceAll("%Z-COORD%", String.valueOf((int) pLocation.getZ()));
+                if (config.getBoolean("MaxReturnDistanceReached.Enabled")) {
+                    String message = ChatColor.translateAlternateColorCodes('&', config.getString("MaxReturnDistanceReached.Message"));
+                    message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(maxReturnDistance)));
                     player.sendMessage(message);
                 }
-                dropItem(pLocation);
-            }
-            else {
-                player.getInventory().addItem(itemStack.clone());
+
+                if (config.getBoolean("WeaponDropped.Enabled")) {
+                    String message = ChatColor.translateAlternateColorCodes('&', config.getString("WeaponDropped.Message"));
+                    message = message.replaceAll("%X-COORD%", String.valueOf((int) dropLoc.getX()));
+                    message = message.replaceAll("%Y-COORD%", String.valueOf((int) dropLoc.getY()));
+                    message = message.replaceAll("%Z-COORD%", String.valueOf((int) dropLoc.getZ()));
+
+                    player.sendMessage(message);
+                }
+
+                stop();
             }
 
-            if (config.getBoolean("Items." + name + ".ThrownAttributes.ReturnSound.Enabled")) {
-                String soundName = config.getString("Items." + name + ".ThrownAttributes.ReturnSound.Sound");
-                float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.ReturnSound.Volume");
-                float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.ReturnSound.Pitch");
-                Utils.playSound(player.getLocation(), soundName, volume, pitch);
+            if (distanceBetween(asLocation, pLocation) < 0.5) {
+                if (player.getInventory().firstEmpty() == -1) {
+
+                    if (config.getBoolean("FullInventoryWeaponDropped.Enabled")) {
+                        String message = ChatColor.translateAlternateColorCodes('&', config.getString("FullInventoryWeaponDropped.Message"));
+                        message = message.replaceAll("%X-COORD%", String.valueOf((int) pLocation.getX()));
+                        message = message.replaceAll("%Y-COORD%", String.valueOf((int) pLocation.getY()));
+                        message = message.replaceAll("%Z-COORD%", String.valueOf((int) pLocation.getZ()));
+                        player.sendMessage(message);
+                    }
+                    dropItem(pLocation);
+                }
+                else {
+                    player.getInventory().addItem(itemStack.clone());
+                }
+
+                if (config.getBoolean("Items." + name + ".ThrownAttributes.ReturnSound.Enabled")) {
+                    String soundName = config.getString("Items." + name + ".ThrownAttributes.ReturnSound.Sound");
+                    float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.ReturnSound.Volume");
+                    float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.ReturnSound.Pitch");
+                    Utils.playSound(player.getLocation(), soundName, volume, pitch);
+                }
+                stop();
             }
-            stop();
         }
     }
 

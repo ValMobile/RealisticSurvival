@@ -35,7 +35,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.CauldronLevelChangeEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
@@ -44,12 +43,12 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionType;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.RayTraceResult;
 
 import java.util.List;
@@ -252,11 +251,12 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                 switch (action) {
                     case RIGHT_CLICK_BLOCK, RIGHT_CLICK_AIR -> {
+                        Block block;
+                        Location playerLoc = player.getLocation();
+                        Location eye = player.getEyeLocation().add(player.getLocation().getDirection());
+
                         if (config.getBoolean("Thirst.SaturationRestoration.Drinking.Enabled")) {
                             if (player.isSneaking()) {
-                                Location playerLoc = player.getLocation();
-                                Block block;
-                                Location eye = player.getEyeLocation().add(player.getLocation().getDirection());
                                 double maxDistance = config.getDouble("Thirst.SaturationRestoration.Drinking.MaxDistance");
 
                                 RayTraceResult result = player.getWorld().rayTraceBlocks(player.getEyeLocation(), eye.getDirection(), maxDistance, FluidCollisionMode.ALWAYS, true);
@@ -265,81 +265,79 @@ public class TanEvents extends ModuleEvents implements Listener {
                                     block = result.getHitBlock();
                                     if (block != null) {
                                         if (block.getType() == Material.WATER && Utils.isSourceLiquid(block)) {
-                                            if (playerLoc.distance(block.getLocation()) < maxDistance) {
-                                                ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
+                                            ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
 
-                                                if (task != null) {
-                                                    double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Drinking.ThirstPoints");
-                                                    double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Drinking.SaturationPoints");
+                                            if (task != null) {
+                                                double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Drinking.ThirstPoints");
+                                                double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Drinking.SaturationPoints");
 
-                                                    task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
-                                                    task.setSaturationLvl(Math.min(task.getSaturationLvl() + saturationPoints, task.getThirstLvl()));
+                                                task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
+                                                task.setSaturationLvl(Math.min(task.getSaturationLvl() + saturationPoints, task.getThirstLvl()));
 
-                                                    if (config.getBoolean("Thirst.SaturationRestoration.Drinking.Sound.Enabled")) {
-                                                        String soundName = config.getString("Thirst.SaturationRestoration.Drinking.Sound.Sound");
-                                                        float volume = (float) config.getDouble("Thirst.SaturationRestoration.Drinking.Sound.Volume");
-                                                        float pitch = (float) config.getDouble("Thirst.SaturationRestoration.Drinking.Sound.Pitch");
+                                                if (config.getBoolean("Thirst.SaturationRestoration.Drinking.Sound.Enabled")) {
+                                                    String soundName = config.getString("Thirst.SaturationRestoration.Drinking.Sound.Sound");
+                                                    float volume = (float) config.getDouble("Thirst.SaturationRestoration.Drinking.Sound.Volume");
+                                                    float pitch = (float) config.getDouble("Thirst.SaturationRestoration.Drinking.Sound.Pitch");
 
-                                                        Utils.playSound(playerLoc, soundName, volume, pitch);
-                                                    }
+                                                    Utils.playSound(playerLoc, soundName, volume, pitch);
+                                                }
 
 
-                                                    // Parasites code
+                                                // Parasites code
 
-                                                    Location waterSourceLoc = block.getLocation();
-                                                    World world = waterSourceLoc.getWorld();
-                                                    Block air;
+                                                Location waterSourceLoc = block.getLocation();
+                                                World world = waterSourceLoc.getWorld();
+                                                Block air;
 
-                                                    int airAmount = 0;
-                                                    int caveAirAmount = 0;
+                                                int airAmount = 0;
+                                                int caveAirAmount = 0;
 
-                                                    for (int x = -3; x < 2; x++) {
-                                                        for (int y = -3; y < 2; y++) {
-                                                            for (int z = -3; z < 2; z++) {
-                                                                air = world.getBlockAt(x + (int) waterSourceLoc.getX(), y + (int) waterSourceLoc.getY(), z + (int) waterSourceLoc.getZ());
-                                                                if (air.getType() == Material.AIR) {
-                                                                    airAmount++;
-                                                                }
-                                                                else if (air.getType() == Material.CAVE_AIR) {
-                                                                    caveAirAmount++;
-                                                                }
+                                                for (int x = -3; x < 2; x++) {
+                                                    for (int y = -3; y < 2; y++) {
+                                                        for (int z = -3; z < 2; z++) {
+                                                            air = world.getBlockAt(x + (int) waterSourceLoc.getX(), y + (int) waterSourceLoc.getY(), z + (int) waterSourceLoc.getZ());
+                                                            if (air.getType() == Material.AIR) {
+                                                                airAmount++;
+                                                            }
+                                                            else if (air.getType() == Material.CAVE_AIR) {
+                                                                caveAirAmount++;
                                                             }
                                                         }
                                                     }
+                                                }
 
-                                                    if (caveAirAmount > airAmount) {
-                                                        // cave water
-                                                        if (config.getBoolean("Thirst.Parasites.CaveWater.Enabled")) {
-                                                            if (Math.random() <= config.getDouble("Thirst.Parasites.CaveWater.Chance")) {
-                                                                parasites = true;
-                                                            }
+                                                if (caveAirAmount > airAmount) {
+                                                    // cave water
+                                                    if (config.getBoolean("Thirst.Parasites.CaveWater.Enabled")) {
+                                                        if (Math.random() <= config.getDouble("Thirst.Parasites.CaveWater.Chance")) {
+                                                            parasites = true;
                                                         }
                                                     }
-                                                    else {
-                                                        Biome biome = block.getBiome();
-                                                        switch (biome) {
-                                                            case RIVER, FROZEN_RIVER -> {
-                                                                // river water
-                                                                if (config.getBoolean("Thirst.Parasites.RiverWater.Enabled")) {
-                                                                    if (Math.random() <= config.getDouble("Thirst.Parasites.RiverWater.Chance")) {
-                                                                        parasites = true;
-                                                                    }
+                                                }
+                                                else {
+                                                    Biome biome = block.getBiome();
+                                                    switch (biome) {
+                                                        case RIVER, FROZEN_RIVER -> {
+                                                            // river water
+                                                            if (config.getBoolean("Thirst.Parasites.RiverWater.Enabled")) {
+                                                                if (Math.random() <= config.getDouble("Thirst.Parasites.RiverWater.Chance")) {
+                                                                    parasites = true;
                                                                 }
                                                             }
-                                                            case OCEAN, COLD_OCEAN, DEEP_LUKEWARM_OCEAN, LUKEWARM_OCEAN, DEEP_OCEAN, DEEP_COLD_OCEAN, DEEP_FROZEN_OCEAN, FROZEN_OCEAN, DEEP_WARM_OCEAN, WARM_OCEAN -> {
-                                                                // ocean water
-                                                                if (config.getBoolean("Thirst.Parasites.SeaWater.Enabled")) {
-                                                                    if (Math.random() <= config.getDouble("Thirst.Parasites.SeaWater.Chance")) {
-                                                                        parasites = true;
-                                                                    }
+                                                        }
+                                                        case OCEAN, COLD_OCEAN, DEEP_LUKEWARM_OCEAN, LUKEWARM_OCEAN, DEEP_OCEAN, DEEP_COLD_OCEAN, DEEP_FROZEN_OCEAN, FROZEN_OCEAN, DEEP_WARM_OCEAN, WARM_OCEAN -> {
+                                                            // ocean water
+                                                            if (config.getBoolean("Thirst.Parasites.SeaWater.Enabled")) {
+                                                                if (Math.random() <= config.getDouble("Thirst.Parasites.SeaWater.Chance")) {
+                                                                    parasites = true;
                                                                 }
                                                             }
-                                                            default -> {
-                                                                // regular water
-                                                                if (config.getBoolean("Thirst.Parasites.RegularWater.Enabled")) {
-                                                                    if (Math.random() <= config.getDouble("Thirst.Parasites.RegularWater.Chance")) {
-                                                                        parasites = true;
-                                                                    }
+                                                        }
+                                                        default -> {
+                                                            // regular water
+                                                            if (config.getBoolean("Thirst.Parasites.RegularWater.Enabled")) {
+                                                                if (Math.random() <= config.getDouble("Thirst.Parasites.RegularWater.Chance")) {
+                                                                    parasites = true;
                                                                 }
                                                             }
                                                         }
@@ -352,54 +350,37 @@ public class TanEvents extends ModuleEvents implements Listener {
                             }
                         }
 
-                        ItemStack item = event.getItem();
+                        RayTraceResult test = player.getWorld().rayTraceBlocks(player.getEyeLocation(), eye.getDirection(), 5, FluidCollisionMode.ALWAYS, true);
 
-                        Block block = event.getClickedBlock();
+                        if (test != null) {
+                            block = test.getHitBlock();
+                            if (block != null) {
+                                ItemStack item = event.getItem();
 
-                        if (block != null) {
-                            Material mat = block.getType();
-
-                            if (RSVItem.isRSVItem(item)) {
-                                if (mat == Material.WATER) {
+                                if (RSVItem.isRSVItem(item)) {
                                     String name = RSVItem.getNameFromItem(item);
-                                    if (name.contains("canteen_empty")) {
-                                        if (canFill(item, "Unpurified Water")) {
-                                            Hand hand = getHand(player, name);
+                                    if (name.equals("canteen_empty") || name.equals("canteen_filled")) {
+                                        if (block.getType() == Material.WATER && Utils.isSourceLiquid(block)) {
+                                            if (canFill(item, "Unpurified Water")) {
+                                                Hand hand = getHand(player, name);
 
-                                            if (hand != null) {
-                                                new BukkitRunnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        plugin.getLogger().info("1");
-                                                        if (hand == Hand.MAIN_HAND) {
-                                                            player.getInventory().setItemInMainHand(fillCanteen(item, "Unpurified Water", 1));
-                                                        }
-                                                        else
-                                                            player.getInventory().setItemInOffHand(fillCanteen(item, "Unpurified Water", 1));
+                                                if (hand != null) {
+                                                    if (hand == Hand.MAIN_HAND) {
+                                                        player.getInventory().setItemInMainHand(fillCanteen(item, "Unpurified Water", 1));
                                                     }
-                                                }.runTaskLater(plugin, 1L);
+                                                    else
+                                                        player.getInventory().setItemInOffHand(fillCanteen(item, "Unpurified Water", 1));
+                                                }
                                             }
+                                            event.setCancelled(true);
                                         }
-                                    }
-                                    if (name.contains("canteen_filled")) {
-                                        if (canFill(item, "Unpurified Water")) {
-                                            Hand hand = getHand(player, name);
-
-                                            if (hand != null) {
-                                                new BukkitRunnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        plugin.getLogger().info("2");
-                                                        if (hand == Hand.MAIN_HAND)
-                                                            player.getInventory().setItemInMainHand(fillCanteen(item, "Unpurified Water", 1));
-                                                        else
-                                                            player.getInventory().setItemInOffHand(fillCanteen(item, "Unpurified Water", 1));
-                                                    }
-                                                }.runTaskLater(plugin, 1L);
-                                            }
+                                        else if (block.getType() == Material.CAULDRON || block.getType().toString().equals("WATER_CAULDRON")) {
+                                            event.setCancelled(true);
                                         }
                                     }
                                 }
+
+
                             }
                         }
                     }
@@ -539,16 +520,10 @@ public class TanEvents extends ModuleEvents implements Listener {
                                 Hand hand = getHand(player, name);
 
                                 if (hand != null) {
-                                    new BukkitRunnable() {
-                                        @Override
-                                        public void run() {
-                                            if (hand == Utils.Hand.MAIN_HAND)
-                                                player.getInventory().setItemInMainHand(fillCanteen(item, canteenDrink, -1));
-                                            else
-                                                player.getInventory().setItemInOffHand(fillCanteen(item, canteenDrink, -1));
-                                            plugin.getLogger().info("3");
-                                        }
-                                    }.runTaskLater(plugin, 1L);
+                                    if (hand == Utils.Hand.MAIN_HAND)
+                                        player.getInventory().setItemInMainHand(fillCanteen(item, canteenDrink, -1));
+                                    else
+                                        player.getInventory().setItemInOffHand(fillCanteen(item, canteenDrink, -1));
                                 }
 
                                 event.setCancelled(true);
@@ -696,66 +671,6 @@ public class TanEvents extends ModuleEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onCauldronFill(CauldronLevelChangeEvent event) {
-        Entity entity = event.getEntity();
-
-        if (entity != null) {
-            if (shouldEventBeRan(entity)) {
-                if (entity instanceof Player player) {
-                    ItemStack item = player.getInventory().getItemInMainHand();
-
-                    if (RSVItem.isRSVItem(item)) {
-                        if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_EMPTY) {
-                            if (RSVItem.getNameFromItem(item).contains("juice_")) {
-                                event.setCancelled(true);
-                            }
-                            if (RSVItem.getNameFromItem(item).equals("canteen_filled")) {
-                                if (canFill(item, "Unpurified Water")) {
-                                    Hand hand = getHand(player, RSVItem.getNameFromItem(item));
-                                    if (hand != null) {
-                                        new BukkitRunnable() {
-                                            @Override
-                                            public void run() {
-                                                plugin.getLogger().info("4");
-                                                if (hand == Utils.Hand.MAIN_HAND)
-                                                    player.getInventory().setItemInMainHand(fillCanteen(item, "Unpurified Water", -1));
-                                                else
-                                                    player.getInventory().setItemInOffHand(fillCanteen(item, "Unpurified Water", -1));
-                                            }
-                                        }.runTaskLater(plugin, 1L);
-                                    }
-                                }
-                                else
-                                    event.setCancelled(true);
-                            }
-                        }
-                        if (event.getReason() == CauldronLevelChangeEvent.ChangeReason.BOTTLE_FILL) {
-                            if (RSVItem.getNameFromItem(item).equals("canteen_empty")) {
-                                if (canFill(item, "Unpurified Water")) {
-                                    Hand hand = getHand(player, RSVItem.getNameFromItem(item));
-
-                                    if (hand != null) {
-                                        new BukkitRunnable() {
-                                            @Override
-                                            public void run() {
-                                                plugin.getLogger().info("5");
-                                                if (hand == Utils.Hand.MAIN_HAND)
-                                                    player.getInventory().setItemInMainHand(fillCanteen(item, "Unpurified Water", 1));
-                                                else
-                                                    player.getInventory().setItemInOffHand(fillCanteen(item, "Unpurified Water", 1));
-                                            }
-                                        }.runTaskLater(plugin, 1L);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     @EventHandler
     public void onPrepareCraft(PrepareItemCraftEvent event) {
         if (shouldEventBeRan(event.getView().getPlayer())) {
@@ -871,6 +786,10 @@ public class TanEvents extends ModuleEvents implements Listener {
 
     private boolean canFill(ItemStack canteen, String newDrink) {
         String originalDrink = RealisticSurvivalPlugin.getUtil().getNbtTag(canteen, "rsvdrink", PersistentDataType.STRING);
+        if (RSVItem.getCustomDurability(canteen) >= RSVItem.getMaxCustomDurability(canteen)) {
+            return false;
+        }
+
         if (!originalDrink.equals("None")) {
             return originalDrink.equals(newDrink);
         }
@@ -885,7 +804,7 @@ public class TanEvents extends ModuleEvents implements Listener {
         int sum = durability + change;
 
         ItemMeta meta = canteen.getItemMeta();
-        if (sum < 0) {
+        if (sum < 1) {
             if (meta.getDisplayName().equals(RSVItem.getItem("canteen_filled").getItemMeta().getDisplayName())) {
                 meta.setDisplayName(RSVItem.getItem("canteen_empty").getItemMeta().getDisplayName());
             }
@@ -912,6 +831,7 @@ public class TanEvents extends ModuleEvents implements Listener {
             }
 
             int modelData = RSVItem.getItem("canteen_filled").getItemMeta().getCustomModelData();
+            meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             if (!meta.hasCustomModelData()) {
                 meta.setCustomModelData(modelData);
                 canteen.setItemMeta(meta);

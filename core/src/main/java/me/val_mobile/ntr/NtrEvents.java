@@ -289,7 +289,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                             }
                             Location blockLoc = block.getLocation();
                             Location pLoc = player.getLocation();
-                            if (Utils.getBlockFace(player) == BlockFace.UP && pLoc.distance(blockLoc) < 1.5D) {
+                            if (Utils.getBlockFace(player) == BlockFace.UP && pLoc.distanceSquared(blockLoc) < 2.25D) {
                                 if (Math.random() <= config.getDouble("Lumberjack.PlankDrops.Chance")) {
 
                                     ItemStack drop = new ItemStack(Utils.getRespectivePlank(blockMat));
@@ -315,75 +315,11 @@ public class NtrEvents extends ModuleEvents implements Listener {
                             }
                             Location blockLoc = block.getLocation();
                             Location pLoc = player.getLocation();
-                            if (Utils.getBlockFace(player) == BlockFace.UP && pLoc.distance(blockLoc) < 1.5D) {
+                            if (Utils.getBlockFace(player) == BlockFace.UP && pLoc.distanceSquared(blockLoc) < 2.25D) {
                                 if (Math.random() <= config.getDouble("Lumberjack.StickDrops.Chance")) {
-
-                                    ItemStack drop = new ItemStack(Utils.getRespectivePlank(blockMat));
-                                    Utils.harvestFortune(config.getConfigurationSection("Lumberjack.StickDrops"), drop, new ItemStack(Material.STICK), block.getLocation());
+                                    Utils.harvestFortune(config.getConfigurationSection("Lumberjack.StickDrops"), new ItemStack(Material.STICK), item, block.getLocation());
                                     block.setType(Material.AIR);
                                     event.setCancelled(true);
-                                }
-                            }
-                        }
-                    }
-                }
-                if (config.getBoolean("RemoveVanillaCampfireRecipes.Enabled")) {
-                    if (RSVItem.isRSVItem(item)) {
-                        if (RSVItem.getNameFromItem(item).equals("fire_starter")) {
-                            double maxDistance = config.getDouble("RemoveVanillaCampfireRecipes.MaxDistance");
-
-                            boolean needsFuel = config.getBoolean("RemoveVanillaCampfireRecipes.Fuel.Required");
-                            boolean needsKindling = config.getBoolean("RemoveVanillaCampfireRecipes.Kindling.Required");
-
-                            int requiredFuel = needsFuel ? config.getInt("RemoveVanillaCampfireRecipes.Fuel.Amount") : 0;
-                            int requiredKindling = needsKindling ? config.getInt("RemoveVanillaCampfireRecipes.Kindling.Amount") : 0;
-                            int requiredSoulItems = config.getInt("RemoveVanillaCampfireRecipes.SoulItems.Amount");
-
-                            int fuel = 0;
-                            int kindling = 0;
-                            int soul = 0;
-
-                            List<String> fuelMats = config.getStringList("RemoveVanillaCampfireRecipes.Kindling.Required");
-                            List<String> kindlingMats = config.getStringList("RemoveVanillaCampfireRecipes.Kindling.Required");
-                            List<String> soulItems = config.getStringList("RemoveVanillaCampfireRecipes.SoulItems");
-
-                            Location loc = event.getClickedBlock().getLocation();
-
-                            Collection<Entity> entities = loc.getWorld().getNearbyEntities(loc, maxDistance, maxDistance, maxDistance);
-
-                            Collection<Item> ingredients = new ArrayList<>();
-
-                            if (entities.size() <= requiredFuel + requiredKindling + requiredSoulItems + 5) {
-                                for (Entity e : entities) {
-                                    if (e instanceof Item) {
-                                        ItemStack drop = ((Item) e).getItemStack();
-
-                                        if (needsFuel) {
-                                            if (fuelMats.contains(drop.getType().toString())) {
-                                                if (fuel < requiredFuel) {
-                                                    fuel += drop.getAmount();
-                                                }
-                                                ingredients.add((Item) e);
-                                            }
-                                        }
-                                        if (needsKindling) {
-                                            if (kindlingMats.contains(drop.getType().toString())) {
-                                                if (kindling < requiredKindling) {
-                                                    kindling += drop.getAmount();
-                                                }
-                                                ingredients.add((Item) e);
-                                            }
-                                        }
-                                        if (soulItems.contains(drop.getType().toString())) {
-                                            soul += drop.getAmount();
-                                        }
-                                    }
-                                }
-
-                                if (fuel >= requiredFuel && kindling >= requiredKindling) {
-                                    if (!FireStarterTask.hasTask(id)) {
-                                        new FireStarterTask(plugin, module, player, loc.add(0D, 0.6D, 0D), ingredients, soul >= requiredSoulItems).start();
-                                    }
                                 }
                             }
                         }
@@ -493,6 +429,115 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                 }
                             }
                         }
+                        case "fire_starter" -> {
+                            if (config.getBoolean("FireStarter.Enabled")) {
+                                double maxDistance = config.getDouble("FireStarter.MaxDistance");
+
+                                boolean needsFuel = config.getBoolean("FireStarter.Fuel.Required");
+                                boolean needsKindling = config.getBoolean("FireStarter.Kindling.Required");
+
+                                int requiredFuel = needsFuel ? config.getInt("FireStarter.Fuel.Amount") : 0;
+                                int requiredKindling = needsKindling ? config.getInt("FireStarter.Kindling.Amount") : 0;
+                                int requiredSoulItems = config.getInt("FireStarter.SoulItems.Amount");
+
+                                int fuel = 0;
+                                int kindling = 0;
+                                int soul = 0;
+
+                                List<String> fuelMats = config.getStringList("FireStarter.Fuel.Materials");
+                                List<String> kindlingMats = config.getStringList("FireStarter.Kindling.Materials");
+                                List<String> soulItems = config.getStringList("FireStarter.SoulItems");
+
+                                Location loc = event.getClickedBlock().getLocation();
+
+                                Collection<Entity> entities = loc.getWorld().getNearbyEntities(loc, maxDistance, maxDistance, maxDistance);
+
+                                Collection<Item> ingredients = new ArrayList<>();
+
+                                if (entities.size() <= config.getInt("FireStarter.MaxItems")) {
+                                    for (Entity e : entities) {
+                                        if (e instanceof Item i) {
+                                            ItemStack drop = i.getItemStack();
+
+                                            if (needsFuel) {
+                                                if (fuelMats.contains(drop.getType().toString())) {
+                                                    if (fuel < requiredFuel) {
+                                                        fuel += drop.getAmount();
+                                                    }
+                                                    ingredients.add(i);
+                                                }
+                                                else {
+                                                    Tag<Material> tag;
+
+                                                    for (String s : fuelMats) {
+                                                        tag = Utils.getTag(s);
+                                                        if (tag != null) {
+                                                            if (tag.isTagged(drop.getType())) {
+                                                                if (fuel < requiredFuel) {
+                                                                    fuel += drop.getAmount();
+                                                                }
+                                                                ingredients.add(i);
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            if (needsKindling) {
+                                                if (kindlingMats.contains(drop.getType().toString())) {
+                                                    if (kindling < requiredKindling) {
+                                                        kindling += drop.getAmount();
+                                                    }
+                                                    ingredients.add(i);
+                                                }
+                                                else {
+                                                    Tag<Material> tag;
+
+                                                    for (String s : kindlingMats) {
+                                                        tag = Utils.getTag(s);
+                                                        if (tag != null) {
+                                                            if (tag.isTagged(drop.getType())) {
+                                                                if (kindling < requiredKindling) {
+                                                                    kindling += drop.getAmount();
+                                                                }
+                                                                ingredients.add(i);
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            if (soulItems.contains(drop.getType().toString())) {
+                                                soul += drop.getAmount();
+                                                ingredients.add(i);
+                                            }
+                                            else {
+                                                Tag<Material> tag;
+
+                                                for (String s : soulItems) {
+                                                    tag = Utils.getTag(s);
+                                                    if (tag != null) {
+                                                        if (tag.isTagged(drop.getType())) {
+                                                            soul += drop.getAmount();
+                                                            ingredients.add(i);
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    if (fuel >= requiredFuel && kindling >= requiredKindling) {
+                                        if (!FireStarterTask.hasTask(id)) {
+                                            new FireStarterTask(plugin, module, player, loc.add(0D, 0.6D, 0D), ingredients, soul >= requiredSoulItems).start();
+                                            Utils.changeDurability(item, -1, true);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         default -> {}
                     }
                 }
@@ -559,7 +604,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                     event.getInventory().setResult(null);
                             }
                             case "campfire", "soul_campfire" -> {
-                                if (config.getBoolean("RemoveVanillaCampfireRecipes.Enabled"))
+                                if (config.getBoolean("FireStarter.RemoveVanillaCampfireRecipes"))
                                     event.getInventory().setResult(null);
                             }
                             case "flower_pot" -> {
@@ -614,9 +659,8 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 int clayAmount = clay.getAmount();
                 int durability = RSVItem.getCustomDurability(clayTool);
 
-                if (durability - clayAmount <= 0) {
-                    int dif = clayAmount - RSVItem.getCustomDurability(clayTool);
-                    event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(dif));
+                if (durability - clayAmount < 0) {
+                    event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(durability));
                 }
                 else {
                     event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(clayAmount));
@@ -630,9 +674,8 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 int woodAmount = wood.getAmount();
                 int durability = RSVItem.getCustomDurability(saw);
 
-                if (durability - woodAmount <= 0) {
-                    int dif = woodAmount - RSVItem.getCustomDurability(saw);
-                    event.getInventory().setResult(new ItemStack(Utils.getRespectivePlank(wood.getType()), dif * 4));
+                if (durability - woodAmount < 0) {
+                    event.getInventory().setResult(new ItemStack(Utils.getRespectivePlank(wood.getType()), durability * 4));
                 }
                 else {
                     event.getInventory().setResult(new ItemStack(Utils.getRespectivePlank(wood.getType()), woodAmount * 4));
@@ -646,9 +689,8 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 int planksAmount = planks.getAmount();
                 int durability = RSVItem.getCustomDurability(saw);
 
-                if (durability - planksAmount <= 0) {
-                    int dif = planksAmount - RSVItem.getCustomDurability(saw);
-                    event.getInventory().setResult(new ItemStack(Material.STICK, dif * 4));
+                if (durability - planksAmount < 0) {
+                    event.getInventory().setResult(new ItemStack(Material.STICK, durability * 4));
                 }
                 else {
                     event.getInventory().setResult(new ItemStack(Material.STICK, planksAmount * 4));
@@ -913,15 +955,12 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                                 }
                                             }
                                             if (hasSaw && hasLogs) {
-                                                int planksAmount = result.getAmount();
                                                 int durability = RSVItem.getCustomDurability(tool);
 
-                                                if (durability - planksAmount <= 0) {
-                                                    int dif = planksAmount - RSVItem.getCustomDurability(tool);
-                                                    Utils.changeDurability(tool, -dif, true);
-                                                    temp.setAmount(temp.getAmount() - dif);
+                                                if (durability - temp.getAmount() < 0) {
+                                                    Utils.changeDurability(tool, -durability, true);
+                                                    temp.setAmount(temp.getAmount() - durability);
 
-                                                    copy = temp;
                                                 } else {
                                                     Utils.changeDurability(tool, -temp.getAmount(), true);
                                                     temp.setAmount(0);
@@ -948,15 +987,12 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                                 }
                                             }
                                             if (hasSaw && hasPlanks) {
-                                                int sticksAmount = result.getAmount();
                                                 int durability = RSVItem.getCustomDurability(tool);
 
-                                                if (durability - sticksAmount <= 0) {
-                                                    int dif = sticksAmount - RSVItem.getCustomDurability(tool);
-                                                    Utils.changeDurability(tool, -dif, true);
-                                                    temp.setAmount(temp.getAmount() - dif);
+                                                if (durability - temp.getAmount() < 0) {
+                                                    Utils.changeDurability(tool, -durability, true);
+                                                    temp.setAmount(temp.getAmount() - durability);
 
-                                                    copy = temp;
                                                 } else {
                                                     Utils.changeDurability(tool, -temp.getAmount(), true);
                                                     temp.setAmount(0);
@@ -985,15 +1021,12 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                                     }
                                                 }
                                                 if (hasClayTool && hasClay) {
-                                                    int clayBrickAmount = result.getAmount();
                                                     int durability = RSVItem.hasCustomDurability(tool) ? RSVItem.getCustomDurability(tool) : tool.getType().getMaxDurability() - ((Damageable) tool.getItemMeta()).getDamage();
 
-                                                    if (durability - clayBrickAmount <= 0) {
-                                                        int dif = clayBrickAmount - RSVItem.getCustomDurability(tool);
-                                                        Utils.changeDurability(tool, -dif, true);
-                                                        temp.setAmount(temp.getAmount() - dif);
+                                                    if (durability - temp.getAmount() < 0) {
+                                                        Utils.changeDurability(tool, -durability, true);
+                                                        temp.setAmount(temp.getAmount() - durability);
 
-                                                        copy = temp;
                                                     } else {
                                                         Utils.changeDurability(tool, -temp.getAmount(), true);
                                                         temp.setAmount(0);

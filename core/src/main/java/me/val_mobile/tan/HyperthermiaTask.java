@@ -82,10 +82,12 @@ public class HyperthermiaTask extends BukkitRunnable {
                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotdamage")) {
                     if (config.getBoolean("Temperature.Hyperthermia.Damage.Enabled")) {
                         if (player.getHealth() >= config.getDouble("Temperature.Hyperthermia.Damage.Cutoff")) {
-                            if (player.getHealth() - damage <= 0) {
-                                module.getHyperthermiaDeath().add(id);
+                            if (!(config.getBoolean("Temperature.Hyperthermia.Damage.FireResistanceImmunity") && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
+                                if (player.getHealth() - damage <= 0) {
+                                    module.getHyperthermiaDeath().add(id);
+                                }
+                                player.damage(damage);
                             }
-                            player.damage(damage);
                         }
                     }
                 }
@@ -93,7 +95,9 @@ public class HyperthermiaTask extends BukkitRunnable {
                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotpotioneffects")) {
                     if (config.getBoolean("Temperature.Hyperthermia.PotionEffects.Enabled")) {
                         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotpotioneffects")) {
-                            player.addPotionEffects(potionEffects);
+                            if (!(config.getBoolean("Temperature.Hyperthermia.PotionEffects.FireResistanceImmunity") && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
+                                player.addPotionEffects(potionEffects);
+                            }
                         }
                     }
                 }
@@ -103,7 +107,9 @@ public class HyperthermiaTask extends BukkitRunnable {
                         int fireTicks = config.getInt("Temperature.Hyperthermia.Ignite.FireTicks");
 
                         if (player.getFireTicks() < fireTicks) {
-                            player.setFireTicks(fireTicks);
+                            if (!(config.getBoolean("Temperature.Hyperthermia.Ignite.FireResistanceImmunity") && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
+                                player.setFireTicks(fireTicks);
+                            }
                         }
                     }
                 }

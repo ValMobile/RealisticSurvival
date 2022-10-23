@@ -27,15 +27,18 @@ import java.util.Set;
 public class MiscItems {
 
     private final Map<String, RSVItem> items = new HashMap<>();
+    private final RealisticSurvivalPlugin plugin;
 
-    public MiscItems() {}
+    public MiscItems(RealisticSurvivalPlugin plugin) {
+        this.plugin = plugin;
+    }
 
     public void initialize() {
-        FileConfiguration itemConfig = RealisticSurvivalPlugin.getMiscItemsConfig();
+        FileConfiguration itemConfig = plugin.getMiscItemsConfig();
         Set<String> keys = itemConfig.getKeys(false);
         for (String key : keys) {
             if (!key.equals("ConfigId")) {
-                RSVItem item = new RSVItem(key);
+                RSVItem item = new RSVItem(plugin, key);
                 items.putIfAbsent(key, item);
             }
         }

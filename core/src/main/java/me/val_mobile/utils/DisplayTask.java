@@ -139,7 +139,7 @@ public class DisplayTask extends BukkitRunnable {
                             }
                         }
                         if (temperature > 19) {
-                            if (tanConfig.getBoolean("Temperature.Hyperthermia.ScreenTinting.Enabled")) {
+                            if (tanConfig.getBoolean("Temperature.Hyperthermia.ScreenTinting")) {
                                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotvisual")) {
                                     titleText += characterValues.getFireVignette((int) Math.round(temperature));
                                 }
@@ -147,7 +147,7 @@ public class DisplayTask extends BukkitRunnable {
                         }
 
                         if (thirst < 5) {
-                            if (tanConfig.getBoolean("Thirst.Dehydration.ScreenTinting.Enabled")) {
+                            if (tanConfig.getBoolean("Thirst.Dehydration.ScreenTinting")) {
                                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstvisual")) {
                                     titleText += characterValues.getThirstVignette((int) Math.round(thirst));
                                 }

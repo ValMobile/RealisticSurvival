@@ -24,27 +24,25 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Tab is a class that creates a tab completer
  * when the user types appropriate commands
  * @author Val_Mobile
- * @version 1.2.3-DEV-0
+ * @version 1.2.3-DEV-1
  * @since 1.0
  */
 public class Tab implements TabCompleter {
     // create lists to store strings that will appear in the tab completer
-    private final List<String> firstArgs = new ArrayList<>();
-    private final List<String> mobs = new ArrayList<>();
+    private final Set<String> firstArgs = new HashSet<>();
+    private final Set<String> mobs = new HashSet<>();
 
-    private final List<String> players = new ArrayList<>();
-    private final List<String> items = new ArrayList<>();
-    private final List<String> temperature = new ArrayList<>(26);
-    private final List<String> thirst = new ArrayList<>(21);
-    private final List<String> worlds = new ArrayList<>();
+    private final Set<String> players = new HashSet<>();
+    private final Set<String> items = RSVItem.getItemMap().keySet();
+    private final Set<String> temperature = new HashSet<>(26);
+    private final Set<String> thirst = new HashSet<>(21);
+    private final Set<String> worlds = new HashSet<>();
 
     /**
      * Creates a tab completer depending on what the user types
@@ -58,14 +56,9 @@ public class Tab implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         // check if the user typed /realisticsurvival, case-insensitive
         if (label.equalsIgnoreCase("realisticsurvival") || label.equalsIgnoreCase("rsv")) {
+            List<String> result = new ArrayList<>(); // create an empty string list which will store the tab completer texts
 
-            // if the first list of arguments is empty
             if (firstArgs.isEmpty()) {
-                /**
-                 * Add strings that correspond to the appropriate arguments.
-                 * Only reload and give are appropriate arguments.
-                 */
-                // add the appropriate strings
                 firstArgs.add("reload");
                 firstArgs.add("give");
                 firstArgs.add("spawnitem");
@@ -78,55 +71,6 @@ public class Tab implements TabCompleter {
                 firstArgs.add("version");
             }
 
-            // if the list of players is empty
-            if (players.isEmpty()) {
-                /**
-                 * Add strings that correspond to the appropriate arguments.
-                 * Only an online player's name is an appropriate argument.
-                 *
-                 * Add every online player's name to the second list of arguments.
-                 */
-                for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-                    players.add(player.getName());
-                }
-            }
-
-            // if the list of item arguments is empty
-            if (items.isEmpty()) {
-                /**
-                 * Add strings that correspond to the appropriate arguments.
-                 * Only the command name is an appropriate argument.
-                 *
-                 * Add every command name to the third list of arguments.
-                 */
-                Set<String> names = RSVItem.getItemMap().keySet();
-                for (String tabName : names) {
-                    items.add(tabName);
-                }
-            }
-
-            // if the list of temperature arguments is empty
-            if (temperature.isEmpty()) {
-                // Add strings that correspond to the appropriate arguments.
-                for (int i = 0; i < 26; i++) {
-                    temperature.add(String.valueOf(i));
-                }
-            }
-
-            // if the list of thirst arguments is empty
-            if (thirst.isEmpty()) {
-                // Add strings that correspond to the appropriate arguments.
-                for (int i = 0; i < 21; i++) {
-                    thirst.add(String.valueOf(i));
-                }
-            }
-
-            if (worlds.isEmpty()) {
-                for (World world : Bukkit.getWorlds()) {
-                    worlds.add(world.getName());
-                }
-            }
-
             if (mobs.isEmpty()) {
                 mobs.add("fire_dragon");
                 mobs.add("ice_dragon");
@@ -135,7 +79,36 @@ public class Tab implements TabCompleter {
                 mobs.add("siren");
             }
 
-            List<String> result = new ArrayList<>(); // create an empty string list which will store the tab completer texts
+            if (temperature.isEmpty()) {
+                for (int i = 0; i < 26; i++) {
+                    temperature.add(String.valueOf(i));
+                }
+            }
+
+            if (thirst.isEmpty()) {
+                for (int i = 0; i < 21; i++) {
+                    thirst.add(String.valueOf(i));
+                }
+            }
+
+            players.clear();
+            worlds.clear();
+            Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
+            List<World> bukkitWorlds = Bukkit.getWorlds();
+
+            /**
+             * Add strings that correspond to the appropriate arguments.
+             * Only an online player's name is an appropriate argument.
+             *
+             * Add every online player's name to the second list of arguments.
+             */
+            for (Player player : onlinePlayers) {
+                players.add(player.getName());
+            }
+
+            for (World world : bukkitWorlds) {
+                worlds.add(world.getName());
+            }
 
             // if 1 argument was typed
             if (args.length == 1) {

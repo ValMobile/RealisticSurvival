@@ -16,7 +16,6 @@
  */
 package me.val_mobile.baubles;
 
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.baubles.GUI;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
@@ -41,10 +40,10 @@ public class WormholeInventory extends GUI {
     private final FileConfiguration config;
     private int nextSlot = 10;
 
-    public WormholeInventory(RealisticSurvivalPlugin plugin) {
+    public WormholeInventory(RealisticSurvivalPlugin plugin, BaubleModule module) {
         super(null, 54, "Wormhole Inventory");
         this.plugin = plugin;
-        this.config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
+        this.config = module.getUserConfig().getConfig();
         Inventory inv = getInventory();
 
         ItemStack guiGlass = RSVItem.getItem("gui_glass");
@@ -86,7 +85,6 @@ public class WormholeInventory extends GUI {
                     getInventory().setItem(nextSlot, skull);
                     nextSlot++;
                 }
-
             }
         }
     }
@@ -102,9 +100,11 @@ public class WormholeInventory extends GUI {
         if (containsPlayer(player)) {
             UUID id = player.getUniqueId();
             int slot = players.get(id);
+            // slot = 11,
             if (players.lastKey().equals(id)) {
                 players.remove(id);
-                getInventory().setItem(slot, null);
+                getInventory().setItem(slot, RSVItem.getItem("gui_glass"));
+                nextSlot--;
             }
             else {
                 // swap items
@@ -114,7 +114,9 @@ public class WormholeInventory extends GUI {
 
                 players.put(lastId, slot);
                 getInventory().setItem(slot, getInventory().getItem(lastSlot));
+                getInventory().setItem(lastSlot, RSVItem.getItem("gui_glass"));
                 players.remove(id);
+                nextSlot = lastSlot;
             }
         }
     }

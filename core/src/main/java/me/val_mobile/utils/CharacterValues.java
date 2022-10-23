@@ -284,7 +284,7 @@ public class CharacterValues {
             }
             default -> {
                 if (temperature > 25) {
-                    return FIRE_VIGNETTE5;
+                    return BURNING_VIEW;
                 }
                 return ' ';
             }

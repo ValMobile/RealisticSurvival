@@ -244,45 +244,45 @@ public class Utils {
 
     public static String getMinecraftEnchName(String keyName) {
         return switch (keyName) {
-            case "ARROW_DAMAGE" -> "Power";
-            case "ARROW_FIRE" -> "Flame";
-            case "ARROW_INFINITE" -> "Infinity";
-            case "ARROW_KNOCKBACK" -> "Punch";
-            case "BINDING_CURSE" -> "Curse of Binding";
-            case "DAMAGE_ALL" -> "Sharpness";
-            case "DAMAGE_ARTHROPODS" -> "Bane of Arthropods";
-            case "DAMAGE_UNDEAD" -> "Smite";
-            case "DEPTH_STRIDER" -> "Depth Strider";
-            case "DIG_SPEED" -> "Efficiency";
-            case "DURABILITY" -> "Unbreaking";
-            case "FIRE_ASPECT" -> "Fire Aspect";
-            case "FROST_WALKER" -> "Frost Walker";
-            case "KNOCKBACK" -> "Knockback";
-            case "LOOT_BONUS_BLOCKS" -> "Fortune";
-            case "LOOT_BONUS_MOBS" -> "Looting";
-            case "LUCK" -> "Luck of the Sea";
-            case "LURE" -> "Lure";
-            case "MENDING" -> "Mending";
-            case "OXYGEN" -> "Respiration";
-            case "PROTECTION_ENVIRONMENTAL" -> "Protection";
-            case "PROTECTION_EXPLOSIONS" -> "Blast Protection";
-            case "PROTECTION_FALL" -> "Feather Falling";
-            case "PROTECTION_FIRE" -> "Fire Protection";
-            case "PROTECTION_PROJECTILE" -> "Projectile Protection";
-            case "SILK_TOUCH" -> "Silk Touch";
-            case "SWEEPING_EDGE" -> "Sweeping Edge";
-            case "THORNS" -> "Thorns";
-            case "VANISHING_CURSE" -> "Curse of Vanishing";
-            case "WATER_WORKER" -> "Aqua Affinity";
-            case "SOUL_SPEED" -> "Soul Speed";
-            case "PIERCING" -> "Piercing";
-            case "QUICK_CHARGE" -> "Quick Charge";
-            case "SWIFT_SNEAK" -> "Swift Sneak";
-            case "MULTISHOT" -> "Multishot";
-            case "CHANNELING" -> "Channeling";
-            case "RIPTIDE" -> "Riptide";
-            case "IMPALING" -> "Impaling";
-            case "LOYALTY" -> "Loyalty";
+            case "ARROW_DAMAGE" -> "power";
+            case "ARROW_FIRE" -> "flame";
+            case "ARROW_INFINITE" -> "infinity";
+            case "ARROW_KNOCKBACK" -> "punch";
+            case "BINDING_CURSE" -> "binding_curse";
+            case "DAMAGE_ALL" -> "sharpness";
+            case "DAMAGE_ARTHROPODS" -> "bane_of_arthropods";
+            case "DAMAGE_UNDEAD" -> "smite";
+            case "DEPTH_STRIDER" -> "depth_strider";
+            case "DIG_SPEED" -> "efficiency";
+            case "DURABILITY" -> "unbreaking";
+            case "FIRE_ASPECT" -> "fire_aspect";
+            case "FROST_WALKER" -> "frost_walker";
+            case "KNOCKBACK" -> "knockback";
+            case "LOOT_BONUS_BLOCKS" -> "fortune";
+            case "LOOT_BONUS_MOBS" -> "looting";
+            case "LUCK" -> "luck_of_the_sea";
+            case "LURE" -> "lure";
+            case "MENDING" -> "mending";
+            case "OXYGEN" -> "respiration";
+            case "PROTECTION_ENVIRONMENTAL" -> "protection";
+            case "PROTECTION_EXPLOSIONS" -> "blast_protection";
+            case "PROTECTION_FALL" -> "feather_falling";
+            case "PROTECTION_FIRE" -> "fire_protection";
+            case "PROTECTION_PROJECTILE" -> "projectile_protection";
+            case "SILK_TOUCH" -> "silk_touch";
+            case "SWEEPING_EDGE" -> "sweeping_edge";
+            case "THORNS" -> "thorns";
+            case "VANISHING_CURSE" -> "vanishing_cursh";
+            case "WATER_WORKER" -> "aqua_affinity";
+            case "SOUL_SPEED" -> "soul_speed";
+            case "PIERCING" -> "piercing";
+            case "QUICK_CHARGE" -> "quick_charge";
+            case "SWIFT_SNEAK" -> "swift_sneak";
+            case "MULTISHOT" -> "multishot";
+            case "CHANNELING" -> "channeling";
+            case "RIPTIDE" -> "riptide";
+            case "IMPALING" -> "impaling";
+            case "LOYALTY" -> "loyalty";
             default -> null;
         };
     }
@@ -360,10 +360,6 @@ public class Utils {
             case "YELLOW" -> Color.YELLOW;
             default -> null;
         };
-    }
-
-    public static PotionEffectType valueOfPotionEffectType(String potionEffectType) {
-        return internals.valueOfPotionEffectType(potionEffectType);
     }
 
     public static boolean isItemReal(ItemStack item) {
@@ -504,7 +500,7 @@ public class Utils {
     }
 
 
-    public static Tag getTag(String name) {
+    public static Tag<Material> getTag(String name) {
         return internals.getTag(name);
     }
 
@@ -521,7 +517,7 @@ public class Utils {
 
         int highestY = loc.getWorld().getHighestBlockYAt(loc);
 
-        return loc.getY() > highestY;
+        return loc.getY() >= highestY;
     }
 
     public static void discoverRecipe(Player p, Recipe r) {
@@ -735,9 +731,9 @@ public class Utils {
 
     public static void changeDurability(ItemStack item, int change, boolean shouldBreak) {
         ItemMeta meta = item.getItemMeta();
-        int lvl = meta.getEnchantLevel(Enchantment.DURABILITY);
+        int lvl = meta.hasEnchant(Enchantment.DURABILITY) ? meta.getEnchantLevel(Enchantment.DURABILITY) : 0;
 
-        boolean hasCustomDurability = RSVItem.hasCustomDurability(item) && RSVItem.hasMaxCustomDurability(item);
+        boolean hasCustomDurability = RSVItem.hasCustomDurability(item);
 
         int actualChange = change;
 
@@ -746,7 +742,7 @@ public class Utils {
             if (change < 0) {
                 if (lvl > 0) {
                     for (int i = 0; i < -change; i++) {
-                        if (Math.random() > (1D / (lvl + 1D))) {
+                        if (Math.random() < (1D / (lvl + 1D))) {
                             actualChange++;
                         }
                     }
@@ -774,7 +770,7 @@ public class Utils {
             else {
                 item.setItemMeta(meta);
                 RealisticSurvivalPlugin.getUtil().addNbtTag(item, "rsvdurability", Math.min(rsvDurability, rsvMaxDurability), PersistentDataType.INTEGER);
-                updateLore(item, rsvDurability - actualChange, rsvDurability);
+                updateLore(item, Math.min(rsvDurability, rsvMaxDurability));
             }
         }
         else {
@@ -906,12 +902,10 @@ public class Utils {
                         addNbtTag(item, "rsvmodule", RSVItem.getModuleNameFromItem(rsvItem), PersistentDataType.STRING);
 
                     if (config.getBoolean("UpdateItems.UpdateNbtTags.UpdateCustomDurability"))
-                        if (RSVItem.hasCustomDurability(rsvItem))
+                        if (RSVItem.hasCustomDurability(rsvItem)) {
                             addNbtTag(item, "rsvdurability", RSVItem.getCustomDurability(rsvItem), PersistentDataType.INTEGER);
-
-                    if (config.getBoolean("UpdateItems.UpdateNbtTags.UpdateCustomMaxDurability"))
-                        if (RSVItem.hasMaxCustomDurability(rsvItem))
                             addNbtTag(item, "rsvmaxdurability", RSVItem.getMaxCustomDurability(rsvItem), PersistentDataType.INTEGER);
+                        }
                 }
             }
         }
@@ -1009,18 +1003,18 @@ public class Utils {
                 }
 
                 clone.setItemMeta(meta);
+                addNbtTag(clone, "rsvitem", RSVItem.getNameFromItem(rsvItem), PersistentDataType.STRING);
 
                 if (config.getBoolean("UpdateNetheriteItems.UpdateNbtTags.Enabled")) {
                     if (config.getBoolean("UpdateNetheriteItems.UpdateNbtTags.UpdateModule"))
                         addNbtTag(clone, "rsvmodule", RSVItem.getModuleNameFromItem(rsvItem), PersistentDataType.STRING);
 
-                    if (config.getBoolean("UpdateNetheriteItems.UpdateNbtTags.UpdateCustomDurability"))
-                        if (RSVItem.hasCustomDurability(rsvItem))
+                    if (config.getBoolean("UpdateNetheriteItems.UpdateNbtTags.UpdateCustomDurability")) {
+                        if (RSVItem.hasCustomDurability(rsvItem)) {
                             addNbtTag(clone, "rsvdurability", RSVItem.getCustomDurability(rsvItem), PersistentDataType.INTEGER);
-
-                    if (config.getBoolean("UpdateNetheriteItems.UpdateNbtTags.UpdateCustomMaxDurability"))
-                        if (RSVItem.hasMaxCustomDurability(rsvItem))
                             addNbtTag(clone, "rsvmaxdurability", RSVItem.getMaxCustomDurability(rsvItem), PersistentDataType.INTEGER);
+                        }
+                    }
                 }
             }
         }
@@ -1127,13 +1121,12 @@ public class Utils {
         }
     }
 
-    public static ItemStack updateLore(ItemStack item, int oldDurability, int newDurability) {
-        if (RSVItem.hasMaxCustomDurability(item) && RSVItem.hasCustomDurability(item)) {
+    public static ItemStack updateLore(ItemStack item, int newDurability) {
+        if (RSVItem.hasCustomDurability(item)) {
             ItemMeta meta = item.getItemMeta();
+            List<String> lore = meta.getLore();
 
-            if (meta.hasLore()) {
-                List<String> lore = meta.getLore();
-
+            if (!(lore == null || lore.isEmpty())) {
                 int maxDurability = RSVItem.getMaxCustomDurability(item);
 
                 boolean changedDurability = false;
@@ -1142,22 +1135,27 @@ public class Utils {
 
                 for (int i = 0; i < lore.size(); i++) {
                     if (lore.get(i).contains("Durability:")) {
-                        lore.set(i, lore.get(i).replace(oldDurability + "/" + maxDurability, newDurability + "/" + maxDurability));
+                        lore.set(i, ChatColor.GRAY + "Durability: " + newDurability + "/" + maxDurability);
                         changedDurability = true;
                     }
                     if (isJuice) {
                         if (lore.get(i).contains("Drink: ")) {
-                            lore.set(i, "Drink: " + RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING));
+                            lore.set(i, ChatColor.GRAY + "Drink: " + RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING));
                             changedJuice = true;
                         }
                     }
 
-                    if (changedDurability) {
-                        break;
+                    if (isJuice) {
+                        if (changedJuice && changedDurability) {
+                            break;
+                        }
                     }
-                    if (isJuice && changedJuice) {
-                        break;
+                    else {
+                        if (changedDurability) {
+                            break;
+                        }
                     }
+
                 }
 
                 meta.setLore(lore);

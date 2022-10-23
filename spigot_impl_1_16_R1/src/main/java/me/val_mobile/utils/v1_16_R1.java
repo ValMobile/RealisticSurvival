@@ -20,6 +20,7 @@ import me.val_mobile.iceandfire.DragonVariant;
 import me.val_mobile.iceandfire.SeaSerpentVariant;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.craftbukkit.v1_16_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
@@ -27,98 +28,92 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.SmithingInventory;
-import org.bukkit.potion.PotionEffectType;
 
 public class v1_16_R1 extends InternalsProvider {
 
     @Override
     public void spawnEndermanAlly(Player owner, Location loc) {
-        new EndermanAlly(owner, loc);
+        new EndermanAlly_v1_16_R1(owner, loc);
     }
 
     @Override
     public void spawnFireDragon(Location loc, RealisticSurvivalPlugin plugin) {
-        new FireDragon(loc, plugin);
+        new FireDragon_v1_16_R1(loc, plugin);
     }
 
     @Override
     public void spawnFireDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-        new FireDragon(loc, stage, plugin);
+        new FireDragon_v1_16_R1(loc, stage, plugin);
     }
 
     @Override
     public void spawnFireDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
-        new FireDragon(loc, variant, plugin);
+        new FireDragon_v1_16_R1(loc, variant, plugin);
     }
 
     @Override
     public void spawnFireDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
-        new FireDragon(loc, variant, stage, plugin);
+        new FireDragon_v1_16_R1(loc, variant, stage, plugin);
     }
 
     @Override
     public void spawnIceDragon(Location loc, RealisticSurvivalPlugin plugin) {
-        new IceDragon(loc, plugin);
+        new IceDragon_v1_16_R1(loc, plugin);
     }
 
     @Override
     public void spawnIceDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-        new IceDragon(loc, stage, plugin);
+        new IceDragon_v1_16_R1(loc, stage, plugin);
     }
 
     @Override
     public void spawnIceDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
-        new IceDragon(loc, variant, plugin);
+        new IceDragon_v1_16_R1(loc, variant, plugin);
     }
 
     @Override
     public void spawnIceDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
-        new IceDragon(loc, variant, stage, plugin);
+        new IceDragon_v1_16_R1(loc, variant, stage, plugin);
     }
 
     @Override
     public void spawnLightningDragon(Location loc, RealisticSurvivalPlugin plugin) {
-        new LightningDragon(loc, plugin);
+        new LightningDragon_v1_16_R1(loc, plugin);
     }
 
     @Override
     public void spawnLightningDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-        new LightningDragon(loc, stage, plugin);
+        new LightningDragon_v1_16_R1(loc, stage, plugin);
     }
 
     @Override
     public void spawnLightningDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
-        new LightningDragon(loc, variant, plugin);
+        new LightningDragon_v1_16_R1(loc, variant, plugin);
     }
 
     @Override
     public void spawnLightningDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
-        new LightningDragon(loc, variant, plugin);
+        new LightningDragon_v1_16_R1(loc, variant, plugin);
     }
 
     @Override
     public void spawnSeaSerpent(Location loc, RealisticSurvivalPlugin plugin) {
-        new SeaSerpent(loc, plugin);
+        new SeaSerpent_v1_16_R1(loc, plugin);
     }
 
     @Override
     public void spawnSeaSerpent(Location loc, SeaSerpentVariant variant, RealisticSurvivalPlugin plugin) {
-        new SeaSerpent(loc, variant, plugin);
+        new SeaSerpent_v1_16_R1(loc, variant, plugin);
     }
 
     @Override
     public void spawnSiren(Location loc, RealisticSurvivalPlugin plugin) {
-        new Siren(loc, plugin);
+        new Siren_v1_16_R1(loc, plugin);
     }
 
     @Override
-    public Tag getTag(String name) {
-        return TagList.valueOf(name).getTag();
-    }
-
-    @Override
-    public PotionEffectType valueOfPotionEffectType(String type) {
-        return PotionEffectTypeList.valueOf(type).getType();
+    public Tag<Material> getTag(String name) {
+        return TagList_v1_16_R1.valueOf(name).getTag();
     }
 
     @Override
@@ -150,7 +145,7 @@ public class v1_16_R1 extends InternalsProvider {
 
     @Override
     public void registerEntities() {
-        CustomEntities.registerEntities();
+        CustomEntities_v1_16_R1.registerEntities();
     }
 
     @Override

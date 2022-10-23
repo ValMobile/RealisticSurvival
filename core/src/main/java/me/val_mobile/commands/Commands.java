@@ -39,7 +39,7 @@ import java.util.Collection;
  * Commands is a class that allows users to
  * access the plugin's commands in-game
  * @author Val_Mobile
- * @version 1.2.3-DEV-0
+ * @version 1.2.3-DEV-1
  * @since 1.0
  */
 public class Commands implements CommandExecutor {

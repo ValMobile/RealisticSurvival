@@ -20,6 +20,7 @@ import me.val_mobile.iceandfire.DragonVariant;
 import me.val_mobile.iceandfire.SeaSerpentVariant;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
@@ -31,7 +32,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.SmithingRecipe;
-import org.bukkit.potion.PotionEffectType;
 
 public class v1_19_R1 extends InternalsProvider {
 
@@ -115,21 +115,14 @@ public class v1_19_R1 extends InternalsProvider {
     }
 
     @Override
-    public Tag getTag(String name) {
-        return TagList.valueOf(name).getTag();
-    }
-
-    @Override
-    public PotionEffectType valueOfPotionEffectType(String type) {
-        return PotionEffectTypeList.valueOf(type).getType();
+    public Tag<Material> getTag(String name) {
+        return TagList_v1_19_R1.valueOf(name).getTag();
     }
 
     @Override
     public boolean isUndead(Entity entity) {
-        if (entity instanceof LivingEntity) {
-            if (((LivingEntity) entity).getCategory() == EntityCategory.UNDEAD) {
-                return true;
-            }
+        if (entity instanceof LivingEntity living) {
+            return living.getCategory() == EntityCategory.UNDEAD;
         }
         return false;
     }
@@ -155,7 +148,7 @@ public class v1_19_R1 extends InternalsProvider {
 
     @Override
     public void registerEntities() {
-        CustomEntities.registerEntities();
+        CustomEntities_v1_19_R1.registerEntities();
     }
 
     @Override
