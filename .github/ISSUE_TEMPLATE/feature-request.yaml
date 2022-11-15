@@ -52,7 +52,7 @@ body:
       placeholder: |
         Adding this feature [...] would help solve [...] since it would [...]
 
-  - id: solution
+  - id: universality
     type: textarea
     validations:
       required: true
