@@ -11,8 +11,8 @@ body:
         <br /><strong><i>Fields marked with an asterisk (*) are required.</i></strong>
         <br />
 
-  - id: checklist
-    type: checkboxes
+  - type: checkboxes
+    id: checklist
     attributes:
       label: '❗ Checklist'
       description: Please go through this checklist before creating the feature request.
@@ -109,11 +109,13 @@ body:
         Think of common dependencies (e.g: FastAsyncWorldEdit, ProtocolLib, LibsDisguises, Vault).
       placeholder: The requested feature may require plugin [...]
 
-  - type: checkboxes
+  - id: priority-status
+    type: checkboxes
     attributes:
       label: '💰 Donations and Partnerships'
+      description: Please check the box if you have donated, are in a partnership with Realistic Survival, or are a staff member of the plugin's Discord server. Remember that feature requests made from these people will be prioritized.
       options:
-        - label: Please check the box if you have donated, are in a partnership with Realistic Survival, or are a staff member of the plugin's Discord server. Remember that feature requests made from these people will be prioritized.
+        - label: I fall into one of the categories listed above.
           required: false
 
   - id: additional-comments
