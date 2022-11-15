@@ -18,7 +18,7 @@ package me.val_mobile.utils;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.IceFireModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.iceandfire.Siren;
 import net.minecraft.server.v1_16_R1.DamageSource;
 import net.minecraft.server.v1_16_R1.EntityGuardian;
 import net.minecraft.server.v1_16_R1.EntityTypes;
@@ -26,44 +26,35 @@ import net.minecraft.server.v1_16_R1.World;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.craftbukkit.v1_16_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
 
-import java.util.ArrayList;
-import java.util.Collection;
+public class Siren_v1_16_R1 extends EntityGuardian implements Siren {
 
-public class Siren_v1_16_R1 extends EntityGuardian implements RSVMob {
-
-    private final RealisticSurvivalPlugin plugin;
-    private final RSVModule module;
     private final FileConfiguration config;
-    private final Collection<ItemStack> loot = new ArrayList<>();
-
-    public Siren_v1_16_R1(Location loc, RealisticSurvivalPlugin plugin) {
-        super(EntityTypes.GUARDIAN, ((CraftWorld) loc.getWorld()).getHandle());
-
-        this.plugin = plugin;
-        this.module = RSVModule.getModule(IceFireModule.NAME);
-
-        this.config = module.getUserConfig().getConfig();
-    }
 
     public Siren_v1_16_R1(EntityTypes<? extends EntityGuardian> entitytypes, World world) {
         super(entitytypes, world);
-        this.plugin = null;
-        this.module = RSVModule.getModule(IceFireModule.NAME);
 
-        this.config = module.getUserConfig().getConfig();
+        this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
+    }
+
+    public Siren_v1_16_R1(Location loc) {
+        super(EntityTypes.GUARDIAN, ((CraftWorld) loc.getWorld()).getHandle());
+
+        this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
     }
 
     @Override
-    public void addNbtData() {
-        Utils util = RealisticSurvivalPlugin.getUtil();
-        CraftEntity entity = this.getBukkitEntity();
-        util.addNbtTag(entity, "rsvmob", "siren", PersistentDataType.STRING);
+    public Entity getEntity() {
+        return this.getBukkitEntity();
+    }
+
+    @Override
+    public void addEntityToWorld(org.bukkit.World world) {
+        ((CraftWorld) world).addEntity(this, CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
     @Override
@@ -81,6 +72,11 @@ public class Siren_v1_16_R1 extends EntityGuardian implements RSVMob {
             }
         }
 
-        Utils.harvestLooting(config.getConfigurationSection("Sirens.Drops.ShinyScales"), RSVItem.getItem("shiny_scale"), item, loc);
+        Utils.dropLooting(config.getConfigurationSection("Sirens.Drops.ShinyScales"), RSVItem.getItem("shiny_scale"), item, loc);
+    }
+
+    @Override
+    protected void initPathfinder() {
+        super.initPathfinder();
     }
 }

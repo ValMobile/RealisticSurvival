@@ -2,7 +2,7 @@
 #          Spartan and Fire           #
 #######################################
 
-ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit
 
 Initialize:
   Enabled: true
@@ -24,12 +24,23 @@ WeaponDropped:
   Message: "&fWeapon dropped at &bx&f: &b%X-COORD%&f, &by&f: &b%Y-COORD%&f, &bz&f: &b%Z-COORD%&f."    # All placeholders: %X-COORD%, %Y_COORD%, %Z-COORD%
 
 # Used to specify custom item drops for any mob
-# By default, there is no reason to use this, so the chance is set to 0.00
+# By default, there is no use for this, so the chance is set to 0.00
 MobDrops:
   WITHER:
     witherbone_handle:
       Type: "Rare"
       Chance: 0.00
+
+# Used to specify custom block drops
+# By default, there is no use for this, so the chance is set to 0.00
+BlockDrops:
+  BARRIER:
+    witherbone_handle:
+      Type: "Rare"
+      Chance: 0.01
+      ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
+      IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
+      RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
 
 # Customize the Spartan and Fire weapons
 
@@ -67,7 +78,7 @@ Items:
       DamageDurability: 2
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_rapier:
     Enabled:
@@ -110,7 +121,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_rapier:
     Enabled:
@@ -124,7 +135,7 @@ Items:
       DamageDurability: 2
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_rapier:
     Enabled:
       EnableAllVersions: true
@@ -164,7 +175,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Katanas
 
@@ -175,6 +186,7 @@ Items:
       AttackDamage: 5.5
       AttackSpeed: 2.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
@@ -185,12 +197,13 @@ Items:
       AttackDamage: 6.5
       AttackSpeed: 2.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_katana:
     Enabled:
@@ -199,6 +212,7 @@ Items:
       AttackDamage: 6.5
       AttackSpeed: 2.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
@@ -222,6 +236,7 @@ Items:
       AttackDamage: 6.5
       AttackSpeed: 2.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
@@ -231,7 +246,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_katana:
     Enabled:
@@ -240,12 +255,13 @@ Items:
       AttackDamage: 14.0
       AttackSpeed: 2.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_katana:
     Enabled:
       EnableAllVersions: true
@@ -253,6 +269,7 @@ Items:
       AttackDamage: 14.0
       AttackSpeed: 2.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
@@ -276,6 +293,7 @@ Items:
       AttackDamage: 14.0
       AttackSpeed: 2.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
@@ -285,7 +303,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Greatswords
 
@@ -296,6 +314,7 @@ Items:
       AttackDamage: 14.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -307,13 +326,14 @@ Items:
       AttackDamage: 17.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_greatsword:
     Enabled:
@@ -322,6 +342,7 @@ Items:
       AttackDamage: 17.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -346,6 +367,7 @@ Items:
       AttackDamage: 17.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -356,7 +378,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_greatsword:
     Enabled:
@@ -365,13 +387,14 @@ Items:
       AttackDamage: 48.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_greatsword:
     Enabled:
       EnableAllVersions: true
@@ -379,6 +402,7 @@ Items:
       AttackDamage: 48.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -403,6 +427,7 @@ Items:
       AttackDamage: 48.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -413,7 +438,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Longswords
 
@@ -424,6 +449,7 @@ Items:
       AttackDamage: 10.5
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
@@ -434,12 +460,13 @@ Items:
       AttackDamage: 12.75
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_longsword:
     Enabled:
@@ -448,6 +475,7 @@ Items:
       AttackDamage: 12.75
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Slowness:
@@ -464,6 +492,7 @@ Items:
       AttackDamage: 12.75
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
@@ -473,7 +502,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_longsword:
     Enabled:
@@ -482,12 +511,13 @@ Items:
       AttackDamage: 36.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_longsword:
     Enabled:
       EnableAllVersions: true
@@ -495,6 +525,7 @@ Items:
       AttackDamage: 36.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
@@ -518,6 +549,7 @@ Items:
       AttackDamage: 36.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
@@ -527,7 +559,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Spears
 
@@ -546,7 +578,7 @@ Items:
       AttackSpeed: 1.4
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
     Reach: 7.0
   dragonbone_iced_spear:
@@ -582,7 +614,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_spear:
     Enabled:
@@ -593,7 +625,7 @@ Items:
     Reach: 7.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_spear:
     Enabled:
       EnableAllVersions: true
@@ -627,7 +659,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Sabers
 
@@ -653,7 +685,7 @@ Items:
     ChestDamageMultiplier: 2.0
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_saber:
     Enabled:
@@ -694,7 +726,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_saber:
     Enabled:
@@ -708,7 +740,7 @@ Items:
     ChestDamageMultiplier: 2.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_saber:
     Enabled:
       EnableAllVersions: true
@@ -748,7 +780,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Boomerangs
 
@@ -826,7 +858,7 @@ Items:
       Velocity: 20.0
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_boomerang:
     Enabled:
@@ -919,7 +951,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_boomerang:
     Enabled:
@@ -959,7 +991,7 @@ Items:
       Velocity: 20.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -1051,7 +1083,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Daggers
 
@@ -1131,7 +1163,7 @@ Items:
     BackstabDamageMultiplier: 3.0
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_dagger:
     Enabled:
@@ -1231,7 +1263,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_dagger:
     Enabled:
@@ -1272,7 +1304,7 @@ Items:
     BackstabDamageMultiplier: 3.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_dagger:
     Enabled:
       EnableAllVersions: true
@@ -1366,7 +1398,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Glaives
 
@@ -1377,6 +1409,7 @@ Items:
       AttackDamage: 8.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1388,13 +1421,14 @@ Items:
       AttackDamage: 9.5
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_glaive:
     Enabled:
@@ -1403,6 +1437,7 @@ Items:
       AttackDamage: 9.5
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1427,6 +1462,7 @@ Items:
       AttackDamage: 9.5
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1437,7 +1473,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_glaive:
     Enabled:
@@ -1446,13 +1482,14 @@ Items:
       AttackDamage: 25.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_glaive:
     Enabled:
       EnableAllVersions: true
@@ -1460,6 +1497,7 @@ Items:
       AttackDamage: 25.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1484,6 +1522,7 @@ Items:
       AttackDamage: 25.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1494,7 +1533,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Halberds
 
@@ -1505,10 +1544,13 @@ Items:
       AttackDamage: 16.5
       AttackSpeed: 1.2
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
   dragonbone_flamed_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1516,13 +1558,16 @@ Items:
       AttackDamage: 20.25
       AttackSpeed: 1.2
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_halberd:
     Enabled:
@@ -1531,10 +1576,13 @@ Items:
       AttackDamage: 20.25
       AttackSpeed: 1.2
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1555,17 +1603,20 @@ Items:
       AttackDamage: 20.25
       AttackSpeed: 1.2
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_halberd:
     Enabled:
@@ -1574,13 +1625,16 @@ Items:
       AttackDamage: 59.0
       AttackSpeed: 1.2
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1588,10 +1642,13 @@ Items:
       AttackDamage: 59.0
       AttackSpeed: 1.2
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1612,17 +1669,20 @@ Items:
       AttackDamage: 59.0
       AttackSpeed: 1.2
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Hammers
 
@@ -1648,7 +1708,7 @@ Items:
       Duration: 170
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_hammer:
     Enabled:
@@ -1689,7 +1749,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_hammer:
     Enabled:
@@ -1703,7 +1763,7 @@ Items:
       Duration: 170
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1743,7 +1803,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Javelins
 
@@ -1821,7 +1881,7 @@ Items:
       Velocity: 20.0
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_javelin:
     Enabled:
@@ -1914,7 +1974,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_javelin:
     Enabled:
@@ -1954,7 +2014,7 @@ Items:
       Velocity: 20.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_javelin:
     Enabled:
       EnableAllVersions: true
@@ -2046,7 +2106,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Lances
 
@@ -2068,7 +2128,7 @@ Items:
     RidingDamageBonus: 2.0
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_lance:
     Enabled:
@@ -2105,7 +2165,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_lance:
     Enabled:
@@ -2117,7 +2177,7 @@ Items:
     RidingDamageBonus: 2.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_lance:
     Enabled:
       EnableAllVersions: true
@@ -2153,7 +2213,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Maces
 
@@ -2173,7 +2233,7 @@ Items:
     UndeadDamageMultiplier: 1.5
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_mace:
     Enabled:
@@ -2208,7 +2268,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_mace:
     Enabled:
@@ -2219,7 +2279,7 @@ Items:
     UndeadDamageMultiplier: 1.5
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_mace:
     Enabled:
       EnableAllVersions: true
@@ -2253,7 +2313,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Pikes
 
@@ -2264,6 +2324,7 @@ Items:
       AttackDamage: 6.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -2274,12 +2335,13 @@ Items:
       AttackDamage: 6.75
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_pike:
     Enabled:
@@ -2288,6 +2350,7 @@ Items:
       AttackDamage: 6.75
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -2311,6 +2374,7 @@ Items:
       AttackDamage: 6.75
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -2320,7 +2384,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_pike:
     Enabled:
@@ -2329,12 +2393,13 @@ Items:
       AttackDamage: 14.5
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_pike:
     Enabled:
       EnableAllVersions: true
@@ -2342,6 +2407,7 @@ Items:
       AttackDamage: 14.5
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -2365,6 +2431,7 @@ Items:
       AttackDamage: 14.5
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -2374,7 +2441,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Quarterstaffs
 
@@ -2385,6 +2452,7 @@ Items:
       AttackDamage: 5.5
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
@@ -2395,12 +2463,13 @@ Items:
       AttackDamage: 7.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_quarterstaff:
     Enabled:
@@ -2409,6 +2478,7 @@ Items:
       AttackDamage: 7.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
@@ -2432,6 +2502,7 @@ Items:
       AttackDamage: 7.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
@@ -2441,7 +2512,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_quarterstaff:
     Enabled:
@@ -2450,12 +2521,13 @@ Items:
       AttackDamage: 22.5
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_quarterstaff:
     Enabled:
       EnableAllVersions: true
@@ -2463,6 +2535,7 @@ Items:
       AttackDamage: 22.5
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
@@ -2495,7 +2568,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Tomahawk
 
@@ -2507,7 +2580,7 @@ Items:
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       ReturnAfterHittingBlock: true
       ReturnAfterHittingEntity: true
       ReturnAfterTravelingMaxDistance: false
@@ -2543,7 +2616,7 @@ Items:
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       ReturnAfterHittingBlock: true
       ReturnAfterHittingEntity: true
       ReturnAfterTravelingMaxDistance: false
@@ -2573,7 +2646,7 @@ Items:
       Velocity: 20.0
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_tomahawk:
     Enabled:
@@ -2583,7 +2656,7 @@ Items:
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       ReturnAfterHittingBlock: true
       ReturnAfterHittingEntity: true
       ReturnAfterTravelingMaxDistance: false
@@ -2632,7 +2705,7 @@ Items:
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       ReturnAfterHittingBlock: true
       ReturnAfterHittingEntity: true
       ReturnAfterTravelingMaxDistance: false
@@ -2666,7 +2739,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_tomahawk:
     Enabled:
@@ -2676,7 +2749,7 @@ Items:
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       ReturnAfterHittingBlock: true
       ReturnAfterHittingEntity: true
       ReturnAfterTravelingMaxDistance: false
@@ -2706,7 +2779,7 @@ Items:
       Velocity: 20.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2715,7 +2788,7 @@ Items:
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       ReturnAfterHittingBlock: true
       ReturnAfterHittingEntity: true
       ReturnAfterTravelingMaxDistance: false
@@ -2764,7 +2837,7 @@ Items:
       AttackSpeed: 0.9
     ThrownAttributes:
       Piercing: true
-      Rotate: false
+      Rotate: true
       ReturnAfterHittingBlock: true
       ReturnAfterHittingEntity: true
       ReturnAfterTravelingMaxDistance: false
@@ -2798,7 +2871,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Throwing Knives
 
@@ -2876,7 +2949,7 @@ Items:
       Velocity: 20.0
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_throwing_knife:
     Enabled:
@@ -2969,7 +3042,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_throwing_knife:
     Enabled:
@@ -3009,7 +3082,7 @@ Items:
       Velocity: 20.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -3101,7 +3174,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Warhammers
 
@@ -3127,7 +3200,7 @@ Items:
     ArmorPiercing: 0.5
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_warhammer:
     Enabled:
@@ -3168,7 +3241,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_warhammer:
     Enabled:
@@ -3182,7 +3255,7 @@ Items:
     ArmorPiercing: 0.5
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_warhammer:
     Enabled:
       EnableAllVersions: true
@@ -3222,7 +3295,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Battleaxes
 
@@ -3233,6 +3306,7 @@ Items:
       AttackDamage: 13.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
   dragonbone_flamed_battleaxe:
@@ -3242,11 +3316,12 @@ Items:
       AttackDamage: 16.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_battleaxe:
     Enabled:
@@ -3255,6 +3330,7 @@ Items:
       AttackDamage: 16.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     FreezeAbility:
@@ -3277,6 +3353,7 @@ Items:
       AttackDamage: 16.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ElectrocuteAbility:
@@ -3285,7 +3362,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_battleaxe:
     Enabled:
@@ -3293,9 +3370,13 @@ Items:
     Attributes:
       AttackDamage: 47.0
       AttackSpeed: 1.0
+    MiningFatigue:
+      TickPeriod: 20
+      Amplifier: 2
+      Duration: 30
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_battleaxe:
     Enabled:
       EnableAllVersions: true
@@ -3303,6 +3384,7 @@ Items:
       AttackDamage: 47.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     FreezeAbility:
@@ -3325,6 +3407,7 @@ Items:
       AttackDamage: 47.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ElectrocuteAbility:
@@ -3333,7 +3416,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Longbows
 
@@ -3349,7 +3432,7 @@ Items:
     ArrowVelocityMultiplier: 2.0
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_longbow:
     Enabled:
@@ -3380,7 +3463,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_longbow:
     Enabled:
@@ -3389,7 +3472,7 @@ Items:
     ArrowVelocityMultiplier: 3.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_longbow:
     Enabled:
       EnableAllVersions: true
@@ -3419,7 +3502,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
 
   # Crossbows
 
@@ -3435,7 +3518,7 @@ Items:
     ArrowVelocityMultiplier: 2.0
     InfernoAbility:
       FireTicks: 200
-      TickSpeed: 1
+      TickPeriod: 1
     DragonBonusDamage: 8.0
   dragonbone_iced_crossbow:
     Enabled:
@@ -3466,7 +3549,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 10
-      TickSpeed: 2
+      TickPeriod: 2
     DragonBonusDamage: 4.0
   dragonsteel_fire_crossbow:
     Enabled:
@@ -3475,7 +3558,7 @@ Items:
     ArrowVelocityMultiplier: 3.0
     InfernoAbility:
       FireTicks: 400
-      TickSpeed: 1
+      TickPeriod: 1
   dragonsteel_ice_crossbow:
     Enabled:
       EnableAllVersions: true
@@ -3505,7 +3588,7 @@ Items:
         Cosmetic: true
       ShockDamage: 1.0
       ShockAmount: 20
-      TickSpeed: 2
+      TickPeriod: 2
   witherbone_handle:
     Enabled:
       EnableAllVersions: true

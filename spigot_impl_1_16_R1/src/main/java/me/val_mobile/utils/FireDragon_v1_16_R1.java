@@ -16,74 +16,34 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.DragonVariant;
-import me.val_mobile.iceandfire.IceFireModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.spartanandfire.BurnTask;
+import me.val_mobile.iceandfire.FireDragon;
+import net.minecraft.server.v1_16_R1.EntityEnderDragon;
 import net.minecraft.server.v1_16_R1.EntityTypes;
 import net.minecraft.server.v1_16_R1.World;
 import org.bukkit.Location;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.LivingEntity;
 
 import static me.val_mobile.iceandfire.DragonBreed.FIRE;
 
-public class FireDragon_v1_16_R1 extends Dragon_v1_16_R1 {
+public class FireDragon_v1_16_R1 extends Dragon_v1_16_R1 implements FireDragon {
 
-    private final RealisticSurvivalPlugin plugin;
-    private final FileConfiguration config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
+    public FireDragon_v1_16_R1(EntityTypes<? extends EntityEnderDragon> entityTypes, World world) {
+        super(entityTypes, world, FIRE);
+    }
 
-    public FireDragon_v1_16_R1(Location loc, RealisticSurvivalPlugin plugin) {
+    public FireDragon_v1_16_R1(Location loc) {
         super(loc, FIRE);
-
-        this.plugin = plugin;
     }
 
-    public FireDragon_v1_16_R1(Location loc, int stage, RealisticSurvivalPlugin plugin) {
+    public FireDragon_v1_16_R1(Location loc, int stage) {
         super(loc, FIRE, stage);
-
-        this.plugin = plugin;
     }
 
-    public FireDragon_v1_16_R1(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+    public FireDragon_v1_16_R1(Location loc, DragonVariant variant) {
         super(loc, FIRE, variant);
-
-        this.plugin = plugin;
     }
 
-    public FireDragon_v1_16_R1(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+    public FireDragon_v1_16_R1(Location loc, DragonVariant variant, int stage) {
         super(loc, FIRE, variant, stage);
-
-        this.plugin = plugin;
-    }
-
-    public FireDragon_v1_16_R1(EntityTypes entityTypes, World world) {
-        super(null, FIRE, null);
-        this.plugin = null;
-    }
-
-    @Override
-    public void performMeleeAttack(LivingEntity entity) {
-        double stageMultiplier = config.getDouble("Dragons.FireDragon.MeleeAttack.StageMultiplier.Stage" + getStage());
-        entity.damage(config.getDouble("Dragons.FireDragon.MeleeAttack.BaseDamage") * stageMultiplier, this.getBukkitEntity());
-    }
-
-    @Override
-    public void performSpecialAbility(LivingEntity entity) {
-        double stageMultiplier = config.getDouble("Dragons.FireDragon.InfernoAbility.StageMultiplier.Stage" + getStage());
-        if (!BurnTask.hasTask(entity.getUniqueId())) {
-            new BurnTask(plugin, entity, (int) (config.getInt("Dragons.FireDragon.InfernoAbility.FireTicks") * stageMultiplier), config.getInt("Dragons.FireDragon.InfernoAbility.TickSpeed")).start();
-        }
-    }
-
-    @Override
-    public void triggerBreathAttack(Location target) {
-        new FireBreath_v1_16_R1(this, target, plugin).start();
-    }
-
-    @Override
-    public void triggerExplosionAttack(Location target) {
-        new FireExplosionAttack_v1_16_R1(this, target, plugin);
     }
 }

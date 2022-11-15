@@ -18,6 +18,7 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
+import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.baubles.ItemConfig;
 import me.val_mobile.data.baubles.PlayerDataConfig;
 import me.val_mobile.data.baubles.RecipesConfig;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
-public class BaubleModule extends me.val_mobile.data.RSVModule {
+public class BaubleModule extends RSVModule {
 
     private final RealisticSurvivalPlugin plugin;
 

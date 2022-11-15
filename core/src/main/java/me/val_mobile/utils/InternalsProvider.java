@@ -16,38 +16,38 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.iceandfire.DragonVariant;
-import me.val_mobile.iceandfire.SeaSerpentVariant;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.baubles.EndermanAlly;
+import me.val_mobile.iceandfire.*;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.SmithingInventory;
 
 public abstract class InternalsProvider {
 
-    public abstract void spawnEndermanAlly(Player owner, Location loc);
-    public abstract void spawnFireDragon(Location loc, RealisticSurvivalPlugin plugin);
-    public abstract void spawnFireDragon(Location loc, int stage, RealisticSurvivalPlugin plugin);
-    public abstract void spawnFireDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin);
-    public abstract void spawnFireDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin);
+    public abstract EndermanAlly spawnEndermanAlly(Player owner, Location loc);
+    public abstract FireDragon spawnFireDragon(Location loc);
+    public abstract FireDragon spawnFireDragon(Location loc, int stage);
+    public abstract FireDragon spawnFireDragon(Location loc, DragonVariant variant);
+    public abstract FireDragon spawnFireDragon(Location loc, DragonVariant variant, int stage);
 
-    public abstract void spawnIceDragon(Location loc, RealisticSurvivalPlugin plugin);
-    public abstract void spawnIceDragon(Location loc, int stage, RealisticSurvivalPlugin plugin);
-    public abstract void spawnIceDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin);
-    public abstract void spawnIceDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin);
+    public abstract IceDragon spawnIceDragon(Location loc);
+    public abstract IceDragon spawnIceDragon(Location loc, int stage);
+    public abstract IceDragon spawnIceDragon(Location loc, DragonVariant variant);
+    public abstract IceDragon spawnIceDragon(Location loc, DragonVariant variant, int stage);
 
-    public abstract void spawnLightningDragon(Location loc, RealisticSurvivalPlugin plugin);
-    public abstract void spawnLightningDragon(Location loc, int stage, RealisticSurvivalPlugin plugin);
-    public abstract void spawnLightningDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin);
-    public abstract void spawnLightningDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin);
+    public abstract LightningDragon spawnLightningDragon(Location loc);
+    public abstract LightningDragon spawnLightningDragon(Location loc, int stage);
+    public abstract LightningDragon spawnLightningDragon(Location loc, DragonVariant variant);
+    public abstract LightningDragon spawnLightningDragon(Location loc, DragonVariant variant, int stage);
 
-    public abstract void spawnSeaSerpent(Location loc, RealisticSurvivalPlugin plugin);
-    public abstract void spawnSeaSerpent(Location loc, SeaSerpentVariant variant, RealisticSurvivalPlugin plugin);
+    public abstract SeaSerpent spawnSeaSerpent(Location loc);
+    public abstract SeaSerpent spawnSeaSerpent(Location loc, SeaSerpentVariant variant);
 
-    public abstract void spawnSiren(Location loc, RealisticSurvivalPlugin plugin);
+    public abstract Siren spawnSiren(Location loc);
 
     public abstract Tag<Material> getTag(String name);
 
@@ -59,5 +59,5 @@ public abstract class InternalsProvider {
 
     public abstract void setFreezingView(Player player, int ticks);
 
-    public abstract void attack(Player player, Entity entity);
+    public abstract void attack(LivingEntity attacker, Entity defender);
 }

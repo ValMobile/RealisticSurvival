@@ -17,30 +17,25 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.Tag;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class RSVShapedRecipe extends ShapedRecipe {
+public class RSVShapedRecipe extends ShapedRecipe implements RSVRecipe {
 
     private static final List<Character> CHARS = List.of('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I');
 
     private final Map<Character, Object> ingredients = new HashMap<>();
 
-    public RSVShapedRecipe(FileConfiguration config, String name, RealisticSurvivalPlugin plugin) {
-        super(new NamespacedKey(plugin, name),
-                Objects.equals(config.getString(name + ".Result.Item"), config.getString(name + ".Result.Item").toUpperCase())
-                        ? new ItemStack(Material.valueOf(config.getString(name + ".Result.Item")), config.getInt(name + ".Result.Amount")) :
-                        RSVItem.getItem(config.getString(name + ".Result.Item")).resize(config.getInt(name + ".Result.Amount")));
+    public RSVShapedRecipe(@Nonnull FileConfiguration config, @Nonnull String name, @Nonnull RealisticSurvivalPlugin plugin) {
+        super(new NamespacedKey(plugin, name), RSVRecipe.getResult(config, name));
 
         String ingredientsPath = name + ".Ingredients";
 
@@ -67,29 +62,23 @@ public class RSVShapedRecipe extends ShapedRecipe {
 
             this.shape(chars[0][0].toString() + chars[0][1] + chars[0][2], chars[1][0].toString() + chars[1][1] + chars[1][2], chars[2][0].toString() + chars[2][1] + chars[2][2]);
         }
-        else {
-            // grid is 2x2
-            if (grid[0][1] != null || grid[1][0] != null || grid[1][1] != null) {
-                chars = getChars(grid, 2);
+        // grid is 2x2
+        else if (grid[0][1] != null || grid[1][0] != null || grid[1][1] != null) {
+            chars = getChars(grid, 2);
 
-                this.shape(chars[0][0].toString() + chars[0][1], chars[1][0].toString() + chars[1][1]);
-            }
-            // grid is 1x1
-            else {
-                chars = getChars(grid, 1);
-                this.shape(chars[0][0].toString());
-            }
+            this.shape(chars[0][0].toString() + chars[0][1], chars[1][0].toString() + chars[1][1]);
+        }
+        // grid is 1x1
+        else {
+            chars = getChars(grid, 1);
+            this.shape(chars[0][0].toString());
         }
 
         for (Map.Entry<Character, Object> entry : this.ingredients.entrySet()) {
-            if (entry.getValue() instanceof Material) {
-                this.setIngredient(entry.getKey(), (Material) entry.getValue());
-            }
-            else if (entry.getValue() instanceof Tag) {
-                this.setIngredient(entry.getKey(), new RecipeChoice.MaterialChoice((Tag) entry.getValue()));
-            }
-            else {
-                this.setIngredient(entry.getKey(), new RecipeChoice.ExactChoice((ItemStack) entry.getValue()));
+            RecipeChoice recipeChoice = parseRecipeChoice(entry.getValue());
+
+            if (recipeChoice != null) {
+                this.setIngredient(entry.getKey(), recipeChoice);
             }
         }
     }
@@ -102,7 +91,7 @@ public class RSVShapedRecipe extends ShapedRecipe {
 
         // one item
         if (firstIndex == -1) {
-            items[0] = getItem(text);
+            items[0] = parseIngredient(text);
         }
         else {
             // two items
@@ -110,11 +99,11 @@ public class RSVShapedRecipe extends ShapedRecipe {
                 if (firstIndex != 0) {
                     String firstItem = text.substring(0, firstIndex);
 
-                    items[0] = getItem(firstItem);
+                    items[0] = parseIngredient(firstItem);
                 }
                 String secondItem = text.substring(firstIndex + 1);
 
-                items[1] = getItem(secondItem);
+                items[1] = parseIngredient(secondItem);
 
             }
             // three items
@@ -122,13 +111,13 @@ public class RSVShapedRecipe extends ShapedRecipe {
                 if (firstIndex != 0) {
                     String firstItem = text.substring(0, firstIndex);
 
-                    items[0] = getItem(firstItem);
+                    items[0] = parseIngredient(firstItem);
                 }
                 String secondItem = text.substring(firstIndex + 1, lastIndex);
                 String thirdItem = text.substring(lastIndex + 1);
 
-                items[1] = getItem(secondItem);
-                items[2] = getItem(thirdItem);
+                items[1] = parseIngredient(secondItem);
+                items[2] = parseIngredient(thirdItem);
             }
         }
         return items;
@@ -163,21 +152,5 @@ public class RSVShapedRecipe extends ShapedRecipe {
         }
 
         return characters;
-    }
-
-    public Object getItem(String text) {
-        if (text.isEmpty())
-            return null;
-        // text is a material
-        if (text.contains("Tag.")) {
-            return Utils.getTag(text.substring(4));
-        }
-        else if (Objects.equals(text, text.toUpperCase())) {
-            return new ItemStack(Material.valueOf(text));
-        }
-        // text is an item
-        if (RSVItem.getItemMap().containsKey(text))
-            return RSVItem.getItem(text);
-        return null;
     }
 }

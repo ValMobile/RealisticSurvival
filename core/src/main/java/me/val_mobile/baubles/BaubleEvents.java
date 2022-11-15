@@ -42,6 +42,7 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
+import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.event.world.TimeSkipEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -60,7 +61,7 @@ import java.util.UUID;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.3-DEV-1
+ * @version 1.2.3-DEV-2
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -129,12 +130,14 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
             UUID id = event.getPlayer().getUniqueId();
 
-            RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
+            if (RSVPlayer.getPlayers().containsKey(id)) {
+                RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
 
-            Collection<ItemStack> baubles = rsvPlayer.getBaubleDataModule().getBaubleBag().getAllBaubles();
+                Collection<ItemStack> baubles = rsvPlayer.getBaubleDataModule().getBaubleBag().getAllBaubles();
 
-            for (ItemStack item : baubles) {
-                Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(p, item, BaubleChangeEvent.BaubleChange.ADDITION));
+                for (ItemStack item : baubles) {
+                    Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(p, item, BaubleChangeEvent.BaubleChange.ADDITION));
+                }
             }
         }
     }
@@ -145,6 +148,28 @@ public class BaubleEvents extends ModuleEvents implements Listener {
         if (shouldEventBeRan(p)) {
             if (module.getInv().containsPlayer(p)) {
                 module.getInv().removePlayer(p);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onGamemodeChange(PlayerGameModeChangeEvent event) {
+        Player player = event.getPlayer();
+        if (!event.isCancelled()) {
+            if (shouldEventBeRan(player)) {
+                if (event.getNewGameMode() == GameMode.ADVENTURE || event.getNewGameMode() == GameMode.SURVIVAL) {
+                    UUID id = event.getPlayer().getUniqueId();
+
+                    if (RSVPlayer.getPlayers().containsKey(id)) {
+                        RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
+
+                        Collection<ItemStack> baubles = rsvPlayer.getBaubleDataModule().getBaubleBag().getAllBaubles();
+
+                        for (ItemStack item : baubles) {
+                            Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, item, BaubleChangeEvent.BaubleChange.ADDITION));
+                        }
+                    }
+                }
             }
         }
     }
@@ -301,8 +326,6 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 ItemStack corner = event.getClickedInventory().getItem(0);
                 ItemStack current = event.getCurrentItem();
 
-                Utils util = RealisticSurvivalPlugin.getUtil();
-
                 if (RSVItem.isRSVItem(corner)) {
                     if (RSVItem.getNameFromItem(corner).equals("gui_glass")) {
                         if (RSVItem.isRSVItem(current)) {
@@ -316,8 +339,8 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                     String cursorName = RSVItem.getNameFromItem(cursor);
                                     if (RSVItem.getNameFromItem(cursor).equals("gui_glass"))
                                         event.setCancelled(true);
-                                    if (util.hasNbtTag(cursor, "rsvbaubleslot") && util.hasNbtTag(current, "rsvbaubleslot")) {
-                                        String cursorTag = util.getNbtTag(cursor, "rsvbaubleslot", PersistentDataType.STRING);
+                                    if (Utils.hasNbtTag(cursor, "rsvbaubleslot") && Utils.hasNbtTag(current, "rsvbaubleslot")) {
+                                        String cursorTag = Utils.getNbtTag(cursor, "rsvbaubleslot", PersistentDataType.STRING);
 
                                         switch (cursorName) {
                                             // cursor was a slot
@@ -521,7 +544,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                     kbMultiplier = 0;
 
                 if (kbMultiplier >= 0)
-                    RealisticSurvivalPlugin.getUtil().setKbMultiplier(player, kbMultiplier);
+                    Utils.setKbMultiplier(player, kbMultiplier);
 
                 // check the cause of the damage
                 switch (cause) {
@@ -588,7 +611,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 if (player.getHealth() - event.getFinalDamage() <= 0D) {
                     if (baubleInv.hasBauble("broken_heart")) {
                         ItemStack item = baubleInv.getItem("broken_heart");
-                        if (RSVItem.getCustomDurability(item) >= 1) {
+                        if (Utils.getCustomDurability(item) >= 1) {
                             Utils.changeDurability(item, -1, false);
                             player.playEffect(EntityEffect.TOTEM_RESURRECT);
                             event.setCancelled(true);
@@ -1030,11 +1053,67 @@ public class BaubleEvents extends ModuleEvents implements Listener {
         }
     }
 
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
+
+            String message = event.getMessage();
+
+            if (message.length() > 1) {
+                String[] args = message.substring(1).split(" ");
+
+                if (args[0].equalsIgnoreCase("rsv") || args[0].equalsIgnoreCase("realisticsurvival")) {
+                    if (args.length > 3) {
+                        if (args[1].equalsIgnoreCase("give")) {
+                            if (RSVItem.isRSVItem(args[3]) && args[3].equals("stone_negative_gravity")) {
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        checkAndRunTask(player, player.getInventory().getItemInMainHand());
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onServerCommand(ServerCommandEvent event) {
+        if (!event.isCancelled()) {
+            String message = event.getCommand();
+
+            if (message.length() > 1) {
+                String[] args = message.substring(1).split(" ");
+                if (args[0].equalsIgnoreCase("rsv") || args[0].equalsIgnoreCase("realisticsurvival")) {
+                    if (args.length > 3) {
+                        if (args[1].equalsIgnoreCase("give")) {
+                            Player player = Bukkit.getPlayer(args[2]);
+                            if (player != null && RSVItem.isRSVItem(args[3]) && args[3].equals("stone_negative_gravity")) {
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        checkAndRunTask(player, player.getInventory().getItemInMainHand());
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private void checkAndRunTask(Player player, ItemStack item) {
         if (RSVItem.isRSVItem(item)) {
             if (RSVItem.getNameFromItem(item).equals("stone_negative_gravity")) {
-                if (!StoneNegativeGravityTask.hasTask(player.getUniqueId())) {
-                    new StoneNegativeGravityTask(module, RSVPlayer.getPlayers().get(player.getUniqueId()), plugin).start();
+                if (player != null && player.isOnline()) {
+                    if (!StoneNegativeGravityTask.hasTask(player.getUniqueId())) {
+                        new StoneNegativeGravityTask(module, RSVPlayer.getPlayers().get(player.getUniqueId()), plugin).start();
+                    }
                 }
             }
         }

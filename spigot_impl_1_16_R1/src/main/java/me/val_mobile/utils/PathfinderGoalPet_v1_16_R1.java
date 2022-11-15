@@ -22,21 +22,15 @@ import java.util.EnumSet;
 
 public class PathfinderGoalPet_v1_16_R1 extends PathfinderGoal {
 
-    private EntityInsentient a; // our pet
-    private EntityLiving b; // owner
-
-    private double f; // pet's speed
-    private float g; // distance between owner & pet
-
-    private double c; // x
-    private double d; // y
-    private double e; // z
-
+    private final EntityInsentient pet; // our pet
+    private EntityLiving owner; // owner
+    private final double speed; // pet's speed
+    private final float distance; // distance between owner & pet
 
     public PathfinderGoalPet_v1_16_R1(EntityInsentient a, double speed, float distance) {
-        this.a = a;
-        this.f = speed;
-        this.g = distance;
+        this.pet = a;
+        this.speed = speed;
+        this.distance = distance;
         this.a(EnumSet.of(PathfinderGoal.Type.MOVE));
     }
 
@@ -44,42 +38,40 @@ public class PathfinderGoalPet_v1_16_R1 extends PathfinderGoal {
     public boolean a() {
         // Will start event if this is true
         // runs every tick
-        this.b = this.a.getGoalTarget();
-        if (this.b == null) {
+        owner = pet.getGoalTarget();
+        if (owner == null) {
             return false;
         }
-        else if (this.a.getDisplayName() == null) {
+        else if (pet.getDisplayName() == null) {
             return false;
         }
-        else if (!(this.a.getDisplayName().toString().contains(this.b.getName()))) {
+        else if (!(pet.getDisplayName().toString().contains(owner.getName()))) {
             return false;
         }
         else {
             // follow owner
-            Vec3D vec = RandomPositionGenerator.a((EntityCreature) this.a, 16, 7, this.b.getPositionVector());
+            Vec3D vec = RandomPositionGenerator.a((EntityCreature) pet, 16, 7, owner.getPositionVector());
             // in air
-            if (vec == null)
-                return false;
-            this.c = this.b.locX(); // x
-            this.d = this.b.locY(); // y
-            this.e = this.b.locZ(); // z
-            return true;
+            return vec != null;
             // call upon c()
         }
     }
 
+    @Override
     public void c() {
-        // runner :)                x      y        z    speed
-        this.a.getNavigation().a(this.c, this.d, this.e, this.f);
+        // runner :)               x             y             z        speed
+        pet.getNavigation().a(owner.locX(), owner.locY(), owner.locZ(), speed);
     }
 
+    @Override
     public boolean b() {
         // run every tick as long as its true (repeats c)
-        return !this.a.getNavigation().m() && this.b.h(this.a) < (double) (this.g * this.g);
+        return !pet.getNavigation().m() && owner.h(pet) < (double) distance * distance;
     }
 
+    @Override
     public void d() {
         // runs when done (b is false)
-        this.b = null;
+        owner = null;
     }
 }

@@ -130,7 +130,7 @@ public class DisplayTask extends BukkitRunnable {
                             if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.Enabled")) {
                                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldvisual")) {
                                     if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.UseVanillaFreezeEffect")) {
-                                        Utils.setFreezingView(player, tanConfig.getInt("VisualTickSpeed") + 5);
+                                        Utils.setFreezingView(player, tanConfig.getInt("VisualTickPeriod") + 5);
                                     }
                                     else {
                                         titleText += characterValues.getIceVignette((int) Math.round(temperature));
@@ -182,8 +182,8 @@ public class DisplayTask extends BukkitRunnable {
     }
 
     public void start() {
-        int tickSpeed = tanConfig.getInt("VisualTickSpeed"); // get the tick speed
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        int tickPeriod = tanConfig.getInt("VisualTickPeriod"); // get the tick period
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static boolean hasTask(UUID id) {

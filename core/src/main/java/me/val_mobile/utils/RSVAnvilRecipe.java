@@ -16,7 +16,6 @@
  */
 package me.val_mobile.utils;
 
-import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.AnvilInventory;
@@ -36,18 +35,9 @@ public class RSVAnvilRecipe implements Recipe {
     public RSVAnvilRecipe(FileConfiguration config, String name) {
         this.name = name;
 
-        String resultName = config.getString(name + ".Result.Item");
-        int resultAmount = config.getInt(name + ".Result.Amount");
-
-        String leftName = config.getString(name + ".LeftIngredient.Item");
-        int leftAmount = config.getInt(name + ".LeftIngredient.Amount");
-
-        String rightName = config.getString(name + ".RightIngredient.Item");
-        int rightAmount = config.getInt(name + ".RightIngredient.Amount");
-
-        result = RSVItem.isRSVItem(name) ? RSVItem.getItem(resultName).resize(resultAmount) : new ItemStack(Material.valueOf(resultName), resultAmount);
-        leftIng =  RSVItem.isRSVItem(name) ? RSVItem.getItem(leftName).resize(leftAmount) : new ItemStack(Material.valueOf(leftName), leftAmount);
-        rightIng =  RSVItem.isRSVItem(name) ? RSVItem.getItem(rightName).resize(rightAmount) : new ItemStack(Material.valueOf(rightName), rightAmount);
+        this.result = RSVRecipe.getResult(config, name);
+        leftIng =  RSVRecipe.getItem(config, name + ".LeftIngredient.Item", name + ".LeftIngredient.Amount");
+        rightIng = RSVRecipe.getItem(config, name + ".RightIngredient.Item", name + ".RightIngredient.Amount");
 
         this.repairCost = config.getInt(name + ".RepairCost");
         this.maxRepairCost = config.getInt(name + ".MaximumRepairCost");

@@ -2,7 +2,7 @@
 #          No Tree Punching           #
 #######################################
 
-ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -13,12 +13,63 @@ Shutdown:
   Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"               # All placeholders: %NAME%
 
 # Used to specify custom item drops for any mob
-# By default, there is no reason to use this, so the chance is set to 0.00
+# By default, there is no use for this, so the chance is set to 0.00
 MobDrops:
   WITHER:
     flint_shard:
       Type: "Rare"
       Chance: 0.00
+
+# Used to specify custom block drops
+BlockDrops:
+  STONE:
+    stone_rock:
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+      ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
+      IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
+      RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
+  ANDESITE:
+    andesite_rock:
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+      ReplaceDefaultDrop: true
+      IgnoreSilkTouchEnchant: false
+      RequireRightTool: true
+  SANDSTONE:
+    sandstone_rock:
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+      ReplaceDefaultDrop: true
+      IgnoreSilkTouchEnchant: false
+      RequireRightTool: true
+  RED_SANDSTONE:
+    red_sandstone_rock:
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+      ReplaceDefaultDrop: true
+      IgnoreSilkTouchEnchant: false
+      RequireRightTool: true
+  GRANITE:
+    granite_rock:
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+      ReplaceDefaultDrop: true
+      IgnoreSilkTouchEnchant: false
+      RequireRightTool: true
+  DIORITE:
+    diorite_rock:
+      Type: "Range"
+      MinAmount: 2
+      MaxAmount: 4
+      ReplaceDefaultDrop: true
+      IgnoreSilkTouchEnchant: false
+      RequireRightTool: true
 
 # Customize the No Tree Punching features
 
@@ -75,6 +126,11 @@ PreventPunchingWood:
     - "JUNGLE_PLANKS"
     - "STRIPPED_JUNGLE_LOG"
     - "STRIPPED_JUNGLE_WOOD"
+    - "ACACIA_LOG"
+    - "ACACIA_WOOD"
+    - "ACACIA_PLANKS"
+    - "STRIPPED_ACACIA_LOG"
+    - "STRIPPED_ACACIA_WOOD"
     - "CRIMSON_STEM"
     - "CRIMSON_HYPHAE"
     - "CRIMSON_PLANKS"
@@ -90,47 +146,6 @@ PreventPunchingWood:
     - "MANGROVE_PLANKS"
     - "STRIPPED_MANGROVE_LOG"
     - "STRIPPED_MANGROVE_WOOD"
-
-RockMining:
-  Stone:
-    DisableCobblestoneDrop: true    # If enabled prevents the user from getting cobblestone directly from mining stone
-    BlockDrops:                     # Stone will drop stone rocks instead of cobblestone
-      Type: "Range"
-      MinAmount: 2
-      MaxAmount: 4
-  Granite:
-    DisableGraniteDrop: true
-    BlockDrops: # Stone will drop granite rocks instead of granite
-      Type: "Range"
-      MinAmount: 2
-      MaxAmount: 4
-  Diorite:
-    DisableDioriteDrop: true
-    BlockDrops:
-      Type: "Range"
-      MinAmount: 2
-      MaxAmount: 4
-  Andesite:
-    DisableAndesiteDrop: true
-    BlockDrops:
-      Type: "Range"
-      MinAmount: 2
-      MaxAmount: 4
-  Sandstone:
-    DisableSandstoneDrop: true
-    BlockDrops:
-      Type: "Range"
-      MinAmount: 2
-      MaxAmount: 4
-  RedSandstone:
-    DisableRedSandstoneDrop: true
-    BlockDrops:
-      Type: "Range"
-      MinAmount: 2
-      MaxAmount: 4
-  DisableCobbledDeepslateDrop: false
-  DisableBlackstoneDrop: false
-  DisableBasaltDrop: false
 
 Lumberjack:
   DisablePlankRecipes: true
@@ -156,13 +171,13 @@ FireStarter:
   MaxItems: 20              # Max items that can be on the ground
   BurningSound:
     Enabled: true
-    Chance: 0.15  # Probability every "TickSpeed" that a burning sound will be made
+    Chance: 0.15  # Probability every "TickPeriod" that a burning sound will be made
     Sound: "BLOCK_LAVA_EXTINGUISH"
     Volume: 0.5
     Pitch: 1.0
   EmitParticles:
     Enabled: true
-    Chance: 0.15  # Probability every "TickSpeed" that a particle will be emitted
+    Chance: 0.15  # Probability every "TickPeriod" that a particle will be emitted
     Particle: "SMOKE_NORMAL"
     # Dust options only apply if you set the particle to a redstone dust particle
     DustOptionColor: "GRAY"     # Can also be set as a RGB value (ex: "128|128|128" for gray)
@@ -198,20 +213,20 @@ Pottery:
   EnableClayToolRecipe: true        # Clay tools are used to craft clay bricks
   CeramicLavaBucketMelting:
     Enabled: true
-    TickSpeed: 5
+    TickPeriod: 5
     Time: 160       # Time it takes for the ceramic lava bucket to melt and disappear in ticks
     PourLava:       # Should lava be poured on a player after bucket melts, will not pour if player's location is solid
       Enabled: true
       OnlyReplacePassableBlocks: true
     BurningSound:
       Enabled: true
-      Chance: 0.15  # Probability every "TickSpeed" that a burning sound will be made
+      Chance: 0.15  # Probability every "TickPeriod" that a burning sound will be made
       Sound: "BLOCK_LAVA_EXTINGUISH"
       Volume: 0.5
       Pitch: 1.0
     EmitParticles:
       Enabled: true
-      Chance: 0.15  # Probability every "TickSpeed" that a particle will be emitted
+      Chance: 0.15  # Probability every "TickPeriod" that a particle will be emitted
       Particle: "LAVA"
       DustOptionColor: "GRAY"
       DustOptionSize: 1.0
@@ -369,51 +384,21 @@ Items:
   stone_rock:
     Enabled:
       EnableAllVersions: true
-    BlockDrops: # What blocks should be counted as stone
-      STONE:
-        Type: "Range"
-        MinAmount: 2
-        MaxAmount: 4
   andesite_rock:
     Enabled:
       EnableAllVersions: true
-    BlockDrops: # What blocks should be counted as andesite
-      ANDESITE:
-        Type: "Range"
-        MinAmount: 2
-        MaxAmount: 4
   granite_rock:
     Enabled:
       EnableAllVersions: true
-    BlockDrops: # What blocks should be counted as granite
-      GRANITE:
-        Type: "Range"
-        MinAmount: 2
-        MaxAmount: 4
   diorite_rock:
     Enabled:
       EnableAllVersions: true
-    BlockDrops: # What blocks should be counted as diorite
-      DIORITE:
-        Type: "Range"
-        MinAmount: 2
-        MaxAmount: 4
   sandstone_rock:
     Enabled:
       EnableAllVersions: true
-    BlockDrops: # What blocks should be counted as sandstone
-      SANDSTONE:
-        Type: "Range"
-        MinAmount: 2
-        MaxAmount: 4
   red_sandstone_rock:
     Enabled:
       EnableAllVersions: true
-    BlockDrops: # What blocks should be counted as red sandstone
-      RED_SANDSTONE:
-        Type: "Range"
-        MinAmount: 2
-        MaxAmount: 4
   matchbox:
     Enabled:
       EnableAllVersions: true

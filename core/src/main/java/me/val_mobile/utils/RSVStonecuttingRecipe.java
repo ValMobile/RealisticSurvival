@@ -17,24 +17,13 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.StonecuttingRecipe;
-
-import java.util.Objects;
 
 public class RSVStonecuttingRecipe extends StonecuttingRecipe {
 
     public RSVStonecuttingRecipe(FileConfiguration config, String name, RealisticSurvivalPlugin plugin) {
-        super(new NamespacedKey(plugin, name),
-                Objects.equals(config.getString(name + ".Result.Item"), config.getString(name + ".Result.Item").toUpperCase())
-                        ? new ItemStack(Material.valueOf(config.getString(name + ".Result.Item")), config.getInt(name + ".Result.Amount")) :
-                        RSVItem.getItem(config.getString(name + ".Result.Item")).resize(config.getInt(name + ".Result.Amount")),
-                Objects.equals(config.getString(name + ".Input"), config.getString(name + ".Input").toUpperCase())
-                        ? (config.getString(name + ".Input").contains("Tag.") ? new RecipeChoice.MaterialChoice(Utils.getTag(config.getString(name + ".Input").substring(4))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(name + ".Input"))))
-                        : new RecipeChoice.ExactChoice(RSVItem.getItem(config.getString(name + ".Input"))));
+        super(new NamespacedKey(plugin, name), RSVRecipe.getResult(config, name), RSVRecipe.getRecipeChoice(config.getString(name + ".Input")));
     }
 }

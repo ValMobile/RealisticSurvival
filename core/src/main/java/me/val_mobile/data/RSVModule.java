@@ -21,6 +21,8 @@ import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.*;
 
@@ -29,16 +31,26 @@ public abstract class RSVModule {
     private static final Map<String, RSVModule> modules = new HashMap<>();
 
     private final boolean isEnabled;
+
+    @Nonnull
     private final String name;
 
+    @Nonnull
+    private final Set<String> allowedWorlds = new HashSet<>();
+
+    @Nullable
     private ModuleItems moduleItems;
+
+    @Nullable
     private ModuleRecipes moduleRecipes;
 
+    @Nullable
     private RSVConfig userConfig;
-    private RSVConfig itemConfig;
-    private RSVConfig recipesConfig;
 
-    private final Set<String> allowedWorlds = new HashSet<>();
+    @Nullable
+    private RSVConfig itemConfig;
+    @Nullable
+    private RSVConfig recipesConfig;
 
     public RSVModule(String name, RealisticSurvivalPlugin plugin) {
         FileConfiguration config = plugin.getConfig();
@@ -54,7 +66,8 @@ public abstract class RSVModule {
             for (World world : worlds) {
                 String worldName = world.getName();
                 if (!keys.contains(worldName)) {
-                    config.createSection(name + ".Worlds." + worldName).set(worldName, true);
+                    config.createSection(name + ".Worlds." + worldName);
+                    config.set(name + ".Worlds." + worldName, true);
                 }
 
                 if (section.getBoolean(worldName)) {
@@ -85,10 +98,6 @@ public abstract class RSVModule {
 
     public Set<String> getAllowedWorlds() {
         return allowedWorlds;
-    }
-
-    public static Map<String, RSVModule> getModules() {
-        return modules;
     }
 
     public RSVConfig getUserConfig() {
@@ -129,6 +138,10 @@ public abstract class RSVModule {
 
     public ModuleRecipes getModuleRecipes() {
         return moduleRecipes;
+    }
+
+    public static Map<String, RSVModule> getModules() {
+        return modules;
     }
 
     public static RSVModule getModule(String name) {

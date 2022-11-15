@@ -39,10 +39,8 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
     private final Player player;
     private final UUID id;
     private final RealisticSurvivalPlugin plugin;
-    private final FileConfiguration config;
     private final int duration;
     private final Set<String> allowedWorlds;
-
     private final double soundChance;
     private final boolean emitSound;
     private final String sound;
@@ -58,7 +56,6 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
     private final double extra;
     private final Particle particle;
     private Particle.DustOptions dust;
-
     private final boolean shouldPourLava;
     private final boolean shouldOnlyReplacePassableBlocks;
 
@@ -68,7 +65,7 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
         this.player = player;
         this.id = player.getUniqueId();
         this.plugin = plugin;
-        this.config = module.getUserConfig().getConfig();
+        FileConfiguration config = module.getUserConfig().getConfig();
         this.allowedWorlds = module.getAllowedWorlds();
         this.duration = config.getInt("Pottery.CeramicLavaBucketMelting.Time");
 

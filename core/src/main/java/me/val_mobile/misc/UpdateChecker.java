@@ -56,9 +56,7 @@ public class UpdateChecker {
         getVersion(latestVersion -> {
             String currentVersion = plugin.getDescription().getVersion();
 
-            String spigotVersion = latestVersion;
-
-            int compareTo = currentVersion.compareTo(spigotVersion);
+            int compareTo = currentVersion.compareTo(latestVersion);
 
             List<String> messages = compareTo == 0 ? plugin.getConfig().getStringList("CorrectVersion") : compareTo < 0 ? plugin.getConfig().getStringList("OutdatedVersion") : plugin.getConfig().getStringList("DeveloperBuildVersion");
 

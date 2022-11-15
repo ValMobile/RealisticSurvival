@@ -26,22 +26,22 @@ import java.util.Map;
 
 public enum CustomEntities_v1_16_R1 {
 
-    ENDERMAN_ALLY("enderman_ally", EntityType.ENDERMAN.getTypeId(), EntityTypes.ENDERMAN, EntityEnderman.class, EndermanAlly_v1_16_R1.class),
-    FIRE_DRAGON("fire_dragon", EntityType.ENDER_DRAGON.getTypeId(), EntityTypes.ENDER_DRAGON, EntityEnderDragon.class, FireDragon_v1_16_R1.class),
-    ICE_DRAGON("ice_dragon", EntityType.ENDER_DRAGON.getTypeId(), EntityTypes.ENDER_DRAGON, EntityEnderDragon.class, IceDragon_v1_16_R1.class),
-    LIGHTNING_DRAGON("lightning_dragon", EntityType.ENDER_DRAGON.getTypeId(), EntityTypes.ENDER_DRAGON, EntityEnderDragon.class, LightningDragon_v1_16_R1.class),
-    SEA_SERPENT("sea_serpent", EntityType.ELDER_GUARDIAN.getTypeId(), EntityTypes.ELDER_GUARDIAN, EntityGuardianElder.class, SeaSerpent_v1_16_R1.class),
-    SIREN("siren", EntityType.GUARDIAN.getTypeId(), EntityTypes.GUARDIAN, EntityGuardian.class, Siren_v1_16_R1.class);
+    ENDERMAN_ALLY("enderman_ally", EntityType.ENDERMAN.getTypeId(), EntityType.ENDERMAN, EntityEnderman.class, EndermanAlly_v1_16_R1.class),
+    FIRE_DRAGON("fire_dragon", EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EntityEnderDragon.class, FireDragon_v1_16_R1.class),
+    ICE_DRAGON("ice_dragon", EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EntityEnderDragon.class, IceDragon_v1_16_R1.class),
+    LIGHTNING_DRAGON("lightning_dragon", EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EntityEnderDragon.class, LightningDragon_v1_16_R1.class),
+    SEA_SERPENT("sea_serpent", EntityType.ELDER_GUARDIAN.getTypeId(), EntityType.ELDER_GUARDIAN, EntityGuardianElder.class, SeaSerpent_v1_16_R1.class),
+    SIREN("siren", EntityType.GUARDIAN.getTypeId(), EntityType.GUARDIAN, EntityGuardian.class, Siren_v1_16_R1.class);
 
-    private String name;
-    private int id;
-    private EntityTypes<?> entityType;
-    private MinecraftKey minecraftKey;
-    private Class<? extends EntityInsentient> nmsClass;
-    private Class<? extends net.minecraft.server.v1_16_R1.Entity> customClass;
+    private final String name;
+    private final int id;
+    private final EntityType entityType;
+    private final MinecraftKey minecraftKey;
+    private final Class<? extends EntityInsentient> nmsClass;
+    private final Class<? extends Entity> customClass;
 
-    CustomEntities_v1_16_R1(String name, int id, EntityTypes entityType, Class<? extends EntityInsentient> nmsClass,
-                            Class<? extends net.minecraft.server.v1_16_R1.Entity> customClass) {
+    CustomEntities_v1_16_R1(String name, int id, EntityType entityType, Class<? extends EntityInsentient> nmsClass,
+                            Class<? extends Entity> customClass) {
         this.name = name;
         this.id = id;
         this.entityType = entityType;
@@ -52,38 +52,22 @@ public enum CustomEntities_v1_16_R1 {
 
     public static void registerEntities() {
         Map<String, Type<?>> types = (Map<String, Type<?>>) DataConverterRegistry.a().getSchema(DataFixUtils.makeKey(SharedConstants.getGameVersion().getWorldVersion())).findChoiceType(DataConverterTypes.ENTITY).types();
-//        unfreezeRegistry();
         registerEntity("fire_dragon", FireDragon_v1_16_R1::new, types);
         registerEntity("ice_dragon", IceDragon_v1_16_R1::new, types);
         registerEntity("lightning_dragon", LightningDragon_v1_16_R1::new, types);
         registerEntity("enderman_ally", EndermanAlly_v1_16_R1::new, types);
         registerEntity("sea_serpent", SeaSerpent_v1_16_R1::new, types);
         registerEntity("siren", Siren_v1_16_R1::new, types);
-//        Registry.ENTITY_TYPE.freeze();
     }
 
     private static void registerEntity(String type, EntityTypes.b customMob, Map<String, Type<?>> types) {
-        if (!IRegistry.ENTITY_TYPE.getOptional(new MinecraftKey(type)).isPresent()) {
+        if (IRegistry.ENTITY_TYPE.getOptional(new MinecraftKey(type)).isEmpty()) {
             String customName = "minecraft:realisticsurvival_" + type;
             types.put(customName, types.get("minecraft:" + type));
             EntityTypes.Builder<net.minecraft.server.v1_16_R1.Entity> a = EntityTypes.Builder.a(customMob, EnumCreatureType.MONSTER);
             IRegistry.a(IRegistry.ENTITY_TYPE, customName, a.a(customName));
         }
     }
-
-//    private static void unfreezeRegistry() {
-//        Class<MappedRegistry> registryClass = MappedRegistry.class;
-//        try {
-//            Field intrusiveHolderCache = registryClass.getDeclaredField(ObfuscatedFields.INTRUSIVE_HOLDER_CACHE);
-//            intrusiveHolderCache.setAccessible(true);
-//            intrusiveHolderCache.set(Registry.ENTITY_TYPE, new IdentityHashMap<EntityType<?>, Holder.Reference<EntityType<?>>>());
-//            Field frozen = registryClass.getDeclaredField(ObfuscatedFields.FROZEN);
-//            frozen.setAccessible(true);
-//            frozen.set(Registry.ENTITY_TYPE, false);
-//        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public static void unregisterEntities() {}
 
@@ -101,7 +85,7 @@ public enum CustomEntities_v1_16_R1 {
         return id;
     }
 
-    public EntityTypes getEntityTypes() {
+    public EntityType getEntityTypes() {
         return entityType;
     }
 

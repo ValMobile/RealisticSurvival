@@ -16,63 +16,51 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import net.minecraft.server.v1_16_R1.*;
-import org.bukkit.ChatColor;
+import me.val_mobile.baubles.EndermanAlly;
+import net.minecraft.server.v1_16_R1.EntityEnderman;
+import net.minecraft.server.v1_16_R1.EntityPlayer;
+import net.minecraft.server.v1_16_R1.EntityTypes;
+import net.minecraft.server.v1_16_R1.World;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_16_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_16_R1.inventory.CraftItemStack;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityTargetEvent;
-import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 
-public class EndermanAlly_v1_16_R1 extends EntityEnderman implements RSVMob {
+public class EndermanAlly_v1_16_R1 extends EntityEnderman implements EndermanAlly {
+
+    private final EntityPlayer owner;
+
+    public EndermanAlly_v1_16_R1(EntityTypes<? extends EntityEnderman> entityTypes, World world) {
+        super(entityTypes, world);
+        this.owner = null;
+    }
 
     public EndermanAlly_v1_16_R1(Player owner, Location loc)
     {
-        super(EntityTypes.ENDERMAN, ((CraftWorld)loc.getWorld()).getHandle());
+        super(EntityTypes.ENDERMAN, ((CraftWorld)  loc.getWorld()).getHandle());
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
-
-        this.setInvulnerable(false);
-        setOwner(owner);
-    }
-
-    public EndermanAlly_v1_16_R1(EntityTypes entityTypes, World world) {
-        super(entityTypes, world);
-
-        this.setInvulnerable(false);
-        setOwner(null);
+        this.owner = ((CraftPlayer) owner).getHandle();
     }
 
     @Override
-    public void addNbtData() {
-        RealisticSurvivalPlugin.getUtil().addNbtTag(this.getBukkitEntity(), "rsvmob", "enderman_ally", PersistentDataType.STRING);
+    public Entity getEntity() {
+        return this.getBukkitEntity();
     }
 
     @Override
-    protected void initPathfinder()
-    {
-        this.goalSelector.a(0, new PathfinderGoalFloat(this));
-
-        this.goalSelector.a(2, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
-        this.goalSelector.a(3, new PathfinderGoalRandomLookaround(this));
-        this.goalSelector.a(1, new PathfinderGoalPet_v1_16_R1(this, 1.0, 25));
+    public void addEntityToWorld(org.bukkit.World world) {
+        ((CraftWorld) world).addEntity(this, CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
-    public void setOwner(Player player)
-    {
-        this.setGoalTarget(((CraftPlayer)player).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, false);
+    @Override
+    protected void initPathfinder() {
+        super.initPathfinder();
     }
 
-    public void setItem(EnumItemSlot slot, org.bukkit.inventory.ItemStack item)
-    {
-        this.setSlot(slot,  CraftItemStack.asNMSCopy(item));
-    }
-
-    public void setName(String name)
-    {
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&', name)));
-        this.setCustomNameVisible(true);
+    @Override
+    public Player getOwner() {
+        return owner.getBukkitEntity();
     }
 }

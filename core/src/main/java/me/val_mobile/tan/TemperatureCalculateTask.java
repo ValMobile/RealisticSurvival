@@ -23,10 +23,6 @@ import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.BlockData;
-import org.bukkit.block.data.Levelled;
-import org.bukkit.block.data.Lightable;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -50,7 +46,11 @@ public class TemperatureCalculateTask extends BukkitRunnable {
     private double equilibriumTemp;
     private double regulate = 0D;
     private double change = 0D;
+    private double regulateEnv = 0D;
+    private double changeEnv = 0D;
+    private final double distSqr;
     private double temp;
+    private Location currentLoc;
     public static final double MINIMUM_TEMPERATURE = 0.0;
     public static final double MAXIMUM_TEMPERATURE = 25.0;
 
@@ -64,6 +64,8 @@ public class TemperatureCalculateTask extends BukkitRunnable {
         this.id = player.getPlayer().getUniqueId();
         this.allowedWorlds = module.getAllowedWorlds();
         this.temp = player.getTanDataModule().getTemperature();
+        this.currentLoc = player.getPlayer().getLocation();
+        this.distSqr = config.getDouble("Temperature.Environment.CubeLength") * config.getDouble("Temperature.Environment.CubeLength");
         tasks.put(id, this);
     }
 
@@ -123,61 +125,20 @@ public class TemperatureCalculateTask extends BukkitRunnable {
                 double worldChange = biomeTemp + daylightChange;
                 change += worldChange;
 
-                int cubeLength = config.getInt("Temperature.Environment.CubeLength");
+                change += changeEnv;
+                regulate += regulateEnv;
 
-                for (int x = -(cubeLength - 1); x < cubeLength; x++) {
-                    for (int y = -(cubeLength - 1); y < cubeLength; y++) {
-                        for (int z = -(cubeLength - 1); z < cubeLength; z++) {
-                            Location loc = new Location(player.getWorld(), px + x, py + y, pz + z);
-                            Block block = loc.getBlock();
-                            BlockData data = block.getBlockData();
-
-                            if (!block.isEmpty()) {
-                                String path = "Temperature.Environment.Blocks";
-                                ConfigurationSection section = config.getConfigurationSection(path);
-
-                                String material = data.getMaterial().toString();
-                                if (section.getKeys(false).contains(material)) {
-                                    if (data instanceof Lightable lightable) {
-                                        if (section.contains(material + ".Lit")) {
-                                            if (section.getBoolean(material + ".Lit") == lightable.isLit()) {
-                                                add(path + "." + material);
-                                            }
-                                        }
-                                        else {
-                                            add(path + "." + material);
-                                        }
-                                    }
-                                    else if (data instanceof Levelled levelled) {
-                                        if (block.isLiquid()) {
-                                            if (section.contains(material + ".MaximumLevel")) {
-                                                if (levelled.getLevel() <= section.getInt(material + ".MaximumLevel")) {
-                                                    add(path + "." + material);
-                                                }
-                                            }
-                                            else {
-                                                add(path + "." + material);
-                                            }
-                                        }
-                                        else {
-                                            if (section.contains(material + ".MinimumLevel")) {
-                                                if (levelled.getLevel() >= section.getInt(material + ".MinimumLevel")) {
-                                                    add(path + "." + material);
-                                                }
-                                            }
-                                            else {
-                                                add(path + "." + material);
-                                            }
-                                        }
-                                    }
-                                    else {
-                                        add(path + "." + material);
-                                    }
-                                }
-                            }
-                        }
+                if (pLoc.getWorld().getName().equals(currentLoc.getWorld().getName())) {
+                    if (pLoc.distanceSquared(currentLoc) > distSqr) {
+                        currentLoc = pLoc;
+                        new TemperatureEnvironmentTask(module, plugin, this.player).start();
                     }
                 }
+                else {
+                    currentLoc = pLoc;
+                    new TemperatureEnvironmentTask(module, plugin, this.player).start();
+                }
+
 
                 if (pBlock.isLiquid()) {
                     if (pBlock.getType() == Material.LAVA) {
@@ -337,8 +298,9 @@ public class TemperatureCalculateTask extends BukkitRunnable {
     }
 
     public void start() {
-        int tickSpeed = config.getInt("Temperature.CalculateTickSpeed"); // get the tick speed
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        new TemperatureEnvironmentTask(module, plugin, player).start();
+        int tickPeriod = config.getInt("Temperature.CalculateTickPeriod"); // get the tick period
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static boolean hasTask(UUID id) {
@@ -360,7 +322,23 @@ public class TemperatureCalculateTask extends BukkitRunnable {
         return temp;
     }
 
+    public double getChangeEnv() {
+        return changeEnv;
+    }
+
+    public double getRegulateEnv() {
+        return regulateEnv;
+    }
+
     public void setTemp(double temp) {
         this.temp = temp;
+    }
+
+    public void setChangeEnv(double changeEnv) {
+        this.changeEnv = changeEnv;
+    }
+
+    public void setRegulateEnv(double regulateEnv) {
+        this.regulateEnv = regulateEnv;
     }
 }

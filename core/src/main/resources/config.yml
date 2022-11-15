@@ -1,7 +1,7 @@
 #########################################################################################
 #																					    #
 #	Realistic Survival Plugin	MC 1.16 - 1.19											#
-#	Version 1.2.3-DEV-1	        Made by: Val_Mobile									    #
+#	Version 1.2.3-DEV-2	        Made by: Val_Mobile									    #
 #																						#
 #########################################################################################
 
@@ -119,7 +119,4 @@ UpdateItems:
 #######################################
 
 BStats: true             # Do you want non-confidential server data to be recorded for my use?
-ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
-
-# See https://www.oracle.com/java/technologies/javase/jdk8-jre8-suported-locales.html for all language tags
-Language: "en-US"        # If the respective lang file does not exist, the default lang file will be en-US (American English)
+ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit

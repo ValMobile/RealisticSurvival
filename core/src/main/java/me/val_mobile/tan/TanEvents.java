@@ -20,21 +20,21 @@ import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.DisplayTask;
+import me.val_mobile.utils.PlayerJumpEvent;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import me.val_mobile.utils.Utils.Hand;
 import org.bukkit.*;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
@@ -43,14 +43,17 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.RayTraceResult;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -85,6 +88,12 @@ public class TanEvents extends ModuleEvents implements Listener {
                     if (!TemperatureCalculateTask.hasTask(player.getUniqueId())) {
                         new TemperatureCalculateTask(module, plugin, rsvplayer).start();
                     }
+
+                    if (ThermometerTask.isHoldingThermometer(player)) {
+                        if (!ThermometerTask.hasTask(player.getUniqueId())) {
+                            new ThermometerTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
+                        }
+                    }
                 }
                 if (thirstEnabled) {
                     if (!ThirstCalculateTask.hasTask(player.getUniqueId())) {
@@ -99,8 +108,7 @@ public class TanEvents extends ModuleEvents implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJump(PlayerMoveEvent event)
-    {
+    public void onPlayerJump(PlayerJumpEvent event) {
         Player player = event.getPlayer(); // get the player
 
         if (shouldEventBeRan(player)) {
@@ -219,19 +227,21 @@ public class TanEvents extends ModuleEvents implements Listener {
                 GameMode mode = event.getNewGameMode();
                 if (mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) {
                     if (tempEnabled || thirstEnabled) {
-                        RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(player.getUniqueId());
-                        if (tempEnabled) {
-                            if (!TemperatureCalculateTask.hasTask(player.getUniqueId())) {
-                                new TemperatureCalculateTask(module, plugin, rsvplayer).start();
+                        if (RSVPlayer.getPlayers().containsKey(player.getUniqueId())) {
+                            RSVPlayer rsvplayer = RSVPlayer.getPlayers().get(player.getUniqueId());
+                            if (tempEnabled) {
+                                if (!TemperatureCalculateTask.hasTask(player.getUniqueId())) {
+                                    new TemperatureCalculateTask(module, plugin, rsvplayer).start();
+                                }
                             }
-                        }
-                        if (thirstEnabled) {
-                            if (!ThirstCalculateTask.hasTask(player.getUniqueId())) {
-                                new ThirstCalculateTask(module, plugin, rsvplayer).start();
+                            if (thirstEnabled) {
+                                if (!ThirstCalculateTask.hasTask(player.getUniqueId())) {
+                                    new ThirstCalculateTask(module, plugin, rsvplayer).start();
+                                }
                             }
-                        }
-                        if (!DisplayTask.hasTask(player.getUniqueId())) {
-                            new DisplayTask(plugin, rsvplayer).start();
+                            if (!DisplayTask.hasTask(player.getUniqueId())) {
+                                new DisplayTask(plugin, rsvplayer).start();
+                            }
                         }
                     }
                 }
@@ -491,7 +501,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                         }
                         else {
                             if (name.equals("canteen_filled")) {
-                                final String canteenDrink = RealisticSurvivalPlugin.getUtil().getNbtTag(item, "rsvdrink", PersistentDataType.STRING);
+                                final String canteenDrink = Utils.getNbtTag(item, "rsvdrink", PersistentDataType.STRING);
                                 if (canteenDrink.equals("Unpurified Water")) {
                                     double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Foods.POTION.ThirstPoints");
                                     double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Foods.POTION.SaturationPoints");
@@ -563,6 +573,14 @@ public class TanEvents extends ModuleEvents implements Listener {
                                         task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
                                         task.setSaturationLvl(Math.min(task.getThirstLvl() + saturationPoints, task.getThirstLvl()));
                                     }
+
+                                    if (config.getBoolean("Thirst.Parasites.Drowning.Enabled")) {
+                                        if (Math.random() <= config.getDouble("Thirst.Parasites.Drowning.Chance")) {
+                                            if (!ParasiteTask.hasTask(player.getUniqueId())) {
+                                                new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                                            }
+                                        }
+                                    }
                                 }
                                 double parasiteExhaustionMultiplier = config.getBoolean("Thirst.Parasites.MultiplyExhaustionRates.Enabled") ? config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value") : 1D;
                                 task.setExhaustionLvl(task.getExhaustionLvl() + (config.getDouble("Thirst.ExhaustionLevelIncrease.TakingDamage") * parasiteExhaustionMultiplier));
@@ -604,39 +622,178 @@ public class TanEvents extends ModuleEvents implements Listener {
         }
     }
 
-    @EventHandler (priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onBlockGrow(BlockGrowEvent event) {
+        if (!event.isCancelled()) {
+            Block block = event.getBlock();
+            World world = block.getWorld();
+            if (shouldEventBeRan(world)) {
+                double rad = config.getDouble("Temperature.Environment.CubeLength");
+
+                Collection<Entity> nearby = world.getNearbyEntities(block.getLocation(), rad, rad, rad);
+                ConfigurationSection section = config.getConfigurationSection("Temperature.Environment.Blocks");
+
+                if (!nearby.isEmpty()) {
+                    for (Entity e : nearby) {
+                        if (e instanceof Player player) {
+                            TemperatureCalculateTask tempTask = TemperatureCalculateTask.getTasks().get(player.getUniqueId());
+
+                            if (tempTask != null) {
+                                if (block.getLocation().distanceSquared(player.getLocation()) < config.getDouble("Temperature.Environment.CubeLength") * config.getDouble("Temperature.Environment.CubeLength")) {
+
+                                    if (TemperatureEnvironmentTask.willAffectTemperature(block, section)) {
+                                        double val = TemperatureEnvironmentTask.getValue(block, section);
+
+                                        if (TemperatureEnvironmentTask.isRegulatory(block, section)) {
+                                            tempTask.setRegulateEnv(tempTask.getRegulateEnv() + val);
+                                        }
+                                        else {
+                                            tempTask.setChangeEnv(tempTask.getChangeEnv() + val);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onBlockPlace(BlockPlaceEvent event) {
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
+
+            if (shouldEventBeRan(player)) {
+                TemperatureCalculateTask tempTask = TemperatureCalculateTask.getTasks().get(player.getUniqueId());
+                Block block = event.getBlock();
+
+                if (tempTask != null) {
+                    if (block.getLocation().distanceSquared(player.getLocation()) < config.getDouble("Temperature.Environment.CubeLength") * config.getDouble("Temperature.Environment.CubeLength")) {
+                        ConfigurationSection section = config.getConfigurationSection("Temperature.Environment.Blocks");
+
+                        if (TemperatureEnvironmentTask.willAffectTemperature(block, section)) {
+                            double val = TemperatureEnvironmentTask.getValue(block, section);
+
+                            if (TemperatureEnvironmentTask.isRegulatory(block, section)) {
+                                tempTask.setRegulateEnv(tempTask.getRegulateEnv() + val);
+                            }
+                            else {
+                                tempTask.setChangeEnv(tempTask.getChangeEnv() + val);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler (priority = EventPriority.MONITOR)
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
 
         if (!event.isCancelled()) {
             if (shouldEventBeRan(player)) {
-                ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-                Block block = event.getBlock();
-                Material material = block.getType();
-                Location loc = block.getLocation().add(0D, 0.15D, 0D);
+                TemperatureCalculateTask tempTask = TemperatureCalculateTask.getTasks().get(player.getUniqueId());
+                ThirstCalculateTask thirstTask = ThirstCalculateTask.getTasks().get(player.getUniqueId());
 
-                Set<String> iceBlocks = config.getConfigurationSection("Items.ice_cube.BlockDrops").getKeys(false);
-                Set<String> magmaBlocks = config.getConfigurationSection("Items.magma_shard.BlockDrops").getKeys(false);
+                if (tempTask != null) {
+                    Block block = event.getBlock();
+                    if (block.getLocation().distanceSquared(player.getLocation()) < config.getDouble("Temperature.Environment.CubeLength") * config.getDouble("Temperature.Environment.CubeLength")) {
+                        ConfigurationSection section = config.getConfigurationSection("Temperature.Environment.Blocks");
+                        if (TemperatureEnvironmentTask.willAffectTemperature(block, section)) {
+                            double val = TemperatureEnvironmentTask.getValue(block, section);
 
-                if (iceBlocks.contains(material.toString())) {
-                    if (Utils.isHoldingPickaxe(player)) {
-                        if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
-                            Utils.harvestFortune(config.getConfigurationSection("Items.ice_cube.BlockDrops." + material), RSVItem.getItem("ice_cube"), itemMainHand, loc);
+                            if (TemperatureEnvironmentTask.isRegulatory(block, section)) {
+                                tempTask.setRegulateEnv(tempTask.getRegulateEnv() - val);
+                            }
+                            else {
+                                tempTask.setChangeEnv(tempTask.getChangeEnv() - val);
+                            }
                         }
                     }
                 }
-                if (magmaBlocks.contains(material.toString())) {
-                    if (Utils.isHoldingPickaxe(player)) {
-                        if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
-                            Utils.harvestFortune(config.getConfigurationSection("Items.magma_shard.BlockDrops." + material), RSVItem.getItem("ice_cube"), itemMainHand, loc);
-                        }
-                    }
-                }
-                ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
 
-                if (task != null) {
+                if (thirstTask != null) {
                     double parasiteExhaustionMultiplier = config.getBoolean("Thirst.Parasites.MultiplyExhaustionRates.Enabled") ? config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value") : 1D;
-                    task.setExhaustionLvl(task.getExhaustionLvl() + (config.getDouble("Thirst.ExhaustionLevelIncrease.BreakingBlock") * parasiteExhaustionMultiplier));
+                    thirstTask.setExhaustionLvl(thirstTask.getExhaustionLvl() + (config.getDouble("Thirst.ExhaustionLevelIncrease.BreakingBlock") * parasiteExhaustionMultiplier));
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onBlockExplode(BlockExplodeEvent event) {
+        if (!event.isCancelled()) {
+            Block block = event.getBlock();
+            World world = block.getWorld();
+            if (shouldEventBeRan(world)) {
+                double rad = config.getDouble("Temperature.Environment.CubeLength");
+
+                Collection<Entity> nearby = world.getNearbyEntities(block.getLocation(), rad, rad, rad);
+                ConfigurationSection section = config.getConfigurationSection("Temperature.Environment.Blocks");
+
+                if (!nearby.isEmpty()) {
+                    for (Entity e : nearby) {
+                        if (e instanceof Player player) {
+                            TemperatureCalculateTask tempTask = TemperatureCalculateTask.getTasks().get(player.getUniqueId());
+
+                            if (tempTask != null) {
+                                if (block.getLocation().distanceSquared(player.getLocation()) < config.getDouble("Temperature.Environment.CubeLength") * config.getDouble("Temperature.Environment.CubeLength")) {
+
+                                    if (TemperatureEnvironmentTask.willAffectTemperature(block, section)) {
+                                        double val = TemperatureEnvironmentTask.getValue(block, section);
+
+                                        if (TemperatureEnvironmentTask.isRegulatory(block, section)) {
+                                            tempTask.setRegulateEnv(tempTask.getRegulateEnv() - val);
+                                        }
+                                        else {
+                                            tempTask.setChangeEnv(tempTask.getChangeEnv() - val);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onBlockBurn(BlockBurnEvent event) {
+        if (!event.isCancelled()) {
+            Block block = event.getBlock();
+            World world = block.getWorld();
+            if (shouldEventBeRan(world)) {
+                double rad = config.getDouble("Temperature.Environment.CubeLength");
+
+                Collection<Entity> nearby = world.getNearbyEntities(block.getLocation(), rad, rad, rad);
+                ConfigurationSection section = config.getConfigurationSection("Temperature.Environment.Blocks");
+
+                if (!nearby.isEmpty()) {
+                    for (Entity e : nearby) {
+                        if (e instanceof Player player) {
+                            TemperatureCalculateTask tempTask = TemperatureCalculateTask.getTasks().get(player.getUniqueId());
+
+                            if (tempTask != null) {
+                                if (block.getLocation().distanceSquared(player.getLocation()) < config.getDouble("Temperature.Environment.CubeLength") * config.getDouble("Temperature.Environment.CubeLength")) {
+
+                                    if (TemperatureEnvironmentTask.willAffectTemperature(block, section)) {
+                                        double val = TemperatureEnvironmentTask.getValue(block, section);
+
+                                        if (TemperatureEnvironmentTask.isRegulatory(block, section)) {
+                                            tempTask.setRegulateEnv(tempTask.getRegulateEnv() - val);
+                                        }
+                                        else {
+                                            tempTask.setChangeEnv(tempTask.getChangeEnv() - val);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -644,7 +801,6 @@ public class TanEvents extends ModuleEvents implements Listener {
 
     @EventHandler
     public void onWorldChange(PlayerChangedWorldEvent event) {
-
         Player player = event.getPlayer();
 
         if (shouldEventBeRan(player)) {
@@ -656,6 +812,12 @@ public class TanEvents extends ModuleEvents implements Listener {
                     if (tempEnabled) {
                         if (!TemperatureCalculateTask.hasTask(player.getUniqueId())) {
                             new TemperatureCalculateTask(module, plugin, rsvplayer).start();
+                        }
+
+                        if (ThermometerTask.isHoldingThermometer(player)) {
+                            if (!ThermometerTask.hasTask(player.getUniqueId())) {
+                                new ThermometerTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
+                            }
                         }
                     }
                     if (thirstEnabled) {
@@ -716,23 +878,12 @@ public class TanEvents extends ModuleEvents implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onItemHeld(PlayerItemHeldEvent event) {
-        if (!event.isCancelled()) {
-            Player player = event.getPlayer();
-            if (shouldEventBeRan(player)) {
-                ItemStack item = player.getInventory().getItem(event.getNewSlot());
-
-                checkAndRunTask(player, item);
-            }
-        }
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onItemPickup(EntityPickupItemEvent event) {
-        if (!event.isCancelled()) {
-            Entity entity = event.getEntity();
-            if (entity instanceof Player player) {
+        if (tempEnabled) {
+            if (!event.isCancelled()) {
+                Player player = event.getPlayer();
                 if (shouldEventBeRan(player)) {
-                    ItemStack item = event.getItem().getItemStack();
+                    ItemStack item = player.getInventory().getItem(event.getNewSlot());
+
                     checkAndRunTask(player, item);
                 }
             }
@@ -740,22 +891,39 @@ public class TanEvents extends ModuleEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onClick(InventoryClickEvent event) {
-        if (!event.isCancelled()) {
-            Player player = (Player) event.getWhoClicked();
-            if (shouldEventBeRan(player)) {
-                ItemStack cursor = event.getCursor();
-
-                int heldSlot = player.getInventory().getHeldItemSlot();
-                int slot = event.getSlot();
-
-                if (slot == heldSlot) {
-                    checkAndRunTask(player, cursor);
+    public void onItemPickup(EntityPickupItemEvent event) {
+        if (tempEnabled) {
+            if (!event.isCancelled()) {
+                Entity entity = event.getEntity();
+                if (entity instanceof Player player) {
+                    if (shouldEventBeRan(player)) {
+                        ItemStack item = event.getItem().getItemStack();
+                        checkAndRunTask(player, item);
+                    }
                 }
+            }
+        }
+    }
 
-                if (event.isShiftClick()) {
-                    if (event.getView().getTopInventory().getType() != InventoryType.PLAYER) {
-                        checkAndRunTask(player, event.getCurrentItem());
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onClick(InventoryClickEvent event) {
+        if (tempEnabled) {
+            if (!event.isCancelled()) {
+                Player player = (Player) event.getWhoClicked();
+                if (shouldEventBeRan(player)) {
+                    ItemStack cursor = event.getCursor();
+
+                    int heldSlot = player.getInventory().getHeldItemSlot();
+                    int slot = event.getSlot();
+
+                    if (slot == heldSlot || event.getRawSlot() == 45) {
+                        checkAndRunTask(player, cursor);
+                    }
+
+                    if (event.isShiftClick()) {
+                        if (event.getView().getTopInventory().getType() != InventoryType.PLAYER) {
+                            checkAndRunTask(player, event.getCurrentItem());
+                        }
                     }
                 }
             }
@@ -764,29 +932,89 @@ public class TanEvents extends ModuleEvents implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onItemSwap(PlayerSwapHandItemsEvent event) {
+        if (tempEnabled) {
+            if (!event.isCancelled()) {
+                Player player = event.getPlayer();
+
+                if (shouldEventBeRan(player)) {
+                    ItemStack item = event.getMainHandItem();
+                    checkAndRunTask(player, item);
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
         if (!event.isCancelled()) {
             Player player = event.getPlayer();
 
-            if (shouldEventBeRan(player)) {
-                ItemStack item = event.getMainHandItem();
-                checkAndRunTask(player, item);
+            String message = event.getMessage();
+
+            if (message.length() > 1) {
+                String[] args = message.substring(1).split(" ");
+
+                if (args[0].equalsIgnoreCase("rsv") || args[0].equalsIgnoreCase("realisticsurvival")) {
+                    if (args.length > 3) {
+                        if (args[1].equalsIgnoreCase("give")) {
+                            if (RSVItem.isRSVItem(args[3]) && args[3].equalsIgnoreCase("thermometer")) {
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        checkAndRunTask(player, player.getInventory().getItemInMainHand());
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onServerCommand(ServerCommandEvent event) {
+        if (!event.isCancelled()) {
+            String message = event.getCommand();
+
+            if (message.length() > 1) {
+                String[] args = message.substring(1).split(" ");
+                if (args[0].equalsIgnoreCase("rsv") || args[0].equalsIgnoreCase("realisticsurvival")) {
+                    if (args.length > 3) {
+                        if (args[1].equalsIgnoreCase("give")) {
+                            Player player = Bukkit.getPlayer(args[2]);
+                            if (player != null && RSVItem.isRSVItem(args[3]) && args[3].equalsIgnoreCase("thermometer")) {
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        checkAndRunTask(player, player.getInventory().getItemInMainHand());
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
 
     private void checkAndRunTask(Player player, ItemStack item) {
-        if (RSVItem.isRSVItem(item)) {
-            if (RSVItem.getNameFromItem(item).equals("thermometer")) {
-                if (!ThermometerTask.hasTask(player.getUniqueId())) {
-                    new ThermometerTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
+        if (tempEnabled) {
+            if (RSVItem.isRSVItem(item)) {
+                if (RSVItem.getNameFromItem(item).equals("thermometer")) {
+                    if (player != null) {
+                        if (!ThermometerTask.hasTask(player.getUniqueId())) {
+                            new ThermometerTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
+                        }
+                    }
                 }
             }
         }
     }
 
     private boolean canFill(ItemStack canteen, String newDrink) {
-        String originalDrink = RealisticSurvivalPlugin.getUtil().getNbtTag(canteen, "rsvdrink", PersistentDataType.STRING);
-        if (RSVItem.getCustomDurability(canteen) >= RSVItem.getMaxCustomDurability(canteen)) {
+        String originalDrink = Utils.getNbtTag(canteen, "rsvdrink", PersistentDataType.STRING);
+        if (Utils.getCustomDurability(canteen) >= Utils.getMaxCustomDurability(canteen)) {
             return false;
         }
 
@@ -797,9 +1025,7 @@ public class TanEvents extends ModuleEvents implements Listener {
     }
 
     private ItemStack fillCanteen(ItemStack canteen, String drink, int change) {
-        Utils util = RealisticSurvivalPlugin.getUtil();
-
-        int durability = RSVItem.getCustomDurability(canteen);
+        int durability = Utils.getCustomDurability(canteen);
 
         int sum = durability + change;
 
@@ -820,8 +1046,8 @@ public class TanEvents extends ModuleEvents implements Listener {
                 }
             }
 
-            util.addNbtTag(canteen, "rsvitem", "canteen_empty", PersistentDataType.STRING);
-            util.addNbtTag(canteen, "rsvdrink", "None", PersistentDataType.STRING);
+            Utils.addNbtTag(canteen, "rsvitem", "canteen_empty", PersistentDataType.STRING);
+            Utils.addNbtTag(canteen, "rsvdrink", "None", PersistentDataType.STRING);
 
             canteen.setType(Material.GLASS_BOTTLE);
         }
@@ -843,8 +1069,8 @@ public class TanEvents extends ModuleEvents implements Listener {
                 }
             }
 
-            util.addNbtTag(canteen, "rsvitem", "canteen_filled", PersistentDataType.STRING);
-            util.addNbtTag(canteen, "rsvdrink", drink, PersistentDataType.STRING);
+            Utils.addNbtTag(canteen, "rsvitem", "canteen_filled", PersistentDataType.STRING);
+            Utils.addNbtTag(canteen, "rsvdrink", drink, PersistentDataType.STRING);
             canteen.setType(Material.POTION);
         }
         Utils.changeDurability(canteen, change, false);

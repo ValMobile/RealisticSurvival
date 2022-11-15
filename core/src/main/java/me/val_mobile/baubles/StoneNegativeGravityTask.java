@@ -20,6 +20,7 @@ import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
+import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -65,7 +66,7 @@ public class StoneNegativeGravityTask extends BukkitRunnable {
             cancel();
         }
         else {
-            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
+            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)) {
                 if (rsvPlayer.getBaubleDataModule().hasBauble("stone_negative_gravity") || isHoldingStone()) {
                     player.setGravity(false);
 
@@ -101,8 +102,8 @@ public class StoneNegativeGravityTask extends BukkitRunnable {
     }
 
     public void start() {
-        int tickSpeed = config.getInt("Items.stone_negative_gravity.TickTime"); // get the tick speed
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        int tickPeriod = config.getInt("Items.stone_negative_gravity.TickPeriod"); // get the tick period
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static boolean hasTask(UUID id) {

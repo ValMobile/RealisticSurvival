@@ -17,28 +17,16 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.SmithingRecipe;
 
-import java.util.Objects;
+import javax.annotation.Nonnull;
 
-public class RSVSmithingRecipe extends SmithingRecipe {
+public class RSVSmithingRecipe extends SmithingRecipe implements RSVRecipe {
 
-    public RSVSmithingRecipe(FileConfiguration config, String name, RealisticSurvivalPlugin plugin) {
-        super(new NamespacedKey(plugin, name),
-                Objects.equals(config.getString(name + ".Result.Item"), config.getString(name + ".Result.Item").toUpperCase())
-                        ? new ItemStack(Material.valueOf(config.getString(name + ".Result.Item")), config.getInt(name + ".Result.Amount")) :
-                        RSVItem.getItem(config.getString(name + ".Result.Item")).resize(config.getInt(name + ".Result.Amount")),
-                Objects.equals(config.getString(name + ".Base"), config.getString(name + ".Base").toUpperCase())
-                        ? (config.getString(name + ".Base").contains("Tag.") ? new RecipeChoice.MaterialChoice(Utils.getTag(config.getString(name + ".Base").substring(4))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(name + ".Base"))))
-                        : new RecipeChoice.ExactChoice(RSVItem.getItem(config.getString(name + ".Base"))),
-                Objects.equals(config.getString(name + ".Addition"), config.getString(name + ".Addition").toUpperCase())
-                        ? (config.getString(name + ".Addition").contains("Tag.") ? new RecipeChoice.MaterialChoice(Utils.getTag(config.getString(name + ".Addition").substring(4))) : new RecipeChoice.MaterialChoice(Material.valueOf(config.getString(name + ".Addition"))))
-                        : new RecipeChoice.ExactChoice(RSVItem.getItem(config.getString(name + ".Addition"))));
+    public RSVSmithingRecipe(@Nonnull FileConfiguration config, @Nonnull String name, @Nonnull RealisticSurvivalPlugin plugin) {
+        super(new NamespacedKey(plugin, name), RSVRecipe.getResult(config, name),
+                RSVRecipe.getRecipeChoice((config.getString(name + ".Base"))), RSVRecipe.getRecipeChoice((config.getString(name + ".Addition"))));
     }
-
 }

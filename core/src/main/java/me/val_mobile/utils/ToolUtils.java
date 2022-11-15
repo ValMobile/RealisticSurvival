@@ -84,52 +84,53 @@ public class ToolUtils {
 
     // This is called AFTER BestToolsHandler, so the Utils can affect the Handler
     public ToolUtils(RealisticSurvivalPlugin plugin) {
-
         this.plugin = Objects.requireNonNull(plugin, "Main must not be null");
-        Objects.requireNonNull(plugin.toolHandler, "ToolsHandler must be instantiated before ToolUtils!");
+        Objects.requireNonNull(plugin.getToolHandler(), "ToolsHandler must be instantiated before ToolUtils!");
+
+        final ToolHandler handler = plugin.getToolHandler();
 
         // Register valid weapons
         for (String weapon : weapons) {
             if (Material.getMaterial(weapon) != null) {
-                plugin.toolHandler.weapons.add(Material.getMaterial(weapon));
+                handler.weapons.add(Material.getMaterial(weapon));
             }
         }
 
         // Register all InstaBreaksByHand
         for (String s : instaBreakableByHand) {
-            addToMap(s, plugin.toolHandler.instaBreakableByHand);
+            addToMap(s, handler.instaBreakableByHand);
         }
 
         // Hoes
         for (String s : hoes) {
-            addToMap(s, plugin.toolHandler.hoes);
+            addToMap(s, handler.hoes);
         }
 
         // Pickaxes
         for (String s : pickaxes) {
-            addToMap(s, plugin.toolHandler.pickaxes);
+            addToMap(s, handler.pickaxes);
         }
 
         // Axes
         for (String s : axes) {
-            addToMap(s, plugin.toolHandler.axes);
+            addToMap(s, handler.axes);
         }
 
         // Shovels
         for (String s : shovels) {
-            addToMap(s, plugin.toolHandler.shovels);
+            addToMap(s, handler.shovels);
         }
 
         // Swords
         for (String s : swords) {
-            addToMap(s, plugin.toolHandler.swords);
+            addToMap(s, handler.swords);
         }
 
 
-        plugin.toolHandler.allTools.addAll(Arrays.asList(defaultMats));
+        handler.allTools.addAll(Arrays.asList(defaultMats));
         for (String s : netheriteTools) {
             if (Material.getMaterial(s) != null) {
-                plugin.toolHandler.allTools.add(Material.getMaterial(s));
+                handler.allTools.add(Material.getMaterial(s));
             }
         }
 
@@ -182,7 +183,7 @@ public class ToolUtils {
     }
 
     private void addToMap(Material mat, ToolHandler.Tool tool) {
-        Objects.requireNonNull(Objects.requireNonNull(plugin.toolHandler, "ToolHandler must not be null").
+        Objects.requireNonNull(Objects.requireNonNull(plugin.getToolHandler(), "ToolHandler must not be null").
                         toolMap, "ToolMap must not be null")
                 .put(Objects.requireNonNull(mat, "Material must not be null"),
                         Objects.requireNonNull(tool, "Tool must not be null"));

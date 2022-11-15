@@ -23,37 +23,33 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.datafix.DataFixers;
 import net.minecraft.util.datafix.fixes.References;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Guardian;
+import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Guardian;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public enum CustomEntities_v1_17_R1 {
 
-//    ENDERMAN_ALLY("enderman_ally", org.bukkit.entity.EntityType.ENDERMAN.getTypeId(), EntityType.ENDERMAN, Enderman.class, EndermanAlly.class),
-//    FIRE_DRAGON("fire_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EnderDragon.class, FireDragon.class),
-//    ICE_DRAGON("ice_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EnderDragon.class, IceDragon.class),
-//    LIGHTNING_DRAGON("lightning_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, EnderDragon.class, LightningDragon.class),
-//    SEA_SERPENT("sea_serpent", org.bukkit.entity.EntityType.ELDER_GUARDIAN.getTypeId(), EntityType.ELDER_GUARDIAN, ElderGuardian.class, SeaSerpent.class),
-//    SIREN("siren", org.bukkit.entity.EntityType.GUARDIAN.getTypeId(), EntityType.GUARDIAN, Guardian.class, Siren.class);
-TEST("test", org.bukkit.entity.EntityType.GUARDIAN.getTypeId(), EntityType.GUARDIAN, net.minecraft.world.entity.monster.Guardian.class, Guardian.class);
+    ENDERMAN_ALLY("enderman_ally", org.bukkit.entity.EntityType.ENDERMAN.getTypeId(), EntityType.ENDERMAN, EnderMan.class, EndermanAlly_v1_17_R1.class),
+    FIRE_DRAGON("fire_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, net.minecraft.world.entity.boss.enderdragon.EnderDragon.class, FireDragon_v1_17_R1.class),
+    ICE_DRAGON("ice_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, net.minecraft.world.entity.boss.enderdragon.EnderDragon.class, IceDragon_v1_17_R1.class),
+    LIGHTNING_DRAGON("lightning_dragon", org.bukkit.entity.EntityType.ENDER_DRAGON.getTypeId(), EntityType.ENDER_DRAGON, net.minecraft.world.entity.boss.enderdragon.EnderDragon.class, LightningDragon_v1_17_R1.class),
+    SEA_SERPENT("sea_serpent", org.bukkit.entity.EntityType.ELDER_GUARDIAN.getTypeId(), EntityType.ELDER_GUARDIAN, net.minecraft.world.entity.monster.ElderGuardian.class, SeaSerpent_v1_17_R1.class),
+    SIREN("siren", org.bukkit.entity.EntityType.GUARDIAN.getTypeId(), EntityType.GUARDIAN, Guardian.class, Siren_v1_17_R1.class);
 
-    public static List<Entity> customEntities = new ArrayList<>();
+    private final String name;
+    private final int id;
+    private final EntityType<?> entityType;
+    private final ResourceLocation minecraftKey;
+    private final Class<? extends Mob> nmsClass;
+    private final Class<? extends Entity> customClass;
 
-    private String name;
-    private int id;
-    private EntityType<?> entityType;
-    private ResourceLocation minecraftKey;
-    private Class<? extends Mob> nmsClass;
-    private Class<? extends Entity> customClass;
-
-    private CustomEntities_v1_17_R1(String name, int id, EntityType entityType, Class<? extends Mob> nmsClass,
+    CustomEntities_v1_17_R1(String name, int id, EntityType<?> entityType, Class<? extends Mob> nmsClass,
                                     Class<? extends Entity> customClass) {
         this.name = name;
         this.id = id;
@@ -65,38 +61,22 @@ TEST("test", org.bukkit.entity.EntityType.GUARDIAN.getTypeId(), EntityType.GUARD
 
     public static void registerEntities() {
         Map<String, Type<?>> types = (Map<String, Type<?>>) DataFixers.getDataFixer().getSchema(DataFixUtils.makeKey(SharedConstants.getCurrentVersion().getWorldVersion())).findChoiceType(References.ENTITY).types();
-//        unfreezeRegistry();
-//        registerEntity("fire_dragon", FireDragon::new, types);
-//        registerEntity("ice_dragon", IceDragon::new, types);
-//        registerEntity("lightning_dragon", LightningDragon::new, types);
-//        registerEntity("enderman_ally", EndermanAlly::new, types);
-//        registerEntity("sea_serpent", SeaSerpent::new, types);
-//        registerEntity("siren", Siren::new, types);
-//        Registry.ENTITY_TYPE.freeze();
+        registerEntity("fire_dragon", FireDragon_v1_17_R1::new, types);
+        registerEntity("ice_dragon", IceDragon_v1_17_R1::new, types);
+        registerEntity("lightning_dragon", LightningDragon_v1_17_R1::new, types);
+        registerEntity("enderman_ally", EndermanAlly_v1_17_R1::new, types);
+        registerEntity("sea_serpent", SeaSerpent_v1_17_R1::new, types);
+        registerEntity("siren", Siren_v1_17_R1::new, types);
     }
 
     private static void registerEntity(String type, EntityType.EntityFactory customMob, Map<String, Type<?>> types) {
-        if (!Registry.ENTITY_TYPE.getOptional(new ResourceLocation(type)).isPresent()) {
+        if (Registry.ENTITY_TYPE.getOptional(new ResourceLocation(type)).isEmpty()) {
             String customName = "minecraft:realisticsurvival_" + type;
             types.put(customName, types.get("minecraft:" + type));
-            EntityType.Builder<net.minecraft.world.entity.Entity> a = EntityType.Builder.of(customMob, MobCategory.MONSTER);
+            EntityType.Builder<Entity> a = EntityType.Builder.of(customMob, MobCategory.MONSTER);
             Registry.register(Registry.ENTITY_TYPE, customName, a.build(customName));
         }
     }
-
-//    private static void unfreezeRegistry() {
-//        Class<MappedRegistry> registryClass = MappedRegistry.class;
-//        try {
-//            Field intrusiveHolderCache = registryClass.getDeclaredField(ObfuscatedFields.INTRUSIVE_HOLDER_CACHE);
-//            intrusiveHolderCache.setAccessible(true);
-//            intrusiveHolderCache.set(Registry.ENTITY_TYPE, new IdentityHashMap<EntityType<?>, Holder.Reference<EntityType<?>>>());
-//            Field frozen = registryClass.getDeclaredField(ObfuscatedFields.FROZEN);
-//            frozen.setAccessible(true);
-//            frozen.set(Registry.ENTITY_TYPE, false);
-//        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public static void unregisterEntities() {}
 
@@ -114,7 +94,7 @@ TEST("test", org.bukkit.entity.EntityType.GUARDIAN.getTypeId(), EntityType.GUARD
         return id;
     }
 
-    public EntityType getEntityType() {
+    public EntityType<?> getEntityType() {
         return entityType;
     }
 

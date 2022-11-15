@@ -18,6 +18,7 @@ package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
+import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.iceandfire.ItemConfig;
 import me.val_mobile.data.iceandfire.RecipesConfig;
 import me.val_mobile.data.iceandfire.UserConfig;
@@ -25,7 +26,7 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
-public class IceFireModule extends me.val_mobile.data.RSVModule {
+public class IceFireModule extends RSVModule {
 
     private final RealisticSurvivalPlugin plugin;
 
@@ -72,7 +73,7 @@ public class IceFireModule extends me.val_mobile.data.RSVModule {
         }
     }
 
-    public IceFireEvents getDragonGearEvent() {
+    public IceFireEvents getEvents() {
         return events;
     }
 }

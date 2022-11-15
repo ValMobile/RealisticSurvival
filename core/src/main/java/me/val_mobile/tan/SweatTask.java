@@ -126,8 +126,8 @@ public class SweatTask extends BukkitRunnable {
     }
 
     public void start() {
-        int tickSpeed = config.getInt("Temperature.Sweating.TickSpeed"); // get the tick speed
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        int tickPeriod = config.getInt("Temperature.Sweating.TickPeriod"); // get the tick period
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static boolean hasTask(UUID id) {

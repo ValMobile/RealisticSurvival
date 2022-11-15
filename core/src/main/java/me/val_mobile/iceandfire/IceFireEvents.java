@@ -24,6 +24,7 @@ import me.val_mobile.spartanandfire.FreezeTask;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -31,17 +32,23 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * IceFireEvents is a class containing listener methods
  * that activate fire, ice, and lighting dragon weapon abilities
  * @author Val_Mobile
- * @version 1.2.3-DEV-1
+ * @version 1.2.3-DEV-2
  * @since 1.0
  */
 public class IceFireEvents extends ModuleEvents implements Listener {
@@ -69,7 +76,6 @@ public class IceFireEvents extends ModuleEvents implements Listener {
         Entity attacker = event.getDamager(); // get the attacker
 
         if (shouldEventBeRan(defender) && shouldEventBeRan(attacker)) {
-            Utils util = RealisticSurvivalPlugin.getUtil();
             double damage = event.getDamage();
 
             if (attacker instanceof LivingEntity living) {
@@ -84,30 +90,32 @@ public class IceFireEvents extends ModuleEvents implements Listener {
 
                             switch (type) {
                                 case "dragonbone_flamed" -> {
-                                    if (util.hasNbtTag(defender, "rsvmob")) {
-                                        if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
+                                    if (DragonUtils.isMob(defender)) {
+                                        if (!DragonUtils.getMob(defender).equals("fire_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                         }
                                     }
 
                                     if (!BurnTask.hasTask(defender.getUniqueId())) {
                                         int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                        int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+                                        int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
 
-                                        new BurnTask(plugin, defender, fireTicks, tickSpeed).start();
+                                        new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
                                     }
                                 }
                                 case "dragonbone_iced" -> {
-                                    if (util.hasNbtTag(defender, "rsvmob")) {
-                                        if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
+                                    if (DragonUtils.isMob(defender)) {
+                                        if (!DragonUtils.getMob(defender).equals("ice_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                         }
                                     }
-                                    new FreezeTask(plugin, module, name, defender).start();
+                                    if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                                        new FreezeTask(plugin, module, name, defender).start();
+                                    }
                                 }
                                 case "dragonbone_lightning" -> {
-                                    if (util.hasNbtTag(defender, "rsvmob")) {
-                                        if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("lightning_dragon")) {
+                                    if (DragonUtils.isMob(defender)) {
+                                        if (!DragonUtils.getMob(defender).equals("lightning_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                         }
                                     }
@@ -130,13 +138,15 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                 case "dragonsteel_fire" -> {
                                     if (!BurnTask.hasTask(defender.getUniqueId())) {
                                         int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                        int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+                                        int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
 
-                                        new BurnTask(plugin, defender, fireTicks, tickSpeed).start();
+                                        new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
                                     }
                                 }
                                 case "dragonsteel_ice" -> {
-                                    new FreezeTask(plugin, module, name, defender).start();
+                                    if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                                        new FreezeTask(plugin, module, name, defender).start();
+                                    }
                                 }
                                 case "dragonsteel_lightning" -> {
                                     if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
@@ -202,30 +212,32 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                         damage *= config.getDouble("Items." + name + ".AttackDamageMultiplier");
                                         switch (materialType) {
                                             case "dragonbone_flamed" -> {
-                                                if (util.hasNbtTag(defender, "rsvmob")) {
-                                                    if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
+                                                if (DragonUtils.isMob(defender)) {
+                                                    if (!DragonUtils.getMob(defender).equals("fire_dragon")) {
                                                         damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                                     }
                                                 }
 
                                                 if (!BurnTask.hasTask(defender.getUniqueId())) {
                                                     int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                                    int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+                                                    int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
 
-                                                    new BurnTask(plugin, defender, fireTicks, tickSpeed).start();
+                                                    new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
                                                 }
                                             }
                                             case "dragonbone_iced" -> {
-                                                if (util.hasNbtTag(defender, "rsvmob")) {
-                                                    if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
+                                                if (DragonUtils.isMob(defender)) {
+                                                    if (!DragonUtils.getMob(defender).equals("ice_dragon")) {
                                                         damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                                     }
                                                 }
-                                                new FreezeTask(plugin, module, name, defender).start();
+                                                if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                                                    new FreezeTask(plugin, module, name, defender).start();
+                                                }
                                             }
                                             case "dragonbone_lightning" -> {
-                                                if (util.hasNbtTag(defender, "rsvmob")) {
-                                                    if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("llightning_dragon")) {
+                                                if (DragonUtils.isMob(defender)) {
+                                                    if (!DragonUtils.getMob(defender).equals("llightning_dragon")) {
                                                         damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                                     }
                                                 }
@@ -249,13 +261,15 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                             case "dragonsteel_fire" -> {
                                                 if (!BurnTask.hasTask(defender.getUniqueId())) {
                                                     int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                                    int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+                                                    int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
 
-                                                    new BurnTask(plugin, defender, fireTicks, tickSpeed).start();
+                                                    new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
                                                 }
                                             }
                                             case "dragonsteel_ice" -> {
-                                                new FreezeTask(plugin, module, name, defender).start();
+                                                if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                                                    new FreezeTask(plugin, module, name, defender).start();
+                                                }
                                             }
                                             case "dragonsteel_lightning" -> {
                                                 if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
@@ -274,8 +288,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                                     }
                                                 }
                                             }
-                                            default -> {
-                                            }
+                                            default -> {}
                                         }
                                     }
                                 }
@@ -364,14 +377,124 @@ public class IceFireEvents extends ModuleEvents implements Listener {
             if (e instanceof Squid) {
                 if (config.getBoolean("SeaSerpents.Enabled.Enabled")) {
                     if (Math.random() <= config.getDouble("SeaSerpents.SpawnChance")) {
-                        Utils.spawnSeaSerpent(e.getLocation(), plugin);
+                        Utils.spawnSeaSerpent(e.getLocation()).addEntityToWorld(e.getWorld());
                         event.setCancelled(true);
                     }
                 }
                 else if (config.getBoolean("Sirens.Enabled")) {
                     if (Math.random() <= config.getDouble("Sirens.SpawnChance")) {
-                        Utils.spawnSiren(e.getLocation(), plugin);
+                        Utils.spawnSiren(e.getLocation()).addEntityToWorld(e.getWorld());
                         event.setCancelled(true);
+                    }
+                }
+            }
+            if (e instanceof EnderDragon && !(DragonUtils.isDragon(e))) {
+                if (config.getBoolean("Dragons.Enabled")) {
+                    if (Math.random() <= config.getDouble("Dragons.SpawnChance")) {
+                        double val = Math.random();
+                        double fireChance = config.getDouble("Dragons.FireDragon.Enabled.Chance");
+                        double iceChance = config.getDouble("Dragons.IceDragon.Enabled.Chance");
+
+                        if (val <= fireChance) {
+                            Utils.spawnFireDragon(e.getLocation()).addEntityToWorld(e.getWorld());
+                        }
+                        else if (val <= fireChance + iceChance) {
+                            Utils.spawnIceDragon(e.getLocation()).addEntityToWorld(e.getWorld());
+                        }
+                        else {
+                            Utils.spawnLightningDragon(e.getLocation()).addEntityToWorld(e.getWorld());
+                        }
+                        event.setCancelled(true);
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onLaunch(ProjectileLaunchEvent event) {
+        Projectile proj = event.getEntity();
+        if (shouldEventBeRan(proj)) {
+            if (proj instanceof DragonFireball) {
+                ProjectileSource shooter = proj.getShooter();
+
+                if (shooter instanceof EnderDragon dragon) {
+                    if (DragonUtils.isDragon(dragon)) {
+                        DragonBreed breed = DragonUtils.getBreed(dragon);
+
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Location target = dragon.getEyeLocation().add(proj.getVelocity().normalize().multiply(100));
+
+                                switch (breed) {
+                                    case FIRE -> {
+                                        if (Math.random() < config.getDouble("Dragons.FireDragon.BreathAttack.Chance")) {
+                                            DragonUtils.triggerBreathFireAttack(dragon, target);
+                                        }
+                                        else {
+                                            DragonUtils.triggerExplosionFireAttack(dragon, target);
+                                        }
+                                    }
+                                    case ICE -> {
+                                        if (Math.random() < config.getDouble("Dragons.IceDragon.BreathAttack.Chance")) {
+                                            DragonUtils.triggerBreathIceAttack(dragon, target);
+                                        }
+                                        else {
+                                            DragonUtils.triggerExplosionIceAttack(dragon, target);
+                                        }
+                                    }
+                                    case LIGHTNING -> {
+                                        if (Math.random() < config.getDouble("Dragons.LightningDragon.BreathAttack.Chance")) {
+                                            DragonUtils.triggerBreathLightningAttack(dragon, target);
+                                        }
+                                        else {
+                                            DragonUtils.triggerExplosionLightningAttack(dragon, target);
+                                        }
+                                    }
+                                    default -> {}
+                                }
+                                proj.remove();
+                            }
+                        }.runTaskLater(plugin, 2L);
+
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onDeath(EntityDeathEvent event) {
+        LivingEntity e = event.getEntity();
+        if (shouldEventBeRan(e)) {
+            Location loc = e.getLocation();
+            World world = loc.getWorld();
+            Collection<ItemStack> loots = new ArrayList<>();
+
+            if (DragonUtils.isMob(e)) {
+                switch (DragonUtils.getMob(e)) {
+                    case "fire_dragon", "ice_dragon", "lightning_dragon" -> {
+                        if (!(e instanceof Dragon)) {
+                            loots = DragonUtils.generateLoot((EnderDragon) e);
+                        }
+                    }
+                    case "sea_serpent" -> {
+                        if (!(e instanceof SeaSerpent)) {
+                            loots = SeaSerpentUtils.generateLoot((ElderGuardian) e);
+                        }
+                    }
+                    case "siren" -> {
+                        if (!(e instanceof Siren)) {
+                            Utils.dropLooting(config.getConfigurationSection("Sirens.Drops.ShinyScales"), RSVItem.getItem("shiny_scale"), e.getKiller() == null ? null : e.getKiller().getInventory().getItemInMainHand(), loc);
+                        }
+                    }
+                    default -> {}
+                }
+
+                if (!loots.isEmpty()) {
+                    for (ItemStack loot : loots) {
+                        world.dropItemNaturally(loc, loot);
                     }
                 }
             }

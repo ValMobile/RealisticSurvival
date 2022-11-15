@@ -18,30 +18,35 @@ package me.val_mobile.spartanweaponry;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Tameable;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 public class SweepAttackTask extends BukkitRunnable {
 
+    private final static Collection<UUID> mobs = new ArrayList<>();
     private final RealisticSurvivalPlugin plugin;
     private final List<Entity> nearby;
-    private final List<Entity> attacked = new ArrayList<>();
+    private final List<UUID> attacked = new ArrayList<>();
     private final Entity attacker;
     private final Entity defender;
     private final double damage;
+    private final boolean checkPet;
 
-    public SweepAttackTask(RealisticSurvivalPlugin plugin, List<Entity> nearby, Entity attacker, Entity defender, double damage) {
+    public SweepAttackTask(RealisticSurvivalPlugin plugin, List<Entity> nearby, Entity attacker, Entity defender, double damage, boolean checkPet) {
         this.plugin = plugin;
         this.attacker = attacker;
         this.defender = defender;
         this.damage = damage;
         this.nearby = nearby;
+        this.checkPet = checkPet;
     }
 
     @Override
@@ -50,14 +55,17 @@ public class SweepAttackTask extends BukkitRunnable {
         Location defLoc = defender.getLocation();
         for (Entity e : nearby) {
             if (!(e.getUniqueId().equals(attacker.getUniqueId()) || e.getUniqueId().equals(defender.getUniqueId()))) {
-                if (e instanceof LivingEntity) {
-                    eLoc = e.getLocation();
-                    if (Math.abs(eLoc.getY() - defLoc.getY()) <= 0.25) {
-                        if (Math.hypot(eLoc.getX() - defLoc.getX(), eLoc.getZ() - defLoc.getZ()) <= 1.0) {
-                            if (!RealisticSurvivalPlugin.getUtil().hasNbtTag(e, "sweepimmune")) {
-                                ((LivingEntity) e).damage(damage, attacker);
-                                attacked.add(e);
-                                RealisticSurvivalPlugin.getUtil().addNbtTag(e, "sweepimmune", 0, PersistentDataType.INTEGER);
+                if (e instanceof LivingEntity living) {
+                    if (!(isPet(living) && checkPet)) {
+                        eLoc = living.getLocation();
+                        if (Math.abs(eLoc.getY() - defLoc.getY()) <= 0.25) {
+                            if (Math.hypot(eLoc.getX() - defLoc.getX(), eLoc.getZ() - defLoc.getZ()) <= 1.0) {
+                                UUID id = living.getUniqueId();
+                                if (!mobs.contains(id)) {
+                                    living.damage(damage, attacker);
+                                    mobs.add(id);
+                                    attacked.add(id);
+                                }
                             }
                         }
                     }
@@ -65,6 +73,17 @@ public class SweepAttackTask extends BukkitRunnable {
             }
         }
         removeImmunity();
+    }
+
+    private boolean isPet(LivingEntity entity) {
+        if (entity instanceof Tameable tameable) {
+            Player owner = (Player) tameable.getOwner();
+
+            if (owner != null) {
+                return owner.getUniqueId().equals(attacker.getUniqueId());
+            }
+        }
+        return false;
     }
 
     public void start() {
@@ -75,8 +94,8 @@ public class SweepAttackTask extends BukkitRunnable {
         new BukkitRunnable() {
             @Override
             public void run() {
-                for (Entity e : attacked) {
-                    e.getPersistentDataContainer().remove(new NamespacedKey(plugin, "sweepimmune"));
+                for (UUID id : attacked) {
+                    mobs.remove(id);
                 }
             }
         }.runTaskLater(plugin, 1L);

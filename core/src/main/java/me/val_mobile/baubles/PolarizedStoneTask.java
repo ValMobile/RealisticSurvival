@@ -69,10 +69,9 @@ public class PolarizedStoneTask extends BukkitRunnable {
                     Vector pVector = pLoc.toVector();
                     for (Entity entity : player.getNearbyEntities(maxRadius, maxRadius, maxRadius)) {
                         if (entity.getType() == EntityType.EXPERIENCE_ORB || entity.getType() == EntityType.DROPPED_ITEM) {
-                            Location eLoc = entity.getLocation();
-                            Vector eVector = eLoc.toVector();
-
-                            entity.teleport(entity.getLocation().subtract(eVector.subtract(pVector).normalize().multiply(pullForce)).setDirection(pLoc.getDirection()));
+                            if (entity.getLocation().distanceSquared(pLoc) > 0.25) {
+                                entity.setVelocity(pVector.subtract(entity.getLocation().toVector()).normalize().multiply(pullForce));
+                            }
                         }
                     }
                 }
@@ -91,8 +90,8 @@ public class PolarizedStoneTask extends BukkitRunnable {
     }
 
     public void start() {
-        int tickSpeed = config.getInt("Items.polarized_stone.TickTime"); // get the tick speed
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        int tickPeriod = config.getInt("Items.polarized_stone.TickPeriod"); // get the tick period
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static boolean hasTask(UUID id) {

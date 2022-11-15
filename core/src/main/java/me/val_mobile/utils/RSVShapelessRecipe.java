@@ -25,30 +25,26 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapelessRecipe;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
-public class RSVShapelessRecipe extends ShapelessRecipe {
+public class RSVShapelessRecipe extends ShapelessRecipe implements RSVRecipe {
 
-    private final Collection<Object> ingredients = new ArrayList<>();
-
-    public RSVShapelessRecipe(FileConfiguration config, String name, RealisticSurvivalPlugin plugin) {
-        super(new NamespacedKey(plugin, name),
-                Objects.equals(config.getString(name + ".Result.Item"), config.getString(name + ".Result.Item").toUpperCase())
-                        ? new ItemStack(Material.valueOf(config.getString(name + ".Result.Item")), config.getInt(name + ".Result.Amount")) :
-                        RSVItem.getItem(config.getString(name + ".Result.Item")).resize(config.getInt(name + ".Result.Amount")));
+    public RSVShapelessRecipe(@Nonnull FileConfiguration config, @Nonnull String name, @Nonnull RealisticSurvivalPlugin plugin) {
+        super(new NamespacedKey(plugin, name), RSVRecipe.getResult(config, name));
 
         String ingredientsPath = name + ".Ingredients";
 
         List<String> ingredients = config.getStringList(ingredientsPath);
 
+        Collection<Object> ingredients1 = new ArrayList<>();
         for (String text : ingredients) {
-            this.ingredients.add(getItem(text));
+            ingredients1.add(parseIngredient(text));
         }
 
-        for (Object item : this.ingredients) {
+        for (Object item : ingredients1) {
             if (item instanceof Material) {
                 this.addIngredient((Material) item);
             }
@@ -59,21 +55,5 @@ public class RSVShapelessRecipe extends ShapelessRecipe {
                 this.addIngredient(new RecipeChoice.ExactChoice((ItemStack) item));
             }
         }
-    }
-
-    public Object getItem(String text) {
-        if (text.isEmpty())
-            return null;
-        // text is a material
-        if (text.contains("Tag.")) {
-            return Utils.getTag(text.substring(4));
-        }
-        else if (Objects.equals(text, text.toUpperCase())) {
-            return new ItemStack(Material.valueOf(text));
-        }
-        // text is an item
-        if (RSVItem.getItemMap().containsKey(text))
-            return RSVItem.getItem(text);
-        return null;
     }
 }

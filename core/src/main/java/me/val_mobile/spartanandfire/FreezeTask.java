@@ -29,11 +29,11 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 public class FreezeTask extends BukkitRunnable {
 
+    private static final Map<UUID, FreezeTask> tasks = new HashMap<>();
     private final Entity entity;
     private final RealisticSurvivalPlugin plugin;
     private final Collection<FrozenBlock> blocks = new ArrayList<>();
@@ -65,6 +65,7 @@ public class FreezeTask extends BukkitRunnable {
         this.soundName = config.getString("Dragons.IceDragon.FreezeAbility.Sound.Sound");
         this.duration = config.getInt("Dragons.IceDragon.FreezeAbility.FrozenDuration") * stageMultiplier;
         this.wasOriginallyFrozen = entity instanceof LivingEntity living && !living.hasAI();
+        tasks.put(entity.getUniqueId(), this);
     }
 
     public FreezeTask(RealisticSurvivalPlugin plugin, RSVModule module, String itemName, Entity entity) {
@@ -82,6 +83,7 @@ public class FreezeTask extends BukkitRunnable {
         this.soundName = config.getString("Items." + itemName + ".FreezeAbility.Sound.Sound");
         this.duration = config.getInt("Items." + itemName + ".FreezeAbility.FrozenDuration");
         this.wasOriginallyFrozen = entity instanceof LivingEntity living && !living.hasAI();
+        tasks.put(entity.getUniqueId(), this);
     }
 
     @Override
@@ -92,7 +94,7 @@ public class FreezeTask extends BukkitRunnable {
             ((LivingEntity) entity).setAI(false);
         }
         // freeze the entity
-        RealisticSurvivalPlugin.getUtil().setZeroKb(entity);
+        Utils.setZeroKb(entity);
 
         // encase the entity with ice
         Location loc = entity.getLocation().clone(); // get the location
@@ -113,11 +115,26 @@ public class FreezeTask extends BukkitRunnable {
 
         // remove the ice block after some time
         if (encaseIce) {
-            new UnfreezeTask(plugin, entity, blocks, duration, wasOriginallyFrozen).start();
+            if (!UnfreezeTask.hasTask(entity.getUniqueId())) {
+                new UnfreezeTask(plugin, entity, blocks, duration, wasOriginallyFrozen).start();
+            }
         }
+
+        tasks.remove(entity.getUniqueId());
     }
 
     public void start() {
         runTask(plugin);
+    }
+
+    public static Map<UUID, FreezeTask> getTasks() {
+        return tasks;
+    }
+
+    public static boolean hasTask(UUID id) {
+        if (tasks.containsKey(id)) {
+            return tasks.get(id) != null;
+        }
+        return false;
     }
 }

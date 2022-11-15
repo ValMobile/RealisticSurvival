@@ -16,52 +16,9 @@
  */
 package me.val_mobile.data;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.RSVItem;
-import org.bukkit.configuration.file.FileConfiguration;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-public class ModuleItems {
-
-    private final RSVModule module;
-    private final Map<String, RSVItem> items = new HashMap<>();
+public class ModuleItems extends ItemManager {
 
     public ModuleItems(RSVModule module) {
-        this.module = module;
-    }
-
-    public void initialize() {
-        FileConfiguration itemConfig = module.getItemConfig().getConfig();
-        FileConfiguration userConfig = module.getUserConfig().getConfig();
-        Set<String> keys = itemConfig.getKeys(false);
-        for (String key : keys) {
-            if (userConfig.getBoolean("Items." + key + ".Enabled.EnableAllVersions")) {
-                RSVItem item = new RSVItem(module, key);
-                items.putIfAbsent(key, item);
-            }
-            else {
-                if (userConfig.contains("Items." + key + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion())) {
-                    if (userConfig.getBoolean("Items." + key + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion())) {
-                        RSVItem item = new RSVItem(module, key);
-                        items.putIfAbsent(key, item);
-                    }
-                }
-            }
-        }
-    }
-
-    public RSVModule getModule() {
-        return module;
-    }
-
-    public Map<String, RSVItem> getItems() {
-        return items;
-    }
-
-    public RSVItem getItem(String name) {
-        return items.get(name);
+        super(module);
     }
 }

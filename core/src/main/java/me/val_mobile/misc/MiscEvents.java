@@ -23,18 +23,23 @@ import me.val_mobile.utils.*;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.inventory.*;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerStatisticIncrementEvent;
+import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.Set;
 
 public class MiscEvents implements Listener {
@@ -59,12 +64,11 @@ public class MiscEvents implements Listener {
         for (RSVModule module : rsvModules) {
             if (module.isEnabled()) {
                 if (module.getAllowedWorlds().contains(player.getWorld().getName())) {
-                    Map<String, Recipe> map = module.getModuleRecipes().getRecipeMap();
-                    Set<String> keySet = map.keySet();
+                    Collection<NamespacedKey> keys = module.getModuleRecipes().getRecipeKeys();
                     FileConfiguration config = module.getUserConfig().getConfig();
-                    for (String name : keySet) {
-                        if (config.getBoolean("Recipes." + name + ".Unlock")) {
-                            Utils.discoverRecipe(player, map.get(name));
+                    for (NamespacedKey key : keys) {
+                        if (config.getBoolean("Recipes." + key.getKey() + ".Unlock")) {
+                            Utils.discoverRecipe(player, Bukkit.getRecipe(key));
                         }
                     }
                 }
@@ -118,11 +122,11 @@ public class MiscEvents implements Listener {
                         FileConfiguration userConfig = RSVModule.getModule(RSVItem.getModuleNameFromItem(base)).getUserConfig().getConfig();
 
                         if (userConfig.getBoolean("Recipes." + rsvName + ".Enabled.EnableAllVersions"))
-                            event.setResult(RealisticSurvivalPlugin.getUtil().getNetheriteRSVWeapon(base));
+                            event.setResult(Utils.getNetheriteRSVWeapon(base));
                         else {
-                            if (userConfig.contains("Recipes." + rsvName + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion())) {
-                                if (userConfig.getBoolean("Recipes." + rsvName + ".Enabled.Versions." + RealisticSurvivalPlugin.getUtil().getMinecraftVersion()))
-                                    event.setResult(RealisticSurvivalPlugin.getUtil().getNetheriteRSVWeapon(base));
+                            if (userConfig.contains("Recipes." + rsvName + ".Enabled.Versions." + Utils.getMinecraftVersion())) {
+                                if (userConfig.getBoolean("Recipes." + rsvName + ".Enabled.Versions." + Utils.getMinecraftVersion()))
+                                    event.setResult(Utils.getNetheriteRSVWeapon(base));
                                 else
                                     event.setResult(null);
                             }
@@ -142,7 +146,7 @@ public class MiscEvents implements Listener {
 
         if (!event.isCancelled()) {
             if (RSVItem.isRSVItem(item)) {
-                if (RSVItem.hasCustomDurability(item)) {
+                if (Utils.hasCustomDurability(item)) {
                     Utils.changeDurability(item, -event.getDamage(), true);
                 }
             }
@@ -175,31 +179,25 @@ public class MiscEvents implements Listener {
     @EventHandler
     public void onAnvil(PrepareAnvilEvent event) {
         AnvilInventory inv = event.getInventory(); // get the anvil inventory
-        String worldName = event.getView().getPlayer().getWorld().getName();
-        Set<String> allowedWorlds;
-        Set<RSVAnvilRecipe> anvilRecipes;
-        boolean ran = false;
+        Set<RSVAnvilRecipe> anvilRecipes = plugin.getMiscRecipes().getAnvilRecipes();
 
-        for (RSVModule module : RSVModule.getModules().values()) {
-            allowedWorlds = module.getAllowedWorlds();
-            if (allowedWorlds.contains(worldName)) {
-                anvilRecipes = module.getModuleRecipes().getAnvilRecipes();
-                for (RSVAnvilRecipe recipe : anvilRecipes) {
-                    if (recipe.isValidRecipe(inv)) {
-                        recipe.useRecipe(event);
-                        ran = true;
-                        break;
-                    }
-                }
+        for (RSVAnvilRecipe recipe : anvilRecipes) {
+            if (recipe.isValidRecipe(inv)) {
+                recipe.useRecipe(event);
+                break;
             }
         }
 
-        if (!ran) {
-            anvilRecipes = plugin.getMiscRecipes().getAnvilRecipes();
-            for (RSVAnvilRecipe recipe : anvilRecipes) {
-                if (recipe.isValidRecipe(inv)) {
-                    recipe.useRecipe(event);
-                    break;
+        ItemStack result = event.getResult();
+
+        if (RSVItem.isRSVItem(inv.getItem(0)) && Utils.isItemReal(result)) {
+            ItemStack second = inv.getItem(1);
+            if (Utils.isItemReal(second)) {
+                if (second.getItemMeta() instanceof EnchantmentStorageMeta enchMeta) {
+                    if (enchMeta.hasStoredEnchant(Enchantment.DAMAGE_ALL)) {
+                        Utils.updateDamageLore(result, enchMeta.getEnchants().entrySet());
+                        event.setResult(result);
+                    }
                 }
             }
         }
@@ -276,34 +274,157 @@ public class MiscEvents implements Listener {
                     }
 
                     if (brewInv.getIngredient() != null) {
-                        String worldName = player.getWorld().getName();
-                        Set<String> allowedWorlds;
-                        Set<RSVBrewingRecipe> brewingRecipes;
+                        Set<RSVBrewingRecipe> brewingRecipes = plugin.getMiscRecipes().getBrewingRecipes();
 
-                        boolean ran = false;
-
-                        for (RSVModule module : RSVModule.getModules().values()) {
-                            allowedWorlds = module.getAllowedWorlds();
-                            if (allowedWorlds.contains(worldName)) {
-                                brewingRecipes = module.getModuleRecipes().getBrewingRecipes();
-                                for (RSVBrewingRecipe recipe : brewingRecipes) {
-                                    if (recipe.isValidRecipe(brewInv)) {
-                                        recipe.startBrewing(brewInv);
-                                        ran = true;
-                                        break;
-                                    }
-                                }
+                        for (RSVBrewingRecipe recipe : brewingRecipes) {
+                            if (recipe.isValidRecipe(brewInv)) {
+                                recipe.startBrewing(brewInv);
+                                break;
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
 
-                        if (!ran) {
-                            brewingRecipes = plugin.getMiscRecipes().getBrewingRecipes();
-                            for (RSVBrewingRecipe recipe : brewingRecipes) {
-                                if (recipe.isValidRecipe(brewInv)) {
-                                    recipe.startBrewing(brewInv);
-                                    break;
-                                }
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onEnchant(EnchantItemEvent event) {
+        if (!event.isCancelled()) {
+            Utils.updateDamageLore(event.getItem(), event.getEnchantsToAdd().entrySet());
+        }
+    }
+
+//    @EventHandler(priority = EventPriority.HIGHEST)
+//    public void onDisenchant(InventoryClickEvent event) {
+//        InventoryView view = event.getView();
+//        if (view.getTopInventory() instanceof GrindstoneInventory grindInv) {
+//
+//            int slot = event.getSlot();
+//            if (slot < 3) {
+//                ItemStack cursor = event.getCursor();
+//
+//                if (Utils.isItemReal(cursor)) {
+//                    ItemStack other = grindInv.getItem(slot == 0 ? 1 : 0);
+//
+//                    boolean isCursor = RSVItem.isRSVItem(cursor);
+//                    boolean isOther = RSVItem.isRSVItem(other);
+//
+//                    int i = 2;
+//                    final ItemStack copy;
+//
+//                    if (isCursor || isOther) {
+//                        if (isCursor && isOther) {
+//                            if (RSVItem.getNameFromItem(cursor).equals(RSVItem.getNameFromItem(other))) {
+//                                int newDurability = -1;
+//                                int maxDurability = -1;
+//
+//                                if (Utils.hasCustomDurability(cursor)) {
+//                                    newDurability = Utils.getCustomDurability(cursor) + Utils.getCustomDurability(other);
+//                                    maxDurability = Utils.getMaxCustomDurability(cursor);
+//                                }
+//                                else if (cursor.getItemMeta() instanceof Damageable dmg) {
+//                                   newDurability = cursor.getType().getMaxDurability() * 2 - dmg.getDamage() - ((Damageable) other.getItemMeta()).getDamage();
+//                                   maxDurability = cursor.getType().getMaxDurability();
+//                                }
+//                                ItemStack result = cursor.clone();
+//                                ItemMeta meta = result.getItemMeta();
+//
+//                                final Set<Map.Entry<Enchantment, Integer>> entries = meta.getEnchants().entrySet();
+//
+//                                for (Map.Entry<Enchantment, Integer> entry : entries) {
+//                                    meta.removeEnchant(entry.getKey());
+//                                }
+//                                result.setItemMeta(meta);
+//                                Utils.updateDamageLore(result, null);
+//                                if (!(newDurability == -1 || maxDurability == -1)) {
+//                                    Utils.changeDurability(result, newDurability + (int) Math.floor(0.05 * maxDurability), false);
+//                                }
+//                                copy = result;
+//                            }
+//                            else {
+//                                copy = null;
+//                            }
+//                        }
+//                        else {
+//                            if (isCursor && !Utils.isItemReal(other)) {
+//                                ItemStack result = cursor.clone();
+//                                ItemMeta meta = result.getItemMeta();
+//
+//                                if (meta.hasEnchants()) {
+//                                    final Set<Map.Entry<Enchantment, Integer>> entries = meta.getEnchants().entrySet();
+//
+//                                    for (Map.Entry<Enchantment, Integer> entry : entries) {
+//                                        meta.removeEnchant(entry.getKey());
+//                                    }
+//
+//                                    result.setItemMeta(meta);
+//                                    Utils.updateDamageLore(result, null);
+//                                    copy = result;
+//                                }
+//                                else {
+//                                    copy = null;
+//                                }
+//                            }
+//                            else {
+//                                copy = null;
+//                            }
+//                        }
+//                        new BukkitRunnable() {
+//                            @Override
+//                            public void run() {
+//                                view.setItem(i, copy);
+//                            }
+//                        }.runTaskLater(plugin, 1L);
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
+
+            String message = event.getMessage();
+
+            if (message.length() > 1) {
+                String[] args = message.substring(1).split(" ");
+
+                if (args[0].equalsIgnoreCase("enchant")) {
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            if (Utils.isItemReal(player.getInventory().getItemInMainHand())) {
+                                Utils.updateDamageLore(player.getInventory().getItemInMainHand(), player.getInventory().getItemInMainHand().getItemMeta().getEnchants().entrySet());
                             }
+                        }
+                    }.runTaskLater(plugin, 1L);
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onServerCommand(ServerCommandEvent event) {
+        if (!event.isCancelled()) {
+            String message = event.getCommand();
+
+            if (message.length() > 1) {
+                String[] args = message.substring(1).split(" ");
+                if (args[0].equalsIgnoreCase("enchant")) {
+                    if (args.length > 1) {
+                        if (!(args[1] == null || args[1].isEmpty())) {
+                            Player player = Bukkit.getPlayer(args[1]);
+                            new BukkitRunnable() {
+                                @Override
+                                public void run() {
+                                    if (Utils.isItemReal(player.getInventory().getItemInMainHand())) {
+                                        Utils.updateDamageLore(player.getInventory().getItemInMainHand(), player.getInventory().getItemInMainHand().getItemMeta().getEnchants().entrySet());
+                                    }
+                                }
+                            }.runTaskLater(plugin, 1L);
                         }
                     }
                 }

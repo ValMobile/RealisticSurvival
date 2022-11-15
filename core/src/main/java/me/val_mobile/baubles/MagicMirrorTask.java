@@ -34,13 +34,13 @@ public class MagicMirrorTask extends BukkitRunnable {
     private final FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
     private int ticks = 0;
     private final int duration;
-    private final int tickSpeed;
+    private final int tickPeriod;
 
     public MagicMirrorTask(Player player, RealisticSurvivalPlugin plugin) {
         this.id = player.getUniqueId();
         this.plugin = plugin;
         this.duration = config.getInt("Items.magic_mirror.Cooldown");
-        this.tickSpeed = config.getInt("Items.magic_mirror.TickTime"); // get the tick speed
+        this.tickPeriod = config.getInt("Items.magic_mirror.TickPeriod"); // get the tick period
         tasks.put(id, this);
     }
 
@@ -50,11 +50,11 @@ public class MagicMirrorTask extends BukkitRunnable {
             tasks.remove(id);
             cancel();
         }
-        ticks += tickSpeed;
+        ticks += tickPeriod;
     }
 
     public void start() {
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static boolean hasTask(UUID id) {

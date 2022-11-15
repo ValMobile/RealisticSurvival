@@ -22,10 +22,7 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.FluidCollisionMode;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -34,17 +31,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.event.player.*;
+import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
@@ -81,19 +78,21 @@ public class SwEvents extends ModuleEvents implements Listener {
 
         if (!event.isCancelled()) {
             if (shooter != null) {
-                if (shooter instanceof Player player) {
-                    if (shouldEventBeRan(player) && shouldEventBeRan(projectile)) {
-                        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+                if (shooter instanceof LivingEntity living) {
+                    if (shouldEventBeRan(living) && shouldEventBeRan(projectile)) {
+                        if (living.getEquipment() != null) {
+                            ItemStack itemMainHand = living.getEquipment().getItemInMainHand();
 
-                        if (RSVItem.isRSVItem(itemMainHand)) {
-                            String moduleName = RSVItem.getModuleNameFromItem(itemMainHand);
-                            if (moduleName.equals(SwModule.NAME) || moduleName.equals(SfModule.NAME)) {
-                                FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModule(SfModule.NAME).getUserConfig().getConfig();
-                                String name = RSVItem.getNameFromItem(itemMainHand);
-                                String type = name.substring(name.lastIndexOf("_") + 1);
-                                if (type.equals("longbow") || type.equals("crossbow")) {
-                                    double multiplier = config.getDouble("Items." + name + ".ArrowVelocityMultiplier");
-                                    projectile.setVelocity(projectile.getVelocity().multiply(multiplier));
+                            if (RSVItem.isRSVItem(itemMainHand)) {
+                                String moduleName = RSVItem.getModuleNameFromItem(itemMainHand);
+                                if (moduleName.equals(SwModule.NAME) || moduleName.equals(SfModule.NAME)) {
+                                    FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModule(SfModule.NAME).getUserConfig().getConfig();
+                                    String name = RSVItem.getNameFromItem(itemMainHand);
+                                    String type = name.substring(name.lastIndexOf("_") + 1);
+                                    if (type.equals("longbow") || type.equals("crossbow")) {
+                                        double multiplier = config.getDouble("Items." + name + ".ArrowVelocityMultiplier");
+                                        projectile.setVelocity(projectile.getVelocity().multiply(multiplier));
+                                    }
                                 }
                             }
                         }
@@ -112,128 +111,129 @@ public class SwEvents extends ModuleEvents implements Listener {
             if (shouldEventBeRan(defender) && shouldEventBeRan(attacker)) {
                 double damage = event.getDamage();
 
-                if (attacker instanceof Arrow || attacker instanceof SpectralArrow || attacker instanceof Firework) {
+                if (attacker instanceof AbstractArrow || attacker instanceof Firework) {
                     Projectile arrow = (Projectile) event.getDamager();
                     if (arrow.getShooter() != null) {
-                        Entity shooter = (Entity) arrow.getShooter();
+                        if (arrow.getShooter() instanceof LivingEntity living) {
+                            if (living.getEquipment() != null) {
+                                ItemStack itemMainHand = living.getEquipment().getItemInMainHand();
+                                if (RSVItem.isRSVItem(itemMainHand)) {
+                                    FileConfiguration config = RSVModule.getModule(RSVItem.getModuleNameFromItem(itemMainHand)).getUserConfig().getConfig();
 
-                        if (shooter instanceof Player player) {
-
-                            ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-                            if (RSVItem.isRSVItem(itemMainHand)) {
-                                FileConfiguration config = RSVModule.getModule(RSVItem.getModuleNameFromItem(itemMainHand)).getUserConfig().getConfig();
-
-                                String name = RSVItem.getNameFromItem(itemMainHand);
-                                String type = name.substring(name.lastIndexOf("_") + 1);
-                                if (type.equals("longbow") || type.equals("crossbow")) {
-                                    double multiplier = config.getDouble("Items." + name + ".AttackDamageMultiplier");
-                                    damage *= multiplier;
+                                    String name = RSVItem.getNameFromItem(itemMainHand);
+                                    String type = name.substring(name.lastIndexOf("_") + 1);
+                                    if (type.equals("longbow") || type.equals("crossbow")) {
+                                        double multiplier = config.getDouble("Items." + name + ".AttackDamageMultiplier");
+                                        damage *= multiplier;
+                                    }
                                 }
                             }
                         }
                     }
                 }
-                else if (attacker instanceof LivingEntity) {
+                else if (attacker instanceof LivingEntity livingAttacker) {
+                    if (livingAttacker.getEquipment() != null) {
+                        ItemStack itemMainHand = livingAttacker.getEquipment().getItemInMainHand();
+                        if (RSVItem.isRSVItem(itemMainHand)) {
+                            String moduleName = RSVItem.getModuleNameFromItem(itemMainHand);
 
-                    ItemStack itemMainHand = ((LivingEntity) attacker).getEquipment().getItemInMainHand();
-                    if (RSVItem.isRSVItem(itemMainHand)) {
-                        String moduleName = RSVItem.getModuleNameFromItem(itemMainHand);
+                            if (moduleName.equals(SwModule.NAME) || moduleName.equals(SfModule.NAME)) {
+                                FileConfiguration config = RSVModule.getModule(moduleName).getUserConfig().getConfig();
 
-                        if (moduleName.equals(SwModule.NAME) || moduleName.equals(SfModule.NAME)) {
-                            FileConfiguration config = RSVModule.getModule(moduleName).getUserConfig().getConfig();
+                                String name = RSVItem.getNameFromItem(itemMainHand);
+                                String type = name.substring(name.lastIndexOf("_") + 1);
 
-                            String name = RSVItem.getNameFromItem(itemMainHand);
-                            String type = name.substring(name.lastIndexOf("_") + 1);
-
-                            switch (type) {
-                                case "rapier" -> {
-                                    if (!Utils.hasArmor(defender)) {
-                                        damage *= config.getDouble("Items." + name + ".UnarmoredDamageMultiplier");
+                                switch (type) {
+                                    case "rapier" -> {
+                                        if (!Utils.hasArmor(defender)) {
+                                            damage *= config.getDouble("Items." + name + ".UnarmoredDamageMultiplier");
+                                        }
                                     }
-                                }
-                                case "katana" -> {
-                                    if (!Utils.hasChestplate(defender)) {
-                                        damage *= config.getDouble("Items." + name + ".ChestDamageMultiplier");
+                                    case "katana" -> {
+                                        if (!Utils.hasChestplate(defender)) {
+                                            damage *= config.getDouble("Items." + name + ".ChestDamageMultiplier");
+                                        }
                                     }
-                                }
-                                case "dagger" -> {
-                                    if (Utils.wasBackstabbed(attacker, defender)) {
-                                        damage *= config.getDouble("Items." + name + ".BackstabDamageMultiplier");
+                                    case "dagger" -> {
+                                        if (Utils.wasBackstabbed(attacker, defender)) {
+                                            damage *= config.getDouble("Items." + name + ".BackstabDamageMultiplier");
+                                        }
                                     }
-                                }
-                                case "lance" -> {
-                                    double sweepMultiplier = config.getDouble("Items." + name + ".SweepingDamageMultiplier");
+                                    case "lance" -> {
+                                        double sweepMultiplier = config.getDouble("Items." + name + ".SweepingDamageMultiplier");
 
-                                    double ridingMultiplier = config.getDouble("Items." + name + ".RidingDamageBonus");
+                                        double ridingMultiplier = config.getDouble("Items." + name + ".RidingDamageBonus");
 
-                                    if (attacker.getVehicle() != null) {
-                                        damage *= ridingMultiplier;
+                                        if (attacker.getVehicle() != null) {
+                                            damage *= ridingMultiplier;
+                                        }
+
+                                        List<Entity> entities = defender.getNearbyEntities(1.0, 0.25, 1.0);
+                                        new SweepAttackTask(plugin, entities, attacker, defender, damage * sweepMultiplier, config.getBoolean("PreventSweepAttackingPets")).start();
                                     }
+                                    case "greatsword", "longsword", "saber", "glaive", "quarterstaff" -> {
+                                        List<Entity> entities = defender.getNearbyEntities(1.0, 0.25, 1.0);
 
-                                    List<Entity> entities = defender.getNearbyEntities(1.0, 0.25, 1.0);
-                                    new SweepAttackTask(plugin, entities, attacker, defender, damage * sweepMultiplier).start();
-                                }
-                                case "greatsword", "longsword", "saber", "glaive", "quarterstaff" -> {
-                                    List<Entity> entities = defender.getNearbyEntities(1.0, 0.25, 1.0);
+                                        double multiplier = config.getDouble("Items." + name + ".SweepingDamageMultiplier");
+                                        new SweepAttackTask(plugin, entities, attacker, defender, damage * multiplier, config.getBoolean("PreventSweepAttackingPets")).start();
+                                    }
+                                    case "hammer" -> {
+                                        if (defender instanceof LivingEntity living) {
+                                            int duration = config.getInt("Items." + name + ".Nausea.Duration");
+                                            int amplifier = config.getInt("Items." + name + ".Nausea.Amplifier");
 
-                                    double multiplier = config.getDouble("Items." + name + ".SweepingDamageMultiplier");
-                                    new SweepAttackTask(plugin, entities, attacker, defender, damage * multiplier).start();
-                                }
-                                case "hammer" -> {
-                                    if (defender instanceof LivingEntity living) {
-                                        int duration = config.getInt("Items." + name + ".Nausea.Duration");
-                                        int amplifier = config.getInt("Items." + name + ".Nausea.Amplifier");
-
-                                        PotionEffect nausea = new PotionEffect(PotionEffectType.CONFUSION, duration, amplifier);
-                                        if (living.getEquipment() != null) {
-                                            if (!Utils.isItemReal(living.getEquipment().getHelmet())) {
+                                            PotionEffect nausea = new PotionEffect(PotionEffectType.CONFUSION, duration, amplifier);
+                                            if (living.getEquipment() != null) {
+                                                if (!Utils.isItemReal(living.getEquipment().getHelmet())) {
+                                                    living.addPotionEffect(nausea);
+                                                }
+                                            }
+                                            else {
                                                 living.addPotionEffect(nausea);
                                             }
                                         }
-                                        else {
-                                            living.addPotionEffect(nausea);
-                                        }
+
+                                        double kbMultiplier = config.getDouble("Items." + name + ".KnockbackMultiplier");
+                                        Utils.setKbMultiplier(defender, kbMultiplier);
                                     }
+                                    case "warhammer" -> {
+                                        double armorPiercing = config.getDouble("Items." + name + ".ArmorPiercing");
+                                        double dif = event.getFinalDamage() - event.getDamage();
 
-                                    double kbMultiplier = config.getDouble("Items." + name + ".KnockbackMultiplier");
-                                    RealisticSurvivalPlugin.getUtil().setKbMultiplier(defender, kbMultiplier);
-                                }
-                                case "warhammer" -> {
-                                    double armorPiercing = config.getDouble("Items." + name + ".ArmorPiercing");
-                                    double dif = event.getFinalDamage() - event.getDamage();
+                                        damage += dif * armorPiercing;
+                                    }
+                                    case "club" -> {
+                                        if (defender instanceof LivingEntity living) {
+                                            int duration = config.getInt("Items." + name + ".Nausea.Duration");
+                                            int amplifier = config.getInt("Items." + name + ".Nausea.Amplifier");
 
-                                    damage += dif * armorPiercing;
-                                }
-                                case "club" -> {
-                                    if (defender instanceof LivingEntity living) {
-                                        int duration = config.getInt("Items." + name + ".Nausea.Duration");
-                                        int amplifier = config.getInt("Items." + name + ".Nausea.Amplifier");
-
-                                        PotionEffect nausea = new PotionEffect(PotionEffectType.CONFUSION, duration, amplifier);
-                                        if (living.getEquipment() != null) {
-                                            if (!Utils.isItemReal(living.getEquipment().getHelmet())) {
+                                            PotionEffect nausea = new PotionEffect(PotionEffectType.CONFUSION, duration, amplifier);
+                                            if (living.getEquipment() != null) {
+                                                if (!Utils.isItemReal(living.getEquipment().getHelmet())) {
+                                                    living.addPotionEffect(nausea);
+                                                }
+                                            }
+                                            else {
                                                 living.addPotionEffect(nausea);
                                             }
                                         }
-                                        else {
-                                            living.addPotionEffect(nausea);
-                                        }
                                     }
+                                    case "halberd" -> {
+                                        int shieldCooldown = config.getInt("Items." + name + ".ShieldBreach.Cooldown");
+                                        double chance = config.getDouble("Items." + name + ".ShieldBreach.Chance");
+                                        if (defender instanceof Player player)
+                                            if (player.isBlocking())
+                                                if (Math.random() <= chance) {
+                                                    player.setCooldown(Material.SHIELD, shieldCooldown);
+                                                }
+                                    }
+                                    case "mace" -> {
+                                        if (defender instanceof LivingEntity)
+                                            if (Utils.isUndead(defender))
+                                                damage *= config.getDouble("Items." + name + ".UndeadDamageMultiplier");
+                                    }
+                                    default -> {}
                                 }
-                                case "halberd" -> {
-                                    int shieldCooldown = config.getInt("Items." + name + ".ShieldBreach.Cooldown");
-                                    double chance = config.getDouble("Items." + name + ".ShieldBreach.Chance");
-                                    if (defender instanceof Player player)
-                                        if (player.isBlocking())
-                                            if (Math.random() <= chance)
-                                                player.setCooldown(Material.SHIELD, shieldCooldown);
-                                }
-                                case "mace" -> {
-                                    if (defender instanceof LivingEntity)
-                                        if (Utils.isUndead(defender))
-                                            damage *= config.getDouble("Items." + name + ".UndeadDamageMultiplier");
-                                }
-                                default -> {}
                             }
                         }
                     }
@@ -262,6 +262,49 @@ public class SwEvents extends ModuleEvents implements Listener {
             }
         }
     }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onTarget(EntityTargetEvent event) {
+        if (!event.isCancelled()) {
+            Entity entity = event.getEntity();
+            Entity target = event.getTarget();
+            if (target != null) {
+                if (shouldEventBeRan(entity) && shouldEventBeRan(target)) {
+                    if (entity instanceof LivingEntity living && !(entity instanceof Player)) {
+                        if (living.getEquipment() != null) {
+                            ItemStack itemMainHand = living.getEquipment().getItemInMainHand();
+                            if (RSVItem.isRSVItem(itemMainHand)) {
+                                String name = RSVItem.getNameFromItem(itemMainHand);
+
+                                if (name.contains("_")) {
+                                    String type = name.substring(name.lastIndexOf("_") + 1);
+
+                                    boolean isThrowing;
+                                    switch (type) {
+                                        case "greatsword", "spear", "halberd", "pike", "lance" -> {
+                                            if (!EntityLongAttackTask.hasTask(living.getUniqueId())) {
+                                                new EntityLongAttackTask(RSVModule.getModule(RSVItem.getModuleNameFromItem(itemMainHand)), plugin, living, itemMainHand, target).start();
+                                            }
+                                            isThrowing = false;
+                                        }
+                                        case "dagger", "tomahawk", "javelin", "boomerang", "throwing_knife" -> isThrowing = true;
+                                        default -> isThrowing = name.endsWith("throwing_knife");
+                                    }
+
+                                    if (isThrowing) {
+                                        if (!EntityPrepareThrowTask.hasTask(living.getUniqueId())) {
+                                            new EntityPrepareThrowTask(RSVModule.getModule(RSVItem.getModuleNameFromItem(itemMainHand)), plugin, living, itemMainHand).start();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
@@ -339,10 +382,40 @@ public class SwEvents extends ModuleEvents implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onItemPickup(EntityPickupItemEvent event) {
         if (!event.isCancelled()) {
-            if (event.getEntity() instanceof Player player) {
-                if (shouldEventBeRan(player)) {
-                    ItemStack item = event.getItem().getItemStack();
-                    checkAndRunTask(player, item);
+            LivingEntity entity = event.getEntity();
+            if (shouldEventBeRan(entity)) {
+                ItemStack item = event.getItem().getItemStack();
+                checkAndRunTask(entity, item);
+
+                if (!(entity instanceof Player)) {
+                    if (entity.getEquipment() != null) {
+                        ItemStack itemMainHand = entity.getEquipment().getItemInMainHand();
+                        if (RSVItem.isRSVItem(itemMainHand)) {
+                            String name = RSVItem.getNameFromItem(itemMainHand);
+
+                            if (name.contains("_")) {
+                                String type = name.substring(name.lastIndexOf("_") + 1);
+
+                                boolean isThrowing;
+                                switch (type) {
+                                    case "greatsword", "spear", "halberd", "pike", "lance" -> {
+                                        if (!EntityLongAttackTask.hasTask(entity.getUniqueId())) {
+                                            new EntityLongAttackTask(RSVModule.getModule(RSVItem.getModuleNameFromItem(itemMainHand)), plugin, entity, itemMainHand, null).start();
+                                        }
+                                        isThrowing = false;
+                                    }
+                                    case "dagger", "tomahawk", "javelin", "boomerang", "throwing_knife" -> isThrowing = true;
+                                    default -> isThrowing = name.endsWith("throwing_knife");
+                                }
+
+                                if (isThrowing) {
+                                    if (!EntityPrepareThrowTask.hasTask(entity.getUniqueId())) {
+                                        new EntityPrepareThrowTask(RSVModule.getModule(RSVItem.getModuleNameFromItem(itemMainHand)), plugin, entity, itemMainHand).start();
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -396,7 +469,61 @@ public class SwEvents extends ModuleEvents implements Listener {
         }
     }
 
-    private void checkAndRunTask(Player player, ItemStack item) {
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
+
+            String message = event.getMessage();
+
+            if (message.length() > 1) {
+                String[] args = message.substring(1).split(" ");
+
+                if (args[0].equalsIgnoreCase("rsv") || args[0].equalsIgnoreCase("realisticsurvival")) {
+                    if (args.length > 3) {
+                        if (args[1].equalsIgnoreCase("give")) {
+                            if (RSVItem.isRSVItem(args[3])) {
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        checkAndRunTask(player, player.getInventory().getItemInMainHand());
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onServerCommand(ServerCommandEvent event) {
+        if (!event.isCancelled()) {
+            String message = event.getCommand();
+
+            if (message.length() > 1) {
+                String[] args = message.substring(1).split(" ");
+                if (args[0].equalsIgnoreCase("rsv") || args[0].equalsIgnoreCase("realisticsurvival")) {
+                    if (args.length > 3) {
+                        if (args[1].equalsIgnoreCase("give")) {
+                            Player player = Bukkit.getPlayer(args[2]);
+                            if (player != null && RSVItem.isRSVItem(args[3])) {
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        checkAndRunTask(player, player.getInventory().getItemInMainHand());
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void checkAndRunTask(LivingEntity entity, ItemStack item) {
         if (RSVItem.isRSVItem(item)) {
             String name = RSVItem.getNameFromItem(item);
             String type = name.substring(name.lastIndexOf("_") + 1);
@@ -404,9 +531,11 @@ public class SwEvents extends ModuleEvents implements Listener {
 
             switch (type) {
                 case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike", "battleaxe", "glaive" -> {
-                    UUID id = player.getUniqueId();
-                    if (!TwoHandedTask.hasTask(id)) {
-                        new TwoHandedTask(module, plugin, player, name).start();
+                    if (entity != null) {
+                        UUID id = entity.getUniqueId();
+                        if (!TwoHandedTask.hasTask(id)) {
+                            new TwoHandedTask(module, plugin, entity, name).start();
+                        }
                     }
                 }
                 default -> {}

@@ -26,18 +26,18 @@ import java.util.UUID;
 
 public class BurnTask extends BukkitRunnable {
 
-    private static Map<UUID, BurnTask> tasks = new HashMap<>();
+    private static final Map<UUID, BurnTask> tasks = new HashMap<>();
     private final Entity entity;
     private final RealisticSurvivalPlugin plugin;
     private int fireTicks;
-    private final int tickSpeed;
+    private final int tickPeriod;
 
 
-    public BurnTask(RealisticSurvivalPlugin plugin, Entity entity, int fireTicks, int tickSpeed) {
+    public BurnTask(RealisticSurvivalPlugin plugin, Entity entity, int fireTicks, int tickPeriod) {
         this.entity = entity;
         this.plugin = plugin;
         this.fireTicks = fireTicks;
-        this.tickSpeed = tickSpeed;
+        this.tickPeriod = tickPeriod;
         tasks.put(entity.getUniqueId(), this);
     }
 
@@ -48,7 +48,7 @@ public class BurnTask extends BukkitRunnable {
             if (entity.getFireTicks() < fireTicks) {
                 // set the entity on fire
                 entity.setFireTicks(fireTicks);
-                fireTicks -= tickSpeed;
+                fireTicks -= tickPeriod;
             }
         }
         else {
@@ -58,7 +58,7 @@ public class BurnTask extends BukkitRunnable {
     }
 
     public void start() {
-        runTaskTimer(plugin, 0L, tickSpeed);
+        runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static Map<UUID, BurnTask> getTasks() {

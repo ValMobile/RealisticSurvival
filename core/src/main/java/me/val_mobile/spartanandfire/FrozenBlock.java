@@ -22,7 +22,7 @@ import org.bukkit.entity.FallingBlock;
 
 public class FrozenBlock {
 
-    private FallingBlock block;
+    private final FallingBlock block;
 
     public FrozenBlock(Location loc, Material material) {
         this.block = loc.getWorld().spawnFallingBlock(loc, material.createBlockData());

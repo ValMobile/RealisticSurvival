@@ -16,14 +16,25 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.iceandfire.DragonVariant;
-import me.val_mobile.iceandfire.SeaSerpentVariant;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.baubles.EndermanAlly;
+import me.val_mobile.iceandfire.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityCategory;
@@ -35,83 +46,84 @@ import org.bukkit.inventory.SmithingRecipe;
 
 public class v1_19_R1 extends InternalsProvider {
 
-    public void spawnEndermanAlly(Player owner, Location loc) {
-//        new EndermanAlly(owner, loc);
+    @Override
+    public EndermanAlly spawnEndermanAlly(Player owner, Location loc) {
+        return new EndermanAlly_v1_19_R1(owner, loc);
     }
 
     @Override
-    public void spawnFireDragon(Location loc, RealisticSurvivalPlugin plugin) {
-//        new FireDragon(loc, plugin);
+    public FireDragon spawnFireDragon(Location loc) {
+        return new FireDragon_v1_19_R1(loc);
     }
 
     @Override
-    public void spawnFireDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-//        new FireDragon(loc, stage, plugin);
+    public FireDragon spawnFireDragon(Location loc, int stage) {
+        return new FireDragon_v1_19_R1(loc, stage);
     }
 
     @Override
-    public void spawnFireDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
-//        new FireDragon(loc, variant, plugin);
+    public FireDragon spawnFireDragon(Location loc, DragonVariant variant) {
+        return new FireDragon_v1_19_R1(loc, variant);
     }
 
     @Override
-    public void spawnFireDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
-//        new FireDragon(loc, variant, stage, plugin);
+    public FireDragon spawnFireDragon(Location loc, DragonVariant variant, int stage) {
+        return new FireDragon_v1_19_R1(loc, variant, stage);
     }
 
     @Override
-    public void spawnIceDragon(Location loc, RealisticSurvivalPlugin plugin) {
-//        new IceDragon(loc, plugin);
+    public IceDragon spawnIceDragon(Location loc) {
+        return new IceDragon_v1_19_R1(loc);
     }
 
     @Override
-    public void spawnIceDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-//        new IceDragon(loc, stage, plugin);
+    public IceDragon spawnIceDragon(Location loc, int stage) {
+        return new IceDragon_v1_19_R1(loc, stage);
     }
 
     @Override
-    public void spawnIceDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
-//        new IceDragon(loc, variant, plugin);
+    public IceDragon spawnIceDragon(Location loc, DragonVariant variant) {
+        return new IceDragon_v1_19_R1(loc, variant);
     }
 
     @Override
-    public void spawnIceDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
-//        new IceDragon(loc, variant, stage, plugin);
+    public IceDragon spawnIceDragon(Location loc, DragonVariant variant, int stage) {
+        return new IceDragon_v1_19_R1(loc, variant, stage);
     }
 
     @Override
-    public void spawnLightningDragon(Location loc, RealisticSurvivalPlugin plugin) {
-//        new LightningDragon(loc, plugin);
+    public LightningDragon spawnLightningDragon(Location loc) {
+        return new LightningDragon_v1_19_R1(loc);
     }
 
     @Override
-    public void spawnLightningDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-//        new LightningDragon(loc, stage, plugin);
+    public LightningDragon spawnLightningDragon(Location loc, int stage) {
+        return new LightningDragon_v1_19_R1(loc, stage);
     }
 
     @Override
-    public void spawnLightningDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
-//        new LightningDragon(loc, variant, plugin);
+    public LightningDragon spawnLightningDragon(Location loc, DragonVariant variant) {
+        return new LightningDragon_v1_19_R1(loc, variant);
     }
 
     @Override
-    public void spawnLightningDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
-//        new LightningDragon(loc, variant, plugin);
+    public LightningDragon spawnLightningDragon(Location loc, DragonVariant variant, int stage) {
+        return new LightningDragon_v1_19_R1(loc, variant, stage);
     }
 
     @Override
-    public void spawnSeaSerpent(Location loc, RealisticSurvivalPlugin plugin) {
-//        new SeaSerpent(loc, plugin);
+    public SeaSerpent spawnSeaSerpent(Location loc) {
+        return new SeaSerpent_v1_19_R1(loc);
     }
 
     @Override
-    public void spawnSeaSerpent(Location loc, SeaSerpentVariant variant, RealisticSurvivalPlugin plugin) {
-//        new SeaSerpent(loc, variant, plugin);
+    public SeaSerpent spawnSeaSerpent(Location loc, SeaSerpentVariant variant) {
+        return new SeaSerpent_v1_19_R1(loc, variant);
     }
 
     @Override
-    public void spawnSiren(Location loc, RealisticSurvivalPlugin plugin) {
-//        new Siren(loc, plugin);
+    public Siren spawnSiren(Location loc) {
+        return new Siren_v1_19_R1(loc);
     }
 
     @Override
@@ -157,8 +169,78 @@ public class v1_19_R1 extends InternalsProvider {
     }
 
     @Override
-    public void attack(Player player, Entity entity) {
-        ((CraftPlayer) player).getHandle().attack(((CraftEntity) entity).getHandle());
+    public void attack(LivingEntity attacker, Entity defender) {
+        if (attacker instanceof Player) {
+            ((CraftPlayer) attacker).getHandle().attack(((CraftEntity) defender).getHandle());
+        }
+        else {
+            ((CraftLivingEntity) attacker).getHandle().doHurtTarget(((CraftEntity) defender).getHandle());
+        }
     }
 
+    public static boolean isLookingAtMe(EnderMan enderman, net.minecraft.world.entity.player.Player entityhuman) {
+        ItemStack itemstack = entityhuman.getInventory().armor.get(3);
+        if (itemstack.is(Blocks.CARVED_PUMPKIN.asItem())) {
+            return false;
+        }
+        else {
+            Vec3 vec3d = entityhuman.getViewVector(1.0F).normalize();
+            Vec3 vec3d1 = new Vec3(enderman.getX() - entityhuman.getX(), enderman.getEyeY() - entityhuman.getEyeY(), enderman.getZ() - entityhuman.getZ());
+            double d0 = vec3d1.length();
+            vec3d1 = vec3d1.normalize();
+            double d1 = vec3d.dot(vec3d1);
+            return d1 > 1.0 - 0.025 / d0 && entityhuman.hasLineOfSight(enderman);
+        }
+    }
+
+    public static boolean teleport(EnderMan enderman) {
+        if (!enderman.level.isClientSide() && enderman.isAlive()) {
+            RandomSource random = enderman.getRandom();
+
+            double d0 = enderman.getX() + (random.nextDouble() - 0.5) * 64.0;
+            double d1 = enderman.getY() + (double)(random.nextInt(64) - 32);
+            double d2 = enderman.getZ() + (random.nextDouble() - 0.5) * 64.0;
+            return v1_19_R1.teleport(enderman, d0, d1, d2);
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean teleport(EnderMan enderman, double d0, double d1, double d2) {
+        BlockPos.MutableBlockPos blockposition_mutableblockposition = new BlockPos.MutableBlockPos(d0, d1, d2);
+
+        while(blockposition_mutableblockposition.getY() > enderman.level.getMinBuildHeight() && !enderman.level.getBlockState(blockposition_mutableblockposition).getMaterial().blocksMotion()) {
+            blockposition_mutableblockposition.move(Direction.DOWN);
+        }
+
+        BlockState iblockdata = enderman.level.getBlockState(blockposition_mutableblockposition);
+        boolean flag = iblockdata.getMaterial().blocksMotion();
+        boolean flag1 = iblockdata.getFluidState().is(FluidTags.WATER);
+        if (flag && !flag1) {
+            Vec3 vec3d = enderman.position();
+            boolean flag2 = enderman.randomTeleport(d0, d1, d2, true);
+            if (flag2) {
+                enderman.level.gameEvent(GameEvent.TELEPORT, vec3d, GameEvent.Context.of(enderman));
+                if (!enderman.isSilent()) {
+                    enderman.level.playSound((net.minecraft.world.entity.player.Player)null, enderman.xo, enderman.yo, enderman.zo, SoundEvents.ENDERMAN_TELEPORT, enderman.getSoundSource(), 1.0F, 1.0F);
+                    enderman.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
+                }
+            }
+
+            return flag2;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean teleportTowards(EnderMan enderman, net.minecraft.world.entity.Entity entity) {
+        RandomSource random = enderman.getRandom();
+        Vec3 vec3d = new Vec3(enderman.getX() - entity.getX(), enderman.getY(0.5) - entity.getEyeY(), enderman.getZ() - entity.getZ());
+        vec3d = vec3d.normalize();
+        double d0 = 16.0;
+        double d1 = enderman.getX() + (random.nextDouble() - 0.5) * 8.0 - vec3d.x * 16.0;
+        double d2 = enderman.getY() + (double)(random.nextInt(16) - 8) - vec3d.y * 16.0;
+        double d3 = enderman.getZ() + (random.nextDouble() - 0.5) * 8.0 - vec3d.z * 16.0;
+        return v1_19_R1.teleport(enderman, d1, d2, d3);
+    }
 }

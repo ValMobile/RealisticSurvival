@@ -32,14 +32,14 @@ public class WormholeMirrorTask extends BukkitRunnable {
     private final UUID id;
     private int ticks;
     private final int duration;
-    private final int tickSpeed;
+    private final int tickPeriod;
 
     public WormholeMirrorTask(BaubleModule module, Player player, RealisticSurvivalPlugin plugin) {
         this.id = player.getUniqueId();
         this.plugin = plugin;
         FileConfiguration config = module.getUserConfig().getConfig();
         this.duration = config.getInt("Items.wormhole_mirror.Cooldown");
-        this.tickSpeed = config.getInt("Items.wormhole_mirror.TickTime"); // get the tick speed
+        this.tickPeriod = config.getInt("Items.wormhole_mirror.TickPeriod"); // get the tick period
         tasks.put(id, this);
     }
 
@@ -49,11 +49,11 @@ public class WormholeMirrorTask extends BukkitRunnable {
             tasks.remove(id);
             cancel();
         }
-        ticks += tickSpeed;
+        ticks += tickPeriod;
     }
 
     public void start() {
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static boolean hasTask(UUID id) {

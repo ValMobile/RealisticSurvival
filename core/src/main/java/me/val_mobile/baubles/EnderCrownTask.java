@@ -46,7 +46,7 @@ public class EnderCrownTask extends BukkitRunnable {
     private final double waterDamage;
 
     private boolean hasSummoned = false;
-    private long start;
+    private final long start;
 
     public EnderCrownTask(BaubleModule module, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
@@ -79,9 +79,11 @@ public class EnderCrownTask extends BukkitRunnable {
                     for (Entity e : p.getNearbyEntities(actRange, actRange, actRange)) {
                         if (e instanceof Enderman) {
                             // transfrom enderman into ally
-                            if (!Objects.equals(RealisticSurvivalPlugin.getUtil().getNbtTag(e, "rsvmob", PersistentDataType.STRING), "enderman_ally")) {
-                                Utils.spawnEndermanAlly(p, loc);
-                                e.remove();
+                            if (!Objects.equals(Utils.getNbtTag(e, "rsvmob", PersistentDataType.STRING), "enderman_ally")) {
+                                if (Math.random() <= chance) {
+//                                    Utils.spawnEndermanAlly(p, loc).addEntityToWorld(p.getWorld());
+//                                    e.remove();
+                                }
                             }
                         }
                     }
@@ -106,7 +108,7 @@ public class EnderCrownTask extends BukkitRunnable {
                                 x = (int) (Math.random() * 21) - 10;
                                 z = (int) (Math.random() * 21) - 10;
                                 y = p.getWorld().getHighestBlockYAt(x, z);
-                                Utils.spawnEndermanAlly(p, new Location(p.getWorld(), x, y, z));
+                                Utils.spawnEndermanAlly(p, new Location(p.getWorld(), x, y, z)).addEntityToWorld(p.getWorld());
                             }
                         }
                     }
@@ -127,8 +129,8 @@ public class EnderCrownTask extends BukkitRunnable {
     }
 
     public void start() {
-        int tickSpeed = config.getInt("Items.ender_queens_crown.TickTime"); // get the tick speed
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        int tickPeriod = config.getInt("Items.ender_queens_crown.TickPeriod"); // get the tick period
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static Map<UUID, EnderCrownTask> getTasks() {

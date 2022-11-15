@@ -1,0 +1,133 @@
+name: Feature Request
+description: Request or suggest a new addition to Realistic Survival.
+labels: ['🗻 Suggestion']
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 👋 Welcome to the Realistic Survival Feature Request Tracker
+        Suggest any changes, additions, or features that you think would improve the plugin. Remember that you should only fill out this form once you have fully thought of a suggestion. Use the suggestions channel in the [Discord server](https://discord.gg/mMt3f4usqK) for discussions.
+        <br /><strong><i>Fields marked with an asterisk (*) are required.</i></strong>
+        <br />
+
+  - id: checklist
+    type: checkboxes
+    attributes:
+      label: '❗ Checklist'
+      description: Please go through this checklist before creating the feature request.
+      options:
+        - label: I have checked that my requested feature does not exist on the most up-to-date "dev-build" (not "Spigot") version of Realistic Survival.
+          required: true
+        - label: I know that feature requests related to other plugins need to be reported on their feature request trackers and not here.
+          required: true
+        - label: I searched for similar feature requests and could not find an existing form on this.
+          required: true
+        - label: I know that feature requests should align to Realistic Survival's goal of recreating the RLCraft modpack experience.
+          required: true
+        - label: I understand that my requested feature may not be added due to time constraints or other limitations.
+          required: true
+
+  - id: problem
+    type: textarea
+    validations:
+      required: true
+    attributes:
+      label: '📍 What problem do you want to solve?'
+      description: |
+        A clear and detailed explanation of the problem you are trying to solve.
+        The more information you can provide, the more likely your suggestion will be considered and implemented.
+      placeholder: |
+        Realistic Survival currently faces this issue [...]
+
+  - id: solution
+    type: textarea
+    validations:
+      required: true
+    attributes:
+      label: '💡 What would you change, add, or modify to solve the problem?'
+      description: |
+        A clear and detailed explanation of your feature request.
+        The more information you can provide, the more likely your suggestion will be considered and implemented.
+      placeholder: |
+        Adding this feature [...] would help solve [...] since it would [...]
+
+  - id: solution
+    type: textarea
+    validations:
+      required: true
+    attributes:
+      label: '🌐 How do you see your suggestion benefiting the majority of servers?'
+      description: |
+        Ideally, a plugin feature would benefit most, if not all, servers.
+        Please explain how your suggestion would be applicable for a variety of servers.
+      placeholder: |
+        The purpose of most servers using Realistic Survival is [...] My feature would [...]
+
+  - id: implementation
+    type: textarea
+    attributes:
+      label: '⚙ How might you implement your solution in code?'
+      description: |
+        A clear and detailed explanation of you would implement your solution.
+        Note that while you are not required to provide code, it is encouraged to do so. If you have submitted a pull request along with your feature request, please document that below.
+      placeholder: |
+        I would add these classes [...] and methods [...]
+
+  - id: module
+    type: dropdown
+    validations:
+      required: true
+    attributes:
+      label: '🎮 Module'
+      description: 'What module would your requested feature fall under?'
+      options:
+        - Baubles
+        - Ice and Fire
+        - No Tree Punching
+        - Spartan and Fire
+        - Spartan Weaponry
+        - Tough as Nails
+        - Other (Please specify in your description)
+
+  - id: media
+    type: textarea
+    attributes:
+      label: '📷 Screenshots / Videos'
+      description: |
+        The best way to illustrate a feature request is by recording a Video or taking a Screenshot.
+        If you can "act out" and capture any footage that demonstrates your feature request, it would help us out a lot!
+      placeholder: |
+        Drag and drop an image or video onto this field to upload it.
+
+  - id: plugin-dependencies
+    type: textarea
+    attributes:
+      label: '🧭 Plugin Dependencies'
+      description: |
+        If your feature request is related to or may require another plugin to function well, make sure to include this here!
+        Think of common dependencies (e.g: FastAsyncWorldEdit, ProtocolLib, LibsDisguises, Vault).
+      placeholder: The requested feature may require plugin [...]
+
+  - type: checkboxes
+    attributes:
+      label: '💰 Donations and Partnerships'
+      options:
+        - label: Please check the box if you have donated, are in a partnership with Realistic Survival, or are a staff member of the plugin's Discord server. Remember that feature requests made from these people will be prioritized.
+          required: false
+
+  - id: additional-comments
+    type: textarea
+    attributes:
+      label: '✨ Additional Comments'
+      description: |
+        If there is anything else important to know, please document that below.
+
+  - type: markdown
+    attributes:
+      value: |
+        ## ❤️ Thank you for submitting your feature request!
+        If you find any additional info to add to your feature request, don't hesitate to comment on your form!
+        Any additional info can help.
+        In the meantime, try visiting our [Discord server](https://discord.gg/mMt3f4usqK).
+        Perhaps someone else has a similar suggestion.

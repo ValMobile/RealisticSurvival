@@ -22,7 +22,8 @@ import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -38,41 +39,53 @@ public class TwoHandedTask extends BukkitRunnable {
     private final FileConfiguration config;
 
     private final RealisticSurvivalPlugin plugin;
-    private final PotionEffect effect;
     private final UUID id;
     private final String itemName;
 
 
-    public TwoHandedTask(RSVModule module, RealisticSurvivalPlugin plugin, Player player, String itemName) {
+    public TwoHandedTask(RSVModule module, RealisticSurvivalPlugin plugin, LivingEntity entity, String itemName) {
         this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();
-        this.id = player.getUniqueId();
+        this.id = entity.getUniqueId();
         this.itemName = itemName;
-        this.effect = new PotionEffect(PotionEffectType.SLOW_DIGGING, config.getInt("Items." + itemName + ".MiningFatigue.Duration"), config.getInt("Items." + itemName + ".MiningFatigue.Amplifier"));
         tasks.put(id, this);
     }
 
     @Override
     public void run() {
-        Player player = Bukkit.getPlayer(id);
+        Entity entity = Bukkit.getEntity(id);
 
-        if (player == null) {
+        if (entity == null) {
             tasks.remove(id);
             cancel();
         }
         else {
-            ItemStack itemMainhand = player.getInventory().getItemInMainHand();
+            if (entity instanceof LivingEntity living) {
+                if (living.getEquipment() != null) {
+                    ItemStack itemMainhand = living.getEquipment().getItemInMainHand();
 
-            if (RSVItem.isRSVItem(itemMainhand) && Utils.isItemReal(player.getInventory().getItemInOffHand())) {
-                String name = RSVItem.getNameFromItem(itemMainhand);
-                String type = name.substring(name.lastIndexOf("_") + 1);
+                    if (RSVItem.isRSVItem(itemMainhand) && Utils.isItemReal(living.getEquipment().getItemInOffHand())) {
+                        FileConfiguration config = RSVModule.getModule(RSVItem.getModuleNameFromItem(itemMainhand)).getUserConfig().getConfig();
+                        String name = RSVItem.getNameFromItem(itemMainhand);
+                        String type = name.substring(name.lastIndexOf("_") + 1);
 
-                switch (type) {
-                    case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike", "battleaxe", "glaive" -> player.addPotionEffect(effect);
-                    default -> {
+                        switch (type) {
+                            case "longsword", "katana", "greatsword", "warhammer", "halberd", "pike", "battleaxe", "glaive" ->
+                                    living.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, config.getInt("Items." + name + ".MiningFatigue.Duration"), config.getInt("Items." + name + ".MiningFatigue.Amplifier")));
+                            default -> {
+                                tasks.remove(id);
+                                cancel();
+                            }
+                        }
+                    }
+                    else {
                         tasks.remove(id);
                         cancel();
                     }
+                }
+                else {
+                    tasks.remove(id);
+                    cancel();
                 }
             }
             else {
@@ -83,8 +96,8 @@ public class TwoHandedTask extends BukkitRunnable {
     }
 
     public void start() {
-        int tickSpeed = config.getInt("Items." + itemName + ".MiningFatigue.TickTime"); // get the tick speed
-        this.runTaskTimer(plugin, 1L, tickSpeed);
+        int tickPeriod = config.getInt("Items." + itemName + ".MiningFatigue.TickPeriod"); // get the tick period
+        this.runTaskTimer(plugin, 1L, tickPeriod);
     }
 
     public static boolean hasTask(UUID id) {

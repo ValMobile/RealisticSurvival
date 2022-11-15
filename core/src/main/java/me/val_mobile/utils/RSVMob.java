@@ -16,7 +16,14 @@
  */
 package me.val_mobile.utils;
 
+import org.bukkit.World;
+import org.bukkit.entity.Entity;
+
 public interface RSVMob {
 
     void addNbtData();
+
+    Entity getEntity();
+
+    void addEntityToWorld(World world);
 }

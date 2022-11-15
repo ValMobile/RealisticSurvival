@@ -17,38 +17,10 @@
 package me.val_mobile.data;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.RSVItem;
-import org.bukkit.configuration.file.FileConfiguration;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-public class MiscItems {
-
-    private final Map<String, RSVItem> items = new HashMap<>();
-    private final RealisticSurvivalPlugin plugin;
+public class MiscItems extends ItemManager {
 
     public MiscItems(RealisticSurvivalPlugin plugin) {
-        this.plugin = plugin;
-    }
-
-    public void initialize() {
-        FileConfiguration itemConfig = plugin.getMiscItemsConfig();
-        Set<String> keys = itemConfig.getKeys(false);
-        for (String key : keys) {
-            if (!key.equals("ConfigId")) {
-                RSVItem item = new RSVItem(plugin, key);
-                items.putIfAbsent(key, item);
-            }
-        }
-    }
-
-    public Map<String, RSVItem> getItems() {
-        return items;
-    }
-
-    public RSVItem getItem(String name) {
-        return items.get(name);
+        super(plugin.getMiscItemsConfig());
     }
 }

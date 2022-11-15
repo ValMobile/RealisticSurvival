@@ -2,7 +2,7 @@
 #          Tough As Nails             #
 #######################################
 
-ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -35,27 +35,58 @@ HypothermiaDeath:
     - "&f%PLAYER_NAME% froze to death."
 
 # Used to specify custom item drops for any mob
-# By default, there is no reason to use this, so the chance is set to 0.00
+# By default, there is no use for this, so the chance is set to 0.00
 MobDrops:
   WITHER:
     magma_shard:
       Type: "Rare"
       Chance: 0.00
 
-VisualTickSpeed: 5
+# Used to specify custom block drops
+BlockDrops:
+  ICE:
+    ice_cube:
+      Type: "Common"
+      Chance: 0.33
+      ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
+      IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
+      RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
+  PACKED_ICE:
+    ice_cube:
+      Type: "Common"
+      Chance: 0.67
+      ReplaceDefaultDrop: true
+      IgnoreSilkTouchEnchant: false
+      RequireRightTool: true
+  BLUE_ICE:
+    ice_cube:
+      Type: "Common"
+      Chance: 1.00
+      ReplaceDefaultDrop: true
+      IgnoreSilkTouchEnchant: false
+      RequireRightTool: true
+  MAGMA_BLOCK:
+    magma_shard:
+      Type: "Common"
+      Chance: 0.33
+      ReplaceDefaultDrop: true
+      IgnoreSilkTouchEnchant: false
+      RequireRightTool: true
+
+VisualTickPeriod: 5
 
 # Customize various aspects of the temperature and thirst systems
 
 Temperature:
   Enabled: true
-  CalculateTickSpeed: 100   # Time in ticks that the game will check, don't recommend changing unless the server is lagging severely
+  CalculateTickPeriod: 100   # Time in ticks that the game will check, don't recommend changing unless the server is lagging severely
   DefaultTemperature: 12.5    # Default temperature a player will spawn with, max = 25.0, min = 0.0
   MaxChange: 0.75  # By how much can a player's temperature change each time temperature is recalculated
   Sweating:
     Enabled: true
-    TickSpeed: 20
+    TickPeriod: 20
     MinimumTemperature: 18.0
-    Chance: 0.15  # Probability every "TickSpeed" that a particle will be emitted
+    Chance: 0.15  # Probability every "TickPeriod" that a particle will be emitted
     Particle: "FALLING_WATER"
     # Dust options only apply if you set the particle to a redstone dust particle
     DustOptionColor: "GRAY"     # Can also be set as a RGB value (ex: "128|128|128" for gray)
@@ -68,9 +99,9 @@ Temperature:
     Extra: 0.1                  # The extra data for this particle, depends on the particle used (normally speed)
   ColdBreath:
     Enabled: true
-    TickSpeed: 20
+    TickPeriod: 20
     MaximumTemperature: 7.0
-    Chance: 0.15  # Probability every "TickSpeed" that a particle will be emitted
+    Chance: 0.15  # Probability every "TickPeriod" that a particle will be emitted
     Particle: "REDSTONE"
     # Dust options only apply if you set the particle to a redstone dust particle
     DustOptionColor: "156|157|151"     # Can also be set as a RGB value (ex: "128|128|128" for gray)
@@ -96,7 +127,7 @@ Temperature:
           Amplifier: 2
           Duration: 160
     Duration: 240                   # Number of ticks in which the player can take damage from hypothermia
-    TickSpeed: 80                   # Player will take damage each time this many number of ticks passes
+    TickPeriod: 80                   # Player will take damage each time this many number of ticks passes
     Temperature: 1.0                # At what temperature or lower should the player be in hypothermia?
     Damage:
       Enabled: true
@@ -120,7 +151,7 @@ Temperature:
           Amplifier: 2
           Duration: 160
     Duration: 240                   # Number of ticks in which the player can take damage from hyperthermia
-    TickSpeed: 80                   # Player will take damage each time this many number of ticks passes
+    TickPeriod: 80                   # Player will take damage each time this many number of ticks passes
     Temperature: 24.0               # At what temperature or higher should the player be in hyperthermia?
     Damage:
       Enabled: true
@@ -593,7 +624,7 @@ Temperature:
 
 Thirst:
   Enabled: true
-  CalculateTickSpeed: 90   # Time in ticks that the game will check to deplete thirst, don't recommend changing unless the server is lagging severely
+  CalculateTickPeriod: 90   # Time in ticks that the game will check to deplete thirst, don't recommend changing unless the server is lagging severely
   DefaultThirst: 20.0       # Amount of thirst a player will automatically spawn with, 20.0 = Maximum, 0.0 = Minimum
   DefaultSaturation: 5.0    # Amount of saturation a player will automatically spawn with
   DefaultExhaustion: 0.0
@@ -611,7 +642,7 @@ Thirst:
           Amplifier: 0
           Duration: 160
     Duration: 240             # Number of ticks in which the player can take damage from dehydration
-    TickSpeed: 80             # Player will take damage each time this many number of ticks passes
+    TickPeriod: 80             # Player will take damage each time this many number of ticks passes
     Thirst: 0.4               # At what thirst level or lower should the player be dehydrated
     Damage:
       Enabled: true
@@ -642,7 +673,7 @@ Thirst:
     MultiplyExhaustionRates:
       Enabled: true
       Value: 2.0              # The exhaustion increase from sources in "ExhaustionLevelIncrease" will be multiplied by the specified value
-    TickSpeed: 100            # Every "TickSpeed" ticks, you'll take damage
+    TickPeriod: 100            # Every "TickPeriod" ticks, you'll take damage
     Duration: 600             # How long parasites will be active for in ticks
     Damage:
       Amount: 1.0
@@ -781,30 +812,16 @@ Items:
   ice_cube:
     Enabled:
       EnableAllVersions: true
-    BlockDrops: # What blocks should be counted as ice
-      ICE:
-        Type: "Common"
-        Chance: 0.33
-      PACKED_ICE:
-        Type: "Common"
-        Chance: 0.67
-      BLUE_ICE:
-        Type: "Common"
-        Chance: 1.00
   magma_shard:
     Enabled:
       EnableAllVersions: true
-    BlockDrops: # What blocks should be counted as magma blocks
-      MAGMA_BLOCK:
-        Type: "Common"
-        Chance: 0.33
   jelled_slime:
     Enabled:
       EnableAllVersions: true
   thermometer:
     Enabled:
       EnableAllVersions: true
-    TickSpeed: 1        # How often will the compass update your temperature in ticks
+    TickPeriod: 1        # How often will the compass update your temperature in ticks
   wool_hood:
     Enabled:
       EnableAllVersions: true

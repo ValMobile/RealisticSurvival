@@ -2,7 +2,7 @@
 #          Spartan's Weaponry         #
 #######################################
 
-ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -25,14 +25,29 @@ WeaponDropped:
   Message: "&fWeapon dropped at &bx&f: &b%X-COORD%&f, &by&f: &b%Y-COORD%&f, &bz&f: &b%Z-COORD%&f."    # All placeholders: %X-COORD%, %Y_COORD%, %Z-COORD%
 
 # Used to specify custom item drops for any mob
-# By default, there is no reason to use this, so the chance is set to 0.00
+# By default, there is no use for this, so the chance is set to 0.00
 MobDrops:
   WITHER:
     handle:
       Type: "Rare"
       Chance: 0.00
 
-UpdateNetheriteItems:   # Specify which factors will be transferred over when a diamond weapon is crafted into a netherite weapon via smithing table
+# Used to specify custom block drops
+# By default, there is no use for this, so the chance is set to 0.00
+BlockDrops:
+  BARRIER:
+    handle:
+      Type: "Rare"
+      Chance: 0.01
+      ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
+      IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
+      RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
+
+# Prevents custom sweep attacks from hitting pet wolves
+# Does not protect pets from intentional attacks, vanilla sweep attacks, or the sweeping edge enchant
+PreventSweepAttackingPets: true
+
+UpdateNetheriteItems:             # Specify which factors will be transferred over when a diamond weapon is crafted into a netherite weapon via smithing table
   Enabled: true
   UpdateMaterial: true
   UpdateMaterialData: false
@@ -55,8 +70,25 @@ UpdateNetheriteItems:   # Specify which factors will be transferred over when a 
     UpdateCustomDurability: false
     UpdateCustomMaxDurability: true
 
+MobAbilities:                         # NOTE: These settings also affect Spartan and Fire weapons
+  UseThrowingWeapons:
+    Enabled: true
+    TickPeriod: 10                     # Time in ticks that the game will check if weapon can be thrown
+    Chance: 0.35                      # Chance per "TickPeriod" that a weapon can be thrown
+    MobBlacklist:
+      - ""                            # Any mobs here will be unable to use throwing weapons (eg: "ZOMBIE" disables zombies from using throwable weapons)
+    WeaponBlacklist:
+      - ""                            # Any throwing weapons here won't be usable by mobs (eg: "diamond_boomerang" disables throwing of diamond boomerangs)
+  UseLongReachWeapons:
+    Enabled: true
+    TickPeriod: 10                     # Time in ticks that the game will check if weapon can be thrown
+    Chance: 1.0                       # Chance per "TickPeriod" that a weapon can be thrown
+    MobBlacklist:
+      - ""                            # Any mobs here will be unable to use long reach weapons (eg: "ZOMBIE" disables zombies from using long reach weapons)
+    WeaponBlacklist:
+      - ""                            # Any long reach weapons here won't be usable by mobs (eg: "iron_greatsword" disables mobs from using reach effect of greatswords)
+
 # Customize weapon and armor traits of the Spartan Weaponry items
-# Ignore the dragonbone or dragonsteel items, they are in beta
 
 Items:
   handle:
@@ -160,7 +192,7 @@ Items:
       AttackDamage: 5.5
       AttackSpeed: 2.0
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
@@ -171,7 +203,7 @@ Items:
       AttackDamage: 5.0
       AttackSpeed: 2.0
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
@@ -182,19 +214,19 @@ Items:
       AttackDamage: 3.5
       AttackSpeed: 2.0
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
   iron_katana:
-    TickTime: 20
+    TickPeriod: 20
     Enabled:
       EnableAllVersions: true
     Attributes:
       AttackDamage: 4.5
       AttackSpeed: 2.0
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
@@ -219,7 +251,7 @@ Items:
       AttackDamage: 4.25
       AttackSpeed: 2.0
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
@@ -230,7 +262,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 2.0
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
@@ -241,7 +273,7 @@ Items:
       AttackDamage: 3.5
       AttackSpeed: 2.0
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
@@ -255,7 +287,7 @@ Items:
       AttackDamage: 10.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -267,7 +299,7 @@ Items:
       AttackDamage: 8.5
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -279,7 +311,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -291,7 +323,7 @@ Items:
       AttackDamage: 7.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -317,7 +349,7 @@ Items:
       AttackDamage: 6.25
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -329,7 +361,7 @@ Items:
       AttackDamage: 5.5
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -341,7 +373,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
@@ -356,7 +388,7 @@ Items:
       AttackDamage: 10.5
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
@@ -367,7 +399,7 @@ Items:
       AttackDamage: 9.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
@@ -378,7 +410,7 @@ Items:
       AttackDamage: 4.5
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
@@ -389,7 +421,7 @@ Items:
       AttackDamage: 7.5
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
@@ -414,7 +446,7 @@ Items:
       AttackDamage: 6.75
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
@@ -425,7 +457,7 @@ Items:
       AttackDamage: 6.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
@@ -436,7 +468,7 @@ Items:
       AttackDamage: 4.5
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
@@ -1148,6 +1180,7 @@ Items:
       AttackDamage: 10.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1159,6 +1192,7 @@ Items:
       AttackDamage: 8.5
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1170,6 +1204,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1181,6 +1216,7 @@ Items:
       AttackDamage: 7.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1206,6 +1242,7 @@ Items:
       AttackDamage: 6.25
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1217,6 +1254,7 @@ Items:
       AttackDamage: 5.5
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1228,6 +1266,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 7.0
@@ -1242,11 +1281,13 @@ Items:
       AttackDamage: 11.0
       AttackSpeed: 1.2
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
   diamond_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1254,11 +1295,13 @@ Items:
       AttackDamage: 9.5
       AttackSpeed: 1.2
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
   gold_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1266,11 +1309,13 @@ Items:
       AttackDamage: 5.0
       AttackSpeed: 1.2
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
   iron_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1278,11 +1323,13 @@ Items:
       AttackDamage: 8.0
       AttackSpeed: 1.2
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
   copper_halberd:
     Enabled:
       EnableAllVersions: false
@@ -1304,11 +1351,13 @@ Items:
       AttackDamage: 7.25
       AttackSpeed: 1.2
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
   stone_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1316,11 +1365,13 @@ Items:
       AttackDamage: 6.5
       AttackSpeed: 1.2
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
   wooden_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1328,11 +1379,13 @@ Items:
       AttackDamage: 5.0
       AttackSpeed: 1.2
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 3
       Duration: 30
     Reach: 7.0
-    ShieldBreachChance: 0.9
+    ShieldBreach:
+      Chance: 0.5
+      Cooldown: 100
 
   # Hammers
 
@@ -1838,7 +1891,7 @@ Items:
       AttackDamage: 8.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -1849,7 +1902,7 @@ Items:
       AttackDamage: 7.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -1860,7 +1913,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -1871,7 +1924,7 @@ Items:
       AttackDamage: 6.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -1896,7 +1949,7 @@ Items:
       AttackDamage: 5.5
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -1907,7 +1960,7 @@ Items:
       AttackDamage: 5.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -1918,7 +1971,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 1.4
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     Reach: 8.5
@@ -1932,6 +1985,7 @@ Items:
       AttackDamage: 9.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
@@ -1942,6 +1996,7 @@ Items:
       AttackDamage: 7.5
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
@@ -1952,6 +2007,7 @@ Items:
       AttackDamage: 3.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
@@ -1962,6 +2018,7 @@ Items:
       AttackDamage: 6.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
@@ -1986,6 +2043,7 @@ Items:
       AttackDamage: 5.25
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
@@ -1996,6 +2054,7 @@ Items:
       AttackDamage: 4.5
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
@@ -2006,6 +2065,7 @@ Items:
       AttackDamage: 3.0
       AttackSpeed: 1.4
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
@@ -2557,7 +2617,7 @@ Items:
       AttackDamage: 10.0
       AttackSpeed: 1.1
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ArmorPiercing: 0.5
@@ -2568,7 +2628,7 @@ Items:
       AttackDamage: 8.5
       AttackSpeed: 1.1
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ArmorPiercing: 0.5
@@ -2579,7 +2639,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 1.1
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ArmorPiercing: 0.5
@@ -2590,7 +2650,7 @@ Items:
       AttackDamage: 7.0
       AttackSpeed: 1.1
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ArmorPiercing: 0.5
@@ -2615,7 +2675,7 @@ Items:
       AttackDamage: 6.25
       AttackSpeed: 1.1
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ArmorPiercing: 0.5
@@ -2626,7 +2686,7 @@ Items:
       AttackDamage: 5.5
       AttackSpeed: 1.1
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ArmorPiercing: 0.5
@@ -2637,7 +2697,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 1.1
     MiningFatigue:
-      TickTime: 20
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
     ArmorPiercing: 0.5
@@ -2651,6 +2711,7 @@ Items:
       AttackDamage: 12.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
   diamond_battleaxe:
@@ -2660,6 +2721,7 @@ Items:
       AttackDamage: 10.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
   gold_battleaxe:
@@ -2669,6 +2731,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
   iron_battleaxe:
@@ -2678,6 +2741,7 @@ Items:
       AttackDamage: 8.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
   copper_battleaxe:
@@ -2701,6 +2765,7 @@ Items:
       AttackDamage: 7.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
   stone_battleaxe:
@@ -2710,6 +2775,7 @@ Items:
       AttackDamage: 6.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
   wooden_battleaxe:
@@ -2719,6 +2785,7 @@ Items:
       AttackDamage: 4.0
       AttackSpeed: 1.0
     MiningFatigue:
+      TickPeriod: 20
       Amplifier: 2
       Duration: 30
 

@@ -44,7 +44,7 @@ public class ThirstCalculateTask extends BukkitRunnable {
     private double saturationLvl;
     private int tickTimer;
     private double exhaustionLvl;
-    private final int tickSpeed;
+    private final int tickPeriod;
     private boolean isJumping = false;
     private boolean parasitesActive = false;
     private final double peMultiplier;
@@ -65,7 +65,7 @@ public class ThirstCalculateTask extends BukkitRunnable {
         this.saturationLvl = player.getTanDataModule().getThirstSaturation();
         this.exhaustionLvl = player.getTanDataModule().getThirstExhaustion();
         this.peMultiplier = config.getDouble("Thirst.Parasites.MultiplyExhaustionRates.Value");
-        this.tickSpeed = config.getInt("Thirst.CalculateTickSpeed"); // get the tick speed
+        this.tickPeriod = config.getInt("Thirst.CalculateTickPeriod"); // get the tick period
         tasks.put(id, this);
     }
 
@@ -107,7 +107,7 @@ public class ThirstCalculateTask extends BukkitRunnable {
                     }
                 }
 
-                tickTimer += tickSpeed;
+                tickTimer += tickPeriod;
 
                 if (difficulty == Difficulty.PEACEFUL) {
                     thirstLvl = Math.min(MAXIMUM_THIRST, thirstLvl + 1D);
@@ -185,7 +185,7 @@ public class ThirstCalculateTask extends BukkitRunnable {
     }
 
     public void start() {
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static Map<UUID, ThirstCalculateTask> getTasks() {

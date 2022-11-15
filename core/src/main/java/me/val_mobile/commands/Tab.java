@@ -26,11 +26,13 @@ import org.bukkit.entity.Player;
 
 import java.util.*;
 
+import static me.val_mobile.realisticsurvival.RealisticSurvivalPlugin.NAME;
+
 /**
  * Tab is a class that creates a tab completer
  * when the user types appropriate commands
  * @author Val_Mobile
- * @version 1.2.3-DEV-1
+ * @version 1.2.3-DEV-2
  * @since 1.0
  */
 public class Tab implements TabCompleter {
@@ -55,7 +57,7 @@ public class Tab implements TabCompleter {
      */
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         // check if the user typed /realisticsurvival, case-insensitive
-        if (label.equalsIgnoreCase("realisticsurvival") || label.equalsIgnoreCase("rsv")) {
+        if (label.equalsIgnoreCase(NAME) || label.equalsIgnoreCase("rsv")) {
             List<String> result = new ArrayList<>(); // create an empty string list which will store the tab completer texts
 
             if (firstArgs.isEmpty()) {

@@ -2,7 +2,7 @@
 #          Baubles                    #
 #######################################
 
-ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -241,24 +241,35 @@ MobDrops:
       Type: "Rare"
       Chance: 0.01
 
+# Used to specify custom block drops
+# By default, there is no use for this, so the chance is set to 0.00
+BlockDrops:
+  BARRIER:
+    spectral_silt:
+      Type: "Rare"
+      Chance: 0.01
+      ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
+      IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
+      RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
+
 Items:
   # MaxAmplifier - Maximum level of potion effect a player can have get with multiple potion rings
   # Amplifiers are 1 value stronger than they appear
   # Ex: An amplifier of 0 corresponds to Resistance I
   # Set to -1 to disable
   # Duration - Length of the potion effect in ticks (20 ticks = 1 second)
-  # TickTime - How frequently potion rings update in ticks
+  # TickPeriod - How frequently potion rings update in ticks
   # Increase this number if you have performance issues with the plugin
   # Do not set below 1
   dragons_eye:      # REQUIRES ICE AND FIRE TO BE ENABLED
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     Effects:
       NIGHT_VISION:
         AmplifierIncrement: 0
         Amplifier: 0
-        Duration: 420
+        Duration: 430
       FIRE_RESISTANCE:
         AmplifierIncrement: 0
         Amplifier: 0
@@ -277,7 +288,7 @@ Items:
   potion_ring_resistance:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     Effects:
       DAMAGE_RESISTANCE:
         AmplifierIncrement: 1
@@ -286,7 +297,7 @@ Items:
   potion_ring_regeneration:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     Effects:
       REGENERATION:
         AmplifierIncrement: 1
@@ -295,7 +306,7 @@ Items:
   potion_ring_haste:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     Effects:
       FAST_DIGGING:
         AmplifierIncrement: 1
@@ -304,7 +315,7 @@ Items:
   potion_ring_strength:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     Effects:
       INCREASE_DAMAGE:
         AmplifierIncrement: 1
@@ -313,7 +324,7 @@ Items:
   potion_ring_speed:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     Effects:
       SPEED:
         AmplifierIncrement: 1
@@ -322,7 +333,7 @@ Items:
   potion_ring_jump_boost:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     Effects:
       JUMP:
         AmplifierIncrement: 1
@@ -407,7 +418,7 @@ Items:
     Enabled:
       EnableAllVersions: true
     Cooldown: 300
-    TickTime: 5
+    TickPeriod: 5
     Sound:
       Enabled: true
       Sound: "ITEM_CHORUS_FRUIT_TELEPORT"
@@ -417,7 +428,7 @@ Items:
     Enabled:
       EnableAllVersions: true
     Cooldown: 300
-    TickTime: 5
+    TickPeriod: 5
   recall_potion:
     Enabled:
       EnableAllVersions: true
@@ -438,7 +449,7 @@ Items:
     Enabled:
       EnableAllVersions: true
     HealAmount: 1.0
-    TickTime: 300
+    TickPeriod: 300
   spectral_silt:
     Enabled:
       EnableAllVersions: true
@@ -547,7 +558,7 @@ Items:
     Instability:                    # Occurs when a player simply holds the stone in their main hand without equipping it in the bauble bag
       MaxDownwardVelocity: -0.10
       MaxUpwardVelocity: 0.10
-    TickTime: 5
+    TickPeriod: 5
   stone_inertia_null:
     Enabled:
       EnableAllVersions: true
@@ -559,14 +570,14 @@ Items:
     FallDamageMultiplier: 0.25
     JumpVelocityMultiplier: 2.0
     KnockbackPercent: 0.5
-    TickTime: 5
+    TickPeriod: 5
   ring_enchanted_eyes:
     Enabled:
       EnableAllVersions: true
   stone_sea:
     Enabled:
       EnableAllVersions: true
-    TickTime: 1
+    TickPeriod: 1
     BaseSwimSpeed: 10.0
     HorizontalSpeedIncrement: 0.05
     VerticalSpeedIncrement: 0.2
@@ -580,17 +591,17 @@ Items:
       NIGHT_VISION:
         AmplifierIncrement: 0
         Amplifier: 0
-        Duration: 420
+        Duration: 430
   polarized_stone:
     Enabled:
       EnableAllVersions: true
-    TickTime: 1
+    TickPeriod: 1
     MaxRadius: 10.0
     PullForce: 1.0
   ring_fairies:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     AttackDamageMultiplier: 0.75
     HealthMultiplier: 0.75
     ArmorMultiplier: 0.5
@@ -604,7 +615,7 @@ Items:
   ring_dwarves:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     MiningSpeedMultiplier: 2.0
     StoneExperience:
       Value: 0.1
@@ -616,7 +627,7 @@ Items:
   shield_honor:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     Effects:
       DAMAGE_RESISTANCE:
         AmplifierIncrement: 0
@@ -626,7 +637,7 @@ Items:
   miners_ring:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     Effects:
       FAST_DIGGING:
         AmplifierIncrement: 0
@@ -635,7 +646,7 @@ Items:
   phantom_prism:
     Enabled:
       EnableAllVersions: true
-    TickTime: 20
+    TickPeriod: 20
     Effects:
       INVISIBILITY:
         AmplifierIncrement: 0
@@ -685,15 +696,7 @@ Items:
       EnableAllVersions: true
 
 Recipes:
-  dragons_eye_fire_dragon:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  dragons_eye_ice_dragon:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  dragons_eye_lightning_dragon:
+  dragons_eye_ice_fire_dragon:
     Enabled:
       EnableAllVersions: true
     Unlock: true
@@ -893,63 +896,11 @@ Recipes:
     Enabled:
       EnableAllVersions: true
     Unlock: true
-  spectral_silt_broken_heart:
+  spectral_silt_bauble:
     Enabled:
       EnableAllVersions: true
     Unlock: true
-  spectral_silt_balloon:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_cobalt_shield:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_obsidian_shield:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_magic_mirror:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_wormhole_mirror:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_lucky_horseshoe:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_sunglasses:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_cross_necklace:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_sin_pendant:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_flare_gun:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_cracked_black_dragonscale:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_diamond_block:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_emerald_block:
-    Enabled:
-      EnableAllVersions: true
-    Unlock: true
-  spectral_silt_phantom_prism:
+  spectral_silt_mineral:
     Enabled:
       EnableAllVersions: true
     Unlock: true

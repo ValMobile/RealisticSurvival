@@ -2,36 +2,18 @@
 #          Baubles Recipes            #
 #######################################
 
-ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Recipe-YML-Files
 
-dragons_eye_fire_dragon:
+dragons_eye_ice_fire_dragon:
   Type: "Shaped"
   Result:
     Item: "dragons_eye"
     Amount: 1
   Ingredients:
     - "ring_enchanted_eyes|DIAMOND_SWORD|glowing_gem"
-    - "DIAMOND_SWORD|dragon_skull_fire|DIAMOND_SWORD"
-    - "glowing_gem|DIAMOND_SWORD|glowing_gem"
-dragons_eye_ice_dragon:
-  Type: "Shaped"
-  Result:
-    Item: "dragons_eye"
-    Amount: 1
-  Ingredients:
-    - "ring_enchanted_eyes|DIAMOND_SWORD|glowing_gem"
-    - "DIAMOND_SWORD|dragon_skull_ice|DIAMOND_SWORD"
-    - "glowing_gem|DIAMOND_SWORD|glowing_gem"
-dragons_eye_lightning_dragon:
-  Type: "Shaped"
-  Result:
-    Item: "dragons_eye"
-    Amount: 1
-  Ingredients:
-    - "ring_enchanted_eyes|DIAMOND_SWORD|glowing_gem"
-    - "DIAMOND_SWORD|dragon_skull_lightning|DIAMOND_SWORD"
+    - "DIAMOND_SWORD|(dragon_skull_fire,dragon_skull_ice,dragon_skull_lightning)|DIAMOND_SWORD"
     - "glowing_gem|DIAMOND_SWORD|glowing_gem"
 dragons_eye_ender_dragon:
   Type: "Shaped"
@@ -63,7 +45,7 @@ potion_ring_resistance:
 potion_ring_regeneration:
   Type: "Shaped"
   Result:
-    Item: "potion_ring_resistance"
+    Item: "potion_ring_regeneration"
     Amount: 1
   Ingredients:
     - "NETHER_STAR|GHAST_TEAR"
@@ -72,7 +54,7 @@ potion_ring_regeneration:
 potion_ring_haste:
   Type: "Shaped"
   Result:
-    Item: "potion_ring_resistance"
+    Item: "potion_ring_haste"
     Amount: 1
   Ingredients:
     - "EMERALD_BLOCK|EMERALD"
@@ -81,7 +63,7 @@ potion_ring_haste:
 potion_ring_strength:
   Type: "Shaped"
   Result:
-    Item: "potion_ring_resistance"
+    Item: "potion_ring_strength"
     Amount: 1
   Ingredients:
     - "MAGMA_BLOCK|BLAZE_POWDER"
@@ -90,7 +72,7 @@ potion_ring_strength:
 potion_ring_speed:
   Type: "Shaped"
   Result:
-    Item: "potion_ring_resistance"
+    Item: "potion_ring_speed"
     Amount: 1
   Ingredients:
     - "REDSTONE_BLOCK|SUGAR"
@@ -99,7 +81,7 @@ potion_ring_speed:
 potion_ring_jump_boost:
   Type: "Shaped"
   Result:
-    Item: "potion_ring_resistance"
+    Item: "potion_ring_jump_boost"
     Amount: 1
   Ingredients:
     - "SLIME_BLOCK|SUGAR"
@@ -332,17 +314,17 @@ emerald_ring:
     Amount: 1
   Ingredients:
     - "|EMERALD|"
-    - "GOLD_INGOT||GOLD_INGOT"
-    - "|GOLD_INGOT"
+    - "GOLD_NUGGET||GOLD_NUGGET"
+    - "|GOLD_NUGGET"
 emerald_amulet:
   Type: "Shaped"
   Result:
     Item: "emerald_amulet"
     Amount: 1
   Ingredients:
-    - "spectral_silt|GOLD_INGOT|spectral_silt"
-    - "GOLD_INGOT||GOLD_INGOT"
-    - "spectral_silt|GOLD_INGOT|spectral_silt"
+    - "GOLD_NUGGET|GOLD_NUGGET|GOLD_NUGGET"
+    - "GOLD_NUGGET||GOLD_NUGGET"
+    - "|EMERALD"
 glowing_ingot:
   Type: "Shaped"
   Result:
@@ -492,125 +474,21 @@ lucky_horseshoe:
     - "GOLD_INGOT|spectral_silt|GOLD_INGOT"
     - "GOLD_INGOT|spectral_silt|GOLD_INGOT"
     - "spectral_silt|GOLD_INGOT|spectral_silt"
-spectral_silt_broken_heart:
-  Type: "Shapeless"
+spectral_silt_bauble:
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
   Ingredients:
-    - "broken_heart"
+    - "(broken_heart,balloon,cobalt_shield,obsidian_shield,magic_mirror,wormhole_mirror,lucky_horseshoe,sunglasses,cross_necklace,sin_pendant,flare_gun,cracked_black_dragonscale,phantom_prism,)"
     - "disintegration_tablet"
-spectral_silt_balloon:
-  Type: "Shapeless"
+spectral_silt_mineral:
+  Type: "Shaped"
   Result:
     Item: "spectral_silt"
     Amount: 1
   Ingredients:
-    - "balloon"
-    - "disintegration_tablet"
-spectral_silt_cobalt_shield:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "cobalt_shield"
-    - "disintegration_tablet"
-spectral_silt_obsidian_shield:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "obsidian_shield"
-    - "disintegration_tablet"
-spectral_silt_magic_mirror:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "magic_mirror"
-    - "disintegration_tablet"
-spectral_silt_wormhole_mirror:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "wormhole_mirror"
-    - "disintegration_tablet"
-spectral_silt_lucky_horseshoe:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "lucky_horseshoe"
-    - "disintegration_tablet"
-spectral_silt_sunglasses:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "sunglasses"
-    - "disintegration_tablet"
-spectral_silt_cross_necklace:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "cross_necklace"
-    - "disintegration_tablet"
-spectral_silt_sin_pendant:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "sin_pendant"
-    - "disintegration_tablet"
-spectral_silt_flare_gun:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "flare_gun"
-    - "disintegration_tablet"
-spectral_silt_cracked_black_dragonscale:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "cracked_black_dragonscale"
-    - "disintegration_tablet"
-spectral_silt_diamond_block:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "DIAMOND_BLOCK"
-    - "disintegration_tablet"
-spectral_silt_emerald_block:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "EMERALD_BLOCK"
-    - "disintegration_tablet"
-spectral_silt_phantom_prism:
-  Type: "Shapeless"
-  Result:
-    Item: "spectral_silt"
-    Amount: 1
-  Ingredients:
-    - "phantom_prism"
+    - "(DIAMOND_BLOCK,EMERALD_BLOCK)"
     - "disintegration_tablet"
 spectral_silt_flare:
   Type: "Shaped"

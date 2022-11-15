@@ -16,108 +16,72 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.data.RSVModule;
-import me.val_mobile.iceandfire.IceFireModule;
+import me.val_mobile.iceandfire.SeaSerpent;
 import me.val_mobile.iceandfire.SeaSerpentVariant;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import net.minecraft.server.v1_16_R1.*;
+import net.minecraft.server.v1_16_R1.ChatComponentText;
+import net.minecraft.server.v1_16_R1.DamageSource;
+import net.minecraft.server.v1_16_R1.EntityGuardianElder;
+import net.minecraft.server.v1_16_R1.EntityTypes;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_16_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R1.entity.CraftEntity;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SeaSerpent_v1_16_R1 extends EntityGuardianElder implements RSVMob {
+public class SeaSerpent_v1_16_R1 extends EntityGuardianElder implements SeaSerpent {
 
-    private final RealisticSurvivalPlugin plugin;
-    private final RSVModule module;
     private SeaSerpentVariant variant;
     private final Collection<ItemStack> loot = new ArrayList<>();
 
-    public SeaSerpent_v1_16_R1(Location loc, RealisticSurvivalPlugin plugin) {
-        super(EntityTypes.ELDER_GUARDIAN, ((CraftWorld) loc.getWorld()).getHandle());
-
-        this.plugin = plugin;
-
-        SeaSerpentVariant[] allVariants = SeaSerpentVariant.values();
-
-        do {
-            variant = allVariants[Utils.getRandomNum(0, allVariants.length)];
-        } while(!variant.isEnabled());
-
-        this.module = RSVModule.getModule(IceFireModule.NAME);
-
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
-        this.setCustomNameVisible(false);
-
-        FileConfiguration config = module.getUserConfig().getConfig();
-
-        int scaleAmount = Utils.getRandomNum(config.getInt("SeaSerpents.Drops.Scales.Min"), config.getInt("SeaSerpents.Drop.Scales.Max"));
-
-        ItemStack scales = RSVItem.getItem("sea_serpent_scale_" + variant.toString().toLowerCase());
-        scales.setAmount(scaleAmount);
-
-        loot.add(scales);
-    }
-
-    public SeaSerpent_v1_16_R1(Location loc, SeaSerpentVariant variant, RealisticSurvivalPlugin plugin) {
-        super(EntityTypes.ELDER_GUARDIAN, ((CraftWorld) loc.getWorld()).getHandle());
-
-        this.plugin = plugin;
-
-        this.variant = variant.isEnabled() ? variant : null;
-        this.module = RSVModule.getModule(IceFireModule.NAME);
-
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
-        this.setCustomNameVisible(false);
-
-        FileConfiguration config = module.getUserConfig().getConfig();
-
-        int scaleAmount = Utils.getRandomNum(config.getInt("SeaSerpents.Drops.Scales.Min"), config.getInt("SeaSerpents.Drop.Scales.Max"));
-
-        ItemStack scales = RSVItem.getItem("sea_serpent_scale_" + variant.toString().toLowerCase());
-        scales.setAmount(scaleAmount);
-
-        loot.add(scales);
-    }
-
-    public SeaSerpent_v1_16_R1(EntityTypes<? extends EntityGuardianElder> entitytypes, World world) {
+    public SeaSerpent_v1_16_R1(EntityTypes<? extends EntityGuardianElder> entitytypes, net.minecraft.server.v1_16_R1.World world) {
         super(entitytypes, world);
 
-        this.plugin = null;
+        SeaSerpentVariant[] allVariants = SeaSerpentVariant.values();
+
+        do {
+            variant = allVariants[Utils.getRandomNum(0, allVariants.length - 1)];
+        } while(!variant.isEnabled());
+
+        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
+        this.setCustomNameVisible(false);
+    }
+
+    public SeaSerpent_v1_16_R1(Location loc) {
+        super(EntityTypes.ELDER_GUARDIAN, ((CraftWorld) loc.getWorld()).getHandle());
 
         SeaSerpentVariant[] allVariants = SeaSerpentVariant.values();
 
         do {
-            variant = allVariants[Utils.getRandomNum(0, allVariants.length)];
+            variant = allVariants[Utils.getRandomNum(0, allVariants.length - 1)];
         } while(!variant.isEnabled());
-
-        this.module = RSVModule.getModule(IceFireModule.NAME);
 
         this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
         this.setCustomNameVisible(false);
+    }
 
-        FileConfiguration config = module.getUserConfig().getConfig();
+    public SeaSerpent_v1_16_R1(Location loc, SeaSerpentVariant variant) {
+        super(EntityTypes.ELDER_GUARDIAN, ((CraftWorld) loc.getWorld()).getHandle());
 
-        int scaleAmount = Utils.getRandomNum(config.getInt("SeaSerpents.Drops.Scales.Min"), config.getInt("SeaSerpents.Drop.Scales.Max"));
+        this.variant = variant.isEnabled() ? variant : null;
 
-        ItemStack scales = RSVItem.getItem("sea_serpent_scale_" + variant.toString().toLowerCase());
-        scales.setAmount(scaleAmount);
-
-        loot.add(scales);
+        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
+        this.setCustomNameVisible(false);
     }
 
     @Override
-    public void addNbtData() {
-        Utils util = RealisticSurvivalPlugin.getUtil();
-        CraftEntity entity = this.getBukkitEntity();
-        util.addNbtTag(entity, "rsvmob", "sea_serpent", PersistentDataType.STRING);
+    public Entity getEntity() {
+        return this.getBukkitEntity();
+    }
+
+    @Override
+    public void addEntityToWorld(org.bukkit.World world) {
+        ((CraftWorld) world).addEntity(this, CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
     @Override
@@ -125,20 +89,22 @@ public class SeaSerpent_v1_16_R1 extends EntityGuardianElder implements RSVMob {
         super.die(damageSource);
 
         Location loc = this.getBukkitEntity().getLocation();
-        org.bukkit.World world = loc.getWorld();
-
+        World world = loc.getWorld();
+        generateLoot(loot);
         for (ItemStack item : loot) {
-            world.dropItemNaturally(loc, item);
+            if (item != null) {
+                world.dropItemNaturally(loc, item);
+            }
         }
     }
 
     @Override
-    protected void initPathfinder()
-    {
-        this.goalSelector.a(0, new PathfinderGoalFloat(this));
+    protected void initPathfinder() {
+        super.initPathfinder();
+    }
 
-        this.goalSelector.a(2, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
-        this.goalSelector.a(3, new PathfinderGoalRandomLookaround(this));
-        this.goalSelector.a(1, new PathfinderGoalPet_v1_16_R1(this, 1.0, 25));
+    @Override
+    public SeaSerpentVariant getVariant() {
+        return variant;
     }
 }

@@ -29,13 +29,13 @@ import java.util.UUID;
 
 public class ElectrocuteTask extends BukkitRunnable {
 
-    private static Map<UUID, ElectrocuteTask> tasks = new HashMap<>();
+    private static final Map<UUID, ElectrocuteTask> tasks = new HashMap<>();
     private final Damageable entity;
     private final RealisticSurvivalPlugin plugin;
     private final FileConfiguration config;
     private final double shockDamage;
     private int shockAmount;
-    private final int tickSpeed;
+    private final int tickPeriod;
 
 
     public ElectrocuteTask(RealisticSurvivalPlugin plugin, int stage, Damageable entity) {
@@ -45,7 +45,7 @@ public class ElectrocuteTask extends BukkitRunnable {
         int stageMultiplier = config.getInt("Dragons.LightningDragon.ElectrocuteAbility.StageMultipliers.Stage" + stage);
         this.shockDamage = config.getDouble("Dragons.LightningDragon.ElectrocuteAbility.ShockDamage") * stageMultiplier;
         this.shockAmount = config.getInt("Dragons.LightningDragon.ElectrocuteAbility.ShockAmount") * stageMultiplier;
-        this.tickSpeed = config.getInt("Dragons.LightningDragon.ElectrocuteAbility.TickSpeed");
+        this.tickPeriod = config.getInt("Dragons.LightningDragon.ElectrocuteAbility.TickPeriod");
         tasks.put(entity.getUniqueId(), this);
     }
 
@@ -55,7 +55,7 @@ public class ElectrocuteTask extends BukkitRunnable {
         this.config = module.getUserConfig().getConfig();
         this.shockDamage = config.getDouble("Items." + itemName + ".ElectrocuteAbility.ShockDamage");
         this.shockAmount = config.getInt("Items." + itemName + ".ElectrocuteAbility.ShockAmount");
-        this.tickSpeed = config.getInt("Items." + itemName + ".ElectrocuteAbility.TickSpeed");
+        this.tickPeriod = config.getInt("Items." + itemName + ".ElectrocuteAbility.TickPeriod");
         tasks.put(entity.getUniqueId(), this);
     }
 
@@ -72,7 +72,7 @@ public class ElectrocuteTask extends BukkitRunnable {
     }
 
     public void start() {
-        runTaskTimer(plugin, 0L, tickSpeed);
+        runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static Map<UUID, ElectrocuteTask> getTasks() {

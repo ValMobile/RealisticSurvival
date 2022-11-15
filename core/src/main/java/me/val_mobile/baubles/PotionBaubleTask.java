@@ -119,8 +119,8 @@ public class PotionBaubleTask extends BukkitRunnable {
     public void start() {
         FileConfiguration config = module.getUserConfig().getConfig();
 
-        int tickSpeed = config.getInt("Items." + potionBauble.getName() + ".TickTime"); // get the tick speed
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        int tickPeriod = config.getInt("Items." + potionBauble.getName() + ".TickPeriod"); // get the tick period
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     private int getAmount() {

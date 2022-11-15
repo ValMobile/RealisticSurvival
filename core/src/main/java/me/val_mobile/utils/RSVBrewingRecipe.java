@@ -17,7 +17,6 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
@@ -42,21 +41,14 @@ public class RSVBrewingRecipe implements Recipe {
     public RSVBrewingRecipe(RealisticSurvivalPlugin plugin, FileConfiguration config, String name) {
         this.name = name;
 
-        String resultName = config.getString(name + ".Result.Item");
-        int resultAmount = config.getInt(name + ".Result.Amount");
-
-        String potionPath = config.getString(name + ".Potion");
-        String ingPath = config.getString(name + ".Ingredient");
-        String fuelPath = config.getString(name + ".Fuel");
-
         this.fuelPower = config.getInt(name + ".FuelPower");
         this.fuelCharge = config.getInt(name + ".FuelCharge");
         this.perfect = config.getBoolean(name + ".Perfect");
 
-        this.ingredient = RSVItem.isRSVItem(ingPath) ? RSVItem.getItem(ingPath) : new ItemStack(Material.valueOf(ingPath));
-        this.fuel = RSVItem.isRSVItem(fuelPath) ? RSVItem.getItem(fuelPath) : new ItemStack(Material.valueOf(fuelPath));
-        this.potion = RSVItem.isRSVItem(potionPath) ? RSVItem.getItem(potionPath) : new ItemStack(Material.valueOf(potionPath));
-        this.result = RSVItem.isRSVItem(resultName) ? RSVItem.getItem(resultName).resize(resultAmount) : new ItemStack(Material.valueOf(resultName), resultAmount);
+        this.ingredient = RSVRecipe.getItem(config, name + ".Ingredient");
+        this.fuel = RSVRecipe.getItem(config, name + ".Fuel");
+        this.potion = RSVRecipe.getItem(config,name + ".Potion");
+        this.result = RSVRecipe.getResult(config, name);
 
         this.duration = config.getInt(name + ".Duration");
         this.plugin = plugin;

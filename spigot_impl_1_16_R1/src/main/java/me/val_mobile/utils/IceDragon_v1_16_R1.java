@@ -16,72 +16,34 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.DragonVariant;
-import me.val_mobile.iceandfire.IceFireModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.spartanandfire.FreezeTask;
+import me.val_mobile.iceandfire.IceDragon;
+import net.minecraft.server.v1_16_R1.EntityEnderDragon;
 import net.minecraft.server.v1_16_R1.EntityTypes;
 import net.minecraft.server.v1_16_R1.World;
 import org.bukkit.Location;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.LivingEntity;
 
 import static me.val_mobile.iceandfire.DragonBreed.ICE;
 
-public class IceDragon_v1_16_R1 extends Dragon_v1_16_R1 {
+public class IceDragon_v1_16_R1 extends Dragon_v1_16_R1 implements IceDragon {
 
-    private final RealisticSurvivalPlugin plugin;
-    private final FileConfiguration config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
+    public IceDragon_v1_16_R1(EntityTypes<? extends EntityEnderDragon> entityTypes, World world) {
+        super(entityTypes, world, ICE);
+    }
 
-    public IceDragon_v1_16_R1(Location loc, RealisticSurvivalPlugin plugin) {
+    public IceDragon_v1_16_R1(Location loc) {
         super(loc, ICE);
-
-        this.plugin = plugin;
     }
 
-    public IceDragon_v1_16_R1(Location loc, int stage, RealisticSurvivalPlugin plugin) {
+    public IceDragon_v1_16_R1(Location loc, int stage) {
         super(loc, ICE, stage);
-
-        this.plugin = plugin;
     }
 
-    public IceDragon_v1_16_R1(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+    public IceDragon_v1_16_R1(Location loc, DragonVariant variant) {
         super(loc, ICE, variant);
-
-        this.plugin = plugin;
     }
 
-    public IceDragon_v1_16_R1(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+    public IceDragon_v1_16_R1(Location loc, DragonVariant variant, int stage) {
         super(loc, ICE, variant, stage);
-
-        this.plugin = plugin;
-    }
-
-    public IceDragon_v1_16_R1(EntityTypes entityTypes, World world) {
-        super(null, ICE, null);
-        this.plugin = null;
-    }
-
-    @Override
-    public void performMeleeAttack(LivingEntity entity) {
-        double stageMultiplier = config.getDouble("Dragons.IceDragon.MeleeAttack.StageMultiplier.Stage" + getStage());
-        entity.damage(config.getDouble("Dragons.IceDragon.MeleeAttack.BaseDamage") * stageMultiplier, this.getBukkitEntity());
-        new FreezeTask(plugin, getStage(), entity).start();
-    }
-
-    @Override
-    public void performSpecialAbility(LivingEntity entity) {
-        new FreezeTask(plugin, getStage(), entity).start();
-    }
-
-    @Override
-    public void triggerBreathAttack(Location target) {
-        new IceBreath_v1_16_R1(this, target, plugin).start();
-    }
-
-    @Override
-    public void triggerExplosionAttack(Location target) {
-        new IceExplosionAttack_v1_16_R1(this, target, plugin).start();
     }
 }

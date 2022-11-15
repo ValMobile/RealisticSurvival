@@ -16,79 +16,34 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.DragonVariant;
-import me.val_mobile.iceandfire.IceFireModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.spartanandfire.ElectrocuteTask;
+import me.val_mobile.iceandfire.LightningDragon;
+import net.minecraft.server.v1_16_R1.EntityEnderDragon;
 import net.minecraft.server.v1_16_R1.EntityTypes;
 import net.minecraft.server.v1_16_R1.World;
 import org.bukkit.Location;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.LivingEntity;
 
-import static me.val_mobile.iceandfire.DragonBreed.ICE;
 import static me.val_mobile.iceandfire.DragonBreed.LIGHTNING;
 
-public class LightningDragon_v1_16_R1 extends Dragon_v1_16_R1 {
+public class LightningDragon_v1_16_R1 extends Dragon_v1_16_R1 implements LightningDragon {
 
-    private final RealisticSurvivalPlugin plugin;
-    private final FileConfiguration config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
+    public LightningDragon_v1_16_R1(EntityTypes<? extends EntityEnderDragon> entityTypes, World world) {
+        super(entityTypes, world, LIGHTNING);
+    }
 
-    public LightningDragon_v1_16_R1(Location loc, RealisticSurvivalPlugin plugin) {
+    public LightningDragon_v1_16_R1(Location loc) {
         super(loc, LIGHTNING);
-        this.plugin = plugin;
     }
 
-    public LightningDragon_v1_16_R1(Location loc, int stage, RealisticSurvivalPlugin plugin) {
+    public LightningDragon_v1_16_R1(Location loc, int stage) {
         super(loc, LIGHTNING, stage);
-        this.plugin = plugin;
     }
 
-    public LightningDragon_v1_16_R1(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
+    public LightningDragon_v1_16_R1(Location loc, DragonVariant variant) {
         super(loc, LIGHTNING, variant);
-
-        this.plugin = plugin;
     }
 
-    public LightningDragon_v1_16_R1(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
+    public LightningDragon_v1_16_R1(Location loc, DragonVariant variant, int stage) {
         super(loc, LIGHTNING, variant, stage);
-
-        this.plugin = plugin;
-    }
-
-    public LightningDragon_v1_16_R1(EntityTypes entityTypes, World world) {
-        super(null, ICE, null);
-        this.plugin = null;
-    }
-
-    @Override
-    public void performMeleeAttack(LivingEntity entity) {
-        double stageMultiplier = config.getDouble("Dragons.LightningDragon.MeleeAttack.StageMultiplier.Stage" + getStage());
-        entity.damage(config.getDouble("Dragons.LightningDragon.MeleeAttack.BaseDamage") * stageMultiplier, this.getBukkitEntity());
-    }
-
-    @Override
-    public void performSpecialAbility(LivingEntity entity) {
-        Location loc = entity.getLocation();
-        if (config.getBoolean("Dragons.LightningDragon.ElectrocuteAbility.SummonCosmeticLightning")) {
-            loc.getWorld().strikeLightningEffect(loc);
-        }
-        else {
-            loc.getWorld().strikeLightning(loc);
-        }
-        if (!ElectrocuteTask.hasTask(entity.getUniqueId())) {
-            new ElectrocuteTask(plugin, getStage(), entity).start();
-        }
-    }
-
-    @Override
-    public void triggerBreathAttack(Location target) {
-        new LightningBreath_v1_16_R1(this, target, plugin).start();
-    }
-
-    @Override
-    public void triggerExplosionAttack(Location target) {
-        new LightningExplosionAttack_v1_16_R1(this, target, plugin).start();
     }
 }

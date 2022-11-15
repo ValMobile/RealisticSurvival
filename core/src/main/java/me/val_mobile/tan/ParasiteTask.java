@@ -40,7 +40,7 @@ public class ParasiteTask extends BukkitRunnable {
     private final double damage;
     private final UUID id;
     private final int duration;
-    private final int tickSpeed;
+    private final int tickPeriod;
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
     private int ticks = 0;
 
@@ -54,7 +54,7 @@ public class ParasiteTask extends BukkitRunnable {
         this.allowedWorlds = module.getAllowedWorlds();
         this.damage = config.getDouble("Thirst.Parasites.Damage.Amount");
         this.duration = config.getInt("Thirst.Parasites.Duration");
-        this.tickSpeed = config.getInt("Thirst.Parasites.TickSpeed");
+        this.tickPeriod = config.getInt("Thirst.Parasites.TickPeriod");
 
         ConfigurationSection section = config.getConfigurationSection("Thirst.Parasites.PotionEffects.Effects");
         Set<String> keys = section.getKeys(false);
@@ -83,7 +83,7 @@ public class ParasiteTask extends BukkitRunnable {
         // if the player is in creative or spectator
         else {
             GameMode mode = player.getGameMode(); // get the gamemode
-            ticks += tickSpeed;
+            ticks += tickPeriod;
 
             if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && !player.isDead() && player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && ticks < duration) {
                 DisplayTask.getTasks().get(id).setParasitesActive(true);
@@ -123,7 +123,7 @@ public class ParasiteTask extends BukkitRunnable {
 
         ThirstCalculateTask.getTasks().get(id).setParasitesActive(true);
 
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static Map<UUID, ParasiteTask> getTasks() {

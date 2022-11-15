@@ -2,7 +2,7 @@
 #          Ice and Fire Recipes       #
 #######################################
 
-ConfigId: "1.2.3-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Recipe-YML-Files
 
@@ -117,26 +117,26 @@ dragonscale_helmet_green:
     Item: "dragonscale_helmet_green"
     Amount: 1
   Ingredients:
-    - "dragonscale_green|dragonscale_green|dragonscale_green"
-    - "dragonscale_green||dragonscale_green"
+    - "dragonscale_emerald|dragonscale_emerald|dragonscale_emerald"
+    - "dragonscale_emerald||dragonscale_emerald"
 dragonscale_chestplate_green:
   Type: "Shaped"
   Result:
     Item: "dragonscale_chestplate_green"
     Amount: 1
   Ingredients:
-    - "dragonscale_green||dragonscale_green"
-    - "dragonscale_green|dragonscale_green|dragonscale_green"
-    - "dragonscale_green|dragonscale_green|dragonscale_green"
+    - "dragonscale_emerald||dragonscale_emerald"
+    - "dragonscale_emerald|dragonscale_emerald|dragonscale_emerald"
+    - "dragonscale_emerald|dragonscale_emerald|dragonscale_emerald"
 dragonscale_leggings_green:
   Type: "Shaped"
   Result:
     Item: "dragonscale_leggings_green"
     Amount: 1
   Ingredients:
-    - "dragonscale_green|dragonscale_green|dragonscale_green"
-    - "dragonscale_green||dragonscale_green"
-    - "dragonscale_green||dragonscale_green"
+    - "dragonscale_emerald|dragonscale_emerald|dragonscale_emerald"
+    - "dragonscale_emerald||dragonscale_emerald"
+    - "dragonscale_emerald||dragonscale_emerald"
 dragonscale_boots_green:
   Type: "Shaped"
   Result:
@@ -144,8 +144,8 @@ dragonscale_boots_green:
     Amount: 1
   Ingredients:
     - ""
-    - "dragonscale_green||dragonscale_green"
-    - "dragonscale_green||dragonscale_green"
+    - "dragonscale_emerald||dragonscale_emerald"
+    - "dragonscale_emerald||dragonscale_emerald"
 dragonscale_helmet_red:
   Type: "Shaped"
   Result:

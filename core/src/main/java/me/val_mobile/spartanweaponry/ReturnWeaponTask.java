@@ -24,6 +24,7 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Item;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -35,17 +36,19 @@ public class ReturnWeaponTask extends BukkitRunnable {
     private final String name;
 
     private final FileConfiguration config;
-    private final ItemStack itemStack;
+    private final ItemStack item;
     private final ArmorStand armorStand;
-    private final Player player;
+    private final LivingEntity entity;
+    private final boolean rotateWeapon;
 
-    public ReturnWeaponTask(RSVModule module, ItemStack itemStack, ArmorStand armorStand, Player player){
-        this.itemStack = itemStack;
+    public ReturnWeaponTask(RSVModule module, ItemStack item, ArmorStand armorStand, LivingEntity entity, boolean rotateWeapon) {
+        this.item = item;
         this.armorStand = armorStand;
-        this.player = player;
+        this.entity = entity;
         this.config = module.getUserConfig().getConfig();
-        this.name = RSVItem.getNameFromItem(itemStack);
+        this.name = RSVItem.getNameFromItem(item);
         this.maxReturnDistance = config.getDouble("Items." + name + ".ThrownAttributes.MaxReturnDistance");
+        this.rotateWeapon = rotateWeapon;
     }
 
     @Override
@@ -54,66 +57,95 @@ public class ReturnWeaponTask extends BukkitRunnable {
         Vector asVector = asLocation.toVector();
         // if player is not online, drop the throwable immediately
 
-        if (!player.isOnline() || player == null) {
+        if (entity == null) {
             dropItem(asLocation);
             stop();
         }
         else {
-            Location pLocation = player.getLocation();
-            Vector pVector = pLocation.toVector();
-
-            armorStand.teleport(asLocation.subtract(asVector.subtract(pVector).normalize()).setDirection(pLocation.getDirection()));
-
-            if (distanceBetween(asLocation, pLocation) > maxReturnDistance) {
-                Location dropLoc = dropItem(asLocation);
-
-                if (config.getBoolean("MaxReturnDistanceReached.Enabled")) {
-                    String message = ChatColor.translateAlternateColorCodes('&', config.getString("MaxReturnDistanceReached.Message"));
-                    message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(maxReturnDistance)));
-                    player.sendMessage(message);
-                }
-
-                if (config.getBoolean("WeaponDropped.Enabled")) {
-                    String message = ChatColor.translateAlternateColorCodes('&', config.getString("WeaponDropped.Message"));
-                    message = message.replaceAll("%X-COORD%", String.valueOf((int) dropLoc.getX()));
-                    message = message.replaceAll("%Y-COORD%", String.valueOf((int) dropLoc.getY()));
-                    message = message.replaceAll("%Z-COORD%", String.valueOf((int) dropLoc.getZ()));
-
-                    player.sendMessage(message);
-                }
-
+            if (entity instanceof Player player && !player.isOnline()) {
+                dropItem(asLocation);
                 stop();
             }
+            else {
+                Location pLocation = entity.getLocation();
+                Vector pVector = pLocation.toVector();
 
-            if (distanceBetween(asLocation, pLocation) < 0.5) {
-                if (player.getInventory().firstEmpty() == -1) {
+                armorStand.teleport(asLocation.subtract(asVector.subtract(pVector).normalize()).setDirection(pLocation.getDirection()));
 
-                    if (config.getBoolean("FullInventoryWeaponDropped.Enabled")) {
-                        String message = ChatColor.translateAlternateColorCodes('&', config.getString("FullInventoryWeaponDropped.Message"));
-                        message = message.replaceAll("%X-COORD%", String.valueOf((int) pLocation.getX()));
-                        message = message.replaceAll("%Y-COORD%", String.valueOf((int) pLocation.getY()));
-                        message = message.replaceAll("%Z-COORD%", String.valueOf((int) pLocation.getZ()));
-                        player.sendMessage(message);
+                if (rotateWeapon) {
+                    armorStand.setRightArmPose(Utils.setRightArmAngle(armorStand, 45, 0, 0));
+                }
+
+                if (distanceBetween(asLocation, pLocation) > maxReturnDistance) {
+                    Location dropLoc = dropItem(asLocation);
+
+                    if (config.getBoolean("MaxReturnDistanceReached.Enabled")) {
+                        String message = ChatColor.translateAlternateColorCodes('&', config.getString("MaxReturnDistanceReached.Message"));
+                        message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(maxReturnDistance)));
+                        entity.sendMessage(message);
                     }
-                    dropItem(pLocation);
-                }
-                else {
-                    player.getInventory().addItem(itemStack.clone());
+
+                    if (config.getBoolean("WeaponDropped.Enabled")) {
+                        String message = ChatColor.translateAlternateColorCodes('&', config.getString("WeaponDropped.Message"));
+                        message = message.replaceAll("%X-COORD%", String.valueOf((int) dropLoc.getX()));
+                        message = message.replaceAll("%Y-COORD%", String.valueOf((int) dropLoc.getY()));
+                        message = message.replaceAll("%Z-COORD%", String.valueOf((int) dropLoc.getZ()));
+
+                        entity.sendMessage(message);
+                    }
+
+                    stop();
                 }
 
-                if (config.getBoolean("Items." + name + ".ThrownAttributes.ReturnSound.Enabled")) {
-                    String soundName = config.getString("Items." + name + ".ThrownAttributes.ReturnSound.Sound");
-                    float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.ReturnSound.Volume");
-                    float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.ReturnSound.Pitch");
-                    Utils.playSound(player.getLocation(), soundName, volume, pitch);
+                if (distanceBetween(asLocation, pLocation) < 0.5) {
+                    boolean isInvFull;
+
+                    if (entity instanceof Player player) {
+                        isInvFull = player.getInventory().firstEmpty() == -1;
+                    }
+                    else {
+                        if (entity.getEquipment() == null) {
+                            isInvFull = true;
+                        }
+                        else {
+                            isInvFull = Utils.isItemReal(entity.getEquipment().getItemInMainHand());
+                        }
+                    }
+
+                    if (config.getBoolean("Items." + name + ".ThrownAttributes.ReturnSound.Enabled")) {
+                        String soundName = config.getString("Items." + name + ".ThrownAttributes.ReturnSound.Sound");
+                        float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.ReturnSound.Volume");
+                        float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.ReturnSound.Pitch");
+                        Utils.playSound(entity.getLocation(), soundName, volume, pitch);
+                    }
+                    stop();
+
+                    if (isInvFull) {
+                        if (config.getBoolean("FullInventoryWeaponDropped.Enabled")) {
+                            String message = ChatColor.translateAlternateColorCodes('&', config.getString("FullInventoryWeaponDropped.Message"));
+                            message = message.replaceAll("%X-COORD%", String.valueOf((int) pLocation.getX()));
+                            message = message.replaceAll("%Y-COORD%", String.valueOf((int) pLocation.getY()));
+                            message = message.replaceAll("%Z-COORD%", String.valueOf((int) pLocation.getZ()));
+                            entity.sendMessage(message);
+                        }
+                        dropItem(pLocation);
+                    }
+                    else {
+                        if (entity instanceof Player player) {
+                            player.getInventory().addItem(item.clone());
+                        }
+                        else {
+                            entity.getEquipment().setItemInMainHand(item.clone());
+                        }
+                    }
+                    stop();
                 }
-                stop();
             }
         }
     }
 
     public Location dropItem(Location location) { // drop the throwable weapon if player inventory is full
-        Item droppedItem = player.getWorld().dropItem(location, itemStack.clone());
+        Item droppedItem = entity.getWorld().dropItem(location, item.clone());
         droppedItem.setGlowing(true);
 
         return droppedItem.getLocation();

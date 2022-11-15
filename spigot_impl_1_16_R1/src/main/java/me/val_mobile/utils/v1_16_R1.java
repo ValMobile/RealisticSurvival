@@ -16,15 +16,15 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.iceandfire.DragonVariant;
-import me.val_mobile.iceandfire.SeaSerpentVariant;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.baubles.EndermanAlly;
+import me.val_mobile.iceandfire.*;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.craftbukkit.v1_16_R1.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R1.entity.CraftLivingEntity;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.SmithingInventory;
@@ -32,83 +32,83 @@ import org.bukkit.inventory.SmithingInventory;
 public class v1_16_R1 extends InternalsProvider {
 
     @Override
-    public void spawnEndermanAlly(Player owner, Location loc) {
-        new EndermanAlly_v1_16_R1(owner, loc);
+    public EndermanAlly spawnEndermanAlly(Player owner, Location loc) {
+        return new EndermanAlly_v1_16_R1(owner, loc);
     }
 
     @Override
-    public void spawnFireDragon(Location loc, RealisticSurvivalPlugin plugin) {
-        new FireDragon_v1_16_R1(loc, plugin);
+    public FireDragon spawnFireDragon(Location loc) {
+        return new FireDragon_v1_16_R1(loc);
     }
 
     @Override
-    public void spawnFireDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-        new FireDragon_v1_16_R1(loc, stage, plugin);
+    public FireDragon spawnFireDragon(Location loc, int stage) {
+        return new FireDragon_v1_16_R1(loc, stage);
     }
 
     @Override
-    public void spawnFireDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
-        new FireDragon_v1_16_R1(loc, variant, plugin);
+    public FireDragon spawnFireDragon(Location loc, DragonVariant variant) {
+        return new FireDragon_v1_16_R1(loc, variant);
     }
 
     @Override
-    public void spawnFireDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
-        new FireDragon_v1_16_R1(loc, variant, stage, plugin);
+    public FireDragon spawnFireDragon(Location loc, DragonVariant variant, int stage) {
+        return new FireDragon_v1_16_R1(loc, variant, stage);
     }
 
     @Override
-    public void spawnIceDragon(Location loc, RealisticSurvivalPlugin plugin) {
-        new IceDragon_v1_16_R1(loc, plugin);
+    public IceDragon spawnIceDragon(Location loc) {
+        return new IceDragon_v1_16_R1(loc);
     }
 
     @Override
-    public void spawnIceDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-        new IceDragon_v1_16_R1(loc, stage, plugin);
+    public IceDragon spawnIceDragon(Location loc, int stage) {
+        return new IceDragon_v1_16_R1(loc, stage);
     }
 
     @Override
-    public void spawnIceDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
-        new IceDragon_v1_16_R1(loc, variant, plugin);
+    public IceDragon spawnIceDragon(Location loc, DragonVariant variant) {
+        return new IceDragon_v1_16_R1(loc, variant);
     }
 
     @Override
-    public void spawnIceDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
-        new IceDragon_v1_16_R1(loc, variant, stage, plugin);
+    public IceDragon spawnIceDragon(Location loc, DragonVariant variant, int stage) {
+        return new IceDragon_v1_16_R1(loc, variant, stage);
     }
 
     @Override
-    public void spawnLightningDragon(Location loc, RealisticSurvivalPlugin plugin) {
-        new LightningDragon_v1_16_R1(loc, plugin);
+    public LightningDragon spawnLightningDragon(Location loc) {
+        return new LightningDragon_v1_16_R1(loc);
     }
 
     @Override
-    public void spawnLightningDragon(Location loc, int stage, RealisticSurvivalPlugin plugin) {
-        new LightningDragon_v1_16_R1(loc, stage, plugin);
+    public LightningDragon spawnLightningDragon(Location loc, int stage) {
+        return new LightningDragon_v1_16_R1(loc, stage);
     }
 
     @Override
-    public void spawnLightningDragon(Location loc, DragonVariant variant, RealisticSurvivalPlugin plugin) {
-        new LightningDragon_v1_16_R1(loc, variant, plugin);
+    public LightningDragon spawnLightningDragon(Location loc, DragonVariant variant) {
+        return new LightningDragon_v1_16_R1(loc, variant);
     }
 
     @Override
-    public void spawnLightningDragon(Location loc, DragonVariant variant, int stage, RealisticSurvivalPlugin plugin) {
-        new LightningDragon_v1_16_R1(loc, variant, plugin);
+    public LightningDragon spawnLightningDragon(Location loc, DragonVariant variant, int stage) {
+        return new LightningDragon_v1_16_R1(loc, variant, stage);
     }
 
     @Override
-    public void spawnSeaSerpent(Location loc, RealisticSurvivalPlugin plugin) {
-        new SeaSerpent_v1_16_R1(loc, plugin);
+    public SeaSerpent spawnSeaSerpent(Location loc) {
+        return new SeaSerpent_v1_16_R1(loc);
     }
 
     @Override
-    public void spawnSeaSerpent(Location loc, SeaSerpentVariant variant, RealisticSurvivalPlugin plugin) {
-        new SeaSerpent_v1_16_R1(loc, variant, plugin);
+    public SeaSerpent spawnSeaSerpent(Location loc, SeaSerpentVariant variant) {
+        return new SeaSerpent_v1_16_R1(loc, variant);
     }
 
     @Override
-    public void spawnSiren(Location loc, RealisticSurvivalPlugin plugin) {
-        new Siren_v1_16_R1(loc, plugin);
+    public Siren spawnSiren(Location loc) {
+        return new Siren_v1_16_R1(loc);
     }
 
     @Override
@@ -152,7 +152,7 @@ public class v1_16_R1 extends InternalsProvider {
     public void setFreezingView(Player player, int ticks) {}
 
     @Override
-    public void attack(Player player, Entity entity) {
-        ((CraftPlayer) player).getHandle().attack(((CraftEntity) entity).getHandle());
+    public void attack(LivingEntity attacker, Entity defender) {
+        ((CraftLivingEntity) attacker).getHandle().attackEntity(((CraftEntity) defender).getHandle());
     }
 }

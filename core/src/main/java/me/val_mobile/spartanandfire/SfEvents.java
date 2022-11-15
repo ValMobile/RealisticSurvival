@@ -24,6 +24,7 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
@@ -47,14 +48,13 @@ public class SfEvents extends ModuleEvents implements Listener {
      * @param event The event called when an entity attacks another entity
      * @see Utils
      */
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         Entity defender = event.getEntity(); // get the defender
         Entity attacker = event.getDamager(); // get the attacker
 
         if (!event.isCancelled()) {
             if (shouldEventBeRan(attacker) && shouldEventBeRan(defender)) {
-                Utils util = RealisticSurvivalPlugin.getUtil();
                 double damage = event.getDamage();
 
                 if (attacker instanceof LivingEntity living) {
@@ -69,30 +69,34 @@ public class SfEvents extends ModuleEvents implements Listener {
 
                                 switch (type) {
                                     case "dragonbone_flamed" -> {
-                                        if (util.hasNbtTag(defender, "rsvmob")) {
-                                            if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
+                                        if (Utils.hasNbtTag(defender, "rsvmob")) {
+                                            if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
                                                 damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                             }
                                         }
 
                                         if (!BurnTask.hasTask(defender.getUniqueId())) {
                                             int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                            int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+                                            int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
 
-                                            new BurnTask(plugin, defender, fireTicks, tickSpeed).start();
+                                            new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
                                         }
                                     }
                                     case "dragonbone_iced" -> {
-                                        if (util.hasNbtTag(defender, "rsvmob")) {
-                                            if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
+                                        if (Utils.hasNbtTag(defender, "rsvmob")) {
+                                            if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
                                                 damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                             }
                                         }
-                                        new FreezeTask(plugin, module, name, defender).start();
+
+                                        if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                                            new FreezeTask(plugin, module, name, defender).start();
+                                        }
+
                                     }
                                     case "dragonbone_lightning" -> {
-                                        if (util.hasNbtTag(defender, "rsvmob")) {
-                                            if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("lightning_dragon")) {
+                                        if (Utils.hasNbtTag(defender, "rsvmob")) {
+                                            if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("lightning_dragon")) {
                                                 damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                             }
                                         }
@@ -115,13 +119,16 @@ public class SfEvents extends ModuleEvents implements Listener {
                                     case "dragonsteel_fire" -> {
                                         if (!BurnTask.hasTask(defender.getUniqueId())) {
                                             int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                            int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+                                            int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
 
-                                            new BurnTask(plugin, defender, fireTicks, tickSpeed).start();
+                                            new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
                                         }
+
                                     }
                                     case "dragonsteel_ice" -> {
-                                        new FreezeTask(plugin, module, name, defender).start();
+                                        if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                                            new FreezeTask(plugin, module, name, defender).start();
+                                        }
                                     }
                                     case "dragonsteel_lightning" -> {
                                         if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
@@ -166,30 +173,33 @@ public class SfEvents extends ModuleEvents implements Listener {
                                             damage *= config.getDouble("Items." + name + ".AttackDamageMultiplier");
                                             switch (materialType) {
                                                 case "dragonbone_flamed" -> {
-                                                    if (util.hasNbtTag(defender, "rsvmob")) {
-                                                        if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
+                                                    if (Utils.hasNbtTag(defender, "rsvmob")) {
+                                                        if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
                                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                                         }
                                                     }
 
                                                     if (!BurnTask.hasTask(defender.getUniqueId())) {
                                                         int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                                        int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+                                                        int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
 
-                                                        new BurnTask(plugin, defender, fireTicks, tickSpeed).start();
+                                                        new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
                                                     }
                                                 }
                                                 case "dragonbone_iced" -> {
-                                                    if (util.hasNbtTag(defender, "rsvmob")) {
-                                                        if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
+                                                    if (Utils.hasNbtTag(defender, "rsvmob")) {
+                                                        if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
                                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                                         }
                                                     }
-                                                    new FreezeTask(plugin, module, name, defender).start();
+
+                                                    if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                                                        new FreezeTask(plugin, module, name, defender).start();
+                                                    }
                                                 }
                                                 case "dragonbone_lightning" -> {
-                                                    if (util.hasNbtTag(defender, "rsvmob")) {
-                                                        if (!util.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("llightning_dragon")) {
+                                                    if (Utils.hasNbtTag(defender, "rsvmob")) {
+                                                        if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("llightning_dragon")) {
                                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                                         }
                                                     }
@@ -213,13 +223,15 @@ public class SfEvents extends ModuleEvents implements Listener {
                                                 case "dragonsteel_fire" -> {
                                                     if (!BurnTask.hasTask(defender.getUniqueId())) {
                                                         int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                                        int tickSpeed = config.getInt("Items." + name + ".InfernoAbility.TickSpeed");
+                                                        int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
 
-                                                        new BurnTask(plugin, defender, fireTicks, tickSpeed).start();
+                                                        new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
                                                     }
                                                 }
                                                 case "dragonsteel_ice" -> {
-                                                    new FreezeTask(plugin, module, name, defender).start();
+                                                    if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                                                        new FreezeTask(plugin, module, name, defender).start();
+                                                    }
                                                 }
                                                 case "dragonsteel_lightning" -> {
                                                     if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
@@ -238,8 +250,7 @@ public class SfEvents extends ModuleEvents implements Listener {
                                                         }
                                                     }
                                                 }
-                                                default -> {
-                                                }
+                                                default -> {}
                                             }
                                         }
                                     }

@@ -42,9 +42,12 @@ import java.util.Collection;
 
 public class RealisticSurvivalPlugin extends JavaPlugin {
 
-    public static ToolUtils toolUtils;
-    public static ToolHandler toolHandler;
+    public static final String NAME = "RealisticSurvival";
+
+    private static RealisticSurvivalPlugin plugin;
     private static Utils util;
+    private ToolUtils toolUtils;
+    private ToolHandler toolHandler;
     private PluginConfig config;
     private static LorePresetConfig lorePresetConfig;
     private MiscItemsConfig miscItemsConfig;
@@ -54,14 +57,14 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
 
 //    private static RSVConfig langConfig;
 
-
     @Override
     public void onEnable() {
+        plugin = this;
         this.config = new PluginConfig(this);
 
         lorePresetConfig = new LorePresetConfig(this);
-        miscItemsConfig = new MiscItemsConfig(this);
-        miscRecipesConfig = new MiscRecipesConfig(this);
+        this.miscItemsConfig = new MiscItemsConfig(this);
+        this.miscRecipesConfig = new MiscRecipesConfig(this);
 
 //        String lang = config.getConfig().getString("Language");
 //
@@ -70,27 +73,19 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
 
         util = new Utils(this);
 
-        BStats bStats = new BStats(this);
-        UpdateChecker updateChecker = new UpdateChecker(this, 93795);
-        ResourcePackEvents resourcePack = new ResourcePackEvents(this);
-        MiscEvents miscEvents = new MiscEvents(this);
-
-        updateChecker.checkUpdate();
+        new UpdateChecker(this, 93795).checkUpdate();
 
         PluginManager pm = this.getServer().getPluginManager();
 
-        toolHandler = new ToolHandler();
-        toolUtils = new ToolUtils(this);
-        toolUtils.initMap();
+        this.toolHandler = new ToolHandler();
+        this.toolUtils = new ToolUtils(this);
+        this.toolUtils.initMap();
 
         this.miscItems = new MiscItems(this);
         this.miscRecipes = new MiscRecipes(this);
 
-        miscItems.initialize();
-        miscRecipes.initialize();
-
-        IceFireModule module = new IceFireModule(this);
-        module.initialize();
+        IceFireModule ifModule = new IceFireModule(this);
+        ifModule.initialize();
 
         SwModule swModule = new SwModule(this);
         swModule.initialize();
@@ -107,19 +102,19 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         TanModule tanModule = new TanModule(this);
         tanModule.initialize();
 
-        RSVEnchants enchants = new RSVEnchants(this);
-        enchants.registerAllEnchants();
+        RSVEnchants rsvEnchants = new RSVEnchants(this);
+        rsvEnchants.registerAllEnchants();
 
         if (config.getConfig().getBoolean("ResourcePack.Enabled"))
-            pm.registerEvents(resourcePack, this);
+            pm.registerEvents(new ResourcePackEvents(this), this);
 
         if (config.getConfig().getBoolean("BStats"))
-            bStats.recordData();
+            new BStats(this).recordData();
 
-        pm.registerEvents(miscEvents, this);
+        pm.registerEvents(new MiscEvents(this), this);
 
-        this.getCommand("RealisticSurvival").setExecutor(new Commands(this));
-        this.getCommand("RealisticSurvival").setTabCompleter(new Tab());
+        this.getCommand(NAME).setExecutor(new Commands(this));
+        this.getCommand(NAME).setTabCompleter(new Tab());
     }
 
     @Override
@@ -138,8 +133,20 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     }
 
     @Override
+    public void onLoad() {
+        Utils.registerEntities();
+    }
+
+    @Override
     public FileConfiguration getConfig() {
         return config.getConfig();
+    }
+
+    public static RealisticSurvivalPlugin getPlugin() {
+        return plugin;
+    }
+    public static Utils getUtil() {
+        return util;
     }
 
     public File getConfigFile() {
@@ -158,21 +165,20 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         return miscRecipesConfig.getConfig();
     }
 
-    @Override
-    public void onLoad() {
-        Utils.registerEntities();
-    }
-
-    public static Utils getUtil() {
-        return util;
-    }
-
     public MiscItems getMiscItems() {
         return miscItems;
     }
 
     public MiscRecipes getMiscRecipes() {
         return miscRecipes;
+    }
+
+    public ToolHandler getToolHandler() {
+        return toolHandler;
+    }
+
+    public ToolUtils getToolUtils() {
+        return toolUtils;
     }
 
     //    private String translate(final String string) {

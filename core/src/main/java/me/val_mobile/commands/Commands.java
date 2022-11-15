@@ -21,6 +21,7 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.tan.TemperatureCalculateTask;
 import me.val_mobile.tan.ThirstCalculateTask;
 import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -35,11 +36,13 @@ import org.bukkit.inventory.PlayerInventory;
 
 import java.util.Collection;
 
+import static me.val_mobile.realisticsurvival.RealisticSurvivalPlugin.NAME;
+
 /**
  * Commands is a class that allows users to
  * access the plugin's commands in-game
  * @author Val_Mobile
- * @version 1.2.3-DEV-1
+ * @version 1.2.3-DEV-2
  * @since 1.0
  */
 public class Commands implements CommandExecutor {
@@ -66,7 +69,7 @@ public class Commands implements CommandExecutor {
      */
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         // check if the user typed /realisticsurvival, case-insensitive
-        if (label.equalsIgnoreCase("realisticsurvival") || label.equalsIgnoreCase("rsv")) {
+        if (label.equalsIgnoreCase(NAME) || label.equalsIgnoreCase("rsv")) {
 
             boolean isPlayer = sender instanceof Player;
 
@@ -130,7 +133,13 @@ public class Commands implements CommandExecutor {
                                                 customItem.setAmount(amount);
                                             }
                                         }
-                                        player.getInventory().addItem(customItem);
+
+                                        if (player.getInventory().firstEmpty() == -1) {
+                                            player.getWorld().dropItemNaturally(player.getLocation(), customItem);
+                                        }
+                                        else {
+                                            player.getInventory().addItem(customItem);
+                                        }
                                         Utils.playSound(player.getLocation(), "ENTITY_ITEM_PICKUP", 1f, 1f);
                                         return true;
                                     }
@@ -169,7 +178,6 @@ public class Commands implements CommandExecutor {
                     for (RSVConfig config : configs) {
                         config.reloadConfig();
                     }
-                    plugin.reloadConfig();
                     return true;
                 }
                 case "spawnitem" -> {
@@ -235,6 +243,17 @@ public class Commands implements CommandExecutor {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("MisspelledItemName")));
                             return true;
                         }
+                        if (isPlayer) {
+                            ItemStack item = RSVItem.getItem(args[1]);
+
+                            if (Utils.isItemReal(item)) {
+                                Player player = (Player) sender;
+                                World world = player.getWorld();
+                                Location loc = player.getLocation();
+                                world.dropItemNaturally(loc, item);
+                            }
+                            return true;
+                        }
                         return true;
                     }
                     return true;
@@ -274,14 +293,20 @@ public class Commands implements CommandExecutor {
                                         if (!args[5].isEmpty()) {
                                             World world = Bukkit.getWorld(args[5]);
                                             Location loc = new Location(world, x, y, z);
+
+                                            RSVMob mob = null;
+
                                             switch (args[1].toLowerCase()) {
-                                                case "fire_dragon" -> Utils.spawnFireDragon(loc, plugin);
-                                                case "ice_dragon" -> Utils.spawnIceDragon(loc, plugin);
-                                                case "lightning_dragon" -> Utils.spawnLightningDragon(loc, plugin);
-                                                case "sea_serpent" -> Utils.spawnSeaSerpent(loc, plugin);
-                                                case "siren" -> Utils.spawnSiren(loc, plugin);
-                                                default -> {
-                                                }
+                                                case "fire_dragon" -> mob = Utils.spawnFireDragon(loc);
+                                                case "ice_dragon" -> mob = Utils.spawnIceDragon(loc);
+                                                case "lightning_dragon" -> mob = Utils.spawnLightningDragon(loc);
+                                                case "sea_serpent" -> mob = Utils.spawnSeaSerpent(loc);
+                                                case "siren" -> mob = Utils.spawnSiren(loc);
+                                                default -> {}
+                                            }
+
+                                            if (mob != null) {
+                                                mob.addEntityToWorld(world);
                                             }
                                         }
                                         return true;
@@ -292,12 +317,18 @@ public class Commands implements CommandExecutor {
                                         World world = player.getWorld();
                                         Location loc = new Location(world, x, y, z);
 
-                                        switch (args[5].toLowerCase()) {
-                                            case "fire_dragon" -> Utils.spawnFireDragon(loc, plugin);
-                                            case "ice_dragon" -> Utils.spawnIceDragon(loc, plugin);
-                                            case "lightning_dragon" -> Utils.spawnLightningDragon(loc, plugin);
-                                            case "sea_serpent" -> Utils.spawnSeaSerpent(loc, plugin);
-                                            case "siren" -> Utils.spawnSiren(loc, plugin);
+                                        RSVMob mob = null;
+
+                                        switch (args[1].toLowerCase()) {
+                                            case "fire_dragon" -> mob = Utils.spawnFireDragon(loc);
+                                            case "ice_dragon" -> mob = Utils.spawnIceDragon(loc);
+                                            case "lightning_dragon" -> mob = Utils.spawnLightningDragon(loc);
+                                            case "sea_serpent" -> mob = Utils.spawnSeaSerpent(loc);
+                                            case "siren" -> mob = Utils.spawnSiren(loc);
+                                        }
+
+                                        if (mob != null) {
+                                            mob.addEntityToWorld(world);
                                         }
                                     }
                                 }
@@ -305,6 +336,22 @@ public class Commands implements CommandExecutor {
                             }
                             return true;
                             // send the user a message showing how they misspelled the item name
+                        }
+                        if (isPlayer) {
+                            RSVMob mob = null;
+
+                            switch (args[1].toLowerCase()) {
+                                case "fire_dragon" -> mob = Utils.spawnFireDragon(((Player) sender).getLocation());
+                                case "ice_dragon" -> mob = Utils.spawnIceDragon(((Player) sender).getLocation());
+                                case "lightning_dragon" -> mob = Utils.spawnLightningDragon(((Player) sender).getLocation());
+                                case "sea_serpent" -> mob = Utils.spawnSeaSerpent(((Player) sender).getLocation());
+                                case "siren" -> mob = Utils.spawnSiren(((Player) sender).getLocation());
+                                default -> {}
+                            }
+
+                            if (mob != null) {
+                                mob.addEntityToWorld(((Player) sender).getWorld());
+                            }
                         }
                         return true;
                     }
@@ -431,7 +478,7 @@ public class Commands implements CommandExecutor {
                         ItemStack itemMainHand = inv.getItemInMainHand();
 
                         if (RSVItem.isRSVItem(itemMainHand)) {
-                            RealisticSurvivalPlugin.getUtil().updateItem(itemMainHand);
+                            Utils.updateItem(itemMainHand);
                         }
                     }
                     return true;

@@ -87,8 +87,8 @@ public class ScarliteRingTask extends BukkitRunnable {
     }
 
     public void start() {
-        int tickSpeed = config.getInt("Items.scarlite_ring.TickTime"); // get the tick speed
-        this.runTaskTimer(plugin, 0L, tickSpeed);
+        int tickPeriod = config.getInt("Items.scarlite_ring.TickPeriod"); // get the tick period
+        this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
     public static boolean hasTask(UUID id) {
