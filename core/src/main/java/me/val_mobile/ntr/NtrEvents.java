@@ -22,7 +22,6 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.ToolHandler.Tool;
 import me.val_mobile.utils.Utils;
-import me.val_mobile.utils.Utils.Hand;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -39,6 +38,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
@@ -47,6 +47,7 @@ import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -570,17 +571,32 @@ public class NtrEvents extends ModuleEvents implements Listener {
         }
     }
 
+
     @EventHandler(priority = EventPriority.MONITOR)
     public void onBucketFill(PlayerBucketFillEvent event) {
         Player player = event.getPlayer();
         if (!event.isCancelled()) {
             if (shouldEventBeRan(player)) {
-                ItemStack item = player.getInventory().getItemInMainHand();
-                if (RSVItem.isRSVItem(item)) {
-                    if (RSVItem.getNameFromItem(item).equals("ceramic_bucket")) {
-                        String bucketType = event.getItemStack().getType().toString().toLowerCase();
+                ItemStack itemMainHand = player.getInventory().getItemInMainHand();
+                ItemStack itemOffHand = player.getInventory().getItemInOffHand();
+                ItemStack item = event.getItemStack();
+                if (Utils.isItemReal(item)) {
+                    Material type = item.getType();
+                    String bucketType = type.toString().toLowerCase();
+
+                    if (isCeramicBucket(itemMainHand)) {
                         event.setItemStack(RSVItem.getItem("ceramic_" + bucketType));
+                        if (type == Material.LAVA_BUCKET) {
+                            checkAndRunTask(player, itemMainHand);
+                        }
                     }
+                    else if (isCeramicBucket(itemOffHand)) {
+                        event.setItemStack(RSVItem.getItem("ceramic_" + bucketType));
+                        if (type == Material.LAVA_BUCKET) {
+                            checkAndRunTask(player, itemOffHand);
+                        }
+                    }
+
                 }
             }
         }
@@ -594,25 +610,48 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 ItemStack item = player.getInventory().getItemInMainHand();
                 if (RSVItem.isRSVItem(item)) {
                     if (RSVItem.getNameFromItem(item).equals("ceramic_bucket")) {
-                        String entityName = event.getRightClicked().getName();
+                        Entity entity = event.getRightClicked();
+                        String type = entity.getType().toString();
                         String bucketType;
-                        switch (entityName) {
-                            case "Pufferfish", "Salmon", "Cod", "Tropical Fish", "Axolotl", "Tadpole" -> {
-                                bucketType = entityName.toLowerCase() + "_bucket";
-                                if (Utils.isItemReal(RSVItem.getItem("ceramic_" + bucketType))) {
-                                    player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_" + bucketType));
+
+                        if (Utils.isInWater(entity)) {
+                            switch (type) {
+                                case "PUFFERFISH", "SALMON", "COD", "TROPICAL_FISH", "AXOLOTL", "TADPOLE" -> {
+                                    bucketType = type.toLowerCase() + "_bucket";
+                                    if (Utils.isItemReal(RSVItem.getItem("ceramic_" + bucketType))) {
+                                        EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, "ceramic_powder_bucket");
+                                        if (hand != null) {
+                                            new BukkitRunnable() {
+                                                @Override
+                                                public void run() {
+                                                    if (hand == EquipmentSlot.HAND)
+                                                        player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_" + bucketType));
+                                                    else
+                                                        player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_" + bucketType));
+                                                }
+                                            }.runTaskLater(plugin, 1L);
+                                        }
+                                    }
                                 }
-                                event.setCancelled(true);
-                            }
-                            case "Cow" -> {
-                                bucketType = "milk_bucket";
-                                if (Utils.isItemReal(RSVItem.getItem("ceramic_" + bucketType))) {
-                                    player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_" + bucketType));
+                                case "COW" -> {
+                                    bucketType = "milk_bucket";
+                                    if (Utils.isItemReal(RSVItem.getItem("ceramic_" + bucketType))) {
+                                        EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, "ceramic_powder_bucket");
+                                        if (hand != null) {
+                                            new BukkitRunnable() {
+                                                @Override
+                                                public void run() {
+                                                    if (hand == EquipmentSlot.HAND)
+                                                        player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_" + bucketType));
+                                                    else
+                                                        player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_" + bucketType));
+                                                }
+                                            }.runTaskLater(plugin, 1L);
+                                        }
+                                    }
                                 }
-                                event.setCancelled(true);
                             }
                         }
-
                     }
                 }
             }
@@ -626,9 +665,40 @@ public class NtrEvents extends ModuleEvents implements Listener {
 
             if (shouldEventBeRan(player)) {
                 ItemStack item = player.getInventory().getItemInMainHand();
-                if (RSVItem.isRSVItem(item)) {
-                    if (RSVItem.getNameFromItem(item).contains("ceramic_")) {
-                        event.setItemStack(RSVItem.getItem("ceramic_bucket"));
+
+                if (isGenericCeramicBucket(item)) {
+                    event.setItemStack(RSVItem.getItem("ceramic_bucket"));
+                }
+                else if (isGenericCeramicBucket(player.getInventory().getItemInOffHand())) {
+                    event.setItemStack(RSVItem.getItem("ceramic_bucket"));
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onBlockPlace(BlockPlaceEvent event) {
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
+            if (shouldEventBeRan(player)) {
+                if (event.getBlockPlaced().getType().toString().equals("POWDER_SNOW")) {
+                    ItemStack itemHand = event.getItemInHand();
+
+                    if (RSVItem.isRSVItem(itemHand)) {
+                        if (RSVItem.getNameFromItem(itemHand).equals("ceramic_powder_bucket")) {
+                            EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, "ceramic_powder_bucket");
+                            if (hand != null) {
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        if (hand == EquipmentSlot.HAND)
+                                            player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_bucket"));
+                                        else
+                                            player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_bucket"));
+                                    }
+                                }.runTaskLater(plugin, 1L);
+                            }
+                        }
                     }
                 }
             }
@@ -651,18 +721,18 @@ public class NtrEvents extends ModuleEvents implements Listener {
                         switch (mat) {
                             case "CAULDRON" -> {
                                 // check for 1.16
-                                if (Utils.getMinecraftVersion().contains("1.16")) {
+                                if (Utils.getMinecraftVersion(false).contains("1.16")) {
                                     int level = ((Levelled) block.getBlockData()).getLevel();
                                     if (rsvName.equals("ceramic_bucket")) {
                                         if (level >= 3) {
                                             // turn into water ceramic bucket
 
-                                            Hand hand = getHand(player, rsvName);
+                                            EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, rsvName);
                                             if (hand != null) {
                                                 new BukkitRunnable() {
                                                     @Override
                                                     public void run() {
-                                                        if (hand == Hand.MAIN_HAND)
+                                                        if (hand == EquipmentSlot.HAND)
                                                             player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_water_bucket"));
                                                         else
                                                             player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_water_bucket"));
@@ -673,12 +743,12 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                     } else if (rsvName.equals("ceramic_water_bucket")) {
                                         if (level <= 0) {
                                             // turn into empty ceramic bucket
-                                            Hand hand = getHand(player, rsvName);
+                                            EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, rsvName);
                                             if (hand != null) {
                                                 new BukkitRunnable() {
                                                     @Override
                                                     public void run() {
-                                                        if (hand == Hand.MAIN_HAND)
+                                                        if (hand == EquipmentSlot.HAND)
                                                             player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_bucket"));
                                                         else
                                                             player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_bucket"));
@@ -690,12 +760,12 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                 } else {
                                     if (rsvName.equals("ceramic_water_bucket") || rsvName.equals("ceramic_lava_bucket")) {
                                         // turn into empty ceramic bucket
-                                        Hand hand = getHand(player, rsvName);
+                                        EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, rsvName);
                                         if (hand != null) {
                                             new BukkitRunnable() {
                                                 @Override
                                                 public void run() {
-                                                    if (hand == Hand.MAIN_HAND)
+                                                    if (hand == EquipmentSlot.HAND)
                                                         player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_bucket"));
                                                     else
                                                         player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_bucket"));
@@ -708,17 +778,19 @@ public class NtrEvents extends ModuleEvents implements Listener {
                             case "LAVA_CAULDRON" -> {
                                 if (rsvName.equals("ceramic_bucket")) {
                                     // turn into lava ceramic bucket
-                                    Hand hand = getHand(player, rsvName);
+                                    EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, rsvName);
                                     if (hand != null) {
                                         new BukkitRunnable() {
                                             @Override
                                             public void run() {
-                                                if (hand == Hand.MAIN_HAND) {
+                                                if (hand == EquipmentSlot.HAND) {
                                                     player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_lava_bucket"));
                                                     checkAndRunTask(player, player.getInventory().getItemInMainHand());
                                                 }
-                                                else
+                                                else {
                                                     player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_lava_bucket"));
+                                                    checkAndRunTask(player, player.getInventory().getItemInOffHand());
+                                                }
                                             }
                                         }.runTaskLater(plugin, 1L);
                                     }
@@ -727,12 +799,12 @@ public class NtrEvents extends ModuleEvents implements Listener {
                             case "WATER_CAULDRON" -> {
                                 if (rsvName.equals("ceramic_bucket")) {
                                     // turn into lava ceramic bucket
-                                    Hand hand = getHand(player, rsvName);
+                                    EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, rsvName);
                                     if (hand != null) {
                                         new BukkitRunnable() {
                                             @Override
                                             public void run() {
-                                                if (hand == Hand.MAIN_HAND)
+                                                if (hand == EquipmentSlot.HAND)
                                                     player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_water_bucket"));
                                                 else
                                                     player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_water_bucket"));
@@ -767,6 +839,21 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 if (shouldEventBeRan(player)) {
                     ItemStack item = event.getItem().getItemStack();
                     checkAndRunTask(player, item);
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onConsume(PlayerItemConsumeEvent event) {
+        if (!event.isCancelled()) {
+            Player player = event.getPlayer();
+            ItemStack item = event.getItem();
+            if (shouldEventBeRan(player)) {
+                if (RSVItem.isRSVItem(item)) {
+                    if (RSVItem.getNameFromItem(item).equals("ceramic_milk_bucket")) {
+                        event.setItem(RSVItem.getItem("ceramic_bucket"));
+                    }
                 }
             }
         }
@@ -1038,20 +1125,17 @@ public class NtrEvents extends ModuleEvents implements Listener {
         }
     }
 
-    private Hand getHand(Player player, String rsvName) {
-        ItemStack mainHand = player.getInventory().getItemInMainHand();
-        ItemStack offHand = player.getInventory().getItemInOffHand();
+    public boolean isCeramicBucket(@Nullable ItemStack item) {
+        if (RSVItem.isRSVItem(item)) {
+            return RSVItem.getNameFromItem(item).equals("ceramic_bucket");
+        }
+        return false;
+    }
 
-        if (RSVItem.isRSVItem(mainHand)) {
-            if (RSVItem.getNameFromItem(mainHand).equals(rsvName)) {
-                return Utils.Hand.MAIN_HAND;
-            }
+    public boolean isGenericCeramicBucket(@Nullable ItemStack item) {
+        if (RSVItem.isRSVItem(item)) {
+            return RSVItem.getNameFromItem(item).contains("ceramic_");
         }
-        if (RSVItem.isRSVItem(offHand)) {
-            if (RSVItem.getNameFromItem(offHand).equals(rsvName)) {
-                return Utils.Hand.OFF_HAND;
-            }
-        }
-        return null;
+        return false;
     }
 }

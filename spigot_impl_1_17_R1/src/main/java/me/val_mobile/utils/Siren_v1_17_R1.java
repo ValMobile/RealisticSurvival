@@ -39,12 +39,15 @@ public class Siren_v1_17_R1 extends Guardian implements Siren {
         super(entitytype, world);
 
         this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
+        addNbtData();
     }
 
     public Siren_v1_17_R1(Location loc) {
         super(EntityType.GUARDIAN, ((CraftWorld) loc.getWorld()).getHandle());
+        this.setPos(loc.getX(), loc.getY(), loc.getZ());
 
         this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
+        addNbtData();
     }
 
     @Override
@@ -64,11 +67,14 @@ public class Siren_v1_17_R1 extends Guardian implements Siren {
         Location loc = this.getBukkitEntity().getLocation();
 
         ItemStack item = null;
-        Entity e = damageSource.getEntity().getBukkitEntity();
+        net.minecraft.world.entity.Entity nmsEntity = damageSource.getEntity();
+        if (nmsEntity != null) {
+            Entity e = nmsEntity.getBukkitEntity();
 
-        if (e != null) {
-            if (e instanceof LivingEntity) {
-                item = ((LivingEntity) e).getEquipment().getItemInMainHand();
+            if (e != null) {
+                if (e instanceof LivingEntity) {
+                    item = ((LivingEntity) e).getEquipment().getItemInMainHand();
+                }
             }
         }
 

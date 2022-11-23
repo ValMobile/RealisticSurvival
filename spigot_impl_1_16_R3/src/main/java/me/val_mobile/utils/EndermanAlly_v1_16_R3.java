@@ -17,12 +17,10 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.baubles.EndermanAlly;
-import net.minecraft.server.v1_16_R2.EntityEnderman;
-import net.minecraft.server.v1_16_R2.EntityPlayer;
-import net.minecraft.server.v1_16_R2.EntityTypes;
-import net.minecraft.server.v1_16_R2.World;
+import net.minecraft.server.v1_16_R2.*;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_16_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -34,13 +32,15 @@ public class EndermanAlly_v1_16_R3 extends EntityEnderman implements EndermanAll
     public EndermanAlly_v1_16_R3(EntityTypes<? extends EntityEnderman> entityTypes, World world) {
         super(entityTypes, world);
         this.owner = null;
+        addNbtData();
     }
 
     public EndermanAlly_v1_16_R3(Player owner, Location loc)
     {
         super(EntityTypes.ENDERMAN, ((CraftWorld)  loc.getWorld()).getHandle());
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
-        this.owner = null;
+        this.owner = ((CraftPlayer) owner).getHandle();
+        addNbtData();
     }
 
     @Override
@@ -55,7 +55,21 @@ public class EndermanAlly_v1_16_R3 extends EntityEnderman implements EndermanAll
 
     @Override
     protected void initPathfinder() {
-        super.initPathfinder();
+        goalSelector.a(0, new PathfinderGoalFloat(this));
+        goalSelector.a(1, new EndermanFreezeWhenLookedAtGoal_v1_16_R3(this));
+        goalSelector.a(3, new FollowOwnerGoal_v1_16_R3(this, 1.0, 10.0F, 2.0F, false));
+        goalSelector.a(2, new PathfinderGoalMeleeAttack(this, 1.0, false));
+        goalSelector.a(7, new PathfinderGoalRandomStrollLand(this, 1.0, 0.0F));
+        goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+        goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
+        goalSelector.a(10, new EndermanLeaveBlockGoal_v1_16_R3(this));
+        goalSelector.a(11, new EndermanTakeBlockGoal_v1_16_R3(this));
+        targetSelector.a(1, new OwnerHurtByTargetGoal_v1_16_R3(this));
+        targetSelector.a(2, new OwnerHurtTargetGoal_v1_16_R3(this));
+        targetSelector.a(3, new EndermanLookForPlayerGoal_v1_16_R3(this, this::a_));
+        targetSelector.a(4, new PathfinderGoalHurtByTarget(this).a(new Class[0]));
+        targetSelector.a(5, new PathfinderGoalNearestAttackableTarget<>(this, EntityEndermite.class, true, false));
+        targetSelector.a(6, new PathfinderGoalUniversalAngerReset<>(this, false));
     }
 
     @Override

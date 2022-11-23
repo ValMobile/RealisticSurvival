@@ -2,7 +2,7 @@
 #          Spartan's Weaponry         #
 #######################################
 
-ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-3"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:

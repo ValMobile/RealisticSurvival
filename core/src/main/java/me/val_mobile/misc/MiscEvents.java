@@ -54,7 +54,7 @@ public class MiscEvents implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (!RSVPlayer.getPlayers().containsKey(player.getUniqueId())) {
+        if (!RSVPlayer.isValidPlayer(player)) {
             RSVPlayer rsvplayer = new RSVPlayer(player);
             rsvplayer.retrieveData();
         }
@@ -124,8 +124,8 @@ public class MiscEvents implements Listener {
                         if (userConfig.getBoolean("Recipes." + rsvName + ".Enabled.EnableAllVersions"))
                             event.setResult(Utils.getNetheriteRSVWeapon(base));
                         else {
-                            if (userConfig.contains("Recipes." + rsvName + ".Enabled.Versions." + Utils.getMinecraftVersion())) {
-                                if (userConfig.getBoolean("Recipes." + rsvName + ".Enabled.Versions." + Utils.getMinecraftVersion()))
+                            if (userConfig.contains("Recipes." + rsvName + ".Enabled.Versions." + Utils.getMinecraftVersion(false))) {
+                                if (userConfig.getBoolean("Recipes." + rsvName + ".Enabled.Versions." + Utils.getMinecraftVersion(false)))
                                     event.setResult(Utils.getNetheriteRSVWeapon(base));
                                 else
                                     event.setResult(null);

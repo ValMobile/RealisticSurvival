@@ -2,7 +2,7 @@
 #          Baubles                    #
 #######################################
 
-ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-3"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -342,11 +342,26 @@ Items:
   ender_queens_crown:
     Enabled:
       EnableAllVersions: true
-    ActivationRange: 10.0
-    SummonEndermanAlly:
-      Chance: 0.5
+    TickPeriod: 20
+    PreventEndermenAngering: true
+    PreventFriendlyFireToAllies: true   # Prevents allies from attacking each other if they have the same owner
+    PreventFriendlyFireToPets: true    # Prevents allies from attacking the owner's pets
+    TransformRegularEndermen:
+      Enabled: true
+      MaxDistance: 15.0
+    SummonEndermenAllies:
+      Enabled: true
+      Chance: 1.0               # Chance per "Delay" to spawn endermen allies
+      Delay: 500
+      MustTakeDamage: true      # If set to true, allies can only spawn when a player takes damage; prevents allies from passively spawning when a player is at low health
       MaxHealthPercent: 0.5
-    WaterContactDamage: 1.0
+      MinAmount: 1
+      MaxAmount: 3
+    WaterContact:
+      Enabled: true
+      Chance: 1.0             # Chance per "Delay" to take damage when submerged in water
+      Delay: 20
+      Damage: 1.0
   sunglasses:
     Enabled:
       EnableAllVersions: true

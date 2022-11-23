@@ -6,7 +6,7 @@
 
     <groupId>me.Val_Mobile</groupId>
     <artifactId>realisticsurvival-parent</artifactId>
-    <version>1.2.3-DEV-2</version>
+    <version>1.2.3-DEV-3</version>
     <packaging>pom</packaging>
 
     <name>Realistic Survival</name>

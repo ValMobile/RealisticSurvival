@@ -44,6 +44,8 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.SmithingRecipe;
 
+import javax.annotation.Nonnull;
+
 public class v1_19_R1 extends InternalsProvider {
 
     @Override
@@ -178,6 +180,11 @@ public class v1_19_R1 extends InternalsProvider {
         }
     }
 
+    @Override
+    public boolean isInWater(@Nonnull Entity entity) {
+        return entity.isInWater();
+    }
+
     public static boolean isLookingAtMe(EnderMan enderman, net.minecraft.world.entity.player.Player entityhuman) {
         ItemStack itemstack = entityhuman.getInventory().armor.get(3);
         if (itemstack.is(Blocks.CARVED_PUMPKIN.asItem())) {
@@ -193,16 +200,14 @@ public class v1_19_R1 extends InternalsProvider {
         }
     }
 
-    public static boolean teleport(EnderMan enderman) {
+    public static void teleport(EnderMan enderman) {
         if (!enderman.level.isClientSide() && enderman.isAlive()) {
             RandomSource random = enderman.getRandom();
 
             double d0 = enderman.getX() + (random.nextDouble() - 0.5) * 64.0;
             double d1 = enderman.getY() + (double)(random.nextInt(64) - 32);
             double d2 = enderman.getZ() + (random.nextDouble() - 0.5) * 64.0;
-            return v1_19_R1.teleport(enderman, d0, d1, d2);
-        } else {
-            return false;
+            teleport(enderman, d0, d1, d2);
         }
     }
 
@@ -222,7 +227,7 @@ public class v1_19_R1 extends InternalsProvider {
             if (flag2) {
                 enderman.level.gameEvent(GameEvent.TELEPORT, vec3d, GameEvent.Context.of(enderman));
                 if (!enderman.isSilent()) {
-                    enderman.level.playSound((net.minecraft.world.entity.player.Player)null, enderman.xo, enderman.yo, enderman.zo, SoundEvents.ENDERMAN_TELEPORT, enderman.getSoundSource(), 1.0F, 1.0F);
+                    enderman.level.playSound(null, enderman.xo, enderman.yo, enderman.zo, SoundEvents.ENDERMAN_TELEPORT, enderman.getSoundSource(), 1.0F, 1.0F);
                     enderman.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
                 }
             }
@@ -237,10 +242,9 @@ public class v1_19_R1 extends InternalsProvider {
         RandomSource random = enderman.getRandom();
         Vec3 vec3d = new Vec3(enderman.getX() - entity.getX(), enderman.getY(0.5) - entity.getEyeY(), enderman.getZ() - entity.getZ());
         vec3d = vec3d.normalize();
-        double d0 = 16.0;
         double d1 = enderman.getX() + (random.nextDouble() - 0.5) * 8.0 - vec3d.x * 16.0;
         double d2 = enderman.getY() + (double)(random.nextInt(16) - 8) - vec3d.y * 16.0;
         double d3 = enderman.getZ() + (random.nextDouble() - 0.5) * 8.0 - vec3d.z * 16.0;
-        return v1_19_R1.teleport(enderman, d1, d2, d3);
+        return teleport(enderman, d1, d2, d3);
     }
 }

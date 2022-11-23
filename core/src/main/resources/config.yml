@@ -1,7 +1,7 @@
 #########################################################################################
 #																					    #
 #	Realistic Survival Plugin	MC 1.16 - 1.19											#
-#	Version 1.2.3-DEV-2	        Made by: Val_Mobile									    #
+#	Version 1.2.3-DEV-3	        Made by: Val_Mobile									    #
 #																						#
 #########################################################################################
 
@@ -119,4 +119,4 @@ UpdateItems:
 #######################################
 
 BStats: true             # Do you want non-confidential server data to be recorded for my use?
-ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-3"  # Used for config syncing purposes, do NOT edit

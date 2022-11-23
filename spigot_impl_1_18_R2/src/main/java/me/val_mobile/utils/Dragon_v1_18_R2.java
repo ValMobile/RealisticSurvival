@@ -35,7 +35,9 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 public abstract class Dragon_v1_18_R2 extends EnderDragon implements Dragon {
 
@@ -43,13 +45,14 @@ public abstract class Dragon_v1_18_R2 extends EnderDragon implements Dragon {
     private int stage;
     private int age;
     private final DragonGender gender;
-    private DragonVariant variant;
+    private final DragonVariant variant;
     private final Collection<ItemStack> loot = new ArrayList<>();
 
     public Dragon_v1_18_R2(EntityType<? extends EnderDragon> entityType, Level world, DragonBreed breed) {
         super(entityType, world);
 
-        this.variant = variant.isEnabled() ? variant : null;;
+        List<DragonVariant> enabledVariants = DragonVariant.getEnabledVariants(breed);
+        this.variant = enabledVariants.get(Utils.getRandomNum(0, enabledVariants.size() - 1));
         this.breed = breed;
         this.stage = Utils.getRandomNum(1, 5);
         this.age = Utils.getRandomNum(stage * 100, stage * 100 + 99);
@@ -66,7 +69,8 @@ public abstract class Dragon_v1_18_R2 extends EnderDragon implements Dragon {
         super(EntityType.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
 
-        this.variant = breed.getVariants()[Utils.getRandomNum(0, breed.getVariants().length - 1)];
+        List<DragonVariant> enabledVariants = DragonVariant.getEnabledVariants(breed);
+        this.variant = enabledVariants.get(Utils.getRandomNum(0, enabledVariants.size() - 1));
         this.breed = breed;
         this.stage = Utils.getRandomNum(1, 5);
         this.age = Utils.getRandomNum(stage * 100, stage * 100 + 99);
@@ -83,7 +87,7 @@ public abstract class Dragon_v1_18_R2 extends EnderDragon implements Dragon {
         super(EntityType.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
 
-        this.variant = variant.isEnabled() ? variant : null;
+        this.variant = variant.isEnabled() && Arrays.asList(breed.getVariants()).contains(variant) ? variant : null;
         this.breed = breed;
         this.stage = Utils.getRandomNum(1, 5);
         this.age = Utils.getRandomNum(stage * 100, stage * 100 + 99);
@@ -100,11 +104,8 @@ public abstract class Dragon_v1_18_R2 extends EnderDragon implements Dragon {
         super(EntityType.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
 
-        DragonVariant[] allVariants = breed.getVariants();
-
-        do {
-            variant = allVariants[Utils.getRandomNum(0, allVariants.length - 1)];
-        } while(!variant.isEnabled());
+        List<DragonVariant> enabledVariants = DragonVariant.getEnabledVariants(breed);
+        this.variant = enabledVariants.get(Utils.getRandomNum(0, enabledVariants.size() - 1));
 
         this.breed = breed;
         this.stage = stage;
@@ -122,7 +123,7 @@ public abstract class Dragon_v1_18_R2 extends EnderDragon implements Dragon {
         super(EntityType.ENDER_DRAGON, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
 
-        this.variant = variant.isEnabled() ? variant : null;;
+        this.variant = variant.isEnabled() && Arrays.asList(breed.getVariants()).contains(variant) ? variant : null;
         this.breed = breed;
         this.stage = stage;
         this.age = Utils.getRandomNum(stage * 100, stage * 100 + 99);

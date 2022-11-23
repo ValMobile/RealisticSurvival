@@ -18,7 +18,7 @@ package me.val_mobile.iceandfire;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
-import org.bukkit.Material;
+import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -97,7 +97,7 @@ public class TideGuardianTask extends BukkitRunnable {
 
             if (breathingEnabled) {
                 if (breathingRequiresWater) {
-                    if (player.getLocation().getBlock().getType() == Material.WATER) {
+                    if (Utils.isInWater(player)) {
                         player.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, breathingDur, breathingAmp));
                     }
                 }
@@ -107,7 +107,7 @@ public class TideGuardianTask extends BukkitRunnable {
             }
             if (breathingEnabled) {
                 if (strEnabled) {
-                    if (player.getLocation().getBlock().getType() == Material.WATER) {
+                    if (Utils.isInWater(player)) {
                         player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, strDur, strAmp));
                     }
                 }

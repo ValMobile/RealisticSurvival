@@ -217,8 +217,6 @@ public class ThrowWeaponTask extends BukkitRunnable {
                                 }
 
                                 if (isAttackable(damageable)) {
-                                    Utils.damagePlayer(damageable, attackDamage);
-
                                     if (shouldBurn) {
                                         int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
                                         int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
@@ -244,6 +242,8 @@ public class ThrowWeaponTask extends BukkitRunnable {
                                     if (shouldElectrocute) {
                                         new ElectrocuteTask(plugin, module, name, damageable).start();
                                     }
+
+                                    Utils.damageEntity(damageable, attackDamage);
                                 }
                             }
                         }
@@ -265,19 +265,25 @@ public class ThrowWeaponTask extends BukkitRunnable {
                     }
 
 
-                    // drop the weapon if the distance is greater 60 blocks
-                    if (armorStand.getLocation().distanceSquared(started) > maxDistanceSquared) {
-                        if (returnWeaponTooFar) {
-                            returnWeapon();
-                        }
-                        else {
-                            if (config.getBoolean("MaxDistanceReached.Enabled")) {
-                                String message = ChatColor.translateAlternateColorCodes('&', config.getString("MaxDistanceReached.Message"));
-                                message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(Math.sqrt(maxDistanceSquared))));
-                                entity.sendMessage(message);
+                    if (armorStand.getWorld().getName().equals(entity.getWorld().getName())) {
+                        // drop the weapon if the distance is greater 60 blocks
+                        if (armorStand.getLocation().distanceSquared(started) > maxDistanceSquared) {
+                            if (returnWeaponTooFar) {
+                                returnWeapon();
                             }
-                            dropWeaponTask(armorStand, entity, item.clone());
+                            else {
+                                if (config.getBoolean("MaxDistanceReached.Enabled")) {
+                                    String message = ChatColor.translateAlternateColorCodes('&', config.getString("MaxDistanceReached.Message"));
+                                    message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(Math.sqrt(maxDistanceSquared))));
+                                    entity.sendMessage(message);
+                                }
+                                dropWeaponTask(armorStand, entity, item.clone());
+                            }
                         }
+                    }
+                    // distance can't be calculated across different worlds, therefore item must be dropped
+                    else {
+                        dropWeaponTask(armorStand, entity, item.clone());
                     }
                 }
                 else {

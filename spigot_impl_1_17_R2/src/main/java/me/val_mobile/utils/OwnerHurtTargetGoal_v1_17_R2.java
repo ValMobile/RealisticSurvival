@@ -4,18 +4,18 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.event.entity.EntityTargetEvent;
 
 import java.util.EnumSet;
 
-public class OwnerHurtTargetGoal extends TargetGoal {
+public class OwnerHurtTargetGoal_v1_17_R2 extends TargetGoal {
     private final RSVPet pet;
     private LivingEntity ownerLastHurt;
     private int timestamp;
 
-    public OwnerHurtTargetGoal(RSVPet pet) {
+    public OwnerHurtTargetGoal_v1_17_R2(RSVPet pet) {
         super((Mob) ((CraftEntity) pet.getEntity()).getHandle(), false);
         this.pet = pet;
         this.setFlags(EnumSet.of(Flag.TARGET));
@@ -34,7 +34,7 @@ public class OwnerHurtTargetGoal extends TargetGoal {
     }
 
     public void start() {
-        mob.setTarget(ownerLastHurt, EntityTargetEvent.TargetReason.OWNER_ATTACKED_TARGET, true);
+        mob.setGoalTarget(ownerLastHurt, EntityTargetEvent.TargetReason.OWNER_ATTACKED_TARGET, true);
         LivingEntity owner = ((CraftPlayer) pet.getOwner()).getHandle();
         if (owner != null) {
             timestamp = owner.getLastHurtMobTimestamp();

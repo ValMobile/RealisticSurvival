@@ -18,6 +18,7 @@ package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Location;
@@ -163,7 +164,7 @@ public abstract class GenericBreath extends BukkitRunnable {
 
         // begin checking for trail-entity collisions
         if (ticks > 10) {
-            Predicate<Entity> filter = entity -> !(entity.getUniqueId().equals(dragon.getUniqueId()) || (DragonUtils.isMob(entity) && DragonUtils.getMob(entity).equals(DragonUtils.getMob(dragon))));
+            Predicate<Entity> filter = entity -> !(entity.getUniqueId().equals(dragon.getUniqueId()) || (RSVMob.isMob(entity) && RSVMob.getMob(entity).equals(RSVMob.getMob(dragon))));
             Collection<Entity> collection = world.getNearbyEntities(loc, radius, radius, radius, filter); // get the entities
             // if the flame trail intersects an entity
             if (!collection.isEmpty()) {

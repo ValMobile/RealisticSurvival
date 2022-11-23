@@ -39,6 +39,7 @@ public class EndermanAlly_v1_19_R1 extends EnderMan implements EndermanAlly {
 
     public EndermanAlly_v1_19_R1(EntityType<? extends EnderMan> entityTypes, Level world) {
         super(entityTypes, world);
+        addNbtData();
     }
 
     public EndermanAlly_v1_19_R1(Player owner, Location loc)
@@ -46,6 +47,7 @@ public class EndermanAlly_v1_19_R1 extends EnderMan implements EndermanAlly {
         super(EntityType.ENDERMAN, ((CraftWorld)  loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
         this.owner = ((CraftPlayer) owner).getHandle();
+        addNbtData();
     }
 
     @Override
@@ -61,17 +63,17 @@ public class EndermanAlly_v1_19_R1 extends EnderMan implements EndermanAlly {
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(1, new EndermanFreezeWhenLookedAtGoal(this));
-        goalSelector.addGoal(3, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F, false));
+        goalSelector.addGoal(1, new EndermanFreezeWhenLookedAtGoal_v1_19_R1(this));
+        goalSelector.addGoal(3, new FollowOwnerGoal_v1_19_R1(this, 1.0, 10.0F, 2.0F, false));
         goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, false));
         goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0, 0.0F));
         goalSelector.addGoal(8, new LookAtPlayerGoal(this, net.minecraft.world.entity.player.Player.class, 8.0F));
         goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        goalSelector.addGoal(10, new EndermanLeaveBlockGoal(this));
-        goalSelector.addGoal(11, new EndermanTakeBlockGoal(this));
-        targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
-        targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        targetSelector.addGoal(3, new EndermanLookForPlayerGoal(this, this::isAngryAt));
+        goalSelector.addGoal(10, new EndermanLeaveBlockGoal_v1_19_R1(this));
+        goalSelector.addGoal(11, new EndermanTakeBlockGoal_v1_19_R1(this));
+        targetSelector.addGoal(1, new OwnerHurtByTargetGoal_v1_19_R1(this));
+        targetSelector.addGoal(2, new OwnerHurtTargetGoal_v1_19_R1(this));
+        targetSelector.addGoal(3, new EndermanLookForPlayerGoal_v1_19_R1(this, this::isAngryAt));
         targetSelector.addGoal(4, new HurtByTargetGoal(this).setAlertOthers());
         targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Endermite.class, true, false));
         targetSelector.addGoal(6, new ResetUniversalAngerTargetGoal<>(this, false));
@@ -80,10 +82,5 @@ public class EndermanAlly_v1_19_R1 extends EnderMan implements EndermanAlly {
     @Override
     public Player getOwner() {
         return (Player) owner.getBukkitEntity();
-    }
-
-    @Override
-    public EntityType<? extends net.minecraft.world.entity.Entity> getType() {
-        return CustomEntities_v1_19_R1.ENDERMAN_ALLY.getCustomEntityType();
     }
 }

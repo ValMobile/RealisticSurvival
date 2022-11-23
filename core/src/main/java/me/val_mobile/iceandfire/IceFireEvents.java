@@ -22,6 +22,7 @@ import me.val_mobile.spartanandfire.BurnTask;
 import me.val_mobile.spartanandfire.ElectrocuteTask;
 import me.val_mobile.spartanandfire.FreezeTask;
 import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -48,7 +49,7 @@ import java.util.Collection;
  * IceFireEvents is a class containing listener methods
  * that activate fire, ice, and lighting dragon weapon abilities
  * @author Val_Mobile
- * @version 1.2.3-DEV-2
+ * @version 1.2.3-DEV-3
  * @since 1.0
  */
 public class IceFireEvents extends ModuleEvents implements Listener {
@@ -90,8 +91,8 @@ public class IceFireEvents extends ModuleEvents implements Listener {
 
                             switch (type) {
                                 case "dragonbone_flamed" -> {
-                                    if (DragonUtils.isMob(defender)) {
-                                        if (!DragonUtils.getMob(defender).equals("fire_dragon")) {
+                                    if (RSVMob.isMob(defender)) {
+                                        if (!RSVMob.getMob(defender).equals("fire_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                         }
                                     }
@@ -104,8 +105,8 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                     }
                                 }
                                 case "dragonbone_iced" -> {
-                                    if (DragonUtils.isMob(defender)) {
-                                        if (!DragonUtils.getMob(defender).equals("ice_dragon")) {
+                                    if (RSVMob.isMob(defender)) {
+                                        if (!RSVMob.getMob(defender).equals("ice_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                         }
                                     }
@@ -114,8 +115,8 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                     }
                                 }
                                 case "dragonbone_lightning" -> {
-                                    if (DragonUtils.isMob(defender)) {
-                                        if (!DragonUtils.getMob(defender).equals("lightning_dragon")) {
+                                    if (RSVMob.isMob(defender)) {
+                                        if (!RSVMob.getMob(defender).equals("lightning_dragon")) {
                                             damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                         }
                                     }
@@ -212,8 +213,8 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                         damage *= config.getDouble("Items." + name + ".AttackDamageMultiplier");
                                         switch (materialType) {
                                             case "dragonbone_flamed" -> {
-                                                if (DragonUtils.isMob(defender)) {
-                                                    if (!DragonUtils.getMob(defender).equals("fire_dragon")) {
+                                                if (RSVMob.isMob(defender)) {
+                                                    if (!RSVMob.getMob(defender).equals("fire_dragon")) {
                                                         damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                                     }
                                                 }
@@ -226,8 +227,8 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                                 }
                                             }
                                             case "dragonbone_iced" -> {
-                                                if (DragonUtils.isMob(defender)) {
-                                                    if (!DragonUtils.getMob(defender).equals("ice_dragon")) {
+                                                if (RSVMob.isMob(defender)) {
+                                                    if (!RSVMob.getMob(defender).equals("ice_dragon")) {
                                                         damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                                     }
                                                 }
@@ -236,8 +237,8 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                                 }
                                             }
                                             case "dragonbone_lightning" -> {
-                                                if (DragonUtils.isMob(defender)) {
-                                                    if (!DragonUtils.getMob(defender).equals("llightning_dragon")) {
+                                                if (RSVMob.isMob(defender)) {
+                                                    if (!RSVMob.getMob(defender).equals("llightning_dragon")) {
                                                         damage += config.getDouble("Items." + name + ".DragonBonusDamage");
                                                     }
                                                 }
@@ -388,7 +389,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                     }
                 }
             }
-            if (e instanceof EnderDragon && !(DragonUtils.isDragon(e))) {
+            if (e instanceof EnderDragon dragon && !(DragonUtils.isDragon(dragon))) {
                 if (config.getBoolean("Dragons.Enabled")) {
                     if (Math.random() <= config.getDouble("Dragons.SpawnChance")) {
                         double val = Math.random();
@@ -396,15 +397,14 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                         double iceChance = config.getDouble("Dragons.IceDragon.Enabled.Chance");
 
                         if (val <= fireChance) {
-                            Utils.spawnFireDragon(e.getLocation()).addEntityToWorld(e.getWorld());
+                            DragonUtils.convertToFireDragon(dragon);
                         }
                         else if (val <= fireChance + iceChance) {
-                            Utils.spawnIceDragon(e.getLocation()).addEntityToWorld(e.getWorld());
+                            DragonUtils.convertToIceDragon(dragon);
                         }
                         else {
-                            Utils.spawnLightningDragon(e.getLocation()).addEntityToWorld(e.getWorld());
+                            DragonUtils.convertToLightningDragon(dragon);
                         }
-                        event.setCancelled(true);
                     }
                 }
             }
@@ -472,8 +472,8 @@ public class IceFireEvents extends ModuleEvents implements Listener {
             World world = loc.getWorld();
             Collection<ItemStack> loots = new ArrayList<>();
 
-            if (DragonUtils.isMob(e)) {
-                switch (DragonUtils.getMob(e)) {
+            if (RSVMob.isMob(e)) {
+                switch (RSVMob.getMob(e)) {
                     case "fire_dragon", "ice_dragon", "lightning_dragon" -> {
                         if (!(e instanceof Dragon)) {
                             loots = DragonUtils.generateLoot((EnderDragon) e);

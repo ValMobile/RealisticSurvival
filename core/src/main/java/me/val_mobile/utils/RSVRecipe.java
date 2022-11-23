@@ -47,16 +47,11 @@ public interface RSVRecipe {
 
     @Nullable
     static ItemStack getItem(@Nonnull FileConfiguration config, @Nonnull String namePath, @Nonnull String amountPath) {
-        String itemName = config.getString(namePath);
-        int amount = config.getInt(amountPath);
+        ItemStack item = getItem(config, namePath);
 
-        if (itemName.equals(itemName.toUpperCase())) {
-            // material
-            return new ItemStack(Material.valueOf(itemName), amount);
-        }
-        else if (RSVItem.isRSVItem(itemName)) {
-            // rsv item
-            return RSVItem.getItem(itemName).resize(amount);
+        if (item != null) {
+            item.setAmount(config.getInt(amountPath));
+            return item;
         }
         return null;
     }
@@ -71,19 +66,7 @@ public interface RSVRecipe {
         Object obj = parseIng(text);
 
         if (obj != null) {
-            if (obj instanceof List list) {
-                if (list.get(0) instanceof Material) {
-                    return new RecipeChoice.MaterialChoice(list);
-                } else if (list.get(0) instanceof ItemStack) {
-                    return new RecipeChoice.ExactChoice(list);
-                }
-            } else if (obj instanceof Material) {
-                return new RecipeChoice.MaterialChoice((Material) obj);
-            } else if (obj instanceof Tag) {
-                return new RecipeChoice.MaterialChoice((Tag<Material>) obj);
-            } else if (obj instanceof ItemStack) {
-                return new RecipeChoice.ExactChoice((ItemStack) obj);
-            }
+            return parseRecChoice(obj);
         }
         return null;
     }
@@ -92,15 +75,14 @@ public interface RSVRecipe {
     private static Object parseIng(@Nonnull String text) {
         if (text.isEmpty())
             return null;
-        // text is a material
         if (text.contains("(") && text.contains(")")) {
             text = text.substring(1, text.indexOf(")"));
-            String[] entries = text.split(",");
+            String[] entries = text.split( ",");
             List<Object> items = new ArrayList<>();
 
             for (String s : entries) {
-                if (text.contains("Tag.")) {
-                    items.add(Utils.getTag(s.substring(4)).getValues());
+                if (s.contains("Tag.")) {
+                    items.addAll(Utils.getTag(s.substring(4)).getValues());
                 }
                 else if (Objects.equals(s, s.toUpperCase())) {
                     items.add(Material.valueOf(s));
@@ -126,13 +108,13 @@ public interface RSVRecipe {
     }
 
     @Nullable
-    default RecipeChoice parseRecipeChoice(@Nonnull Object obj) {
-        if (obj instanceof List list) {
+    static RecipeChoice parseRecChoice(@Nonnull Object obj) {
+        if (obj instanceof List<?> list) {
             if (list.get(0) instanceof Material) {
-                return new RecipeChoice.MaterialChoice(list);
+                return new RecipeChoice.MaterialChoice((List<Material>) list);
             }
             else if (list.get(0) instanceof ItemStack) {
-                return new RecipeChoice.ExactChoice(list);
+                return new RecipeChoice.ExactChoice((List<ItemStack>) list);
             }
         }
         else if (obj instanceof Material) {
@@ -148,39 +130,12 @@ public interface RSVRecipe {
     }
 
     @Nullable
-    default Object parseIngredient(@Nonnull String text) {
-        if (text.isEmpty())
-            return null;
-        // text is a material
-        if (text.contains("(") && text.contains(")")) {
-            text = text.substring(1, text.indexOf(")"));
-            String[] entries = text.split(",");
-            List<Object> items = new ArrayList<>();
+    default RecipeChoice parseRecipeChoice(@Nonnull Object obj) {
+        return parseRecChoice(obj);
+    }
 
-            for (String s : entries) {
-                if (text.contains("Tag.")) {
-                    items.add(Utils.getTag(s.substring(4)).getValues());
-                }
-                else if (Objects.equals(s, s.toUpperCase())) {
-                    items.add(Material.valueOf(s));
-                }
-                // text is an item
-                else if (RSVItem.getItemMap().containsKey(s))
-                    items.add(RSVItem.getItem(s));
-            }
-            return items;
-        }
-        else {
-            if (text.contains("Tag.")) {
-                return Utils.getTag(text.substring(4));
-            }
-            else if (Objects.equals(text, text.toUpperCase())) {
-                return Material.valueOf(text);
-            }
-            // text is an item
-            else if (RSVItem.getItemMap().containsKey(text))
-                return RSVItem.getItem(text);
-        }
-        return null;
+    @Nullable
+    default Object parseIngredient(@Nonnull String text) {
+        return parseIng(text);
     }
 }

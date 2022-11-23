@@ -20,7 +20,7 @@ import org.bukkit.event.entity.EntityTeleportEvent;
 
 import java.util.EnumSet;
 
-public class FollowOwnerGoal extends Goal {
+public class FollowOwnerGoal_v1_19_R1 extends Goal {
     private final RSVPet pet;
     private LivingEntity owner;
     private final LevelReader level;
@@ -32,7 +32,7 @@ public class FollowOwnerGoal extends Goal {
     private float oldWaterCost;
     private final boolean canFly;
 
-    public FollowOwnerGoal(RSVPet pet, double d0, float f, float f1, boolean flag) {
+    public FollowOwnerGoal_v1_19_R1(RSVPet pet, double d0, float f, float f1, boolean flag) {
         this.pet = pet;
         Mob mob = (Mob) ((CraftEntity) pet.getEntity()).getHandle();
         this.level = mob.level;

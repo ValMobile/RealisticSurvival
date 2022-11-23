@@ -18,6 +18,9 @@ package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.RSVModule;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum DragonVariant {
 
     GRAY("Dragons.FireDragon.Enabled.Variants.Blue"),
@@ -41,5 +44,16 @@ public enum DragonVariant {
 
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public static List<DragonVariant> getEnabledVariants(DragonBreed breed) {
+        DragonVariant[] variants = breed.getVariants();
+        List<DragonVariant> valid = new ArrayList<>();
+        for (DragonVariant variant : variants) {
+            if (variant.isEnabled()) {
+                valid.add(variant);
+            }
+        }
+        return valid;
     }
 }

@@ -18,6 +18,9 @@ package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.RSVModule;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum SeaSerpentVariant {
 
     BLUE("SeaSerpents.Enabled.Variants.Blue"),
@@ -36,5 +39,16 @@ public enum SeaSerpentVariant {
 
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public static List<SeaSerpentVariant> getEnabledVariants() {
+        SeaSerpentVariant[] variants = values();
+        List<SeaSerpentVariant> valid = new ArrayList<>();
+        for (SeaSerpentVariant variant : variants) {
+            if (variant.isEnabled()) {
+                valid.add(variant);
+            }
+        }
+        return valid;
     }
 }

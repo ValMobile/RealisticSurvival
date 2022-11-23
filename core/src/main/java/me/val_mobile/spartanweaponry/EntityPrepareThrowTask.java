@@ -27,6 +27,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,53 +77,26 @@ public class EntityPrepareThrowTask extends BukkitRunnable {
             stop();
         }
         else {
-            if (blacklistedMobs.contains(entity.getType().toString())) {
+            if (blacklistedMobs.contains(entity.getType().toString()) || entity.isDead() || entity.getEquipment() == null) {
                 stop();
             }
             else {
-                if (entity.getEquipment() == null) {
-                    stop();
-                }
-                else {
-                    ItemStack itemMainHand = entity.getEquipment().getItemInMainHand();
+                ItemStack itemMainHand = entity.getEquipment().getItemInMainHand();
 
-                    if (Utils.isItemReal(itemMainHand)) {
-                        if (RSVItem.isRSVItem(itemMainHand)) {
-                            String name = RSVItem.getNameFromItem(itemMainHand);
+                if (isItemValid(itemMainHand)) {
+                    if (Math.random() <= chance) {
+                        String name = RSVItem.getNameFromItem(itemMainHand);
 
-                            if (blacklistedItems.contains(name)) {
-                                stop();
-                            }
-                            else {
-                                if (name.contains("_")) {
-                                    String type = name.substring(name.lastIndexOf("_") + 1);
-
-                                    boolean isThrowing;
-                                    switch (type) {
-                                        case "dagger", "tomahawk", "javelin", "boomerang", "throwing_knife" -> isThrowing = true;
-                                        default -> isThrowing = name.endsWith("throwing_knife");
-                                    }
-
-                                    if (isThrowing) {
-                                        if (Math.random() <= chance) {
-                                            Location loc = entity.getLocation();
-                                            Vector velocity = loc.getDirection().normalize().multiply(config.getDouble("Items." + name + ".ThrownAttributes.Velocity"));
-                                            if (!ThrowWeaponTask.hasTask(entity.getUniqueId())) {
-                                                new ThrowWeaponTask(module, plugin, entity, itemMainHand, maxDistance, rotateWeapon, piercing, returnWeaponCollideBlocks, returnWeaponCollideEntities, returnWeaponTooFar, velocity).start();
-                                                entity.getEquipment().setItemInMainHand(null);
-                                            }
-                                        }
-                                    }
-                                }
-                                else {
-                                    stop();
-                                }
-                            }
-                        }
-                        else {
-                            stop();
+                        Location loc = entity.getLocation();
+                        Vector velocity = loc.getDirection().normalize().multiply(config.getDouble("Items." + name + ".ThrownAttributes.Velocity"));
+                        if (!ThrowWeaponTask.hasTask(entity.getUniqueId())) {
+                            new ThrowWeaponTask(module, plugin, entity, itemMainHand, maxDistance, rotateWeapon, piercing, returnWeaponCollideBlocks, returnWeaponCollideEntities, returnWeaponTooFar, velocity).start();
+                            entity.getEquipment().setItemInMainHand(null);
                         }
                     }
+                }
+                else {
+                    stop();
                 }
             }
         }
@@ -143,6 +117,30 @@ public class EntityPrepareThrowTask extends BukkitRunnable {
 
     public LivingEntity getEntity() {
         return entity;
+    }
+
+    public boolean isItemValid(@Nullable ItemStack item) {
+        if (Utils.isItemReal(item)) {
+            if (RSVItem.isRSVItem(item)) {
+                String name = RSVItem.getNameFromItem(item);
+
+                if (!blacklistedItems.contains(name)) {
+                    if (name.contains("_")) {
+                        String type = name.substring(name.lastIndexOf("_") + 1);
+
+                        switch (type) {
+                            case "dagger", "tomahawk", "javelin", "boomerang", "throwing_knife" -> {
+                                return true;
+                            }
+                            default -> {
+                                return name.endsWith("throwing_knife");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public static Map<UUID, EntityPrepareThrowTask> getTasks() {

@@ -29,10 +29,7 @@ import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Enderman;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -61,7 +58,7 @@ import java.util.UUID;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.3-DEV-2
+ * @version 1.2.3-DEV-3
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -130,7 +127,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
             UUID id = event.getPlayer().getUniqueId();
 
-            if (RSVPlayer.getPlayers().containsKey(id)) {
+            if (RSVPlayer.isValidPlayer(id)) {
                 RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
 
                 Collection<ItemStack> baubles = rsvPlayer.getBaubleDataModule().getBaubleBag().getAllBaubles();
@@ -160,7 +157,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 if (event.getNewGameMode() == GameMode.ADVENTURE || event.getNewGameMode() == GameMode.SURVIVAL) {
                     UUID id = event.getPlayer().getUniqueId();
 
-                    if (RSVPlayer.getPlayers().containsKey(id)) {
+                    if (RSVPlayer.isValidPlayer(player)) {
                         RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
 
                         Collection<ItemStack> baubles = rsvPlayer.getBaubleDataModule().getBaubleBag().getAllBaubles();
@@ -444,15 +441,45 @@ public class BaubleEvents extends ModuleEvents implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onTarget(EntityTargetEvent event) {
+        Entity aggressor = event.getEntity();
+        Entity target = event.getTarget();
         // if the attacker is an enderman and the aggressor is a player
-        if (event.getEntity() instanceof Enderman && event.getTarget() instanceof Player player) {
-            if (shouldEventBeRan(player)) {
-                // if the player has an ender queen's crown in his/her inventory
-                RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(player.getUniqueId());
-                DataModule module = rsvPlayer.getBaubleDataModule();
+        if (shouldEventBeRan(aggressor) && shouldEventBeRan(target)) {
+            if (aggressor instanceof Enderman) {
+                if (target instanceof Player player) {
+                    // if the player has an ender queen's crown in his/her inventory
+                    RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(player.getUniqueId());
+                    DataModule module = rsvPlayer.getBaubleDataModule();
 
-                if (module.getBaubleBag().hasBauble("ender_queens_crown"))
-                    event.setCancelled(true);
+                    if (module.getBaubleBag().hasBauble("ender_queens_crown")) {
+                        if (config.getBoolean("Items.ender_queens_crown.PreventEndermenAngering")) {
+                            event.setCancelled(true);
+                        }
+                    }
+                }
+                if (EndermanAllyUtils.isEndermanAlly(aggressor)) {
+                    UUID agOwnerId = EndermanAllyUtils.getOwnerId(aggressor);
+
+                    if (EndermanAllyUtils.isEndermanAlly(target)) {
+                        UUID targetOwnerId = EndermanAllyUtils.getOwnerId(target);
+
+                        if (config.getBoolean("Items.ender_queens_crown.PreventFriendlyFireToAllies")) {
+                            if (targetOwnerId.equals(agOwnerId)) {
+                                event.setCancelled(true);
+                            }
+                        }
+                    }
+                    if (target instanceof Tameable tameable) {
+                        AnimalTamer animalTamer = tameable.getOwner();
+                        if (animalTamer != null) {
+                            if (config.getBoolean("Items.ender_queens_crown.PreventFriendlyFireToPets")) {
+                                if (animalTamer.getUniqueId().equals(agOwnerId)) {
+                                    event.setCancelled(true);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -466,13 +493,15 @@ public class BaubleEvents extends ModuleEvents implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         if (!event.isCancelled()) {
-            // if the attacker is a player
-            if (event.getDamager() instanceof Player player) {
-                if (shouldEventBeRan(player)) {
-                    Entity entity = event.getEntity(); // get the attacked entity
+            Entity attacker = event.getDamager();
+            Entity defender = event.getEntity();
+
+            if (shouldEventBeRan(attacker) && shouldEventBeRan(defender)) {
+                // if the attacker is a player
+                if (attacker instanceof Player player) {
                     double damage = event.getFinalDamage();
                     // if the entity is able to receive potion effects
-                    if (entity instanceof LivingEntity living) {
+                    if (defender instanceof LivingEntity living) {
                         RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(player.getUniqueId());
                         DataModule module = rsvPlayer.getBaubleDataModule();
                         BaubleInventory inv = module.getBaubleBag();
@@ -497,6 +526,30 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                         }
                     }
                     event.setDamage(damage);
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onEntityDamageMonitor(EntityDamageByEntityEvent event) {
+        if (!event.isCancelled()) {
+            Entity defender = event.getEntity();
+
+            if (defender instanceof Player player) {
+                UUID id = player.getUniqueId();
+                RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
+                DataModule module = rsvPlayer.getBaubleDataModule();
+                BaubleInventory inv = module.getBaubleBag();
+
+                if (inv.hasBauble("ender_queens_crown") && EnderCrownTask.hasTask(id)) {
+                    EnderCrownTask task = EnderCrownTask.getTasks().get(id);
+
+                    if (task.areAlliesEnabled()) {
+                        if (task.canSpawnAllies(true)) {
+                            task.spawnAllies();
+                        }
+                    }
                 }
             }
         }

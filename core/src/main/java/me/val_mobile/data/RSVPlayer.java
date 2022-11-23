@@ -22,6 +22,8 @@ import me.val_mobile.tan.TanModule;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -35,7 +37,6 @@ public class RSVPlayer {
 
     public RSVPlayer(Player player) {
         this.uuid = player.getUniqueId();
-
         baubleDataModule = RSVModule.getModule(BaubleModule.NAME).isEnabled() ? new me.val_mobile.data.baubles.DataModule(player) : null;
 
         tanDataModule = RSVModule.getModule(TanModule.NAME).isEnabled() ? new DataModule(player) : null;
@@ -43,10 +44,12 @@ public class RSVPlayer {
         players.put(uuid, this);
     }
 
+    @Nonnull
     public static Map<UUID, RSVPlayer> getPlayers() {
         return players;
     }
 
+    @Nullable
     public Player getPlayer() {
         return Bukkit.getPlayer(uuid);
     }
@@ -69,11 +72,27 @@ public class RSVPlayer {
         }
     }
 
+    @Nonnull
     public DataModule getTanDataModule() {
         return tanDataModule;
     }
 
+    @Nonnull
     public me.val_mobile.data.baubles.DataModule getBaubleDataModule() {
         return baubleDataModule;
+    }
+
+    public static boolean isValidPlayer(@Nonnull Player player) {
+        if (players.containsKey(player.getUniqueId())) {
+            return players.get(player.getUniqueId()) != null;
+        }
+        return false;
+    }
+
+    public static boolean isValidPlayer(@Nonnull UUID id) {
+        if (players.containsKey(id)) {
+            return players.get(id) != null;
+        }
+        return false;
     }
 }

@@ -2,7 +2,7 @@
 #          Ice and Fire               #
 #######################################
 
-ConfigId: "1.2.3-DEV-2"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-DEV-3"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -1605,7 +1605,7 @@ Abilities:
       Enabled: true
       MaxAmplifier: 3
       MaxDuration: 270
-      MustSubmerge: true    # Should the effect only activate if the player is in water?
+      MustSubmerge: false    # Should the effect only activate if the player is in water?
     Strength:
       Enabled: true
       MaxAmplifier: 3

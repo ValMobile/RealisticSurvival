@@ -18,7 +18,7 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.Material;
+import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -72,7 +72,7 @@ public class StoneSeaTask extends BukkitRunnable {
         else {
             if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
                 if (rsvPlayer.getBaubleDataModule().hasBauble("stone_sea")) {
-                    if (player.isSwimming() || player.getLocation().getBlock().getType() == Material.WATER) {
+                    if (player.isSwimming() || Utils.isInWater(player)) {
                         double swimSpeed = baseSwimSpeed;
                         int depthStrider = 0;
                         boolean dolphinsGrace = player.hasPotionEffect(PotionEffectType.DOLPHINS_GRACE);

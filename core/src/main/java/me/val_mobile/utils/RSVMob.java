@@ -18,8 +18,17 @@ package me.val_mobile.utils;
 
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
+import org.bukkit.persistence.PersistentDataType;
 
 public interface RSVMob {
+
+    static boolean isMob(Entity entity) {
+        return Utils.hasNbtTag(entity, "rsvmob");
+    }
+
+    static String getMob(Entity entity) {
+        return Utils.getNbtTag(entity, "rsvmob", PersistentDataType.STRING);
+    }
 
     void addNbtData();
 

@@ -18,6 +18,7 @@ package me.val_mobile.utils;
 
 import me.val_mobile.baubles.EndermanAlly;
 import me.val_mobile.iceandfire.*;
+import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -29,6 +30,9 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.SmithingInventory;
+
+import javax.annotation.Nonnull;
+import java.util.Random;
 
 public class v1_16_R4 extends InternalsProvider {
 
@@ -153,5 +157,68 @@ public class v1_16_R4 extends InternalsProvider {
         ((CraftLivingEntity) attacker).getHandle().attackEntity(((CraftEntity) defender).getHandle());
     }
 
- 
+    @Override
+    public boolean isInWater(@Nonnull Entity entity) {
+        return entity.isInWater();
+    }
+
+    public static boolean isLookingAtMe(EntityEnderman enderman, EntityHuman entityhuman) {
+        net.minecraft.server.v1_16_R3.ItemStack itemstack = entityhuman.inventory.armor.get(3);
+        if (itemstack.getItem() == Blocks.CARVED_PUMPKIN.getItem()) {
+            return false;
+        } else {
+            Vec3D vec3d = entityhuman.f(1.0F).d();
+            Vec3D vec3d1 = new Vec3D(enderman.locX() - entityhuman.locX(), enderman.getHeadY() - entityhuman.getHeadY(), enderman.locZ() - entityhuman.locZ());
+            double d0 = vec3d1.f();
+            vec3d1 = vec3d1.d();
+            double d1 = vec3d.b(vec3d1);
+            return d1 > 1.0 - 0.025 / d0 && entityhuman.hasLineOfSight(enderman);
+        }
+    }
+
+    public static boolean teleport(EntityEnderman enderman) {
+        if (!enderman.world.s_() && enderman.isAlive()) {
+            Random random = enderman.getRandom();
+            double d0 = enderman.locX() + (random.nextDouble() - 0.5) * 64.0;
+            double d1 = enderman.locY() + (double)(random.nextInt(64) - 32);
+            double d2 = enderman.locZ() + (random.nextDouble() - 0.5) * 64.0;
+            return teleport(enderman, d0, d1, d2);
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean teleport(EntityEnderman enderman, double d0, double d1, double d2) {
+        BlockPosition.MutableBlockPosition blockposition_mutableblockposition = new BlockPosition.MutableBlockPosition(d0, d1, d2);
+
+        while(blockposition_mutableblockposition.getY() > 0 && !enderman.world.getType(blockposition_mutableblockposition).getMaterial().isSolid()) {
+            blockposition_mutableblockposition.c(EnumDirection.DOWN);
+        }
+
+        IBlockData iblockdata = enderman.world.getType(blockposition_mutableblockposition);
+        boolean flag = iblockdata.getMaterial().isSolid();
+        boolean flag1 = iblockdata.getFluid().a(TagsFluid.WATER);
+        if (flag && !flag1) {
+            boolean flag2 = enderman.a(d0, d1, d2, true);
+            if (flag2 && !enderman.isSilent()) {
+                enderman.world.playSound(null, enderman.lastX, enderman.lastY, enderman.lastZ, SoundEffects.ENTITY_ENDERMAN_TELEPORT, enderman.getSoundCategory(), 1.0F, 1.0F);
+                enderman.playSound(SoundEffects.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
+            }
+
+            return flag2;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean teleportTowards(EntityEnderman enderman, net.minecraft.server.v1_16_R3.Entity entity) {
+        Vec3D vec3d = new Vec3D(enderman.locX() - entity.locX(), enderman.e(0.5) - entity.getHeadY(), enderman.locZ() - entity.locZ());
+        vec3d = vec3d.d();
+        Random random = enderman.getRandom();
+
+        double d1 = enderman.locX() + (random.nextDouble() - 0.5) * 8.0 - vec3d.x * 16.0;
+        double d2 = enderman.locY() + (double)(random.nextInt(16) - 8) - vec3d.y * 16.0;
+        double d3 = enderman.locZ() + (random.nextDouble() - 0.5) * 8.0 - vec3d.z * 16.0;
+        return teleport(enderman, d1, d2, d3);
+    }
 }

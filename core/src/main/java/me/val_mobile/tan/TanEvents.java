@@ -23,7 +23,6 @@ import me.val_mobile.utils.DisplayTask;
 import me.val_mobile.utils.PlayerJumpEvent;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import me.val_mobile.utils.Utils.Hand;
 import org.bukkit.*;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
@@ -44,6 +43,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.server.ServerCommandEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -372,10 +372,10 @@ public class TanEvents extends ModuleEvents implements Listener {
                                     if (name.equals("canteen_empty") || name.equals("canteen_filled")) {
                                         if (block.getType() == Material.WATER && Utils.isSourceLiquid(block)) {
                                             if (canFill(item, "Unpurified Water")) {
-                                                Hand hand = getHand(player, name);
+                                                EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, name);
 
                                                 if (hand != null) {
-                                                    if (hand == Hand.MAIN_HAND) {
+                                                    if (hand == EquipmentSlot.HAND) {
                                                         player.getInventory().setItemInMainHand(fillCanteen(item, "Unpurified Water", 1));
                                                     }
                                                     else
@@ -482,13 +482,8 @@ public class TanEvents extends ModuleEvents implements Listener {
                             if (name.equals("juice_chorus_fruit")) {
                                 if (config.getBoolean("Items.juice_chorus_fruit.Teleport.Enabled")) {
                                     Location loc = player.getLocation();
-                                    final double RADIUS = config.getDouble("Items.juice_chorus_fruit.Teleport.MaxRadius");
-                                    double x = loc.getX() + Math.random() * RADIUS;
-                                    double z = loc.getZ() + Math.random() * RADIUS;
 
-                                    Location newLoc = new Location(loc.getWorld(), x, loc.getWorld().getHighestBlockYAt((int) Math.round(x), (int) Math.round(z)), z, loc.getYaw(), loc.getPitch());
-
-                                    player.teleport(newLoc);
+                                    Utils.randomTpSafely(player, config.getDouble("Items.juice_chorus_fruit.Teleport.MaxRadius"));
 
                                     if (config.getBoolean("Items.juice_chorus_fruit.Teleport.Sound.Enabled")) {
                                         String soundName = config.getString("Items.juice_chorus_fruit.Teleport.Sound.Sound");
@@ -527,10 +522,10 @@ public class TanEvents extends ModuleEvents implements Listener {
                                     task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
                                     task.setSaturationLvl(Math.min(task.getSaturationLvl() + saturationPoints, task.getThirstLvl()));
                                 }
-                                Hand hand = getHand(player, name);
+                                EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, name);
 
                                 if (hand != null) {
-                                    if (hand == Utils.Hand.MAIN_HAND)
+                                    if (hand == EquipmentSlot.HAND)
                                         player.getInventory().setItemInMainHand(fillCanteen(item, canteenDrink, -1));
                                     else
                                         player.getInventory().setItemInOffHand(fillCanteen(item, canteenDrink, -1));
@@ -1075,22 +1070,5 @@ public class TanEvents extends ModuleEvents implements Listener {
         }
         Utils.changeDurability(canteen, change, false);
         return canteen;
-    }
-
-    private Hand getHand(Player player, String rsvName) {
-        ItemStack mainHand = player.getInventory().getItemInMainHand();
-        ItemStack offHand = player.getInventory().getItemInOffHand();
-
-        if (RSVItem.isRSVItem(mainHand)) {
-            if (RSVItem.getNameFromItem(mainHand).equals(rsvName)) {
-                return Utils.Hand.MAIN_HAND;
-            }
-        }
-        if (RSVItem.isRSVItem(offHand)) {
-            if (RSVItem.getNameFromItem(offHand).equals(rsvName)) {
-                return Utils.Hand.OFF_HAND;
-            }
-        }
-        return null;
     }
 }

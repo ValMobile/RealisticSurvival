@@ -1,3 +1,19 @@
+/*
+    Copyright (C) 2022  Val_Mobile
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.RSVModule;
@@ -7,6 +23,7 @@ import me.val_mobile.spartanandfire.ElectrocuteTask;
 import me.val_mobile.spartanandfire.FreezeTask;
 import me.val_mobile.utils.LorePresets;
 import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Location;
@@ -24,9 +41,33 @@ public class DragonUtils {
 
     private static final FileConfiguration CONFIG = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
 
+    public static void convertToDragon(EnderDragon dragon, DragonBreed breed) {
+        int stage = Utils.getRandomNum(1, 5);
+
+        Utils.addNbtTag(dragon, "rsvmob", breed.toString().toLowerCase() + "_dragon", PersistentDataType.STRING);
+        Utils.addNbtTag(dragon, "rsvdragonstage", stage, PersistentDataType.INTEGER);
+        Utils.addNbtTag(dragon, "rsvdragonage", Utils.getRandomNum(stage * 100, stage * 100 + 99), PersistentDataType.INTEGER);
+        Utils.addNbtTag(dragon, "rsvdragonvariant", DragonVariant.getEnabledVariants(breed).get(Utils.getRandomNum(0, DragonVariant.getEnabledVariants(breed).size() - 1)).toString(), PersistentDataType.STRING);
+        Utils.addNbtTag(dragon, "rsvdragonbreed", breed.toString(), PersistentDataType.STRING);
+        Utils.addNbtTag(dragon, "rsvdragongender", (Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE).toString(), PersistentDataType.STRING);
+    }
+
+
+    public static void convertToFireDragon(EnderDragon dragon) {
+        convertToDragon(dragon, DragonBreed.FIRE);
+    }
+
+    public static void convertToIceDragon(EnderDragon dragon) {
+        convertToDragon(dragon, DragonBreed.ICE);
+    }
+
+    public static void convertToLightningDragon(EnderDragon dragon) {
+        convertToDragon(dragon, DragonBreed.LIGHTNING);
+    }
+
     public static void performMeleeAttack(EnderDragon dragon, LivingEntity defender) {
-        if (isMob(dragon)) {
-            switch (getMob(dragon)) {
+        if (RSVMob.isMob(dragon)) {
+            switch (RSVMob.getMob(dragon)) {
                 case "fire_dragon" -> performMeleeFireAbility(dragon, defender);
                 case "ice_dragon" -> performMeleeIceAbility(dragon, defender);
                 case "lightning_dragon" -> performMeleeLightningAbility(dragon, defender);
@@ -36,8 +77,8 @@ public class DragonUtils {
     }
 
     public static void performSpecialAbility(EnderDragon dragon, LivingEntity defender) {
-        if (isMob(dragon)) {
-            switch (getMob(dragon)) {
+        if (RSVMob.isMob(dragon)) {
+            switch (RSVMob.getMob(dragon)) {
                 case "fire_dragon" -> performSpecialFireAbility(dragon, defender);
                 case "ice_dragon" -> performSpecialIceAbility(dragon, defender);
                 case "lightning_dragon" -> performSpecialLightningAbility(dragon, defender);
@@ -88,8 +129,8 @@ public class DragonUtils {
     }
 
     public static void triggerBreathAttack(EnderDragon dragon, Location target) {
-        if (isMob(dragon)) {
-            switch (getMob(dragon)) {
+        if (RSVMob.isMob(dragon)) {
+            switch (RSVMob.getMob(dragon)) {
                 case "fire_dragon" -> triggerBreathFireAttack(dragon, target);
                 case "ice_dragon" -> triggerBreathIceAttack(dragon, target);
                 case "lightning_dragon" -> triggerBreathLightningAttack(dragon, target);
@@ -99,8 +140,8 @@ public class DragonUtils {
     }
 
     public static void triggerExplosionAttack(EnderDragon dragon, Location target) {
-        if (isMob(dragon)) {
-            switch (getMob(dragon)) {
+        if (RSVMob.isMob(dragon)) {
+            switch (RSVMob.getMob(dragon)) {
                 case "fire_dragon" -> triggerExplosionFireAttack(dragon, target);
                 case "ice_dragon" -> triggerExplosionIceAttack(dragon, target);
                 case "lightning_dragon" -> triggerExplosionLightningAttack(dragon, target);
@@ -208,22 +249,14 @@ public class DragonUtils {
         return loot;
     }
 
-    public static boolean isMob(Entity entity) {
-        return Utils.hasNbtTag(entity, "rsvmob");
-    }
-
     public static boolean isDragon(Entity entity) {
-        if (isMob(entity)) {
-            return switch (getMob(entity)) {
+        if (RSVMob.isMob(entity)) {
+            return switch (RSVMob.getMob(entity)) {
                 case "fire_dragon", "ice_dragon", "lightning_dragon" -> true;
                 default -> false;
             };
         }
         return false;
-    }
-
-    public static String getMob(Entity entity) {
-        return Utils.getNbtTag(entity, "rsvmob", PersistentDataType.STRING);
     }
 
     public static int getStage(EnderDragon dragon) {

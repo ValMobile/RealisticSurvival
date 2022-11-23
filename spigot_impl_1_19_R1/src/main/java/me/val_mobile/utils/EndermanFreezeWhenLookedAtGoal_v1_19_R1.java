@@ -8,12 +8,12 @@ import net.minecraft.world.entity.player.Player;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-public class EndermanFreezeWhenLookedAtGoal extends Goal {
+public class EndermanFreezeWhenLookedAtGoal_v1_19_R1 extends Goal {
     private final EnderMan enderman;
     @Nullable
     private LivingEntity target;
 
-    public EndermanFreezeWhenLookedAtGoal(EnderMan enderman) {
+    public EndermanFreezeWhenLookedAtGoal_v1_19_R1(EnderMan enderman) {
         this.enderman = enderman;
         this.setFlags(EnumSet.of(Flag.JUMP, Flag.MOVE));
     }

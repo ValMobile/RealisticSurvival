@@ -60,8 +60,8 @@ public class ItemManager {
                     items.putIfAbsent(key, item);
                 }
                 else {
-                    if (userConfig.contains("Items." + key + ".Enabled.Versions." + Utils.getMinecraftVersion())) {
-                        if (userConfig.getBoolean("Items." + key + ".Enabled.Versions." + Utils.getMinecraftVersion())) {
+                    if (userConfig.contains("Items." + key + ".Enabled.Versions." + Utils.getMinecraftVersion(false))) {
+                        if (userConfig.getBoolean("Items." + key + ".Enabled.Versions." + Utils.getMinecraftVersion(false))) {
                             RSVItem item = new RSVItem(module, key);
                             items.putIfAbsent(key, item);
                         }

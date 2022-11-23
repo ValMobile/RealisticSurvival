@@ -276,10 +276,16 @@ public abstract class ModuleEvents implements Listener {
     }
 
     public boolean shouldEventBeRan(Entity e) {
+        if (e == null) {
+            return false;
+        }
         return module.getAllowedWorlds().contains(e.getWorld().getName());
     }
 
     public boolean shouldEventBeRan(World world) {
+        if (world == null) {
+            return false;
+        }
         return module.getAllowedWorlds().contains(world.getName());
     }
 

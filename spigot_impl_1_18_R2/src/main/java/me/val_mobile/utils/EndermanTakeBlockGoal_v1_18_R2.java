@@ -3,7 +3,6 @@ package me.val_mobile.utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.level.ClipContext;
@@ -14,12 +13,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import org.bukkit.craftbukkit.v1_19_R1.event.CraftEventFactory;
+import org.bukkit.craftbukkit.v1_18_R1.event.CraftEventFactory;
 
-public class EndermanTakeBlockGoal extends Goal {
+import java.util.Random;
+
+public class EndermanTakeBlockGoal_v1_18_R2 extends Goal {
     private final EnderMan enderman;
 
-    public EndermanTakeBlockGoal(EnderMan enderman) {
+    public EndermanTakeBlockGoal_v1_18_R2(EnderMan enderman) {
         this.enderman = enderman;
     }
 
@@ -28,11 +29,11 @@ public class EndermanTakeBlockGoal extends Goal {
     }
 
     public void tick() {
-        RandomSource randomsource = enderman.getRandom();
+        Random random = enderman.getRandom();
         Level world = enderman.level;
-        int i = Mth.floor(enderman.getX() - 2.0 + randomsource.nextDouble() * 4.0);
-        int j = Mth.floor(enderman.getY() + randomsource.nextDouble() * 3.0);
-        int k = Mth.floor(enderman.getZ() - 2.0 + randomsource.nextDouble() * 4.0);
+        int i = Mth.floor(enderman.getX() - 2.0 + random.nextDouble() * 4.0);
+        int j = Mth.floor(enderman.getY() + random.nextDouble() * 3.0);
+        int k = Mth.floor(enderman.getZ() - 2.0 + random.nextDouble() * 4.0);
         BlockPos blockposition = new BlockPos(i, j, k);
         BlockState iblockdata = world.getBlockState(blockposition);
         Vec3 vec3d = new Vec3((double)enderman.getBlockX() + 0.5, (double)j + 0.5, (double)enderman.getBlockZ() + 0.5);
@@ -41,9 +42,8 @@ public class EndermanTakeBlockGoal extends Goal {
         boolean flag = movingobjectpositionblock.getBlockPos().equals(blockposition);
         if (iblockdata.is(BlockTags.ENDERMAN_HOLDABLE) && flag && !CraftEventFactory.callEntityChangeBlockEvent(enderman, blockposition, Blocks.AIR.defaultBlockState()).isCancelled()) {
             world.removeBlock(blockposition, false);
-            world.gameEvent(GameEvent.BLOCK_DESTROY, blockposition, GameEvent.Context.of(enderman, iblockdata));
+            world.gameEvent(enderman, GameEvent.BLOCK_DESTROY, blockposition);
             enderman.setCarriedBlock(iblockdata.getBlock().defaultBlockState());
         }
-
     }
 }

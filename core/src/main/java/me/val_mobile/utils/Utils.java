@@ -48,6 +48,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
@@ -68,7 +69,8 @@ public class Utils {
     static {
         try {
             String packageName = Utils.class.getPackage().getName();
-            String internalsName = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+            String internalsName = getMinecraftVersion(true);
+//            String internalsName = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
             internals = (InternalsProvider) Class.forName(packageName + "." + internalsName).getDeclaredConstructor().newInstance();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ClassCastException | NoSuchMethodException | InvocationTargetException exception) {
             Bukkit.getLogger().log(Level.SEVERE, "NMS Util could not find a valid implementation for this server version.");
@@ -80,8 +82,96 @@ public class Utils {
     }
 
     @Nonnull
-    public static String getMinecraftVersion() {
-        return RealisticSurvivalPlugin.getUtil().getInternalMinecraftVersion();
+    public static String getMinecraftVersion(boolean impl) {
+        String s = Bukkit.getVersion();
+
+        if (s.contains("1.20.1")) {
+            return impl ? "v1_20_R2" : "1.20.1";
+        }
+        if (s.contains("1.20")) {
+            return impl ? "v1_20_R1" : "1.20";
+        }
+        if (s.contains("1.19.3")) {
+            return impl ? "v1_19_R4" : "1.19.3";
+        }
+        if (s.contains("1.19.2")) {
+            return impl ? "v1_19_R3" : "1.19.2";
+        }
+        if (s.contains("1.19.1")) {
+            return impl ? "v1_19_R2" : "1.19.1";
+        }
+        if (s.contains("1.19")) {
+            return impl ? "v1_19_R1" : "1.19";
+        }
+        if (s.contains("1.18.2")) {
+            return impl ? "v1_18_R3" : "1.18.2";
+        }
+        if (s.contains("1.18.1")) {
+            return impl ? "v1_18_R2" : "1.18.1";
+        }
+        if (s.contains("1.18")) {
+            return impl ? "v1_18_R1" : "1.18";
+        }
+        if (s.contains("1.17.1")) {
+            return impl ? "v1_17_R2" : "1.17.1";
+        }
+        if (s.contains("1.17")) {
+            return impl ? "v1_17_R1" : "1.17";
+        }
+        if (s.contains("1.16.5")) {
+            return impl ? "v1_16_R5" : "1.16.5";
+        }
+        if (s.contains("1.16.4")) {
+            return impl ? "v1_16_R4" : "1.16.4";
+        }
+        if (s.contains("1.16.3")) {
+            return impl ? "v1_16_R3" : "1.16.3";
+        }
+        if (s.contains("1.16.2")) {
+            return impl ? "v1_16_R2" : "1.16.2";
+        }
+        if (s.contains("1.16.1")) {
+            return impl ? "v1_16_R1" : "1.16.1";
+        }
+        if (s.contains("1.16")) {
+            return impl ? "v1_16_R1" : "1.16";
+        }
+        return "";
+    }
+
+    public static void randomTpSafely(@Nonnull Entity entity, @Nonnegative double radius) {
+        World world = entity.getWorld();
+        Location loc = entity.getLocation().clone();
+
+        int x;
+        int y;
+        int z;
+        Block block;
+        Block highestBlock;
+        Block aboveBlock;
+        Block thirdBlock; // used only for entities that are 3 blocks tall
+
+        boolean isShort = entity.getHeight() <= 2;
+
+        for (int i = 0; i < 16; i++) {
+            x = (int) getRandomNum(-1 * radius, radius);
+            y = (int) getRandomNum(-1 * radius, radius);
+            z = (int) getRandomNum(-1 * radius, radius);
+            block = world.getBlockAt((int) Math.round(loc.getX() + x), (int) Math.round(loc.getY() + y), (int) Math.round(loc.getZ() + z));
+            highestBlock = world.getHighestBlockAt(block.getX(), block.getZ());
+            aboveBlock = world.getBlockAt(block.getX(), block.getY() + 1, block.getZ());
+            thirdBlock = world.getBlockAt(block.getX(), block.getY() + 1, block.getZ());
+
+            if (block.isPassable() && aboveBlock.isPassable() && !highestBlock.isEmpty() && !(block.isLiquid() || aboveBlock.isLiquid() || highestBlock.isLiquid())) {
+                if ((thirdBlock.isPassable() && !thirdBlock.isLiquid()) || isShort) {
+                    loc.setX(loc.getX() + (x < 0 ? Math.max(x, -0.3) : Math.min(x, 0.3)));
+                    loc.setY(highestBlock.getY() + 1D);
+                    loc.setZ(loc.getZ() + (z < 0 ? Math.max(z, -0.3) : Math.min(z, 0.3)));
+                    entity.teleport(loc);
+                    break;
+                }
+            }
+        }
     }
 
     @Nonnull
@@ -366,7 +456,7 @@ public class Utils {
         return !(item == null || item.getType() == Material.AIR || item.getAmount() < 1);
     }
 
-    public static void damagePlayer(@Nonnull org.bukkit.entity.Damageable entity, double damage) {
+    public static void damageEntity(@Nonnull org.bukkit.entity.Damageable entity, double damage) {
         double points = 0;
         double toughness = 0;
         int resistance = 0;
@@ -536,8 +626,8 @@ public class Utils {
             lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
         }
 
-        switch (DROP_TYPE.valueOf(section.getString("Type").toUpperCase())) {
-            case RARE, COMMON -> {
+        switch (section.getString("Type").toUpperCase()) {
+            case "RARE", "COMMON" -> {
                 double chance = section.getDouble("Chance");
                 double rawAmount = (1D / (lvl + 2D) + (lvl + 1D) / 2D) * chance;
                 int actualAmount = (int) Math.floor(rawAmount);
@@ -552,7 +642,7 @@ public class Utils {
                     return true;
                 }
             }
-            case RANGE -> {
+            case "RANGE" -> {
                 int min = section.getInt("MinAmount");
                 int max = section.getInt("MaxAmount");
 
@@ -569,8 +659,48 @@ public class Utils {
         return false;
     }
 
-    public enum DROP_TYPE {
-        COMMON, RARE, RANGE
+    @Nullable
+    public static EquipmentSlot getSlotContainingRsvItem(@Nonnull Player player, @Nonnull String rsvName) {
+        PlayerInventory inv = player.getInventory();
+
+        ItemStack helmet = inv.getHelmet();
+        ItemStack chestplate = inv.getChestplate();
+        ItemStack leggings = inv.getLeggings();
+        ItemStack boots = inv.getBoots();
+        ItemStack mainHand = inv.getItemInMainHand();
+        ItemStack offHand = inv.getItemInOffHand();
+
+        if (RSVItem.isRSVItem(mainHand)) {
+            if (RSVItem.getNameFromItem(mainHand).equals(rsvName)) {
+                return EquipmentSlot.HAND;
+            }
+        }
+        if (RSVItem.isRSVItem(offHand)) {
+            if (RSVItem.getNameFromItem(offHand).equals(rsvName)) {
+                return EquipmentSlot.OFF_HAND;
+            }
+        }
+        if (RSVItem.isRSVItem(helmet)) {
+            if (RSVItem.getNameFromItem(helmet).equals(rsvName)) {
+                return EquipmentSlot.HEAD;
+            }
+        }
+        if (RSVItem.isRSVItem(chestplate)) {
+            if (RSVItem.getNameFromItem(chestplate).equals(rsvName)) {
+                return EquipmentSlot.CHEST;
+            }
+        }
+        if (RSVItem.isRSVItem(leggings)) {
+            if (RSVItem.getNameFromItem(leggings).equals(rsvName)) {
+                return EquipmentSlot.LEGS;
+            }
+        }
+        if (RSVItem.isRSVItem(boots)) {
+            if (RSVItem.getNameFromItem(boots).equals(rsvName)) {
+                return EquipmentSlot.FEET;
+            }
+        }
+        return null;
     }
 
     public static boolean dropLooting(@Nonnull ConfigurationSection section, @Nonnull ItemStack drop, @Nullable ItemStack tool, @Nonnull Location loc) {
@@ -583,8 +713,8 @@ public class Utils {
             }
         }
 
-        switch (DROP_TYPE.valueOf(section.getString("Type").toUpperCase())) {
-            case RARE -> {
+        switch (section.getString("Type").toUpperCase()) {
+            case "RARE" -> {
                 double chance = section.getDouble("Chance") + lvl * 0.01;
                 // rare drops
                 if (Math.random() <= chance) {
@@ -598,7 +728,7 @@ public class Utils {
                     }
                 }
             }
-            case COMMON -> {
+            case "COMMON" -> {
                 double chance = section.getDouble("Chance");
 
                 if (Math.random() <= chance + lvl * 0.01) {
@@ -620,7 +750,7 @@ public class Utils {
                     }
                 }
             }
-            case RANGE -> {
+            case "RANGE" -> {
                 int min = section.getInt("MinAmount");
                 int max = section.getInt("MaxAmount");
 
@@ -745,6 +875,14 @@ public class Utils {
                 item.setItemMeta(meta);
             }
         }
+    }
+
+    public static boolean isInWater(@Nonnull Entity entity) {
+        return internals.isInWater(entity);
+    }
+
+    public static boolean isInLava(@Nonnull Entity entity) {
+        return entity.getLocation().getBlock().getType() == Material.LAVA;
     }
 
     public static void updateItem(@Nonnull ItemStack item) {
@@ -974,59 +1112,6 @@ public class Utils {
         Block targetBlock = lastTwoTargetBlocks.get(1);
         Block adjacentBlock = lastTwoTargetBlocks.get(0);
         return targetBlock.getFace(adjacentBlock);
-    }
-
-    public enum Hand {
-        MAIN_HAND, OFF_HAND
-    }
-
-    @Nonnull
-    public String getInternalMinecraftVersion() {
-        String s = plugin.getServer().getVersion();
-
-        if (s.contains("1.19.2")) {
-            return "1.19.2";
-        }
-        if (s.contains("1.19.1")) {
-            return "1.19.1";
-        }
-        if (s.contains("1.19")) {
-            return "1.19";
-        }
-        if (s.contains("1.18.2")) {
-            return "1.18.2";
-        }
-        if (s.contains("1.18.1")) {
-            return "1.18.1";
-        }
-        if (s.contains("1.18")) {
-            return "1.18";
-        }
-        if (s.contains("1.17.1")) {
-            return "1.17.1";
-        }
-        if (s.contains("1.17")) {
-            return "1.17";
-        }
-        if (s.contains("1.16.5")) {
-            return "1.16.5";
-        }
-        if (s.contains("1.16.4")) {
-            return "1.16.4";
-        }
-        if (s.contains("1.16.3")) {
-            return "1.16.3";
-        }
-        if (s.contains("1.16.2")) {
-            return "1.16.2";
-        }
-        if (s.contains("1.16.1")) {
-            return "1.16.1";
-        }
-        if (s.contains("1.16")) {
-            return "1.16";
-        }
-        return "";
     }
 
     public <T> void addInternalNbtTag(@Nonnull Entity entity, @Nonnull String key, @Nonnull T value, @Nonnull PersistentDataType<T,T> type) {

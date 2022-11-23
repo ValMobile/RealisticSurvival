@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
-public class EndermanLookForPlayerGoal extends NearestAttackableTargetGoal<Player> {
+public class EndermanLookForPlayerGoal_v1_17_R1 extends NearestAttackableTargetGoal<Player> {
     private final EnderMan enderman;
     @Nullable
     private Player pendingTarget;
@@ -17,10 +17,10 @@ public class EndermanLookForPlayerGoal extends NearestAttackableTargetGoal<Playe
     private int teleportTime;
     private final TargetingConditions startAggroTargetConditions;
     private final TargetingConditions continueAggroTargetConditions = TargetingConditions.forCombat().ignoreLineOfSight();
-    public EndermanLookForPlayerGoal(EnderMan enderman, @Nullable Predicate<LivingEntity> predicate) {
+    public EndermanLookForPlayerGoal_v1_17_R1(EnderMan enderman, @Nullable Predicate<LivingEntity> predicate) {
         super(enderman, Player.class, 10, false, false, predicate);
         this.enderman = enderman;
-        this.startAggroTargetConditions = TargetingConditions.forCombat().range(getFollowDistance()).selector((entityliving) -> v1_19_R1.isLookingAtMe(enderman, (Player) entityliving));
+        this.startAggroTargetConditions = TargetingConditions.forCombat().range(getFollowDistance()).selector((entityliving) -> v1_17_R1.isLookingAtMe(enderman, (Player) entityliving));
     }
 
     public boolean canUse() {
@@ -29,7 +29,7 @@ public class EndermanLookForPlayerGoal extends NearestAttackableTargetGoal<Playe
     }
 
     public void start() {
-        aggroTime = adjustedTickDelay(5);
+        aggroTime = 5;
         teleportTime = 0;
         enderman.setBeingStaredAt();
     }
@@ -41,7 +41,7 @@ public class EndermanLookForPlayerGoal extends NearestAttackableTargetGoal<Playe
 
     public boolean canContinueToUse() {
         if (pendingTarget != null) {
-            if (v1_19_R1.isLookingAtMe(enderman, pendingTarget)) {
+            if (v1_17_R1.isLookingAtMe(enderman, pendingTarget)) {
                 enderman.lookAt(pendingTarget, 10.0F, 10.0F);
                 return true;
             }
@@ -67,13 +67,13 @@ public class EndermanLookForPlayerGoal extends NearestAttackableTargetGoal<Playe
         }
         else {
             if (target != null && !enderman.isPassenger()) {
-                if (v1_19_R1.isLookingAtMe(enderman, (Player) target)) {
+                if (v1_17_R1.isLookingAtMe(enderman, (Player) target)) {
                     if (target.distanceToSqr(enderman) < 16.0) {
-                        v1_19_R1.teleport(enderman);
+                        v1_17_R1.teleport(enderman);
                     }
                     teleportTime = 0;
                 }
-                else if (target.distanceToSqr(enderman) > 256.0 && teleportTime++ >= adjustedTickDelay(30) && v1_19_R1.teleportTowards(enderman, target)) {
+                else if (target.distanceToSqr(enderman) > 256.0 && teleportTime++ >= 30 && v1_17_R1.teleportTowards(enderman, target)) {
                     teleportTime = 0;
                 }
             }

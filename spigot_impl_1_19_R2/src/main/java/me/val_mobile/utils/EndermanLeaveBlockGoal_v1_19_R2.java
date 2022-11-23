@@ -14,10 +14,10 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.craftbukkit.v1_19_R1.event.CraftEventFactory;
 
-public class EndermanLeaveBlockGoal extends Goal {
+public class EndermanLeaveBlockGoal_v1_19_R2 extends Goal {
     private final EnderMan enderman;
 
-    public EndermanLeaveBlockGoal(EnderMan enderman) {
+    public EndermanLeaveBlockGoal_v1_19_R2(EnderMan enderman) {
         this.enderman = enderman;
     }
 

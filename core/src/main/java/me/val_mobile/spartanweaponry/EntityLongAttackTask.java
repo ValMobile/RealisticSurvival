@@ -29,6 +29,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.RayTraceResult;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,60 +69,34 @@ public class EntityLongAttackTask extends BukkitRunnable {
             stop();
         }
         else {
-            if (blacklistedMobs.contains(attacker.getType().toString())) {
+            if (blacklistedMobs.contains(attacker.getType().toString()) || attacker.getEquipment() == null || attacker.isDead()) {
                 stop();
             }
             else {
-                if (attacker.getEquipment() == null) {
-                    stop();
-                }
-                else {
-                    ItemStack itemMainHand = attacker.getEquipment().getItemInMainHand();
+                ItemStack itemMainHand = attacker.getEquipment().getItemInMainHand();
 
-                    if (Utils.isItemReal(itemMainHand)) {
-                        if (RSVItem.isRSVItem(itemMainHand)) {
-                            String name = RSVItem.getNameFromItem(itemMainHand);
+                if (isItemValid(itemMainHand)) {
+                    if (Math.random() <= chance) {
+                        Location eye = attacker.getEyeLocation().add(attacker.getLocation().getDirection());
+                        Predicate<Entity> filter = entity -> !entity.getUniqueId().equals(attacker.getUniqueId());
+                        RayTraceResult result = attacker.getWorld().rayTrace(attacker.getEyeLocation(), eye.getDirection(), reach, FluidCollisionMode.NEVER, false, 0, filter);
 
-                            if (blacklistedItems.contains(name)) {
-                                stop();
-                            }
-                            else {
-                                if (name.contains("_")) {
-                                    String type = name.substring(name.lastIndexOf("_") + 1);
+                        if (result != null) {
+                            Entity defender = result.getHitEntity();
 
-                                    switch (type) {
-                                        case "greatsword", "spear", "halberd", "pike", "lance" -> {
-                                            if (Math.random() <= chance) {
-                                                Location eye = attacker.getEyeLocation().add(attacker.getLocation().getDirection());
-                                                Predicate<Entity> filter = entity -> !entity.getUniqueId().equals(attacker.getUniqueId());
-                                                RayTraceResult result = attacker.getWorld().rayTrace(attacker.getEyeLocation(), eye.getDirection(), reach, FluidCollisionMode.NEVER, false, 0, filter);
-
-                                                if (result != null) {
-                                                    Entity defender = result.getHitEntity();
-
-                                                    if (defender != null) {
-                                                        if (target == null) {
-                                                            Utils.attack(attacker, defender);
-                                                        }
-                                                        else if (target.getUniqueId().equals(defender.getUniqueId())) {
-                                                            Utils.attack(attacker, target);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        default -> stop();
-                                    }
+                            if (defender != null) {
+                                if (target == null) {
+                                    Utils.attack(attacker, defender);
                                 }
-                                else {
-                                    stop();
+                                else if (target.getUniqueId().equals(defender.getUniqueId())) {
+                                    Utils.attack(attacker, target);
                                 }
                             }
-                        }
-                        else {
-                            stop();
                         }
                     }
+                }
+                else {
+                    stop();
                 }
             }
         }
@@ -137,6 +112,28 @@ public class EntityLongAttackTask extends BukkitRunnable {
         FileConfiguration swConfig = RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig();
 
         runTaskTimer(plugin, 0, swConfig.getInt("MobAbilities.UseLongReachWeapons.TickPeriod"));
+    }
+
+    public boolean isItemValid(@Nullable ItemStack item) {
+        if (Utils.isItemReal(item)) {
+            if (RSVItem.isRSVItem(item)) {
+                String name = RSVItem.getNameFromItem(item);
+
+                if (!blacklistedItems.contains(name)) {
+                    if (name.contains("_")) {
+                        String type = name.substring(name.lastIndexOf("_") + 1);
+
+                        switch (type) {
+                            case "greatsword", "spear", "halberd", "pike", "lance" -> {
+                                return true;
+                            }
+                            default -> {}
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 

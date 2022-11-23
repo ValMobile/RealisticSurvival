@@ -18,6 +18,15 @@ package me.val_mobile.utils;
 
 import me.val_mobile.baubles.EndermanAlly;
 import me.val_mobile.iceandfire.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -32,6 +41,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.SmithingRecipe;
+
+import javax.annotation.Nonnull;
+import java.util.Random;
 
 public class v1_18_R2 extends InternalsProvider {
 
@@ -164,6 +176,69 @@ public class v1_18_R2 extends InternalsProvider {
         else {
             ((CraftLivingEntity) attacker).getHandle().doHurtTarget(((CraftEntity) defender).getHandle());
         }
+    }
+
+    @Override
+    public boolean isInWater(@Nonnull Entity entity) {
+        return entity.isInWater();
+    }
+
+    public static boolean isLookingAtMe(EnderMan enderman, net.minecraft.world.entity.player.Player entityhuman) {
+        ItemStack itemstack = entityhuman.getInventory().armor.get(3);
+        if (itemstack.is(Blocks.CARVED_PUMPKIN.asItem())) {
+            return false;
+        }
+        else {
+            Vec3 vec3d = entityhuman.getViewVector(1.0F).normalize();
+            Vec3 vec3d1 = new Vec3(enderman.getX() - entityhuman.getX(), enderman.getEyeY() - entityhuman.getEyeY(), enderman.getZ() - entityhuman.getZ());
+            double d0 = vec3d1.length();
+            vec3d1 = vec3d1.normalize();
+            double d1 = vec3d.dot(vec3d1);
+            return d1 > 1.0 - 0.025 / d0 && entityhuman.hasLineOfSight(enderman);
+        }
+    }
+
+    public static void teleport(EnderMan enderman) {
+        if (!enderman.level.isClientSide() && enderman.isAlive()) {
+            Random random = enderman.getRandom();
+
+            double d0 = enderman.getX() + (random.nextDouble() - 0.5) * 64.0;
+            double d1 = enderman.getY() + (double)(random.nextInt(64) - 32);
+            double d2 = enderman.getZ() + (random.nextDouble() - 0.5) * 64.0;
+            teleport(enderman, d0, d1, d2);
+        }
+    }
+
+    public static boolean teleport(EnderMan enderman, double d0, double d1, double d2) {
+        BlockPos.MutableBlockPos blockposition_mutableblockposition = new BlockPos.MutableBlockPos(d0, d1, d2);
+
+        while(blockposition_mutableblockposition.getY() > enderman.level.getMinBuildHeight() && !enderman.level.getBlockState(blockposition_mutableblockposition).getMaterial().blocksMotion()) {
+            blockposition_mutableblockposition.move(Direction.DOWN);
+        }
+
+        BlockState iblockdata = enderman.level.getBlockState(blockposition_mutableblockposition);
+        boolean flag = iblockdata.getMaterial().blocksMotion();
+        boolean flag1 = iblockdata.getFluidState().is(FluidTags.WATER);
+        if (flag && !flag1) {
+            boolean flag2 = enderman.randomTeleport(d0, d1, d2, true);
+            if (flag2 && !enderman.isSilent()) {
+                enderman.level.playSound(null, enderman.xo, enderman.yo, enderman.zo, SoundEvents.ENDERMAN_TELEPORT, enderman.getSoundSource(), 1.0F, 1.0F);
+                enderman.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
+            }
+            return flag2;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean teleportTowards(EnderMan enderman, net.minecraft.world.entity.Entity entity) {
+        Random random = enderman.getRandom();
+        Vec3 vec3d = new Vec3(enderman.getX() - entity.getX(), enderman.getY(0.5) - entity.getEyeY(), enderman.getZ() - entity.getZ());
+        vec3d = vec3d.normalize();
+        double d1 = enderman.getX() + (random.nextDouble() - 0.5) * 8.0 - vec3d.x * 16.0;
+        double d2 = enderman.getY() + (double)(random.nextInt(16) - 8) - vec3d.y * 16.0;
+        double d3 = enderman.getZ() + (random.nextDouble() - 0.5) * 8.0 - vec3d.z * 16.0;
+        return teleport(enderman, d1, d2, d3);
     }
 
 }

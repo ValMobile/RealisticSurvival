@@ -34,6 +34,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class SeaSerpent_v1_18_R1 extends ElderGuardian implements SeaSerpent {
 
@@ -43,36 +44,35 @@ public class SeaSerpent_v1_18_R1 extends ElderGuardian implements SeaSerpent {
     public SeaSerpent_v1_18_R1(EntityType<? extends ElderGuardian> entitytype, Level world) {
         super(entitytype, world);
 
-        SeaSerpentVariant[] allVariants = SeaSerpentVariant.values();
-
-        do {
-            variant = allVariants[Utils.getRandomNum(0, allVariants.length - 1)];
-        } while(!variant.isEnabled());
+        List<SeaSerpentVariant> enabledVariants = SeaSerpentVariant.getEnabledVariants();
+        this.variant = enabledVariants.get(Utils.getRandomNum(0, enabledVariants.size() - 1));
 
         this.setCustomName(new TextComponent(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
         this.setCustomNameVisible(false);
+        addNbtData();
     }
 
     public SeaSerpent_v1_18_R1(Location loc) {
         super(EntityType.ELDER_GUARDIAN, ((CraftWorld) loc.getWorld()).getHandle());
+        this.setPos(loc.getX(), loc.getY(), loc.getZ());
 
-        SeaSerpentVariant[] allVariants = SeaSerpentVariant.values();
-
-        do {
-            variant = allVariants[Utils.getRandomNum(0, allVariants.length - 1)];
-        } while(!variant.isEnabled());
+        List<SeaSerpentVariant> enabledVariants = SeaSerpentVariant.getEnabledVariants();
+        this.variant = enabledVariants.get(Utils.getRandomNum(0, enabledVariants.size() - 1));
 
         this.setCustomName(new TextComponent(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
         this.setCustomNameVisible(false);
+        addNbtData();
     }
 
     public SeaSerpent_v1_18_R1(Location loc, SeaSerpentVariant variant) {
         super(EntityType.ELDER_GUARDIAN, ((CraftWorld) loc.getWorld()).getHandle());
+        this.setPos(loc.getX(), loc.getY(), loc.getZ());
 
         this.variant = variant.isEnabled() ? variant : null;
 
         this.setCustomName(new TextComponent(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
         this.setCustomNameVisible(false);
+        addNbtData();
     }
 
     @Override

@@ -2,7 +2,6 @@ package me.val_mobile.utils;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
@@ -11,15 +10,15 @@ import org.bukkit.event.entity.EntityTargetEvent;
 
 import java.util.EnumSet;
 
-public class OwnerHurtByTargetGoal extends TargetGoal {
+public class OwnerHurtByTargetGoal_v1_19_R3 extends TargetGoal {
     private final RSVPet pet;
     private LivingEntity ownerLastHurtBy;
     private int timestamp;
 
-    public OwnerHurtByTargetGoal(RSVPet pet) {
+    public OwnerHurtByTargetGoal_v1_19_R3(RSVPet pet) {
         super((Mob) ((CraftEntity) pet.getEntity()).getHandle(), false);
         this.pet = pet;
-        this.setFlags(EnumSet.of(Goal.Flag.TARGET));
+        this.setFlags(EnumSet.of(Flag.TARGET));
     }
 
     public boolean canUse() {

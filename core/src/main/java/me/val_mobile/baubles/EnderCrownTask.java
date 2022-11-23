@@ -20,16 +20,20 @@ import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import java.util.function.Predicate;
 
 public class EnderCrownTask extends BukkitRunnable {
 
@@ -38,27 +42,45 @@ public class EnderCrownTask extends BukkitRunnable {
     private final RSVPlayer rsvPlayer;
     private final UUID id;
     private final RealisticSurvivalPlugin plugin;
-    private final FileConfiguration config;
-    private final double actRange;
-    private final double chance;
-    private final Collection<String> allowedWorlds;
+    private final boolean transfromEndermen;
+    private final double maxDist;
+    private final boolean alliesEnabled;
+    private final boolean mustTakeDamage;
     private final double maxHealthPercent;
+    private final double allySpawnChance;
+    private final int minAllies;
+    private final int maxAllies;
+    private final int allyDelay;
+    private final Collection<String> allowedWorlds;
+    private final boolean shouldTakeWaterDamage;
     private final double waterDamage;
-
-    private boolean hasSummoned = false;
-    private final long start;
+    private final int waterDamageDelay;
+    private final double waterDamageChance;
+    private final Predicate<Entity> filter = entity -> entity instanceof Enderman && !EndermanAllyUtils.isEndermanAlly(entity);
+    private final int tickPeriod;
+    private int waterDamageTicks;
+    private int allyTicks;
 
     public EnderCrownTask(BaubleModule module, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
         this.id = rsvPlayer.getPlayer().getUniqueId();
-        this.config = module.getUserConfig().getConfig();
+        FileConfiguration config = module.getUserConfig().getConfig();
         this.allowedWorlds = module.getAllowedWorlds();
         this.plugin = plugin;
-        this.actRange = config.getDouble("Items.ender_queens_crown.ActivationRange");
-        this.chance = config.getDouble("Items.ender_queens_crown.SummonEndermanAlly.Chance");
-        this.maxHealthPercent = config.getDouble("Items.ender_queens_crown.SummonEndermanAlly.MaxHealthPercent");
-        this.waterDamage = config.getDouble("Items.ender_queens_crown.WaterContactDamage");
-        start = System.currentTimeMillis();
+        this.transfromEndermen = config.getBoolean("Items.ender_queens_crown.TransformRegularEndermen.Enabled");
+        this.maxDist = config.getDouble("Items.ender_queens_crown.TransformRegularEndermen.MaxDistance");
+        this.mustTakeDamage = config.getBoolean("Items.ender_queens_crown.SummonEndermenAllies.MustTakeDamage");
+        this.alliesEnabled = config.getBoolean("Items.ender_queens_crown.SummonEndermenAllies.Enabled");
+        this.minAllies = config.getInt("Items.ender_queens_crown.SummonEndermenAllies.MinAmount");
+        this.maxAllies = config.getInt("Items.ender_queens_crown.SummonEndermenAllies.MaxAmount");
+        this.allySpawnChance = config.getDouble("Items.ender_queens_crown.SummonEndermenAllies.Chance");
+        this.allyDelay = config.getInt("Items.ender_queens_crown.SummonEndermenAllies.Delay");
+        this.maxHealthPercent = config.getDouble("Items.ender_queens_crown.SummonEndermenAllies.MaxHealthPercent");
+        this.shouldTakeWaterDamage = config.getBoolean("Items.ender_queens_crown.WaterContact.Enabled");
+        this.waterDamage = config.getDouble("Items.ender_queens_crown.WaterContact.Damage");
+        this.waterDamageChance = config.getDouble("Items.ender_queens_crown.WaterContact.Chance");
+        this.waterDamageDelay = config.getInt("Items.ender_queens_crown.WaterContact.Delay");
+        this.tickPeriod = config.getInt("Items.ender_queens_crown.TickPeriod");
         tasks.put(id, this);
     }
 
@@ -75,41 +97,36 @@ public class EnderCrownTask extends BukkitRunnable {
                 if (rsvPlayer.getBaubleDataModule().hasBauble("ender_queens_crown")) {
                     // effect the player with resistance
                     Player p = rsvPlayer.getPlayer();
-                    Location loc = p.getLocation();
-                    for (Entity e : p.getNearbyEntities(actRange, actRange, actRange)) {
-                        if (e instanceof Enderman) {
-                            // transfrom enderman into ally
-                            if (!Objects.equals(Utils.getNbtTag(e, "rsvmob", PersistentDataType.STRING), "enderman_ally")) {
-                                if (Math.random() <= chance) {
-//                                    Utils.spawnEndermanAlly(p, loc).addEntityToWorld(p.getWorld());
-//                                    e.remove();
+
+                    if (transfromEndermen) {
+                        Collection<Entity> entities = p.getWorld().getNearbyEntities(p.getLocation(), maxDist, maxDist, maxDist, filter);
+                        for (Entity e : entities) {
+                            EndermanAlly ally = Utils.spawnEndermanAlly(p, e.getLocation());
+                            ally.addEntityToWorld(p.getWorld());
+                            ally.getEntity().teleport(e.getLocation());
+                            ((LivingEntity) ally.getEntity()).setHealth(((LivingEntity) e).getHealth());
+                            e.remove();
+                        }
+                    }
+                    
+                    if (shouldTakeWaterDamage) {
+                        waterDamageTicks += tickPeriod;
+
+                        if (waterDamageTicks > waterDamageDelay) {
+                            if (Math.random() < waterDamageChance) {
+                                if (Utils.isInWater(p)) {
+                                    p.damage(waterDamage);
+                                    waterDamageTicks = 0;
                                 }
                             }
                         }
                     }
 
-                    if (loc.getBlock().getType() == Material.WATER) {
-                        p.damage(waterDamage);
-                    }
+                    if (alliesEnabled) {
+                        allyTicks += tickPeriod;
 
-                    if ((System.currentTimeMillis() - start) % 30000 == 0) {
-                        hasSummoned = false;
-                    }
-
-                    if (p.getHealth() / p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() <= maxHealthPercent) {
-                        if (!hasSummoned) {
-                            hasSummoned = true;
-                            int numAllies = (int) (Math.random() * 3) + 1;
-                            int x;
-                            int y;
-                            int z;
-
-                            for (int i = 0; i < numAllies; i++) {
-                                x = (int) (Math.random() * 21) - 10;
-                                z = (int) (Math.random() * 21) - 10;
-                                y = p.getWorld().getHighestBlockYAt(x, z);
-                                Utils.spawnEndermanAlly(p, new Location(p.getWorld(), x, y, z)).addEntityToWorld(p.getWorld());
-                            }
+                        if (canSpawnAllies(false)) {
+                            spawnAllies();
                         }
                     }
                 }
@@ -129,7 +146,6 @@ public class EnderCrownTask extends BukkitRunnable {
     }
 
     public void start() {
-        int tickPeriod = config.getInt("Items.ender_queens_crown.TickPeriod"); // get the tick period
         this.runTaskTimer(plugin, 0L, tickPeriod);
     }
 
@@ -142,5 +158,39 @@ public class EnderCrownTask extends BukkitRunnable {
             return tasks.get(id) != null;
         }
         return false;
+    }
+
+    public boolean areAlliesEnabled() {
+        return alliesEnabled;
+    }
+
+    public boolean canSpawnAllies(boolean playerDamaged) {
+        if (allyTicks > allyDelay) {
+            if (Math.random() < allySpawnChance) {
+                Player player = this.rsvPlayer.getPlayer();
+                if (player.getHealth() / player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() <= maxHealthPercent) {
+                    if (mustTakeDamage) {
+                        return playerDamaged;
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void spawnAllies() {
+        Player player = this.rsvPlayer.getPlayer();
+        Location loc = player.getLocation();
+        World world = player.getWorld();
+
+        int numAllies = Utils.getRandomNum(minAllies, maxAllies);
+
+        for (int i = 0; i < numAllies; i++) {
+            EndermanAlly ally = Utils.spawnEndermanAlly(player, loc);
+            ally.addEntityToWorld(world);
+            Utils.randomTpSafely(ally.getEntity(), maxDist);
+            allyTicks = 0;
+        }
     }
 }
