@@ -58,7 +58,7 @@ import java.util.UUID;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.3-DEV-3
+ * @version 1.2.3-RELEASE
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -657,16 +657,18 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                     }
                 }
 
-                if (baubleInv.hasBauble(("cross_necklace"))) {
+                if (baubleInv.hasBauble("cross_necklace"))
                     player.setNoDamageTicks(config.getInt("Items.cross_necklace.InvFrameLength"));
-                }
 
                 if (player.getHealth() - event.getFinalDamage() <= 0D) {
                     if (baubleInv.hasBauble("broken_heart")) {
                         ItemStack item = baubleInv.getItem("broken_heart");
                         if (Utils.getCustomDurability(item) >= 1) {
                             Utils.changeDurability(item, -1, false);
-                            player.playEffect(EntityEffect.TOTEM_RESURRECT);
+
+                            if (config.getBoolean("Items.broken_heart.PlayTotemEffect"))
+                                player.playEffect(EntityEffect.TOTEM_RESURRECT);
+
                             event.setCancelled(true);
                         }
                     }
@@ -704,19 +706,21 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
             if (shouldEventBeRan(world)) {
                 if (event.getSkipReason() == TimeSkipEvent.SkipReason.NIGHT_SKIP) {
-                    Collection<UUID> ids = module.getBrokenHeartPlayers();
+                    if (config.getBoolean("Items.broken_heart.SleepRepair.Enabled")) {
+                        Collection<UUID> ids = module.getBrokenHeartPlayers();
 
-                    for (UUID id : ids) {
-                        RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
+                        for (UUID id : ids) {
+                            RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
 
-                        DataModule dataModule = rsvPlayer.getBaubleDataModule();
+                            DataModule dataModule = rsvPlayer.getBaubleDataModule();
 
-                        if (dataModule.getBaubleBag().hasBauble("broken_heart")) {
-                            Utils.changeDurability(dataModule.getBaubleBag().getItem("broken_heart"), 1, false);
-                        }
+                            if (dataModule.getBaubleBag().hasBauble("broken_heart")) {
+                                Utils.changeDurability(dataModule.getBaubleBag().getItem("broken_heart"), 1, false);
+                            }
 
-                        if (BrokenHeartRepairTask.hasTask(id)) {
-                            BrokenHeartRepairTask.getTasks().get(id).stop();
+                            if (BrokenHeartRepairTask.hasTask(id)) {
+                                BrokenHeartRepairTask.getTasks().get(id).stop();
+                            }
                         }
                     }
                 }

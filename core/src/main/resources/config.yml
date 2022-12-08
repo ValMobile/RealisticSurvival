@@ -1,7 +1,7 @@
 #########################################################################################
 #																					    #
 #	Realistic Survival Plugin	MC 1.16 - 1.19											#
-#	Version 1.2.3-DEV-3	        Made by: Val_Mobile									    #
+#	Version 1.2.3-RELEASE	        Made by: Val_Mobile									    #
 #																						#
 #########################################################################################
 
@@ -53,7 +53,7 @@ ResourcePack:
   Enabled: true
   # If you upgrade to newer versions, the URL will need to be manually updated to the newest one,
   # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
-  Url: "https://www.dropbox.com/s/n4cox3umcdhe0rm/Realistic%20Survival%20RP%201.2.3%20DEV-2.zip?dl=1"
+  Url: "https://www.dropbox.com/s/sjrl9s2zavgkcod/Realistic%20Survival%20RP%201.2.3%20Release.zip?dl=1"
 NoTreePunching:
   Enabled: true
   Worlds:
@@ -119,4 +119,4 @@ UpdateItems:
 #######################################
 
 BStats: true             # Do you want non-confidential server data to be recorded for my use?
-ConfigId: "1.2.3-DEV-3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-RELEASE"  # Used for config syncing purposes, do NOT edit

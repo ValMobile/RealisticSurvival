@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>realisticsurvival-core</artifactId>
-    <version>1.2.3-DEV-3</version>
+    <version>1.2.3-RELEASE</version>
 
     <packaging>jar</packaging>
 
     <parent>
         <groupId>me.Val_Mobile</groupId>
         <artifactId>realisticsurvival-parent</artifactId>
-        <version>1.2.3-DEV-3</version>
+        <version>1.2.3-RELEASE</version>
     </parent>
     <build>
         <plugins>

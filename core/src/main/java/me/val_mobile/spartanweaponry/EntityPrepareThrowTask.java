@@ -84,7 +84,7 @@ public class EntityPrepareThrowTask extends BukkitRunnable {
                 ItemStack itemMainHand = entity.getEquipment().getItemInMainHand();
 
                 if (isItemValid(itemMainHand)) {
-                    if (Math.random() <= chance) {
+                    if (Utils.roll(chance)) {
                         String name = RSVItem.getNameFromItem(itemMainHand);
 
                         Location loc = entity.getLocation();

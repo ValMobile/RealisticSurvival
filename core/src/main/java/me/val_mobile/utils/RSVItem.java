@@ -251,20 +251,22 @@ public class RSVItem extends ItemStack {
 
             LorePresets.addGearLore(newLore, material);
 
-            Set<String> keys = atrConfig.getConfigurationSection(attributesPath).getKeys(false);
-            keys.remove("UseModuleConfig");
+            if (atrConfig.getConfigurationSection(attributesPath) != null) {
+                Set<String> keys = atrConfig.getConfigurationSection(attributesPath).getKeys(false);
+                keys.remove("UseModuleConfig");
 
-            for (String s : keys) {
-                Attribute atr = Utils.translateInformalAttributeName(s);
-                String atrName = Utils.toLowercaseAttributeName(atr);
-                double displayValue = atrConfig.getDouble(attributesPath + "." + s);
-                double correctValue = Utils.getCorrectAttributeValue(atr, displayValue);
-                EquipmentSlot slot = Utils.getCorrectEquipmentSlot(atr, material);
+                for (String s : keys) {
+                    Attribute atr = Utils.translateInformalAttributeName(s);
+                    String atrName = Utils.toLowercaseAttributeName(atr);
+                    double displayValue = atrConfig.getDouble(attributesPath + "." + s);
+                    double correctValue = Utils.getCorrectAttributeValue(atr, displayValue);
+                    EquipmentSlot slot = Utils.getCorrectEquipmentSlot(atr, material);
 
-                if (!(atrName == null)) {
-                    AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, AttributeModifier.Operation.ADD_NUMBER, slot);
-                    LorePresets.addGearStats(newLore, atr, displayValue);
-                    meta.addAttributeModifier(atr, atrMod);
+                    if (!(atrName == null)) {
+                        AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, AttributeModifier.Operation.ADD_NUMBER, slot);
+                        LorePresets.addGearStats(newLore, atr, displayValue);
+                        meta.addAttributeModifier(atr, atrMod);
+                    }
                 }
             }
         }

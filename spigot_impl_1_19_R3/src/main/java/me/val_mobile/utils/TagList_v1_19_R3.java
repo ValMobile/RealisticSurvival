@@ -194,13 +194,13 @@ public enum TagList_v1_19_R3 {
     WOOL(Tag.WOOL),
     WOOL_CARPETS(Tag.WOOL_CARPETS);
 
-    private final org.bukkit.Tag<Material> tag;
+    private final Tag<Material> tag;
 
-    TagList_v1_19_R3(org.bukkit.Tag<Material> tag) {
+    TagList_v1_19_R3(Tag<Material> tag) {
         this.tag = tag;
     }
 
-    public org.bukkit.Tag getTag() {
+    public Tag<Material> getTag() {
         return tag;
     }
 }

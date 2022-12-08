@@ -54,25 +54,30 @@ public class BrokenHeartRepairTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        Player player = rsvPlayer.getPlayer();
+        if (config.getBoolean("Items.broken_heart.SleepRepair.Enabled")) {
+            Player player = rsvPlayer.getPlayer();
 
-        if (player == null) {
-            stop();
-        }
-        else {
-            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && player.isSleeping()) {
-                ticks++;
+            if (player == null) {
+                stop();
+            }
+            else {
+                if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && player.isSleeping()) {
+                    ticks++;
 
-                if (ticks > duration) {
-                    ItemStack brokenHeart = rsvPlayer.getBaubleDataModule().getBaubleBag().getItem("broken_heart");
-                    Utils.changeDurability(brokenHeart, config.getInt("Items.broken_heart.SleepRepair.Amount"), false);
+                    if (ticks > duration) {
+                        ItemStack brokenHeart = rsvPlayer.getBaubleDataModule().getBaubleBag().getItem("broken_heart");
+                        Utils.changeDurability(brokenHeart, config.getInt("Items.broken_heart.SleepRepair.Amount"), false);
 
+                        stop();
+                    }
+                }
+                else {
                     stop();
                 }
             }
-            else {
-                stop();
-            }
+        }
+        else {
+            stop();
         }
     }
 

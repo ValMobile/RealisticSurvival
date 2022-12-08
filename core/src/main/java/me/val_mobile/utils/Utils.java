@@ -543,7 +543,7 @@ public class Utils {
     }
 
     public static boolean hasCustomDurability(@Nonnull ItemStack item) {
-        return hasNbtTag(item, "rsvdurability") && Utils.hasNbtTag(item, "rsvmaxdurability");
+        return hasNbtTag(item, "rsvdurability") && hasNbtTag(item, "rsvmaxdurability");
     }
 
     public static void setKbMultiplier(@Nonnull Entity entity, double multiplier) {
@@ -569,7 +569,12 @@ public class Utils {
     }
 
     public static boolean isTag(@Nonnull String name) {
-        return internals.getTag(name) != null;
+        try {
+            internals.getTag(name);
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return true;
     }
 
     public static int getRandomNum(int min, int max) {
@@ -578,6 +583,10 @@ public class Utils {
 
     public static double getRandomNum(double min, double max) {
         return Math.random() * (max - min) + min;
+    }
+
+    public static boolean roll(double chance) {
+        return Math.random() <= chance;
     }
 
     public static boolean areCriticalHitConditionsMet(@Nonnull Player player, double baseDamage, double finalDamage) {
@@ -633,7 +642,7 @@ public class Utils {
                 int actualAmount = (int) Math.floor(rawAmount);
                 double dif = rawAmount - actualAmount;
 
-                if (Math.random() <= dif)
+                if (roll(dif))
                     actualAmount++;
 
                 if (actualAmount > 0) {
@@ -717,12 +726,12 @@ public class Utils {
             case "RARE" -> {
                 double chance = section.getDouble("Chance") + lvl * 0.01;
                 // rare drops
-                if (Math.random() <= chance) {
+                if (roll(chance)) {
                     loc.getWorld().dropItemNaturally(loc, drop);
                     return true;
                 }
                 else {
-                    if (Math.random() <= (lvl / (lvl + 1D))/100D) {
+                    if (roll((lvl / (lvl + 1D))/100D)) {
                         loc.getWorld().dropItemNaturally(loc, drop);
                         return true;
                     }
@@ -731,7 +740,7 @@ public class Utils {
             case "COMMON" -> {
                 double chance = section.getDouble("Chance");
 
-                if (Math.random() <= chance + lvl * 0.01) {
+                if (roll(chance + lvl * 0.01)) {
                     int maxAmount = lvl + 1;
 
                     double rawAmount = chance * maxAmount;
@@ -739,7 +748,7 @@ public class Utils {
 
                     double dif = rawAmount - actualAmount;
 
-                    if (Math.random() <= dif)
+                    if (roll(dif))
                         actualAmount++;
 
                     if (actualAmount > 0) {
@@ -814,7 +823,7 @@ public class Utils {
             if (change < 0) {
                 if (lvl > 0) {
                     for (int i = 0; i < -change; i++) {
-                        if (Math.random() < (1D / (lvl + 1D))) {
+                        if (roll((1D / (lvl + 1D)))) {
                             actualChange++;
                         }
                     }
@@ -850,7 +859,7 @@ public class Utils {
             if (change < 0) {
                 if (lvl > 0) {
                     for (int i = 0; i < -change; i++) {
-                        if (Math.random() > (1D / (lvl + 1D))) {
+                        if (roll(1D / (lvl + 1D))) {
                             actualChange++;
                         }
                     }
@@ -976,14 +985,14 @@ public class Utils {
     public static boolean isBestTool(@Nonnull Block block, @Nullable ItemStack tool) {
         Tool bestTool = getBestTool(block.getType());
 
-        if (Utils.isItemReal(tool)) {
+        if (isItemReal(tool)) {
             return tool.getType().toString().contains(bestTool.toString()) || bestTool == Tool.NONE;
         }
         return bestTool == Tool.NONE;
     }
 
     public static boolean hasSilkTouch(@Nonnull ItemStack item) {
-        if (Utils.isItemReal(item)) {
+        if (isItemReal(item)) {
             return !item.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH);
         }
         return true;
@@ -1276,8 +1285,8 @@ public class Utils {
 
                     if (config.getBoolean("UpdateItems.UpdateNbtTags.UpdateCustomDurability"))
                         if (hasCustomDurability(rsvItem)) {
-                            addNbtTag(item, "rsvdurability", Utils.getCustomDurability(rsvItem), PersistentDataType.INTEGER);
-                            addNbtTag(item, "rsvmaxdurability", Utils.getMaxCustomDurability(rsvItem), PersistentDataType.INTEGER);
+                            addNbtTag(item, "rsvdurability", getCustomDurability(rsvItem), PersistentDataType.INTEGER);
+                            addNbtTag(item, "rsvmaxdurability", getMaxCustomDurability(rsvItem), PersistentDataType.INTEGER);
                         }
                 }
             }

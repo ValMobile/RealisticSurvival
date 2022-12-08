@@ -52,6 +52,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 public class NtrEvents extends ModuleEvents implements Listener {
 
@@ -162,7 +163,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                             Location blockLoc = block.getLocation();
                             Location pLoc = player.getLocation();
                             if (Utils.getBlockFace(player) == BlockFace.UP && pLoc.distanceSquared(blockLoc) < 2.25D) {
-                                if (Math.random() <= config.getDouble("Lumberjack.PlankDrops.Chance")) {
+                                if (Utils.roll(config.getDouble("Lumberjack.PlankDrops.Chance"))) {
 
                                     ItemStack drop = new ItemStack(Utils.getRespectivePlank(blockMat));
                                     Utils.dropFortune(config.getConfigurationSection("Lumberjack.PlankDrops"), drop, event.getItem(), block.getLocation());
@@ -188,7 +189,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                             Location blockLoc = block.getLocation();
                             Location pLoc = player.getLocation();
                             if (Utils.getBlockFace(player) == BlockFace.UP && pLoc.distanceSquared(blockLoc) < 2.25D) {
-                                if (Math.random() <= config.getDouble("Lumberjack.StickDrops.Chance")) {
+                                if (Utils.roll(config.getDouble("Lumberjack.StickDrops.Chance"))) {
                                     Utils.dropFortune(config.getConfigurationSection("Lumberjack.StickDrops"), new ItemStack(Material.STICK), item, block.getLocation());
                                     block.setType(Material.AIR);
                                     event.setCancelled(true);
@@ -316,93 +317,76 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                 int kindling = 0;
                                 int soul = 0;
 
-                                List<String> fuelMats = config.getStringList("FireStarter.Fuel.Materials");
-                                List<String> kindlingMats = config.getStringList("FireStarter.Kindling.Materials");
-                                List<String> soulItems = config.getStringList("FireStarter.SoulItems");
+                                List<String> fuelStr = config.getStringList("FireStarter.Fuel.Materials");
+                                List<String> kindlingStr = config.getStringList("FireStarter.Kindling.Materials");
+                                List<String> soulStr = config.getStringList("FireStarter.SoulItems");
+
+                                List<Material> fuelMats = new ArrayList<>();
+                                List<Material> kindlingMats = new ArrayList<>();
+                                List<Material> soulMats = new ArrayList<>();
+
+                                for (String s : fuelStr) {
+                                    if (Utils.isTag(s)) {
+                                        fuelMats.addAll(Utils.getTag(s).getValues());
+                                    }
+                                    else {
+                                        fuelMats.add(Material.valueOf(s));
+                                    }
+                                }
+
+                                for (String s : kindlingStr) {
+                                    if (Utils.isTag(s)) {
+                                        kindlingMats.addAll(Utils.getTag(s).getValues());
+                                    }
+                                    else {
+                                        kindlingMats.add(Material.valueOf(s));
+                                    }
+                                }
+
+                                for (String s : soulStr) {
+                                    if (Utils.isTag(s)) {
+                                        soulMats.addAll(Utils.getTag(s).getValues());
+                                    }
+                                    else {
+                                        soulMats.add(Material.valueOf(s));
+                                    }
+                                }
 
                                 Location loc = event.getClickedBlock().getLocation();
 
-                                Collection<Entity> entities = loc.getWorld().getNearbyEntities(loc, maxDistance, maxDistance, maxDistance);
+                                Predicate<Entity> filter = entity -> entity instanceof Item;
+                                Collection<Entity> entities = loc.getWorld().getNearbyEntities(loc, maxDistance, maxDistance, maxDistance, filter);
 
                                 Collection<Item> ingredients = new ArrayList<>();
 
                                 if (entities.size() <= config.getInt("FireStarter.MaxItems")) {
                                     for (Entity e : entities) {
-                                        if (e instanceof Item i) {
-                                            ItemStack drop = i.getItemStack();
+                                        Item i = (Item) e;
+                                        ItemStack drop = i.getItemStack();
+                                        Material mat = drop.getType();
 
-                                            if (needsFuel) {
-                                                if (fuelMats.contains(drop.getType().toString())) {
-                                                    if (fuel < requiredFuel) {
-                                                        fuel += drop.getAmount();
-                                                    }
-                                                    ingredients.add(i);
-                                                }
-                                                else {
-                                                    Tag<Material> tag;
-
-                                                    for (String s : fuelMats) {
-                                                        tag = Utils.getTag(s);
-                                                        if (tag != null) {
-                                                            if (tag.isTagged(drop.getType())) {
-                                                                if (fuel < requiredFuel) {
-                                                                    fuel += drop.getAmount();
-                                                                }
-                                                                ingredients.add(i);
-                                                                break;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            if (needsKindling) {
-                                                if (kindlingMats.contains(drop.getType().toString())) {
-                                                    if (kindling < requiredKindling) {
-                                                        kindling += drop.getAmount();
-                                                    }
-                                                    ingredients.add(i);
-                                                }
-                                                else {
-                                                    Tag<Material> tag;
-
-                                                    for (String s : kindlingMats) {
-                                                        tag = Utils.getTag(s);
-                                                        if (tag != null) {
-                                                            if (tag.isTagged(drop.getType())) {
-                                                                if (kindling < requiredKindling) {
-                                                                    kindling += drop.getAmount();
-                                                                }
-                                                                ingredients.add(i);
-                                                                break;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                            if (soulItems.contains(drop.getType().toString())) {
-                                                soul += drop.getAmount();
+                                        if (needsFuel) {
+                                            if (fuelMats.contains(mat)) {
+                                                fuel += drop.getAmount();
                                                 ingredients.add(i);
                                             }
-                                            else {
-                                                Tag<Material> tag;
-
-                                                for (String s : soulItems) {
-                                                    tag = Utils.getTag(s);
-                                                    if (tag != null) {
-                                                        if (tag.isTagged(drop.getType())) {
-                                                            soul += drop.getAmount();
-                                                            ingredients.add(i);
-                                                            break;
-                                                        }
-                                                    }
-                                                }
+                                        }
+                                        if (needsKindling) {
+                                            if (kindlingMats.contains(mat)) {
+                                                kindling += drop.getAmount();
+                                                ingredients.add(i);
                                             }
+                                        }
+
+                                        if (soulMats.contains(mat)) {
+                                            soul += drop.getAmount();
+                                            ingredients.add(i);
                                         }
                                     }
 
                                     if (fuel >= requiredFuel && kindling >= requiredKindling) {
                                         if (!FireStarterTask.hasTask(id)) {
+                                            plugin.getLogger().info("Test");
                                             new FireStarterTask(plugin, module, player, loc.add(0D, 0.6D, 0D), ingredients, soul >= requiredSoulItems).start();
                                             Utils.changeDurability(item, -1, true);
                                         }
@@ -607,48 +591,44 @@ public class NtrEvents extends ModuleEvents implements Listener {
         Player player = event.getPlayer();
         if (!event.isCancelled()) {
             if (shouldEventBeRan(player)) {
-                ItemStack item = player.getInventory().getItemInMainHand();
+                EquipmentSlot hand = event.getHand();
+                ItemStack item = hand == EquipmentSlot.HAND ? player.getInventory().getItemInMainHand() : player.getInventory().getItemInOffHand();
                 if (RSVItem.isRSVItem(item)) {
-                    if (RSVItem.getNameFromItem(item).equals("ceramic_bucket")) {
-                        Entity entity = event.getRightClicked();
-                        String type = entity.getType().toString();
-                        String bucketType;
+                    String itemName = RSVItem.getNameFromItem(item);
+                    Entity entity = event.getRightClicked();
+                    String type = entity.getType().toString();
+                    String bucketType;
 
-                        if (Utils.isInWater(entity)) {
-                            switch (type) {
-                                case "PUFFERFISH", "SALMON", "COD", "TROPICAL_FISH", "AXOLOTL", "TADPOLE" -> {
-                                    bucketType = type.toLowerCase() + "_bucket";
-                                    if (Utils.isItemReal(RSVItem.getItem("ceramic_" + bucketType))) {
-                                        EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, "ceramic_powder_bucket");
-                                        if (hand != null) {
-                                            new BukkitRunnable() {
-                                                @Override
-                                                public void run() {
-                                                    if (hand == EquipmentSlot.HAND)
-                                                        player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_" + bucketType));
-                                                    else
-                                                        player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_" + bucketType));
-                                                }
-                                            }.runTaskLater(plugin, 1L);
+                    switch (type) {
+                        case "PUFFERFISH", "SALMON", "COD", "TROPICAL_FISH", "AXOLOTL", "TADPOLE" -> {
+                            if (itemName.equals("ceramic_water_bucket")) {
+                                bucketType = type.toLowerCase() + "_bucket";
+                                if (Utils.isItemReal(RSVItem.getItem("ceramic_" + bucketType))) {
+                                    new BukkitRunnable() {
+                                        @Override
+                                        public void run() {
+                                            if (hand == EquipmentSlot.HAND)
+                                                player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_" + bucketType));
+                                            else
+                                                player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_" + bucketType));
                                         }
-                                    }
+                                    }.runTaskLater(plugin, 1L);
                                 }
-                                case "COW" -> {
-                                    bucketType = "milk_bucket";
-                                    if (Utils.isItemReal(RSVItem.getItem("ceramic_" + bucketType))) {
-                                        EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, "ceramic_powder_bucket");
-                                        if (hand != null) {
-                                            new BukkitRunnable() {
-                                                @Override
-                                                public void run() {
-                                                    if (hand == EquipmentSlot.HAND)
-                                                        player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_" + bucketType));
-                                                    else
-                                                        player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_" + bucketType));
-                                                }
-                                            }.runTaskLater(plugin, 1L);
+                            }
+                        }
+                        case "COW" -> {
+                            if (itemName.equals("ceramic_bucket")) {
+                                bucketType = "milk_bucket";
+                                if (Utils.isItemReal(RSVItem.getItem("ceramic_" + bucketType))) {
+                                    new BukkitRunnable() {
+                                        @Override
+                                        public void run() {
+                                            if (hand == EquipmentSlot.HAND)
+                                                player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_" + bucketType));
+                                            else
+                                                player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_" + bucketType));
                                         }
-                                    }
+                                    }.runTaskLater(plugin, 1L);
                                 }
                             }
                         }

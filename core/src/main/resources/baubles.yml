@@ -2,7 +2,7 @@
 #          Baubles                    #
 #######################################
 
-ConfigId: "1.2.3-DEV-3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -475,8 +475,9 @@ Items:
     Enabled:
       EnableAllVersions: true
     Break: false            # Should bauble disappear when it reaches 0 durability?
+    PlayTotemEffect: true   # If set to true, the vanilla totem of undying effect will play when the ability is activated
     SleepRepair:
-      Enabled:
+      Enabled: true
       EnableAllVersions: true
       Duration: 1200        # How long the player must lay in bed for the bauble to repair in ticks
       Amount: 1

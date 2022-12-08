@@ -113,7 +113,7 @@ public class EnderCrownTask extends BukkitRunnable {
                         waterDamageTicks += tickPeriod;
 
                         if (waterDamageTicks > waterDamageDelay) {
-                            if (Math.random() < waterDamageChance) {
+                            if (Utils.roll(waterDamageChance)) {
                                 if (Utils.isInWater(p)) {
                                     p.damage(waterDamage);
                                     waterDamageTicks = 0;
@@ -166,7 +166,7 @@ public class EnderCrownTask extends BukkitRunnable {
 
     public boolean canSpawnAllies(boolean playerDamaged) {
         if (allyTicks > allyDelay) {
-            if (Math.random() < allySpawnChance) {
+            if (Utils.roll(allySpawnChance)) {
                 Player player = this.rsvPlayer.getPlayer();
                 if (player.getHealth() / player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() <= maxHealthPercent) {
                     if (mustTakeDamage) {

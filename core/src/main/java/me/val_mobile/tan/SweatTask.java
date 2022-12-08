@@ -105,7 +105,7 @@ public class SweatTask extends BukkitRunnable {
             GameMode mode = player.getGameMode(); // get the gamemode
 
             if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && player.isOnline()) {
-                if (Math.random() <= chance) {
+                if (Utils.roll(chance)) {
                     Vector dir = player.getLocation().clone().subtract(0, 0.5D, 0).getDirection().normalize().multiply(0.5D);
                     player.spawnParticle(particle, player.getEyeLocation().add(dir), Utils.getRandomNum(minCount, maxCount), xOffset, yOffset, zOffset, extra, dust);
                 }

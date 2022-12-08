@@ -2,7 +2,7 @@
 #          Tough as Nails Items       #
 #######################################
 
-ConfigId: "1.2.3-DEV-3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -186,9 +186,9 @@ purified_water_bottle:
   ItemFlags:
     - "HIDE_POTION_EFFECTS"
 charcoal_filter:
-  Material: "PAPER"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fCharcoal Filter"
-  CustomModelData: 83650
+  CustomModelData: 83791
 canteen_empty:
   Material: "GLASS_BOTTLE"
   DisplayName: "&fEmpty Canteen"

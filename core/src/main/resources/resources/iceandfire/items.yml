@@ -2,160 +2,160 @@
 #          Ice and Fire Items         #
 #######################################
 
-ConfigId: "1.2.3-DEV-3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
 dragonbone:
-  Material: "BONE"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragonbone"
-  CustomModelData: 83650
+  CustomModelData: 83784
 witherbone:
-  Material: "BONE"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fWitherbone"
-  CustomModelData: 83651
+  CustomModelData: 83785
 dragonscale_blue:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83650
+  CustomModelData: 83798
   Lore:
     - "LOREPRESET.BLUE_DRAGON_SCALE"
 dragonscale_bronze:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83651
+  CustomModelData: 83799
   Lore:
     - "LOREPRESET.BRONZE_DRAGON_SCALE"
 dragonscale_gray:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83652
+  CustomModelData: 83800
   Lore:
     - "LOREPRESET.GRAY_DRAGON_SCALE"
 dragonscale_emerald:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83653
+  CustomModelData: 83801
   Lore:
     - "LOREPRESET.GREEN_DRAGON_SCALE"
 dragonscale_red:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83654
+  CustomModelData: 83802
   Lore:
     - "LOREPRESET.RED_DRAGON_SCALE"
 dragonscale_sapphire:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83655
+  CustomModelData: 83803
   Lore:
     - "LOREPRESET.SAPPHIRE_DRAGON_SCALE"
 dragonscale_silver:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83656
+  CustomModelData: 83804
   Lore:
     - "LOREPRESET.SILVER_DRAGON_SCALE"
 dragonscale_white:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83657
+  CustomModelData: 83805
   Lore:
     - "LOREPRESET.WHITE_DRAGON_SCALE"
 dragonscale_amethyst:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83658
+  CustomModelData: 83806
   Lore:
     - "LOREPRESET.AMETHYST_DRAGON_SCALE"
 dragonscale_black:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83659
+  CustomModelData: 83807
   Lore:
     - "LOREPRESET.BLACK_DRAGON_SCALE"
 dragonscale_copper:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83660
+  CustomModelData: 83808
   Lore:
     - "LOREPRESET.COPPER_DRAGON_SCALE"
 dragonscale_electric:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Scales"
-  CustomModelData: 83661
+  CustomModelData: 83809
   Lore:
     - "LOREPRESET.ELECTRIC_DRAGON_SCALE"
 sea_serpent_scale_blue:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fSea Serpent Scales"
-  CustomModelData: 83662
+  CustomModelData: 83810
   Lore:
     - "LOREPRESET.BLUE_SEA_SERPENT_SCALE"
 sea_serpent_scale_bronze:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fSea Serpent Scales"
-  CustomModelData: 83663
+  CustomModelData: 83811
   Lore:
     - "LOREPRESET.BRONZE_SEA_SERPENT_SCALE"
 sea_serpent_scale_deepblue:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fSea Serpent Scales"
-  CustomModelData: 83664
+  CustomModelData: 83812
   Lore:
     - "LOREPRESET.DEEPBLUE_SEA_SERPENT_SCALE"
 sea_serpent_scale_green:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fSea Serpent Scales"
-  CustomModelData: 83665
+  CustomModelData: 83813
   Lore:
     - "LOREPRESET.GREEN_SEA_SERPENT_SCALE"
 sea_serpent_scale_purple:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fSea Serpent Scales"
-  CustomModelData: 83666
+  CustomModelData: 83814
   Lore:
     - "LOREPRESET.PURPLE_SEA_SERPENT_SCALE"
 sea_serpent_scale_red:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fSea Serpent Scales"
-  CustomModelData: 83667
+  CustomModelData: 83815
   Lore:
     - "LOREPRESET.RED_SEA_SERPENT_SCALE"
 sea_serpent_scale_teal:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fSea Serpent Scales"
-  CustomModelData: 83668
+  CustomModelData: 83816
   Lore:
     - "LOREPRESET.TEAL_SEA_SERPENT_SCALE"
 shiny_scale:
-  Material: "IRON_NUGGET"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fShiny Scale"
-  CustomModelData: 83669
+  CustomModelData: 83817
 dragon_blood_fire:
-  Material: "DRAGON_BREATH"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fFire Dragon Blood"
-  CustomModelData: 83650
+  CustomModelData: 83792
 dragon_blood_ice:
-  Material: "DRAGON_BREATH"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fIce Dragon Blood"
-  CustomModelData: 83651
+  CustomModelData: 83793
 dragon_blood_lightning:
-  Material: "DRAGON_BREATH"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fLightning Dragon Blood"
-  CustomModelData: 83652
+  CustomModelData: 83794
 dragon_heart_fire:
-  Material: "HEART_OF_THE_SEA"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fFire Dragon Heart"
-  CustomModelData: 83650
+  CustomModelData: 83788
 dragon_heart_ice:
-  Material: "HEART_OF_THE_SEA"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fIce Dragon Heart"
-  CustomModelData: 83651
+  CustomModelData: 83789
 dragon_heart_lightning:
-  Material: "HEART_OF_THE_SEA"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fLightning Dragon Heart"
-  CustomModelData: 83652
+  CustomModelData: 83790
 dragon_skull_fire:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fDragon Skull"
@@ -181,17 +181,17 @@ dragon_flesh_lightning:
   DisplayName: "&fLightning Dragon Flesh"
   CustomModelData: 83652
 dragonsteel_fire_ingot:
-  Material: "IRON_INGOT"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fFire Dragonsteel Ingot"
-  CustomModelData: 83650
+  CustomModelData: 83795
 dragonsteel_ice_ingot:
-  Material: "IRON_INGOT"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fIce Dragonsteel Ingot"
-  CustomModelData: 83651
+  CustomModelData: 83796
 dragonsteel_lightning_ingot:
-  Material: "IRON_INGOT"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fLightning Dragonsteel Ingot"
-  CustomModelData: 83652
+  CustomModelData: 83797
 dragonscale_helmet_blue:
   Material: "DIAMOND_HELMET"
   DisplayName: "&fDragon Scale Helmet"

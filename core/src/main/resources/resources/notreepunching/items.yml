@@ -2,7 +2,7 @@
 #          NoTreePunching Items       #
 #######################################
 
-ConfigId: "1.2.3-DEV-3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -160,17 +160,17 @@ netherite_saw:
     rsvdurability: 3046
     rsvmaxdurability: 3046
 plant_fiber:
-  Material: "GRASS"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fPlant Fiber"
-  CustomModelData: 83650
+  CustomModelData: 83787
 plant_string:
   Material: "STRING"
   DisplayName: "&fPlant String"
   CustomModelData: 83650
 flint_shard:
-  Material: "FLINT"
+  Material: "PRISMARINE_SHARD"
   DisplayName: "&fFlint Shard"
-  CustomModelData: 93650
+  CustomModelData: 83786
 stone_rock:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fStone Rock"

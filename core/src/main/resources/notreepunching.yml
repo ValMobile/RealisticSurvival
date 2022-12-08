@@ -2,7 +2,7 @@
 #          No Tree Punching           #
 #######################################
 
-ConfigId: "1.2.3-DEV-3"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.3-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -410,19 +410,11 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Attributes:
       AttackDamage: 9.0
       AttackSpeed: 0.9
@@ -430,19 +422,11 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Attributes:
       AttackDamage: 2.75
       AttackSpeed: 1.2
@@ -450,19 +434,11 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 1.0
@@ -470,19 +446,11 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 1.6
@@ -490,19 +458,11 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Attributes:
       AttackDamage: 1.0
       AttackSpeed: 2.5
@@ -510,19 +470,11 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Attributes:
       Armor: 1.0
       Toughness: 0.0
@@ -530,19 +482,11 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Attributes:
       Armor: 3.0
       Toughness: 0.0
@@ -550,19 +494,11 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Attributes:
       Armor: 3.0
       Toughness: 0.0
@@ -570,19 +506,11 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Attributes:
       Armor: 1.0
       Toughness: 0.0
@@ -596,19 +524,11 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 1.6
@@ -667,19 +587,15 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: false
-        1.17.1: false
-        1.18: false
-        1.18.1: false
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
+        v1_17_R1: false
+        v1_17_R2: false
+        v1_18_R1: false
+        v1_18_R2: false
   ceramic_salmon_bucket:
     Enabled:
       EnableAllVersions: true
@@ -690,36 +606,20 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
   ceramic_axolotl_bucket:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
   ceramic_cod_bucket:
     Enabled:
       EnableAllVersions: true
@@ -788,19 +688,11 @@ Recipes:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Unlock: true
   iron_mattock:
     Enabled:
@@ -822,163 +714,91 @@ Recipes:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Unlock: true
   copper_pickaxe:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Unlock: true
   copper_shovel:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Unlock: true
   copper_sword:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Unlock: true
   copper_hoe:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Unlock: true
   copper_helmet:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Unlock: true
   copper_chestplate:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Unlock: true
   copper_leggings:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Unlock: true
   copper_boots:
     Enabled:
       EnableAllVersions: false
       Versions:
-        1.16: false
-        1.16.1: false
-        1.16.2: false
-        1.16.3: false
-        1.16.4: false
-        1.16.5: false
-        1.17: true
-        1.17.1: true
-        1.18: true
-        1.18.1: true
-        1.19: true
-        1.19.1: true
-        1.19.2: true
+        v1_16_R1: false
+        v1_16_R2: false
+        v1_16_R3: false
+        v1_16_R4: false
+        v1_16_R5: false
     Unlock: true
   clay_tool:
     Enabled:

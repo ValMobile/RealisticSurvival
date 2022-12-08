@@ -223,7 +223,7 @@ public class SwEvents extends ModuleEvents implements Listener {
                                         double chance = config.getDouble("Items." + name + ".ShieldBreach.Chance");
                                         if (defender instanceof Player player)
                                             if (player.isBlocking())
-                                                if (Math.random() <= chance) {
+                                                if (Utils.roll(chance)) {
                                                     player.setCooldown(Material.SHIELD, shieldCooldown);
                                                 }
                                     }

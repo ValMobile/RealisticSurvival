@@ -130,11 +130,11 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
                 }
                 else {
                     if (emitSound)
-                        if (Math.random() <= soundChance)
+                        if (Utils.roll(soundChance))
                             Utils.playSound(player.getLocation(), sound, volume, pitch);
 
                     if (emitParticles)
-                        if (Math.random() <= particleChance)
+                        if (Utils.roll(particleChance))
                             player.spawnParticle(particle, player.getLocation(), Utils.getRandomNum(minCount, maxCount), xOffset, yOffset, zOffset, extra, dust);
                 }
             }

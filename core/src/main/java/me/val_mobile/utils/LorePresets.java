@@ -682,11 +682,13 @@ public class LorePresets {
     public static void addGearStats(List<String> lore, Attribute atr, double value) {
         DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
 
-        switch (atr) {
-            case GENERIC_ATTACK_DAMAGE -> lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + df.format(value) + " Attack Damage"));
-            case GENERIC_ATTACK_SPEED -> lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + df.format(value) + " Attack Speed"));
-            case GENERIC_ARMOR -> lore.add(ChatColor.translateAlternateColorCodes('&', "&9+" + df.format(value) + " Armor"));
-            case GENERIC_ARMOR_TOUGHNESS -> lore.add(ChatColor.translateAlternateColorCodes('&', "&9+" + df.format(value) + " Armor Toughness"));
+        if (!Utils.doublesEquals(value, 0D)) {
+            switch (atr) {
+                case GENERIC_ATTACK_DAMAGE -> lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + df.format(value) + " Attack Damage"));
+                case GENERIC_ATTACK_SPEED -> lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + df.format(value) + " Attack Speed"));
+                case GENERIC_ARMOR -> lore.add(ChatColor.translateAlternateColorCodes('&', "&9+" + df.format(value) + " Armor"));
+                case GENERIC_ARMOR_TOUGHNESS -> lore.add(ChatColor.translateAlternateColorCodes('&', "&9+" + df.format(value) + " Armor Toughness"));
+            }
         }
     }
 

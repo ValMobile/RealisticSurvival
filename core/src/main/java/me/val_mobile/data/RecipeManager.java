@@ -62,11 +62,15 @@ public class RecipeManager {
                         addRecipe(recipe);
                     }
                     else {
-                        if (userConfig.contains("Recipes." + name + ".Enabled.Versions." + Utils.getMinecraftVersion(false))) {
-                            if (userConfig.getBoolean("Recipes." + name + ".Enabled.Versions." + Utils.getMinecraftVersion(false))) {
+                        if (userConfig.contains("Recipes." + name + ".Enabled.Versions." + Utils.getMinecraftVersion(true))) {
+                            if (userConfig.getBoolean("Recipes." + name + ".Enabled.Versions." + Utils.getMinecraftVersion(true))) {
                                 recipe = getRecipe(type, name);
                                 addRecipe(recipe);
                             }
+                        }
+                        else {
+                            recipe = getRecipe(type, name);
+                            addRecipe(recipe);
                         }
                     }
                 }

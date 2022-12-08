@@ -82,6 +82,15 @@ public class RSVConfig extends FileBuilder {
                 newPath = newPath.replace("_Old_Version_" + (num - 1), "_Old_Version_" + num);
             }
 
+//            try {
+//                Files.copy(Path.of(file.getAbsolutePath()), Path.of(file.getAbsolutePath().replace(".yml", "_Old_Version_" + num + ".yml")));
+//                config.options().copyDefaults(true);
+//                config.set("ConfigId", latestVersion);
+//                config.save(file);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
             file.renameTo(new File(plugin.getDataFolder(), newPath));
 
             createFile(path);

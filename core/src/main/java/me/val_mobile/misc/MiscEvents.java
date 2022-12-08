@@ -124,8 +124,8 @@ public class MiscEvents implements Listener {
                         if (userConfig.getBoolean("Recipes." + rsvName + ".Enabled.EnableAllVersions"))
                             event.setResult(Utils.getNetheriteRSVWeapon(base));
                         else {
-                            if (userConfig.contains("Recipes." + rsvName + ".Enabled.Versions." + Utils.getMinecraftVersion(false))) {
-                                if (userConfig.getBoolean("Recipes." + rsvName + ".Enabled.Versions." + Utils.getMinecraftVersion(false)))
+                            if (userConfig.contains("Recipes." + rsvName + ".Enabled.Versions." + Utils.getMinecraftVersion(true))) {
+                                if (userConfig.getBoolean("Recipes." + rsvName + ".Enabled.Versions." + Utils.getMinecraftVersion(true)))
                                     event.setResult(Utils.getNetheriteRSVWeapon(base));
                                 else
                                     event.setResult(null);

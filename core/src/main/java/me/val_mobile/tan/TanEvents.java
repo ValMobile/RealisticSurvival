@@ -319,7 +319,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                                 if (caveAirAmount > airAmount) {
                                                     // cave water
                                                     if (config.getBoolean("Thirst.Parasites.CaveWater.Enabled")) {
-                                                        if (Math.random() <= config.getDouble("Thirst.Parasites.CaveWater.Chance")) {
+                                                        if (Utils.roll(config.getDouble("Thirst.Parasites.CaveWater.Chance"))) {
                                                             parasites = true;
                                                         }
                                                     }
@@ -330,7 +330,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                                         case RIVER, FROZEN_RIVER -> {
                                                             // river water
                                                             if (config.getBoolean("Thirst.Parasites.RiverWater.Enabled")) {
-                                                                if (Math.random() <= config.getDouble("Thirst.Parasites.RiverWater.Chance")) {
+                                                                if (Utils.roll(config.getDouble("Thirst.Parasites.RiverWater.Chance"))) {
                                                                     parasites = true;
                                                                 }
                                                             }
@@ -338,7 +338,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                                         case OCEAN, COLD_OCEAN, DEEP_LUKEWARM_OCEAN, LUKEWARM_OCEAN, DEEP_OCEAN, DEEP_COLD_OCEAN, DEEP_FROZEN_OCEAN, FROZEN_OCEAN, DEEP_WARM_OCEAN, WARM_OCEAN -> {
                                                             // ocean water
                                                             if (config.getBoolean("Thirst.Parasites.SeaWater.Enabled")) {
-                                                                if (Math.random() <= config.getDouble("Thirst.Parasites.SeaWater.Chance")) {
+                                                                if (Utils.roll(config.getDouble("Thirst.Parasites.SeaWater.Chance"))) {
                                                                     parasites = true;
                                                                 }
                                                             }
@@ -346,7 +346,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                                         default -> {
                                                             // regular water
                                                             if (config.getBoolean("Thirst.Parasites.RegularWater.Enabled")) {
-                                                                if (Math.random() <= config.getDouble("Thirst.Parasites.RegularWater.Chance")) {
+                                                                if (Utils.roll(config.getDouble("Thirst.Parasites.RegularWater.Chance"))) {
                                                                     parasites = true;
                                                                 }
                                                             }
@@ -418,7 +418,7 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                                             // regular water
                                             if (config.getBoolean("Thirst.Parasites.Rain.Enabled")) {
-                                                if (Math.random() <= config.getDouble("Thirst.Parasites.Rain.Chance")) {
+                                                if (Utils.roll(config.getDouble("Thirst.Parasites.Rain.Chance"))) {
                                                     parasites = true;
                                                 }
                                             }
@@ -470,7 +470,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                 if (((PotionMeta) item.getItemMeta()).getBasePotionData().getType() == PotionType.WATER) {
                                     // unpurified water
                                     if (config.getBoolean("Thirst.Parasites.UnpurifiedWaterBottle.Enabled")) {
-                                        if (Math.random() <= config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance")) {
+                                        if (Utils.roll(config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance"))) {
                                             if (!ParasiteTask.hasTask(player.getUniqueId())) {
                                                 new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
                                             }
@@ -503,7 +503,7 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                                     // unpurified water
                                     if (config.getBoolean("Thirst.Parasites.UnpurifiedWaterBottle.Enabled")) {
-                                        if (Math.random() <= config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance")) {
+                                        if (Utils.roll(config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance"))) {
                                             if (!ParasiteTask.hasTask(player.getUniqueId())) {
                                                 new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
                                             }
@@ -570,7 +570,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                     }
 
                                     if (config.getBoolean("Thirst.Parasites.Drowning.Enabled")) {
-                                        if (Math.random() <= config.getDouble("Thirst.Parasites.Drowning.Chance")) {
+                                        if (Utils.roll(config.getDouble("Thirst.Parasites.Drowning.Chance"))) {
                                             if (!ParasiteTask.hasTask(player.getUniqueId())) {
                                                 new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
                                             }

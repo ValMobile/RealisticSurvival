@@ -22,13 +22,13 @@ import java.io.File;
 
 public class FileBuilder {
     protected File file;
-    private boolean REPLACE;
+    private final boolean replace;
 
     private final RealisticSurvivalPlugin plugin;
 
-    public FileBuilder(RealisticSurvivalPlugin plugin, String path, boolean REPLACE) {
+    public FileBuilder(RealisticSurvivalPlugin plugin, String path, boolean replace) {
         this.plugin = plugin;
-        this.REPLACE = REPLACE;
+        this.replace = replace;
 
         createFile(path);
     }
@@ -41,7 +41,7 @@ public class FileBuilder {
             // create a new yaml file
             file.getParentFile().mkdirs();
             // save the yaml file to the plugin resources
-            plugin.saveResource(path, REPLACE);
+            plugin.saveResource(path, replace);
         }
     }
 

@@ -115,6 +115,7 @@ public class FireStarterTask extends BukkitRunnable {
 
     @Override
     public void run() {
+        plugin.getLogger().info("a");
         if (player == null) {
             stop();
         }
@@ -123,20 +124,21 @@ public class FireStarterTask extends BukkitRunnable {
                 ticks++;
 
                 if (ticks > duration) {
-                    loc.getWorld().getBlockAt(loc).setType((isSoulCampfire) ? Material.SOUL_CAMPFIRE : Material.CAMPFIRE);
-                    for (Item drop : ingredients) {
-                        if (drop != null)
+                    if (!ingredients.contains(null)) {
+                        loc.getWorld().getBlockAt(loc).setType(isSoulCampfire ? Material.SOUL_CAMPFIRE : Material.CAMPFIRE);
+                        for (Item drop : ingredients) {
                             drop.remove();
+                        }
                     }
                     stop();
                 }
                 else {
                     if (emitSound)
-                        if (Math.random() <= soundChance)
+                        if (Utils.roll(soundChance))
                             Utils.playSound(loc, sound, volume, pitch);
 
                     if (emitParticles)
-                        if (Math.random() <= particleChance)
+                        if (Utils.roll(particleChance))
                             loc.getWorld().spawnParticle(particle, loc, Utils.getRandomNum(minCount, maxCount), xOffset, yOffset, zOffset, extra, dust);
                 }
             }

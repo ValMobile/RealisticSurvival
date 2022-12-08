@@ -76,7 +76,7 @@ public class EntityLongAttackTask extends BukkitRunnable {
                 ItemStack itemMainHand = attacker.getEquipment().getItemInMainHand();
 
                 if (isItemValid(itemMainHand)) {
-                    if (Math.random() <= chance) {
+                    if (Utils.roll(chance)) {
                         Location eye = attacker.getEyeLocation().add(attacker.getLocation().getDirection());
                         Predicate<Entity> filter = entity -> !entity.getUniqueId().equals(attacker.getUniqueId());
                         RayTraceResult result = attacker.getWorld().rayTrace(attacker.getEyeLocation(), eye.getDirection(), reach, FluidCollisionMode.NEVER, false, 0, filter);

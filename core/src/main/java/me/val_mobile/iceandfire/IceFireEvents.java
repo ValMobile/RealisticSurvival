@@ -49,7 +49,7 @@ import java.util.Collection;
  * IceFireEvents is a class containing listener methods
  * that activate fire, ice, and lighting dragon weapon abilities
  * @author Val_Mobile
- * @version 1.2.3-DEV-3
+ * @version 1.2.3-RELEASE
  * @since 1.0
  */
 public class IceFireEvents extends ModuleEvents implements Listener {
@@ -377,13 +377,13 @@ public class IceFireEvents extends ModuleEvents implements Listener {
         if (shouldEventBeRan(e)) {
             if (e instanceof Squid) {
                 if (config.getBoolean("SeaSerpents.Enabled.Enabled")) {
-                    if (Math.random() <= config.getDouble("SeaSerpents.SpawnChance")) {
+                    if (Utils.roll(config.getDouble("SeaSerpents.SpawnChance"))) {
                         Utils.spawnSeaSerpent(e.getLocation()).addEntityToWorld(e.getWorld());
                         event.setCancelled(true);
                     }
                 }
                 else if (config.getBoolean("Sirens.Enabled")) {
-                    if (Math.random() <= config.getDouble("Sirens.SpawnChance")) {
+                    if (Utils.roll(config.getDouble("Sirens.SpawnChance"))) {
                         Utils.spawnSiren(e.getLocation()).addEntityToWorld(e.getWorld());
                         event.setCancelled(true);
                     }
@@ -391,7 +391,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
             }
             if (e instanceof EnderDragon dragon && !(DragonUtils.isDragon(dragon))) {
                 if (config.getBoolean("Dragons.Enabled")) {
-                    if (Math.random() <= config.getDouble("Dragons.SpawnChance")) {
+                    if (Utils.roll(config.getDouble("Dragons.SpawnChance"))) {
                         double val = Math.random();
                         double fireChance = config.getDouble("Dragons.FireDragon.Enabled.Chance");
                         double iceChance = config.getDouble("Dragons.IceDragon.Enabled.Chance");
@@ -429,7 +429,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
 
                                 switch (breed) {
                                     case FIRE -> {
-                                        if (Math.random() < config.getDouble("Dragons.FireDragon.BreathAttack.Chance")) {
+                                        if (Utils.roll(config.getDouble("Dragons.FireDragon.BreathAttack.Chance"))) {
                                             DragonUtils.triggerBreathFireAttack(dragon, target);
                                         }
                                         else {
@@ -437,7 +437,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                         }
                                     }
                                     case ICE -> {
-                                        if (Math.random() < config.getDouble("Dragons.IceDragon.BreathAttack.Chance")) {
+                                        if (Utils.roll(config.getDouble("Dragons.IceDragon.BreathAttack.Chance"))) {
                                             DragonUtils.triggerBreathIceAttack(dragon, target);
                                         }
                                         else {
@@ -445,7 +445,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                         }
                                     }
                                     case LIGHTNING -> {
-                                        if (Math.random() < config.getDouble("Dragons.LightningDragon.BreathAttack.Chance")) {
+                                        if (Utils.roll(config.getDouble("Dragons.LightningDragon.BreathAttack.Chance"))) {
                                             DragonUtils.triggerBreathLightningAttack(dragon, target);
                                         }
                                         else {
