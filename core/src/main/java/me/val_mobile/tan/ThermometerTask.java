@@ -20,7 +20,7 @@ import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
-import org.bukkit.GameMode;
+import me.val_mobile.utils.RSVTask;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -29,6 +29,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +38,7 @@ import java.util.UUID;
 import static me.val_mobile.tan.TemperatureCalculateTask.MAXIMUM_TEMPERATURE;
 import static me.val_mobile.tan.TemperatureCalculateTask.MINIMUM_TEMPERATURE;
 
-public class ThermometerTask extends BukkitRunnable {
+public class ThermometerTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, ThermometerTask> tasks = new HashMap<>();
     private final FileConfiguration config;
@@ -63,75 +64,53 @@ public class ThermometerTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        if (player == null) {
-            // update static hashmap values and cancel the runnable
-            tasks.remove(id);
-            cancel();
+
+        if (conditionsMet(player)) {
+            double equilibriumTemp = task.getEquilibriumTemp();
+
+            if (equilibriumTemp > MAXIMUM_TEMPERATURE) {
+                equilibriumTemp = MAXIMUM_TEMPERATURE;
+            }
+            if (equilibriumTemp < MINIMUM_TEMPERATURE) {
+                equilibriumTemp = MINIMUM_TEMPERATURE;
+            }
+
+            Location loc = player.getEyeLocation();
+
+            double rad = Math.PI * ((MAXIMUM_TEMPERATURE / 2D) - equilibriumTemp) / MAXIMUM_TEMPERATURE;
+
+            Vector dir = loc.getDirection().normalize();
+            dir.rotateAroundY(rad).multiply(1000);
+            loc.add(dir);
+            player.setCompassTarget(loc);
         }
-        // if the player is in creative or spectator
         else {
-            GameMode mode = player.getGameMode(); // get the gamemode
-
-            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && task != null) {
-                if (isHoldingThermometer()) {
-                    double equilibriumTemp = task.getEquilibriumTemp();
-
-                    if (equilibriumTemp > MAXIMUM_TEMPERATURE) {
-                        equilibriumTemp = MAXIMUM_TEMPERATURE;
-                    }
-                    if (equilibriumTemp < MINIMUM_TEMPERATURE) {
-                        equilibriumTemp = MINIMUM_TEMPERATURE;
-                    }
-
-                    Location loc = player.getEyeLocation();
-
-                    double rad = Math.PI * ((MAXIMUM_TEMPERATURE / 2D) - equilibriumTemp) / MAXIMUM_TEMPERATURE;
-
-                    Vector dir = loc.getDirection().normalize();
-                    dir.rotateAroundY(rad).multiply(1000);
-                    loc.add(dir);
-                    player.setCompassTarget(loc);
-                }
-                else {
-                    tasks.remove(id);
-                    player.setCompassTarget(originalCompassTarget);
-                    cancel();
-                }
-            }
-            // if the player is in creative or spectator
-            else {
-                // update static hashmap values and cancel the runnable
-                tasks.remove(id);
-                player.setCompassTarget(originalCompassTarget);
-                cancel();
-            }
+            stop();
         }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && allowedWorlds.contains(player.getWorld().getName()) && task != null && isHoldingThermometer(player);
+    }
+
+    @Override
     public void start() {
         int tickPeriod = config.getInt("Items.thermometer.TickPeriod"); // get the tick period
         this.runTaskTimer(plugin, 1L, tickPeriod);
     }
 
-    public static boolean isHoldingThermometer(Player player) {
-        PlayerInventory inv = player.getPlayer().getInventory();
-        ItemStack itemMainHand = inv.getItemInMainHand();
-        ItemStack itemOffHand = inv.getItemInOffHand();
-        boolean isHolding = false;
-
-        if (RSVItem.isRSVItem(itemMainHand)) {
-            isHolding = RSVItem.getNameFromItem(itemMainHand).equals("thermometer");
+    @Override
+    public void stop() {
+        if (player.getPlayer() != null) {
+            player.getPlayer().setCompassTarget(originalCompassTarget);
         }
 
-        if (RSVItem.isRSVItem(itemOffHand)) {
-            isHolding = isHolding || RSVItem.getNameFromItem(itemOffHand).equals("thermometer");
-        }
-
-        return isHolding;
+        tasks.remove(id);
+        cancel();
     }
 
-
-    private boolean isHoldingThermometer() {
+    public static boolean isHoldingThermometer(Player player) {
         PlayerInventory inv = player.getPlayer().getInventory();
         ItemStack itemMainHand = inv.getItemInMainHand();
         ItemStack itemOffHand = inv.getItemInOffHand();

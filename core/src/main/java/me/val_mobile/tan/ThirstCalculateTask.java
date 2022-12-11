@@ -18,19 +18,20 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
-import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class ThirstCalculateTask extends BukkitRunnable {
+public class ThirstCalculateTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, ThirstCalculateTask> tasks = new HashMap<>();
     private final TanModule module;
@@ -48,8 +49,6 @@ public class ThirstCalculateTask extends BukkitRunnable {
     private boolean isJumping = false;
     private boolean parasitesActive = false;
     private final double peMultiplier;
-
-    public static final double DEFAULT_SATURATION = 5.0;
     public static final double MAXIMUM_THIRST = 20.0;
     public static final double MINIMUM_THIRST = 0.0;
 
@@ -72,47 +71,44 @@ public class ThirstCalculateTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        if (player == null) {
-            tasks.remove(id);
-            cancel();
-        }
-        // if the player is in creative or spectator
-        else {
-            Difficulty difficulty = player.getPlayer().getWorld().getDifficulty();
-            GameMode mode = player.getGameMode(); // get the gamemode
+
+        if (conditionsMet(player)) {
             double currentLvl = thirstLvl;
 
-            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
-                if (isJumping && player.isSprinting()) {
-                    exhaustionLvl = parasitesActive ? config.getDouble("Thirst.ExhaustionLevelIncrease.JumpingWhileSprinting") * peMultiplier : config.getDouble("Thirst.ExhaustionLevelIncrease.JumpingWhileSprinting");
-                }
-                else if (isJumping) {
-                    exhaustionLvl = parasitesActive ? config.getDouble("Thirst.ExhaustionLevelIncrease.Jumping") * peMultiplier : config.getDouble("Thirst.ExhaustionLevelIncrease.Jumping");
-                }
-                else if (player.isSprinting()) {
-                    exhaustionLvl = parasitesActive ? config.getDouble("Thirst.ExhaustionLevelIncrease.Sprinting") * peMultiplier : config.getDouble("Thirst.ExhaustionLevelIncrease.Sprinting");
-                }
+            if (isJumping && player.isSprinting()) {
+                exhaustionLvl = parasitesActive ? config.getDouble("Thirst.ExhaustionLevelIncrease.JumpingWhileSprinting") * peMultiplier : config.getDouble("Thirst.ExhaustionLevelIncrease.JumpingWhileSprinting");
+            }
+            else if (isJumping) {
+                exhaustionLvl = parasitesActive ? config.getDouble("Thirst.ExhaustionLevelIncrease.Jumping") * peMultiplier : config.getDouble("Thirst.ExhaustionLevelIncrease.Jumping");
+            }
+            else if (player.isSprinting()) {
+                exhaustionLvl = parasitesActive ? config.getDouble("Thirst.ExhaustionLevelIncrease.Sprinting") * peMultiplier : config.getDouble("Thirst.ExhaustionLevelIncrease.Sprinting");
+            }
 
-                if (player.isSwimming()) {
-                    exhaustionLvl = parasitesActive ? config.getDouble("Thirst.ExhaustionLevelIncrease.Swimming") * peMultiplier : config.getDouble("Thirst.ExhaustionLevelIncrease.Swimming");
+            if (player.isSwimming()) {
+                exhaustionLvl = parasitesActive ? config.getDouble("Thirst.ExhaustionLevelIncrease.Swimming") * peMultiplier : config.getDouble("Thirst.ExhaustionLevelIncrease.Swimming");
+            }
+
+            if (exhaustionLvl >= 4) {
+                exhaustionLvl -= 4;
+                if (saturationLvl > 0) {
+                    saturationLvl = Math.min(thirstLvl, saturationLvl - 1);
                 }
-
-                if (exhaustionLvl >= 4) {
-                    exhaustionLvl -= 4;
-                    if (saturationLvl > 0) {
-                        saturationLvl = Math.min(thirstLvl, saturationLvl - 1);
-                    }
-                    else {
-                        thirstLvl--;
-                    }
+                else {
+                    thirstLvl--;
                 }
+            }
 
-                tickTimer += tickPeriod;
+            tickTimer += tickPeriod;
 
-                if (difficulty == Difficulty.PEACEFUL) {
-                    thirstLvl = Math.min(MAXIMUM_THIRST, thirstLvl + 1D);
-                }
+            if (player.getWorld().getDifficulty() == Difficulty.PEACEFUL) {
+                thirstLvl = Math.min(MAXIMUM_THIRST, thirstLvl + 1D);
+            }
 
+            if (player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.resistance.thirst")) {
+                thirstLvl = Math.max(MAXIMUM_THIRST, thirstLvl);
+            }
+            else {
                 if (config.getBoolean("Thirst.Dehydration.Enabled")) {
                     if (thirstLvl <= config.getDouble("Thirst.Dehydration.Thirst")) {
                         if (!DehydrationTask.hasTask(id)) {
@@ -120,27 +116,17 @@ public class ThirstCalculateTask extends BukkitRunnable {
                         }
                     }
                 }
-
-                if (currentLvl != thirstLvl) {
-                    Bukkit.getServer().getPluginManager().callEvent(new ThirstChangeEvent(player, currentLvl, thirstLvl));
-                }
-
-                isJumping = false;
-                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirst(thirstLvl);
-                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstExhaustion(exhaustionLvl);
-                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstSaturation(saturationLvl);
-                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstTickTimer(tickTimer);
-                RSVPlayer.getPlayers().get(id).getTanDataModule().saveData();
             }
-            else {
-                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirst(thirstLvl);
-                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstExhaustion(exhaustionLvl);
-                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstSaturation(saturationLvl);
-                RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstTickTimer(tickTimer);
-                RSVPlayer.getPlayers().get(id).getTanDataModule().saveData();
-                tasks.remove(id);
-                cancel();
+
+            if (currentLvl != thirstLvl) {
+                Bukkit.getServer().getPluginManager().callEvent(new ThirstChangeEvent(player, currentLvl, thirstLvl));
             }
+
+            isJumping = false;
+            saveData();
+        }
+        else {
+            stop();
         }
     }
 
@@ -184,8 +170,31 @@ public class ThirstCalculateTask extends BukkitRunnable {
         this.tickTimer = tickTimer;
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && allowedWorlds.contains(player.getWorld().getName());
+    }
+
+    @Override
     public void start() {
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        if (RSVPlayer.isValidPlayer(id)) {
+            saveData();
+        }
+        tasks.remove(id);
+        cancel();
+    }
+
+    private void saveData() {
+        RSVPlayer.getPlayers().get(id).getTanDataModule().setThirst(thirstLvl);
+        RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstExhaustion(exhaustionLvl);
+        RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstSaturation(saturationLvl);
+        RSVPlayer.getPlayers().get(id).getTanDataModule().setThirstTickTimer(tickTimer);
+        RSVPlayer.getPlayers().get(id).getTanDataModule().saveData();
     }
 
     public static Map<UUID, ThirstCalculateTask> getTasks() {

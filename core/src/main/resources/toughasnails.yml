@@ -2,7 +2,7 @@
 #          Tough As Nails             #
 #######################################
 
-ConfigId: "1.2.3-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.4-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -676,6 +676,7 @@ Thirst:
     TickPeriod: 100            # Every "TickPeriod" ticks, you'll take damage
     Duration: 600             # How long parasites will be active for in ticks
     Damage:
+      Enabled: true
       Amount: 1.0
       Cutoff: -1.0
     PotionEffects:

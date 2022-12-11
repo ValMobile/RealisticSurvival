@@ -2,7 +2,7 @@
 #          Baubles                    #
 #######################################
 
-ConfigId: "1.2.3-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.4-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -581,7 +581,7 @@ Items:
   stone_greater_inertia:
     Enabled:
       EnableAllVersions: true
-    WalkSpeedMultiplier: 1.0
+    WalkSpeedMultiplier: 1.5
     MinFallDistance: 8.0
     FallDamageMultiplier: 0.25
     JumpVelocityMultiplier: 2.0

@@ -18,7 +18,7 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.GameMode;
+import me.val_mobile.utils.RSVTask;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -26,9 +26,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
-public class DehydrationTask extends BukkitRunnable {
+public class DehydrationTask extends BukkitRunnable implements RSVTask  {
 
     private static final Map<UUID, DehydrationTask> tasks = new HashMap<>();
     private final UUID id;
@@ -39,6 +40,10 @@ public class DehydrationTask extends BukkitRunnable {
     private final Collection<String> allowedWorlds;
     private final double damage;
     private final TanModule module;
+    private final double maxThirst;
+    private final boolean damageEnabled;
+    private final boolean potionEffectsEnabled;
+    private final double damageCutoff;
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
 
 
@@ -49,7 +54,12 @@ public class DehydrationTask extends BukkitRunnable {
         this.player = player;
         this.id = player.getPlayer().getUniqueId();
         this.allowedWorlds = module.getAllowedWorlds();
+        this.maxThirst = config.getDouble("Thirst.Dehydration.Thirst");
         this.damage = config.getDouble("Thirst.Dehydration.Damage.Amount");
+        this.damageEnabled = config.getBoolean("Thirst.Dehydration.Damage.Enabled");
+        this.potionEffectsEnabled = config.getBoolean("Thirst.Dehydration.PotionEffects.Enabled");
+        this.damageCutoff = config.getDouble("Thirst.Dehydration.Damage.Cutoff");
+
 
         ConfigurationSection section = config.getConfigurationSection("Thirst.Dehydration.PotionEffects.Effects");
         Set<String> keys = section.getKeys(false);
@@ -69,19 +79,11 @@ public class DehydrationTask extends BukkitRunnable {
     public void run() {
         Player player = this.player.getPlayer();
 
-        if (player == null) {
-            tasks.remove(id);
-            cancel();
-        }
-        else {
-            double thirst = this.player.getTanDataModule().getThirst();
-            GameMode mode = player.getGameMode(); // get the gamemode
-
-            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline() && !player.isDead() && allowedWorlds.contains(player.getWorld().getName())) {
-
+        if (conditionsMet(player)) {
+            if (!(player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.resistance.thirst.*"))) {
                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
-                    if (config.getBoolean("Thirst.Dehydration.Damage.Enabled")) {
-                        if (player.getHealth() >= config.getDouble("Thirst.Dehydration.Damage.Cutoff")) {
+                    if (damageEnabled) {
+                        if (player.getHealth() >= damageCutoff) {
                             if (player.getHealth() - damage <= 0) {
                                 module.getDehydrationDeath().add(id);
                             }
@@ -91,32 +93,32 @@ public class DehydrationTask extends BukkitRunnable {
                 }
 
                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
-                    if (config.getBoolean("Thirst.Dehydration.PotionEffects.Enabled")) {
-                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
-                            player.addPotionEffects(potionEffects);
-                        }
+                    if (potionEffectsEnabled) {
+                        player.addPotionEffects(potionEffects);
                     }
                 }
-
-                // if the player's thirst is high enough
-                if (thirst > config.getDouble("Thirst.Dehydration.Thirst")) {
-                    tasks.remove(id);
-                    cancel();
-                }
-
             }
-            // if the player is in creative or spectator
-            else {
-                // update static hashmap values and cancel the runnable
-                tasks.remove(id);
-                cancel();
-            }
+        }
+        else {
+            stop();
         }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && this.player.getTanDataModule().getThirst() < maxThirst;
+    }
+
+    @Override
     public void start() {
         int tickPeriod = config.getInt("Thirst.Dehydration.TickPeriod"); // get the tick period
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        tasks.remove(id);
+        cancel();
     }
 
     public static boolean hasTask(UUID id) {

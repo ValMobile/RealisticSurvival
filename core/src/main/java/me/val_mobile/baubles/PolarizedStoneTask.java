@@ -18,6 +18,7 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVTask;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
@@ -26,12 +27,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class PolarizedStoneTask extends BukkitRunnable {
+public class PolarizedStoneTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, PolarizedStoneTask> tasks = new HashMap<>();
     private final RSVPlayer rsvPlayer;
@@ -57,41 +59,37 @@ public class PolarizedStoneTask extends BukkitRunnable {
     public void run() {
         Player player = rsvPlayer.getPlayer();
 
-        if (player == null) {
-            tasks.remove(id);
-            cancel();
-        }
-        else {
-            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
-                if (rsvPlayer.getBaubleDataModule().hasBauble("polarized_stone")) {
-                    // effect the player with resistance
-                    Location pLoc = player.getLocation();
-                    Vector pVector = pLoc.toVector();
-                    for (Entity entity : player.getNearbyEntities(maxRadius, maxRadius, maxRadius)) {
-                        if (entity.getType() == EntityType.EXPERIENCE_ORB || entity.getType() == EntityType.DROPPED_ITEM) {
-                            if (entity.getLocation().distanceSquared(pLoc) > 0.25) {
-                                entity.setVelocity(pVector.subtract(entity.getLocation().toVector()).normalize().multiply(pullForce));
-                            }
-                        }
+        if (conditionsMet(player)) {
+            Location pLoc = player.getLocation();
+            Vector pVector = pLoc.toVector();
+            for (Entity entity : player.getNearbyEntities(maxRadius, maxRadius, maxRadius)) {
+                if (entity.getType() == EntityType.EXPERIENCE_ORB || entity.getType() == EntityType.DROPPED_ITEM) {
+                    if (entity.getLocation().distanceSquared(pLoc) > 0.25) {
+                        entity.setVelocity(pVector.subtract(entity.getLocation().toVector()).normalize().multiply(pullForce));
                     }
                 }
-                // if the player doesn't have rings of res in his/her inventory
-                else {
-                    // update static hashmap values and cancel the runnable
-                    tasks.remove(id);
-                    cancel();
-                }
             }
-            else {
-                tasks.remove(id);
-                cancel();
-            }
+        }
+        else {
+            stop();
         }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && allowedWorlds.contains(player.getWorld().getName()) && rsvPlayer.getBaubleDataModule().hasBauble("polarized_stone");
+    }
+
+    @Override
     public void start() {
         int tickPeriod = config.getInt("Items.polarized_stone.TickPeriod"); // get the tick period
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        tasks.remove(id);
+        cancel();
     }
 
     public static boolean hasTask(UUID id) {

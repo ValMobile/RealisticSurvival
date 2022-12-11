@@ -18,6 +18,7 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -29,13 +30,14 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public class EnderCrownTask extends BukkitRunnable {
+public class EnderCrownTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, EnderCrownTask> tasks = new HashMap<>();
 
@@ -88,65 +90,58 @@ public class EnderCrownTask extends BukkitRunnable {
     public void run() {
         Player player = this.rsvPlayer.getPlayer();
 
-        if (player == null) {
-            tasks.remove(id);
-            cancel();
+        if (conditionsMet(player)) {
+            if (transfromEndermen) {
+                Collection<Entity> entities = player.getWorld().getNearbyEntities(player.getLocation(), maxDist, maxDist, maxDist, filter);
+                for (Entity e : entities) {
+                    EndermanAlly ally = Utils.spawnEndermanAlly(player, e.getLocation());
+                    ally.addEntityToWorld(player.getWorld());
+                    ally.getEntity().teleport(e.getLocation());
+                    ((LivingEntity) ally.getEntity()).setHealth(((LivingEntity) e).getHealth());
+                    e.remove();
+                }
+            }
+
+            if (shouldTakeWaterDamage) {
+                waterDamageTicks += tickPeriod;
+
+                if (waterDamageTicks > waterDamageDelay) {
+                    if (Utils.roll(waterDamageChance)) {
+                        if (Utils.isInWater(player)) {
+                            player.damage(waterDamage);
+                            waterDamageTicks = 0;
+                        }
+                    }
+                }
+            }
+
+            if (alliesEnabled) {
+                allyTicks += tickPeriod;
+
+                if (canSpawnAllies(false)) {
+                    spawnAllies();
+                }
+            }
         }
         else {
-            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
-                if (rsvPlayer.getBaubleDataModule().hasBauble("ender_queens_crown")) {
-                    // effect the player with resistance
-                    Player p = rsvPlayer.getPlayer();
-
-                    if (transfromEndermen) {
-                        Collection<Entity> entities = p.getWorld().getNearbyEntities(p.getLocation(), maxDist, maxDist, maxDist, filter);
-                        for (Entity e : entities) {
-                            EndermanAlly ally = Utils.spawnEndermanAlly(p, e.getLocation());
-                            ally.addEntityToWorld(p.getWorld());
-                            ally.getEntity().teleport(e.getLocation());
-                            ((LivingEntity) ally.getEntity()).setHealth(((LivingEntity) e).getHealth());
-                            e.remove();
-                        }
-                    }
-                    
-                    if (shouldTakeWaterDamage) {
-                        waterDamageTicks += tickPeriod;
-
-                        if (waterDamageTicks > waterDamageDelay) {
-                            if (Utils.roll(waterDamageChance)) {
-                                if (Utils.isInWater(p)) {
-                                    p.damage(waterDamage);
-                                    waterDamageTicks = 0;
-                                }
-                            }
-                        }
-                    }
-
-                    if (alliesEnabled) {
-                        allyTicks += tickPeriod;
-
-                        if (canSpawnAllies(false)) {
-                            spawnAllies();
-                        }
-                    }
-                }
-                // if the player doesn't have rings of res in his/her inventory
-                else {
-                    // update static hashmap values and cancel the runnable
-                    tasks.remove(id);
-                    cancel();
-                }
-            }
-            else {
-                tasks.remove(id);
-                cancel();
-            }
+            stop();
         }
-
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && allowedWorlds.contains(player.getWorld().getName()) && rsvPlayer.getBaubleDataModule().hasBauble("ender_queens_crown");
+    }
+
+    @Override
     public void start() {
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        tasks.remove(id);
+        cancel();
     }
 
     public static Map<UUID, EnderCrownTask> getTasks() {

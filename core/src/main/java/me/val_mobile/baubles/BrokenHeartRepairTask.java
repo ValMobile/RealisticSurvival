@@ -18,25 +18,28 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class BrokenHeartRepairTask extends BukkitRunnable {
+public class BrokenHeartRepairTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, BrokenHeartRepairTask> tasks = new HashMap<>();
     private final RSVPlayer rsvPlayer;
     private final UUID id;
     private final RealisticSurvivalPlugin plugin;
-    private final FileConfiguration config;
     private final Collection<String> allowedWorlds;
+    private final boolean sleepRepairEnabled;
+    private final int durabilityChange;
     private final int duration;
 
     private int ticks = 0;
@@ -46,34 +49,25 @@ public class BrokenHeartRepairTask extends BukkitRunnable {
         this.id = rsvPlayer.getPlayer().getUniqueId();
         this.allowedWorlds = module.getAllowedWorlds();
         this.plugin = plugin;
-        this.config = module.getUserConfig().getConfig();
+        FileConfiguration config = module.getUserConfig().getConfig();
         this.duration = config.getInt("Items.broken_heart.SleepRepair.Duration");
-
+        this.sleepRepairEnabled = config.getBoolean("Items.broken_heart.SleepRepair.Enabled");
+        this.durabilityChange = config.getInt("Items.broken_heart.SleepRepair.Amount");
         tasks.put(id, this);
     }
 
     @Override
     public void run() {
-        if (config.getBoolean("Items.broken_heart.SleepRepair.Enabled")) {
-            Player player = rsvPlayer.getPlayer();
+        Player player = rsvPlayer.getPlayer();
 
-            if (player == null) {
+        if (conditionsMet(player)) {
+            ticks++;
+
+            if (ticks > duration) {
+                ItemStack brokenHeart = rsvPlayer.getBaubleDataModule().getBaubleBag().getItem("broken_heart");
+                Utils.changeDurability(brokenHeart, durabilityChange, false);
+
                 stop();
-            }
-            else {
-                if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && player.isSleeping()) {
-                    ticks++;
-
-                    if (ticks > duration) {
-                        ItemStack brokenHeart = rsvPlayer.getBaubleDataModule().getBaubleBag().getItem("broken_heart");
-                        Utils.changeDurability(brokenHeart, config.getInt("Items.broken_heart.SleepRepair.Amount"), false);
-
-                        stop();
-                    }
-                }
-                else {
-                    stop();
-                }
             }
         }
         else {
@@ -81,10 +75,17 @@ public class BrokenHeartRepairTask extends BukkitRunnable {
         }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && rsvPlayer.getBaubleDataModule().hasBauble("broken_heart") && sleepRepairEnabled && player.isSleeping() && allowedWorlds.contains(player.getWorld().getName());
+    }
+
+    @Override
     public void start() {
         runTaskTimer(plugin, 0L, 1);
     }
 
+    @Override
     public void stop() {
         tasks.remove(id);
         cancel();

@@ -21,26 +21,27 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
 
 public class RSVConfig extends FileBuilder {
 
     private static final Set<RSVConfig> configList = new HashSet<>();
-    private boolean renamed;
+    private boolean updated;
 
     private final String path;
     private final RealisticSurvivalPlugin plugin;
-    private final boolean renameOldVersions;
+    private final boolean updateOldVersions;
     private FileConfiguration config;
 
-    public RSVConfig(RealisticSurvivalPlugin plugin, String path, boolean replace, boolean renameOldVersions) {
+    public RSVConfig(RealisticSurvivalPlugin plugin, String path, boolean replace, boolean updateOldVersions) {
         super(plugin, path, replace);
         this.plugin = plugin;
         this.path = path;
-        this.renameOldVersions = renameOldVersions;
+        this.updateOldVersions = updateOldVersions;
         createConfig();
 
         configList.add(this);
@@ -58,15 +59,15 @@ public class RSVConfig extends FileBuilder {
             e.printStackTrace();
         }
 
-        if (renameOldVersions && !renamed) {
-            renameOldConfig();
+        if (updateOldVersions && !updated) {
+            updateConfig();
         }
     }
 
-    private void renameOldConfig() {
+    private void updateConfig() {
         String currentVersion = "";
         String latestVersion = plugin.getDescription().getVersion();
-        renamed = true;
+        updated = true;
 
         if (config.contains("ConfigId")) {
             currentVersion = config.getString("ConfigId");
@@ -75,26 +76,46 @@ public class RSVConfig extends FileBuilder {
         if (currentVersion.compareTo(latestVersion) < 0) {
             int num = 0;
 
-            String newPath = path.replace(".yml", "_Old_Version_" + num + ".yml");
+            String newPath = path.replace(".yml", "_Backup_" + num + ".yml");
 
             while(new File(plugin.getDataFolder(), newPath).exists()) {
                 num++;
-                newPath = newPath.replace("_Old_Version_" + (num - 1), "_Old_Version_" + num);
+                newPath = newPath.replace("_Backup_" + (num - 1), "_Backup_" + num);
             }
 
-//            try {
-//                Files.copy(Path.of(file.getAbsolutePath()), Path.of(file.getAbsolutePath().replace(".yml", "_Old_Version_" + num + ".yml")));
-//                config.options().copyDefaults(true);
-//                config.set("ConfigId", latestVersion);
-//                config.save(file);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            FileConfiguration pluginConfig = plugin.getConfig();
+            boolean autoUpdate = pluginConfig == null || pluginConfig.getBoolean("AutoUpdateConfig");
 
-            file.renameTo(new File(plugin.getDataFolder(), newPath));
+            if (autoUpdate) {
+                try {
+                    Files.copy(Path.of(file.getAbsolutePath()), Path.of(file.getAbsolutePath().replace(".yml", "_Backup_" + num + ".yml")));
 
-            createFile(path);
-            createConfig();
+                    InputStream stream = plugin.getResource(path);
+
+                    InputStreamReader reader = new InputStreamReader(stream);
+                    FileConfiguration embedded = YamlConfiguration.loadConfiguration(reader);
+
+                    Set<String> embeddedKeys = embedded.getKeys(true);
+                    Set<String> configKeys = config.getKeys(true);
+
+                    for (String str : embeddedKeys) {
+                        if (!configKeys.contains(str)) {
+                            config.set(str, embedded.get(str));
+                        }
+                    }
+                    config.set("ConfigId", latestVersion);
+                    config.save(file);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
+                file.renameTo(new File(plugin.getDataFolder(), newPath));
+
+                createFile(path);
+                createConfig();
+            }
         }
 
     }

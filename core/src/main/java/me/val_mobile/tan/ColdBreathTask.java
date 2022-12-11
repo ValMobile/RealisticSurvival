@@ -18,21 +18,22 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Color;
-import org.bukkit.GameMode;
 import org.bukkit.Particle;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class ColdBreathTask extends BukkitRunnable {
+public class ColdBreathTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, ColdBreathTask> tasks = new HashMap<>();
     private final FileConfiguration config;
@@ -98,38 +99,34 @@ public class ColdBreathTask extends BukkitRunnable {
     public void run() {
         Player player = this.player.getPlayer();
 
-        if (player == null) {
-            tasks.remove(id);
-            cancel();
-        }
-        else {
-            int temperature = (int) Math.round(this.player.getTanDataModule().getTemperature());
-            GameMode mode = player.getGameMode(); // get the gamemode
-
-            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && player.isOnline()) {
+        if (conditionsMet(player)) {
+            if (!(player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.resistance.coldbreath"))) {
                 if (Utils.roll(chance)) {
                     Vector dir = player.getLocation().clone().subtract(0, 0.5D, 0).getDirection().normalize().multiply(0.5D);
                     player.spawnParticle(particle, player.getEyeLocation().add(dir), Utils.getRandomNum(minCount, maxCount), xOffset, yOffset, zOffset, extra, dust);
                 }
-
-                // if the player's temperature is low enough
-                if (temperature > maxTemperature) {
-                    tasks.remove(id);
-                    cancel();
-                }
             }
-            // if the player is in creative or spectator
-            else {
-                // update static hashmap values and cancel the runnable
-                tasks.remove(id);
-                cancel();
-            }
+        }
+        else {
+            stop();
         }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && this.player.getTanDataModule().getTemperature() < maxTemperature;
+    }
+
+    @Override
     public void start() {
         int tickPeriod = config.getInt("Temperature.ColdBreath.TickPeriod"); // get the tick period
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        tasks.remove(id);
+        cancel();
     }
 
     public static boolean hasTask(UUID id) {

@@ -51,6 +51,7 @@ import org.bukkit.util.Vector;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -137,6 +138,38 @@ public class Utils {
             return impl ? "v1_16_R1" : "1.16";
         }
         return "";
+    }
+
+    @Nonnull
+    public static List<String> getAllWorldNames() {
+        List<String> worldNames = new ArrayList<>();
+
+        for (File file: Bukkit.getServer().getWorldContainer().listFiles()){
+            if (file.isDirectory() && Arrays.asList(file.list()).contains("level.dat")) {
+                worldNames.add(file.getName());
+            }
+        }
+        return worldNames;
+    }
+
+    @Nonnull
+    public static List<Material> getMaterialsFromList(@Nonnull List<String> list) {
+        List<Material> mats = new ArrayList<>();
+
+        for (String s : list) {
+            if (!(s == null || s.isEmpty())) {
+                if (s.contains("Tag.")) {
+                    mats.addAll(getTag(s.substring(4)).getValues());
+                }
+                else if (isTag(s)) {
+                    mats.addAll(getTag(s).getValues());
+                }
+                else {
+                    mats.add(Material.valueOf(s));
+                }
+            }
+        }
+        return mats;
     }
 
     public static void randomTpSafely(@Nonnull Entity entity, @Nonnegative double radius) {
@@ -557,6 +590,10 @@ public class Utils {
     public static boolean doublesEquals(double v, double v1) {
         double tolerance = 0.0001;
 
+        return Math.abs(v - v1) <= tolerance;
+    }
+
+    public static boolean doublesEquals(double v, double v1, @Nonnegative double tolerance) {
         return Math.abs(v - v1) <= tolerance;
     }
 

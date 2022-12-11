@@ -37,6 +37,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.util.Collection;
 
@@ -85,22 +86,28 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         this.miscRecipes = new MiscRecipes(this);
 
         IceFireModule ifModule = new IceFireModule(this);
-        ifModule.initialize();
+        if (ifModule.isEnabled())
+            ifModule.initialize();
 
         SwModule swModule = new SwModule(this);
-        swModule.initialize();
+        if (swModule.isEnabled())
+            swModule.initialize();
 
         BaubleModule baubleModule = new BaubleModule(this);
-        baubleModule.initialize();
+        if (baubleModule.isEnabled())
+            baubleModule.initialize();
 
         NtrModule ntrModule = new NtrModule(this);
-        ntrModule.initialize();
+        if (ntrModule.isEnabled())
+            ntrModule.initialize();
 
         SfModule sfModule = new SfModule(this);
-        sfModule.initialize();
+        if (sfModule.isEnabled())
+            sfModule.initialize();
 
         TanModule tanModule = new TanModule(this);
-        tanModule.initialize();
+        if (tanModule.isEnabled())
+            tanModule.initialize();
 
         RSVEnchants rsvEnchants = new RSVEnchants(this);
         rsvEnchants.registerAllEnchants();
@@ -128,7 +135,9 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         }
 
         for (RSVModule module : modules) {
-            module.shutdown();
+            if (module.isEnabled()) {
+                module.shutdown();
+            }
         }
     }
 
@@ -138,8 +147,9 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     }
 
     @Override
+    @Nullable
     public FileConfiguration getConfig() {
-        return config.getConfig();
+        return config == null ? null : config.getConfig();
     }
 
     public static RealisticSurvivalPlugin getPlugin() {

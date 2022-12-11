@@ -26,8 +26,8 @@ import java.util.UUID;
 public class TemperatureChangeEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
-    private UUID id;
-    private double oldTemp;
+    private final UUID id;
+    private final double oldTemp;
     private double newTemp;
     private boolean cancelled;
 

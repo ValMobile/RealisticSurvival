@@ -18,6 +18,7 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -27,12 +28,13 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class StoneSeaTask extends BukkitRunnable {
+public class StoneSeaTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, StoneSeaTask> tasks = new HashMap<>();
     private final RSVPlayer rsvPlayer;
@@ -65,74 +67,71 @@ public class StoneSeaTask extends BukkitRunnable {
     public void run() {
         Player player = rsvPlayer.getPlayer();
 
-        if (player == null) {
-            tasks.remove(id);
-            cancel();
-        }
-        else {
-            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
-                if (rsvPlayer.getBaubleDataModule().hasBauble("stone_sea")) {
-                    if (player.isSwimming() || Utils.isInWater(player)) {
-                        double swimSpeed = baseSwimSpeed;
-                        int depthStrider = 0;
-                        boolean dolphinsGrace = player.hasPotionEffect(PotionEffectType.DOLPHINS_GRACE);
-                        Vector dir = player.getLocation().getDirection().clone();
-                        Vector velocity = player.getVelocity().clone();
-                        double magnitude = Math.sqrt((velocity.getX() * velocity.getX()) + (velocity.getY() * velocity.getY()) + (velocity.getZ() * velocity.getZ()));
+        if (conditionsMet(player)) {
+            if (player.isSwimming() || Utils.isInWater(player)) {
+                double swimSpeed = baseSwimSpeed;
+                int depthStrider = 0;
+                boolean dolphinsGrace = player.hasPotionEffect(PotionEffectType.DOLPHINS_GRACE);
+                Vector dir = player.getLocation().getDirection().clone();
+                Vector velocity = player.getVelocity().clone();
+                double magnitude = Math.sqrt((velocity.getX() * velocity.getX()) + (velocity.getY() * velocity.getY()) + (velocity.getZ() * velocity.getZ()));
 
-                        ItemStack boots = player.getInventory().getBoots();
-                        if (boots != null) {
-                            if (boots.getItemMeta().hasEnchant(Enchantment.DEPTH_STRIDER)) {
-                                depthStrider = boots.getItemMeta().getEnchantLevel(Enchantment.DEPTH_STRIDER);
-                            }
-                        }
-
-                        if (depthStrider > 0 && dolphinsGrace) {
-                            swimSpeed += (9.8 + (8.983 * depthStrider));
-                        }
-                        else if (depthStrider > 0) {
-                            swimSpeed += ((depthStrider / 3D) * 4.317);
-                        }
-                        else if (dolphinsGrace){
-                            swimSpeed += 9.8;
-                        }
-
-                        if (magnitude < swimSpeed) {
-                            velocity.add(dir.normalize().multiply(new Vector(horizontalSpeedIncrement, verticalSpeedIncrement, horizontalSpeedIncrement)));
-                            double vx = velocity.getX();
-                            double vy = velocity.getY();
-                            double vz = velocity.getZ();
-
-                            double horMag = Math.sqrt((vx * vx) + (vz * vz));
-
-                            if (horMag > maxHorizontalSpeed) {
-                                velocity.setX(horMag > Math.abs(vx) ? vx : maxHorizontalSpeed * (vx < 0 ? -1 : 1));
-                                velocity.setZ(horMag > Math.abs(vz) ? vz : maxHorizontalSpeed * (vz < 0 ? -1 : 1));
-                            }
-                            if (Math.abs(vy) > maxVerticalSpeed) {
-                                velocity.setY(maxVerticalSpeed * (vy < 0 ? -1 : 1));
-                            }
-                            player.setVelocity(velocity);
-                        }
+                ItemStack boots = player.getInventory().getBoots();
+                if (boots != null) {
+                    if (boots.getItemMeta().hasEnchant(Enchantment.DEPTH_STRIDER)) {
+                        depthStrider = boots.getItemMeta().getEnchantLevel(Enchantment.DEPTH_STRIDER);
                     }
                 }
-                // if the player doesn't have rings of res in his/her inventory
-                else {
-                    // update static hashmap values and cancel the runnable
-                    tasks.remove(id);
-                    cancel();
+
+                if (depthStrider > 0 && dolphinsGrace) {
+                    swimSpeed += (9.8 + (8.983 * depthStrider));
+                }
+                else if (depthStrider > 0) {
+                    swimSpeed += ((depthStrider / 3D) * 4.317);
+                }
+                else if (dolphinsGrace){
+                    swimSpeed += 9.8;
+                }
+
+                if (magnitude < swimSpeed) {
+                    velocity.add(dir.normalize().multiply(new Vector(horizontalSpeedIncrement, verticalSpeedIncrement, horizontalSpeedIncrement)));
+                    double vx = velocity.getX();
+                    double vy = velocity.getY();
+                    double vz = velocity.getZ();
+
+                    double horMag = Math.sqrt((vx * vx) + (vz * vz));
+
+                    if (horMag > maxHorizontalSpeed) {
+                        velocity.setX(horMag > Math.abs(vx) ? vx : maxHorizontalSpeed * (vx < 0 ? -1 : 1));
+                        velocity.setZ(horMag > Math.abs(vz) ? vz : maxHorizontalSpeed * (vz < 0 ? -1 : 1));
+                    }
+                    if (Math.abs(vy) > maxVerticalSpeed) {
+                        velocity.setY(maxVerticalSpeed * (vy < 0 ? -1 : 1));
+                    }
+                    player.setVelocity(velocity);
                 }
             }
-            else {
-                tasks.remove(id);
-                cancel();
-            }
+        }
+        else {
+            stop();
         }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && allowedWorlds.contains(player.getWorld().getName()) && rsvPlayer.getBaubleDataModule().hasBauble("stone_sea");
+    }
+
+    @Override
     public void start() {
         int tickPeriod = config.getInt("Items.stone_sea.TickPeriod"); // get the tick period
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        tasks.remove(id);
+        cancel();
     }
 
     public static boolean hasTask(UUID id) {

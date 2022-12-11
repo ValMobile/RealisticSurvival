@@ -317,40 +317,9 @@ public class NtrEvents extends ModuleEvents implements Listener {
                                 int kindling = 0;
                                 int soul = 0;
 
-                                List<String> fuelStr = config.getStringList("FireStarter.Fuel.Materials");
-                                List<String> kindlingStr = config.getStringList("FireStarter.Kindling.Materials");
-                                List<String> soulStr = config.getStringList("FireStarter.SoulItems");
-
-                                List<Material> fuelMats = new ArrayList<>();
-                                List<Material> kindlingMats = new ArrayList<>();
-                                List<Material> soulMats = new ArrayList<>();
-
-                                for (String s : fuelStr) {
-                                    if (Utils.isTag(s)) {
-                                        fuelMats.addAll(Utils.getTag(s).getValues());
-                                    }
-                                    else {
-                                        fuelMats.add(Material.valueOf(s));
-                                    }
-                                }
-
-                                for (String s : kindlingStr) {
-                                    if (Utils.isTag(s)) {
-                                        kindlingMats.addAll(Utils.getTag(s).getValues());
-                                    }
-                                    else {
-                                        kindlingMats.add(Material.valueOf(s));
-                                    }
-                                }
-
-                                for (String s : soulStr) {
-                                    if (Utils.isTag(s)) {
-                                        soulMats.addAll(Utils.getTag(s).getValues());
-                                    }
-                                    else {
-                                        soulMats.add(Material.valueOf(s));
-                                    }
-                                }
+                                List<Material> fuelMats = Utils.getMaterialsFromList(config.getStringList("FireStarter.Fuel.Materials"));
+                                List<Material> kindlingMats = Utils.getMaterialsFromList(config.getStringList("FireStarter.Kindling.Materials"));
+                                List<Material> soulMats = Utils.getMaterialsFromList(config.getStringList("FireStarter.SoulItems"));
 
                                 Location loc = event.getClickedBlock().getLocation();
 

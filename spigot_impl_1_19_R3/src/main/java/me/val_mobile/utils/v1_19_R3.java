@@ -246,4 +246,44 @@ public class v1_19_R3 extends InternalsProvider {
         double d3 = enderman.getZ() + (random.nextDouble() - 0.5) * 8.0 - vec3d.z * 16.0;
         return teleport(enderman, d1, d2, d3);
     }
+
+//    public static boolean teleportTowards(@Nonnull Enderman enderman, @Nonnull LivingEntity entity) {
+//        Location enderLoc = enderman.getLocation();
+//        Location entityLoc = enderman.getLocation();
+//
+//        Vector vector = new Vector(enderLoc.getX() - entityLoc.getX(), (enderLoc.getY() + enderman.getHeight() * 0.5) - entity.getEyeHeight(), enderLoc.getZ() - entityLoc.getZ()).normalize();
+//
+//        double d1 = enderLoc.getX() + Utils.getRandomNum(-4D, 4D) - vector.getX() * 16D;
+//        double d2 = enderLoc.getY() + Utils.getRandomNum(-8D, 7D) - vector.getY() * 16D;
+//        double d3 = enderLoc.getZ() + Utils.getRandomNum(-4D, 4D) - vector.getZ() * 16D;
+//
+//        return teleport(enderman, d1,  d2, d3);
+//    }
+
+//    public static boolean teleport(Enderman enderman, double d0, double d1, double d2) {
+//        World world = enderman.getWorld();
+//        Block block = world.getBlockAt((int) d0, (int) d1, (int) d2);
+//        Location blockLoc = block.getLocation();
+//
+//        while (blockLoc.getY() > world.getMinHeight() && block.isPassable()) {
+//            blockLoc.setY(blockLoc.getY() - 1);
+//        }
+//
+//        Block destination = world.getBlockAt(blockLoc);
+//        if (!(destination.isPassable() || destination.getType() == Material.WATER)) {
+//            boolean flag2 = enderman.randomTeleport(d0, d1, d2, true);
+//            if (flag2) {
+//                enderman.teleport()
+//                world.gameEvent(GameEvent.TELEPORT, vec3d, GameEvent.Context.of(enderman));
+//                if (!enderman.isSilent()) {
+//                    enderman.level.playSound(null, enderman.xo, enderman.yo, enderman.zo, SoundEvents.ENDERMAN_TELEPORT, enderman.getSoundSource(), 1.0F, 1.0F);
+//                    enderman.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
+//                }
+//            }
+//
+//            return flag2;
+//        } else {
+//            return false;
+//        }
+//    }
 }

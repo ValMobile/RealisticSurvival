@@ -1,6 +1,6 @@
 main: me.val_mobile.realisticsurvival.RealisticSurvivalPlugin
 name: RealisticSurvival
-version: 1.2.3-RELEASE
+version: 1.2.4-RELEASE
 author: Val_Mobile
 description: A Spigot plugin that aims to increase the difficulty of normal vanilla Minecraft
 website: https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795
@@ -35,8 +35,14 @@ permissions:
   realisticsurvival.toughasnails.resistance.coldvisual:
     description: Prevents the player's screen from freezing due to hypothermia
     default: not op
+  realisticsurvival.toughasnails.resistance.coldbreath:
+    description: Prevents the player from breathing out cold air
+    default: not op
   realisticsurvival.toughasnails.resistance.hot:
     description: Prevents the player from getting hot
+    default: not op
+  realisticsurvival.toughasnails.resistance.hotsweat:
+    description: Prevents the player from sweating
     default: not op
   realisticsurvival.toughasnails.resistance.hotdamage:
     description: Prevents the player from taking damage due to hyperthermia
@@ -62,22 +68,37 @@ permissions:
   realisticsurvival.toughasnails.resistance.thirstvisual:
     description: Prevents the player's screen from changing due to dehydration
     default: not op
+  realisticsurvival.toughasnails.resistance.parasite:
+    description: Prevents the player from getting parasites
+    default: not op
+  realisticsurvival.toughasnails.resistance.parasitedamage:
+    description: Prevents the player from taking damage from parasites
+    default: not op
+  realisticsurvival.toughasnails.resistance.parasitepotioneffects:
+    description: Prevents the player from taking damage from parasites
+    default: not op
   realisticsurvival.toughasnails.resistance.*:
     description: Wildcard permission
     default: not op
     children:
       realisticsurvival.toughasnails.resistance.cold: true
+      realisticsurvival.toughasnails.resistance.coldbreath: true
       realisticsurvival.toughasnails.resistance.colddamage: true
       realisticsurvival.toughasnails.resistance.coldpotioneffects: true
       realisticsurvival.toughasnails.resistance.coldvisual: true
       realisticsurvival.toughasnails.resistance.hot: true
+      realisticsurvival.toughasnails.resistance.hotsweat: true
       realisticsurvival.toughasnails.resistance.hotdamage: true
+      realisticsurvival.toughasnails.resistance.hotcombustion: true
       realisticsurvival.toughasnails.resistance.hotpotioneffects: true
       realisticsurvival.toughasnails.resistance.hotvisual: true
       realisticsurvival.toughasnails.resistance.thirst: true
       realisticsurvival.toughasnails.resistance.thirstdamage: true
       realisticsurvival.toughasnails.resistance.thirstpotioneffects: true
       realisticsurvival.toughasnails.resistance.thirstvisual: true
+      realisticsurvival.toughasnails.resistance.parasite: true
+      realisticsurvival.toughasnails.resistance.parasitedamage: true
+      realisticsurvival.toughasnails.resistance.parasitepotioneffects: true
   realisticsurvival.command.give:
     description: Allows users to give themselves items from the plugin
     default: op

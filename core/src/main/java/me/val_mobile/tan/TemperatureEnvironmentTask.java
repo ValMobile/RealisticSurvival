@@ -18,7 +18,7 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.GameMode;
+import me.val_mobile.utils.RSVTask;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
@@ -29,9 +29,10 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 
-public class TemperatureEnvironmentTask extends BukkitRunnable {
+public class TemperatureEnvironmentTask extends BukkitRunnable implements RSVTask {
 
     private final TemperatureCalculateTask calcTask;
     private final FileConfiguration config;
@@ -54,49 +55,36 @@ public class TemperatureEnvironmentTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        if (calcTask == null) {
-            cancel();
-        }
-        else {
-            if (player == null) {
-                // update static hashmap values and cancel the runnable
-                cancel();
-            }
-            // if the player is in creative or spectator
-            else {
-                GameMode mode = player.getGameMode(); // get the gamemode
 
-                if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
-                    regulate = 0D;
-                    change = 0D;
-                    Location pLoc = player.getLocation();
-                    double px = pLoc.getX();
-                    double py = pLoc.getY();
-                    double pz = pLoc.getZ();
+        if (conditionsMet(player)) {
+            regulate = 0D;
+            change = 0D;
+            Location pLoc = player.getLocation();
+            double px = pLoc.getX();
+            double py = pLoc.getY();
+            double pz = pLoc.getZ();
 
-                    int cubeLength = config.getInt("Temperature.Environment.CubeLength");
+            int cubeLength = config.getInt("Temperature.Environment.CubeLength");
 
-                    for (int x = -(cubeLength - 1); x < cubeLength; x++) {
-                        for (int y = -(cubeLength - 1); y < cubeLength; y++) {
-                            for (int z = -(cubeLength - 1); z < cubeLength; z++) {
-                                Location loc = new Location(player.getWorld(), px + x, py + y, pz + z);
-                                Block block = loc.getBlock();
+            for (int x = -(cubeLength - 1); x < cubeLength; x++) {
+                for (int y = -(cubeLength - 1); y < cubeLength; y++) {
+                    for (int z = -(cubeLength - 1); z < cubeLength; z++) {
+                        Location loc = new Location(player.getWorld(), px + x, py + y, pz + z);
+                        Block block = loc.getBlock();
 
-                                if (!block.isEmpty()) {
-                                    if (willAffectTemperature(block)) {
-                                        add("Temperature.Environment.Blocks." + block.getType());
-                                    }
-                                }
+                        if (!block.isEmpty()) {
+                            if (willAffectTemperature(block)) {
+                                add("Temperature.Environment.Blocks." + block.getType());
                             }
                         }
                     }
-                    calcTask.setChangeEnv(change);
-                    calcTask.setRegulateEnv(regulate);
-                }
-                else {
-                    cancel();
                 }
             }
+            calcTask.setChangeEnv(change);
+            calcTask.setRegulateEnv(regulate);
+        }
+        else {
+            stop();
         }
     }
 
@@ -203,7 +191,18 @@ public class TemperatureEnvironmentTask extends BukkitRunnable {
         }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && calcTask != null && allowedWorlds.contains(player.getWorld().getName());
+    }
+
+    @Override
     public void start() {
         this.runTaskAsynchronously(plugin);
+    }
+
+    @Override
+    public void stop() {
+        cancel();
     }
 }

@@ -17,7 +17,7 @@
 package me.val_mobile.data;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.World;
+import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -61,16 +61,24 @@ public abstract class RSVModule {
             ConfigurationSection section = config.getConfigurationSection(name + ".Worlds");
             Set<String> keys = section.getKeys(false);
 
-            List<World> worlds = plugin.getServer().getWorlds();
+            List<String> worlds = Utils.getAllWorldNames();
+            boolean autoEnable = plugin.getConfig().getBoolean("AutomaticallyEnableWorlds");
 
-            for (World world : worlds) {
-                String worldName = world.getName();
-                if (!keys.contains(worldName)) {
-                    config.createSection(name + ".Worlds." + worldName);
-                    config.set(name + ".Worlds." + worldName, true);
+            for (String key : keys) {
+                if (!worlds.contains(key)) {
+                    config.set(name + ".Worlds." + key, null);
                 }
+            }
 
-                if (section.getBoolean(worldName)) {
+            for (String worldName : worlds) {
+                if (keys.contains(worldName)) {
+                    if (config.getBoolean(name + ".Worlds." + worldName)) {
+                        allowedWorlds.add(worldName);
+                    }
+                }
+                else {
+                    config.createSection(name + ".Worlds." + worldName);
+                    config.set(name + ".Worlds." + worldName, autoEnable);
                     allowedWorlds.add(worldName);
                 }
             }

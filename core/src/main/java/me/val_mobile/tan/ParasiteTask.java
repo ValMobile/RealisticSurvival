@@ -19,7 +19,7 @@ package me.val_mobile.tan;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.DisplayTask;
-import org.bukkit.GameMode;
+import me.val_mobile.utils.RSVTask;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -27,9 +27,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
-public class ParasiteTask extends BukkitRunnable {
+public class ParasiteTask extends BukkitRunnable implements RSVTask {
 
     private final TanModule module;
     private final FileConfiguration config;
@@ -37,10 +38,13 @@ public class ParasiteTask extends BukkitRunnable {
     private static final Map<UUID, ParasiteTask> tasks = new HashMap<>();
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
+    private final boolean damageEnabled;
     private final double damage;
+    private final double damageCutoff;
     private final UUID id;
     private final int duration;
     private final int tickPeriod;
+    private final boolean potionEffectsEnabled;
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
     private int ticks = 0;
 
@@ -52,10 +56,12 @@ public class ParasiteTask extends BukkitRunnable {
         this.player = player;
         this.id = player.getPlayer().getUniqueId();
         this.allowedWorlds = module.getAllowedWorlds();
+        this.damageEnabled = config.getBoolean("Thirst.Parasites.Damage.Enabled");
         this.damage = config.getDouble("Thirst.Parasites.Damage.Amount");
+        this.damageCutoff = config.getDouble("Thirst.Parasites.Damage.Cutoff");
         this.duration = config.getInt("Thirst.Parasites.Duration");
         this.tickPeriod = config.getInt("Thirst.Parasites.TickPeriod");
-
+        this.potionEffectsEnabled = config.getBoolean("Thirst.Parasites.PotionEffects.Enabled");
         ConfigurationSection section = config.getConfigurationSection("Thirst.Parasites.PotionEffects.Effects");
         Set<String> keys = section.getKeys(false);
 
@@ -73,45 +79,42 @@ public class ParasiteTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = this.player.getPlayer();
-        if (player == null) {
-            if (DisplayTask.hasTask(id) && DisplayTask.getTasks().get(id) != null) {
-                DisplayTask.getTasks().get(id).setParasitesActive(false);
-            }
-            tasks.remove(id);
-            cancel();
-        }
-        // if the player is in creative or spectator
-        else {
-            GameMode mode = player.getGameMode(); // get the gamemode
+
+        if (conditionsMet(player)) {
             ticks += tickPeriod;
 
-            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && !player.isDead() && player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && ticks < duration) {
-                DisplayTask.getTasks().get(id).setParasitesActive(true);
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
-                    if (player.getHealth() - damage <= 0) {
-                        if (player.getHealth() >= config.getDouble("Thirst.Parasites.Damage.Cutoff")) {
+            DisplayTask.getTasks().get(id).setParasitesActive(true);
+            if (!(player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.resistance.parasite"))) {
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.parasitedamage")) {
+                    if (damageEnabled) {
+                        if (player.getHealth() >= damageCutoff) {
                             if (player.getHealth() - damage <= 0) {
                                 module.getParasiteDeath().add(id);
                             }
                             player.damage(damage);
                         }
                     }
+                }
 
-                    player.damage(damage);
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.parasitepotioneffects")) {
+                    if (potionEffectsEnabled) {
+                        player.addPotionEffects(potionEffects);
+                    }
                 }
             }
-            else {
-                tasks.remove(id);
-                ThirstCalculateTask.getTasks().get(id).setParasitesActive(false);
-                if (DisplayTask.hasTask(id) && DisplayTask.getTasks().get(id) != null) {
-                    DisplayTask.getTasks().get(id).setParasitesActive(false);
-                }
-                cancel();
-            }
+        }
+        else {
+            stop();
         }
     }
 
-    public void startRunnable() {
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && ticks < duration;
+    }
+
+    @Override
+    public void start() {
         Player player = this.player.getPlayer();
         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
             if (config.getBoolean("Thirst.Parasites.PotionEffects.Enabled")) {
@@ -124,6 +127,16 @@ public class ParasiteTask extends BukkitRunnable {
         ThirstCalculateTask.getTasks().get(id).setParasitesActive(true);
 
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        ThirstCalculateTask.getTasks().get(id).setParasitesActive(false);
+        if (DisplayTask.hasTask(id) && DisplayTask.getTasks().get(id) != null) {
+            DisplayTask.getTasks().get(id).setParasitesActive(false);
+        }
+        tasks.remove(id);
+        cancel();
     }
 
     public static Map<UUID, ParasiteTask> getTasks() {

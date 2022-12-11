@@ -18,20 +18,22 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVTask;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class MagicMirrorTask extends BukkitRunnable {
+public class MagicMirrorTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, MagicMirrorTask> tasks = new HashMap<>();
     private final RealisticSurvivalPlugin plugin;
     private final UUID id;
-    private final FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
     private int ticks = 0;
     private final int duration;
     private final int tickPeriod;
@@ -39,6 +41,7 @@ public class MagicMirrorTask extends BukkitRunnable {
     public MagicMirrorTask(Player player, RealisticSurvivalPlugin plugin) {
         this.id = player.getUniqueId();
         this.plugin = plugin;
+        FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();
         this.duration = config.getInt("Items.magic_mirror.Cooldown");
         this.tickPeriod = config.getInt("Items.magic_mirror.TickPeriod"); // get the tick period
         tasks.put(id, this);
@@ -46,15 +49,28 @@ public class MagicMirrorTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        if (ticks > duration) {
-            tasks.remove(id);
-            cancel();
+        if (conditionsMet(Bukkit.getPlayer(id))) {
+            ticks += tickPeriod;
         }
-        ticks += tickPeriod;
+        else {
+            stop();
+        }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return player != null && ticks < duration;
+    }
+
+    @Override
     public void start() {
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        tasks.remove(id);
+        cancel();
     }
 
     public static boolean hasTask(UUID id) {

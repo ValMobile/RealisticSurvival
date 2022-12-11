@@ -26,8 +26,8 @@ import java.util.UUID;
 public class ThirstChangeEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
-    private UUID id;
-    private double oldThirst;
+    private final UUID id;
+    private final double oldThirst;
     private double newThirst;
     private boolean cancelled;
 

@@ -32,7 +32,7 @@ import static me.val_mobile.realisticsurvival.RealisticSurvivalPlugin.NAME;
  * Tab is a class that creates a tab completer
  * when the user types appropriate commands
  * @author Val_Mobile
- * @version 1.2.3-RELEASE
+ * @version 1.2.4-RELEASE
  * @since 1.0
  */
 public class Tab implements TabCompleter {

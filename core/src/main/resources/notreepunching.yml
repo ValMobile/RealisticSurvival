@@ -2,7 +2,7 @@
 #          No Tree Punching           #
 #######################################
 
-ConfigId: "1.2.3-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.4-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -192,14 +192,14 @@ FireStarter:
     Required: true
     Amount: 1
     Materials:
-      - "LOGS"
-      - "PLANKS"
+      - "Tag.LOGS"
+      - "Tag.PLANKS"
   Kindling:
     Required: true
     Amount: 3
     Materials:
       - "STICK"
-      - "SAPLINGS"
+      - "Tag.SAPLINGS"
       - "STRING"
   SoulItems: # Required in addition to the above items to create soul campfires
     Amount: 1
@@ -596,6 +596,7 @@ Items:
         v1_17_R2: false
         v1_18_R1: false
         v1_18_R2: false
+        v1_18_R3: false
   ceramic_salmon_bucket:
     Enabled:
       EnableAllVersions: true

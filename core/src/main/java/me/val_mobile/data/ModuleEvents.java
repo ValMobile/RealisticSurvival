@@ -38,9 +38,14 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.world.WorldInitEvent;
+import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.event.world.WorldSaveEvent;
+import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.plugin.PluginManager;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
 
@@ -271,6 +276,94 @@ public abstract class ModuleEvents implements Listener {
         else {
             if (shouldEventBeRan(event.getFrom())) {
                 player.undiscoverRecipes(module.getModuleRecipes().getRecipeKeys());
+            }
+        }
+    }
+
+    @EventHandler
+    public void onWorldInit(WorldInitEvent event) {
+        String name = event.getWorld().getName();
+
+        if (!module.getAllowedWorlds().contains(name)) {
+            FileConfiguration pluginConfig = plugin.getConfig();
+            String path = module.getName() + ".Worlds." + name;
+
+            if (!pluginConfig.contains(path)) {
+                pluginConfig.createSection(path);
+                pluginConfig.set(path, true);
+                module.getAllowedWorlds().add(name);
+
+                try {
+                    pluginConfig.save(plugin.getConfigFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onWorldLoad(WorldLoadEvent event) {
+        String name = event.getWorld().getName();
+
+        if (!module.getAllowedWorlds().contains(name)) {
+            FileConfiguration pluginConfig = plugin.getConfig();
+            String path = module.getName() + ".Worlds." + name;
+
+            if (!pluginConfig.contains(path)) {
+                pluginConfig.createSection(path);
+                pluginConfig.set(path, true);
+                module.getAllowedWorlds().add(name);
+
+                try {
+                    pluginConfig.save(plugin.getConfigFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onWorldUnload(WorldUnloadEvent event) {
+        String name = event.getWorld().getName();
+
+        if (!module.getAllowedWorlds().contains(name)) {
+            FileConfiguration pluginConfig = plugin.getConfig();
+            String path = module.getName() + ".Worlds." + name;
+
+            if (!pluginConfig.contains(path)) {
+                pluginConfig.createSection(path);
+                pluginConfig.set(path, true);
+                module.getAllowedWorlds().add(name);
+
+                try {
+                    pluginConfig.save(plugin.getConfigFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onWorldSave(WorldSaveEvent event) {
+        String name = event.getWorld().getName();
+
+        if (!module.getAllowedWorlds().contains(name)) {
+            FileConfiguration pluginConfig = plugin.getConfig();
+            String path = module.getName() + ".Worlds." + name;
+
+            if (!pluginConfig.contains(path)) {
+                pluginConfig.createSection(path);
+                pluginConfig.set(path, true);
+                module.getAllowedWorlds().add(name);
+
+                try {
+                    pluginConfig.save(plugin.getConfigFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

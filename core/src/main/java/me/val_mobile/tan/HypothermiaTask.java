@@ -18,7 +18,7 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.GameMode;
+import me.val_mobile.utils.RSVTask;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -26,9 +26,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
-public class HypothermiaTask extends BukkitRunnable {
+public class HypothermiaTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, HypothermiaTask> tasks = new HashMap<>();
     private final TanModule module;
@@ -38,7 +39,11 @@ public class HypothermiaTask extends BukkitRunnable {
     private final RSVPlayer player;
     private final UUID id;
     private final Collection<String> allowedWorlds;
+    private final boolean damageEnabled;
+    private final double damageCutoff;
     private final double damage;
+    private final boolean potionEffectsEnabled;
+    private final double maxTemperature;
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
 
 
@@ -49,8 +54,11 @@ public class HypothermiaTask extends BukkitRunnable {
         this.player = player;
         this.id = player.getPlayer().getUniqueId();
         this.allowedWorlds = module.getAllowedWorlds();
+        this.damageEnabled = config.getBoolean("Temperature.Hypothermia.Damage.Enabled");
+        this.damageCutoff = config.getDouble("Temperature.Hypothermia.Damage.Cutoff");
         this.damage = config.getDouble("Temperature.Hypothermia.Damage.Amount");
-
+        this.potionEffectsEnabled = config.getBoolean("Temperature.Hypothermia.PotionEffects.Enabled");
+        this.maxTemperature = config.getDouble("Temperature.Hypothermia.Temperature");
         ConfigurationSection section = config.getConfigurationSection("Temperature.Hypothermia.PotionEffects.Effects");
         Set<String> keys = section.getKeys(false);
 
@@ -69,19 +77,11 @@ public class HypothermiaTask extends BukkitRunnable {
     public void run() {
         Player player = this.player.getPlayer();
 
-        if (player == null) {
-            tasks.remove(id);
-            cancel();
-        }
-        else {
-            int temperature = (int) Math.round(this.player.getTanDataModule().getTemperature());
-            GameMode mode = player.getGameMode(); // get the gamemode
-
-            if ((mode == GameMode.SURVIVAL || mode == GameMode.ADVENTURE) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && player.isOnline()) {
-
+        if (conditionsMet(player)) {
+            if (!(player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.resistance.cold"))) {
                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.colddamage")) {
-                    if (config.getBoolean("Temperature.Hypothermia.Damage.Enabled")) {
-                        if (player.getHealth() >= config.getDouble("Temperature.Hypothermia.Damage.Cutoff")) {
+                    if (damageEnabled) {
+                        if (player.getHealth() >= damageCutoff) {
                             if (player.getHealth() - damage <= 0) {
                                 module.getHypothermiaDeath().add(id);
                             }
@@ -92,32 +92,32 @@ public class HypothermiaTask extends BukkitRunnable {
                 }
 
                 if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldpotioneffects")) {
-                    if (config.getBoolean("Temperature.Hypothermia.PotionEffects.Enabled")) {
-                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldpotioneffects")) {
-                            player.addPotionEffects(potionEffects);
-                        }
+                    if (potionEffectsEnabled) {
+                        player.addPotionEffects(potionEffects);
                     }
                 }
-
-                // if the player's temperature is high enough
-                if (temperature > config.getDouble("Temperature.Hypothermia.Temperature")) {
-                    tasks.remove(id);
-                    cancel();
-                }
-
             }
-            // if the player is in creative or spectator
-            else {
-                // update static hashmap values and cancel the runnable
-                tasks.remove(id);
-                cancel();
-            }
+        }
+        else {
+            stop();
         }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && this.player.getTanDataModule().getTemperature() < maxTemperature;
+    }
+
+    @Override
     public void start() {
         int tickPeriod = config.getInt("Temperature.Hypothermia.TickPeriod"); // get the tick period
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        tasks.remove(id);
+        cancel();
     }
 
     public static boolean hasTask(UUID id) {

@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>realisticsurvival-spigot_impl_1_18_R2</artifactId>
-    <version>1.2.3-RELEASE</version>
+    <version>1.2.4-RELEASE</version>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>me.Val_Mobile</groupId>
         <artifactId>realisticsurvival-parent</artifactId>
-        <version>1.2.3-RELEASE</version>
+        <version>1.2.4-RELEASE</version>
     </parent>
 
     <dependencies>
@@ -25,7 +25,7 @@
         <dependency>
             <groupId>me.Val_Mobile</groupId>
             <artifactId>realisticsurvival-core</artifactId>
-            <version>1.2.3-RELEASE</version>
+            <version>1.2.4-RELEASE</version>
         </dependency>
     </dependencies>
 

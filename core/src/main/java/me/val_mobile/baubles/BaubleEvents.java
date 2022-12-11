@@ -58,7 +58,7 @@ import java.util.UUID;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.3-RELEASE
+ * @version 1.2.4-RELEASE
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {

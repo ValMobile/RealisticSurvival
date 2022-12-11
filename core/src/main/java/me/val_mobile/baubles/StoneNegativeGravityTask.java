@@ -19,19 +19,20 @@ package me.val_mobile.baubles;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
-import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class StoneNegativeGravityTask extends BukkitRunnable {
+public class StoneNegativeGravityTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, StoneNegativeGravityTask> tasks = new HashMap<>();
     private final RSVPlayer rsvPlayer;
@@ -61,49 +62,42 @@ public class StoneNegativeGravityTask extends BukkitRunnable {
     public void run() {
         Player player = rsvPlayer.getPlayer();
 
-        if (player == null) {
-            tasks.remove(id);
-            cancel();
+        if (conditionsMet(player)) {
+            player.setGravity(false);
+
+            boolean isUnstable = isHoldingStone();
+
+            if (isUnstable)
+                player.setVelocity(player.getVelocity().setY(Utils.getRandomNum(maxDownwardVelocity, maxUpwardVelocity)));
         }
         else {
-            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)) {
-                if (rsvPlayer.getBaubleDataModule().hasBauble("stone_negative_gravity") || isHoldingStone()) {
-                    player.setGravity(false);
-
-                    boolean isUnstable = isHoldingStone();
-
-                    if (isUnstable)
-                        player.setVelocity(player.getVelocity().setY(Utils.getRandomNum(maxDownwardVelocity, maxUpwardVelocity)));
-                }
-                // if the player doesn't have rings of res in his/her inventory
-                else {
-                    // update static hashmap values and cancel the runnable
-                    if (reenableGravity) {
-                        player.setGravity(true);
-                    }
-                    else {
-                        player.setGravity(wasGravityInitiallyOn);
-                    }
-                    tasks.remove(id);
-                    cancel();
-                }
-            }
-            else {
-                if (reenableGravity) {
-                    player.setGravity(true);
-                }
-                else {
-                    player.setGravity(wasGravityInitiallyOn);
-                }
-                tasks.remove(id);
-                cancel();
-            }
+            stop();
         }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && allowedWorlds.contains(player.getWorld().getName()) && (rsvPlayer.getBaubleDataModule().hasBauble("stone_negative_gravity") || isHoldingStone());
+    }
+
+    @Override
     public void start() {
         int tickPeriod = config.getInt("Items.stone_negative_gravity.TickPeriod"); // get the tick period
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        if (rsvPlayer.getPlayer() != null) {
+            if (reenableGravity) {
+                rsvPlayer.getPlayer().setGravity(true);
+            }
+            else {
+                rsvPlayer.getPlayer().setGravity(wasGravityInitiallyOn);
+            }
+        }
+        tasks.remove(id);
+        cancel();
     }
 
     public static boolean hasTask(UUID id) {

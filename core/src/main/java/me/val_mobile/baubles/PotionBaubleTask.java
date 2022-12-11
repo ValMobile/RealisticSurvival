@@ -19,15 +19,17 @@ package me.val_mobile.baubles;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.data.baubles.DataModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
-public class PotionBaubleTask extends BukkitRunnable {
+public class PotionBaubleTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, Collection<PotionBaubleTask>> tasks = new HashMap<>();
     private final BaubleModule module;
@@ -66,61 +68,65 @@ public class PotionBaubleTask extends BukkitRunnable {
     public void run() {
         Player player = rsvPlayer.getPlayer();
 
-        if (player == null) {
-            tasks.remove(id);
-            cancel();
-        }
-        else {
-            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
-                // if the player has rings of res in his/her inventory
-                int amount = getAmount();
+        if (conditionsMet(player)) {
+            int amount = getAmount();
 
-                if (amount > 0) {
-                    if (potionBauble.getName().equals("pride_pendant")) {
-                        if (Utils.doublesEquals(player.getHealth(), player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue())) {
-                            potionBauble.ability(player, amount);
-                        }
-                        else {
-                            if (tasks.get(id).size() < 2) {
-                                tasks.remove(id);
-                            }
-                            else {
-                                Collection<PotionBaubleTask> colTasks = tasks.get(id);
-                                colTasks.remove(this);
-                                tasks.put(id, colTasks);
-                            }
-                            cancel();
-                        }
+            if (amount > 0) {
+                if (potionBauble.getName().equals("pride_pendant")) {
+                    if (Utils.doublesEquals(player.getHealth(), player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue())) {
+                        potionBauble.ability(player, amount);
                     }
                     else {
-                        potionBauble.ability(player, amount);
+                        if (tasks.get(id).size() < 2) {
+                            tasks.remove(id);
+                        }
+                        else {
+                            Collection<PotionBaubleTask> colTasks = tasks.get(id);
+                            colTasks.remove(this);
+                            tasks.put(id, colTasks);
+                        }
+                        cancel();
                     }
                 }
                 else {
-                    // update static hashmap values and cancel the runnable
-                    if (tasks.get(id).size() < 2) {
-                        tasks.remove(id);
-                    }
-                    else {
-                        Collection<PotionBaubleTask> colTasks = tasks.get(id);
-                        colTasks.remove(this);
-                        tasks.put(id, colTasks);
-                    }
-                    cancel();
+                    potionBauble.ability(player, amount);
                 }
             }
             else {
-                tasks.remove(id);
+                // update static hashmap values and cancel the runnable
+                if (tasks.get(id).size() < 2) {
+                    tasks.remove(id);
+                }
+                else {
+                    Collection<PotionBaubleTask> colTasks = tasks.get(id);
+                    colTasks.remove(this);
+                    tasks.put(id, colTasks);
+                }
                 cancel();
             }
         }
+        else {
+            stop();
+        }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return globalConditionsMet(player) && allowedWorlds.contains(player.getWorld().getName());
+    }
+
+    @Override
     public void start() {
         FileConfiguration config = module.getUserConfig().getConfig();
 
         int tickPeriod = config.getInt("Items." + potionBauble.getName() + ".TickPeriod"); // get the tick period
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        tasks.remove(id);
+        cancel();
     }
 
     private int getAmount() {

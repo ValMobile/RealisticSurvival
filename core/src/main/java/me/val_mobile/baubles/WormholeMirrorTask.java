@@ -17,15 +17,18 @@
 package me.val_mobile.baubles;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVTask;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class WormholeMirrorTask extends BukkitRunnable {
+public class WormholeMirrorTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, WormholeMirrorTask> tasks = new HashMap<>();
     private final RealisticSurvivalPlugin plugin;
@@ -45,15 +48,28 @@ public class WormholeMirrorTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        if (ticks > duration) {
-            tasks.remove(id);
-            cancel();
+        if (conditionsMet(Bukkit.getPlayer(id))) {
+            ticks += tickPeriod;
         }
-        ticks += tickPeriod;
+        else {
+            stop();
+        }
     }
 
+    @Override
+    public boolean conditionsMet(@Nullable Player player) {
+        return player != null && ticks < duration;
+    }
+
+    @Override
     public void start() {
         this.runTaskTimer(plugin, 0L, tickPeriod);
+    }
+
+    @Override
+    public void stop() {
+        tasks.remove(id);
+        cancel();
     }
 
     public static boolean hasTask(UUID id) {

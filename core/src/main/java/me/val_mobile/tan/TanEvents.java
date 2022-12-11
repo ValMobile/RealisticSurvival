@@ -432,7 +432,7 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                 if (parasites) {
                     if (!ParasiteTask.hasTask(player.getUniqueId())) {
-                        new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                        new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
                     }
                 }
             }
@@ -472,7 +472,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                     if (config.getBoolean("Thirst.Parasites.UnpurifiedWaterBottle.Enabled")) {
                                         if (Utils.roll(config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance"))) {
                                             if (!ParasiteTask.hasTask(player.getUniqueId())) {
-                                                new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                                                new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
                                             }
                                         }
                                     }
@@ -505,7 +505,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                     if (config.getBoolean("Thirst.Parasites.UnpurifiedWaterBottle.Enabled")) {
                                         if (Utils.roll(config.getDouble("Thirst.Parasites.UnpurifiedWaterBottle.Chance"))) {
                                             if (!ParasiteTask.hasTask(player.getUniqueId())) {
-                                                new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                                                new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
                                             }
                                         }
                                     }
@@ -572,7 +572,7 @@ public class TanEvents extends ModuleEvents implements Listener {
                                     if (config.getBoolean("Thirst.Parasites.Drowning.Enabled")) {
                                         if (Utils.roll(config.getDouble("Thirst.Parasites.Drowning.Chance"))) {
                                             if (!ParasiteTask.hasTask(player.getUniqueId())) {
-                                                new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).startRunnable();
+                                                new ParasiteTask(module, plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
                                             }
                                         }
                                     }

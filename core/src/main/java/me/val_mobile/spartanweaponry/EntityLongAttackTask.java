@@ -102,16 +102,15 @@ public class EntityLongAttackTask extends BukkitRunnable {
         }
     }
 
-    public void stop() {
-        tasks.remove(attacker.getUniqueId());
-        cancel();
-    }
-
-
     public void start() {
         FileConfiguration swConfig = RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig();
 
         runTaskTimer(plugin, 0, swConfig.getInt("MobAbilities.UseLongReachWeapons.TickPeriod"));
+    }
+
+    public void stop() {
+        tasks.remove(attacker.getUniqueId());
+        cancel();
     }
 
     public boolean isItemValid(@Nullable ItemStack item) {
