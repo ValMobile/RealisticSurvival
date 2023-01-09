@@ -341,7 +341,7 @@ public class RSVItem extends ItemStack {
         return itemMap;
     }
 
-    public static RSVItem getItem(String name) {
-        return itemMap.get(name);
+    public static ItemStack getItem(String name) {
+        return itemMap.get(name).clone();
     }
 }

@@ -98,7 +98,7 @@ public class SweatTask extends BukkitRunnable implements RSVTask {
         Player player = this.player.getPlayer();
 
         if (conditionsMet(player)) {
-            if (!(player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.resistance.hotsweat"))) {
+            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hot.sweat")) {
                 if (Utils.roll(chance)) {
                     Vector dir = player.getLocation().clone().subtract(0, 0.5D, 0).getDirection().normalize().multiply(0.5D);
                     player.spawnParticle(particle, player.getEyeLocation().add(dir), Utils.getRandomNum(minCount, maxCount), xOffset, yOffset, zOffset, extra, dust);

@@ -17,6 +17,7 @@
 package me.val_mobile.data.baubles;
 
 import me.val_mobile.utils.RSVItem;
+import org.bukkit.inventory.ItemStack;
 
 public enum BaubleSlot {
 
@@ -29,9 +30,9 @@ public enum BaubleSlot {
 
     private final int[] vals;
     private final String tag;
-    private final RSVItem item;
+    private final ItemStack item;
 
-    BaubleSlot(String tag, RSVItem item, int... vals) {
+    BaubleSlot(String tag, ItemStack item, int... vals) {
         this.vals = vals;
         this.tag = tag;
         this.item = item;
@@ -41,7 +42,7 @@ public enum BaubleSlot {
         return vals;
     }
 
-    public RSVItem getItem() {
+    public ItemStack getItem() {
         return item;
     }
 

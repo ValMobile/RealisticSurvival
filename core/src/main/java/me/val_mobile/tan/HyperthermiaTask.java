@@ -88,34 +88,32 @@ public class HyperthermiaTask extends BukkitRunnable implements RSVTask {
         Player player = this.player.getPlayer();
 
         if (conditionsMet(player)) {
-            if (!(player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.resistance.hot"))) {
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotdamage")) {
-                    if (damageEnabled) {
-                        if (player.getHealth() >= damageCutoff) {
-                            if (!(damageImmunityEnabled && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
-                                if (player.getHealth() - damage <= 0) {
-                                    module.getHyperthermiaDeath().add(id);
-                                }
-                                player.damage(damage);
+            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hot.damage")) {
+                if (damageEnabled) {
+                    if (player.getHealth() >= damageCutoff) {
+                        if (!(damageImmunityEnabled && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
+                            if (player.getHealth() - damage <= 0) {
+                                module.getHyperthermiaDeath().add(id);
                             }
+                            player.damage(damage);
                         }
                     }
                 }
+            }
 
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotpotioneffects")) {
-                    if (potionEffectsEnabled) {
-                        if (!(potionImmunityEnabled && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
-                            player.addPotionEffects(potionEffects);
-                        }
+            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hot.potioneffects")) {
+                if (potionEffectsEnabled) {
+                    if (!(potionImmunityEnabled && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
+                        player.addPotionEffects(potionEffects);
                     }
                 }
+            }
 
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotcombustion")) {
-                    if (igniteEnabled) {
-                        if (player.getFireTicks() < igniteTicks) {
-                            if (!(igniteImmunityEnabled && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
-                                player.setFireTicks(igniteTicks);
-                            }
+            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hot.combustion")) {
+                if (igniteEnabled) {
+                    if (player.getFireTicks() < igniteTicks) {
+                        if (!(igniteImmunityEnabled && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
+                            player.setFireTicks(igniteTicks);
                         }
                     }
                 }

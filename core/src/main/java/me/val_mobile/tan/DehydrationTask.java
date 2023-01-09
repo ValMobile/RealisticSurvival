@@ -80,22 +80,20 @@ public class DehydrationTask extends BukkitRunnable implements RSVTask  {
         Player player = this.player.getPlayer();
 
         if (conditionsMet(player)) {
-            if (!(player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.resistance.thirst.*"))) {
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstdamage")) {
-                    if (damageEnabled) {
-                        if (player.getHealth() >= damageCutoff) {
-                            if (player.getHealth() - damage <= 0) {
-                                module.getDehydrationDeath().add(id);
-                            }
-                            player.damage(damage);
+            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirst.damage")) {
+                if (damageEnabled) {
+                    if (player.getHealth() >= damageCutoff) {
+                        if (player.getHealth() - damage <= 0) {
+                            module.getDehydrationDeath().add(id);
                         }
+                        player.damage(damage);
                     }
                 }
+            }
 
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
-                    if (potionEffectsEnabled) {
-                        player.addPotionEffects(potionEffects);
-                    }
+            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirst.potioneffects")) {
+                if (potionEffectsEnabled) {
+                    player.addPotionEffects(potionEffects);
                 }
             }
         }

@@ -42,7 +42,7 @@ import static me.val_mobile.realisticsurvival.RealisticSurvivalPlugin.NAME;
  * Commands is a class that allows users to
  * access the plugin's commands in-game
  * @author Val_Mobile
- * @version 1.2.4-RELEASE
+ * @version 1.2.5-DEV-0
  * @since 1.0
  */
 public class Commands implements CommandExecutor {
@@ -85,10 +85,10 @@ public class Commands implements CommandExecutor {
                 sendHelpMessage(sender);
                 return true;
             }
-            switch ((args[0].toLowerCase())) {
+            switch (args[0].toLowerCase()) {
                 case "give" -> {
                     // check if the player has the permission to give himself/herself items
-                    if (!(sender.hasPermission("realisticsurvival.command.give") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!sender.hasPermission("realisticsurvival.command.give")) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -161,7 +161,7 @@ public class Commands implements CommandExecutor {
                 }
                 case "reload" -> {
                     // check if the player has the permission to reload the plugin
-                    if (!(sender.hasPermission("realisticsurvival.command.reload") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!sender.hasPermission("realisticsurvival.command.reload")) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -182,7 +182,7 @@ public class Commands implements CommandExecutor {
                 }
                 case "spawnitem" -> {
                     // check if the player has the permission to give himself/herself items
-                    if (!(sender.hasPermission("realisticsurvival.command.spawnitem") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!sender.hasPermission("realisticsurvival.command.spawnitem")) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -260,7 +260,7 @@ public class Commands implements CommandExecutor {
                 }
                 case "spawnmob" -> {
                     // check if the player has the permission to summon mobs
-                    if (!(sender.hasPermission("realisticsurvival.command.spawnmob") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!sender.hasPermission("realisticsurvival.command.spawnmob")) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -359,7 +359,7 @@ public class Commands implements CommandExecutor {
                 }
                 case "temperature" -> {
                     // check if the player has the permission to change temperature
-                    if (!(sender.hasPermission("realisticsurvival.command.temperature") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!sender.hasPermission("realisticsurvival.command.temperature")) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -404,7 +404,7 @@ public class Commands implements CommandExecutor {
                 }
                 case "thirst" -> {
                     // check if the player has the permission to change thirst
-                    if (!(sender.hasPermission("realisticsurvival.command.thirst") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!sender.hasPermission("realisticsurvival.command.thirst")) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -448,7 +448,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "resetitem" -> {
-                    if (!(sender.hasPermission("realisticsurvival.command.resetitem") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!sender.hasPermission("realisticsurvival.command.resetitem")) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -466,7 +466,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "updateitem" -> {
-                    if (!(sender.hasPermission("realisticsurvival.command.updateitem") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!sender.hasPermission("realisticsurvival.command.updateitem")) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -484,7 +484,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "help" -> {
-                    if (!(sender.hasPermission("realisticsurvival.command.help") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!sender.hasPermission("realisticsurvival.command.help")) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
@@ -493,7 +493,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "version" -> {
-                    if (!(sender.hasPermission("realisticsurvival.command.version") || sender.hasPermission("realisticsurvival.command.*"))) {
+                    if (!sender.hasPermission("realisticsurvival.command.version")) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;

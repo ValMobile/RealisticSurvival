@@ -62,7 +62,7 @@ public abstract class RSVModule {
             Set<String> keys = section.getKeys(false);
 
             List<String> worlds = Utils.getAllWorldNames();
-            boolean autoEnable = plugin.getConfig().getBoolean("AutomaticallyEnableWorlds");
+            boolean autoEnable = config.getBoolean("AutomaticallyEnableWorlds");
 
             for (String key : keys) {
                 if (!worlds.contains(key)) {

@@ -105,7 +105,7 @@ public class ThirstCalculateTask extends BukkitRunnable implements RSVTask {
                 thirstLvl = Math.min(MAXIMUM_THIRST, thirstLvl + 1D);
             }
 
-            if (player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.resistance.thirst")) {
+            if (player.hasPermission("realisticsurvival.toughasnails.resistance.thirst.*")) {
                 thirstLvl = Math.max(MAXIMUM_THIRST, thirstLvl);
             }
             else {

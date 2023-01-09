@@ -296,29 +296,30 @@ public class Utils {
                             }
                         }
 
-                        double oldExtraDmg = meta.hasEnchant(Enchantment.DAMAGE_ALL) ? 0.5 * Math.max(0, meta.getEnchantLevel(Enchantment.DAMAGE_ALL) - 1) + 1.0 : 0;
-                        double oldDmg = baseDmg + oldExtraDmg;
-
                         double extraDmg = 0.5 * Math.max(0, lvl - 1) + 1.0;
                         double newDmg = baseDmg + extraDmg;
 
-                        DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                        int len = lore.size();
+                        int index = -1;
 
-                        String baseStr = df.format(baseDmg);
-                        String oldStr = df.format(oldDmg);
-                        String newStr = df.format(newDmg);
-
-                        for (int i = 0 ; i < lore.size(); i++) {
-                            String line = lore.get(i);
-                            if (line.contains(ChatColor.translateAlternateColorCodes('&', "&2 " + baseStr + " Attack Damage"))) {
-                                lore.set(i, line.replace(baseStr, newStr));
-                            }
-                            if (line.contains(ChatColor.translateAlternateColorCodes('&', "&2 " + oldStr + " Attack Damage"))) {
-                                lore.set(i, line.replace(oldStr, newStr));
+                        for (int i = 0 ; i < len; i++) {
+                            if (lore.get(i).contains("Attack Damage")) {
+                                index = i;
+                                break;
                             }
                         }
-                        meta.setLore(lore);
-                        item.setItemMeta(meta);
+
+                        if (index != -1) {
+                            List<String> before = new ArrayList<>(lore.subList(0, index));
+                            LorePresets.addGearStats(before, Attribute.GENERIC_ATTACK_DAMAGE, newDmg);
+
+                            if (index + 1 < len) {
+                                before.addAll(lore.subList(index + 1, lore.size()));
+                            }
+
+                            meta.setLore(before);
+                            item.setItemMeta(meta);
+                        }
                     }
                 }
             }
@@ -565,6 +566,14 @@ public class Utils {
 
     public static boolean hasNbtTag(@Nonnull ItemStack item, @Nonnull String key) {
         return RealisticSurvivalPlugin.getUtil().hasInternalNbtTag(item, key);
+    }
+
+    public static int getMaxVanillaDurability(@Nonnull ItemStack item) {
+        return item.getType().getMaxDurability();
+    }
+
+    public static int getVanillaDurability(@Nonnull ItemStack item) {
+        return getMaxVanillaDurability(item) - ((Damageable) item).getDamage();
     }
 
     public static int getMaxCustomDurability(@Nonnull ItemStack item) {
@@ -923,6 +932,11 @@ public class Utils {
         }
     }
 
+    public static boolean canRain(@Nonnull Location loc) {
+        double biomeTemp = loc.getWorld().getTemperature((int) loc.getX(), (int) loc.getY(), (int) loc.getZ());
+        return biomeTemp >= 0.15 && biomeTemp <= 0.95 && loc.getWorld().getEnvironment() == World.Environment.NORMAL;
+    }
+
     public static boolean isInWater(@Nonnull Entity entity) {
         return internals.isInWater(entity);
     }
@@ -1227,7 +1241,7 @@ public class Utils {
         FileConfiguration config = plugin.getConfig();
         if (config.getBoolean("UpdateItems.Enabled")) {
             if (RSVItem.isRSVItem(item)) {
-                RSVItem rsvItem = RSVItem.getItem(RSVItem.getNameFromItem(item));
+                ItemStack rsvItem = RSVItem.getItem(RSVItem.getNameFromItem(item));
                 ItemMeta rsvMeta = rsvItem.getItemMeta();
 
                 if (config.getBoolean("UpdateItems.UpdateMaterial"))
@@ -1336,7 +1350,7 @@ public class Utils {
         FileConfiguration config = RSVModule.getModule(RSVItem.getModuleNameFromItem(clone)).getUserConfig().getConfig();
         if (config.getBoolean("UpdateNetheriteItems.Enabled")) {
             if (RSVItem.isRSVItem(clone)) {
-                RSVItem rsvItem = RSVItem.getItem(RSVItem.getNameFromItem(clone).replace("diamond", "netherite"));
+                ItemStack rsvItem = RSVItem.getItem(RSVItem.getNameFromItem(clone).replace("diamond", "netherite"));
                 ItemMeta rsvMeta = rsvItem.getItemMeta();
 
                 if (config.getBoolean("UpdateNetheriteItems.UpdateMaterial"))

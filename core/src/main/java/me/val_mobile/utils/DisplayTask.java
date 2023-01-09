@@ -26,6 +26,7 @@ import me.val_mobile.tan.ThirstCalculateTask;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -58,8 +59,8 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
         RSVModule tanModule = RSVModule.getModule(TanModule.NAME);
         RSVModule ifModule = RSVModule.getModule(IceFireModule.NAME);
 
-        this.tanConfig = tanModule.getUserConfig().getConfig();
-        this.ifConfig = ifModule.getUserConfig().getConfig();
+        this.tanConfig = tanModule.isEnabled() ? tanModule.getUserConfig().getConfig() : null;
+        this.ifConfig = ifModule.isEnabled() ? ifModule.getUserConfig().getConfig() : null;
         this.player = player;
         this.characterValues = new CharacterValues();
         this.tempEnabled = tanConfig.getBoolean("Temperature.Enabled");
@@ -78,19 +79,17 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
             String actionbarText = "";
             String titleText = "";
 
-            if (ifAllowedWorlds.contains(player.getWorld().getName())) {
-                if (!player.hasPermission("realisticsurvival.iceandfire.resistance.*")) {
-                    if (!player.hasPermission("realisticsurvival.iceandfire.resistance.sirenvisual")) {
-                        if (underSirenEffect) {
-                            if (ifConfig.getBoolean("Sirens.ChangeScreen.Enabled")) {
-                                titleText += characterValues.getSirenView();
-                            }
+            if (ifConfig != null && ifAllowedWorlds.contains(player.getWorld().getName())) {
+                if (!player.hasPermission("realisticsurvival.iceandfire.resistance.sirenvisual")) {
+                    if (underSirenEffect) {
+                        if (ifConfig.getBoolean("Sirens.ChangeScreen.Enabled")) {
+                            titleText += characterValues.getSirenView();
                         }
                     }
                 }
             }
 
-            if (tanAllowedWorlds.contains(player.getWorld().getName())) {
+            if (tanConfig != null && tanAllowedWorlds.contains(player.getWorld().getName())) {
                 double temperature = tanConfig.getDouble("Temperature.DefaultTemperature");
                 double thirst = tanConfig.getDouble("Temperature.DefaultThirst");
 
@@ -101,7 +100,7 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
                     thirst = ThirstCalculateTask.getTasks().get(id).getThirstLvl();
                 }
 
-                boolean isUnderwater = player.getRemainingAir() < 300;
+                boolean isUnderwater = player.getRemainingAir() < 300 || player.getEyeLocation().getBlock().getType() == Material.WATER;
 
                 if (tempEnabled && thirstEnabled) {
                     actionbarText += characterValues.getTemperatureThirstActionbar((int) Math.round(temperature), (int) Math.round(thirst), isUnderwater, parasitesActive);
@@ -117,32 +116,30 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
                     }
                 }
 
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.*")) {
-                    if (temperature < 6) {
-                        if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.Enabled")) {
-                            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldvisual")) {
-                                if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.UseVanillaFreezeEffect")) {
-                                    Utils.setFreezingView(player, tanConfig.getInt("VisualTickPeriod") + 5);
-                                }
-                                else {
-                                    titleText += characterValues.getIceVignette((int) Math.round(temperature));
-                                }
+                if (temperature < 6) {
+                    if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.Enabled")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.cold.visual")) {
+                            if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.UseVanillaFreezeEffect")) {
+                                Utils.setFreezingView(player, tanConfig.getInt("VisualTickPeriod") + 5);
+                            }
+                            else {
+                                titleText += characterValues.getIceVignette((int) Math.round(temperature));
                             }
                         }
                     }
-                    if (temperature > 19) {
-                        if (tanConfig.getBoolean("Temperature.Hyperthermia.ScreenTinting")) {
-                            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotvisual")) {
-                                titleText += characterValues.getFireVignette((int) Math.round(temperature));
-                            }
+                }
+                if (temperature > 19) {
+                    if (tanConfig.getBoolean("Temperature.Hyperthermia.ScreenTinting")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hot.visual")) {
+                            titleText += characterValues.getFireVignette((int) Math.round(temperature));
                         }
                     }
+                }
 
-                    if (thirst < 5) {
-                        if (tanConfig.getBoolean("Thirst.Dehydration.ScreenTinting")) {
-                            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstvisual")) {
-                                titleText += characterValues.getThirstVignette((int) Math.round(thirst));
-                            }
+                if (thirst < 5) {
+                    if (tanConfig.getBoolean("Thirst.Dehydration.ScreenTinting")) {
+                        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirst.visual")) {
+                            titleText += characterValues.getThirstVignette((int) Math.round(thirst));
                         }
                     }
                 }

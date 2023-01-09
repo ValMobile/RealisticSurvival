@@ -82,14 +82,63 @@ public class MiscEvents implements Listener {
         Recipe r = event.getRecipe();
 
         if (r != null) {
+            ItemStack[] matrix = event.getInventory().getMatrix();
+
+            if (event.isRepair()) {
+
+                ItemStack first = null;
+                ItemStack second = null;
+                boolean firstRSVItem = false;
+                boolean secondRSVItem = false;
+
+                for (ItemStack item : matrix) {
+                    if (Utils.isItemReal(item)) {
+                        if (first == null) {
+                            first = item;
+                            firstRSVItem = RSVItem.isRSVItem(item);
+                        }
+                        else {
+                            second = item;
+                            secondRSVItem = RSVItem.isRSVItem(item);
+                        }
+                    }
+                    if (!(first == null || second == null)) {
+                        break;
+                    }
+                }
+
+                if (firstRSVItem || secondRSVItem) {
+                    if (firstRSVItem && secondRSVItem) {
+                        if (RSVItem.getNameFromItem(first).equals(RSVItem.getNameFromItem(second))) {
+
+                            boolean hasCustomDur = Utils.hasCustomDurability(first);
+                            int maxDur = hasCustomDur ? Utils.getMaxCustomDurability(first) : Utils.getMaxVanillaDurability(first);
+
+                            int firstDur = hasCustomDur ? Utils.getCustomDurability(first) : Utils.getVanillaDurability(first);
+                            int secondDur = hasCustomDur ? Utils.getCustomDurability(second) : Utils.getVanillaDurability(second);
+
+                            int total = (int) Math.min(firstDur + secondDur + Math.floor(maxDur / 20D), maxDur);
+
+                            ItemStack result = RSVItem.getItem(RSVItem.getNameFromItem(first));
+                            Utils.changeDurability(result, total - maxDur, false);
+
+                            event.getInventory().setResult(result);
+                        }
+                        else {
+                            event.getInventory().setResult(null);
+                        }
+                    }
+                    else {
+                        event.getInventory().setResult(null);
+                    }
+                }
+            }
             if (r instanceof ShapedRecipe shaped) {
                 NamespacedKey key = shaped.getKey();
 
                 if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
                     switch (key.getKey()) {
                         case "dark_prismarine", "prismarine", "prismarine_bricks", "sea_lantern" -> {
-                            ItemStack[] matrix = event.getInventory().getMatrix();
-
                             for (ItemStack item : matrix) {
                                 if (RSVItem.isRSVItem(item)) {
                                     event.getInventory().setResult(null);
@@ -189,16 +238,45 @@ public class MiscEvents implements Listener {
         }
 
         ItemStack result = event.getResult();
+        ItemStack first = inv.getItem(0);
+        ItemStack second = inv.getItem(1);
 
-        if (RSVItem.isRSVItem(inv.getItem(0)) && Utils.isItemReal(result)) {
-            ItemStack second = inv.getItem(1);
-            if (Utils.isItemReal(second)) {
-                if (second.getItemMeta() instanceof EnchantmentStorageMeta enchMeta) {
-                    if (enchMeta.hasStoredEnchant(Enchantment.DAMAGE_ALL)) {
-                        Utils.updateDamageLore(result, enchMeta.getEnchants().entrySet());
-                        event.setResult(result);
+        if (Utils.isItemReal(result) && (RSVItem.isRSVItem(first) || RSVItem.isRSVItem(second))) {
+            if (RSVItem.isRSVItem(first)) {
+                if (RSVItem.isRSVItem(second)) {
+                    if (RSVItem.getNameFromItem(first).equals(RSVItem.getNameFromItem(second))) {
+                        if (Utils.hasCustomDurability(first)) {
+                            int maxDur = Utils.getMaxCustomDurability(first);
+                            int total = Math.min(Utils.getCustomDurability(first) + Utils.getCustomDurability(second), maxDur);
+
+                            if (first.getItemMeta().hasEnchant(Enchantment.DAMAGE_ALL) || second.getItemMeta().hasEnchant(Enchantment.DAMAGE_ALL)) {
+                                Utils.updateDamageLore(result, result.getItemMeta().getEnchants().entrySet());
+                            }
+
+                            int resultDur = Math.min(Utils.getCustomDurability(result), maxDur);
+
+                            Utils.changeDurability(result,  -resultDur + total, false);
+                            event.setResult(result);
+                        }
+                    }
+                    else {
+                        event.setResult(null);
                     }
                 }
+                else if (Utils.isItemReal(second)) {
+                    if (second.getItemMeta() instanceof EnchantmentStorageMeta enchMeta) {
+                        if (enchMeta.hasStoredEnchant(Enchantment.DAMAGE_ALL)) {
+                            Utils.updateDamageLore(result, result.getItemMeta().getEnchants().entrySet());
+                            event.setResult(result);
+                        }
+                    }
+                    else {
+                        event.setResult(null);
+                    }
+                }
+            }
+            else {
+                event.setResult(null);
             }
         }
     }

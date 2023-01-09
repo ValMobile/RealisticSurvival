@@ -78,23 +78,21 @@ public class HypothermiaTask extends BukkitRunnable implements RSVTask {
         Player player = this.player.getPlayer();
 
         if (conditionsMet(player)) {
-            if (!(player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.resistance.cold"))) {
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.colddamage")) {
-                    if (damageEnabled) {
-                        if (player.getHealth() >= damageCutoff) {
-                            if (player.getHealth() - damage <= 0) {
-                                module.getHypothermiaDeath().add(id);
-                            }
-
-                            player.damage(damage);
+            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.cold.damage")) {
+                if (damageEnabled) {
+                    if (player.getHealth() >= damageCutoff) {
+                        if (player.getHealth() - damage <= 0) {
+                            module.getHypothermiaDeath().add(id);
                         }
+
+                        player.damage(damage);
                     }
                 }
+            }
 
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldpotioneffects")) {
-                    if (potionEffectsEnabled) {
-                        player.addPotionEffects(potionEffects);
-                    }
+            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.cold.potioneffects")) {
+                if (potionEffectsEnabled) {
+                    player.addPotionEffects(potionEffects);
                 }
             }
         }

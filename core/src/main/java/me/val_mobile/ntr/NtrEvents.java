@@ -484,12 +484,11 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 int clayAmount = clay.getAmount();
                 int durability = Utils.getCustomDurability(clayTool);
 
-                if (durability - clayAmount < 0) {
-                    event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(durability));
-                }
-                else {
-                    event.getInventory().setResult(RSVItem.getItem("clay_brick").resize(clayAmount));
-                }
+                ItemStack clayBrick = RSVItem.getItem("clay_brick");
+
+                clayBrick.setAmount(durability - clayAmount < 0 ? durability : clayAmount);
+
+                event.getInventory().setResult(clayBrick);
             }
 
             if (config.getBoolean("Lumberjack.EnableSawPlankRecipes") && sawIndex > -1 && woodIndex > -1) {

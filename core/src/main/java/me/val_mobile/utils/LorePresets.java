@@ -680,7 +680,7 @@ public class LorePresets {
     }
 
     public static void addGearStats(List<String> lore, Attribute atr, double value) {
-        DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+        DecimalFormat df = new DecimalFormat("0.#", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
 
         if (!Utils.doublesEquals(value, 0D)) {
             switch (atr) {

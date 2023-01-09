@@ -395,33 +395,29 @@ public class TanEvents extends ModuleEvents implements Listener {
                         }
                     }
                     case LEFT_CLICK_AIR -> {
-                        if (config.getBoolean("Thirst.SaturationRestoration.Raining.Enabled")) {
-                            if (player.getWorld().hasStorm()) {
-                                if (Utils.isExposedToSky(player)) {
-                                    Location loc = player.getLocation();
-                                    if (Math.abs(loc.getPitch() + 90F) < 0.01) {
-                                        ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
+                        if (config.getBoolean("Thirst.SaturationRestoration.Raining.Enabled") && player.getWorld().hasStorm() && Utils.canRain(player.getLocation()) && Utils.isExposedToSky(player)) {
+                            Location loc = player.getLocation();
+                            if (Math.abs(loc.getPitch() + 90F) < 0.01) {
+                                ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
 
-                                        if (task != null) {
-                                            double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Raining.ThirstPoints");
-                                            double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Raining.SaturationPoints");
+                                if (task != null) {
+                                    double thirstPoints = config.getDouble("Thirst.SaturationRestoration.Raining.ThirstPoints");
+                                    double saturationPoints = config.getDouble("Thirst.SaturationRestoration.Raining.SaturationPoints");
 
-                                            task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
-                                            task.setSaturationLvl(Math.min(task.getSaturationLvl() + saturationPoints, task.getThirstLvl()));
+                                    task.setThirstLvl(Math.min(task.getThirstLvl() + thirstPoints, MAXIMUM_THIRST));
+                                    task.setSaturationLvl(Math.min(task.getSaturationLvl() + saturationPoints, task.getThirstLvl()));
 
-                                            if (config.getBoolean("Thirst.SaturationRestoration.Raining.Sound.Enabled")) {
-                                                String soundName = config.getString("Thirst.SaturationRestoration.Raining.Sound.Sound");
-                                                float volume = (float) config.getDouble("Thirst.SaturationRestoration.Raining.Sound.Volume");
-                                                float pitch = (float) config.getDouble("Thirst.SaturationRestoration.Raining.Sound.Pitch");
-                                                Utils.playSound(loc, soundName, volume, pitch);
-                                            }
+                                    if (config.getBoolean("Thirst.SaturationRestoration.Raining.Sound.Enabled")) {
+                                        String soundName = config.getString("Thirst.SaturationRestoration.Raining.Sound.Sound");
+                                        float volume = (float) config.getDouble("Thirst.SaturationRestoration.Raining.Sound.Volume");
+                                        float pitch = (float) config.getDouble("Thirst.SaturationRestoration.Raining.Sound.Pitch");
+                                        Utils.playSound(loc, soundName, volume, pitch);
+                                    }
 
-                                            // regular water
-                                            if (config.getBoolean("Thirst.Parasites.Rain.Enabled")) {
-                                                if (Utils.roll(config.getDouble("Thirst.Parasites.Rain.Chance"))) {
-                                                    parasites = true;
-                                                }
-                                            }
+                                    // regular water
+                                    if (config.getBoolean("Thirst.Parasites.Rain.Enabled")) {
+                                        if (Utils.roll(config.getDouble("Thirst.Parasites.Rain.Chance"))) {
+                                            parasites = true;
                                         }
                                     }
                                 }

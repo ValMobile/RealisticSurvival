@@ -84,21 +84,14 @@ public class ParasiteTask extends BukkitRunnable implements RSVTask {
             ticks += tickPeriod;
 
             DisplayTask.getTasks().get(id).setParasitesActive(true);
-            if (!(player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.resistance.parasite"))) {
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.parasitedamage")) {
-                    if (damageEnabled) {
-                        if (player.getHealth() >= damageCutoff) {
-                            if (player.getHealth() - damage <= 0) {
-                                module.getParasiteDeath().add(id);
-                            }
-                            player.damage(damage);
-                        }
-                    }
-                }
 
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.parasitepotioneffects")) {
-                    if (potionEffectsEnabled) {
-                        player.addPotionEffects(potionEffects);
+            if (!player.hasPermission("realisticsurvival.toughasnails.resistance.parasite.damage")) {
+                if (damageEnabled) {
+                    if (player.getHealth() >= damageCutoff) {
+                        if (player.getHealth() - damage <= 0) {
+                            module.getParasiteDeath().add(id);
+                        }
+                        player.damage(damage);
                     }
                 }
             }
@@ -116,15 +109,13 @@ public class ParasiteTask extends BukkitRunnable implements RSVTask {
     @Override
     public void start() {
         Player player = this.player.getPlayer();
-        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
+        ThirstCalculateTask.getTasks().get(id).setParasitesActive(true);
+
+        if (!player.hasPermission("realisticsurvival.toughasnails.resistance.parasite.potioneffects")) {
             if (config.getBoolean("Thirst.Parasites.PotionEffects.Enabled")) {
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirstpotioneffects")) {
-                    player.addPotionEffects(potionEffects);
-                }
+                player.addPotionEffects(potionEffects);
             }
         }
-
-        ThirstCalculateTask.getTasks().get(id).setParasitesActive(true);
 
         this.runTaskTimer(plugin, 0L, tickPeriod);
     }

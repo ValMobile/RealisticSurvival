@@ -6,12 +6,12 @@
 
     <groupId>me.Val_Mobile</groupId>
     <artifactId>realisticsurvival-parent</artifactId>
-    <version>1.2.4-RELEASE</version>
+    <version>1.2.5-DEV-0</version>
     <packaging>pom</packaging>
 
     <name>Realistic Survival</name>
     <description>A Spigot plugin that aims to increase the difficulty of normal vanilla Minecraft</description>
-    <url>https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795/</url>
+    <url>https://www.spigotmc.org/resources/realistic-survival-1-16-dragons-baubles-weapons.93795/</url>
 
     <modules>
         <module>core</module>

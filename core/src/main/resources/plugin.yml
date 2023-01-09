@@ -1,9 +1,9 @@
 main: me.val_mobile.realisticsurvival.RealisticSurvivalPlugin
 name: RealisticSurvival
-version: 1.2.4-RELEASE
+version: 1.2.5-DEV-0
 author: Val_Mobile
 description: A Spigot plugin that aims to increase the difficulty of normal vanilla Minecraft
-website: https://www.spigotmc.org/resources/realistic-survival-1-17-temperature-thirst-baubles.93795
+website: https://www.spigotmc.org/resources/realistic-survival-1-16-dragons-baubles-weapons.93795/
 api-version: 1.16
 softdepend: [RealisticSeasons]
 
@@ -17,88 +17,98 @@ commands:
 permissions:
   realisticsurvival.iceandfire.resistance.sirenvisual:
     description: Prevents the player's screen from changing due to sirens
-    default: not op
+    default: false
   realisticsurvival.iceandfire.resistance.*:
     description: Wildcard permission
-    default: not op
+    default: false
     children:
       realisticsurvival.iceandfire.resistance.sirenvisual: true
-  realisticsurvival.toughasnails.resistance.cold:
+  realisticsurvival.toughasnails.resistance.cold.*:
     description: Prevents the player from getting cold
-    default: not op
-  realisticsurvival.toughasnails.resistance.colddamage:
+    default: false
+    children:
+      realisticsurvival.toughasnails.resistance.cold.damage: true
+      realisticsurvival.toughasnails.resistance.cold.potioneffects: true
+      realisticsurvival.toughasnails.resistance.cold.visual: true
+      realisticsurvival.toughasnails.resistance.cold.breath: true
+  realisticsurvival.toughasnails.resistance.cold.damage:
     description: Prevents the player from taking damage due to hypothermia
-    default: not op
-  realisticsurvival.toughasnails.resistance.coldpotioneffects:
+    default: false
+  realisticsurvival.toughasnails.resistance.cold.potioneffects:
     description: Prevents the player from receiving status effects due to hypothermia
-    default: not op
-  realisticsurvival.toughasnails.resistance.coldvisual:
+    default: false
+  realisticsurvival.toughasnails.resistance.cold.visual:
     description: Prevents the player's screen from freezing due to hypothermia
-    default: not op
-  realisticsurvival.toughasnails.resistance.coldbreath:
+    default: false
+  realisticsurvival.toughasnails.resistance.cold.breath:
     description: Prevents the player from breathing out cold air
-    default: not op
-  realisticsurvival.toughasnails.resistance.hot:
+    default: false
+  realisticsurvival.toughasnails.resistance.hot.*:
     description: Prevents the player from getting hot
-    default: not op
-  realisticsurvival.toughasnails.resistance.hotsweat:
+    default: false
+    children:
+      realisticsurvival.toughasnails.resistance.hot.sweat: true
+      realisticsurvival.toughasnails.resistance.hot.damage: true
+      realisticsurvival.toughasnails.resistance.hot.combustion: true
+      realisticsurvival.toughasnails.resistance.hot.potioneffects: true
+      realisticsurvival.toughasnails.resistance.hot.visual: true
+  realisticsurvival.toughasnails.resistance.hot.sweat:
     description: Prevents the player from sweating
-    default: not op
-  realisticsurvival.toughasnails.resistance.hotdamage:
+    default: false
+  realisticsurvival.toughasnails.resistance.hot.damage:
     description: Prevents the player from taking damage due to hyperthermia
-    default: not op
-  realisticsurvival.toughasnails.resistance.hotcombustion:
+    default: false
+  realisticsurvival.toughasnails.resistance.hot.combustion:
     description: Prevents the player from being ignited due to hyperthermia
-    default: not op
-  realisticsurvival.toughasnails.resistance.hotpotioneffects:
+    default: false
+  realisticsurvival.toughasnails.resistance.hot.potioneffects:
     description: Prevents the player from receiving status effects due to hyperthermia
-    default: not op
-  realisticsurvival.toughasnails.resistance.hotvisual:
+    default: false
+  realisticsurvival.toughasnails.resistance.hot.visual:
     description: Prevents the player's screen from burning due to hypothermia
-    default: not op
+    default: false
+  realisticsurvival.toughasnails.resistance.thirst.*:
+    description: Prevents the player from getting hot
+    default: false
+    children:
+      realisticsurvival.toughasnails.resistance.thirst.damage: true
+      realisticsurvival.toughasnails.resistance.thirst.potioneffects: true
+      realisticsurvival.toughasnails.resistance.thirst.visual: true
   realisticsurvival.toughasnails.resistance.thirst:
     description: Prevents the player from getting thirsty
-    default: not op
-  realisticsurvival.toughasnails.resistance.thirstdamage:
+    default: false
+  realisticsurvival.toughasnails.resistance.thirst.damage:
     description: Prevents the player from taking damage due to dehydration
-    default: not op
-  realisticsurvival.toughasnails.resistance.thirstpotioneffects:
+    default: false
+  realisticsurvival.toughasnails.resistance.thirst.potioneffects:
     description: Prevents the player from receiving status effects due to dehydration
-    default: not op
-  realisticsurvival.toughasnails.resistance.thirstvisual:
+    default: false
+  realisticsurvival.toughasnails.resistance.thirst.visual:
     description: Prevents the player's screen from changing due to dehydration
-    default: not op
+    default: false
+  realisticsurvival.toughasnails.resistance.parasite.*:
+    description: Prevents the player from getting hot
+    default: false
+    children:
+      realisticsurvival.toughasnails.resistance.parasite.damage: true
+      realisticsurvival.toughasnails.resistance.parasite.potioneffects: true
   realisticsurvival.toughasnails.resistance.parasite:
     description: Prevents the player from getting parasites
-    default: not op
-  realisticsurvival.toughasnails.resistance.parasitedamage:
+    default: false
+  realisticsurvival.toughasnails.resistance.parasite.damage:
     description: Prevents the player from taking damage from parasites
-    default: not op
-  realisticsurvival.toughasnails.resistance.parasitepotioneffects:
-    description: Prevents the player from taking damage from parasites
-    default: not op
+    default: false
+  realisticsurvival.toughasnails.resistance.parasite.potioneffects:
+    description: Prevents the player from receiving status effects due to parasites
+    default: false
   realisticsurvival.toughasnails.resistance.*:
     description: Wildcard permission
-    default: not op
+    default: false
     children:
-      realisticsurvival.toughasnails.resistance.cold: true
-      realisticsurvival.toughasnails.resistance.coldbreath: true
-      realisticsurvival.toughasnails.resistance.colddamage: true
-      realisticsurvival.toughasnails.resistance.coldpotioneffects: true
-      realisticsurvival.toughasnails.resistance.coldvisual: true
-      realisticsurvival.toughasnails.resistance.hot: true
-      realisticsurvival.toughasnails.resistance.hotsweat: true
-      realisticsurvival.toughasnails.resistance.hotdamage: true
-      realisticsurvival.toughasnails.resistance.hotcombustion: true
-      realisticsurvival.toughasnails.resistance.hotpotioneffects: true
-      realisticsurvival.toughasnails.resistance.hotvisual: true
-      realisticsurvival.toughasnails.resistance.thirst: true
-      realisticsurvival.toughasnails.resistance.thirstdamage: true
-      realisticsurvival.toughasnails.resistance.thirstpotioneffects: true
-      realisticsurvival.toughasnails.resistance.thirstvisual: true
-      realisticsurvival.toughasnails.resistance.parasite: true
-      realisticsurvival.toughasnails.resistance.parasitedamage: true
-      realisticsurvival.toughasnails.resistance.parasitepotioneffects: true
+      realisticsurvival.toughasnails.resistance.cold.*: true
+      realisticsurvival.toughasnails.resistance.hot.*: true
+      realisticsurvival.toughasnails.resistance.thirst.*: true
+      realisticsurvival.toughasnails.resistance.parasite.*: true
   realisticsurvival.command.give:
     description: Allows users to give themselves items from the plugin
     default: op

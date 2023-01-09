@@ -32,6 +32,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
@@ -213,15 +214,15 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
             }
 
             if (temp != NEUTRAL_TEMPERATURE) {
-                if (temp < NEUTRAL_TEMPERATURE && isPlayerImmuneToCold()) {
+                if (temp < NEUTRAL_TEMPERATURE && hasColdImmunity(player)) {
                     temp = NEUTRAL_TEMPERATURE;
                 }
-                if (temp > NEUTRAL_TEMPERATURE && isPlayerImmuneToHot()) {
+                if (temp > NEUTRAL_TEMPERATURE && hasHotImmunity(player)) {
                     temp = NEUTRAL_TEMPERATURE;
                 }
             }
 
-            if (!isPlayerImmuneToCold()) {
+            if (!hasColdImmunity(player)) {
                 if (config.getBoolean("Temperature.Hypothermia.Enabled")) {
                     if (temp <= config.getDouble("Temperature.Hypothermia.Temperature")) {
                         if (!HypothermiaTask.hasTask(id)) {
@@ -230,7 +231,7 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
                     }
                 }
 
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.coldbreath")) {
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.cold.breath")) {
                     if (config.getBoolean("Temperature.ColdBreath.Enabled")) {
                         if (temp <= config.getDouble("Temperature.ColdBreath.MaximumTemperature")) {
                             if (!ColdBreathTask.hasTask(id)) {
@@ -241,7 +242,7 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
                 }
             }
 
-            if (!isPlayerImmuneToHot()) {
+            if (!hasHotImmunity(player)) {
                 if (config.getBoolean("Temperature.Hyperthermia.Enabled")) {
                     if (temp >= config.getDouble("Temperature.Hyperthermia.Temperature")) {
                         if (!HyperthermiaTask.hasTask(id)) {
@@ -250,7 +251,7 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
                     }
                 }
 
-                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hotsweat")) {
+                if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hot.sweat")) {
                     if (config.getBoolean("Temperature.Sweating.Enabled")) {
                         if (temp >= config.getDouble("Temperature.Sweating.MinimumTemperature")) {
                             if (!SweatTask.hasTask(id)) {
@@ -294,16 +295,12 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
         }
     }
 
-    private boolean isPlayerImmuneToHot() {
-        Player player = this.player.getPlayer();
-
-        return player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.hot");
+    private boolean hasHotImmunity(@Nonnull Player player) {
+        return player.hasPermission("realisticsurvival.toughasnails.resistance.hot.*");
     }
 
-    private boolean isPlayerImmuneToCold() {
-        Player player = this.player.getPlayer();
-
-        return player.hasPermission("realisticsurvival.toughasnails.resistance.*") || player.hasPermission("realisticsurvival.toughasnails.cold");
+    private boolean hasColdImmunity(@Nonnull Player player) {
+        return player.hasPermission("realisticsurvival.toughasnails.resistance.cold.*");
     }
 
     @Override
