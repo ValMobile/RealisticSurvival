@@ -16,8 +16,8 @@
  */
 package me.val_mobile.misc;
 
+import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Consumer;
 
@@ -45,7 +45,7 @@ public class UpdateChecker {
                     consumer.accept(scanner.next());
                 }
             } catch (IOException exception) {
-                this.plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&',"&cCannot look for updates: " + exception.getMessage()));
+                this.plugin.getLogger().info(Utils.translateMsg("&cCannot look for updates: " + exception.getMessage()));
             }
         });
     }
@@ -61,7 +61,7 @@ public class UpdateChecker {
             List<String> messages = compareTo == 0 ? plugin.getConfig().getStringList("CorrectVersion") : compareTo < 0 ? plugin.getConfig().getStringList("OutdatedVersion") : plugin.getConfig().getStringList("DeveloperBuildVersion");
 
             for (String message : messages) {
-                logger.info(ChatColor.translateAlternateColorCodes('&', message));
+                logger.info(Utils.translateMsg(message));
             }
         });
     }

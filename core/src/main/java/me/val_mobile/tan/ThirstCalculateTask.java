@@ -138,6 +138,10 @@ public class ThirstCalculateTask extends BukkitRunnable implements RSVTask {
         this.parasitesActive = parasitesActive;
     }
 
+    public boolean isParasitesActive() {
+        return parasitesActive;
+    }
+
     public double getSaturationLvl() {
         return saturationLvl;
     }

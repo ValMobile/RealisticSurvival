@@ -58,7 +58,7 @@ import java.util.UUID;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.5-DEV-0
+ * @version 1.2.5-DEV-1
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -100,7 +100,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                     event.setCancelled(true);
                             default -> {
                                 if (Objects.equals(RSVItem.getModuleNameFromItem(droppedItem), BaubleModule.NAME)) {
-                                    Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, droppedItem, BaubleChangeEvent.BaubleChange.REMOVAL));
+                                    Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, droppedItem, BaubleChange.REMOVAL));
                                 }
                             }
                         }
@@ -133,7 +133,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 Collection<ItemStack> baubles = rsvPlayer.getBaubleDataModule().getBaubleBag().getAllBaubles();
 
                 for (ItemStack item : baubles) {
-                    Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(p, item, BaubleChangeEvent.BaubleChange.ADDITION));
+                    Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(p, item, BaubleChange.ADDITION));
                 }
             }
         }
@@ -163,7 +163,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                         Collection<ItemStack> baubles = rsvPlayer.getBaubleDataModule().getBaubleBag().getAllBaubles();
 
                         for (ItemStack item : baubles) {
-                            Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, item, BaubleChangeEvent.BaubleChange.ADDITION));
+                            Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, item, BaubleChange.ADDITION));
                         }
                     }
                 }
@@ -187,7 +187,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 Collection<ItemStack> baubles = rsvPlayer.getBaubleDataModule().getBaubleBag().getAllBaubles();
 
                 for (ItemStack item : baubles) {
-                    Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(p, item, BaubleChangeEvent.BaubleChange.ADDITION));
+                    Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(p, item, BaubleChange.ADDITION));
                 }
             }
         }
@@ -205,7 +205,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
         RSVPlayer rsvPlayer = RSVPlayer.getPlayers().get(id);
 
-        if (event.getChange() == BaubleChangeEvent.BaubleChange.ADDITION) {
+        if (event.getChange() == BaubleChange.ADDITION) {
             boolean isValid = true;
             TickableBaubleManager manager = null;
             try {
@@ -368,7 +368,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                                             case "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" -> event.setCurrentItem(null);
                                                             default -> {}
                                                         }
-                                                        Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, cursor, BaubleChangeEvent.BaubleChange.ADDITION));
+                                                        Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, cursor, BaubleChange.ADDITION));
                                                     } else
                                                         event.setCancelled(true);
                                                 }
@@ -1030,7 +1030,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
                         if (inv.hasBauble("pride_pendant")) {
                             if (!PotionBaubleTask.hasTask(id, "pride_pendant")) {
-                                Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, inv.getItem("pride_pendant"), BaubleChangeEvent.BaubleChange.ADDITION));
+                                Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, inv.getItem("pride_pendant"), BaubleChange.ADDITION));
                             }
                         }
                     }

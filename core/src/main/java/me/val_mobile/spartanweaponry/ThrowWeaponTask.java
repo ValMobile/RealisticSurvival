@@ -23,7 +23,6 @@ import me.val_mobile.spartanandfire.ElectrocuteTask;
 import me.val_mobile.spartanandfire.FreezeTask;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
@@ -273,7 +272,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
                             }
                             else {
                                 if (config.getBoolean("MaxDistanceReached.Enabled")) {
-                                    String message = ChatColor.translateAlternateColorCodes('&', config.getString("MaxDistanceReached.Message"));
+                                    String message = Utils.translateMsg(entity, config.getString("MaxDistanceReached.Message"));
                                     message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(Math.sqrt(maxDistanceSquared))));
                                     entity.sendMessage(message);
                                 }
@@ -313,7 +312,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
         as.remove();
 
         if (config.getBoolean("WeaponDropped.Enabled")) {
-            String message = ChatColor.translateAlternateColorCodes('&', config.getString("WeaponDropped.Message"));
+            String message = Utils.translateMsg(this.entity, config.getString("WeaponDropped.Message"));
             message = message.replaceAll("%X-COORD%", String.valueOf((int) loc.getX()));
             message = message.replaceAll("%Y-COORD%", String.valueOf((int) loc.getY()));
             message = message.replaceAll("%Z-COORD%", String.valueOf((int) loc.getZ()));

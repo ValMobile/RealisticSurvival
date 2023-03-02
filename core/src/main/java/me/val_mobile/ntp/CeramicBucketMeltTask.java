@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.ntr;
+package me.val_mobile.ntp;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
@@ -61,7 +61,7 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
 
     private int ticks = 0;
 
-    public CeramicBucketMeltTask(RealisticSurvivalPlugin plugin, NtrModule module, Player player) {
+    public CeramicBucketMeltTask(RealisticSurvivalPlugin plugin, NtpModule module, Player player) {
         this.player = player;
         this.id = player.getUniqueId();
         this.plugin = plugin;

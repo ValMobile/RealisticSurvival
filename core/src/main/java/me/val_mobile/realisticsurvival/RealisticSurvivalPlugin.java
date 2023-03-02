@@ -21,11 +21,13 @@ import me.val_mobile.commands.Commands;
 import me.val_mobile.commands.Tab;
 import me.val_mobile.data.*;
 import me.val_mobile.iceandfire.IceFireModule;
+import me.val_mobile.integrations.PAPI;
+import me.val_mobile.integrations.RealisticSeasons;
 import me.val_mobile.misc.BStats;
 import me.val_mobile.misc.MiscEvents;
 import me.val_mobile.misc.ResourcePackEvents;
 import me.val_mobile.misc.UpdateChecker;
-import me.val_mobile.ntr.NtrModule;
+import me.val_mobile.ntp.NtpModule;
 import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.spartanweaponry.SwModule;
 import me.val_mobile.tan.TanModule;
@@ -36,6 +38,7 @@ import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -55,6 +58,7 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     private MiscRecipesConfig miscRecipesConfig;
     private MiscRecipes miscRecipes;
     private MiscItems miscItems;
+    private IntegrationsConfig integrationsConfig;
 
 //    private static RSVConfig langConfig;
 
@@ -66,6 +70,7 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         lorePresetConfig = new LorePresetConfig(this);
         this.miscItemsConfig = new MiscItemsConfig(this);
         this.miscRecipesConfig = new MiscRecipesConfig(this);
+        this.integrationsConfig = new IntegrationsConfig(this);
 
 //        String lang = config.getConfig().getString("Language");
 //
@@ -97,9 +102,9 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         if (baubleModule.isEnabled())
             baubleModule.initialize();
 
-        NtrModule ntrModule = new NtrModule(this);
-        if (ntrModule.isEnabled())
-            ntrModule.initialize();
+        NtpModule ntpModule = new NtpModule(this);
+        if (ntpModule.isEnabled())
+            ntpModule.initialize();
 
         SfModule sfModule = new SfModule(this);
         if (sfModule.isEnabled())
@@ -111,6 +116,14 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
 
         RSVEnchants rsvEnchants = new RSVEnchants(this);
         rsvEnchants.registerAllEnchants();
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                RealisticSeasons rs = new RealisticSeasons(getPlugin());
+            }
+        }.runTaskLater(this, 1L);
+        PAPI papi = new PAPI(this);
 
         if (config.getConfig().getBoolean("ResourcePack.Enabled"))
             pm.registerEvents(new ResourcePackEvents(this), this);
@@ -173,6 +186,10 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
 
     public FileConfiguration getMiscRecipesConfig() {
         return miscRecipesConfig.getConfig();
+    }
+
+    public FileConfiguration getIntegrationsConfig() {
+        return integrationsConfig.getConfig();
     }
 
     public MiscItems getMiscItems() {

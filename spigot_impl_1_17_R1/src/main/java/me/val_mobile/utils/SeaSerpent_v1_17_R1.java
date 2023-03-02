@@ -24,7 +24,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.ElderGuardian;
 import net.minecraft.world.level.Level;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
@@ -47,7 +46,7 @@ public class SeaSerpent_v1_17_R1 extends ElderGuardian implements SeaSerpent {
         List<SeaSerpentVariant> enabledVariants = SeaSerpentVariant.getEnabledVariants();
         this.variant = enabledVariants.get(Utils.getRandomNum(0, enabledVariants.size() - 1));
 
-        this.setCustomName(new TextComponent(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
+        this.setCustomName(new TextComponent(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
         this.setCustomNameVisible(false);
         addNbtData();
     }
@@ -59,7 +58,7 @@ public class SeaSerpent_v1_17_R1 extends ElderGuardian implements SeaSerpent {
         List<SeaSerpentVariant> enabledVariants = SeaSerpentVariant.getEnabledVariants();
         this.variant = enabledVariants.get(Utils.getRandomNum(0, enabledVariants.size() - 1));
 
-        this.setCustomName(new TextComponent(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
+        this.setCustomName(new TextComponent(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
         this.setCustomNameVisible(false);
         addNbtData();
     }
@@ -70,7 +69,7 @@ public class SeaSerpent_v1_17_R1 extends ElderGuardian implements SeaSerpent {
 
         this.variant = variant.isEnabled() ? variant : null;
 
-        this.setCustomName(new TextComponent(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
+        this.setCustomName(new TextComponent(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
         this.setCustomNameVisible(false);
         addNbtData();
     }

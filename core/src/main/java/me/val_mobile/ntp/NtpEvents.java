@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.ntr;
+package me.val_mobile.ntp;
 
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.ModuleItems;
@@ -54,14 +54,14 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public class NtrEvents extends ModuleEvents implements Listener {
+public class NtpEvents extends ModuleEvents implements Listener {
 
     private final FileConfiguration config;
     private final ModuleItems moduleItems;
-    private final NtrModule module;
+    private final NtpModule module;
     private final RealisticSurvivalPlugin plugin;
 
-    public NtrEvents(NtrModule module, RealisticSurvivalPlugin plugin) {
+    public NtpEvents(NtpModule module, RealisticSurvivalPlugin plugin) {
         super(module, plugin);
         this.module = module;
         this.plugin = plugin;
@@ -378,7 +378,7 @@ public class NtrEvents extends ModuleEvents implements Listener {
                 ItemStack item = event.getItemInHand();
 
                 if (RSVItem.isRSVItem(item)) {
-                    if (RSVItem.getModuleNameFromItem(item).equals(NtrModule.NAME)) {
+                    if (RSVItem.getModuleNameFromItem(item).equals(NtpModule.NAME)) {
                         if (RSVItem.getNameFromItem(item).contains("mattock")) {
 
                             Block block = event.getBlock();

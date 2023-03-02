@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.ntr;
+package me.val_mobile.ntp;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
@@ -62,7 +62,7 @@ public class FireStarterTask extends BukkitRunnable {
 
     private int ticks = 0;
 
-    public FireStarterTask(RealisticSurvivalPlugin plugin, NtrModule module, Player player, Location loc, Collection<Item> ingredients, boolean isSoulCampfire) {
+    public FireStarterTask(RealisticSurvivalPlugin plugin, NtpModule module, Player player, Location loc, Collection<Item> ingredients, boolean isSoulCampfire) {
         this.ingredients = ingredients;
         this.loc = loc;
         this.id = player.getUniqueId();

@@ -23,7 +23,6 @@ import net.minecraft.server.v1_16_R3.DamageSource;
 import net.minecraft.server.v1_16_R3.EntityGuardianElder;
 import net.minecraft.server.v1_16_R3.EntityTypes;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
@@ -46,7 +45,7 @@ public class SeaSerpent_v1_16_R4 extends EntityGuardianElder implements SeaSerpe
         List<SeaSerpentVariant> enabledVariants = SeaSerpentVariant.getEnabledVariants();
         this.variant = enabledVariants.get(Utils.getRandomNum(0, enabledVariants.size() - 1));
 
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
+        this.setCustomName(new ChatComponentText(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
         this.setCustomNameVisible(false);
         addNbtData();
     }
@@ -58,7 +57,7 @@ public class SeaSerpent_v1_16_R4 extends EntityGuardianElder implements SeaSerpe
         List<SeaSerpentVariant> enabledVariants = SeaSerpentVariant.getEnabledVariants();
         this.variant = enabledVariants.get(Utils.getRandomNum(0, enabledVariants.size() - 1));
 
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
+        this.setCustomName(new ChatComponentText(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
         this.setCustomNameVisible(false);
         addNbtData();
     }
@@ -69,7 +68,7 @@ public class SeaSerpent_v1_16_R4 extends EntityGuardianElder implements SeaSerpe
 
         this.variant = variant.isEnabled() ? variant : null;
 
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
+        this.setCustomName(new ChatComponentText(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
         this.setCustomNameVisible(false);
         addNbtData();
     }

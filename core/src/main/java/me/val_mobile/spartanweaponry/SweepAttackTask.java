@@ -31,7 +31,7 @@ import java.util.UUID;
 
 public class SweepAttackTask extends BukkitRunnable {
 
-    private final static Collection<UUID> mobs = new ArrayList<>();
+    private static final Collection<UUID> mobs = new ArrayList<>();
     private final RealisticSurvivalPlugin plugin;
     private final List<Entity> nearby;
     private final List<UUID> attacked = new ArrayList<>();

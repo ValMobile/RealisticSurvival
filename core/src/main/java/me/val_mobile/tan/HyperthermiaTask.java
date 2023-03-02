@@ -17,6 +17,8 @@
 package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVPlayer;
+import me.val_mobile.integrations.CompatiblePlugin;
+import me.val_mobile.integrations.RealisticSeasons;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVTask;
 import org.bukkit.configuration.ConfigurationSection;
@@ -48,6 +50,7 @@ public class HyperthermiaTask extends BukkitRunnable implements RSVTask {
     private final int igniteTicks;
     private final boolean igniteImmunityEnabled;
     private final double minTemperature;
+    private final RealisticSeasons rs;
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
 
 
@@ -68,6 +71,7 @@ public class HyperthermiaTask extends BukkitRunnable implements RSVTask {
         this.igniteTicks = config.getInt("Temperature.Hyperthermia.Ignite.FireTicks");
         this.igniteImmunityEnabled = config.getBoolean("Temperature.Hyperthermia.Ignite.FireResistanceImmunity");
         this.minTemperature = config.getDouble("Temperature.Hyperthermia.Temperature");
+        this.rs = (RealisticSeasons) CompatiblePlugin.getPlugin(RealisticSeasons.NAME);
 
         ConfigurationSection section = config.getConfigurationSection("Temperature.Hyperthermia.PotionEffects.Effects");
         Set<String> keys = section.getKeys(false);
@@ -89,7 +93,7 @@ public class HyperthermiaTask extends BukkitRunnable implements RSVTask {
 
         if (conditionsMet(player)) {
             if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hot.damage")) {
-                if (damageEnabled) {
+                if (damageEnabled && !rs.disableHyperthermiaDamage()) {
                     if (player.getHealth() >= damageCutoff) {
                         if (!(damageImmunityEnabled && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
                             if (player.getHealth() - damage <= 0) {
@@ -102,7 +106,7 @@ public class HyperthermiaTask extends BukkitRunnable implements RSVTask {
             }
 
             if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hot.potioneffects")) {
-                if (potionEffectsEnabled) {
+                if (potionEffectsEnabled && !rs.disableHyperthermiaPotions()) {
                     if (!(potionImmunityEnabled && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
                         player.addPotionEffects(potionEffects);
                     }
@@ -110,7 +114,7 @@ public class HyperthermiaTask extends BukkitRunnable implements RSVTask {
             }
 
             if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hot.combustion")) {
-                if (igniteEnabled) {
+                if (igniteEnabled && !rs.disableHyperthermiaIgnite()) {
                     if (player.getFireTicks() < igniteTicks) {
                         if (!(igniteImmunityEnabled && player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE))) {
                             player.setFireTicks(igniteTicks);

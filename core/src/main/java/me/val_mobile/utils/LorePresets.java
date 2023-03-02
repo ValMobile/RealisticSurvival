@@ -18,7 +18,6 @@ package me.val_mobile.utils;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.ConfigurationSection;
@@ -51,7 +50,7 @@ public class LorePresets {
             line = line.replaceAll("%DURABILITY_TAKEN%", df.format(durabilityTaken));
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -65,7 +64,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -79,7 +78,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -93,7 +92,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -101,7 +100,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Spear");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -120,7 +119,7 @@ public class LorePresets {
             line = line.replaceAll("%DURABILITY_TAKEN%", df.format(durabilityTaken));
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -128,7 +127,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Boomerang");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -142,7 +141,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -156,7 +155,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -170,7 +169,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%SHIELD_BREACH%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -186,7 +185,7 @@ public class LorePresets {
             line = line.replaceAll("%NAUSEA_AMPLIFIER%", Utils.toRomanNumeral(amplifier));
             line = line.replaceAll("%NAUSEA_DURATION%", df.format(duration / 20D));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -200,7 +199,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -214,7 +213,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -228,7 +227,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -236,7 +235,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Pike");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -250,7 +249,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -264,7 +263,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -278,7 +277,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -292,7 +291,7 @@ public class LorePresets {
         for (String line : lines) {
             line = line.replaceAll("%ARMOR_PIERCING%", dfpercent.format(percentAbsorbed));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -300,7 +299,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Battleaxe");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -316,7 +315,7 @@ public class LorePresets {
             line = line.replaceAll("%NAUSEA_AMPLIFIER%", Utils.toRomanNumeral(amplifier));
             line = line.replaceAll("%NAUSEA_DURATION%", df.format(duration / 20D));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -324,7 +323,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Cestus");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -332,7 +331,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Crossbow");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -340,7 +339,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Longbow");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -348,7 +347,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("FlamedDragonbone");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -356,7 +355,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("IcedDragonbone");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -364,7 +363,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("LightningDragonbone");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -372,7 +371,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("FireDragonsteel");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -380,7 +379,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("IceDragonsteel");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -388,7 +387,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("LightningDragonsteel");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -402,7 +401,7 @@ public class LorePresets {
             line = line.replaceAll("%BREED%", StringUtils.capitalize(breed.toLowerCase()));
             line = line.replaceAll("%STAGE%", String.valueOf(stage));
 
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
 
         meta.setLore(lore);
@@ -413,7 +412,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("BlueDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -421,7 +420,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("BronzeDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -429,7 +428,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("GrayDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -437,7 +436,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("GreenDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -445,7 +444,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("RedDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -453,7 +452,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("SapphireDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -461,7 +460,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("SilverDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -469,7 +468,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("WhiteDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -477,7 +476,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("AmethystDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -485,7 +484,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("BlackDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -493,7 +492,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("CopperDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         };
     }
 
@@ -501,7 +500,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("ElectricDragonscale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -509,7 +508,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("BlueSeaSerpentScale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -517,7 +516,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("BronzeSeaSerpentScale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -525,7 +524,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("DeepBlueSeaSerpentScale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -533,7 +532,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("GreenSeaSerpentScale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -541,7 +540,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("PurpleSeaSerpentScale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -549,7 +548,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("RedSeaSerpentScale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -557,7 +556,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("TealSeaSerpentScale");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -565,7 +564,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("DragonProtection");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -573,7 +572,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("TideGuardianBreathing");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -581,7 +580,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("LegendaryWeapon");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -592,7 +591,7 @@ public class LorePresets {
 
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf((int) Math.round(bonusDamage)));
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -603,7 +602,7 @@ public class LorePresets {
 
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf((int) Math.round(bonusDamage)));
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -614,7 +613,7 @@ public class LorePresets {
 
         for (String line : lines) {
             line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf((int) Math.round(bonusDamage)));
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -622,7 +621,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Weapon");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -630,7 +629,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Helmet");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -638,7 +637,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Chestplate");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -646,7 +645,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Leggings");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -654,7 +653,7 @@ public class LorePresets {
         List<String> lines = CONFIG.getStringList("Boots");
 
         for (String line : lines) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            lore.add(Utils.translateMsg(line));
         }
     }
 
@@ -684,10 +683,10 @@ public class LorePresets {
 
         if (!Utils.doublesEquals(value, 0D)) {
             switch (atr) {
-                case GENERIC_ATTACK_DAMAGE -> lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + df.format(value) + " Attack Damage"));
-                case GENERIC_ATTACK_SPEED -> lore.add(ChatColor.translateAlternateColorCodes('&', "&2 " + df.format(value) + " Attack Speed"));
-                case GENERIC_ARMOR -> lore.add(ChatColor.translateAlternateColorCodes('&', "&9+" + df.format(value) + " Armor"));
-                case GENERIC_ARMOR_TOUGHNESS -> lore.add(ChatColor.translateAlternateColorCodes('&', "&9+" + df.format(value) + " Armor Toughness"));
+                case GENERIC_ATTACK_DAMAGE -> lore.add(Utils.translateMsg("&2 " + df.format(value) + " Attack Damage"));
+                case GENERIC_ATTACK_SPEED -> lore.add(Utils.translateMsg("&2 " + df.format(value) + " Attack Speed"));
+                case GENERIC_ARMOR -> lore.add(Utils.translateMsg("&9+" + df.format(value) + " Armor"));
+                case GENERIC_ARMOR_TOUGHNESS -> lore.add(Utils.translateMsg("&9+" + df.format(value) + " Armor Toughness"));
             }
         }
     }

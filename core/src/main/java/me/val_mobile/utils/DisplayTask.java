@@ -19,13 +19,14 @@ package me.val_mobile.utils;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.iceandfire.IceFireModule;
+import me.val_mobile.integrations.CompatiblePlugin;
+import me.val_mobile.integrations.RealisticSeasons;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.tan.TanModule;
 import me.val_mobile.tan.TemperatureCalculateTask;
 import me.val_mobile.tan.ThirstCalculateTask;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -52,6 +53,7 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
     private final boolean thirstEnabled;
     private final Collection<String> tanAllowedWorlds;
     private final Collection<String> ifAllowedWorlds;
+    private final RealisticSeasons rs;
 
     public DisplayTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
@@ -68,6 +70,7 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
         this.tanAllowedWorlds = tanModule.getAllowedWorlds();
         this.ifAllowedWorlds = ifModule.getAllowedWorlds();
         this.id = player.getPlayer().getUniqueId();
+        this.rs = (RealisticSeasons) CompatiblePlugin.getPlugin(RealisticSeasons.NAME);
         tasks.put(id, this);
     }
 
@@ -117,7 +120,7 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
                 }
 
                 if (temperature < 6) {
-                    if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.Enabled")) {
+                    if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.Enabled") && !rs.disableHypothermiaTinting()) {
                         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.cold.visual")) {
                             if (tanConfig.getBoolean("Temperature.Hypothermia.ScreenTinting.UseVanillaFreezeEffect")) {
                                 Utils.setFreezingView(player, tanConfig.getInt("VisualTickPeriod") + 5);
@@ -129,7 +132,7 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
                     }
                 }
                 if (temperature > 19) {
-                    if (tanConfig.getBoolean("Temperature.Hyperthermia.ScreenTinting")) {
+                    if (tanConfig.getBoolean("Temperature.Hyperthermia.ScreenTinting") && !rs.disableHyperthermiaTinting()) {
                         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hot.visual")) {
                             titleText += characterValues.getFireVignette((int) Math.round(temperature));
                         }
@@ -146,11 +149,11 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
             }
 
             if (!actionbarText.isEmpty()) {
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', actionbarText)));
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(Utils.translateMsg(player, actionbarText)));
             }
 
             if (!titleText.isEmpty()) {
-                player.sendTitle(titleText, "", 0, 70, 0);
+                player.sendTitle(Utils.translateMsg(player, titleText), "", 0, 70, 0);
             }
         }
         else {

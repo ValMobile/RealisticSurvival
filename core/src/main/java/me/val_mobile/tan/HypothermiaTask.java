@@ -17,6 +17,8 @@
 package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVPlayer;
+import me.val_mobile.integrations.CompatiblePlugin;
+import me.val_mobile.integrations.RealisticSeasons;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVTask;
 import org.bukkit.configuration.ConfigurationSection;
@@ -39,6 +41,7 @@ public class HypothermiaTask extends BukkitRunnable implements RSVTask {
     private final RSVPlayer player;
     private final UUID id;
     private final Collection<String> allowedWorlds;
+    private final RealisticSeasons rs;
     private final boolean damageEnabled;
     private final double damageCutoff;
     private final double damage;
@@ -59,6 +62,7 @@ public class HypothermiaTask extends BukkitRunnable implements RSVTask {
         this.damage = config.getDouble("Temperature.Hypothermia.Damage.Amount");
         this.potionEffectsEnabled = config.getBoolean("Temperature.Hypothermia.PotionEffects.Enabled");
         this.maxTemperature = config.getDouble("Temperature.Hypothermia.Temperature");
+        this.rs = (RealisticSeasons) CompatiblePlugin.getPlugin(RealisticSeasons.NAME);
         ConfigurationSection section = config.getConfigurationSection("Temperature.Hypothermia.PotionEffects.Effects");
         Set<String> keys = section.getKeys(false);
 
@@ -79,7 +83,7 @@ public class HypothermiaTask extends BukkitRunnable implements RSVTask {
 
         if (conditionsMet(player)) {
             if (!player.hasPermission("realisticsurvival.toughasnails.resistance.cold.damage")) {
-                if (damageEnabled) {
+                if (damageEnabled && !rs.disableHypothermiaDamage()) {
                     if (player.getHealth() >= damageCutoff) {
                         if (player.getHealth() - damage <= 0) {
                             module.getHypothermiaDeath().add(id);
@@ -91,7 +95,7 @@ public class HypothermiaTask extends BukkitRunnable implements RSVTask {
             }
 
             if (!player.hasPermission("realisticsurvival.toughasnails.resistance.cold.potioneffects")) {
-                if (potionEffectsEnabled) {
+                if (potionEffectsEnabled && !rs.disableHypothermiaPotions()) {
                     player.addPotionEffects(potionEffects);
                 }
             }

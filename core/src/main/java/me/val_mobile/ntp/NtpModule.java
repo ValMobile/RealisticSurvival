@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.ntr;
+package me.val_mobile.ntp;
 
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
@@ -23,18 +23,18 @@ import me.val_mobile.data.notreepunching.ItemConfig;
 import me.val_mobile.data.notreepunching.RecipesConfig;
 import me.val_mobile.data.notreepunching.UserConfig;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.ChatColor;
+import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 
-public class NtrModule extends RSVModule {
+public class NtpModule extends RSVModule {
 
     private final RealisticSurvivalPlugin plugin;
 
-    private NtrEvents events;
+    private NtpEvents events;
 
     public static final String NAME = "NoTreePunching";
 
-    public NtrModule(RealisticSurvivalPlugin plugin) {
+    public NtpModule(RealisticSurvivalPlugin plugin) {
         super(NAME, plugin);
         this.plugin = plugin;
     }
@@ -49,13 +49,13 @@ public class NtrModule extends RSVModule {
 
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Initialize.Enabled")) {
-            String message = ChatColor.translateAlternateColorCodes('&', config.getString("Initialize.Message"));
+            String message = Utils.translateMsg(config.getString("Initialize.Message"));
             message = message.replaceAll("%NAME%", NAME);
 
             plugin.getLogger().info(message);
         }
 
-        events = new NtrEvents(this, plugin);
+        events = new NtpEvents(this, plugin);
 
         getModuleItems().initialize();
         getModuleRecipes().initialize();
@@ -66,14 +66,14 @@ public class NtrModule extends RSVModule {
     public void shutdown() {
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Shutdown.Enabled")) {
-            String message = ChatColor.translateAlternateColorCodes('&', config.getString("Shutdown.Message"));
+            String message = Utils.translateMsg(config.getString("Shutdown.Message"));
             message = message.replaceAll("%NAME%", NAME);
 
             plugin.getLogger().info(message);
         }
     }
 
-    public NtrEvents getEvents() {
+    public NtpEvents getEvents() {
         return events;
     }
 }

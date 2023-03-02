@@ -27,7 +27,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.level.Level;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
@@ -61,7 +60,7 @@ public abstract class Dragon_v1_19_R2 extends EnderDragon implements Dragon {
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(MutableComponent.create(new LiteralContents(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon"))));
+        this.setCustomName(MutableComponent.create(new LiteralContents(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon"))));
         this.setCustomNameVisible(false);
 
         addNbtData();
@@ -80,7 +79,7 @@ public abstract class Dragon_v1_19_R2 extends EnderDragon implements Dragon {
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(MutableComponent.create(new LiteralContents(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon"))));
+        this.setCustomName(MutableComponent.create(new LiteralContents(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon"))));
         this.setCustomNameVisible(false);
 
         addNbtData();
@@ -97,7 +96,7 @@ public abstract class Dragon_v1_19_R2 extends EnderDragon implements Dragon {
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(MutableComponent.create(new LiteralContents(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon"))));
+        this.setCustomName(MutableComponent.create(new LiteralContents(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon"))));
         this.setCustomNameVisible(false);
 
         addNbtData();
@@ -116,7 +115,7 @@ public abstract class Dragon_v1_19_R2 extends EnderDragon implements Dragon {
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(MutableComponent.create(new LiteralContents(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon"))));
+        this.setCustomName(MutableComponent.create(new LiteralContents(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon"))));
         this.setCustomNameVisible(false);
 
         addNbtData();
@@ -133,7 +132,7 @@ public abstract class Dragon_v1_19_R2 extends EnderDragon implements Dragon {
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(MutableComponent.create(new LiteralContents(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon"))));
+        this.setCustomName(MutableComponent.create(new LiteralContents(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon"))));
         this.setCustomNameVisible(false);
 
         addNbtData();

@@ -21,7 +21,6 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -34,7 +33,6 @@ import java.util.*;
 
 public class WormholeInventory extends GUI {
 
-    private final RealisticSurvivalPlugin plugin;
     private final NavigableMap<UUID, Integer> players = new TreeMap<>();
     private final Collection<Integer> notAllowed = List.of(17, 18, 26, 27, 35, 36);
     private final FileConfiguration config;
@@ -42,7 +40,6 @@ public class WormholeInventory extends GUI {
 
     public WormholeInventory(RealisticSurvivalPlugin plugin, BaubleModule module) {
         super(null, 54, "Wormhole Inventory");
-        this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();
         Inventory inv = getInventory();
 
@@ -68,7 +65,7 @@ public class WormholeInventory extends GUI {
             ((SkullMeta) meta).setOwningPlayer(Bukkit.getOfflinePlayer(id));
         }
 
-        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("WormholeInventory.SkullName").replaceAll("%PLAYER_NAME%", player.getDisplayName())));
+        meta.setDisplayName(Utils.translateMsg(player, config.getString("WormholeInventory.SkullName").replaceAll("%PLAYER_NAME%", player.getDisplayName())));
 
         skull.setItemMeta(meta);
         if (!players.containsKey(id)) {

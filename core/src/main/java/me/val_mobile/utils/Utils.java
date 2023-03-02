@@ -16,9 +16,12 @@
  */
 package me.val_mobile.utils;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.val_mobile.baubles.EndermanAlly;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.*;
+import me.val_mobile.integrations.CompatiblePlugin;
+import me.val_mobile.integrations.PAPI;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.spartanweaponry.KbTask;
 import me.val_mobile.utils.ToolHandler.Tool;
@@ -31,6 +34,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -53,8 +57,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.*;
 import java.util.logging.Level;
 
@@ -80,6 +82,60 @@ public class Utils {
 
     public Utils(RealisticSurvivalPlugin plugin) {
         this.plugin = plugin;
+    }
+
+    @Nonnull
+    public static String translateMsg(@Nullable CommandSender sender, @Nonnull String rawMessage) {
+        if (sender instanceof Player player) {
+            return translateMsg(player, rawMessage);
+        }
+        return translateMsg(rawMessage);
+    }
+
+    @Nonnull
+    public static String translateMsg(@Nullable Player player, @Nonnull String rawMessage) {
+        if (CompatiblePlugin.getPlugin(PAPI.NAME).isIntegrated() && player != null) {
+            return ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(player, rawMessage));
+        }
+        return translateMsg(rawMessage);
+    }
+
+    @Nonnull
+    public static String translateMsg(@Nonnull String rawMessage) {
+        return ChatColor.translateAlternateColorCodes('&', rawMessage);
+    }
+
+    @Nonnull
+    public static String[] translateMsgs(@Nullable CommandSender sender, @Nonnull String... rawMessages) {
+        if (sender instanceof Player player) {
+            return translateMsgs(player, rawMessages);
+        }
+        return translateMsgs(rawMessages);
+    }
+
+    @Nonnull
+    public static String[] translateMsgs(@Nullable Player player, @Nonnull String... rawMessages) {
+        if (CompatiblePlugin.getPlugin(PAPI.NAME).isIntegrated() && player != null) {
+            String[] translated = new String[rawMessages.length];
+
+            for (int i = 0; i < translated.length; i++) {
+                translated[i] = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(player, rawMessages[i]));
+            }
+
+            return translated;
+        }
+        return translateMsgs(rawMessages);
+    }
+
+    @Nonnull
+    public static String[] translateMsgs(@Nonnull String[] rawMessages) {
+        String[] translated = new String[rawMessages.length];
+
+        for (int i = 0; i < translated.length; i++) {
+            translated[i] = ChatColor.translateAlternateColorCodes('&', rawMessages[i]);
+        }
+
+        return translated;
     }
 
     @Nonnull

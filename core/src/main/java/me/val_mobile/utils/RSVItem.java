@@ -17,7 +17,6 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.data.RSVModule;
-import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -91,12 +90,12 @@ public class RSVItem extends ItemStack {
         }
 
         if (displayName != null) {
-            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', displayName));
+            meta.setDisplayName(Utils.translateMsg(displayName));
         }
 
         if (! (lore == null || lore.isEmpty()) ) {
             for (String s : lore) {
-                newLore.add(ChatColor.translateAlternateColorCodes('&', s));
+                newLore.add(Utils.translateMsg(s));
             }
         }
         if (! (itemFlags == null || itemFlags.isEmpty())) {
@@ -211,7 +210,7 @@ public class RSVItem extends ItemStack {
             }
         }
 
-        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', displayName));
+        meta.setDisplayName(Utils.translateMsg(displayName));
 
         if (! (lore == null || lore.isEmpty()) ) {
             for (String s : lore) {
@@ -220,7 +219,7 @@ public class RSVItem extends ItemStack {
                     LorePresets.useLorePreset(newLore, key, module.getUserConfig().getConfig().getConfigurationSection("Items." + name));
                 }
                 else {
-                    newLore.add(ChatColor.translateAlternateColorCodes('&', s));
+                    newLore.add(Utils.translateMsg(s));
                 }
             }
         }

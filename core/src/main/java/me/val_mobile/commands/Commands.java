@@ -24,7 +24,6 @@ import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -42,7 +41,7 @@ import static me.val_mobile.realisticsurvival.RealisticSurvivalPlugin.NAME;
  * Commands is a class that allows users to
  * access the plugin's commands in-game
  * @author Val_Mobile
- * @version 1.2.5-DEV-0
+ * @version 1.2.5-DEV-1
  * @since 1.0
  */
 public class Commands implements CommandExecutor {
@@ -144,15 +143,15 @@ public class Commands implements CommandExecutor {
                                         return true;
                                     }
                                     // send the user a message showing how they misspelled the item name
-                                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("MisspelledItemName")));
+                                    player.sendMessage(Utils.translateMsg(player, plugin.getConfig().getString("MisspelledItemName")));
                                     return true;
                                 }
                                 // send the user a message showing how that the specified player is offline
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoOnlinePlayer")));
+                                sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("NoOnlinePlayer")));
                                 return true;
                             }
                             // send the user a message showing how they misspelled the specified player's name
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("MisspelledPlayer")));
+                            sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("MisspelledPlayer")));
                             return true;
                         }
                         return true;
@@ -171,7 +170,7 @@ public class Commands implements CommandExecutor {
                      * The user must be typing from the console if they didn't type in-game as a player.
                      * Send the player a message showing successful reload of the plugin, and reload all configs.
                      */
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Reload")));
+                    sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("Reload")));
 
                     Collection<RSVConfig> configs = RSVConfig.getConfigList();
 
@@ -240,7 +239,7 @@ public class Commands implements CommandExecutor {
                                 return true;
                             }
                             // send the user a message showing how they misspelled the item name
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("MisspelledItemName")));
+                            sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("MisspelledItemName")));
                             return true;
                         }
                         if (isPlayer) {
@@ -381,7 +380,7 @@ public class Commands implements CommandExecutor {
                                 try {
                                     temperature = Integer.parseInt(args[2]);
                                 } catch (Exception e) {
-                                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
+                                    sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("InvalidArguments")));
                                     return true;
                                 }
 
@@ -393,11 +392,11 @@ public class Commands implements CommandExecutor {
                                 return true;
                             }
                             // send the user a message showing how that the specified player is offline
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoOnlinePlayer")));
+                            sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("NoOnlinePlayer")));
                             return true;
                         }
                         // send the user a message showing how they misspelled the specified player's name
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("MisspelledPlayer")));
+                        sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("MisspelledPlayer")));
                         return true;
                     }
                     return true;
@@ -426,7 +425,7 @@ public class Commands implements CommandExecutor {
                                 try {
                                     thirst = Integer.parseInt(args[2]);
                                 } catch (Exception e) {
-                                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("InvalidArguments")));
+                                    sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("InvalidArguments")));
                                     return true;
                                 }
 
@@ -438,11 +437,11 @@ public class Commands implements CommandExecutor {
                                 return true;
                             }
                             // send the user a message showing how that the specified player is offline
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoOnlinePlayer")));
+                            sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("NoOnlinePlayer")));
                             return true;
                         }
                         // send the user a message showing how they misspelled the specified player's name
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("MisspelledPlayer")));
+                        sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("MisspelledPlayer")));
                         return true;
                     }
                     return true;
@@ -501,7 +500,7 @@ public class Commands implements CommandExecutor {
 
                     String version = plugin.getConfig().getString("Version");
                     version = version.replaceAll("%PLUGIN_VERSION%", plugin.getDescription().getVersion());
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', version));
+                    sender.sendMessage(Utils.translateMsg(sender, version));
                     Bukkit.getServer().dispatchCommand(sender, "version");
                     return true;
                 }
@@ -514,13 +513,10 @@ public class Commands implements CommandExecutor {
     }
 
     private void sendHelpMessage(CommandSender sender) {
-        // send the user a message explaining how to use the realisticsurvival command
-        for (String s : plugin.getConfig().getStringList("Help")) {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', s));
-        }
+        sender.sendMessage(Utils.translateMsgs(sender, plugin.getConfig().getStringList("Help").toArray(new String[0])));
     }
 
     private void sendNoPermissionMessage(CommandSender sender) {
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("NoPermission")));
+        sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("NoPermission")));
     }
 }

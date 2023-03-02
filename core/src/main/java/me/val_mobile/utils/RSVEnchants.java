@@ -17,7 +17,6 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
 
 import java.lang.reflect.Field;
@@ -70,7 +69,7 @@ public class RSVEnchants {
             String raw = plugin.getConfig().getString("RegisteredEnchant");
 
             raw = raw.replaceAll("%ENCHANT%", ench.getKey().getKey());
-            plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', raw));
+            plugin.getLogger().info(Utils.translateMsg(raw));
         }
     }
 

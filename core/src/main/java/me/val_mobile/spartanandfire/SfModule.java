@@ -23,7 +23,7 @@ import me.val_mobile.data.spartanandfire.ItemConfig;
 import me.val_mobile.data.spartanandfire.RecipesConfig;
 import me.val_mobile.data.spartanandfire.UserConfig;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import org.bukkit.ChatColor;
+import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class SfModule extends RSVModule {
@@ -50,7 +50,7 @@ public class SfModule extends RSVModule {
 
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Initialize.Enabled")) {
-            String message = ChatColor.translateAlternateColorCodes('&', config.getString("Initialize.Message"));
+            String message = Utils.translateMsg(config.getString("Initialize.Message"));
             message = message.replaceAll("%NAME%", NAME);
 
             plugin.getLogger().info(message);
@@ -67,7 +67,7 @@ public class SfModule extends RSVModule {
     public void shutdown() {
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Shutdown.Enabled")) {
-            String message = ChatColor.translateAlternateColorCodes('&', config.getString("Shutdown.Message"));
+            String message = Utils.translateMsg(config.getString("Shutdown.Message"));
             message = message.replaceAll("%NAME%", NAME);
 
             plugin.getLogger().info(message);

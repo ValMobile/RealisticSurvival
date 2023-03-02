@@ -32,7 +32,7 @@ import java.util.UUID;
 public class StoneGreaterInertiaTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, StoneGreaterInertiaTask> tasks = new HashMap<>();
-    private final static float MAX_WALK_SPEED = 1.0f;
+    private static final float MAX_WALK_SPEED = 1.0f;
     private final RSVPlayer rsvPlayer;
     private final RealisticSurvivalPlugin plugin;
     private final UUID id;

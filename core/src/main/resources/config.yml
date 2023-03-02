@@ -1,7 +1,7 @@
 #########################################################################################
 #																					    #
 #	Realistic Survival Plugin	MC 1.16 - 1.19											#
-#	Version 1.2.5-DEV-0	    Made by: Val_Mobile									    #
+#	Version 1.2.5-DEV-1	        Made by: Val_Mobile									    #
 #																						#
 #########################################################################################
 
@@ -18,6 +18,7 @@ MisspelledItemName: "&cYou mispelled the item!"
 InvalidArguments: "&cYou are using the invalid arguments!"
 RegisteredEnchant: "&7Registered &e%ENCHANT% &7enchant!"                                                             # All placeholders: %ENCHANT%
 Version: "&6[Realistic Survival] &fYou're running on version %PLUGIN_VERSION%"                                       # All placeholders: %PLUGIN_VERSION%
+Integration: "&6[Realistic Survival] &fDetected &e%PLUGIN%&f. Enabling integration!"                                 # All placeholders: %PLUGIN%
 Help:
   - "&6-----Realistic Survival Command Help-----"
   - "&6/realisticsurvival &freload"
@@ -53,7 +54,7 @@ ResourcePack:
   Enabled: true
   # If you upgrade to newer versions, the URL will need to be manually updated to the newest one,
   # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
-  Url: "https://www.dropbox.com/s/sjrl9s2zavgkcod/Realistic%20Survival%20RP%201.2.3%20Release.zip?dl=1"
+  Url: "https://www.dropbox.com/s/9oaaz839l2r6gsu/Realistic%20Survival%20RP%201.2.5%20DEV-1.zip?dl=1"
 
 AutomaticallyEnableWorlds: true   # Will automatically enable modules for newly added worlds; if set to false, automatically disables modules for newly added worlds
 AutoUpdateConfig: true            # If set to true, will automatically update config; note that this may cause issues with porting across large updates
@@ -123,4 +124,4 @@ UpdateItems:
 #######################################
 
 BStats: true             # Do you want non-confidential server data to be recorded for my use?
-ConfigId: "1.2.5-DEV-0"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit

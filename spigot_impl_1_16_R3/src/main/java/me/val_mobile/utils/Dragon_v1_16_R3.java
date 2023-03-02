@@ -25,7 +25,6 @@ import net.minecraft.server.v1_16_R2.DamageSource;
 import net.minecraft.server.v1_16_R2.EntityEnderDragon;
 import net.minecraft.server.v1_16_R2.EntityTypes;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_16_R2.CraftWorld;
@@ -58,7 +57,7 @@ public abstract class Dragon_v1_16_R3 extends EntityEnderDragon implements Drago
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
+        this.setCustomName(new ChatComponentText(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
         this.setCustomNameVisible(false);
 
         addNbtData();
@@ -76,7 +75,7 @@ public abstract class Dragon_v1_16_R3 extends EntityEnderDragon implements Drago
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
+        this.setCustomName(new ChatComponentText(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
         this.setCustomNameVisible(false);
 
         addNbtData();
@@ -93,7 +92,7 @@ public abstract class Dragon_v1_16_R3 extends EntityEnderDragon implements Drago
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
+        this.setCustomName(new ChatComponentText(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
         this.setCustomNameVisible(false);
 
         addNbtData();
@@ -111,7 +110,7 @@ public abstract class Dragon_v1_16_R3 extends EntityEnderDragon implements Drago
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
+        this.setCustomName(new ChatComponentText(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
         this.setCustomNameVisible(false);
 
         addNbtData();
@@ -128,7 +127,7 @@ public abstract class Dragon_v1_16_R3 extends EntityEnderDragon implements Drago
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(new ChatComponentText(ChatColor.translateAlternateColorCodes('&',"Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
+        this.setCustomName(new ChatComponentText(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
         this.setCustomNameVisible(false);
 
         addNbtData();

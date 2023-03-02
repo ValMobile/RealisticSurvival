@@ -19,7 +19,6 @@ package me.val_mobile.spartanweaponry;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.ArmorStand;
@@ -81,13 +80,13 @@ public class ReturnWeaponTask extends BukkitRunnable {
                         Location dropLoc = dropItem(asLocation);
 
                         if (config.getBoolean("MaxReturnDistanceReached.Enabled")) {
-                            String message = ChatColor.translateAlternateColorCodes('&', config.getString("MaxReturnDistanceReached.Message"));
+                            String message = Utils.translateMsg(entity, config.getString("MaxReturnDistanceReached.Message"));
                             message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(maxReturnDistance)));
                             entity.sendMessage(message);
                         }
 
                         if (config.getBoolean("WeaponDropped.Enabled")) {
-                            String message = ChatColor.translateAlternateColorCodes('&', config.getString("WeaponDropped.Message"));
+                            String message = Utils.translateMsg(entity, config.getString("WeaponDropped.Message"));
                             message = message.replaceAll("%X-COORD%", String.valueOf((int) dropLoc.getX()));
                             message = message.replaceAll("%Y-COORD%", String.valueOf((int) dropLoc.getY()));
                             message = message.replaceAll("%Z-COORD%", String.valueOf((int) dropLoc.getZ()));
@@ -123,7 +122,7 @@ public class ReturnWeaponTask extends BukkitRunnable {
 
                         if (isInvFull) {
                             if (config.getBoolean("FullInventoryWeaponDropped.Enabled")) {
-                                String message = ChatColor.translateAlternateColorCodes('&', config.getString("FullInventoryWeaponDropped.Message"));
+                                String message = Utils.translateMsg(entity, config.getString("FullInventoryWeaponDropped.Message"));
                                 message = message.replaceAll("%X-COORD%", String.valueOf((int) pLocation.getX()));
                                 message = message.replaceAll("%Y-COORD%", String.valueOf((int) pLocation.getY()));
                                 message = message.replaceAll("%Z-COORD%", String.valueOf((int) pLocation.getZ()));

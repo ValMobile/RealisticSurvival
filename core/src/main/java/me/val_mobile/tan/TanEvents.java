@@ -140,7 +140,7 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                         int num = Utils.getRandomNum(0, deathMessages.size() - 1);
 
-                        event.setDeathMessage(ChatColor.translateAlternateColorCodes('&', deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
+                        event.setDeathMessage(Utils.translateMsg(player, deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
                     }
                     module.getDehydrationDeath().remove(id);
                 }
@@ -150,7 +150,7 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                         int num = Utils.getRandomNum(0, deathMessages.size() - 1);
 
-                        event.setDeathMessage(ChatColor.translateAlternateColorCodes('&', deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
+                        event.setDeathMessage(Utils.translateMsg(player, deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
                     }
                     module.getParasiteDeath().remove(id);
                 }
@@ -168,7 +168,7 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                         int num = Utils.getRandomNum(0, deathMessages.size() - 1);
 
-                        event.setDeathMessage(ChatColor.translateAlternateColorCodes('&', deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
+                        event.setDeathMessage(Utils.translateMsg(player, deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
                     }
                     module.getHyperthermiaDeath().remove(id);
                 }
@@ -178,7 +178,7 @@ public class TanEvents extends ModuleEvents implements Listener {
 
                         int num = Utils.getRandomNum(0, deathMessages.size() - 1);
 
-                        event.setDeathMessage(ChatColor.translateAlternateColorCodes('&', deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
+                        event.setDeathMessage(Utils.translateMsg(player, deathMessages.get(num).replaceAll("%PLAYER_NAME%", player.getDisplayName())));
                     }
                     module.getHypothermiaDeath().remove(id);
                 }

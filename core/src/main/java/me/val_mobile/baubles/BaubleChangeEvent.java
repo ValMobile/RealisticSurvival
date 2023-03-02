@@ -61,8 +61,4 @@ public class BaubleChangeEvent extends Event {
     public static HandlerList getHandlerList() {
         return handlers;
     }
-
-    public enum BaubleChange {
-        ADDITION, REMOVAL
-    }
 }
