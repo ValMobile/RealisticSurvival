@@ -5,7 +5,7 @@ author: Val_Mobile
 description: ${project.parent.description}
 website: ${project.parent.url}
 api-version: 1.16
-softdepend: [PlaceholderAPI, RealisticSeasons]
+softdepend: [PlaceholderAPI, RealisticSeasons, WorldGuard]
 
 commands:
   RealisticSurvival:

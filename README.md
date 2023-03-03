@@ -32,11 +32,11 @@ To report bugs, open a [new issue](https://github.com/ValMobile/RealisticSurviva
 - [🤝Contributing to this project](https://github.com/ValMobile/RealisticSurvival#-contributing-to-this-project)
 - [❗Disclaimers](https://github.com/ValMobile/RealisticSurvival#-disclaimers)
 
-![Redline Hosting banner](https://raw.githubusercontent.com/ValMobile/RealisticSurvival-Wiki/master/images/redline-hosting-banner.png)
-## ✨ Start your Minecraft server today only for £1.25/GB!
+![Redline Hosting banner](https://i.imgur.com/xgb6q7s.png)
+## ✨ Start your Minecraft server today only for £1.50/GB!
 Are you looking for a reliable, affordable Minecraft hosting service to start your own personal Minecraft server? Redline Hosting is providing servers at affordable prices and excellent performance! Say goodbye to random, unexplained downtime, overloaded hardware, and long support wait times and instead start your dream Minecraft server today using Redline.
 
-Order now using [my affiliate link](https://billing.redlinehosting.net/aff.php?aff=6). Use the code **FIRSTMONTH25** during checkout to get a 25% discount.
+Order now using [my affiliate link](https://billing.redlinehosting.net/aff.php?aff=6). Use the code **REALISTICSURVIVAL** during checkout to get a 30% discount.
 
 ## 💻 Download Realistic Survival
 Realistic Survival requires your Minecraft server to be running on [Spigot](https://www.spigotmc.org/) or any of 
