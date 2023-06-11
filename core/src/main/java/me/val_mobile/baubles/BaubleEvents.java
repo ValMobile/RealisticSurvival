@@ -35,6 +35,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
@@ -58,7 +59,7 @@ import java.util.UUID;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.5-DEV-1
+ * @version 1.2.5-RELEASE
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -90,27 +91,22 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
         ItemStack droppedItem = event.getItemDrop().getItemStack();
         ItemStack cornerItem = player.getOpenInventory().getTopInventory().getItem(0);
-
-        if (shouldEventBeRan(player)) {
-            if (RSVItem.isRSVItem(cornerItem)) {
-                if (Objects.equals(RSVItem.getNameFromItem(cornerItem), "gui_glass")) {
-                    if (RSVItem.isRSVItem(droppedItem)) {
-                        switch (RSVItem.getNameFromItem(droppedItem)) {
-                            case "gui_glass", "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" ->
-                                    event.setCancelled(true);
-                            default -> {
-                                if (Objects.equals(RSVItem.getModuleNameFromItem(droppedItem), BaubleModule.NAME)) {
-                                    Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, droppedItem, BaubleChange.REMOVAL));
-                                }
-                            }
+        if (shouldEventBeRan(player) && RSVItem.isRSVItem(cornerItem) && Objects.equals(RSVItem.getNameFromItem(cornerItem), "gui_glass")) {
+            if (RSVItem.isRSVItem(droppedItem)) {
+                switch (RSVItem.getNameFromItem(droppedItem)) {
+                    case "gui_glass", "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" ->
+                            event.setCancelled(true);
+                    default -> {
+                        if (Objects.equals(RSVItem.getModuleNameFromItem(droppedItem), BaubleModule.NAME)) {
+                            Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, droppedItem, BaubleChange.REMOVAL));
                         }
                     }
-                    else {
-                        if (Utils.isItemReal(droppedItem)) {
-                            if (droppedItem.getType() == Material.PLAYER_HEAD) {
-                                event.setCancelled(true);
-                            }
-                        }
+                }
+            }
+            else {
+                if (Utils.isItemReal(droppedItem)) {
+                    if (droppedItem.getType() == Material.PLAYER_HEAD) {
+                        event.setCancelled(true);
                     }
                 }
             }
@@ -134,6 +130,25 @@ public class BaubleEvents extends ModuleEvents implements Listener {
 
                 for (ItemStack item : baubles) {
                     Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(p, item, BaubleChange.ADDITION));
+                }
+
+                // update bauble inventory
+                Inventory baubleInv = rsvPlayer.getBaubleDataModule().getBaubleBag().getInventory();
+                ItemStack item;
+
+                for (int i = 0; i < baubleInv.getSize(); i++) {
+                    item = baubleInv.getItem(i);
+                    if (RSVItem.isRSVItem(item)) {
+                        if (RSVItem.getNameFromItem(item).equals("gui_glass"))
+                            baubleInv.setItem(i, RSVItem.convertItemStackToRSVItem(item));
+                        else
+                            Utils.updateItem(item);
+
+                        if (item.getAmount() > 1) {
+                            item.setAmount(1);
+                            baubleInv.setItem(i, item);
+                        }
+                    }
                 }
             }
         }
@@ -323,68 +338,72 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                 ItemStack corner = event.getClickedInventory().getItem(0);
                 ItemStack current = event.getCurrentItem();
 
-                if (RSVItem.isRSVItem(corner)) {
-                    if (RSVItem.getNameFromItem(corner).equals("gui_glass")) {
-                        if (RSVItem.isRSVItem(current)) {
-                            String currentName = RSVItem.getNameFromItem(current);
-                            // if player clicks a gui glass
-                            if (currentName.equals("gui_glass"))
-                                event.setCancelled(true);
-                            else {
-                                int rawSlot = event.getRawSlot();
-                                if (RSVItem.isRSVItem(cursor)) {
-                                    String cursorName = RSVItem.getNameFromItem(cursor);
-                                    if (RSVItem.getNameFromItem(cursor).equals("gui_glass"))
-                                        event.setCancelled(true);
-                                    if (Utils.hasNbtTag(cursor, "rsvbaubleslot") && Utils.hasNbtTag(current, "rsvbaubleslot")) {
-                                        String cursorTag = Utils.getNbtTag(cursor, "rsvbaubleslot", PersistentDataType.STRING);
+                if (RSVItem.isRSVItem(corner) && RSVItem.getNameFromItem(corner).equals("gui_glass")) {
+                    // bauble bag gui
+                    if (RSVItem.isRSVItem(current)) {
+                        String currentName = RSVItem.getNameFromItem(current);
 
-                                        switch (cursorName) {
-                                            // cursor was a slot
-                                            case "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" ->
-                                                    event.setCancelled(true);
-                                            // current was a slot
-                                            default -> {
-                                                BaubleSlot currentSlot = null;
+                        if (currentName.equals("gui_glass") || event.getClick() == ClickType.SWAP_OFFHAND)
+                            event.setCancelled(true);
+                        else {
+                            int rawSlot = event.getRawSlot();
+                            if (RSVItem.isRSVItem(cursor)) {
+                                String cursorName = RSVItem.getNameFromItem(cursor);
 
-                                                BaubleSlot[] slots = BaubleSlot.values();
+                                if (!RSVItem.getNameFromItem(cursor).equals("gui_glass") && Utils.hasNbtTag(cursor, "rsvbaubleslot") && Utils.hasNbtTag(current, "rsvbaubleslot") && cursor.getAmount() == 1 && !Objects.equals(RSVItem.getNameFromItem(current), RSVItem.getNameFromItem(cursor)) && event.getClick() != ClickType.DOUBLE_CLICK) {
+                                    String cursorTag = Utils.getNbtTag(cursor, "rsvbaubleslot", PersistentDataType.STRING);
 
-                                                outer:
-                                                for (BaubleSlot s : slots) {
-                                                    for (int i : s.getValues()) {
-                                                        if (i == rawSlot) {
-                                                            currentSlot = s;
-                                                            break outer;
-                                                        }
+                                    switch (cursorName) {
+                                        // cursor was a slot
+                                        case "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" ->
+                                                event.setCancelled(true);
+                                        // current was a slot
+                                        default -> {
+                                            BaubleSlot currentSlot = null;
+
+                                            BaubleSlot[] slots = BaubleSlot.values();
+
+                                            outer:
+                                            for (BaubleSlot s : slots) {
+                                                for (int i : s.getValues()) {
+                                                    if (i == rawSlot) {
+                                                        currentSlot = s;
+                                                        break outer;
                                                     }
                                                 }
+                                            }
 
-                                                if (currentSlot == null) {
+                                            if (currentSlot == null) {
+                                                event.setCancelled(true);
+                                            }
+                                            else {
+                                                if (cursorTag.equals(currentSlot.getTag()) || cursorTag.equals("Any")) {
+                                                    switch (currentName) {
+                                                        case "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" -> event.setCurrentItem(null);
+                                                        default -> {}
+                                                    }
+                                                    Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, cursor, BaubleChange.ADDITION));
+                                                } else
                                                     event.setCancelled(true);
-                                                }
-                                                else {
-                                                    if (cursorTag.equals(currentSlot.getTag()) || cursorTag.equals("Any")) {
-                                                        switch (currentName) {
-                                                            case "body_slot", "ring_slot", "charm_slot", "belt_slot", "amulet_slot", "head_slot" -> event.setCurrentItem(null);
-                                                            default -> {}
-                                                        }
-                                                        Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(player, cursor, BaubleChange.ADDITION));
-                                                    } else
-                                                        event.setCancelled(true);
-                                                }
                                             }
                                         }
-                                    } else
-                                        event.setCancelled(true);
+                                    }
+                                }
+                                else
+                                    event.setCancelled(true);
+                            }
+                            else {
+                                if (Utils.isItemReal(cursor)) {
+                                    event.setCancelled(true);
                                 }
                                 else {
-                                    if (Utils.isItemReal(cursor)) {
-                                        event.setCancelled(true);
-                                    }
-                                    else {
-                                        switch (currentName) {
-                                            case "head_slot", "body_slot", "amulet_slot", "ring_slot", "charm_slot", "belt_slot" -> {event.setCancelled(true);}
-                                            default -> {
+                                    switch (currentName) {
+                                        case "head_slot", "body_slot", "amulet_slot", "ring_slot", "charm_slot", "belt_slot" -> event.setCancelled(true);
+                                        default -> {
+                                            if (event.getClick() == ClickType.NUMBER_KEY) {
+                                                event.setCancelled(true);
+                                            }
+                                            else {
                                                 // taking bauble out
                                                 outer:
                                                 for (BaubleSlot baubleslot : BaubleSlot.values()) {
@@ -393,8 +412,14 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                                             new BukkitRunnable() {
                                                                 @Override
                                                                 public void run() {
-                                                                    event.getWhoClicked().setItemOnCursor(current);
-                                                                    RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().getInventory().setItem(i, baubleslot.getItem());
+                                                                    switch (event.getClick()) {
+                                                                        case CONTROL_DROP, DROP, SWAP_OFFHAND -> RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().getInventory().setItem(i, baubleslot.getItem());
+                                                                        case MIDDLE -> {}
+                                                                        default -> {
+                                                                            event.getWhoClicked().setItemOnCursor(current);
+                                                                            RSVPlayer.getPlayers().get(player.getUniqueId()).getBaubleDataModule().getBaubleBag().getInventory().setItem(i, baubleslot.getItem());
+                                                                        }
+                                                                    }
                                                                 }
                                                             }.runTaskLater(plugin, 1L);
                                                             break outer;
@@ -407,27 +432,28 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                                 }
                             }
                         }
-                        else {
-                            if (Utils.isItemReal(current)) {
-                                if (current.getType() == Material.PLAYER_HEAD) {
-                                    UUID id = ((SkullMeta) current.getItemMeta()).getOwningPlayer().getUniqueId();
-                                    if (!player.getUniqueId().equals(id)) {
-                                        Player destination = Bukkit.getPlayer(id);
+                    }
+                    else {
+                        // wormhole inventory gui
+                        if (Utils.isItemReal(current)) {
+                            if (current.getType() == Material.PLAYER_HEAD) {
+                                UUID id = ((SkullMeta) current.getItemMeta()).getOwningPlayer().getUniqueId();
+                                if (!player.getUniqueId().equals(id)) {
+                                    Player destination = Bukkit.getPlayer(id);
 
-                                        if (destination != null) {
-                                            player.teleport(destination);
-                                            if (config.getBoolean("WormholeInventory.Sound.Enabled")) {
-                                                String soundName = config.getString("WormholeInventory.Sound.Sound");
-                                                float volume = (float) config.getDouble("WormholeInventory.Sound.Volume");
-                                                float pitch = (float) config.getDouble("WormholeInventory.Sound.Pitch");
-                                                Utils.playSound(Bukkit.getPlayer(id).getLocation(), soundName, volume, pitch);
-                                            }
+                                    if (destination != null) {
+                                        player.teleport(destination);
+                                        if (config.getBoolean("WormholeInventory.Sound.Enabled")) {
+                                            String soundName = config.getString("WormholeInventory.Sound.Sound");
+                                            float volume = (float) config.getDouble("WormholeInventory.Sound.Volume");
+                                            float pitch = (float) config.getDouble("WormholeInventory.Sound.Pitch");
+                                            Utils.playSound(Bukkit.getPlayer(id).getLocation(), soundName, volume, pitch);
                                         }
                                     }
-                                    event.setCancelled(true);
                                 }
                             }
                         }
+                        event.setCancelled(true);
                     }
                 }
             }

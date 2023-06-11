@@ -28,13 +28,13 @@ public interface LightningDragon extends Dragon {
     FileConfiguration CONFIG = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
 
     default void performMeleeAttack(LivingEntity entity) {
-        double stageMultiplier = CONFIG.getDouble("Dragons.LightningDragon.MeleeAttack.StageMultiplier.Stage" + getStage());
-        entity.damage(CONFIG.getDouble("Dragons.LightningDragon.MeleeAttack.BaseDamage") * stageMultiplier, getEntity());
+        double stageMultiplier = CONFIG.getDouble("Dragon.LightningDragon.MeleeAttack.StageMultiplier.Stage" + getStage());
+        entity.damage(CONFIG.getDouble("Dragon.LightningDragon.MeleeAttack.BaseDamage") * stageMultiplier, getEntity());
     }
 
     default void performSpecialAbility(LivingEntity entity) {
         Location loc = entity.getLocation();
-        if (CONFIG.getBoolean("Dragons.LightningDragon.ElectrocuteAbility.SummonCosmeticLightning")) {
+        if (CONFIG.getBoolean("Dragon.LightningDragon.ElectrocuteAbility.SummonCosmeticLightning")) {
             loc.getWorld().strikeLightningEffect(loc);
         }
         else {

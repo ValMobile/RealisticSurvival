@@ -2,7 +2,7 @@
 #          Tough as Nails Items       #
 #######################################
 
-ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -33,6 +33,7 @@ wool_hood:
   NBTTags:
     rsvdurability: 22
     rsvmaxdurability: 22
+  RepairIngredients: "Tag.WOOL"
 wool_jacket:
   Material: "LEATHER_CHESTPLATE"
   DisplayName: "&fWool Jacket"
@@ -44,6 +45,7 @@ wool_jacket:
   NBTTags:
     rsvdurability: 22
     rsvmaxdurability: 22
+  RepairIngredients: "Tag.WOOL"
 wool_pants:
   Material: "LEATHER_LEGGINGS"
   DisplayName: "&fWool Pants"
@@ -55,6 +57,7 @@ wool_pants:
   NBTTags:
     rsvdurability: 22
     rsvmaxdurability: 22
+  RepairIngredients: "Tag.WOOL"
 wool_boots:
   Material: "LEATHER_BOOTS"
   DisplayName: "&fWool Boots"
@@ -66,6 +69,7 @@ wool_boots:
   NBTTags:
     rsvdurability: 22
     rsvmaxdurability: 22
+  RepairIngredients: "Tag.WOOL"
 jelled_slime_helmet:
   Material: "LEATHER_HELMET"
   DisplayName: "&fJelled Slime Helmet"
@@ -77,6 +81,7 @@ jelled_slime_helmet:
   NBTTags:
     rsvdurability: 22
     rsvmaxdurability: 22
+  RepairIngredients: "jelled_slime"
 jelled_slime_chestplate:
   Material: "LEATHER_CHESTPLATE"
   DisplayName: "&fJelled Slime Chestplate"
@@ -88,6 +93,7 @@ jelled_slime_chestplate:
   NBTTags:
     rsvdurability: 22
     rsvmaxdurability: 22
+  RepairIngredients: "jelled_slime"
 jelled_slime_leggings:
   Material: "LEATHER_LEGGINGS"
   DisplayName: "&fJelled Slime Leggings"
@@ -99,6 +105,7 @@ jelled_slime_leggings:
   NBTTags:
     rsvdurability: 22
     rsvmaxdurability: 22
+  RepairIngredients: "jelled_slime"
 jelled_slime_boots:
   Material: "LEATHER_BOOTS"
   DisplayName: "&fJelled Slime Boots"
@@ -110,6 +117,7 @@ jelled_slime_boots:
   NBTTags:
     rsvdurability: 22
     rsvmaxdurability: 22
+  RepairIngredients: "jelled_slime"
 juice_apple:
   Material: "POTION"
   DisplayName: "&fApple Juice"

@@ -65,7 +65,7 @@ public class LightningExplosionAttack extends ExplosionAttack {
                         if (block.isEmpty() || !blockMaterial.isOccluding()) {
                             if (!immuneBlocks.contains(blockMaterial.toString())) {
                                 if (!secondBlock.isEmpty()) {
-                                    world.getBlockAt(loc).setType(getElectrocutedMaterial(blockMaterial, Material.valueOf(config.getString("Dragons.LightningDragon.ExplosionAttack.LayerBlock"))));
+                                    world.getBlockAt(loc).setType(getElectrocutedMaterial(blockMaterial, Material.valueOf(config.getString("Dragon.LightningDragon.ExplosionAttack.LayerBlock"))));
                                 }
                             }
                         }
@@ -74,7 +74,7 @@ public class LightningExplosionAttack extends ExplosionAttack {
                             // check if the upper block is immune to breath attacks
                             if (!immuneBlocks.contains(blockMaterial.toString())) {
                                 if (!secondBlock.isEmpty()) {
-                                    world.getBlockAt(loc).setType(getElectrocutedMaterial(blockMaterial, Material.valueOf(config.getString("Dragons.LightningDragon.ExplosionAttack.ElectrifiedBlock"))));
+                                    world.getBlockAt(loc).setType(getElectrocutedMaterial(blockMaterial, Material.valueOf(config.getString("Dragon.LightningDragon.ExplosionAttack.ElectrifiedBlock"))));
                                 }
                             }
                         }
@@ -83,7 +83,7 @@ public class LightningExplosionAttack extends ExplosionAttack {
             }
         }
 
-        world.createExplosion(center, (float) (config.getDouble("Dragons.LightningDragon.ExplosionAttack.Explosion.Power") * config.getDouble("Dragons.LightningDragon.ExplosionAttack.StageMultipliers.Stage" + DragonUtils.getStage(dragon))), config.getBoolean("Dragons.LightningDragon.ExplosionAttack.SetFire"), config.getBoolean("Dragons.LightningDragon.ExplosionAttack.BreakBlocks"), dragon);
+        world.createExplosion(center, (float) (config.getDouble("Dragon.LightningDragon.ExplosionAttack.Explosion.Power") * config.getDouble("Dragon.LightningDragon.ExplosionAttack.StageMultipliers.Stage" + DragonUtils.getStage(dragon))), config.getBoolean("Dragon.LightningDragon.ExplosionAttack.SetFire"), config.getBoolean("Dragon.LightningDragon.ExplosionAttack.BreakBlocks"), dragon);
     }
 
     @Nonnull

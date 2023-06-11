@@ -2,15 +2,15 @@
 #          Ice and Fire               #
 #######################################
 
-ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
   Enabled: true
-  Message: "&6[Realistic Survival] &fInitializing &b%NAME% &fmodule"                # All placeholders: %NAME%
+  Message: "&6[Realistic Survival] &fInitializing &e%NAME% &fmodule"                # All placeholders: %NAME%
 Shutdown:
   Enabled: true
-  Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"
+  Message: "&6[Realistic Survival] &fShutting down &e%NAME% &fmodule"
 
 # Used to specify custom item drops for any mob
 MobDrops:
@@ -27,24 +27,157 @@ MobDrops:
 # Used to specify custom block drops
 # By default, there is no use for this, so the chance is set to 0.00
 BlockDrops:
-  BARRIER:
-    dragonbone_sword:
-      Type: "Rare"
-      Chance: 0.01
-      ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
-      IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
-      RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
+# BARRIER:
+#   dragonbone_sword:
+#     Type: "Rare"
+#     Chance: 0.00
+#     ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
+#     IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
+#     RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
 
 # Customize the Ice and Fire gear and the mobs
 
 # The following settings already work well for a good dragon fight
 # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
-Dragons:
+Dragon:
   Enabled: true
-  SpawnChance: 0.8            # Chance of an ice and fire (I&F) dragon replacing a vanilla ender dragon spawn; set to 1.0 if you only want I&F dragons and 0.0 to disable I&F dragon spawning
-  AdultStage: 4               # Minimum stage for a dragon to be considered an adult, affects sound of the dragon  (possible values: 1-5, inclusive)
-  TeenagerStage: 2            # Minimum stage for a dragon to be considered a teenager  (possible values: 1-5, inclusive)
-  ChildStage: 1               # Minimum stage for a dragon to be considered a child (possible values: 1-5, inclusive)
+  SpawnChance: 0.8                                  # Chance of an ice and fire (I&F) dragon replacing a vanilla ender dragon spawn; set to 1.0 if you only want I&F dragons and -1.0 to disable I&F dragon spawning
+  Info:
+    Name: "Realistic Survival %VARIANT% Dragon"     # All internal placeholders: %VARIANT%, %BREED%, %GENDER%, %AGE%, %STAGE%
+    CustomNameVisible: false
+    Health:
+      Stage1:
+        Min: 20.0
+        Max: 112.0
+      Stage2:
+        Min: 116.0
+        Max: 208.0
+      Stage3:
+        Min: 212.0
+        Max: 304.0
+      Stage4:
+        Min: 308.0
+        Max: 400.0
+      Stage5:
+        Min: 404.0
+        Max: 500.0
+  LootTable:
+    Dragonscales:
+      Stage1:
+        Type: "Range"
+        MinAmount: 0
+        MaxAmount: 0
+      Stage2:
+        Type: "Range"
+        MinAmount: 1
+        MaxAmount: 14
+      Stage3:
+        Type: "Range"
+        MinAmount: 13
+        MaxAmount: 43
+      Stage4:
+        Type: "Range"
+        MinAmount: 33
+        MaxAmount: 65
+      Stage5:
+        Type: "Range"
+        MinAmount: 48
+        MaxAmount: 110
+    Blood:
+      Stage1:
+        Type: "Range"
+        MinAmount: 1
+        MaxAmount: 1
+      Stage2:
+        Type: "Range"
+        MinAmount: 1
+        MaxAmount: 2
+      Stage3:
+        Type: "Range"
+        MinAmount: 3
+        MaxAmount: 6
+      Stage4:
+        Type: "Range"
+        MinAmount: 8
+        MaxAmount: 11
+      Stage5:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 15
+    Dragonbones:
+      Stage1:
+        Type: "Range"
+        MinAmount: 1
+        MaxAmount: 1
+      Stage2:
+        Type: "Range"
+        MinAmount: 1
+        MaxAmount: 2
+      Stage3:
+        Type: "Range"
+        MinAmount: 7
+        MaxAmount: 12
+      Stage4:
+        Type: "Range"
+        MinAmount: 15
+        MaxAmount: 25
+      Stage5:
+        Type: "Range"
+        MinAmount: 19
+        MaxAmount: 56
+    Flesh:
+      Stage1:
+        Type: "Range"
+        MinAmount: 0
+        MaxAmount: 1
+      Stage2:
+        Type: "Range"
+        MinAmount: 0
+        MaxAmount: 3
+      Stage3:
+        Type: "Range"
+        MinAmount: 0
+        MaxAmount: 5
+      Stage4:
+        Type: "Range"
+        MinAmount: 4
+        MaxAmount: 8
+      Stage5:
+        Type: "Range"
+        MinAmount: 12
+        MaxAmount: 18
+    Skull:
+      Stage1:
+        Type: "Rare"
+        Chance: 1.0
+      Stage2:
+        Type: "Rare"
+        Chance: 1.0
+      Stage3:
+        Type: "Rare"
+        Chance: 1.0
+      Stage4:
+        Type: "Rare"
+        Chance: 1.0
+      Stage5:
+        Type: "Rare"
+        Chance: 1.0
+    Heart:
+      Stage1:
+        Type: "Rare"
+        Chance: -1.0
+      Stage2:
+        Type: "Rare"
+        Chance: -1.0
+      Stage3:
+        Type: "Rare"
+        Chance: -1.0
+      Stage4:
+        Type: "Rare"
+        Chance: 1.0
+      Stage5:
+        Type: "Rare"
+        Chance: 1.0
   FireDragon:
     Enabled:
       Chance: 0.33
@@ -58,9 +191,19 @@ Dragons:
       Particle: "FLAME"
       LayerBlock: "FIRE"            # The block that replaces air blocks directly above surface blocks
       BurntBlock: "BLACKSTONE"      # The block which flammable blocks get turned into
-      CharredBlock: "BASALT"        # The block which inflammable blocks get turned into  (For 1.17+ versions, use SMOOTH_BASALT as it looks nicer)
-      Velocity: 15                  # Determines the speed of the breath flame
-      Radius: 2                     # Minimum radius of charring and for nearby entities to take damage
+      CharredBlock: "SMOOTH_BASALT" # The block which inflammable blocks get turned into
+      Radius:                       # Minimum radius of charring and for nearby entities to take damage
+        Stage1: 2.0
+        Stage2: 3.0
+        Stage3: 4.0
+        Stage4: 5.0
+        Stage5: 6.0
+      Velocity:                     # The speed of the breath flame
+        Stage1: 20.0
+        Stage2: 25.0
+        Stage3: 30.0
+        Stage4: 35.0
+        Stage5: 40.0
       DespawnTime: 200              # How long it takes for the breath attack to despawn in ticks
       SpecialBlocks:                # Overrides rules for "BurntBlock" and "CharredBlock"
         - "RAW_COPPER_BLOCK:COPPER_BLOCK,RAW_COPPER_BLOCK,RAW_COPPER_BLOCK"   # Uses the format of "BLOCK_1:BLOCK_2,BLOCK_3,BLOCK_X" where BLOCK_1 turns into any block from "BLOCK_2" to "BLOCK_X"
@@ -288,43 +431,81 @@ Dragons:
         - "WARPED_FENCE_GATE"
         - "WARPED_SIGN"
         - "WARPED_WALL_SIGN"
-      StageMultipliers: # Multiplies the velocity and grief radius by the specified value
-        Stage1: 1.0
-        Stage2: 1.5
-        Stage3: 2.0
-        Stage4: 2.5
-        Stage5: 3.0
       Sound:
-        Adult:
-          Enabled: true
-          Sound: "realisticsurvival:firedragon_breath"
-          Volume: 10.0
-          Pitch: 1.0
-        Teenager:
-          Enabled: true
-          Sound: "realisticsurvival:firedragon_breath"
-          Volume: 6.0
-          Pitch: 1.0
-        Child:
+        Stage1:
           Enabled: true
           Sound: "realisticsurvival:firedragon_breath"
           Volume: 3.0
           Pitch: 1.0
+        Stage2:
+          Enabled: true
+          Sound: "realisticsurvival:firedragon_breath"
+          Volume: 4.0
+          Pitch: 1.0
+        Stage3:
+          Enabled: true
+          Sound: "realisticsurvival:firedragon_breath"
+          Volume: 6.0
+          Pitch: 1.0
+        Stage4:
+          Enabled: true
+          Sound: "realisticsurvival:firedragon_breath"
+          Volume: 8.0
+          Pitch: 1.0
+        Stage5:
+          Enabled: true
+          Sound: "realisticsurvival:firedragon_breath"
+          Volume: 10.0
+          Pitch: 1.0
     ExplosionAttack:
-      # The following settings already work well for a good dragon fight
-      # Blocks use the enum constant names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
       Particle: "FLAME"
       FallingBlock: "MAGMA_BLOCK"
       LayerBlock: "FIRE"
       BurntBlock: "BLACKSTONE"
-      CharredBlock: "BASALT"
+      CharredBlock: "SMOOTH_BASALT"
       Explosion:
         Power: 5.0                  # For reference, explosion power of TNT is 4.0
         SetFire: true
         BreakBlocks: true
-      Velocity: 15
-      Radius: 2
       DespawnTime: 200
+      Radius:
+        Stage1: 2.0
+        Stage2: 3.0
+        Stage3: 4.0
+        Stage4: 5.0
+        Stage5: 6.0
+      Velocity:
+        Stage1: 20.0
+        Stage2: 25.0
+        Stage3: 30.0
+        Stage4: 35.0
+        Stage5: 40.0
+      Sound:
+        Stage1:
+          Enabled: true
+          Sound: "realisticsurvival:firedragon_breath"
+          Volume: 3.0
+          Pitch: 1.0
+        Stage2:
+          Enabled: true
+          Sound: "realisticsurvival:firedragon_breath"
+          Volume: 4.0
+          Pitch: 1.0
+        Stage3:
+          Enabled: true
+          Sound: "realisticsurvival:firedragon_breath"
+          Volume: 6.0
+          Pitch: 1.0
+        Stage4:
+          Enabled: true
+          Sound: "realisticsurvival:firedragon_breath"
+          Volume: 8.0
+          Pitch: 1.0
+        Stage5:
+          Enabled: true
+          Sound: "realisticsurvival:firedragon_breath"
+          Volume: 10.0
+          Pitch: 1.0
       SpecialBlocks:
         - "RAW_COPPER_BLOCK:COPPER_BLOCK,RAW_COPPER_BLOCK,RAW_COPPER_BLOCK"
         - "RAW_GOLD_BLOCK:GOLD_BLOCK,RAW_GOLD_BLOCK,RAW_GOLD_BLOCK"
@@ -551,72 +732,20 @@ Dragons:
         - "WARPED_FENCE_GATE"
         - "WARPED_SIGN"
         - "WARPED_WALL_SIGN"
-      StageMultipliers: # Multiplies the velocity, grief radius, and explosion power by the specified value
-        Stage1: 1.0
-        Stage2: 1.5
-        Stage3: 2.0
-        Stage4: 2.5
-        Stage5: 3.0
-      Sound:
-        Adult:
-          Enabled: true
-          Sound: "realisticsurvival:firedragon_breath"
-          Volume: 10.0
-          Pitch: 1.0
-        Teenager:
-          Enabled: true
-          Sound: "realisticsurvival:firedragon_breath"
-          Volume: 6.0
-          Pitch: 1.0
-        Child:
-          Enabled: true
-          Sound: "realisticsurvival:firedragon_breath"
-          Volume: 3.0
-          Pitch: 1.0
     MeleeAttack:
-      BaseDamage: 10.0
-      StageMultipliers: # Multiplies the damage by the specified value
-        Stage1: 1.0
-        Stage2: 1.25
-        Stage3: 1.5
-        Stage4: 1.75
-        Stage5: 2.0
+      Stage1: 5.0
+      Stage2: 10.0
+      Stage3: 20.0
+      Stage4: 25.0
+      Stage5: 30.0
     InfernoAbility:
-      FireTicks: 400
+      FireTicks:
+        Stage1: 100
+        Stage2: 150
+        Stage3: 200
+        Stage4: 250
+        Stage5: 300
       TickPeriod: 1
-      StageMultipliers: # Multiplies the fire ticks by the specified value
-        Stage1: 1.0
-        Stage2: 1.25
-        Stage3: 1.5
-        Stage4: 1.75
-        Stage5: 2.0
-    Drops:
-      # Configure drop rates
-      # Note that dragons that drop more dragonscales will drop fewer blood vials and vice versa
-      Dragonscales:
-        Min: 12
-        Max: 20
-      Blood:
-        Min: 3
-        Max: 8
-      Dragonbones:
-        Min: 6
-        Max: 18
-      Flesh:
-        Min: 3
-        Max: 8
-      Skull:
-        Min: 1
-        Max: 1
-      Heart:
-        Min: 1
-        Max: 1
-      StageMultipliers: # Multiplies the drop amounts by the specified value
-        Stage1: 1.0
-        Stage2: 1.25
-        Stage3: 1.5
-        Stage4: 1.75
-        Stage5: 2.0
   IceDragon:
     Enabled:
       Chance: 0.33
@@ -630,9 +759,45 @@ Dragons:
       Particle: "SNOWBALL"
       LayerBlock: "SNOW"
       FrozenBlock: "PACKED_ICE"
-      Velocity: 15
-      Radius: 2
       DespawnTime: 200
+      Radius:
+        Stage1: 2.0
+        Stage2: 3.0
+        Stage3: 4.0
+        Stage4: 5.0
+        Stage5: 6.0
+      Velocity:
+        Stage1: 20.0
+        Stage2: 25.0
+        Stage3: 30.0
+        Stage4: 35.0
+        Stage5: 40.0
+      Sound:
+        Stage1:
+          Enabled: true
+          Sound: "realisticsurvival:icedragon_breath"
+          Volume: 3.0
+          Pitch: 1.0
+        Stage2:
+          Enabled: true
+          Sound: "realisticsurvival:icedragon_breath"
+          Volume: 4.0
+          Pitch: 1.0
+        Stage3:
+          Enabled: true
+          Sound: "realisticsurvival:icedragon_breath"
+          Volume: 6.0
+          Pitch: 1.0
+        Stage4:
+          Enabled: true
+          Sound: "realisticsurvival:icedragon_breath"
+          Volume: 8.0
+          Pitch: 1.0
+        Stage5:
+          Enabled: true
+          Sound: "realisticsurvival:icedragon_breath"
+          Volume: 10.0
+          Pitch: 1.0
       SpecialBlocks:
         - "WATER:PACKED_ICE"
         - "LAVA:OBSIDIAN"
@@ -758,28 +923,6 @@ Dragons:
         - "RED_STAINED_GLASS_PANE"
         - "WHITE_STAINED_GLASS_PANE"
         - "YELLOW_STAINED_GLASS_PANE"
-      StageMultipliers:
-        Stage1: 1.0
-        Stage2: 1.5
-        Stage3: 2.0
-        Stage4: 2.5
-        Stage5: 3.0
-      Sound:
-        Adult:
-          Enabled: true
-          Sound: "realisticsurvival:icedragon_breath"
-          Volume: 10.0
-          Pitch: 1.0
-        Teenager:
-          Enabled: true
-          Sound: "realisticsurvival:icedragon_breath"
-          Volume: 6.0
-          Pitch: 1.0
-        Child:
-          Enabled: true
-          Sound: "realisticsurvival:icedragon_breath"
-          Volume: 3.0
-          Pitch: 1.0
     ExplosionAttack:
       Particle: "SNOWBALL"
       FallingBlock: "BLUE_ICE"
@@ -789,9 +932,45 @@ Dragons:
         Power: 5.0
         SetFire: true
         BreakBlocks: true
-      Velocity: 15
-      Radius: 2
       DespawnTime: 200
+      Radius:
+        Stage1: 2.0
+        Stage2: 3.0
+        Stage3: 4.0
+        Stage4: 5.0
+        Stage5: 6.0
+      Velocity:
+        Stage1: 20.0
+        Stage2: 25.0
+        Stage3: 30.0
+        Stage4: 35.0
+        Stage5: 40.0
+      Sound:
+        Stage1:
+          Enabled: true
+          Sound: "realisticsurvival:icedragon_breath"
+          Volume: 3.0
+          Pitch: 1.0
+        Stage2:
+          Enabled: true
+          Sound: "realisticsurvival:icedragon_breath"
+          Volume: 4.0
+          Pitch: 1.0
+        Stage3:
+          Enabled: true
+          Sound: "realisticsurvival:icedragon_breath"
+          Volume: 6.0
+          Pitch: 1.0
+        Stage4:
+          Enabled: true
+          Sound: "realisticsurvival:icedragon_breath"
+          Volume: 8.0
+          Pitch: 1.0
+        Stage5:
+          Enabled: true
+          Sound: "realisticsurvival:icedragon_breath"
+          Volume: 10.0
+          Pitch: 1.0
       SpecialBlocks:
         - "WATER:PACKED_ICE"
         - "LAVA:OBSIDIAN"
@@ -917,41 +1096,32 @@ Dragons:
         - "RED_STAINED_GLASS_PANE"
         - "WHITE_STAINED_GLASS_PANE"
         - "YELLOW_STAINED_GLASS_PANE"
-      StageMultipliers:
-        Stage1: 1.0
-        Stage2: 1.5
-        Stage3: 2.0
-        Stage4: 2.5
-        Stage5: 3.0
-      Sound:
-        Adult:
-          Enabled: true
-          Sound: "realisticsurvival:icedragon_breath"
-          Volume: 10.0
-          Pitch: 1.0
-        Teenager:
-          Enabled: true
-          Sound: "realisticsurvival:icedragon_breath"
-          Volume: 6.0
-          Pitch: 1.0
-        Child:
-          Enabled: true
-          Sound: "realisticsurvival:icedragon_breath"
-          Volume: 3.0
-          Pitch: 1.0
     MeleeAttack:
-      BaseDamage: 10.0
-      StageMultipliers:
-        Stage1: 1.0
-        Stage2: 1.25
-        Stage3: 1.5
-        Stage4: 1.75
-        Stage5: 2.0
+      Stage1: 5.0
+      Stage2: 10.0
+      Stage3: 20.0
+      Stage4: 25.0
+      Stage5: 30.0
     FreezeAbility:
       Slowness:
-        Amplifier: 4
-        Duration: 60
-      FrozenDuration: 30
+        Amplifier:
+          Stage1: 0
+          Stage2: 1
+          Stage3: 2
+          Stage4: 3
+          Stage5: 3
+        Duration:
+          Stage1: 60
+          Stage2: 70
+          Stage3: 80
+          Stage4: 100
+          Stage5: 120
+      FrozenDuration:
+        Stage1: 30
+        Stage2: 30
+        Stage3: 30
+        Stage4: 30
+        Stage5: 30
       EncaseIce:
         Enabled: true
         Block: "BLUE_ICE"
@@ -960,39 +1130,6 @@ Dragons:
         Sound: "BLOCK_GLASS_BREAK"
         Volume: 1.0
         Pitch: 1.0
-      StageMultipliers: # Multiplies the slowness duration and frozen duration by the specified value
-        Stage1: 1.0
-        Stage2: 1.1
-        Stage3: 1.2
-        Stage4: 1.3
-        Stage5: 1.5
-    Drops:
-      # Configure drop rates
-      # Note that dragons that drop more dragonscales will drop fewer blood vials and vice versa
-      Dragonscales:
-        Min: 12
-        Max: 20
-      Blood:
-        Min: 3
-        Max: 8
-      Dragonbones:
-        Min: 6
-        Max: 18
-      Flesh:
-        Min: 3
-        Max: 8
-      Skull:
-        Min: 1
-        Max: 1
-      Heart:
-        Min: 1
-        Max: 1
-      StageMultipliers: # Multiplies the drop amounts by the specified value
-        Stage1: 1.0
-        Stage2: 1.25
-        Stage3: 1.5
-        Stage4: 1.75
-        Stage5: 2.0
   LightningDragon:
     Enabled:    # Chance of spawning a lightning dragon is (1 - chance of spawning other dragon breeds)
       Variants:
@@ -1005,9 +1142,45 @@ Dragons:
       Particle: "END_ROD"
       LayerBlock: "AIR"
       ElectrifiedBlock: "BASALT"
-      Velocity: 15
-      Radius: 2
       DespawnTime: 200
+      Radius:
+        Stage1: 2.0
+        Stage2: 3.0
+        Stage3: 4.0
+        Stage4: 5.0
+        Stage5: 6.0
+      Velocity:
+        Stage1: 20.0
+        Stage2: 25.0
+        Stage3: 30.0
+        Stage4: 35.0
+        Stage5: 40.0
+      Sound:
+        Stage1:
+          Enabled: true
+          Sound: "realisticsurvival:lightningdragon_breath"
+          Volume: 3.0
+          Pitch: 1.0
+        Stage2:
+          Enabled: true
+          Sound: "realisticsurvival:lightningdragon_breath"
+          Volume: 4.0
+          Pitch: 1.0
+        Stage3:
+          Enabled: true
+          Sound: "realisticsurvival:lightningdragon_breath"
+          Volume: 6.0
+          Pitch: 1.0
+        Stage4:
+          Enabled: true
+          Sound: "realisticsurvival:lightningdragon_breath"
+          Volume: 8.0
+          Pitch: 1.0
+        Stage5:
+          Enabled: true
+          Sound: "realisticsurvival:lightningdragon_breath"
+          Volume: 10.0
+          Pitch: 1.0
       SpecialBlocks:
         - "SAND:GLASS,GLASS,GLASS,GLASS,SAND"
         - "RED_SAND:GLASS,GLASS,GLASS,GLASS,RED_SAND"
@@ -1234,28 +1407,6 @@ Dragons:
         - "WARPED_FENCE_GATE"
         - "WARPED_SIGN"
         - "WARPED_WALL_SIGN"
-      StageMultipliers: # Multiplies the velocity and grief radius by the specified value
-        Stage1: 1.0
-        Stage2: 1.5
-        Stage3: 2.0
-        Stage4: 2.5
-        Stage5: 3.0
-      Sound:
-        Adult:
-          Enabled: true
-          Sound: "realisticsurvival:lightningdragon_breath"
-          Volume: 10.0
-          Pitch: 1.0
-        Teenager:
-          Enabled: true
-          Sound: "realisticsurvival:lightningdragon_breath"
-          Volume: 6.0
-          Pitch: 1.0
-        Child:
-          Enabled: true
-          Sound: "realisticsurvival:lightningdragon_breath"
-          Volume: 3.0
-          Pitch: 1.0
     ExplosionAttack:
       Particle: "END_ROD"
       FallingBlock: "PURPLE_STAINED_GLASS"
@@ -1265,9 +1416,45 @@ Dragons:
         Power: 5.0                  # For reference, explosion power of TNT is 4.0
         SetFire: true
         BreakBlocks: true
-      Velocity: 15
-      Radius: 2
       DespawnTime: 200
+      Radius:
+        Stage1: 2.0
+        Stage2: 3.0
+        Stage3: 4.0
+        Stage4: 5.0
+        Stage5: 6.0
+      Velocity:
+        Stage1: 20.0
+        Stage2: 25.0
+        Stage3: 30.0
+        Stage4: 35.0
+        Stage5: 40.0
+      Sound:
+        Stage1:
+          Enabled: true
+          Sound: "realisticsurvival:lightningdragon_breath_crackle"
+          Volume: 3.0
+          Pitch: 1.0
+        Stage2:
+          Enabled: true
+          Sound: "realisticsurvival:lightningdragon_breath_crackle"
+          Volume: 4.0
+          Pitch: 1.0
+        Stage3:
+          Enabled: true
+          Sound: "realisticsurvival:lightningdragon_breath_crackle"
+          Volume: 6.0
+          Pitch: 1.0
+        Stage4:
+          Enabled: true
+          Sound: "realisticsurvival:lightningdragon_breath_crackle"
+          Volume: 8.0
+          Pitch: 1.0
+        Stage5:
+          Enabled: true
+          Sound: "realisticsurvival:lightningdragon_breath_crackle"
+          Volume: 10.0
+          Pitch: 1.0
       SpecialBlocks:
         - "SAND:GLASS,GLASS,GLASS,GLASS,SAND"
         - "RED_SAND:GLASS,GLASS,GLASS,GLASS,RED_SAND"
@@ -1494,68 +1681,29 @@ Dragons:
         - "WARPED_FENCE_GATE"
         - "WARPED_SIGN"
         - "WARPED_WALL_SIGN"
-      StageMultipliers: # Multiplies the velocity and grief radius by the specified value
-        Stage1: 1.0
-        Stage2: 1.5
-        Stage3: 2.0
-        Stage4: 2.5
-        Stage5: 3.0
-      Sound:
-        Adult:
-          Enabled: true
-          Sound: "realisticsurvival:lightningdragon_breath_crackle"
-          Volume: 10.0
-          Pitch: 1.0
-        Teenager:
-          Enabled: true
-          Sound: "realisticsurvival:lightningdragon_breath_crackle"
-          Volume: 6.0
-          Pitch: 1.0
-        Child:
-          Enabled: true
-          Sound: "realisticsurvival:lightningdragon_breath_crackle"
-          Volume: 3.0
-          Pitch: 1.0
+    MeleeAttack:
+      Stage1: 5.0
+      Stage2: 10.0
+      Stage3: 20.0
+      Stage4: 25.0
+      Stage5: 30.0
     ElectrocuteAbility:
       SummonCosmeticLightning: false
-      ShockDamage: 1.0
-      ShockAmount: 10
-      TickPeriod: 2
-      StageMultipliers: # Multiplies the shock damage and amount by the specified value
+      ShockDamage:
         Stage1: 1.0
-        Stage2: 1.5
+        Stage2: 1.0
         Stage3: 2.0
-        Stage4: 2.5
-        Stage5: 3.0
-    Drops:
-      # Configure drop rates
-      # Note that dragons that drop more dragonscales will drop fewer blood vials and vice versa
-      Dragonscales:
-        Min: 12
-        Max: 20
-      Blood:
-        Min: 3
-        Max: 8
-      Dragonbones:
-        Min: 6
-        Max: 18
-      Flesh:
-        Min: 3
-        Max: 8
-      Skull:
-        Min: 1
-        Max: 1
-      Heart:
-        Min: 1
-        Max: 1
-      StageMultipliers: # Multiplies the drop amounts by the specified value
-        Stage1: 1.0
-        Stage2: 1.25
-        Stage3: 1.5
-        Stage4: 1.75
-        Stage5: 2.0
+        Stage4: 3.0
+        Stage5: 4.0
+      ShockAmount:
+        Stage1: 5
+        Stage2: 5
+        Stage3: 5
+        Stage4: 5
+        Stage5: 5
+      TickPeriod: 2
 
-SeaSerpents:
+SeaSerpent:
   Enabled:
     Enabled: true
     Variants:
@@ -1566,22 +1714,49 @@ SeaSerpents:
       Purple: true
       Red: true
       Teal: true
-  SpawnChance: 0.003           # Replaces squid spawns
+  SpawnChance: 0.0005           # Replaces squid spawns
+  Info:
+    Name: "Realistic Survival Sea Serpent"     # All internal placeholders: %VARIANT%
+    CustomNameVisible: false
+    Health:
+      Min: 20.0
+      Max: 80.0
+  LootTable:
+    Scales:
+      Type: "Range"
+      MinAmount: 8
+      MaxAmount: 20
   JumpHeight: 30
   LaserAttack:
     Damage: 8.0
     MaxRange: 50.0
     Particle: "WATER_BUBBLE"
   MeleeAttack:
-    Damage: 10.0
-  Drops:
-    Scales:
-      Min: 8
-      Max: 20
+    MinDamage: 4.0
+    MaxDamage: 20.0
 
-Sirens:
+Siren:                         # Siren loot table can be found under "MobDrops" at the top of this config
   Enabled: true
-  SpawnChance: 0.01           # Replaces squid spawns
+  SpawnChance: 0.001           # Replaces squid spawns
+  Info:
+    Name: "Realistic Survival Siren"
+    CustomNameVisible: false
+    Health:
+      Min: 50.0
+      Max: 50.0
+  LootTable:
+    shiny_scale:
+      Type: "Range"
+      MinAmount: 1
+      MaxAmount: 5
+    prismarine_shard:
+      Type: "Range"
+      MinAmount: 0
+      MaxAmount: 3
+    prismarine_crystals:
+      Type: "Range"
+      MinAmount: 1
+      MaxAmount: 5
   MaxHearingDistance: 50
   PullPlayer:
     Enabled: true
@@ -1593,11 +1768,10 @@ Sirens:
     Pitch: 1.0
   ChangeScreen:
     Enabled: true
-    Character: ' '  # Default Unicode value:
-  Drops:
-    ShinyScales:
-      Type: "Common"
-      Chance: 0.50
+    Character: ""  # Default Unicode value:
+  MeleeAttack:
+    MinDamage: 6.0
+    MaxDamage: 6.0
 
 Abilities:
   TideGuardian:
@@ -2070,7 +2244,7 @@ Items:
       Armor: 5.0
       Toughness: 2.0
     DragonDamageReduction: 0.1
-  dragonscale_helmet_green:
+  dragonscale_helmet_emerald:
     Enabled:
       EnableAllVersions: true
     Attributes:
@@ -2262,7 +2436,7 @@ Items:
       Armor: 9.0
       Toughness: 2.0
     DragonDamageReduction: 0.1
-  dragonscale_chestplate_green:
+  dragonscale_chestplate_emerald:
     Enabled:
       EnableAllVersions: true
     Attributes:
@@ -2454,7 +2628,7 @@ Items:
       Armor: 7.0
       Toughness: 2.0
     DragonDamageReduction: 0.1
-  dragonscale_leggings_green:
+  dragonscale_leggings_emerald:
     Enabled:
       EnableAllVersions: true
     Attributes:
@@ -2646,7 +2820,7 @@ Items:
       Armor: 5.0
       Toughness: 2.0
     DragonDamageReduction: 0.1
-  dragonscale_boots_green:
+  dragonscale_boots_emerald:
     Enabled:
       EnableAllVersions: true
     Attributes:
@@ -2864,19 +3038,19 @@ Recipes:
     Enabled:
       EnableAllVersions: true
     Unlock: true
-  dragonscale_helmet_green:
+  dragonscale_helmet_emerald:
     Enabled:
       EnableAllVersions: true
     Unlock: true
-  dragonscale_chestplate_green:
+  dragonscale_chestplate_emerald:
     Enabled:
       EnableAllVersions: true
     Unlock: true
-  dragonscale_leggings_green:
+  dragonscale_leggings_emerald:
     Enabled:
       EnableAllVersions: true
     Unlock: true
-  dragonscale_boots_green:
+  dragonscale_boots_emerald:
     Enabled:
       EnableAllVersions: true
     Unlock: true

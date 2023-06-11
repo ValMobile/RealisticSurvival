@@ -21,22 +21,41 @@ import me.val_mobile.utils.LorePresets;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Location;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.Collection;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public interface Dragon extends RSVMob {
 
-    FileConfiguration CONFIG = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
+    @Override
+    default List<String> getRequiredModules() {
+        return List.of(IceFireModule.NAME);
+    }
+
+    @Override
+    default String getParentModule() {
+        return IceFireModule.NAME;
+    }
+
+    @Override
+    default String name() {
+        return getBreed().toString().toLowerCase() + "_dragon";
+    }
 
     @Override
     default void addNbtData() {
-        Utils.addNbtTag(getEntity(), "rsvmob", getBreed().toString().toLowerCase() + "_dragon", PersistentDataType.STRING);
+        Utils.addNbtTag(getEntity(), "rsvmob", name(), PersistentDataType.STRING);
         Utils.addNbtTag(getEntity(), "rsvdragonstage", getStage(), PersistentDataType.INTEGER);
         Utils.addNbtTag(getEntity(), "rsvdragonage", getAge(), PersistentDataType.INTEGER);
         Utils.addNbtTag(getEntity(), "rsvdragonvariant", getVariant().toString(), PersistentDataType.STRING);
@@ -44,76 +63,38 @@ public interface Dragon extends RSVMob {
         Utils.addNbtTag(getEntity(), "rsvdragongender", getGender().toString(), PersistentDataType.STRING);
     }
 
-    default void generateLoot(Collection<ItemStack> loot) {
-        loot.clear();
+    @Override
+    @Nonnull
+    default List<ItemStack> getLoot(@Nullable ItemStack tool) {
+        FileConfiguration config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
 
         int stage = getStage();
-        DragonBreed breed = getBreed();
-        DragonVariant variant = getVariant();
 
-        String lowercaseBreed = breed.toString().toLowerCase();
-        String capitalizeBreed = StringUtils.capitalize(lowercaseBreed);
+        List<ItemStack> loot = new ArrayList<>();
+
+        String breed = getBreed().toString().toLowerCase();
+
+        ConfigurationSection section = config.getConfigurationSection("Dragon.LootTable");
 
         // initialize loot items
-        ItemStack heart = RSVItem.getItem("dragon_heart_" + lowercaseBreed);
-        ItemStack skull = RSVItem.getItem("dragon_skull_" + lowercaseBreed);
-        ItemStack scales;
-        ItemStack blood = RSVItem.getItem("dragon_blood_" + lowercaseBreed);
-        ItemStack flesh = RSVItem.getItem("dragon_flesh_" + lowercaseBreed);
+        ItemStack heart = RSVItem.getItem("dragon_heart_" + breed);
+        ItemStack skull = RSVItem.getItem("dragon_skull_" + breed);
+        ItemStack scales = RSVItem.getItem("dragonscale_" + getVariant().toString().toLowerCase());
+        ItemStack blood = RSVItem.getItem("dragon_blood_" + breed);
+        ItemStack flesh = RSVItem.getItem("dragon_flesh_" + breed);
         ItemStack bones = RSVItem.getItem("dragonbone");
 
-        // initialize the drop amounts of the loot
-        int scaleAmount;
-        int boneAmount;
-        int bloodAmount;
-        int fleshAmount;
-
-        scales = RSVItem.getItem("dragonscale_" + variant.toString().toLowerCase());
-
-        /**
-         * Scale amount is between the minimum and maximum specified values.
-         * Bone amount is calculated by subtracting the scale amount and adding a minimum bone amount.
-         * Adding a minimum value ensures that at least 1 bone will drop.
-         * Dragon flesh and blood amounts are determined by multiplying the scale amount
-         * by a specified multiplier.
-         */
-        int maxScales = CONFIG.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Dragonscales.Max");
-        int minScales = CONFIG.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Dragonscales.Min");
-        int maxBones = CONFIG.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Dragonbones.Max");
-        int minBones = CONFIG.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Dragonbones.Min");
-        int minBlood = CONFIG.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Blood.Min");
-        int maxBlood = CONFIG.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Blood.Max");
-        int minFlesh = CONFIG.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Flesh.Min");
-        int maxFlesh = CONFIG.getInt("Dragons." + capitalizeBreed + "Dragon.Drops.Flesh.Max");
-
-        double stageMultiplier = CONFIG.getDouble("Dragons." + capitalizeBreed + "Dragon.Drops.StageMultipliers.Stage" + stage);
-
-        scaleAmount = Utils.getRandomNum(minScales, maxScales);
-        boneAmount = Utils.getRandomNum(minBones, maxBones);
-        bloodAmount = Math.min((maxScales - scaleAmount + minBlood), maxBlood);
-        fleshAmount = Utils.getRandomNum(minFlesh, maxFlesh);
-
-        scaleAmount *= stageMultiplier;
-        boneAmount *= stageMultiplier;
-        bloodAmount *= stageMultiplier;
-        fleshAmount *= stageMultiplier;
-
-        // resize loot
-        bones.setAmount(boneAmount);
-        blood.setAmount(bloodAmount);
-        flesh.setAmount(fleshAmount);
-        scales.setAmount(scaleAmount);
-
-        // add a lore to the skull
         LorePresets.addDragonSkullLore(skull, stage, breed.toString());
 
-        // add the loot to the loot table
-        loot.add(bones);
-        loot.add(heart);
-        loot.add(skull);
-        loot.add(scales);
-        loot.add(blood);
-        loot.add(flesh);
+        loot.add(Utils.getMobLoot(section.getConfigurationSection("Dragoncales.Stage" + getStage()), scales, tool, false));
+        loot.add(Utils.getMobLoot(section.getConfigurationSection("Blood.Stage" + getStage()), blood, tool, false));
+        loot.add(Utils.getMobLoot(section.getConfigurationSection("Dragonbones.Stage" + getStage()), bones, tool, false));
+        loot.add(Utils.getMobLoot(section.getConfigurationSection("Flesh.Stage" + getStage()), flesh, tool, false));
+        loot.add(Utils.getMobLoot(section.getConfigurationSection("Skull.Stage" + getStage()), skull, tool, false));
+        loot.add(Utils.getMobLoot(section.getConfigurationSection("Heart.Stage" + getStage()), heart, tool, false));
+        loot.addAll(getConfigurableLoot(tool));
+
+        return loot;
     }
 
     void performMeleeAttack(LivingEntity entity);
@@ -134,9 +115,32 @@ public interface Dragon extends RSVMob {
 
     DragonGender getGender();
 
-    Collection<ItemStack> getLoot();
-
     void setStage(int stage);
 
     void setAge(int age);
+
+    @Override
+    default void applyConfigOptions() {
+        EnderDragon dragon = (EnderDragon) getEntity();
+
+        ConfigurationSection section = RSVModule.getModule(getParentModule()).getUserConfig().getConfig().getConfigurationSection("Dragon.Info");
+
+        dragon.setCustomName(Utils.translateMsg(section.getString("Name"), dragon, Map.of("VARIANT", getVariant(), "BREED", getBreed(), "GENDER", getGender(), "AGE", getAge(), "STAGE", getStage())));
+        dragon.setCustomNameVisible(section.getBoolean("CustomNameVisible"));
+        double minHealth = section.getDouble("Health.Stage" + getStage() + ".Min");
+        double maxHealth = section.getDouble("Health.Stage" + getStage() + ".Max");
+
+        double health = Utils.getRandomNum(minHealth, maxHealth);
+
+        if (health > dragon.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
+            dragon.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(health);
+        }
+        dragon.setHealth(health);
+    }
+
+    @Override
+    default void setup() {
+        RSVMob.super.setup();
+        ((EnderDragon) getEntity()).setPhase(EnderDragon.Phase.STRAFING);
+    }
 }

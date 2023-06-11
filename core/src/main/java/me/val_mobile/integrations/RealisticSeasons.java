@@ -34,7 +34,7 @@ public class RealisticSeasons extends CompatiblePlugin {
 
     @Override
     public boolean otherLoadOptions() {
-        return me.casperge.realisticseasons.RealisticSeasons.getInstance().getTemperatureManager().getTempData().isEnabled() && RSVModule.getModule(TanModule.NAME).isEnabled();
+        return me.casperge.realisticseasons.RealisticSeasons.getInstance().getTemperatureManager().getTempData().isEnabled() && RSVModule.getModule(TanModule.NAME).isGloballyEnabled();
     }
 
     public int getTemperature(@Nonnull Player player) {

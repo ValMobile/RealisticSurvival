@@ -22,9 +22,13 @@ import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.spartanandfire.ItemConfig;
 import me.val_mobile.data.spartanandfire.RecipesConfig;
 import me.val_mobile.data.spartanandfire.UserConfig;
+import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.spartanweaponry.SwModule;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
+
+import java.util.Map;
 
 public class SfModule extends RSVModule {
 
@@ -35,7 +39,7 @@ public class SfModule extends RSVModule {
     public static final String NAME = "SpartanandFire";
 
     public SfModule(RealisticSurvivalPlugin plugin) {
-        super(NAME, plugin);
+        super(NAME, plugin, Map.of(RSVModule.getModule(IceFireModule.NAME), "Module requires Ice and Fire to be enabled.", RSVModule.getModule(SwModule.NAME), "Module requires Spartan Weaponry to be enabled."), Map.of());
         this.plugin = plugin;
     }
 
@@ -50,8 +54,7 @@ public class SfModule extends RSVModule {
 
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Initialize.Enabled")) {
-            String message = Utils.translateMsg(config.getString("Initialize.Message"));
-            message = message.replaceAll("%NAME%", NAME);
+            String message = Utils.translateMsg(config.getString("Initialize.Message"), null, Map.of("NAME", NAME));
 
             plugin.getLogger().info(message);
         }
@@ -67,8 +70,7 @@ public class SfModule extends RSVModule {
     public void shutdown() {
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Shutdown.Enabled")) {
-            String message = Utils.translateMsg(config.getString("Shutdown.Message"));
-            message = message.replaceAll("%NAME%", NAME);
+            String message = Utils.translateMsg(config.getString("Shutdown.Message"), null, Map.of("NAME", NAME));
 
             plugin.getLogger().info(message);
         }

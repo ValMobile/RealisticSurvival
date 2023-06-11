@@ -23,18 +23,18 @@ import java.util.List;
 
 public enum DragonVariant {
 
-    GRAY("Dragons.FireDragon.Enabled.Variants.Blue"),
-    EMERALD("Dragons.FireDragon.Enabled.Variants.Emerald"),
-    RED("Dragons.FireDragon.Enabled.Variants.Red"),
-    BRONZE("Dragons.FireDragon.Enabled.Variants.Bronze"),
-    SAPPHIRE("Dragons.IceDragon.Enabled.Variants.Sapphire"),
-    BLUE("Dragons.IceDragon.Enabled.Variants.Blue"),
-    SILVER("Dragons.IceDragon.Enabled.Variants.Silver"),
-    WHITE("Dragons.IceDragon.Enabled.Variants.White"),
-    AMETHYST("Dragons.LightningDragon.Enabled.Variants.Amethyst"),
-    BLACK("Dragons.LightningDragon.Enabled.Variants.Black"),
-    ELECTRIC_BLUE("Dragons.LightningDragon.Enabled.Variants.ElectricBlue"),
-    COPPER("Dragons.LightningDragon.Enabled.Variants.Copper");
+    GRAY("Dragon.FireDragon.Enabled.Variants.Blue"),
+    EMERALD("Dragon.FireDragon.Enabled.Variants.Emerald"),
+    RED("Dragon.FireDragon.Enabled.Variants.Red"),
+    BRONZE("Dragon.FireDragon.Enabled.Variants.Bronze"),
+    SAPPHIRE("Dragon.IceDragon.Enabled.Variants.Sapphire"),
+    BLUE("Dragon.IceDragon.Enabled.Variants.Blue"),
+    SILVER("Dragon.IceDragon.Enabled.Variants.Silver"),
+    WHITE("Dragon.IceDragon.Enabled.Variants.White"),
+    AMETHYST("Dragon.LightningDragon.Enabled.Variants.Amethyst"),
+    BLACK("Dragon.LightningDragon.Enabled.Variants.Black"),
+    ELECTRIC_BLUE("Dragon.LightningDragon.Enabled.Variants.ElectricBlue"),
+    COPPER("Dragon.LightningDragon.Enabled.Variants.Copper");
 
     private final boolean enabled;
 
@@ -55,5 +55,10 @@ public enum DragonVariant {
             }
         }
         return valid;
+    }
+
+    @Override
+    public String toString() {
+        return name().charAt(0) + name().substring(1).toLowerCase();
     }
 }

@@ -44,8 +44,8 @@ public class ParasiteTask extends BukkitRunnable implements RSVTask {
     private final UUID id;
     private final int duration;
     private final int tickPeriod;
-    private final boolean potionEffectsEnabled;
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
+    private final boolean potionEffectsEnabled;
     private int ticks = 0;
 
 
@@ -112,7 +112,7 @@ public class ParasiteTask extends BukkitRunnable implements RSVTask {
         ThirstCalculateTask.getTasks().get(id).setParasitesActive(true);
 
         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.parasite.potioneffects")) {
-            if (config.getBoolean("Thirst.Parasites.PotionEffects.Enabled")) {
+            if (potionEffectsEnabled) {
                 player.addPotionEffects(potionEffects);
             }
         }
@@ -122,8 +122,10 @@ public class ParasiteTask extends BukkitRunnable implements RSVTask {
 
     @Override
     public void stop() {
-        ThirstCalculateTask.getTasks().get(id).setParasitesActive(false);
-        if (DisplayTask.hasTask(id) && DisplayTask.getTasks().get(id) != null) {
+        if (ThirstCalculateTask.hasTask(id)) {
+            ThirstCalculateTask.getTasks().get(id).setParasitesActive(false);
+        }
+        if (DisplayTask.hasTask(id)) {
             DisplayTask.getTasks().get(id).setParasitesActive(false);
         }
         tasks.remove(id);

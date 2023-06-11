@@ -42,10 +42,9 @@ public class ElectrocuteTask extends BukkitRunnable {
         this.entity = entity;
         this.plugin = plugin;
         this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
-        int stageMultiplier = config.getInt("Dragons.LightningDragon.ElectrocuteAbility.StageMultipliers.Stage" + stage);
-        this.shockDamage = config.getDouble("Dragons.LightningDragon.ElectrocuteAbility.ShockDamage") * stageMultiplier;
-        this.shockAmount = config.getInt("Dragons.LightningDragon.ElectrocuteAbility.ShockAmount") * stageMultiplier;
-        this.tickPeriod = config.getInt("Dragons.LightningDragon.ElectrocuteAbility.TickPeriod");
+        this.shockDamage = config.getDouble("Dragon.LightningDragon.ElectrocuteAbility.ShockDamage.Stage" + stage);
+        this.shockAmount = config.getInt("Dragon.LightningDragon.ElectrocuteAbility.ShockAmount.Stage" + stage);
+        this.tickPeriod = config.getInt("Dragon.LightningDragon.ElectrocuteAbility.TickPeriod");
         tasks.put(entity.getUniqueId(), this);
     }
 

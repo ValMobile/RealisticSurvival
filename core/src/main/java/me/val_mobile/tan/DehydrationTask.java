@@ -32,9 +32,9 @@ import java.util.*;
 public class DehydrationTask extends BukkitRunnable implements RSVTask  {
 
     private static final Map<UUID, DehydrationTask> tasks = new HashMap<>();
+    private final ThirstManager manager;
     private final UUID id;
     private final FileConfiguration config;
-
     private final RealisticSurvivalPlugin plugin;
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
@@ -49,6 +49,7 @@ public class DehydrationTask extends BukkitRunnable implements RSVTask  {
 
     public DehydrationTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
+        this.manager = module.getThirstManager();
         this.module = module;
         this.config = module.getUserConfig().getConfig();
         this.player = player;
@@ -104,7 +105,7 @@ public class DehydrationTask extends BukkitRunnable implements RSVTask  {
 
     @Override
     public boolean conditionsMet(@Nullable Player player) {
-        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && this.player.getTanDataModule().getThirst() < maxThirst;
+        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && manager.getThirst(player) < maxThirst;
     }
 
     @Override

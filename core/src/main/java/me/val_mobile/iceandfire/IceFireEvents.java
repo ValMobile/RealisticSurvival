@@ -49,7 +49,7 @@ import java.util.Collection;
  * IceFireEvents is a class containing listener methods
  * that activate fire, ice, and lighting dragon weapon abilities
  * @author Val_Mobile
- * @version 1.2.5-DEV-1
+ * @version 1.2.5-RELEASE
  * @since 1.0
  */
 public class IceFireEvents extends ModuleEvents implements Listener {
@@ -494,25 +494,29 @@ public class IceFireEvents extends ModuleEvents implements Listener {
         Entity e = event.getEntity();
         if (shouldEventBeRan(e)) {
             if (e instanceof Squid) {
-                if (config.getBoolean("SeaSerpents.Enabled.Enabled")) {
-                    if (Utils.roll(config.getDouble("SeaSerpents.SpawnChance"))) {
+                boolean spawned = false;
+
+                if (config.getBoolean("SeaSerpent.Enabled.Enabled")) {
+                    if (Utils.roll(config.getDouble("SeaSerpent.SpawnChance"))) {
                         Utils.spawnSeaSerpent(e.getLocation()).addEntityToWorld(e.getWorld());
+                        spawned = true;
                         event.setCancelled(true);
                     }
                 }
-                else if (config.getBoolean("Sirens.Enabled")) {
-                    if (Utils.roll(config.getDouble("Sirens.SpawnChance"))) {
+
+                if (!spawned && config.getBoolean("Siren.Enabled")) {
+                    if (Utils.roll(config.getDouble("Siren.SpawnChance"))) {
                         Utils.spawnSiren(e.getLocation()).addEntityToWorld(e.getWorld());
                         event.setCancelled(true);
                     }
                 }
             }
             if (e instanceof EnderDragon dragon && !(DragonUtils.isDragon(dragon))) {
-                if (config.getBoolean("Dragons.Enabled")) {
-                    if (Utils.roll(config.getDouble("Dragons.SpawnChance"))) {
+                if (config.getBoolean("Dragon.Enabled")) {
+                    if (Utils.roll(config.getDouble("Dragon.SpawnChance"))) {
                         double val = Math.random();
-                        double fireChance = config.getDouble("Dragons.FireDragon.Enabled.Chance");
-                        double iceChance = config.getDouble("Dragons.IceDragon.Enabled.Chance");
+                        double fireChance = config.getDouble("Dragon.FireDragon.Enabled.Chance");
+                        double iceChance = config.getDouble("Dragon.IceDragon.Enabled.Chance");
 
                         if (val <= fireChance) {
                             DragonUtils.convertToFireDragon(dragon);
@@ -547,7 +551,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
 
                                 switch (breed) {
                                     case FIRE -> {
-                                        if (Utils.roll(config.getDouble("Dragons.FireDragon.BreathAttack.Chance"))) {
+                                        if (Utils.roll(config.getDouble("Dragon.FireDragon.BreathAttack.Chance"))) {
                                             DragonUtils.triggerBreathFireAttack(dragon, target);
                                         }
                                         else {
@@ -555,7 +559,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                         }
                                     }
                                     case ICE -> {
-                                        if (Utils.roll(config.getDouble("Dragons.IceDragon.BreathAttack.Chance"))) {
+                                        if (Utils.roll(config.getDouble("Dragon.IceDragon.BreathAttack.Chance"))) {
                                             DragonUtils.triggerBreathIceAttack(dragon, target);
                                         }
                                         else {
@@ -563,7 +567,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                         }
                                     }
                                     case LIGHTNING -> {
-                                        if (Utils.roll(config.getDouble("Dragons.LightningDragon.BreathAttack.Chance"))) {
+                                        if (Utils.roll(config.getDouble("Dragon.LightningDragon.BreathAttack.Chance"))) {
                                             DragonUtils.triggerBreathLightningAttack(dragon, target);
                                         }
                                         else {
@@ -575,7 +579,6 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                                 proj.remove();
                             }
                         }.runTaskLater(plugin, 2L);
-
                     }
                 }
             }
@@ -604,7 +607,7 @@ public class IceFireEvents extends ModuleEvents implements Listener {
                     }
                     case "siren" -> {
                         if (!(e instanceof Siren)) {
-                            Utils.dropLooting(config.getConfigurationSection("Sirens.Drops.ShinyScales"), RSVItem.getItem("shiny_scale"), e.getKiller() == null ? null : e.getKiller().getInventory().getItemInMainHand(), loc);
+                            loots = SirenUtils.generateLoot((Guardian) e);
                         }
                     }
                     default -> {}
@@ -612,7 +615,9 @@ public class IceFireEvents extends ModuleEvents implements Listener {
 
                 if (!loots.isEmpty()) {
                     for (ItemStack loot : loots) {
-                        world.dropItemNaturally(loc, loot);
+                        if (Utils.isItemReal(loot)) {
+                            world.dropItemNaturally(loc, loot);
+                        }
                     }
                 }
             }

@@ -2,10 +2,14 @@
 #          NoTreePunching Items       #
 #######################################
 
-ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
+flint_shard:
+  Material: "PRISMARINE_SHARD"
+  DisplayName: "&fFlint Shard"
+  CustomModelData: 83786
 flint_hatchet:
   Material: "WOODEN_AXE"
   DisplayName: "&fFlint Hatchet"
@@ -17,6 +21,7 @@ flint_hatchet:
   NBTTags:
     rsvdurability: 45
     rsvmaxdurability: 45
+  RepairIngredients: "flint_shard"
 flint_knife:
   Material: "WOODEN_SWORD"
   DisplayName: "&fFlint Knife"
@@ -28,6 +33,7 @@ flint_knife:
   NBTTags:
     rsvdurability: 45
     rsvmaxdurability: 45
+  RepairIngredients: "flint_shard"
 copper_knife:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Knife"
@@ -39,6 +45,7 @@ copper_knife:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 golden_knife:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Knife"
@@ -82,6 +89,7 @@ flint_pickaxe:
   NBTTags:
     rsvdurability: 45
     rsvmaxdurability: 45
+  RepairIngredients: "flint_shard"
 flint_shovel:
   Material: "WOODEN_SHOVEL"
   DisplayName: "&fFlint Shovel"
@@ -93,6 +101,7 @@ flint_shovel:
   NBTTags:
     rsvdurability: 45
     rsvmaxdurability: 45
+  RepairIngredients: "flint_shard"
 flint_hoe:
   Material: "WOODEN_HOE"
   DisplayName: "&fFlint Hoe"
@@ -104,6 +113,7 @@ flint_hoe:
   NBTTags:
     rsvdurability: 45
     rsvmaxdurability: 45
+  RepairIngredients: "flint_shard"
 golden_saw:
   Material: "GOLDEN_AXE"
   DisplayName: "&fGolden Saw"
@@ -167,10 +177,6 @@ plant_string:
   Material: "STRING"
   DisplayName: "&fPlant String"
   CustomModelData: 83650
-flint_shard:
-  Material: "PRISMARINE_SHARD"
-  DisplayName: "&fFlint Shard"
-  CustomModelData: 83786
 stone_rock:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fStone Rock"
@@ -211,6 +217,7 @@ fire_starter:
   NBTTags:
     rsvdurability: 7
     rsvmaxdurability: 7
+  RepairIngredients: "Tag.PLANKS"
 copper_axe:
   Material: "STONE_AXE"
   DisplayName: "&fCopper Axe"
@@ -222,6 +229,7 @@ copper_axe:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_pickaxe:
   Material: "STONE_PICKAXE"
   DisplayName: "&fCopper Pickaxe"
@@ -233,6 +241,7 @@ copper_pickaxe:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_shovel:
   Material: "STONE_SHOVEL"
   DisplayName: "&fCopper Shovel"
@@ -244,6 +253,7 @@ copper_shovel:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_sword:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Sword"
@@ -255,6 +265,7 @@ copper_sword:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_hoe:
   Material: "STONE_HOE"
   DisplayName: "&fCopper Hoe"
@@ -266,6 +277,7 @@ copper_hoe:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_helmet:
   Material: "IRON_HELMET"
   DisplayName: "&fCopper Helmet"
@@ -277,6 +289,7 @@ copper_helmet:
   NBTTags:
     rsvdurability: 110
     rsvmaxdurability: 110
+  RepairIngredients: "COPPER_INGOT"
 copper_chestplate:
   Material: "IRON_CHESTPLATE"
   DisplayName: "&fCopper Chestplate"
@@ -288,6 +301,7 @@ copper_chestplate:
   NBTTags:
     rsvdurability: 160
     rsvmaxdurability: 160
+  RepairIngredients: "COPPER_INGOT"
 copper_leggings:
   Material: "IRON_LEGGINGS"
   DisplayName: "&fCopper Leggings"
@@ -299,6 +313,7 @@ copper_leggings:
   NBTTags:
     rsvdurability: 150
     rsvmaxdurability: 150
+  RepairIngredients: "COPPER_INGOT"
 copper_boots:
   Material: "IRON_BOOTS"
   DisplayName: "&fCopper Boots"
@@ -310,6 +325,7 @@ copper_boots:
   NBTTags:
     rsvdurability: 130
     rsvmaxdurability: 130
+  RepairIngredients: "COPPER_INGOT"
 golden_mattock:
   Material: "GOLDEN_AXE"
   DisplayName: "&fGolden Mattock"
@@ -332,6 +348,7 @@ copper_mattock:
   NBTTags:
     rsvdurability: 350
     rsvmaxdurability: 350
+  RepairIngredients: "COPPER_INGOT"
 iron_mattock:
   Material: "IRON_AXE"
   DisplayName: "&fIron Mattock"
@@ -376,6 +393,7 @@ macuahuitl:
   NBTTags:
     rsvdurability: 576
     rsvmaxdurability: 576
+  RepairIngredients: "FLINT"
 clay_tool:
   Material: "WOODEN_AXE"
   DisplayName: "&fClay Tool"
@@ -385,6 +403,7 @@ clay_tool:
   NBTTags:
     rsvdurability: 128
     rsvmaxdurability: 128
+  RepairIngredients: "Tag.PLANKS"
 clay_brick:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fClay Brick"

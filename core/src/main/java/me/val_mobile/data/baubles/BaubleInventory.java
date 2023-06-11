@@ -18,6 +18,7 @@ package me.val_mobile.data.baubles;
 
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -121,6 +122,24 @@ public class BaubleInventory extends GUI {
     }
 
     public boolean hasBauble(String name) {
+        Player player = Bukkit.getPlayer(getId());
+
+        if (player == null) {
+            return false;
+        }
+
+//        boolean hasBaubleBag = false;
+//        for (ItemStack item : player.getInventory().getStorageContents()) {
+//            if (RSVItem.isRSVItem(item) && RSVItem.getNameFromItem(item).equals("bauble_bag")) {
+//                hasBaubleBag = true;
+//                break;
+//            }
+//        }
+//
+//        if (!hasBaubleBag) {
+//            return false;
+//        }
+
         Collection<ItemStack> baubleCol = getAllBaubles();
 
         for (ItemStack bauble : baubleCol) {

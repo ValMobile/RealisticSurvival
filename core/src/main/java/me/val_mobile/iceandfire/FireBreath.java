@@ -66,7 +66,7 @@ public class FireBreath extends Breath {
                                 // if the lower block is solid
                                 if (!secondBlock.isEmpty()) {
                                     // set the upper block on fire
-                                    world.getBlockAt(loc).setType(Material.valueOf(config.getString("Dragons.FireDragon.BreathAttack.LayerBlock")));
+                                    world.getBlockAt(loc).setType(Material.valueOf(config.getString("Dragon.FireDragon.BreathAttack.LayerBlock")));
                                 }
                             }
                         }
@@ -95,8 +95,8 @@ public class FireBreath extends Breath {
             burnt = Material.valueOf(mats[Utils.getRandomNum(0, mats.length - 1)]);
         }
         else {
-            burnt = material.isFuel() ? Material.valueOf(config.getString("Dragons.FireDragon.BreathAttack.BurntBlock"))
-                    : Material.valueOf(config.getString("Dragons.FireDragon.BreathAttack.CharredBlock"));
+            burnt = material.isFuel() ? Material.valueOf(config.getString("Dragon.FireDragon.BreathAttack.BurntBlock"))
+                    : Material.valueOf(config.getString("Dragon.FireDragon.BreathAttack.CharredBlock"));
         }
         return burnt;
     }

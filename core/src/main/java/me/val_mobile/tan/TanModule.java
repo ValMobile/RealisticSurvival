@@ -27,7 +27,9 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import javax.annotation.Nonnull;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -43,11 +45,16 @@ public class TanModule extends RSVModule {
     private final Set<UUID> hyperthermiaDeath = new HashSet<>();
     private final Set<UUID> dehydrationDeath = new HashSet<>();
     private final Set<UUID> parasiteDeath = new HashSet<>();
+    private final TempManager tempManager;
+    private ThirstManager thirstManager;
+    private boolean tempGloballyEnabled;
+    private boolean thirstGloballyEnabled;
 
     public TanModule(RealisticSurvivalPlugin plugin) {
-        super(NAME, plugin);
+        super(NAME, plugin, Map.of(), Map.of());
         this.plugin = plugin;
         this.config = new me.val_mobile.data.toughasnails.PlayerDataConfig(plugin);
+        this.tempManager = new TempManager(this);
     }
 
     @Override
@@ -55,17 +62,20 @@ public class TanModule extends RSVModule {
         setUserConfig(new UserConfig(plugin));
         setItemConfig(new ItemConfig(plugin));
         setRecipeConfig(new RecipesConfig(plugin));
+        this.thirstManager = new ThirstManager(this);
 
         setModuleItems(new ModuleItems(this));
         setModuleRecipes(new ModuleRecipes(this, plugin));
 
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Initialize.Enabled")) {
-            String message = Utils.translateMsg(config.getString("Initialize.Message"));
-            message = message.replaceAll("%NAME%", NAME);
+            String message = Utils.translateMsg(config.getString("Initialize.Message"), null, Map.of("NAME", NAME));
 
             plugin.getLogger().info(message);
         }
+
+        this.tempGloballyEnabled = config.getBoolean("Temperature.Enabled") && isGloballyEnabled();
+        this.thirstGloballyEnabled = config.getBoolean("Thirst.Enabled") && isGloballyEnabled();
 
         events = new TanEvents(this, plugin);
 
@@ -78,34 +88,58 @@ public class TanModule extends RSVModule {
     public void shutdown() {
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Shutdown.Enabled")) {
-            String message = Utils.translateMsg(config.getString("Shutdown.Message"));
-            message = message.replaceAll("%NAME%", NAME);
+            String message = Utils.translateMsg(config.getString("Shutdown.Message"), null, Map.of("NAME", NAME));
 
             plugin.getLogger().info(message);
         }
     }
 
+    @Nonnull
+    public TempManager getTempManager() {
+        return tempManager;
+    }
+
+    @Nonnull
+    public ThirstManager getThirstManager() {
+        return thirstManager;
+    }
+
+    @Nonnull
     public PlayerDataConfig getPlayerDataConfig() {
         return config;
     }
 
+    @Nonnull
     public TanEvents getEvents() {
         return events;
     }
 
+    @Nonnull
     public Set<UUID> getDehydrationDeath() {
         return dehydrationDeath;
     }
 
+    @Nonnull
     public Set<UUID> getHyperthermiaDeath() {
         return hyperthermiaDeath;
     }
+
+    @Nonnull
 
     public Set<UUID> getHypothermiaDeath() {
         return hypothermiaDeath;
     }
 
+    @Nonnull
     public Set<UUID> getParasiteDeath() {
         return parasiteDeath;
+    }
+
+    public boolean isTempGloballyEnabled() {
+        return tempGloballyEnabled;
+    }
+
+    public boolean isThirstGloballyEnabled() {
+        return thirstGloballyEnabled;
     }
 }

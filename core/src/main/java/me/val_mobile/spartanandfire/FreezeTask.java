@@ -52,18 +52,17 @@ public class FreezeTask extends BukkitRunnable {
         this.entity = entity;
         this.plugin = plugin;
         this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
-        this.encaseIce = config.getBoolean("Dragons.IceDragon.FreezeAbility.EncaseIce.Enabled");
-        this.playSound = config.getBoolean("Dragons.IceDragon.FreezeAbility.Sound.Enabled");
-        int stageMultiplier = config.getInt("Dragons.IceDragon.FreezeAbility.StageMultipliers.Stage" + stage);
+        this.encaseIce = config.getBoolean("Dragon.IceDragon.FreezeAbility.EncaseIce.Enabled");
+        this.playSound = config.getBoolean("Dragon.IceDragon.FreezeAbility.Sound.Enabled");
 
-        int amplifier = config.getInt("Dragons.IceDragon.FreezeAbility.Slowness.Amplifier");
-        int duration = config.getInt("Dragons.IceDragon.FreezeAbility.Duration.Amplifier") * stageMultiplier;
+        int amplifier = config.getInt("Dragon.IceDragon.FreezeAbility.Slowness.Amplifier.Stage" + stage);
+        int duration = config.getInt("Dragon.IceDragon.FreezeAbility.Duration.Amplifier.Stage" + stage);
         this.slowness = new PotionEffect(PotionEffectType.SLOW, duration, amplifier);
-        this.frozenMaterial = Material.valueOf(config.getString("Dragons.IceDragon.FreezeAbility.EncaseIce.Block"));
-        this.volume = (float) config.getDouble("Dragons.IceDragon.FreezeAbility.Sound.Volume");
-        this.pitch = (float) config.getDouble("Dragons.IceDragon.FreezeAbility.Sound.Pitch");
-        this.soundName = config.getString("Dragons.IceDragon.FreezeAbility.Sound.Sound");
-        this.duration = config.getInt("Dragons.IceDragon.FreezeAbility.FrozenDuration") * stageMultiplier;
+        this.frozenMaterial = Material.valueOf(config.getString("Dragon.IceDragon.FreezeAbility.EncaseIce.Block"));
+        this.volume = (float) config.getDouble("Dragon.IceDragon.FreezeAbility.Sound.Volume");
+        this.pitch = (float) config.getDouble("Dragon.IceDragon.FreezeAbility.Sound.Pitch");
+        this.soundName = config.getString("Dragon.IceDragon.FreezeAbility.Sound.Sound");
+        this.duration = config.getInt("Dragon.IceDragon.FreezeAbility.FrozenDuration.Stage" + stage);
         this.wasOriginallyFrozen = entity instanceof LivingEntity living && !living.hasAI();
         tasks.put(entity.getUniqueId(), this);
     }
@@ -89,9 +88,9 @@ public class FreezeTask extends BukkitRunnable {
     @Override
     public void run() {
         // add the slowness effect to the target entity
-        if (entity instanceof LivingEntity) {
-            ((LivingEntity) entity).addPotionEffect(slowness);
-            ((LivingEntity) entity).setAI(false);
+        if (entity instanceof LivingEntity living) {
+            living.addPotionEffect(slowness);
+            living.setAI(false);
         }
         // freeze the entity
         Utils.setZeroKb(entity);

@@ -40,8 +40,7 @@ public abstract class CompatiblePlugin {
         this.isIntegrated = intConfig.getBoolean(name + ".Enabled") && Bukkit.getServer().getPluginManager().isPluginEnabled(name) && otherLoadOptions();
 
         if (isIntegrated && intConfig.getBoolean("EnableIntegrationMessage")) {
-            String message = Utils.translateMsg(plugin.getConfig().getString("Integration"));
-            message = message.replaceAll("%PLUGIN%", name);
+            String message = Utils.translateMsg(plugin.getConfig().getString("Integration"), null, Map.of("PLUGIN", name));
 
             plugin.getLogger().info(message);
         }

@@ -18,8 +18,10 @@ package me.val_mobile.data;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
+import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Entity;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -29,8 +31,8 @@ import java.util.*;
 public abstract class RSVModule {
 
     private static final Map<String, RSVModule> modules = new HashMap<>();
-
-    private final boolean isEnabled;
+    private final boolean configEnabled;
+    private final boolean isGloballyEnabled;
 
     @Nonnull
     private final String name;
@@ -52,12 +54,21 @@ public abstract class RSVModule {
     @Nullable
     private RSVConfig recipesConfig;
 
-    public RSVModule(String name, RealisticSurvivalPlugin plugin) {
+    @Nonnull
+    private final Map<RSVModule, String> dependencies;
+
+    @Nonnull
+    private final Map<RSVModule, String> softDependencies;
+
+    public RSVModule(@Nonnull String name, @Nonnull RealisticSurvivalPlugin plugin, @Nonnull Map<RSVModule, String> dependencies, @Nonnull Map<RSVModule, String> softDependencies) {
         FileConfiguration config = plugin.getConfig();
         this.name = name;
-        this.isEnabled = config.getBoolean(name + ".Enabled");
+        this.dependencies = dependencies;
+        this.softDependencies = softDependencies;
+        this.configEnabled = config.getBoolean(name + ".Enabled");
+        this.isGloballyEnabled = configEnabled && areDependenciesEnabled();
 
-        if (isEnabled) {
+        if (isGloballyEnabled) {
             ConfigurationSection section = config.getConfigurationSection(name + ".Worlds");
             Set<String> keys = section.getKeys(false);
 
@@ -82,6 +93,13 @@ public abstract class RSVModule {
                     allowedWorlds.add(worldName);
                 }
             }
+
+            getSoftDependencyErrorMessages().forEach(s -> plugin.getLogger().warning(s));
+        }
+        else {
+            if (configEnabled) {
+                getDependencyErrorMessages().forEach(s -> plugin.getLogger().warning(s));
+            }
         }
 
         try {
@@ -96,63 +114,125 @@ public abstract class RSVModule {
 
     public abstract void shutdown();
 
-    public boolean isEnabled() {
-        return isEnabled;
+    public boolean isGloballyEnabled() {
+        return isGloballyEnabled;
     }
 
+    public boolean isEnabled(@Nullable World world) {
+        return isGloballyEnabled && (world == null || allowedWorlds.contains(world.getName()));
+    }
+
+    public boolean isEnabled(@Nullable Entity entity) {
+        return isGloballyEnabled && (entity == null || allowedWorlds.contains(entity.getWorld().getName()));
+    }
+
+    @Nonnull
     public String getName() {
         return name;
     }
 
+    @Nonnull
     public Set<String> getAllowedWorlds() {
         return allowedWorlds;
     }
 
+    @Nullable
     public RSVConfig getUserConfig() {
         return userConfig;
     }
 
-    public void setUserConfig(RSVConfig config) {
+    public void setUserConfig(@Nullable RSVConfig config) {
         userConfig = config;
     }
 
+    @Nullable
     public RSVConfig getItemConfig() {
         return itemConfig;
     }
 
-    public void setItemConfig(RSVConfig config) {
+    public void setItemConfig(@Nullable RSVConfig config) {
         itemConfig = config;
     }
 
+    @Nullable
     public RSVConfig getRecipeConfig() {
         return recipesConfig;
     }
 
-    public void setRecipeConfig(RSVConfig config) {
+    public void setRecipeConfig(@Nullable RSVConfig config) {
         recipesConfig = config;
     }
 
-    public void setModuleItems(ModuleItems moduleItems) {
+    public void setModuleItems(@Nullable ModuleItems moduleItems) {
         this.moduleItems = moduleItems;
     }
 
-    public void setModuleRecipes(ModuleRecipes moduleRecipes) {
+    public void setModuleRecipes(@Nullable ModuleRecipes moduleRecipes) {
         this.moduleRecipes = moduleRecipes;
     }
 
+    @Nullable
     public ModuleItems getModuleItems() {
         return moduleItems;
     }
 
+    @Nullable
     public ModuleRecipes getModuleRecipes() {
         return moduleRecipes;
     }
 
+    @Nonnull
     public static Map<String, RSVModule> getModules() {
         return modules;
     }
 
-    public static RSVModule getModule(String name) {
-        return modules.get(name);
+    public boolean areDependenciesEnabled() {
+        for (Map.Entry<RSVModule, String> entry : dependencies.entrySet()) {
+            if (entry.getKey() == null || !entry.getKey().isGloballyEnabled) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Collection<String> getDependencyErrorMessages() {
+        Collection<String> messages = new ArrayList<>();
+
+        for (Map.Entry<RSVModule, String> entry : dependencies.entrySet()) {
+            if (entry.getKey() == null || !entry.getKey().isGloballyEnabled && entry.getValue() != null) {
+                messages.add(Utils.translateMsg("[" + name + "] " + entry.getValue(), null, null));
+            }
+        }
+
+        return messages;
+    }
+
+    public Collection<String> getSoftDependencyErrorMessages() {
+        Collection<String> messages = new ArrayList<>();
+
+        for (Map.Entry<RSVModule, String> entry : softDependencies.entrySet()) {
+            if (entry.getKey() == null || !entry.getKey().isGloballyEnabled && entry.getValue() != null) {
+                messages.add(Utils.translateMsg("[" + name + "] " + entry.getValue(), null, null));
+            }
+        }
+
+        return messages;
+    }
+
+    @Nullable
+    public static RSVModule getModule(@Nonnull String name) {
+        return modules.getOrDefault(name, null);
+    }
+
+    public boolean isConfigEnabled() {
+        return configEnabled;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof RSVModule module) {
+            return this.name.equals(module.name);
+        }
+        return false;
     }
 }

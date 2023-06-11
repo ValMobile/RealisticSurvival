@@ -20,14 +20,23 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+import java.util.UUID;
+
 public abstract class GUI {
 
     private final Inventory inv;
+    private final UUID id;
+
     public GUI(Player player, int size, String name) {
-        inv = Bukkit.createInventory(player, size, name);
+        this.inv = Bukkit.createInventory(player, size, name);
+        this.id = player == null ? null : player.getUniqueId();
     }
 
     public Inventory getInventory() {
         return inv;
+    }
+
+    public UUID getId() {
+        return id;
     }
 }

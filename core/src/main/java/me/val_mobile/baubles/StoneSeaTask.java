@@ -19,7 +19,6 @@ package me.val_mobile.baubles;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVTask;
-import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -68,7 +67,7 @@ public class StoneSeaTask extends BukkitRunnable implements RSVTask {
         Player player = rsvPlayer.getPlayer();
 
         if (conditionsMet(player)) {
-            if (player.isSwimming() || Utils.isInWater(player)) {
+            if (player.isSwimming() || player.isInWater()) {
                 double swimSpeed = baseSwimSpeed;
                 int depthStrider = 0;
                 boolean dolphinsGrace = player.hasPotionEffect(PotionEffectType.DOLPHINS_GRACE);

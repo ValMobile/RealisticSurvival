@@ -30,6 +30,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class LorePresets {
 
@@ -45,13 +46,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Rapier");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_ABSORBED%", dfpercent.format(percentAbsorbed));
-            line = line.replaceAll("%DURABILITY_TAKEN%", df.format(durabilityTaken));
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_ABSORBED", dfpercent.format(percentAbsorbed), "DURABILITY_TAKEN", df.format(durabilityTaken), "DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addKatanaLore(List<String> lore, ConfigurationSection section) {
@@ -61,11 +58,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Katana");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addGreatswordLore(List<String> lore, ConfigurationSection section) {
@@ -75,11 +70,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Greatsword");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addLongswordLore(List<String> lore, ConfigurationSection section) {
@@ -89,19 +82,15 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Longsword");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addSpearLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Spear");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addSaberLore(List<String> lore, ConfigurationSection section) {
@@ -114,21 +103,15 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Saber");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_ABSORBED%", dfpercent.format(percentAbsorbed));
-            line = line.replaceAll("%DURABILITY_TAKEN%", df.format(durabilityTaken));
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_ABSORBED", dfpercent.format(percentAbsorbed), "DURABILITY_TAKEN", df.format(durabilityTaken), "DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addBoomerangLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Boomerang");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addDaggerLore(List<String> lore, ConfigurationSection section) {
@@ -138,11 +121,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Dagger");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addGlaiveLore(List<String> lore, ConfigurationSection section) {
@@ -152,11 +133,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Glaive");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addHalberdLore(List<String> lore, ConfigurationSection section) {
@@ -166,11 +145,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Halberd");
 
-        for (String line : lines) {
-            line = line.replaceAll("%SHIELD_BREACH%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("SHIELD_BREACH", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addHammerLore(List<String> lore, ConfigurationSection section) {
@@ -181,12 +158,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Hammer");
 
-        for (String line : lines) {
-            line = line.replaceAll("%NAUSEA_AMPLIFIER%", Utils.toRomanNumeral(amplifier));
-            line = line.replaceAll("%NAUSEA_DURATION%", df.format(duration / 20D));
+        Map<String, Object> placeholders = Map.of("NAUSEA_AMPLIFIER", Utils.toRomanNumeral(amplifier), "NAUSEA_DURATION", df.format(duration / 20D));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addJavelinLore(List<String> lore, ConfigurationSection section) {
@@ -196,11 +170,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Javelin");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addLanceLore(List<String> lore, ConfigurationSection section) {
@@ -210,11 +182,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Lance");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addMaceLore(List<String> lore, ConfigurationSection section) {
@@ -224,19 +194,15 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Mace");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addPikeLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Pike");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addQuarterstaffLore(List<String> lore, ConfigurationSection section) {
@@ -246,11 +212,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Quarterstaff");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addTomahawkLore(List<String> lore, ConfigurationSection section) {
@@ -260,11 +224,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Tomahawk");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addThrowingKnifeLore(List<String> lore, ConfigurationSection section) {
@@ -274,11 +236,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("ThrowingKnife");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", dfpercent.format(damageBonus));
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", dfpercent.format(damageBonus));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addWarhammerLore(List<String> lore, ConfigurationSection section) {
@@ -288,19 +248,15 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Warhammer");
 
-        for (String line : lines) {
-            line = line.replaceAll("%ARMOR_PIERCING%", dfpercent.format(percentAbsorbed));
+        Map<String, Object> placeholders = Map.of("ARMOR_PIERCING", dfpercent.format(percentAbsorbed));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addBattleaxeLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Battleaxe");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addClubLore(List<String> lore, ConfigurationSection section) {
@@ -311,84 +267,63 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("Club");
 
-        for (String line : lines) {
-            line = line.replaceAll("%NAUSEA_AMPLIFIER%", Utils.toRomanNumeral(amplifier));
-            line = line.replaceAll("%NAUSEA_DURATION%", df.format(duration / 20D));
+        Map<String, Object> placeholders = Map.of("NAUSEA_AMPLIFIER", Utils.toRomanNumeral(amplifier), "NAUSEA_DURATION", df.format(duration / 20D));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addCestusLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Cestus");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addCrossbowLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Crossbow");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addLongbowLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Longbow");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addFlamedDragonboneLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("FlamedDragonbone");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addIcedDragonboneLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("IcedDragonbone");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addLightningDragonboneLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("LightningDragonbone");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addFireDragonsteelLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("FireDragonsteel");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addIceDragonsteelLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("IceDragonsteel");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addLightningDragonsteelLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("LightningDragonsteel");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addDragonSkullLore(ItemStack item, int stage, String breed) {
@@ -397,12 +332,9 @@ public class LorePresets {
 
         List<String> lines = CONFIG.getStringList("DragonSkull");
 
-        for (String line : lines) {
-            line = line.replaceAll("%BREED%", StringUtils.capitalize(breed.toLowerCase()));
-            line = line.replaceAll("%STAGE%", String.valueOf(stage));
+        Map<String, Object> placeholders = Map.of("BREED", StringUtils.capitalize(breed.toLowerCase()), "STAGE", String.valueOf(stage));
 
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -411,177 +343,133 @@ public class LorePresets {
     public static void addBlueDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("BlueDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addBronzeDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("BronzeDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addGrayDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("GrayDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addGreenDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("GreenDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addRedDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("RedDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addSapphireDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("SapphireDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addSilverDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("SilverDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addWhiteDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("WhiteDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addAmethystDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("AmethystDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addBlackDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("BlackDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addCopperDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("CopperDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        };
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addElectricDragonscaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("ElectricDragonscale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addBlueSeaSerpentScaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("BlueSeaSerpentScale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addBronzeSeaSerpentScaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("BronzeSeaSerpentScale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addDeepblueSeaSerpentScaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("DeepBlueSeaSerpentScale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addGreenSeaSerpentScaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("GreenSeaSerpentScale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addPurpleSeaSerpentScaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("PurpleSeaSerpentScale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addRedSeaSerpentScaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("RedSeaSerpentScale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addTealSeaSerpentScaleLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("TealSeaSerpentScale");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addDragonProtectionLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("DragonProtection");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addTideGuardianBreathingLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("TideGuardianBreathing");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addLegendaryWeaponLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("LegendaryWeapon");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addFlamedExtraDamageLore(List<String> lore, ConfigurationSection section) {
@@ -589,10 +477,9 @@ public class LorePresets {
 
         double bonusDamage = section.getDouble("DragonBonusDamage");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf((int) Math.round(bonusDamage)));
-            lore.add(Utils.translateMsg(line));
-        }
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", String.valueOf((int) Math.round(bonusDamage)));
+
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addIcedExtraDamageLore(List<String> lore, ConfigurationSection section) {
@@ -600,10 +487,9 @@ public class LorePresets {
 
         double bonusDamage = section.getDouble("DragonBonusDamage");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf((int) Math.round(bonusDamage)));
-            lore.add(Utils.translateMsg(line));
-        }
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", String.valueOf((int) Math.round(bonusDamage)));
+
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addLightningExtraDamageLore(List<String> lore, ConfigurationSection section) {
@@ -611,50 +497,39 @@ public class LorePresets {
 
         double bonusDamage = section.getDouble("DragonBonusDamage");
 
-        for (String line : lines) {
-            line = line.replaceAll("%DAMAGE_BONUS%", String.valueOf((int) Math.round(bonusDamage)));
-            lore.add(Utils.translateMsg(line));
-        }
+        Map<String, Object> placeholders = Map.of("DAMAGE_BONUS", String.valueOf((int) Math.round(bonusDamage)));
+
+        lore.addAll(Utils.translateMsgs(lines, null, placeholders));
     }
 
     public static void addWeaponLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Weapon");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addHelmetLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Helmet");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addChestplateLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Chestplate");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addLeggingsLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Leggings");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addBootsLore(List<String> lore) {
         List<String> lines = CONFIG.getStringList("Boots");
 
-        for (String line : lines) {
-            lore.add(Utils.translateMsg(line));
-        }
+        lore.addAll(Utils.translateMsgs(lines, null, null));
     }
 
     public static void addGearLore(List<String> lore, Material material) {
@@ -683,10 +558,10 @@ public class LorePresets {
 
         if (!Utils.doublesEquals(value, 0D)) {
             switch (atr) {
-                case GENERIC_ATTACK_DAMAGE -> lore.add(Utils.translateMsg("&2 " + df.format(value) + " Attack Damage"));
-                case GENERIC_ATTACK_SPEED -> lore.add(Utils.translateMsg("&2 " + df.format(value) + " Attack Speed"));
-                case GENERIC_ARMOR -> lore.add(Utils.translateMsg("&9+" + df.format(value) + " Armor"));
-                case GENERIC_ARMOR_TOUGHNESS -> lore.add(Utils.translateMsg("&9+" + df.format(value) + " Armor Toughness"));
+                case GENERIC_ATTACK_DAMAGE -> lore.add(Utils.translateMsg("&2 " + df.format(value) + " Attack Damage", null, null));
+                case GENERIC_ATTACK_SPEED -> lore.add(Utils.translateMsg("&2 " + df.format(value) + " Attack Speed", null, null));
+                case GENERIC_ARMOR -> lore.add(Utils.translateMsg("&9+" + df.format(value) + " Armor", null, null));
+                case GENERIC_ARMOR_TOUGHNESS -> lore.add(Utils.translateMsg("&9+" + df.format(value) + " Armor Toughness", null, null));
             }
         }
     }

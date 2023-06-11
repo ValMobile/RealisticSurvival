@@ -46,6 +46,7 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
     private static final Map<UUID, TemperatureCalculateTask> tasks = new HashMap<>();
     private final RealisticSeasons rs;
     private final TanModule module;
+    private final TempManager manager;
     private final FileConfiguration config;
     private final RealisticSurvivalPlugin plugin;
     private final RSVPlayer player;
@@ -70,11 +71,12 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
     public TemperatureCalculateTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
         this.module = module;
+        this.manager = module.getTempManager();
         this.config = module.getUserConfig().getConfig();
         this.player = player;
         this.id = player.getPlayer().getUniqueId();
-        this.allowedWorlds = module.getAllowedWorlds();
         this.temp = player.getTanDataModule().getTemperature();
+        this.allowedWorlds = module.getAllowedWorlds();
         this.currentLoc = player.getPlayer().getLocation();
         this.distSqr = config.getDouble("Temperature.Environment.CubeLength") * config.getDouble("Temperature.Environment.CubeLength");
         this.rs = (RealisticSeasons) CompatiblePlugin.getPlugin(RealisticSeasons.NAME);
@@ -153,7 +155,7 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
                 }
 
 
-                if (Utils.isInWater(player)) {
+                if (player.isInWater()) {
                     add("Temperature.Environment.SubmergedWater");
                 }
 
@@ -288,10 +290,10 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
                 }
             }
 
-            if (temp != oldTemp) {
+            if (!Utils.doublesEquals(temp, oldTemp)) {
                 Bukkit.getServer().getPluginManager().callEvent(new TemperatureChangeEvent(player, oldTemp, temp));
             }
-            saveData();
+            manager.setTemperature(player, temp);
         }
         else {
             stop();
@@ -343,15 +345,12 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
 
     @Override
     public void stop() {
-        if (RSVPlayer.isValidPlayer(id)) {
-            saveData();
-        }
+        manager.setTemperature(player.getPlayer(), temp);
         tasks.remove(id);
         cancel();
     }
 
     private void saveData() {
-        RSVPlayer.getPlayers().get(id).getTanDataModule().setTemperature(temp);
         RSVPlayer.getPlayers().get(id).getTanDataModule().saveData();
     }
 

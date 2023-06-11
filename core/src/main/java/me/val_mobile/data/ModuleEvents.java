@@ -17,16 +17,17 @@
 package me.val_mobile.data;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.RSVAnvilRecipe;
-import me.val_mobile.utils.RSVBrewingRecipe;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
+import me.val_mobile.utils.recipe.RSVAnvilRecipe;
+import me.val_mobile.utils.recipe.RSVBrewingRecipe;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Furnace;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -74,32 +75,36 @@ public abstract class ModuleEvents implements Listener {
             if (shouldEventBeRan(block.getWorld())) {
                 ItemStack itemMainHand = event.getPlayer().getInventory().getItemInMainHand();
 
-                if (config.getConfigurationSection("BlockDrops").getKeys(false).contains(mat)) {
-                    Set<String> drops = config.getConfigurationSection("BlockDrops." + mat).getKeys(false);
+                ConfigurationSection blockDrops = config.getConfigurationSection("BlockDrops");
 
-                    for (String drop : drops) {
-                        boolean conditionsMet = true;
-                        boolean checkTool = config.getBoolean("BlockDrops." + mat + "." + drop + ".RequireRightTool");
-                        boolean checkSilkTouch = !config.getBoolean("BlockDrops." + mat + "." + drop + ".IgnoreSilkTouchEnchant");
+                if (blockDrops != null) {
+                    if (blockDrops.getKeys(false).contains(mat)) {
+                        Set<String> drops = blockDrops.getConfigurationSection(mat).getKeys(false);
 
-                        if (checkTool || checkSilkTouch) {
-                            if (checkTool && checkSilkTouch) {
-                                conditionsMet = Utils.isBestTool(block, itemMainHand) && Utils.hasSilkTouch(itemMainHand);
-                            }
-                            else if (checkTool) {
-                                conditionsMet = Utils.isBestTool(block, itemMainHand);
-                            }
-                            else {
-                                conditionsMet = Utils.hasSilkTouch(itemMainHand);
-                            }
-                        }
+                        for (String drop : drops) {
+                            boolean conditionsMet = true;
+                            boolean checkTool = blockDrops.getBoolean(mat + "." + drop + ".RequireRightTool");
+                            boolean checkSilkTouch = !blockDrops.getBoolean(mat + "." + drop + ".IgnoreSilkTouchEnchant");
 
-                        if (conditionsMet) {
-                            if (config.getBoolean("BlockDrops." + mat + "." + drop + ".ReplaceDefaultDrop")) {
-                                event.setDropItems(false);
+                            if (checkTool || checkSilkTouch) {
+                                if (checkTool && checkSilkTouch) {
+                                    conditionsMet = Utils.isBestTool(block, itemMainHand) && Utils.hasSilkTouch(itemMainHand);
+                                }
+                                else if (checkTool) {
+                                    conditionsMet = Utils.isBestTool(block, itemMainHand);
+                                }
+                                else {
+                                    conditionsMet = Utils.hasSilkTouch(itemMainHand);
+                                }
                             }
 
-                            Utils.dropFortune(config.getConfigurationSection("BlockDrops." + mat + "." + drop), RSVItem.getItem(drop), itemMainHand, block.getLocation());
+                            if (conditionsMet) {
+                                if (config.getBoolean("BlockDrops." + mat + "." + drop + ".ReplaceDefaultDrop")) {
+                                    event.setDropItems(false);
+                                }
+
+                                Utils.dropFortune(config.getConfigurationSection("BlockDrops." + mat + "." + drop), RSVItem.getItem(drop), itemMainHand, block.getLocation());
+                            }
                         }
                     }
                 }
@@ -112,22 +117,26 @@ public abstract class ModuleEvents implements Listener {
         LivingEntity entity = event.getEntity();
 
         if (shouldEventBeRan(entity)) {
-            String eName = entity.getType().toString();
-            Set<String> entityKeys = config.getConfigurationSection("MobDrops").getKeys(false);
-            if (entityKeys.contains(eName)) {
-                Set<String> itemKeys = config.getConfigurationSection("MobDrops." + eName).getKeys(false);
+            ConfigurationSection mobDrops = config.getConfigurationSection("MobDrops");
 
-                for (String item : itemKeys) {
-                    if (RSVItem.isRSVItem(item)) {
-                        if (entity.getKiller() == null) {
-                            Utils.dropLooting(config.getConfigurationSection("MobDrops." + eName + "." + item), RSVItem.getItem(item), null, entity.getLocation());
-                        }
-                        else {
-                            Utils.dropLooting(config.getConfigurationSection("MobDrops." + eName + "." + item), RSVItem.getItem(item), entity.getKiller().getInventory().getItemInMainHand(), entity.getLocation());
+            if (mobDrops != null) {
+                Set<String> mobKeys = mobDrops.getKeys(false);
+
+                if (mobKeys.contains(entity.getType().toString())) {
+                    if (entity.getType().toString() != null) {
+                        ConfigurationSection section = config.getConfigurationSection("MobDrops." + entity.getType());
+                        Set<String> itemKeys = section.getKeys(false);
+
+                        ItemStack tool = entity.getKiller() == null ? null : entity.getKiller().getInventory().getItemInMainHand();
+
+                        for (String item : itemKeys) {
+                            if (RSVItem.isRSVItem(item))
+                                Utils.dropLooting(section.getConfigurationSection(item), RSVItem.getItem(item), tool, entity.getLocation(), true);
                         }
                     }
                 }
             }
+
         }
     }
 

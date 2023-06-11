@@ -64,7 +64,7 @@ public class LightningBreath extends Breath {
                         if (block.isEmpty() || !blockMaterial.isOccluding()) {
                             if (!immuneBlocks.contains(blockMaterial.toString())) {
                                 if (!secondBlock.isEmpty()) {
-                                    world.getBlockAt(loc).setType(getElectrocutedMaterial(blockMaterial, Material.valueOf(config.getString("Dragons.LightningDragon.BreathAttack.LayerBlock"))));
+                                    world.getBlockAt(loc).setType(getElectrocutedMaterial(blockMaterial, Material.valueOf(config.getString("Dragon.LightningDragon.BreathAttack.LayerBlock"))));
                                 }
                             }
                         }
@@ -73,7 +73,7 @@ public class LightningBreath extends Breath {
                             // check if the upper block is immune to breath attacks
                             if (!immuneBlocks.contains(blockMaterial.toString())) {
                                 if (!secondBlock.isEmpty()) {
-                                    world.getBlockAt(loc).setType(getElectrocutedMaterial(blockMaterial, Material.valueOf(config.getString("Dragons.LightningDragon.BreathAttack.ElectrifiedBlock"))));
+                                    world.getBlockAt(loc).setType(getElectrocutedMaterial(blockMaterial, Material.valueOf(config.getString("Dragon.LightningDragon.BreathAttack.ElectrifiedBlock"))));
                                 }
                             }
                         }

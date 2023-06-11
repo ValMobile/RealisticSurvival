@@ -40,11 +40,9 @@ public class SeaSerpentUtils {
 
     public static Collection<ItemStack> generateLoot(ElderGuardian seaSerpent) {
         Collection<ItemStack> loot = new ArrayList<>();
-
-        int scaleAmount = Utils.getRandomNum(CONFIG.getInt("SeaSerpents.Drops.Scales.Min"), CONFIG.getInt("SeaSerpents.Drop.Scales.Max"));
-
         ItemStack scales = RSVItem.getItem("sea_serpent_scale_" + getVariant(seaSerpent).toString().toLowerCase());
-        scales.setAmount(scaleAmount);
+        ItemStack item = seaSerpent.getKiller() == null ? null : seaSerpent.getKiller().getInventory().getItemInMainHand();
+        Utils.getMobLoot(CONFIG.getConfigurationSection("SeaSerpent.LootTable.Scales"), scales, item, true);
 
         loot.add(scales);
 
@@ -59,6 +57,6 @@ public class SeaSerpentUtils {
     }
 
     public static SeaSerpentVariant getVariant(ElderGuardian seaSerpent) {
-        return SeaSerpentVariant.valueOf(Utils.getNbtTag(seaSerpent, "rsvseaserpentvariant", PersistentDataType.STRING));
+        return SeaSerpentVariant.valueOf(Utils.getNbtTag(seaSerpent, "rsvseaserpentvariant", PersistentDataType.STRING).toUpperCase());
     }
 }

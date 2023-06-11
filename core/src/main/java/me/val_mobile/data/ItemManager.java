@@ -51,23 +51,23 @@ public class ItemManager {
 
         for (String key : keys) {
             if (userConfig == null) {
-                RSVItem item = new RSVItem(itemConfig, key);
+                RSVItem item = new RSVItem(null, itemConfig, key);
                 items.putIfAbsent(key, item);
             }
             else {
                 if (userConfig.getBoolean("Items." + key + ".Enabled.EnableAllVersions")) {
-                    RSVItem item = new RSVItem(module, key);
+                    RSVItem item = new RSVItem(module, itemConfig, key);
                     items.putIfAbsent(key, item);
                 }
                 else {
                     if (userConfig.contains("Items." + key + ".Enabled.Versions." + Utils.getMinecraftVersion(true))) {
                         if (userConfig.getBoolean("Items." + key + ".Enabled.Versions." + Utils.getMinecraftVersion(true))) {
-                            RSVItem item = new RSVItem(module, key);
+                            RSVItem item = new RSVItem(module, itemConfig, key);
                             items.putIfAbsent(key, item);
                         }
                     }
                     else {
-                        RSVItem item = new RSVItem(module, key);
+                        RSVItem item = new RSVItem(module, itemConfig, key);
                         items.putIfAbsent(key, item);
                     }
                 }

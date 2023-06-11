@@ -31,23 +31,81 @@ public class DataModule implements RSVDataModule {
     private final FileConfiguration userConfig;
     private final PlayerDataConfig playerDataConfig;
     private double temperature;
-    private double thirst;
+    private int thirst;
     private double thirstExhaustion;
-    private double thirstSaturation;
+    private int thirstSaturation;
     private int thirstTickTimer;
 
-    public DataModule(Player player) {
-        TanModule module = (TanModule) RSVModule.getModule(TanModule.NAME);
-        this.userConfig = module.getUserConfig().getConfig();
-        this.playerDataConfig = module.getPlayerDataConfig();
-        this.id = player.getUniqueId();
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
+
+        FileConfiguration config = playerDataConfig.getConfig();
+        String tempPath = id + ".Temperature";
+
+        if (!config.contains(tempPath)) {
+            config.createSection(tempPath);
+        }
+        config.set(tempPath, temperature);
+        saveFile(config);
+    }
+
+    public void setThirst(int thirst) {
+        this.thirst = thirst;
+
+        FileConfiguration config = playerDataConfig.getConfig();
+        String thirstPath = id + ".Thirst";
+
+        if (!config.contains(thirstPath)) {
+            config.createSection(thirstPath);
+        }
+        config.set(thirstPath, thirst);
+        saveFile(config);
+    }
+
+    public void setThirstExhaustion(double thirstExhaustion) {
+        this.thirstExhaustion = thirstExhaustion;
+
+        FileConfiguration config = playerDataConfig.getConfig();
+        String exhaustionPath = id + ".ThirstExhaustion";
+
+        if (!config.contains(exhaustionPath)) {
+            config.createSection(exhaustionPath);
+        }
+        config.set(exhaustionPath, thirstExhaustion);
+        saveFile(config);
+    }
+
+    public void setThirstSaturation(double thirstSaturation) {
+        this.thirstExhaustion = thirstSaturation;
+
+        FileConfiguration config = playerDataConfig.getConfig();
+        String saturationPath = id + ".ThirstSaturation";
+
+        if (!config.contains(saturationPath)) {
+            config.createSection(saturationPath);
+        }
+        config.set(saturationPath, thirstSaturation);
+        saveFile(config);
+    }
+
+    public void setThirstTickTimer(int thirstTickTimer) {
+        this.thirstTickTimer = thirstTickTimer;
+
+        FileConfiguration config = playerDataConfig.getConfig();
+        String tickTimerPath = id + ".ThirstTickTimer";
+
+        if (!config.contains(tickTimerPath)) {
+            config.createSection(tickTimerPath);
+        }
+        config.set(tickTimerPath, thirstTickTimer);
+        saveFile(config);
     }
 
     public double getTemperature() {
         return temperature;
     }
 
-    public double getThirst() {
+    public int getThirst() {
         return thirst;
     }
 
@@ -55,7 +113,7 @@ public class DataModule implements RSVDataModule {
         return thirstExhaustion;
     }
 
-    public double getThirstSaturation() {
+    public int getThirstSaturation() {
         return thirstSaturation;
     }
 
@@ -63,24 +121,12 @@ public class DataModule implements RSVDataModule {
         return thirstTickTimer;
     }
 
-    public void setThirstExhaustion(double thirstExhaustion) {
-        this.thirstExhaustion = thirstExhaustion;
-    }
+    public DataModule(Player player) {
+        TanModule module = (TanModule) RSVModule.getModule(TanModule.NAME);
 
-    public void setThirstSaturation(double thirstSaturation) {
-        this.thirstSaturation = thirstSaturation;
-    }
-
-    public void setThirstTickTimer(int thirstTickTimer) {
-        this.thirstTickTimer = thirstTickTimer;
-    }
-
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
-    }
-
-    public void setThirst(double thirst) {
-        this.thirst = thirst;
+        this.userConfig = module.getUserConfig().getConfig();
+        this.playerDataConfig = module.getPlayerDataConfig();
+        this.id = player.getUniqueId();
     }
 
     @Override
@@ -94,8 +140,8 @@ public class DataModule implements RSVDataModule {
         String tickTimerPath = id + ".ThirstTickTimer";
 
         double defaultTemp = userConfig.getDouble("Temperature.DefaultTemperature");
-        double defaultThirst = userConfig.getDouble("Thirst.DefaultThirst");
-        double defaultSaturation = userConfig.getDouble("Thirst.DefaultSaturation");
+        int defaultThirst = userConfig.getInt("Thirst.DefaultThirst");
+        int defaultSaturation = userConfig.getInt("Thirst.DefaultSaturation");
         double defaultExhaustion = userConfig.getDouble("Thirst.DefaultExhaustion");
         int defaultTickTimer = userConfig.getInt("Thirst.DefaultExhaustionTickTimer");
 
@@ -107,45 +153,50 @@ public class DataModule implements RSVDataModule {
             temperature = config.getDouble(tempPath);
         }
         else {
-            config.createSection(tempPath);
-            config.set(tempPath, defaultTemp);
             temperature = defaultTemp;
+
+            config.createSection(tempPath);
+            config.set(tempPath, temperature);
         }
 
         if (config.contains(thirstPath)) {
-            thirst = config.getDouble(thirstPath);
+            thirst = config.getInt(thirstPath);
         }
         else {
-            config.createSection(thirstPath);
-            config.set(tempPath, defaultThirst);
             thirst = defaultThirst;
+
+            config.createSection(thirstPath);
+            config.set(tempPath, thirst);
         }
 
         if (config.contains(saturationPath)) {
-            thirstSaturation = config.getDouble(saturationPath);
+            thirstSaturation = config.getInt(saturationPath);
         }
         else {
-            config.createSection(saturationPath);
-            config.set(saturationPath, defaultSaturation);
             thirstSaturation = defaultSaturation;
+
+            config.createSection(saturationPath);
+            config.set(saturationPath, thirstSaturation);
         }
 
         if (config.contains(exhaustionPath)) {
             thirstExhaustion = config.getDouble(exhaustionPath);
         }
         else {
-            config.createSection(exhaustionPath);
-            config.set(exhaustionPath, defaultExhaustion);
             thirstExhaustion = defaultExhaustion;
+
+            config.createSection(exhaustionPath);
+            config.set(exhaustionPath, thirstExhaustion);
         }
 
         if (config.contains(tickTimerPath)) {
             thirstTickTimer = config.getInt(tickTimerPath);
         }
         else {
-            config.createSection(tickTimerPath);
-            config.set(tickTimerPath, defaultTickTimer);
             thirstTickTimer = defaultTickTimer;
+
+            config.createSection(tickTimerPath);
+            config.set(tickTimerPath, thirstTickTimer);
         }
 
         saveFile(config);

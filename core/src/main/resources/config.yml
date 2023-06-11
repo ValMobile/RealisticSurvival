@@ -1,40 +1,22 @@
-#########################################################################################
-#																					    #
-#	Realistic Survival Plugin	MC 1.16 - 1.19											#
-#	Version 1.2.5-DEV-1	        Made by: Val_Mobile									    #
-#																						#
-#########################################################################################
+###########################################################################
+#                                                                         #
+#   Realistic Survival Plugin   MC 1.17 - 1.20                            #
+#   Version 1.2.5-RELEASE       Made by: Val_Mobile                       #
+#                                                                         #
+###########################################################################
 
 
-#######################################
-#          Messages                   #
-#######################################
+##############################
+#          Messages          #
+##############################
 
-Reload: "&6[Realistic Survival] &fPlugin reloaded! Note that some config changes require a server restart to take effect."
-NoPermission: "&cYou do not have permission to do this!"
-NoOnlinePlayer: "&cThe specified player is not online!"
-MisspelledPlayer: "&cThe specified player's name was misspelled"
-MisspelledItemName: "&cYou mispelled the item!"
-InvalidArguments: "&cYou are using the invalid arguments!"
-RegisteredEnchant: "&7Registered &e%ENCHANT% &7enchant!"                                                             # All placeholders: %ENCHANT%
-Version: "&6[Realistic Survival] &fYou're running on version %PLUGIN_VERSION%"                                       # All placeholders: %PLUGIN_VERSION%
-Integration: "&6[Realistic Survival] &fDetected &e%PLUGIN%&f. Enabling integration!"                                 # All placeholders: %PLUGIN%
-Help:
-  - "&6-----Realistic Survival Command Help-----"
-  - "&6/realisticsurvival &freload"
-  - "&6/realisticsurvival &fgive player item &b*&6&famount"
-  - "&6/realisticsurvival &fspawnitem item amount x y z &b*&fworld"
-  - "&6/realisticsurvival &fspawnmob mob x y z &b*&fworld"
-  - "&6/realisticsurvival &ftemperature player amount"
-  - "&6/realisticsurvival &fthirst player amount"
-  - "&6/realisticsurvival &fresetitem"
-  - "&b* &fmeans that argument is optional"
-  - "&6/rsv &fcan be used as a shorthand"
+RegisteredEnchant: "&7Registered &e%ENCHANT% &7enchant!"                                                            # All internal placeholders: %ENCHANT%
+Integration: "&fDetected &e%PLUGIN%&f. Enabling integration!"                                                       # All internal placeholders: %PLUGIN%
 CorrectVersion:
   - "&fYou are running the latest version"
 OutdatedVersion:
   - "&cYou are running on an outdated version"
-  - "&cUpdate to receive the latest features! https://www.spigotmc.org/resources/realistic-survival-1-16-dragons-baubles-weapons.93795/history"
+  - "&cUpdate to receive the latest features! https://www.spigotmc.org/resources/realistic-survival-1-17-dragons-baubles-weapons.93795/history"
 DeveloperBuildVersion:
   - "&eYou are running on a developer build"
   - "&eNote that there might be bugs or glitches! Please report any bugs, issues, or glitches"
@@ -46,7 +28,6 @@ DeveloperBuildVersion:
 
 # Enable and disable features to your liking
 # Set a feature to "false" to disable and "true" to enable
-# There are 6 other configs to customize the individual details of each feature
 # Resource pack is disabled by default to allow for integration of it into
 # your own custom server pack if needed
 # NOTE: You must restart the server after enabling or disabling any feature
@@ -54,7 +35,7 @@ ResourcePack:
   Enabled: true
   # If you upgrade to newer versions, the URL will need to be manually updated to the newest one,
   # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
-  Url: "https://www.dropbox.com/s/9oaaz839l2r6gsu/Realistic%20Survival%20RP%201.2.5%20DEV-1.zip?dl=1"
+  Url: "https://www.dropbox.com/scl/fi/rks60210y99yo39q9t885/Realistic-Survival-RP-1.2.5-RELEASE.zip?dl=1&rlkey=vrzti6onh8qq3y3s4db60auyt"
 
 AutomaticallyEnableWorlds: true   # Will automatically enable modules for newly added worlds; if set to false, automatically disables modules for newly added worlds
 AutoUpdateConfig: true            # If set to true, will automatically update config; note that this may cause issues with porting across large updates
@@ -96,32 +77,9 @@ ToughAsNails:
     world_nether: true
     world_the_end: true
 
-UpdateItems:
-  Enabled: true
-  UpdateMaterial: true
-  UpdateMaterialData: false
-  UpdateDisplayName: true
-  UpdateLore: true
-  UpdateUnbreakability: true
-  UpdateAttributeModifiers: true
-  UpdateLocalizedName: true
-  UpdateCustomModelData: true
-  UpdateEnchants:
-    Enabled: true
-    PreserveExistingEnchants: true
-  UpdateItemFlags:
-    Enabled: true
-    PreserveExistingItemFlags: true
-  UpdateVanillaDurability: false
-  UpdateNbtTags:
-    Enabled: true
-    UpdateModule: true
-    UpdateCustomDurability: false
-    UpdateCustomMaxDurability: true
-
-#######################################
-#          Miscellaneous              #
-#######################################
+####################################
+#          Miscellaneous           #
+####################################
 
 BStats: true             # Do you want non-confidential server data to be recorded for my use?
-ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit

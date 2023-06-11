@@ -20,31 +20,57 @@ import me.val_mobile.data.RSVModule;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public interface SeaSerpent extends RSVMob {
 
     FileConfiguration CONFIG = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
 
     @Override
+    default List<String> getRequiredModules() {
+        return List.of(IceFireModule.NAME);
+    }
+
+    @Override
+    default String getParentModule() {
+        return IceFireModule.NAME;
+    }
+
+    @Override
+    default String name() {
+        return "sea_serpent";
+    }
+
+    @Override
     default void addNbtData() {
-        Utils.addNbtTag(getEntity(), "rsvmob", "sea_serpent", PersistentDataType.STRING);
+        Utils.addNbtTag(getEntity(), "rsvmob", name(), PersistentDataType.STRING);
         Utils.addNbtTag(getEntity(), "rsvseaserpentvariant", getVariant().toString(), PersistentDataType.STRING);
     }
 
-    SeaSerpentVariant getVariant();
+    @Override
+    @Nonnull
+    default Collection<ItemStack> getLoot(@Nullable ItemStack tool) {
+        Collection<ItemStack> loot = new ArrayList<>();
 
-    default void generateLoot(Collection<ItemStack> loot) {
-        loot.clear();
-        int scaleAmount = Utils.getRandomNum(CONFIG.getInt("SeaSerpents.Drops.Scales.Min"), CONFIG.getInt("SeaSerpents.Drop.Scales.Max"));
+        ConfigurationSection section = CONFIG.getConfigurationSection("SeaSerpent.LootTable");
 
+        // initialize loot items
         ItemStack scales = RSVItem.getItem("sea_serpent_scale_" + getVariant().toString().toLowerCase());
-        scales.setAmount(scaleAmount);
 
-        loot.add(scales);
+        loot.add(Utils.getMobLoot(section.getConfigurationSection("Scales"), scales, tool, false));
+        loot.addAll(getConfigurableLoot(tool));
+
+        return loot;
     }
+
+    SeaSerpentVariant getVariant();
 }

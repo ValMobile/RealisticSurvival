@@ -37,9 +37,9 @@ public class RSVPlayer {
 
     public RSVPlayer(Player player) {
         this.uuid = player.getUniqueId();
-        baubleDataModule = RSVModule.getModule(BaubleModule.NAME).isEnabled() ? new me.val_mobile.data.baubles.DataModule(player) : null;
+        baubleDataModule = RSVModule.getModule(BaubleModule.NAME).isGloballyEnabled() ? new me.val_mobile.data.baubles.DataModule(player) : null;
 
-        tanDataModule = RSVModule.getModule(TanModule.NAME).isEnabled() ? new DataModule(player) : null;
+        tanDataModule = RSVModule.getModule(TanModule.NAME).isGloballyEnabled() ? new DataModule(player) : null;
 
         players.put(uuid, this);
     }
@@ -72,24 +72,32 @@ public class RSVPlayer {
         }
     }
 
-    @Nonnull
+    @Nullable
     public DataModule getTanDataModule() {
         return tanDataModule;
     }
 
-    @Nonnull
+    @Nullable
     public me.val_mobile.data.baubles.DataModule getBaubleDataModule() {
         return baubleDataModule;
     }
 
-    public static boolean isValidPlayer(@Nonnull Player player) {
+    public static boolean isValidPlayer(@Nullable Player player) {
+        if (player == null) {
+            return false;
+        }
+
         if (players.containsKey(player.getUniqueId())) {
             return players.get(player.getUniqueId()) != null;
         }
         return false;
     }
 
-    public static boolean isValidPlayer(@Nonnull UUID id) {
+    public static boolean isValidPlayer(@Nullable UUID id) {
+        if (id == null) {
+            return false;
+        }
+
         if (players.containsKey(id)) {
             return players.get(id) != null;
         }

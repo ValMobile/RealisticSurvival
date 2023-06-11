@@ -57,13 +57,18 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Utils {
 
     public static final double ATTACK_DAMAGE_CONSTANT = -1.0;
     public static final double ATTACK_SPEED_CONSTANT = -4.0;
+    private static final Pattern VERSION_PATTERN = Pattern.compile("([1-9])\\.([1-9][0-9]|[1-9])(\\.([0-9]))?");
 
     private final RealisticSurvivalPlugin plugin;
 
@@ -72,9 +77,8 @@ public class Utils {
     static {
         try {
             String packageName = Utils.class.getPackage().getName();
-            String internalsName = getMinecraftVersion(true);
 //            String internalsName = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-            internals = (InternalsProvider) Class.forName(packageName + "." + internalsName).getDeclaredConstructor().newInstance();
+            internals = (InternalsProvider) Class.forName(packageName + "." + getMinecraftVersion(true)).getDeclaredConstructor().newInstance();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ClassCastException | NoSuchMethodException | InvocationTargetException exception) {
             Bukkit.getLogger().log(Level.SEVERE, "NMS Util could not find a valid implementation for this server version.");
         }
@@ -85,115 +89,99 @@ public class Utils {
     }
 
     @Nonnull
-    public static String translateMsg(@Nullable CommandSender sender, @Nonnull String rawMessage) {
-        if (sender instanceof Player player) {
-            return translateMsg(player, rawMessage);
+    private static String format(@Nonnull String text, @Nonnull Map<String, Object> placeholders) {
+        StringBuilder newTemplate = new StringBuilder(text);
+        List<Object> valueList = new ArrayList<>();
+
+        Matcher matcher = Pattern.compile("%(\\w+)%").matcher(text);
+
+        while (matcher.find()) {
+            String key = matcher.group(1);
+
+            String paramName = "%" + key + "%";
+            int index = newTemplate.indexOf(paramName);
+            if (index != -1) {
+                newTemplate.replace(index, index + paramName.length(), "%s");
+                valueList.add(placeholders.get(key));
+            }
         }
-        return translateMsg(rawMessage);
+
+        return String.format(newTemplate.toString(), valueList.toArray());
     }
 
     @Nonnull
-    public static String translateMsg(@Nullable Player player, @Nonnull String rawMessage) {
-        if (CompatiblePlugin.getPlugin(PAPI.NAME).isIntegrated() && player != null) {
-            return ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(player, rawMessage));
+    public static String translateMsg(@Nonnull String text, @Nullable CommandSender sender, @Nullable Map<String, Object> placeholders) {
+        String translatedText = text;
+
+        if (CompatiblePlugin.isIntegrated(PAPI.NAME)) {
+            translatedText = PlaceholderAPI.setPlaceholders(sender instanceof Player ? (Player) sender : (sender instanceof OfflinePlayer ? (OfflinePlayer) sender : null), translatedText);
         }
-        return translateMsg(rawMessage);
-    }
 
-    @Nonnull
-    public static String translateMsg(@Nonnull String rawMessage) {
-        return ChatColor.translateAlternateColorCodes('&', rawMessage);
-    }
-
-    @Nonnull
-    public static String[] translateMsgs(@Nullable CommandSender sender, @Nonnull String... rawMessages) {
-        if (sender instanceof Player player) {
-            return translateMsgs(player, rawMessages);
+        if (placeholders != null) {
+            translatedText = format(translatedText, placeholders);
         }
-        return translateMsgs(rawMessages);
+
+        return ChatColor.translateAlternateColorCodes('&', translatedText);
     }
 
     @Nonnull
-    public static String[] translateMsgs(@Nullable Player player, @Nonnull String... rawMessages) {
-        if (CompatiblePlugin.getPlugin(PAPI.NAME).isIntegrated() && player != null) {
-            String[] translated = new String[rawMessages.length];
+    public static List<String> translateMsgs(@Nonnull List<String> texts, @Nullable CommandSender sender, @Nullable Map<String, Object> placeholders) {
+        List<String> translated = new ArrayList<>(texts);
 
-            for (int i = 0; i < translated.length; i++) {
-                translated[i] = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(player, rawMessages[i]));
+        String temp;
+
+        if (CompatiblePlugin.isIntegrated(PAPI.NAME)) {
+            translated = PlaceholderAPI.setPlaceholders(sender instanceof Player ? (Player) sender : (sender instanceof OfflinePlayer ? (OfflinePlayer) sender : null), translated);
+        }
+
+        for (int i = 0; i < translated.size(); i++) {
+            temp = translated.get(i);
+
+            if (placeholders != null) {
+                temp = format(temp, placeholders);
             }
 
-            return translated;
-        }
-        return translateMsgs(rawMessages);
-    }
+            temp = ChatColor.translateAlternateColorCodes('&', temp);
 
-    @Nonnull
-    public static String[] translateMsgs(@Nonnull String[] rawMessages) {
-        String[] translated = new String[rawMessages.length];
-
-        for (int i = 0; i < translated.length; i++) {
-            translated[i] = ChatColor.translateAlternateColorCodes('&', rawMessages[i]);
+            translated.set(i, temp);
         }
 
         return translated;
     }
 
+    public static double round(double value, @Nonnegative int places) {
+        BigDecimal bd = new BigDecimal(Double.toString(value));
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
+    public static double clamp(double val, double min, double max) {
+        return Math.max(min, Math.min(max, val));
+    }
+
+    public static int clamp(int val, int min, int max) {
+        return Math.max(min, Math.min(max, val));
+    }
+
     @Nonnull
     public static String getMinecraftVersion(boolean impl) {
-        String s = Bukkit.getVersion();
+        Matcher m = VERSION_PATTERN.matcher(Bukkit.getVersion());
 
-        if (s.contains("1.20.1")) {
-            return impl ? "v1_20_R2" : "1.20.1";
-        }
-        if (s.contains("1.20")) {
-            return impl ? "v1_20_R1" : "1.20";
-        }
-        if (s.contains("1.19.3")) {
-            return impl ? "v1_19_R4" : "1.19.3";
-        }
-        if (s.contains("1.19.2")) {
-            return impl ? "v1_19_R3" : "1.19.2";
-        }
-        if (s.contains("1.19.1")) {
-            return impl ? "v1_19_R2" : "1.19.1";
-        }
-        if (s.contains("1.19")) {
-            return impl ? "v1_19_R1" : "1.19";
-        }
-        if (s.contains("1.18.2")) {
-            return impl ? "v1_18_R3" : "1.18.2";
-        }
-        if (s.contains("1.18.1")) {
-            return impl ? "v1_18_R2" : "1.18.1";
-        }
-        if (s.contains("1.18")) {
-            return impl ? "v1_18_R1" : "1.18";
-        }
-        if (s.contains("1.17.1")) {
-            return impl ? "v1_17_R2" : "1.17.1";
-        }
-        if (s.contains("1.17")) {
-            return impl ? "v1_17_R1" : "1.17";
-        }
-        if (s.contains("1.16.5")) {
-            return impl ? "v1_16_R5" : "1.16.5";
-        }
-        if (s.contains("1.16.4")) {
-            return impl ? "v1_16_R4" : "1.16.4";
-        }
-        if (s.contains("1.16.3")) {
-            return impl ? "v1_16_R3" : "1.16.3";
-        }
-        if (s.contains("1.16.2")) {
-            return impl ? "v1_16_R2" : "1.16.2";
-        }
-        if (s.contains("1.16.1")) {
-            return impl ? "v1_16_R1" : "1.16.1";
-        }
-        if (s.contains("1.16")) {
-            return impl ? "v1_16_R1" : "1.16";
+        if (m.find()) {
+            String prefix = m.group(1);
+            String major = m.group(2);
+            String minor = m.group(4) == null ? "0" : m.group(4);
+            return impl ? "v" + prefix + "_" + major + "_R" + (Integer.parseInt(minor) + 1) : prefix + "." + major + (minor.equals("0") ? "" : "." + minor);
         }
         return "";
+    }
+
+    public static boolean isServerRunningPaper() {
+        try {
+            Class.forName("com.destroystokyo.paper.ParticleBuilder");
+            return true;
+        } catch (ClassNotFoundException ignored) {}
+        return false;
     }
 
     @Nonnull
@@ -473,6 +461,13 @@ public class Utils {
         };
     }
 
+    public static <E extends Enum<E>> boolean isInEnum(String value, Class<E> enumClass) {
+        for (E e : enumClass.getEnumConstants()) {
+            if(e.name().equals(value)) { return true; }
+        }
+        return false;
+    }
+
     public static boolean isHoldingAxe(@Nonnull Player player) {
         ItemStack itemMainHand = player.getInventory().getItemInMainHand();
         if (isItemReal(itemMainHand)) {
@@ -624,16 +619,24 @@ public class Utils {
         return RealisticSurvivalPlugin.getUtil().hasInternalNbtTag(item, key);
     }
 
-    public static int getMaxVanillaDurability(@Nonnull ItemStack item) {
-        return item.getType().getMaxDurability();
-    }
-
-    public static int getVanillaDurability(@Nonnull ItemStack item) {
-        return getMaxVanillaDurability(item) - ((Damageable) item).getDamage();
+    public static int getMaxDurability(@Nonnull ItemStack item) {
+        return hasCustomDurability(item) ? getMaxCustomDurability(item) : getMaxVanillaDurability(item);
     }
 
     public static int getMaxCustomDurability(@Nonnull ItemStack item) {
         return getNbtTag(item, "rsvmaxdurability", PersistentDataType.INTEGER);
+    }
+
+    public static int getMaxVanillaDurability(@Nonnull ItemStack item) {
+        return item.getType().getMaxDurability();
+    }
+
+    public static int getDurability(@Nonnull ItemStack item) {
+        return hasCustomDurability(item) ? getCustomDurability(item) : getVanillaDurability(item);
+    }
+
+    public static int getVanillaDurability(@Nonnull ItemStack item) {
+        return getMaxVanillaDurability(item) - ((Damageable) item).getDamage();
     }
 
     public static int getCustomDurability(@Nonnull ItemStack item) {
@@ -814,12 +817,13 @@ public class Utils {
         return null;
     }
 
-    public static boolean dropLooting(@Nonnull ConfigurationSection section, @Nonnull ItemStack drop, @Nullable ItemStack tool, @Nonnull Location loc) {
+    @Nullable
+    public static ItemStack getMobLoot(@Nonnull ConfigurationSection section, @Nonnull ItemStack drop, @Nullable ItemStack tool, boolean checkLooting) {
         int lvl = 0;
 
         if (isItemReal(tool)) {
             ItemMeta meta = tool.getItemMeta();
-            if (meta != null) {
+            if (meta != null && checkLooting) {
                 lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_MOBS);
             }
         }
@@ -829,14 +833,11 @@ public class Utils {
                 double chance = section.getDouble("Chance") + lvl * 0.01;
                 // rare drops
                 if (roll(chance)) {
-                    loc.getWorld().dropItemNaturally(loc, drop);
-                    return true;
+                    return drop;
                 }
                 else {
-                    if (roll((lvl / (lvl + 1D))/100D)) {
-                        loc.getWorld().dropItemNaturally(loc, drop);
-                        return true;
-                    }
+                    if (roll((lvl / (lvl + 1D))/100D))
+                        return drop;
                 }
             }
             case "COMMON" -> {
@@ -855,9 +856,7 @@ public class Utils {
 
                     if (actualAmount > 0) {
                         drop.setAmount(actualAmount);
-
-                        loc.getWorld().dropItemNaturally(loc, drop);
-                        return true;
+                        return drop;
                     }
                 }
             }
@@ -869,13 +868,39 @@ public class Utils {
 
                 if (amount > 0) {
                     drop.setAmount(amount);
-                    loc.getWorld().dropItemNaturally(loc, drop);
-                    return true;
+                    return drop;
                 }
             }
             default -> {}
         }
-        return false;
+
+        return null;
+    }
+
+    public static void dropLooting(@Nonnull ConfigurationSection section, @Nonnull ItemStack drop, @Nullable ItemStack tool, @Nonnull Location loc, boolean checkLooting) {
+        ItemStack item = getMobLoot(section, drop, tool, checkLooting);
+
+        if (Utils.isItemReal(item))
+            loc.getWorld().dropItemNaturally(loc, item);
+    }
+
+    @Nullable
+    public static Set<Material> getVanillaRepairMaterials(@Nonnull Material material) {
+        return switch (material) {
+            case NETHERITE_AXE, NETHERITE_BOOTS, NETHERITE_HELMET, NETHERITE_CHESTPLATE, NETHERITE_LEGGINGS, NETHERITE_PICKAXE, NETHERITE_SWORD, NETHERITE_SHOVEL, NETHERITE_HOE ->
+                    Set.of(Material.NETHERITE_INGOT);
+            case DIAMOND_AXE, DIAMOND_BOOTS, DIAMOND_HELMET, DIAMOND_CHESTPLATE, DIAMOND_LEGGINGS, DIAMOND_PICKAXE, DIAMOND_SWORD, DIAMOND_SHOVEL, DIAMOND_HOE ->
+                    Set.of(Material.DIAMOND);
+            case IRON_AXE, IRON_BOOTS, IRON_HELMET, IRON_CHESTPLATE, IRON_LEGGINGS, IRON_PICKAXE, IRON_SWORD, IRON_SHOVEL, IRON_HOE, CHAINMAIL_BOOTS, CHAINMAIL_HELMET, CHAINMAIL_CHESTPLATE, CHAINMAIL_LEGGINGS ->
+                    Set.of(Material.IRON_INGOT);
+            case GOLDEN_AXE, GOLDEN_BOOTS, GOLDEN_HELMET, GOLDEN_CHESTPLATE, GOLDEN_LEGGINGS, GOLDEN_PICKAXE, GOLDEN_SWORD, GOLDEN_SHOVEL, GOLDEN_HOE ->
+                    Set.of(Material.GOLD_INGOT);
+            case STONE_AXE, STONE_PICKAXE, STONE_SWORD, STONE_SHOVEL, STONE_HOE -> Set.of(Material.COBBLESTONE, Material.BLACKSTONE);
+            case WOODEN_AXE, WOODEN_PICKAXE, WOODEN_SWORD, WOODEN_SHOVEL, WOODEN_HOE, SHIELD -> Tag.PLANKS.getValues();
+            case LEATHER_BOOTS, LEATHER_CHESTPLATE, LEATHER_LEGGINGS, LEATHER_HELMET -> Set.of(Material.LEATHER);
+            case TURTLE_HELMET -> Set.of(Material.SCUTE);
+            default -> null;
+        };
     }
 
     public static boolean isNetherite(@Nonnull Material material) {
@@ -991,10 +1016,6 @@ public class Utils {
     public static boolean canRain(@Nonnull Location loc) {
         double biomeTemp = loc.getWorld().getTemperature((int) loc.getX(), (int) loc.getY(), (int) loc.getZ());
         return biomeTemp >= 0.15 && biomeTemp <= 0.95 && loc.getWorld().getEnvironment() == World.Environment.NORMAL;
-    }
-
-    public static boolean isInWater(@Nonnull Entity entity) {
-        return internals.isInWater(entity);
     }
 
     public static boolean isInLava(@Nonnull Entity entity) {
@@ -1294,108 +1315,107 @@ public class Utils {
     }
 
     public void updateInternalItem(@Nonnull ItemStack item) {
-        FileConfiguration config = plugin.getConfig();
-        if (config.getBoolean("UpdateItems.Enabled")) {
-            if (RSVItem.isRSVItem(item)) {
-                ItemStack rsvItem = RSVItem.getItem(RSVItem.getNameFromItem(item));
-                ItemMeta rsvMeta = rsvItem.getItemMeta();
+        FileConfiguration config = plugin.getCommandsConfig();
 
-                if (config.getBoolean("UpdateItems.UpdateMaterial"))
-                    item.setType(rsvItem.getType());
+        if (RSVItem.isRSVItem(item)) {
+            ItemStack rsvItem = RSVItem.getItem(RSVItem.getNameFromItem(item));
+            ItemMeta rsvMeta = rsvItem.getItemMeta();
 
-                if (config.getBoolean("UpdateItems.UpdateMaterialData"))
-                    item.setData(rsvItem.getData());
+            if (config.getBoolean("UpdateItem.Material"))
+                item.setType(rsvItem.getType());
 
-                ItemMeta meta = item.getItemMeta();
+            if (config.getBoolean("UpdateItem.MaterialData"))
+                item.setData(rsvItem.getData());
 
-                if (config.getBoolean("UpdateItems.UpdateDisplayName")) {
-                    if (rsvMeta.hasDisplayName())
-                        meta.setDisplayName(rsvMeta.getDisplayName());
+            ItemMeta meta = item.getItemMeta();
+
+            if (config.getBoolean("UpdateItem.DisplayName")) {
+                if (rsvMeta.hasDisplayName())
+                    meta.setDisplayName(rsvMeta.getDisplayName());
+            }
+
+            if (config.getBoolean("UpdateItem.Lore")) {
+                if (rsvMeta.hasLore())
+                    meta.setLore(rsvMeta.getLore());
+            }
+
+            if (config.getBoolean("UpdateItem.Unbreakability"))
+                meta.setUnbreakable(rsvMeta.isUnbreakable());
+
+            if (config.getBoolean("UpdateItem.AttributeModifiers")) {
+                if (rsvMeta.hasAttributeModifiers())
+                    meta.setAttributeModifiers(rsvMeta.getAttributeModifiers());
+            }
+
+            if (config.getBoolean("UpdateItem.AttributeModifiers")) {
+                if (rsvMeta.hasLocalizedName())
+                    meta.setLocalizedName(rsvMeta.getLocalizedName());
+            }
+
+            if (config.getBoolean("UpdateItem.CustomModelData")) {
+                if (rsvMeta.hasCustomModelData()) {
+                    meta.setCustomModelData(rsvMeta.getCustomModelData());
                 }
+            }
 
-                if (config.getBoolean("UpdateItems.UpdateLore")) {
-                    if (rsvMeta.hasLore())
-                        meta.setLore(rsvMeta.getLore());
-                }
+            if (config.getBoolean("UpdateItem.Enchants.Enabled")) {
+                Map<Enchantment, Integer> map = meta.getEnchants();
 
-                if (config.getBoolean("UpdateItems.UpdateUnbreakability"))
-                    meta.setUnbreakable(rsvMeta.isUnbreakable());
+                if (!config.getBoolean("UpdateItem.Enchants.PreserveExistingEnchants")) {
+                    Set<Enchantment> enchants = map.keySet();
 
-                if (config.getBoolean("UpdateItems.UpdateAttributeModifiers")) {
-                    if (rsvMeta.hasAttributeModifiers())
-                        meta.setAttributeModifiers(rsvMeta.getAttributeModifiers());
-                }
-
-                if (config.getBoolean("UpdateItems.UpdateAttributeModifiers")) {
-                    if (rsvMeta.hasLocalizedName())
-                        meta.setLocalizedName(rsvMeta.getLocalizedName());
-                }
-
-                if (config.getBoolean("UpdateItems.UpdateCustomModelData")) {
-                    if (rsvMeta.hasCustomModelData()) {
-                        meta.setCustomModelData(rsvMeta.getCustomModelData());
+                    for (Enchantment ench : enchants) {
+                        meta.removeEnchant(ench);
                     }
                 }
 
-                if (config.getBoolean("UpdateItems.UpdateEnchants.Enabled")) {
-                    Map<Enchantment, Integer> map = meta.getEnchants();
+                if (rsvMeta.hasEnchants()) {
+                    Map<Enchantment, Integer> rsvMap = rsvMeta.getEnchants();
+                    Set<Map.Entry<Enchantment, Integer>> entries = rsvMap.entrySet();
 
-                    if (!config.getBoolean("UpdateItems.UpdateEnchants.PreserveExistingEnchants")) {
-                        Set<Enchantment> enchants = map.keySet();
-
-                        for (Enchantment ench : enchants) {
-                            meta.removeEnchant(ench);
-                        }
-                    }
-
-                    if (rsvMeta.hasEnchants()) {
-                        Map<Enchantment, Integer> rsvMap = rsvMeta.getEnchants();
-                        Set<Map.Entry<Enchantment, Integer>> entries = rsvMap.entrySet();
-
-                        for (Map.Entry<Enchantment, Integer> entry : entries) {
-                            meta.addEnchant(entry.getKey(), entry.getValue(), true);
-                        }
+                    for (Map.Entry<Enchantment, Integer> entry : entries) {
+                        meta.addEnchant(entry.getKey(), entry.getValue(), true);
                     }
                 }
+            }
 
-                if (config.getBoolean("UpdateItems.UpdateItemFlags.Enabled")) {
-                    Set<ItemFlag> flags = meta.getItemFlags();
-                    Set<ItemFlag> rsvFlags = rsvMeta.getItemFlags();
+            if (config.getBoolean("UpdateItem.ItemFlags.Enabled")) {
+                Set<ItemFlag> flags = meta.getItemFlags();
+                Set<ItemFlag> rsvFlags = rsvMeta.getItemFlags();
 
-                    if (!config.getBoolean("UpdateItems.UpdateItemFlags.PreserveExistingItemFlags")) {
-                        for (ItemFlag flag : flags) {
-                            if (flag != null) {
-                                meta.removeItemFlags(flag);
-                            }
-                        }
-                    }
-
-                    for (ItemFlag flag : rsvFlags) {
+                if (!config.getBoolean("UpdateItem.ItemFlags.PreserveExistingItemFlags")) {
+                    for (ItemFlag flag : flags) {
                         if (flag != null) {
-                            meta.addItemFlags(flag);
+                            meta.removeItemFlags(flag);
                         }
                     }
                 }
 
-                if (config.getBoolean("UpdateItems.UpdateVanillaDurability")) {
-                    if (rsvItem.getType().getMaxDurability() > 0) {
-                        ((Damageable) meta).setDamage(((Damageable) rsvMeta).getDamage());
+                for (ItemFlag flag : rsvFlags) {
+                    if (flag != null) {
+                        meta.addItemFlags(flag);
                     }
                 }
+            }
 
-                item.setItemMeta(meta);
-                updateDamageLore(item, meta.getEnchants().entrySet());
-
-                if (config.getBoolean("UpdateItems.UpdateNbtTags.Enabled")) {
-                    if (config.getBoolean("UpdateItems.UpdateNbtTags.UpdateModule"))
-                        addNbtTag(item, "rsvmodule", RSVItem.getModuleNameFromItem(rsvItem), PersistentDataType.STRING);
-
-                    if (config.getBoolean("UpdateItems.UpdateNbtTags.UpdateCustomDurability"))
-                        if (hasCustomDurability(rsvItem)) {
-                            addNbtTag(item, "rsvdurability", getCustomDurability(rsvItem), PersistentDataType.INTEGER);
-                            addNbtTag(item, "rsvmaxdurability", getMaxCustomDurability(rsvItem), PersistentDataType.INTEGER);
-                        }
+            if (config.getBoolean("UpdateItem.VanillaDurability")) {
+                if (rsvItem.getType().getMaxDurability() > 0) {
+                    ((Damageable) meta).setDamage(((Damageable) rsvMeta).getDamage());
                 }
+            }
+
+            item.setItemMeta(meta);
+            updateDamageLore(item, meta.getEnchants().entrySet());
+
+            if (config.getBoolean("UpdateItem.NbtTags.Enabled")) {
+                if (config.getBoolean("UpdateItem.NbtTags.Module"))
+                    addNbtTag(item, "rsvmodule", RSVItem.getModuleNameFromItem(rsvItem), PersistentDataType.STRING);
+
+                if (config.getBoolean("UpdateItem.NbtTags.CustomDurability"))
+                    if (hasCustomDurability(rsvItem)) {
+                        addNbtTag(item, "rsvdurability", getCustomDurability(rsvItem), PersistentDataType.INTEGER);
+                        addNbtTag(item, "rsvmaxdurability", getMaxCustomDurability(rsvItem), PersistentDataType.INTEGER);
+                    }
             }
         }
     }

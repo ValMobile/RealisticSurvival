@@ -45,7 +45,7 @@ public class UpdateChecker {
                     consumer.accept(scanner.next());
                 }
             } catch (IOException exception) {
-                this.plugin.getLogger().info(Utils.translateMsg("&cCannot look for updates: " + exception.getMessage()));
+                this.plugin.getLogger().info(Utils.translateMsg("&cCannot look for updates: " + exception.getMessage(), null, null));
             }
         });
     }
@@ -61,7 +61,7 @@ public class UpdateChecker {
             List<String> messages = compareTo == 0 ? plugin.getConfig().getStringList("CorrectVersion") : compareTo < 0 ? plugin.getConfig().getStringList("OutdatedVersion") : plugin.getConfig().getStringList("DeveloperBuildVersion");
 
             for (String message : messages) {
-                logger.info(Utils.translateMsg(message));
+                logger.info(Utils.translateMsg(message, null, null));
             }
         });
     }

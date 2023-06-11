@@ -2,14 +2,14 @@
 #          Spartan and Fire           #
 #######################################
 
-ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 Initialize:
   Enabled: true
-  Message: "&6[Realistic Survival] &fInitializing &b%NAME% &fmodule"                                  # All placeholders: %NAME%
+  Message: "&6[Realistic Survival] &fInitializing &e%NAME% &fmodule"                                  # All placeholders: %NAME%
 Shutdown:
   Enabled: true
-  Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"                                 # All placeholders: %NAME%
+  Message: "&6[Realistic Survival] &fShutting down &e%NAME% &fmodule"                                 # All placeholders: %NAME%
 MaxDistanceReached:
   Enabled: true
   Message: "&fYour weapon has reached the max distance of &b%MAX_DISTANCE% &fblocks!"                 # All placeholders: %MAX_DISTANCE%
@@ -18,29 +18,29 @@ MaxReturnDistanceReached:
   Message: "&fYour weapon has not been returned since you're too far!"                                # All placeholders: %MAX_DISTANCE%
 FullInventoryWeaponDropped:
   Enabled: true
-  Message: "&fInventory full! Your weapon has been dropped instead at &bx&f: &b%X-COORD%&f, &by&f: &b%Y-COORD%&f, &bz&f: &b%Z-COORD%&f."        # All placeholders: %X-COORD%, %Y_COORD%, %Z-COORD%
+  Message: "&fInventory full! Your weapon has been dropped instead at &bx&f: &b%X_COORD%&f, &by&f: &b%Y_COORD%&f, &bz&f: &b%Z_COORD%&f."        # All placeholders: %X_COORD%, %Y_COORD%, %Z_COORD%
 WeaponDropped:
   Enabled: true
-  Message: "&fWeapon dropped at &bx&f: &b%X-COORD%&f, &by&f: &b%Y-COORD%&f, &bz&f: &b%Z-COORD%&f."    # All placeholders: %X-COORD%, %Y_COORD%, %Z-COORD%
+  Message: "&fWeapon dropped at &bx&f: &b%X_COORD%&f, &by&f: &b%Y_COORD%&f, &bz&f: &b%Z_COORD%&f."    # All placeholders: %X_COORD%, %Y_COORD%, %Z_COORD%
 
 # Used to specify custom item drops for any mob
 # By default, there is no use for this, so the chance is set to 0.00
 MobDrops:
-  WITHER:
-    witherbone_handle:
-      Type: "Rare"
-      Chance: 0.00
+# WITHER:
+#   witherbone_handle:
+#     Type: "Rare"
+#     Chance: 0.00
 
 # Used to specify custom block drops
 # By default, there is no use for this, so the chance is set to 0.00
 BlockDrops:
-  BARRIER:
-    witherbone_handle:
-      Type: "Rare"
-      Chance: 0.01
-      ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
-      IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
-      RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
+# BARRIER:
+#   witherbone_handle:
+#     Type: "Rare"
+#     Chance: 0.00
+#     ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
+#     IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
+#     RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
 
 # Customize the Spartan and Fire weapons
 
@@ -3591,8 +3591,6 @@ Items:
       TickPeriod: 2
   witherbone_handle:
     Enabled:
-      EnableAllVersions: true
-    Unlock: true
   witherbone_pole:
     Enabled:
       EnableAllVersions: true
@@ -4149,13 +4147,21 @@ Recipes:
   # Lightning Dragonsteel Weapons
 
   dragonsteel_lightning_rapier:
-    Enabled: false
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
   dragonsteel_lightning_katana:
-    Enabled: false
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
   dragonsteel_lightning_greatsword:
-    Enabled: false
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
   dragonsteel_lightning_longsword:
-    Enabled: false
+    Enabled:
+      EnableAllVersions: true
+    Unlock: true
   dragonsteel_lightning_spear:
     Enabled:
       EnableAllVersions: true

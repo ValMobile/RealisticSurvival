@@ -26,7 +26,6 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Furnace;
-import org.bukkit.block.data.Levelled;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -95,7 +94,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
                             if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
                                 if (config.getConfigurationSection("PlantFiberGathering.BlockDrops").getKeys(false).contains(material.toString())) {
                                     ItemStack plantFiber = RSVItem.getItem("plant_fiber");
-                                    Utils.dropLooting(config.getConfigurationSection("PlantFiberGathering.BlockDrops." + material), plantFiber, itemMainHand, block.getLocation());
+                                    Utils.dropLooting(config.getConfigurationSection("PlantFiberGathering.BlockDrops." + material), plantFiber, itemMainHand, block.getLocation(), true);
                                     Utils.changeDurability(itemMainHand, -1, true);
                                 }
                             }
@@ -128,13 +127,13 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                     Utils.playSound(player.getLocation(), config.getString("FlintKnapping.BlockDrops." + blockMat + ".Sound.Sound"), (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Volume"),  (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Pitch"));
                                 }
 
-                                if (Utils.dropLooting(config.getConfigurationSection("FlintKnapping.BlockDrops." + blockMat), flintShard, null, block.getLocation().add(0D, 0.15D, 0D))) {
-                                    if (item.getAmount() > 0) {
-                                        item.setAmount(item.getAmount() - 1);
-                                    }
-                                    else {
-                                        item.setType(Material.AIR);
-                                    }
+                                Utils.dropLooting(config.getConfigurationSection("FlintKnapping.BlockDrops." + blockMat), flintShard, null, block.getLocation().add(0D, 0.15D, 0D), true);
+
+                                if (item.getAmount() > 0) {
+                                    item.setAmount(item.getAmount() - 1);
+                                }
+                                else {
+                                    item.setType(Material.AIR);
                                 }
                             }
                         }
@@ -215,7 +214,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                     switch (blockMaterial) {
                                         case GRASS_BLOCK, DIRT -> {
                                             if (player.isSneaking()) {
-                                                b.setType(Material.GRASS_PATH);
+                                                b.setType(Material.DIRT_PATH);
                                             }
                                             else {
                                                 b.setType(Material.FARMLAND);
@@ -224,29 +223,28 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                         }
                                         case COARSE_DIRT, PODZOL, MYCELIUM -> {
                                             if (player.isSneaking()) {
-                                                b.setType(Material.GRASS_PATH);
+                                                b.setType(Material.DIRT_PATH);
                                             }
                                             else {
                                                 b.setType(Material.DIRT);
                                             }
                                             Utils.changeDurability(item, -1, true);
                                         }
-                                        case GRASS_PATH -> {
+                                        case DIRT_PATH -> {
                                             b.setType(Material.FARMLAND);
                                             Utils.changeDurability(item, -1, true);
                                         }
+                                        case ROOTED_DIRT -> {
+                                            if (player.isSneaking()) {
+                                                b.setType(Material.DIRT_PATH);
+                                            }
+                                            else {
+                                                player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.valueOf("HANGING_ROOTS")));
+                                                b.setType(Material.DIRT);
+                                            }
+                                            Utils.changeDurability(item, -1, true);
+                                        }
                                         default -> {}
-                                    }
-                                    // support for rooted dirt
-                                    if (blockMaterial.toString().equals("ROOTED_DIRT")) {
-                                        if (player.isSneaking()) {
-                                            b.setType(Material.GRASS_PATH);
-                                        }
-                                        else {
-                                            player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.valueOf("HANGING_ROOTS")));
-                                            b.setType(Material.DIRT);
-                                        }
-                                        Utils.changeDurability(item, -1, true);
                                     }
                                 }
                                 // it is a shovel
@@ -264,34 +262,26 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                             }
                                             Utils.changeDurability(item, -1, true);
                                         }
-                                        default -> {}
-                                    }
-                                    // support for rooted dirt
-                                    if (blockMaterial.toString().equals("ROOTED_DIRT")) {
-                                        if (player.isSneaking()) {
-                                            player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.valueOf("HANGING_ROOTS")));
-                                            b.setType(Material.DIRT);
-                                        }
-                                        Utils.changeDurability(item, -1, true);
-                                    }
-                                }
-                                // it is a hoe
-                                else {
-                                    switch (blockMaterial) {
-                                        case GRASS_BLOCK, DIRT, COARSE_DIRT, PODZOL, MYCELIUM -> {
+                                        case ROOTED_DIRT -> {
                                             if (player.isSneaking()) {
-                                                b.setType(Material.GRASS_PATH);
+                                                player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.valueOf("HANGING_ROOTS")));
+                                                b.setType(Material.DIRT);
                                             }
                                             Utils.changeDurability(item, -1, true);
                                         }
                                         default -> {}
                                     }
-                                    // support for rooted dirt
-                                    if (blockMaterial.toString().equals("ROOTED_DIRT")) {
-                                        if (player.isSneaking()) {
-                                            b.setType(Material.GRASS_PATH);
+                                }
+                                // it is a hoe
+                                else {
+                                    switch (blockMaterial) {
+                                        case GRASS_BLOCK, DIRT, COARSE_DIRT, PODZOL, MYCELIUM, ROOTED_DIRT -> {
+                                            if (player.isSneaking()) {
+                                                b.setType(Material.DIRT_PATH);
+                                            }
+                                            Utils.changeDurability(item, -1, true);
                                         }
-                                        Utils.changeDurability(item, -1, true);
+                                        default -> {}
                                     }
                                 }
                             }
@@ -667,62 +657,6 @@ public class NtpEvents extends ModuleEvents implements Listener {
                     if (RSVItem.isRSVItem(item)) {
                         String rsvName = RSVItem.getNameFromItem(item);
                         switch (mat) {
-                            case "CAULDRON" -> {
-                                // check for 1.16
-                                if (Utils.getMinecraftVersion(false).contains("1.16")) {
-                                    int level = ((Levelled) block.getBlockData()).getLevel();
-                                    if (rsvName.equals("ceramic_bucket")) {
-                                        if (level >= 3) {
-                                            // turn into water ceramic bucket
-
-                                            EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, rsvName);
-                                            if (hand != null) {
-                                                new BukkitRunnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        if (hand == EquipmentSlot.HAND)
-                                                            player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_water_bucket"));
-                                                        else
-                                                            player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_water_bucket"));
-                                                    }
-                                                }.runTaskLater(plugin, 1L);
-                                            }
-                                        }
-                                    } else if (rsvName.equals("ceramic_water_bucket")) {
-                                        if (level <= 0) {
-                                            // turn into empty ceramic bucket
-                                            EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, rsvName);
-                                            if (hand != null) {
-                                                new BukkitRunnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        if (hand == EquipmentSlot.HAND)
-                                                            player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_bucket"));
-                                                        else
-                                                            player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_bucket"));
-                                                    }
-                                                }.runTaskLater(plugin, 1L);
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    if (rsvName.equals("ceramic_water_bucket") || rsvName.equals("ceramic_lava_bucket")) {
-                                        // turn into empty ceramic bucket
-                                        EquipmentSlot hand = Utils.getSlotContainingRsvItem(player, rsvName);
-                                        if (hand != null) {
-                                            new BukkitRunnable() {
-                                                @Override
-                                                public void run() {
-                                                    if (hand == EquipmentSlot.HAND)
-                                                        player.getInventory().setItemInMainHand(RSVItem.getItem("ceramic_bucket"));
-                                                    else
-                                                        player.getInventory().setItemInOffHand(RSVItem.getItem("ceramic_bucket"));
-                                                }
-                                            }.runTaskLater(plugin, 1L);
-                                        }
-                                    }
-                                }
-                            }
                             case "LAVA_CAULDRON" -> {
                                 if (rsvName.equals("ceramic_bucket")) {
                                     // turn into lava ceramic bucket

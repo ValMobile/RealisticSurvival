@@ -28,13 +28,7 @@ public class PAPI extends CompatiblePlugin {
         super(plugin, NAME);
 
         if (isIntegrated) {
-            new TemperatureThirstBarExpansion().register();
-            new TemperatureBarExpansion().register();
-            new TemperatureNumericExpansion().register();
-            new TemperatureVignetteExpansion().register();
-            new ThirstBarExpansion().register();
-            new ThirstNumericExpansion().register();
-            new ThirstVignetteExpansion().register();
+            new RSVExpansion(plugin).register();
         }
     }
 

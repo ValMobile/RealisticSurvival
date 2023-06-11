@@ -63,7 +63,7 @@ public class IceBreath extends Breath {
                         if (block.isEmpty() || !blockMaterial.isOccluding()) {
                             if (!immuneBlocks.contains(blockMaterial.toString())) {
                                 if (!secondBlock.isEmpty()) {
-                                    world.getBlockAt(loc).setType(getFrozenMaterial(blockMaterial, Material.valueOf(config.getString("Dragons.IceDragon.BreathAttack.LayerBlock"))));
+                                    world.getBlockAt(loc).setType(getFrozenMaterial(blockMaterial, Material.valueOf(config.getString("Dragon.IceDragon.BreathAttack.LayerBlock"))));
                                 }
                             }
                         }
@@ -72,7 +72,7 @@ public class IceBreath extends Breath {
                             // check if the upper block is immune to ice breath attacks
                             if (!immuneBlocks.contains(blockMaterial.toString())) {
                                 if (!secondBlock.isEmpty()) {
-                                    world.getBlockAt(loc).setType(getFrozenMaterial(blockMaterial, Material.valueOf(config.getString("Dragons.IceDragon.BreathAttack.FrozenBlock"))));
+                                    world.getBlockAt(loc).setType(getFrozenMaterial(blockMaterial, Material.valueOf(config.getString("Dragon.IceDragon.BreathAttack.FrozenBlock"))));
                                 }
                             }
                         }

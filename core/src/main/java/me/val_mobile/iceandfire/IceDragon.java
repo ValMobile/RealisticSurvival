@@ -28,8 +28,8 @@ public interface IceDragon extends Dragon {
     FileConfiguration CONFIG = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
 
     default void performMeleeAttack(LivingEntity entity) {
-        double stageMultiplier = CONFIG.getDouble("Dragons.IceDragon.MeleeAttack.StageMultiplier.Stage" + getStage());
-        entity.damage(CONFIG.getDouble("Dragons.IceDragon.MeleeAttack.BaseDamage") * stageMultiplier, getEntity());
+        double stageMultiplier = CONFIG.getDouble("Dragon.IceDragon.MeleeAttack.StageMultiplier.Stage" + getStage());
+        entity.damage(CONFIG.getDouble("Dragon.IceDragon.MeleeAttack.BaseDamage") * stageMultiplier, getEntity());
     }
 
     default void performSpecialAbility(LivingEntity entity) {

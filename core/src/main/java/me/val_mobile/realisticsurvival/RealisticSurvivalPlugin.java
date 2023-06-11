@@ -31,7 +31,6 @@ import me.val_mobile.ntp.NtpModule;
 import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.spartanweaponry.SwModule;
 import me.val_mobile.tan.TanModule;
-import me.val_mobile.utils.RSVEnchants;
 import me.val_mobile.utils.ToolHandler;
 import me.val_mobile.utils.ToolUtils;
 import me.val_mobile.utils.Utils;
@@ -40,7 +39,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.util.Collection;
 
@@ -59,6 +58,7 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     private MiscRecipes miscRecipes;
     private MiscItems miscItems;
     private IntegrationsConfig integrationsConfig;
+    private CommandsConfig commandsConfig;
 
 //    private static RSVConfig langConfig;
 
@@ -71,11 +71,7 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         this.miscItemsConfig = new MiscItemsConfig(this);
         this.miscRecipesConfig = new MiscRecipesConfig(this);
         this.integrationsConfig = new IntegrationsConfig(this);
-
-//        String lang = config.getConfig().getString("Language");
-//
-//        Locale.setDefault(new Locale(lang.substring(0, lang.indexOf("-")), lang.substring(lang.indexOf("-") + 1)));
-//        ResourceBundle bundle = ResourceBundle.getBundle("messages", Locale.getDefault());
+        this.commandsConfig = new CommandsConfig(this);
 
         util = new Utils(this);
 
@@ -91,39 +87,42 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         this.miscRecipes = new MiscRecipes(this);
 
         IceFireModule ifModule = new IceFireModule(this);
-        if (ifModule.isEnabled())
+        if (ifModule.isGloballyEnabled())
             ifModule.initialize();
 
         SwModule swModule = new SwModule(this);
-        if (swModule.isEnabled())
+        if (swModule.isGloballyEnabled())
             swModule.initialize();
 
         BaubleModule baubleModule = new BaubleModule(this);
-        if (baubleModule.isEnabled())
+        if (baubleModule.isGloballyEnabled()) {
             baubleModule.initialize();
+        }
 
         NtpModule ntpModule = new NtpModule(this);
-        if (ntpModule.isEnabled())
+        if (ntpModule.isGloballyEnabled())
             ntpModule.initialize();
 
         SfModule sfModule = new SfModule(this);
-        if (sfModule.isEnabled())
+        if (sfModule.isGloballyEnabled()) {
             sfModule.initialize();
+        }
 
         TanModule tanModule = new TanModule(this);
-        if (tanModule.isEnabled())
+        if (tanModule.isGloballyEnabled())
             tanModule.initialize();
 
-        RSVEnchants rsvEnchants = new RSVEnchants(this);
-        rsvEnchants.registerAllEnchants();
+//        TODO: Add custom enchantment system
+//        RSVEnchants rsvEnchants = new RSVEnchants(this);
+//        rsvEnchants.registerAllEnchants();
 
         new BukkitRunnable() {
             @Override
             public void run() {
                 RealisticSeasons rs = new RealisticSeasons(getPlugin());
+                PAPI papi = new PAPI(getPlugin());
             }
         }.runTaskLater(this, 1L);
-        PAPI papi = new PAPI(this);
 
         if (config.getConfig().getBoolean("ResourcePack.Enabled"))
             pm.registerEvents(new ResourcePackEvents(this), this);
@@ -134,7 +133,7 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         pm.registerEvents(new MiscEvents(this), this);
 
         this.getCommand(NAME).setExecutor(new Commands(this));
-        this.getCommand(NAME).setTabCompleter(new Tab());
+        this.getCommand(NAME).setTabCompleter(new Tab(this));
     }
 
     @Override
@@ -148,7 +147,7 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
         }
 
         for (RSVModule module : modules) {
-            if (module.isEnabled()) {
+            if (module.isGloballyEnabled()) {
                 module.shutdown();
             }
         }
@@ -160,66 +159,69 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     }
 
     @Override
-    @Nullable
+    @Nonnull
     public FileConfiguration getConfig() {
-        return config == null ? null : config.getConfig();
+        return config.getConfig();
     }
 
+    @Nonnull
     public static RealisticSurvivalPlugin getPlugin() {
         return plugin;
     }
+
+    @Nonnull
     public static Utils getUtil() {
         return util;
     }
 
+    @Nonnull
     public File getConfigFile() {
         return config.getFile();
     }
 
+    @Nonnull
     public static FileConfiguration getLorePresetConfig() {
         return lorePresetConfig.getConfig();
     }
 
+    @Nonnull
     public FileConfiguration getMiscItemsConfig() {
         return miscItemsConfig.getConfig();
     }
 
+    @Nonnull
     public FileConfiguration getMiscRecipesConfig() {
         return miscRecipesConfig.getConfig();
     }
 
+    @Nonnull
     public FileConfiguration getIntegrationsConfig() {
         return integrationsConfig.getConfig();
     }
 
+    @Nonnull
+    public FileConfiguration getCommandsConfig() {
+        return commandsConfig.getConfig();
+    }
+
+    @Nonnull
     public MiscItems getMiscItems() {
         return miscItems;
     }
 
+    @Nonnull
     public MiscRecipes getMiscRecipes() {
         return miscRecipes;
     }
 
+    @Nonnull
     public ToolHandler getToolHandler() {
         return toolHandler;
     }
 
+    @Nonnull
     public ToolUtils getToolUtils() {
         return toolUtils;
     }
 
-    //    private String translate(final String string) {
-//        try {
-//            try {
-//                return customBundle.getString(string);
-//            } catch (final MissingResourceException ex) {
-//                return localeBundle.getString(string);
-//            }
-//        } catch (final MissingResourceException ex) {
-//            if (ess == null || ess.getSettings().isDebug()) {
-//                ess.getLogger().log(Level.WARNING, String.format("Missing translation key \"%s\" in translation file %s", ex.getKey(), localeBundle.getLocale().toString()), ex);
-//            }
-//            return defaultBundle.getString(string);
-//        }
-//    }
 }

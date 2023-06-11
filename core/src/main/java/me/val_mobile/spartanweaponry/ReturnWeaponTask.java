@@ -29,6 +29,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import java.util.Map;
+
 public class ReturnWeaponTask extends BukkitRunnable {
 
     private final double maxReturnDistance;
@@ -80,16 +82,12 @@ public class ReturnWeaponTask extends BukkitRunnable {
                         Location dropLoc = dropItem(asLocation);
 
                         if (config.getBoolean("MaxReturnDistanceReached.Enabled")) {
-                            String message = Utils.translateMsg(entity, config.getString("MaxReturnDistanceReached.Message"));
-                            message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(maxReturnDistance)));
+                            String message = Utils.translateMsg(config.getString("MaxReturnDistanceReached.Message"), entity, Map.of("MAX_DISTANCE", Math.round(maxReturnDistance)));
                             entity.sendMessage(message);
                         }
 
                         if (config.getBoolean("WeaponDropped.Enabled")) {
-                            String message = Utils.translateMsg(entity, config.getString("WeaponDropped.Message"));
-                            message = message.replaceAll("%X-COORD%", String.valueOf((int) dropLoc.getX()));
-                            message = message.replaceAll("%Y-COORD%", String.valueOf((int) dropLoc.getY()));
-                            message = message.replaceAll("%Z-COORD%", String.valueOf((int) dropLoc.getZ()));
+                            String message = Utils.translateMsg(config.getString("WeaponDropped.Message"), entity, Map.of("X_COORD", (int) Math.round(dropLoc.getX()), "Y_COORD", (int) Math.round(dropLoc.getY()), "Z_COORD", (int) Math.round(dropLoc.getZ())));
 
                             entity.sendMessage(message);
                         }
@@ -122,10 +120,8 @@ public class ReturnWeaponTask extends BukkitRunnable {
 
                         if (isInvFull) {
                             if (config.getBoolean("FullInventoryWeaponDropped.Enabled")) {
-                                String message = Utils.translateMsg(entity, config.getString("FullInventoryWeaponDropped.Message"));
-                                message = message.replaceAll("%X-COORD%", String.valueOf((int) pLocation.getX()));
-                                message = message.replaceAll("%Y-COORD%", String.valueOf((int) pLocation.getY()));
-                                message = message.replaceAll("%Z-COORD%", String.valueOf((int) pLocation.getZ()));
+                                String message = Utils.translateMsg(config.getString("FullInventoryWeaponDropped.Message"), entity, Map.of("X_COORD", (int) Math.round(pLocation.getX()), "Y_COORD", (int) Math.round(pLocation.getY()), "Z_COORD", (int) Math.round(pLocation.getZ())));
+
                                 entity.sendMessage(message);
                             }
                             dropItem(pLocation);

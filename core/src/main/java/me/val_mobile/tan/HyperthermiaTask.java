@@ -130,7 +130,7 @@ public class HyperthermiaTask extends BukkitRunnable implements RSVTask {
 
     @Override
     public boolean conditionsMet(@Nullable Player player) {
-        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && this.player.getTanDataModule().getTemperature() > minTemperature;
+        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && module.getTempManager().getTemperature(player) > minTemperature;
     }
 
     @Override

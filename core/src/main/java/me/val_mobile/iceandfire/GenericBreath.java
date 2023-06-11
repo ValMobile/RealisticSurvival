@@ -58,19 +58,19 @@ public abstract class GenericBreath extends BukkitRunnable {
         String prefix = StringUtils.capitalize(type.toString().toLowerCase());
 
         int stage = DragonUtils.getStage(dragon);
-        double magnitude = config.getInt("Dragons." + breed + "Dragon." + prefix + "Attack.Velocity");
+        double magnitude = config.getInt("Dragon." + breed + "Dragon." + prefix + "Attack.Velocity.Stage" + stage);
 
 
         this.plugin = plugin;
         this.loc = dragon.getLocation().clone();
         this.world = loc.getWorld();
-        this.velocity = target.toVector().subtract(dragon.getLocation().toVector()).normalize().multiply(magnitude * stage * 1D/20);
-        this.radius = config.getInt("Dragons." + breed + "Dragon." + prefix + "Attack.Radius") * stage;
-        this.particle = Particle.valueOf(config.getString("Dragons." + breed + "Dragon." + prefix + "Attack.Particle"));
-        this.decayTicks = config.getInt("Dragons." + breed + "Dragon." + prefix + "Attack.DespawnTime");
+        this.velocity = target.toVector().subtract(dragon.getLocation().toVector()).normalize().multiply(magnitude / 20);
+        this.radius = config.getInt("Dragon." + breed + "Dragon." + prefix + "Attack.Radius.Stage" + stage);
+        this.particle = Particle.valueOf(config.getString("Dragon." + breed + "Dragon." + prefix + "Attack.Particle"));
+        this.decayTicks = config.getInt("Dragon." + breed + "Dragon." + prefix + "Attack.DespawnTime");
 
-        this.immuneBlocks = Set.copyOf(config.getStringList("Dragons." + breed + "Dragon." + prefix + "Attack.ImmuneBlocks"));
-        List<String> specialBlocks = config.getStringList("Dragons." + breed + "Dragon." + prefix + "Attack.SpecialBlocks");
+        this.immuneBlocks = Set.copyOf(config.getStringList("Dragon." + breed + "Dragon." + prefix + "Attack.ImmuneBlocks"));
+        List<String> specialBlocks = config.getStringList("Dragon." + breed + "Dragon." + prefix + "Attack.SpecialBlocks");
 
         if (!specialBlocks.isEmpty()) {
             for (String entry : specialBlocks) {
@@ -81,8 +81,7 @@ public abstract class GenericBreath extends BukkitRunnable {
             }
         }
 
-        String generation = StringUtils.capitalize(DragonGeneration.getGeneration(DragonUtils.getAge(dragon)).toString().toLowerCase());
-        ConfigurationSection section = config.getConfigurationSection("Dragons." + breed + "Dragon." + prefix + "Attack.Sound." + generation);
+        ConfigurationSection section = config.getConfigurationSection("Dragon." + breed + "Dragon." + prefix + "Attack.Sound.Stage" + stage);
 
         if (section != null) {
             if (section.getBoolean("Enabled")) {
@@ -100,18 +99,18 @@ public abstract class GenericBreath extends BukkitRunnable {
         String prefix = StringUtils.capitalize(type.toString().toLowerCase());
 
         int stage = dragon.getStage();
-        double magnitude = config.getInt("Dragons." + breed + "Dragon." + prefix + "Attack.Velocity");
+        double magnitude = config.getInt("Dragon." + breed + "Dragon." + prefix + "Attack.Velocity.Stage" + stage);
 
         this.plugin = plugin;
         this.loc = dragon.getEntity().getLocation().clone();
         this.world = loc.getWorld();
-        this.velocity = target.toVector().subtract(dragon.getEntity().getLocation().toVector()).normalize().multiply(magnitude * stage * 1D/20);
-        this.radius = config.getInt("Dragons." + breed + "Dragon." + prefix + "Attack.Radius") * stage;
-        this.particle = Particle.valueOf(config.getString("Dragons." + breed + "Dragon." + prefix + "Attack.Particle"));
-        this.decayTicks = config.getInt("Dragons." + breed + "Dragon." + prefix + "Attack.DespawnTime");
+        this.velocity = target.toVector().subtract(dragon.getEntity().getLocation().toVector()).normalize().multiply(magnitude / 20);
+        this.radius = config.getInt("Dragon." + breed + "Dragon." + prefix + "Attack.Radius.Stage" + stage);
+        this.particle = Particle.valueOf(config.getString("Dragon." + breed + "Dragon." + prefix + "Attack.Particle"));
+        this.decayTicks = config.getInt("Dragon." + breed + "Dragon." + prefix + "Attack.DespawnTime");
 
-        this.immuneBlocks = Set.copyOf(config.getStringList("Dragons." + breed + "Dragon." + prefix + "Attack.ImmuneBlocks"));
-        List<String> specialBlocks = config.getStringList("Dragons." + breed + "Dragon." + prefix + "Attack.SpecialBlocks");
+        this.immuneBlocks = Set.copyOf(config.getStringList("Dragon." + breed + "Dragon." + prefix + "Attack.ImmuneBlocks"));
+        List<String> specialBlocks = config.getStringList("Dragon." + breed + "Dragon." + prefix + "Attack.SpecialBlocks");
 
         if (!specialBlocks.isEmpty()) {
             for (String entry : specialBlocks) {
@@ -122,8 +121,7 @@ public abstract class GenericBreath extends BukkitRunnable {
             }
         }
 
-        String generation = StringUtils.capitalize(DragonGeneration.getGeneration(dragon.getAge()).toString().toLowerCase());
-        ConfigurationSection section = config.getConfigurationSection("Dragons." + breed + "Dragon." + prefix + "Attack.Sound." + generation);
+        ConfigurationSection section = config.getConfigurationSection("Dragon." + breed + "Dragon." + prefix + "Attack.Sound.Stage" + stage);
 
         if (section != null) {
             if (section.getBoolean("Enabled")) {

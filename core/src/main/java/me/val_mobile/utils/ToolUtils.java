@@ -30,14 +30,14 @@ public class ToolUtils {
     final String[] wood = {"BIRCH", "ACACIA", "OAK", "DARK_OAK", "SPRUCE", "JUNGLE"}; // Crimson and Warped stems are not needed, this is only for old versions
     final String[] weapons = {"BOW", "CROSSBOW", "TRIDENT", "NETHERITE_SWORD", "DIAMOND_SWORD", "GOLDEN_SWORD", "IRON_SWORD", "STONE_SWORD", "WOODEN_SWORD"};
     final String[] instaBreakableByHand = {"COMPARATOR", "REPEATER", "REDSTONE_WIRE", "REDSTONE_TORCH", "REDSTONE_WALL_TORCH", "TORCH", "SOUL_TORCH", "WALL_TORCH", "SOUL_WALL_TORCH",
-            "SCAFFOLDING", "SLIME_BLOCK", "HONEY_BLOCK", "TNT", "TRIPWIRE", "TRIPWIRE_HOOK", "GRASS", "SUGAR_CANE", "LILY_PAD",
-            "OAK_SAPLING", "SPRUCE_SAPLING", "BIRCH_SAPLING", "JUNGLE_SAPLING", "ACACIA_SAPLING", "DARK_OAK_SAPLING",
+            "SCAFFOLDING", "SLIME_BLOCK", "HONEY_BLOCK", "TNT", "TRIPWIRE", "TRIPWIRE_HOOK", "GRASS", "TALL_GRASS", "HANGING_ROOTS", "KELP", "NETHER_SPROUTS", "PINK_PETALS", "SPORE_BLOSSOM", "SWEET_BERRY_BUSH`", "PITCHER_PLANT", "PITCHER_POD", "SUGAR_CANE", "LILY_PAD",
+            "OAK_SAPLING", "SPRUCE_SAPLING", "BIRCH_SAPLING", "JUNGLE_SAPLING", "ACACIA_SAPLING", "DARK_OAK_SAPLING", "MANGROVE_PROPAGULE", "CHERRY_SAPLING",
             "BROWN_MUSHROOM", "RED_MUSHROOM", "CRIMSON_FUNGUS", "WARPED_FUNGUS", "CRIMSON_ROOTS", "WARPED_ROOTS", "WEEPING VINES", "TWISTING_VINES",
-            "DEAD_BUSH", "WHEAT", "CARROTS", "POTATOES", "BEETROOTS", "PUMPKIN_STEM", "MELON_STEM", "NETHER_WART", "FLOWER_POT",
-            "DANDELION", "POPPY", "BLUE_ORCHID", "ALLIUM", "AZURE_BLUET", "RED_TULIP", "ORANGE_TULIP", "WHITE_TULIP", "PINK_TULIP", "OXEYE_DAISY", "CORNFLOWER", "LILY_OF_THE_VALLEY", "WITHER_ROSE", "SUNFLOWER", "LILAC", "ROSE_BUSH", "PEONY",
-            "POTTED_DANDELION", "POTTED_POPPY", "POTTED_BLUE_ORCHID", "POTTED_ALLIUM", "POTTED_AZURE_BLUET", "POTTED_RED_TULIP", "POTTED_ORANGE_TULIP", "POTTED_WHITE_TULIP", "POTTED_PINK_TULIP", "POTTED_OXEYE_DAISY", "POTTED_CORNFLOWER", "POTTED_LILY_OF_THE_VALLEY", "POTTED_WITHER_ROSE", "POTTED_SUNFLOWER", "POTTED_LILAC", "POTTED_ROSE_BUSH", "POTTED_PEONY",
-            "TUBE_CORAL", "BRAIN_CORAL", "BUBBLE_CORAL", "FIRE_CORAL", "HORN_CORAL", "DEAD_TUBE_CORAL", "DEAD_BRAIN_CORAL", "DEAD_BUBBLE_CORAL", "DEAD_FIRE_CORAL", "DEAD_HORN_CORAL"};
-    // TODO: Add grass only in 1.13+ instead of always
+            "DEAD_BUSH", "WHEAT", "CARROTS", "POTATOES", "BEETROOTS", "PUMPKIN_STEM", "MELON_STEM", "NETHER_WART", "FERN", "LARGE_FERN", "FLOWER_POT", "DECORATED_POT", "FROGSPAWN",
+            "AZALEA", "DANDELION", "POPPY", "BLUE_ORCHID", "ALLIUM", "AZURE_BLUET", "RED_TULIP", "ORANGE_TULIP", "WHITE_TULIP", "PINK_TULIP", "OXEYE_DAISY", "CORNFLOWER", "LILY_OF_THE_VALLEY", "WITHER_ROSE", "SUNFLOWER", "LILAC", "ROSE_BUSH", "PEONY",
+            "POTTED_DANDELION", "POTTED_POPPY", "POTTED_BLUE_ORCHID", "POTTED_ALLIUM", "POTTED_AZURE_BLUET", "POTTED_RED_TULIP", "POTTED_ORANGE_TULIP", "POTTED_WHITE_TULIP", "POTTED_PINK_TULIP", "POTTED_OXEYE_DAISY", "POTTED_CORNFLOWER", "POTTED_LILY_OF_THE_VALLEY", "POTTED_WITHER_ROSE", "POTTED_SUNFLOWER", "POTTED_LILAC", "POTTED_ROSE_BUSH", "POTTED_PEONY", "POTTED_FERN",
+            "TUBE_CORAL", "BRAIN_CORAL", "BUBBLE_CORAL", "FIRE_CORAL", "HORN_CORAL", "DEAD_TUBE_CORAL", "DEAD_BRAIN_CORAL", "DEAD_BUBBLE_CORAL", "DEAD_FIRE_CORAL", "DEAD_HORN_CORAL", "FIRE", "SOUL_FIRE"};
+
     final String[] hoes = {"NETHERITE_HOE", "DIAMOND_HOE", "GOLDEN_HOE", "IRON_HOE", "STONE_HOE", "WOODEN_HOE"};
     final String[] pickaxes = {"NETHERITE_PICKAXE", "DIAMOND_PICKAXE", "GOLDEN_PICKAXE", "IRON_PICKAXE", "STONE_PICKAXE", "WOODEN_PICKAXE"};
     final String[] axes = {"NETHERITE_AXE", "DIAMOND_AXE", "GOLDEN_AXE", "IRON_AXE", "STONE_AXE", "WOODEN_AXE"};
@@ -234,9 +234,8 @@ public class ToolUtils {
         tagToMap(Tag.FENCES, Tool.PICKAXE, "NETHER");
         tagToMap(Tag.FENCES, Tool.PICKAXE, "BRICK");
 
-        String[] bamboo_plantable_on = {"GRASS_BLOCK", "DIRT", "COARSE_DIRT", "GRAVEL", "MYCELIUM", "PODZOL", "SAND", "RED_SAND"};
-        for (String s : bamboo_plantable_on) {
-            addToMap(s, Tool.SHOVEL);
+        for (Material mat : Tag.BAMBOO_PLANTABLE_ON.getValues()) {
+            addToMap(mat, Tool.SHOVEL);
         }
 
         // Tags for 1.15+
@@ -259,290 +258,299 @@ public class ToolUtils {
         // Important order STOP //
 
         // Stairs in 1.16+
-        addToMap("WARPED_STAIRS",Tool.AXE);
-        addToMap("CRIMSON_STAIRS",Tool.AXE);
+        addToMap(Material.WARPED_STAIRS,Tool.AXE);
+        addToMap(Material.CRIMSON_STAIRS,Tool.AXE);
 
         // Some of the following definitions are redundant because of the tags above
         // However I don't want to miss something, so they are still defined here
         // Shouldn't harm because building the map takes only take 2 ms when the
         // plugin is enabled
 
-        addToMap("BONE_BLOCK", Tool.PICKAXE);
+        addToMap(Material.BONE_BLOCK, Tool.PICKAXE);
 
         // Issue #1
-        addToMap("BASALT", Tool.PICKAXE);
-        addToMap("POLISHED_BASALT", Tool.PICKAXE);
-        addToMap("GLOWSTONE", Tool.PICKAXE); // TODO: Prefer SilkTouch
-        addToMap("NETHER_GOLD_ORE", Tool.PICKAXE);
+        addToMap(Material.BASALT, Tool.PICKAXE);
+        addToMap(Material.POLISHED_BASALT, Tool.PICKAXE);
+        addToMap(Material.GLOWSTONE, Tool.PICKAXE);
+        addToMap(Material.NETHER_GOLD_ORE, Tool.PICKAXE);
         // Issue #1 End
 
         // Issue #2
-        addToMap("SPONGE", Tool.HOE);
-        addToMap("WET_SPONGE", Tool.HOE);
-        addToMap("PISTON", Tool.PICKAXE);
-        addToMap("STICKY_PISTON", Tool.PICKAXE);
-        addToMap("PISTON_HEAD", Tool.PICKAXE);
-        addToMap("MOVING_PISTON", Tool.PICKAXE);
-        addToMap("CHORUS_PLANT", Tool.AXE);
-        addToMap("CHORUS_FLOWER", Tool.AXE);
-        addToMap("CARVED_PUMPKIN", Tool.AXE);
-        addToMap("HAY_BLOCK", Tool.HOE);
-        addToMap("OBSERVER", Tool.PICKAXE);
-        addToMap("NETHER_WART_BLOCK", Tool.HOE);
-        addToMap("WARPED_WART_BLOCK", Tool.HOE);
-        addToMap("MAGMA_BLOCK", Tool.PICKAXE);
+        addToMap(Material.SPONGE, Tool.HOE);
+        addToMap(Material.WET_SPONGE, Tool.HOE);
+        addToMap(Material.PISTON, Tool.PICKAXE);
+        addToMap(Material.STICKY_PISTON, Tool.PICKAXE);
+        addToMap(Material.PISTON_HEAD, Tool.PICKAXE);
+        addToMap(Material.MOVING_PISTON, Tool.PICKAXE);
+        addToMap(Material.CHORUS_PLANT, Tool.AXE);
+        addToMap(Material.CHORUS_FLOWER, Tool.AXE);
+        addToMap(Material.CARVED_PUMPKIN, Tool.AXE);
+        addToMap(Material.HAY_BLOCK, Tool.HOE);
+        addToMap(Material.OBSERVER, Tool.PICKAXE);
+        addToMap(Material.NETHER_WART_BLOCK, Tool.HOE);
+        addToMap(Material.WARPED_WART_BLOCK, Tool.HOE);
+        addToMap(Material.MAGMA_BLOCK, Tool.PICKAXE);
         // Issue #2 End
 
         // Issue #3
-        addToMap("TARGET", Tool.HOE);
-        addToMap("SHROOMLIGHT", Tool.HOE);
-        addToMap("BELL", Tool.PICKAXE);
-        addToMap("STONECUTTER", Tool.PICKAXE);
-        addToMap("SMITHING_TABLE", Tool.AXE);
-        addToMap("LECTERN", Tool.AXE);
-        addToMap("GRINDSTONE", Tool.PICKAXE);
-        addToMap("FLETCHING_TABLE", Tool.AXE);
-        addToMap("CARTOGRAPHY_TABLE", Tool.AXE);
-        addToMap("BLAST_FURNACE", Tool.PICKAXE);
-        addToMap("SMOKER", Tool.PICKAXE);
-        addToMap("BARREL", Tool.AXE);
-        addToMap("COMPOSTER", Tool.AXE);
-        addToMap("LOOM", Tool.AXE);
-        addToMap("DRIED_KELP_BLOCK", Tool.HOE);
+        addToMap(Material.TARGET, Tool.HOE);
+        addToMap(Material.SHROOMLIGHT, Tool.HOE);
+        addToMap(Material.BELL, Tool.PICKAXE);
+        addToMap(Material.STONECUTTER, Tool.PICKAXE);
+        addToMap(Material.SMITHING_TABLE, Tool.AXE);
+        addToMap(Material.LECTERN, Tool.AXE);
+        addToMap(Material.GRINDSTONE, Tool.PICKAXE);
+        addToMap(Material.FLETCHING_TABLE, Tool.AXE);
+        addToMap(Material.CARTOGRAPHY_TABLE, Tool.AXE);
+        addToMap(Material.BLAST_FURNACE, Tool.PICKAXE);
+        addToMap(Material.SMOKER, Tool.PICKAXE);
+        addToMap(Material.BARREL, Tool.AXE);
+        addToMap(Material.COMPOSTER, Tool.AXE);
+        addToMap(Material.LOOM, Tool.AXE);
+        addToMap(Material.DRIED_KELP_BLOCK, Tool.HOE);
         // Issue #3 End
 
-        addToMap("ACACIA_BUTTON", Tool.AXE);
-        addToMap("ACACIA_FENCE", Tool.AXE);
-        addToMap("ACACIA_FENCE_GATE", Tool.AXE);
-        addToMap("ACACIA_LEAVES", Tool.SHEARS);
-        addToMap("ACACIA_PRESSURE_PLATE", Tool.AXE);
-        addToMap("ACACIA_SLAB", Tool.AXE);
-        addToMap("ACACIA_STAIRS", Tool.AXE);
-        addToMap("ANCIENT_DEBRIS", Tool.PICKAXE);
-        addToMap("ANDESITE", Tool.PICKAXE);
-        addToMap("BAMBOO", Tool.AXE);
-        addToMap("BAMBOO_SAPLING", Tool.AXE);
-        addToMap("BASALT", Tool.PICKAXE);
-        addToMap("BIRCH_BUTTON", Tool.AXE);
-        addToMap("BIRCH_FENCE", Tool.AXE);
-        addToMap("BIRCH_FENCE_GATE", Tool.AXE);
-        addToMap("BIRCH_LEAVES", Tool.SHEARS);
-        addToMap("BIRCH_PRESSURE_PLATE", Tool.AXE);
-        addToMap("BIRCH_SLAB", Tool.AXE);
-        addToMap("BIRCH_STAIRS", Tool.AXE);
-        addToMap("BLACKSTONE", Tool.PICKAXE);
-        addToMap("BLACKSTONE_SLAB", Tool.PICKAXE);
-        addToMap("BLACKSTONE_STAIRS", Tool.PICKAXE);
-        addToMap("BLACK_CONCRETE", Tool.PICKAXE);
-        addToMap("BLACK_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("BLUE_CONCRETE", Tool.PICKAXE);
-        addToMap("BLUE_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("BOOKSHELF", Tool.AXE);
-        addToMap("BREWING_STAND", Tool.PICKAXE);
-        addToMap("BRICKS", Tool.PICKAXE);
-        addToMap("BRICK_SLAB", Tool.PICKAXE);
-        addToMap("BRICK_STAIRS", Tool.PICKAXE);
-        addToMap("BROWN_CONCRETE", Tool.PICKAXE);
-        addToMap("BROWN_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("BROWN_MUSHROOM_BLOCK", Tool.AXE);
-        addToMap("CAMPFIRE", Tool.AXE);
-        addToMap("CAULDRON", Tool.PICKAXE);
-        addToMap("CHAIN", Tool.PICKAXE);
-        addToMap("CHEST", Tool.AXE);
-        addToMap("CHISELED_RED_SANDSTONE", Tool.PICKAXE);
-        addToMap("CHISELED_SANDSTONE", Tool.PICKAXE);
-        addToMap("CHISELED_STONE_BRICKS", Tool.PICKAXE);
-        addToMap("CLAY", Tool.SHOVEL);
-        addToMap("COAL_BLOCK", Tool.PICKAXE);
-        addToMap("COAL_ORE", Tool.PICKAXE);
-        addToMap("COARSE_DIRT", Tool.SHOVEL);
-        addToMap("COBBLESTONE", Tool.PICKAXE);
-        addToMap("COBBLESTONE_SLAB", Tool.PICKAXE);
-        addToMap("COBBLESTONE_STAIRS", Tool.PICKAXE);
-        addToMap("COBWEB", Tool.SHEARS);
-        addToMap("COCOA", Tool.AXE);
-        addToMap("CRACKED_STONE_BRICKS", Tool.PICKAXE);
-        addToMap("CRAFTING_TABLE", Tool.AXE);
-        addToMap("CRYING_OBSIDIAN", Tool.PICKAXE);
-        addToMap("CUT_RED_SANDSTONE", Tool.PICKAXE);
-        addToMap("CUT_SANDSTONE", Tool.PICKAXE);
-        addToMap("CYAN_CONCRETE", Tool.PICKAXE);
-        addToMap("CYAN_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("DARK_OAK_BUTTON", Tool.AXE);
-        addToMap("DARK_OAK_FENCE", Tool.AXE);
-        addToMap("DARK_OAK_FENCE_GATE", Tool.AXE);
-        addToMap("DARK_OAK_LEAVES", Tool.SHEARS);
-        addToMap("DARK_OAK_PRESSURE_PLATE", Tool.AXE);
-        addToMap("DARK_OAK_SLAB", Tool.AXE);
-        addToMap("DARK_OAK_STAIRS", Tool.AXE);
-        addToMap("DARK_PRISMARINE", Tool.PICKAXE);
-        addToMap("DARK_PRISMARINE_SLAB", Tool.PICKAXE);
-        addToMap("DARK_PRISMARINE_STAIRS", Tool.PICKAXE);
-        addToMap("DAYLIGHT_DETECTOR", Tool.AXE);
-        addToMap("DIAMOND_BLOCK", Tool.PICKAXE);
-        addToMap("DIAMOND_ORE", Tool.PICKAXE);
-        addToMap("DIORITE", Tool.PICKAXE);
-        addToMap("DIRT", Tool.SHOVEL);
-        addToMap("DISPENSER", Tool.PICKAXE);
-        addToMap("DROPPER", Tool.PICKAXE);
-        addToMap("EMERALD_BLOCK", Tool.PICKAXE);
-        addToMap("EMERALD_ORE", Tool.PICKAXE);
-        addToMap("ENCHANTING_TABLE", Tool.PICKAXE);
-        addToMap("ENDER_CHEST", Tool.PICKAXE);
-        addToMap("END_STONE", Tool.PICKAXE);
-        addToMap("FARMLAND", Tool.SHOVEL);
-        addToMap("FURNACE", Tool.PICKAXE);
-        addToMap("GILDED_BLACKSTONE", Tool.PICKAXE);
-        addToMap("GOLD_BLOCK", Tool.PICKAXE);
-        addToMap("GOLD_ORE", Tool.PICKAXE);
-        addToMap("GRANITE", Tool.PICKAXE);
-        addToMap("GRASS_BLOCK", Tool.SHOVEL);
-        addToMap("GRASS_PATH", Tool.SHOVEL);
-        addToMap("DIRT_PATH", Tool.SHOVEL);
-        addToMap("GRAVEL", Tool.SHOVEL);
-        addToMap("GRAY_CONCRETE", Tool.PICKAXE);
-        addToMap("GRAY_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("GREEN_CONCRETE", Tool.PICKAXE);
-        addToMap("GREEN_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("HEAVY_WEIGHTED_PRESSURE_PLATE", Tool.PICKAXE);
-        addToMap("HOPPER", Tool.PICKAXE);
-        addToMap("IRON_BARS", Tool.PICKAXE);
-        addToMap("IRON_BLOCK", Tool.PICKAXE);
-        addToMap("IRON_DOOR", Tool.PICKAXE);
-        addToMap("IRON_ORE", Tool.PICKAXE);
-        addToMap("IRON_TRAPDOOR", Tool.PICKAXE);
-        addToMap("JACK_O_LANTERN", Tool.AXE);
-        addToMap("JUKEBOX", Tool.AXE);
-        addToMap("JUNGLE_BUTTON", Tool.AXE);
-        addToMap("JUNGLE_FENCE", Tool.AXE);
-        addToMap("JUNGLE_FENCE_GATE", Tool.AXE);
-        addToMap("JUNGLE_LEAVES", Tool.SHEARS);
-        addToMap("JUNGLE_PRESSURE_PLATE", Tool.AXE);
-        addToMap("JUNGLE_SLAB", Tool.AXE);
-        addToMap("JUNGLE_STAIRS", Tool.AXE);
-        addToMap("LADDER", Tool.AXE);
-        addToMap("LANTERN", Tool.PICKAXE);
-        addToMap("LAPIS_BLOCK", Tool.PICKAXE);
-        addToMap("LAPIS_ORE", Tool.PICKAXE);
-        addToMap("LIGHT_BLUE_CONCRETE", Tool.PICKAXE);
-        addToMap("LIGHT_BLUE_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("LIGHT_GRAY_CONCRETE", Tool.PICKAXE);
-        addToMap("LIGHT_GRAY_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("LIGHT_WEIGHTED_PRESSURE_PLATE", Tool.PICKAXE);
-        addToMap("LIME_CONCRETE", Tool.PICKAXE);
-        addToMap("LIME_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("LODESTONE", Tool.PICKAXE);
-        addToMap("MAGENTA_CONCRETE", Tool.PICKAXE);
-        addToMap("MAGENTA_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("MELON", Tool.AXE);
-        addToMap("MOSSY_COBBLESTONE", Tool.PICKAXE);
-        addToMap("MOSSY_STONE_BRICKS", Tool.PICKAXE);
-        addToMap("MUSHROOM_STEM", Tool.AXE);
-        addToMap("MYCELIUM", Tool.SHOVEL);
-        addToMap("NETHERITE_BLOCK", Tool.PICKAXE);
-        addToMap("NETHERRACK", Tool.PICKAXE);
-        addToMap("NETHER_BRICK", Tool.PICKAXE);
-        addToMap("NETHER_BRICK_FENCE", Tool.PICKAXE);
-        addToMap("NETHER_BRICK_SLAB", Tool.PICKAXE);
-        addToMap("NETHER_BRICK_STAIRS", Tool.PICKAXE);
-        addToMap("NETHER_QUARTZ_ORE", Tool.PICKAXE);
-        addToMap("NOTE_BLOCK", Tool.AXE);
-        addToMap("OAK_BUTTON", Tool.AXE);
-        addToMap("OAK_FENCE", Tool.AXE);
-        addToMap("OAK_FENCE_GATE", Tool.AXE);
-        addToMap("OAK_LEAVES", Tool.SHEARS);
-        addToMap("OAK_PRESSURE_PLATE", Tool.AXE);
-        addToMap("OAK_SLAB", Tool.AXE);
-        addToMap("OAK_STAIRS", Tool.AXE);
-        addToMap("OBSIDIAN", Tool.PICKAXE);
-        addToMap("ORANGE_CONCRETE", Tool.PICKAXE);
-        addToMap("ORANGE_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("PINK_CONCRETE", Tool.PICKAXE);
-        addToMap("PINK_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("PODZOL", Tool.SHOVEL);
-        addToMap("POLISHED_ANDESITE", Tool.PICKAXE);
-        addToMap("POLISHED_DIORITE", Tool.PICKAXE);
-        addToMap("POLISHED_GRANITE", Tool.PICKAXE);
-        addToMap("PUMPKIN", Tool.AXE);
-        addToMap("PURPLE_CONCRETE", Tool.PICKAXE);
-        addToMap("PURPLE_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("QUARTZ_BLOCK", Tool.PICKAXE);
-        addToMap("QUARTZ_BRICKS", Tool.PICKAXE);
-        addToMap("REDSTONE_BLOCK", Tool.PICKAXE);
-        addToMap("REDSTONE_ORE", Tool.PICKAXE);
-        addToMap("RED_CONCRETE", Tool.PICKAXE);
-        addToMap("RED_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("RED_MUSHROOM_BLOCK", Tool.AXE);
-        addToMap("RED_NETHER_BRICKS", Tool.PICKAXE);
-        addToMap("RED_NETHER_BRICK_SLAB", Tool.PICKAXE);
-        addToMap("RED_NETHER_BRICK_STAIRS", Tool.PICKAXE);
-        addToMap("RED_SAND", Tool.SHOVEL);
-        addToMap("RED_SANDSTONE", Tool.PICKAXE);
-        addToMap("RED_SANDSTONE_SLAB", Tool.PICKAXE);
-        addToMap("RED_SANDSTONE_STAIRS", Tool.PICKAXE);
-        addToMap("RESPAWN_ANCHOR", Tool.PICKAXE);
-        addToMap("SAND", Tool.SHOVEL);
-        addToMap("SANDSTONE", Tool.PICKAXE);
-        addToMap("SANDSTONE_SLAB", Tool.PICKAXE);
-        addToMap("SANDSTONE_STAIRS", Tool.PICKAXE);
-        addToMap("SEA_LANTERN", Tool.PICKAXE);
-        addToMap("SMOOTH_QUARTZ", Tool.PICKAXE);
-        addToMap("SMOOTH_RED_SANDSTONE", Tool.PICKAXE);
-        addToMap("SMOOTH_SANDSTONE", Tool.PICKAXE);
-        addToMap("SMOOTH_STONE", Tool.PICKAXE);
-        addToMap("SNOW", Tool.SHOVEL);
-        addToMap("SNOW_BLOCK", Tool.SHOVEL);
-        addToMap("SOUL_CAMPFIRE", Tool.AXE);
-        addToMap("SOUL_LANTERN", Tool.PICKAXE);
-        addToMap("SOUL_SAND", Tool.SHOVEL);
-        addToMap("SOUL_SOIL", Tool.SHOVEL);
-        addToMap("SPAWNER", Tool.PICKAXE);
-        addToMap("SPRUCE_BUTTON", Tool.AXE);
-        addToMap("SPRUCE_FENCE", Tool.AXE);
-        addToMap("SPRUCE_FENCE_GATE", Tool.AXE);
-        addToMap("SPRUCE_LEAVES", Tool.SHEARS);
-        addToMap("SPRUCE_PRESSURE_PLATE", Tool.AXE);
-        addToMap("SPRUCE_STAIRS", Tool.AXE);
-        addToMap("STONE", Tool.PICKAXE);
-        addToMap("STONE_BRICKS", Tool.PICKAXE);
-        addToMap("STONE_BRICK_SLAB", Tool.PICKAXE);
-        addToMap("STONE_BRICK_STAIRS", Tool.PICKAXE);
-        addToMap("STONE_BUTTON", Tool.PICKAXE);
-        addToMap("STONE_PRESSURE_PLATE", Tool.PICKAXE);
-        addToMap("STONE_SLAB", Tool.PICKAXE);
-        addToMap("TERRACOTTA", Tool.PICKAXE);
-        addToMap("TRAPPED_CHEST", Tool.AXE);
-        addToMap("VINE", Tool.SHEARS);
-        addToMap("WHITE_CONCRETE", Tool.PICKAXE);
-        addToMap("WHITE_CONCRETE_POWDER", Tool.SHOVEL);
-        addToMap("YELLOW_CONCRETE", Tool.PICKAXE);
-        addToMap("YELLOW_CONCRETE_POWDER", Tool.SHOVEL);
+        addToMap(Material.ACACIA_BUTTON, Tool.AXE);
+        addToMap(Material.ACACIA_FENCE, Tool.AXE);
+        addToMap(Material.ACACIA_FENCE_GATE, Tool.AXE);
+        addToMap(Material.ACACIA_LEAVES, Tool.SHEARS);
+        addToMap(Material.ACACIA_PRESSURE_PLATE, Tool.AXE);
+        addToMap(Material.ACACIA_SLAB, Tool.AXE);
+        addToMap(Material.ACACIA_STAIRS, Tool.AXE);
+        addToMap(Material.ANCIENT_DEBRIS, Tool.PICKAXE);
+        addToMap(Material.ANDESITE, Tool.PICKAXE);
+        addToMap(Material.BASALT, Tool.PICKAXE);
+        addToMap(Material.BIRCH_BUTTON, Tool.AXE);
+        addToMap(Material.BIRCH_FENCE, Tool.AXE);
+        addToMap(Material.BIRCH_FENCE_GATE, Tool.AXE);
+        addToMap(Material.BIRCH_LEAVES, Tool.SHEARS);
+        addToMap(Material.BIRCH_PRESSURE_PLATE, Tool.AXE);
+        addToMap(Material.BIRCH_SLAB, Tool.AXE);
+        addToMap(Material.BIRCH_STAIRS, Tool.AXE);
+        addToMap(Material.BLACKSTONE, Tool.PICKAXE);
+        addToMap(Material.BLACKSTONE_SLAB, Tool.PICKAXE);
+        addToMap(Material.BLACKSTONE_STAIRS, Tool.PICKAXE);
+        addToMap(Material.BLACK_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.BLACK_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.BLUE_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.BLUE_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.BOOKSHELF, Tool.AXE);
+        addToMap(Material.BREWING_STAND, Tool.PICKAXE);
+        addToMap(Material.BRICKS, Tool.PICKAXE);
+        addToMap(Material.BRICK_SLAB, Tool.PICKAXE);
+        addToMap(Material.BRICK_STAIRS, Tool.PICKAXE);
+        addToMap(Material.BROWN_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.BROWN_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.BROWN_MUSHROOM_BLOCK, Tool.AXE);
+        addToMap(Material.CAMPFIRE, Tool.AXE);
+        addToMap(Material.CAULDRON, Tool.PICKAXE);
+        addToMap(Material.CHAIN, Tool.PICKAXE);
+        addToMap(Material.CHEST, Tool.AXE);
+        addToMap(Material.CHISELED_RED_SANDSTONE, Tool.PICKAXE);
+        addToMap(Material.CHISELED_SANDSTONE, Tool.PICKAXE);
+        addToMap(Material.CHISELED_STONE_BRICKS, Tool.PICKAXE);
+        addToMap(Material.CLAY, Tool.SHOVEL);
+        addToMap(Material.COAL_BLOCK, Tool.PICKAXE);
+        addToMap(Material.COAL_ORE, Tool.PICKAXE);
+        addToMap(Material.COARSE_DIRT, Tool.SHOVEL);
+        addToMap(Material.COBBLESTONE, Tool.PICKAXE);
+        addToMap(Material.COBBLESTONE_SLAB, Tool.PICKAXE);
+        addToMap(Material.COBBLESTONE_STAIRS, Tool.PICKAXE);
+        addToMap(Material.COBWEB, Tool.SHEARS);
+        addToMap(Material.COCOA, Tool.AXE);
+        addToMap(Material.CRACKED_STONE_BRICKS, Tool.PICKAXE);
+        addToMap(Material.CRAFTING_TABLE, Tool.AXE);
+        addToMap(Material.CRYING_OBSIDIAN, Tool.PICKAXE);
+        addToMap(Material.CUT_RED_SANDSTONE, Tool.PICKAXE);
+        addToMap(Material.CUT_SANDSTONE, Tool.PICKAXE);
+        addToMap(Material.CYAN_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.CYAN_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.DARK_OAK_BUTTON, Tool.AXE);
+        addToMap(Material.DARK_OAK_FENCE, Tool.AXE);
+        addToMap(Material.DARK_OAK_FENCE_GATE, Tool.AXE);
+        addToMap(Material.DARK_OAK_LEAVES, Tool.SHEARS);
+        addToMap(Material.DARK_OAK_PRESSURE_PLATE, Tool.AXE);
+        addToMap(Material.DARK_OAK_SLAB, Tool.AXE);
+        addToMap(Material.DARK_OAK_STAIRS, Tool.AXE);
+        addToMap(Material.DARK_PRISMARINE, Tool.PICKAXE);
+        addToMap(Material.DARK_PRISMARINE_SLAB, Tool.PICKAXE);
+        addToMap(Material.DARK_PRISMARINE_STAIRS, Tool.PICKAXE);
+        addToMap(Material.DAYLIGHT_DETECTOR, Tool.AXE);
+        addToMap(Material.DIAMOND_BLOCK, Tool.PICKAXE);
+        addToMap(Material.DIAMOND_ORE, Tool.PICKAXE);
+        addToMap(Material.DIORITE, Tool.PICKAXE);
+        addToMap(Material.DIRT, Tool.SHOVEL);
+        addToMap(Material.DISPENSER, Tool.PICKAXE);
+        addToMap(Material.DROPPER, Tool.PICKAXE);
+        addToMap(Material.EMERALD_BLOCK, Tool.PICKAXE);
+        addToMap(Material.EMERALD_ORE, Tool.PICKAXE);
+        addToMap(Material.ENCHANTING_TABLE, Tool.PICKAXE);
+        addToMap(Material.ENDER_CHEST, Tool.PICKAXE);
+        addToMap(Material.END_STONE, Tool.PICKAXE);
+        addToMap(Material.FARMLAND, Tool.SHOVEL);
+        addToMap(Material.FURNACE, Tool.PICKAXE);
+        addToMap(Material.GILDED_BLACKSTONE, Tool.PICKAXE);
+        addToMap(Material.GOLD_BLOCK, Tool.PICKAXE);
+        addToMap(Material.GOLD_ORE, Tool.PICKAXE);
+        addToMap(Material.GRANITE, Tool.PICKAXE);
+        addToMap(Material.GRASS_BLOCK, Tool.SHOVEL);
+        addToMap(Material.DIRT_PATH, Tool.SHOVEL);
+        addToMap(Material.GRAVEL, Tool.SHOVEL);
+        addToMap(Material.GRAY_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.GRAY_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.GREEN_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.GREEN_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.HEAVY_WEIGHTED_PRESSURE_PLATE, Tool.PICKAXE);
+        addToMap(Material.HOPPER, Tool.PICKAXE);
+        addToMap(Material.IRON_BARS, Tool.PICKAXE);
+        addToMap(Material.IRON_BLOCK, Tool.PICKAXE);
+        addToMap(Material.IRON_DOOR, Tool.PICKAXE);
+        addToMap(Material.IRON_ORE, Tool.PICKAXE);
+        addToMap(Material.IRON_TRAPDOOR, Tool.PICKAXE);
+        addToMap(Material.JACK_O_LANTERN, Tool.AXE);
+        addToMap(Material.JUKEBOX, Tool.AXE);
+        addToMap(Material.JUNGLE_BUTTON, Tool.AXE);
+        addToMap(Material.JUNGLE_FENCE, Tool.AXE);
+        addToMap(Material.JUNGLE_FENCE_GATE, Tool.AXE);
+        addToMap(Material.JUNGLE_LEAVES, Tool.SHEARS);
+        addToMap(Material.JUNGLE_PRESSURE_PLATE, Tool.AXE);
+        addToMap(Material.JUNGLE_SLAB, Tool.AXE);
+        addToMap(Material.JUNGLE_STAIRS, Tool.AXE);
+        addToMap(Material.LADDER, Tool.AXE);
+        addToMap(Material.LANTERN, Tool.PICKAXE);
+        addToMap(Material.LAPIS_BLOCK, Tool.PICKAXE);
+        addToMap(Material.LAPIS_ORE, Tool.PICKAXE);
+        addToMap(Material.LIGHT_BLUE_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.LIGHT_BLUE_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.LIGHT_GRAY_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.LIGHT_GRAY_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.LIGHT_WEIGHTED_PRESSURE_PLATE, Tool.PICKAXE);
+        addToMap(Material.LIME_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.LIME_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.LODESTONE, Tool.PICKAXE);
+        addToMap(Material.MAGENTA_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.MAGENTA_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.MELON, Tool.AXE);
+        addToMap(Material.MOSSY_COBBLESTONE, Tool.PICKAXE);
+        addToMap(Material.MOSSY_STONE_BRICKS, Tool.PICKAXE);
+        addToMap(Material.MUSHROOM_STEM, Tool.AXE);
+        addToMap(Material.MYCELIUM, Tool.SHOVEL);
+        addToMap(Material.NETHERITE_BLOCK, Tool.PICKAXE);
+        addToMap(Material.NETHERRACK, Tool.PICKAXE);
+        addToMap(Material.NETHER_BRICK, Tool.PICKAXE);
+        addToMap(Material.NETHER_BRICK_FENCE, Tool.PICKAXE);
+        addToMap(Material.NETHER_BRICK_SLAB, Tool.PICKAXE);
+        addToMap(Material.NETHER_BRICK_STAIRS, Tool.PICKAXE);
+        addToMap(Material.NETHER_QUARTZ_ORE, Tool.PICKAXE);
+        addToMap(Material.NOTE_BLOCK, Tool.AXE);
+        addToMap(Material.OAK_BUTTON, Tool.AXE);
+        addToMap(Material.OAK_FENCE, Tool.AXE);
+        addToMap(Material.OAK_FENCE_GATE, Tool.AXE);
+        addToMap(Material.OAK_LEAVES, Tool.SHEARS);
+        addToMap(Material.OAK_PRESSURE_PLATE, Tool.AXE);
+        addToMap(Material.OAK_SLAB, Tool.AXE);
+        addToMap(Material.OAK_STAIRS, Tool.AXE);
+        addToMap(Material.OBSIDIAN, Tool.PICKAXE);
+        addToMap(Material.ORANGE_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.ORANGE_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.PINK_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.PINK_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.PODZOL, Tool.SHOVEL);
+        addToMap(Material.POLISHED_ANDESITE, Tool.PICKAXE);
+        addToMap(Material.POLISHED_DIORITE, Tool.PICKAXE);
+        addToMap(Material.POLISHED_GRANITE, Tool.PICKAXE);
+        addToMap(Material.PUMPKIN, Tool.AXE);
+        addToMap(Material.PURPLE_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.PURPLE_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.QUARTZ_BLOCK, Tool.PICKAXE);
+        addToMap(Material.QUARTZ_BRICKS, Tool.PICKAXE);
+        addToMap(Material.REDSTONE_BLOCK, Tool.PICKAXE);
+        addToMap(Material.REDSTONE_ORE, Tool.PICKAXE);
+        addToMap(Material.RED_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.RED_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.RED_MUSHROOM_BLOCK, Tool.AXE);
+        addToMap(Material.RED_NETHER_BRICKS, Tool.PICKAXE);
+        addToMap(Material.RED_NETHER_BRICK_SLAB, Tool.PICKAXE);
+        addToMap(Material.RED_NETHER_BRICK_STAIRS, Tool.PICKAXE);
+        addToMap(Material.RED_SAND, Tool.SHOVEL);
+        addToMap(Material.RED_SANDSTONE, Tool.PICKAXE);
+        addToMap(Material.RED_SANDSTONE_SLAB, Tool.PICKAXE);
+        addToMap(Material.RED_SANDSTONE_STAIRS, Tool.PICKAXE);
+        addToMap(Material.RESPAWN_ANCHOR, Tool.PICKAXE);
+        addToMap(Material.SAND, Tool.SHOVEL);
+        addToMap(Material.SANDSTONE, Tool.PICKAXE);
+        addToMap(Material.SANDSTONE_SLAB, Tool.PICKAXE);
+        addToMap(Material.SANDSTONE_STAIRS, Tool.PICKAXE);
+        addToMap(Material.SEA_LANTERN, Tool.PICKAXE);
+        addToMap(Material.SMOOTH_QUARTZ, Tool.PICKAXE);
+        addToMap(Material.SMOOTH_RED_SANDSTONE, Tool.PICKAXE);
+        addToMap(Material.SMOOTH_SANDSTONE, Tool.PICKAXE);
+        addToMap(Material.SMOOTH_STONE, Tool.PICKAXE);
+        addToMap(Material.SNOW, Tool.SHOVEL);
+        addToMap(Material.SNOW_BLOCK, Tool.SHOVEL);
+        addToMap(Material.SOUL_CAMPFIRE, Tool.AXE);
+        addToMap(Material.SOUL_LANTERN, Tool.PICKAXE);
+        addToMap(Material.SOUL_SAND, Tool.SHOVEL);
+        addToMap(Material.SOUL_SOIL, Tool.SHOVEL);
+        addToMap(Material.SPAWNER, Tool.PICKAXE);
+        addToMap(Material.SPRUCE_BUTTON, Tool.AXE);
+        addToMap(Material.SPRUCE_FENCE, Tool.AXE);
+        addToMap(Material.SPRUCE_FENCE_GATE, Tool.AXE);
+        addToMap(Material.SPRUCE_LEAVES, Tool.SHEARS);
+        addToMap(Material.SPRUCE_PRESSURE_PLATE, Tool.AXE);
+        addToMap(Material.SPRUCE_STAIRS, Tool.AXE);
+        addToMap(Material.STONE, Tool.PICKAXE);
+        addToMap(Material.STONE_BRICKS, Tool.PICKAXE);
+        addToMap(Material.STONE_BRICK_SLAB, Tool.PICKAXE);
+        addToMap(Material.STONE_BRICK_STAIRS, Tool.PICKAXE);
+        addToMap(Material.STONE_BUTTON, Tool.PICKAXE);
+        addToMap(Material.STONE_PRESSURE_PLATE, Tool.PICKAXE);
+        addToMap(Material.STONE_SLAB, Tool.PICKAXE);
+        addToMap(Material.TERRACOTTA, Tool.PICKAXE);
+        addToMap(Material.TRAPPED_CHEST, Tool.AXE);
+        addToMap(Material.VINE, Tool.SHEARS);
+        addToMap(Material.WHITE_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.WHITE_CONCRETE_POWDER, Tool.SHOVEL);
+        addToMap(Material.YELLOW_CONCRETE, Tool.PICKAXE);
+        addToMap(Material.YELLOW_CONCRETE_POWDER, Tool.SHOVEL);
 
-        // 1.17
         try {
             for (Material mat : Material.values()) {
-
-                if (mat.name().contains("AMETHYST")) {
-                    addToMap(mat.name(), Tool.PICKAXE);
+                String n = mat.name();
+                if (n.contains("AMETHYST")) {
+                    addToMap(n, Tool.PICKAXE);
                 }
-                if(mat.name().endsWith("_ORE")) {
-                    addToMap(mat.name(), Tool.PICKAXE);
+                if (n.endsWith("_ORE")) {
+                    addToMap(n, Tool.PICKAXE);
                 }
-                if(mat.name().contains("BASALT")) {
-                    addToMap(mat.name(), Tool.PICKAXE);
+                if (n.contains("BASALT")) {
+                    addToMap(n, Tool.PICKAXE);
                 }
-                if(mat.name().contains("DEEPSLATE")) {
-                    addToMap(mat.name(), Tool.PICKAXE);
+                if (n.contains("DEEPSLATE")) {
+                    addToMap(n, Tool.PICKAXE);
+                }
+                if (n.contains("SCULK")) {
+                    addToMap(n, Tool.HOE);
+                }
+                if (n.contains("BAMBOO")){
+                    addToMap(n, Tool.AXE);
                 }
             }
-            addToMap(Material.valueOf("GLOW_LICHEN"), Tool.SHEARS);
-            addToMap(Material.valueOf("CALCITE"), Tool.PICKAXE);
-        } catch (Throwable ignored) {
+            addToMap(Material.GLOW_LICHEN, Tool.SHEARS);
+            addToMap(Material.CALCITE, Tool.PICKAXE);
+            addToMap(Material.ROOTED_DIRT, Tool.SHOVEL);
+            addToMap("MANGROVE_ROOTS", Tool.AXE);
+            addToMap("MUDDY_MANGROVE_ROOTS", Tool.SHOVEL);
+            addToMap("MUD", Tool.SHOVEL);
+            addToMap("PACKED_MUD", Tool.PICKAXE);
+            addToMap("CHISELED_BOOKSHELF", Tool.AXE);
 
-        }
+        } catch (Throwable ignored) {}
+
+
     }
 
-    // F****** Spigot API is not "forward compatible" with new Material enums
+    // Spigot API is not "forward compatible" with new Material enums
     private void initFallbackMaterials() {
 
         for (Material mat : Material.values()) {
@@ -661,9 +669,7 @@ public class ToolUtils {
             }
             if (n.equals("WORKBENCH")) {
                 addToMap(mat, ToolHandler.Tool.AXE);
-                continue;
             }
-
         }
 
     }

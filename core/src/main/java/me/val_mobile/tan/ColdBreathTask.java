@@ -37,7 +37,7 @@ public class ColdBreathTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, ColdBreathTask> tasks = new HashMap<>();
     private final FileConfiguration config;
-
+    private final TempManager manager;
     private final RealisticSurvivalPlugin plugin;
     private final RSVPlayer player;
     private final UUID id;
@@ -58,6 +58,7 @@ public class ColdBreathTask extends BukkitRunnable implements RSVTask {
 
     public ColdBreathTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
+        this.manager = module.getTempManager();
         this.config = module.getUserConfig().getConfig();
         this.player = player;
         this.id = player.getPlayer().getUniqueId();
@@ -114,7 +115,7 @@ public class ColdBreathTask extends BukkitRunnable implements RSVTask {
 
     @Override
     public boolean conditionsMet(@Nullable Player player) {
-        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && this.player.getTanDataModule().getTemperature() < maxTemperature;
+        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && manager.getTemperature(player) < maxTemperature;
     }
 
     @Override

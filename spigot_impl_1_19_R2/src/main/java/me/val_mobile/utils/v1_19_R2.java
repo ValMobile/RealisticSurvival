@@ -44,8 +44,6 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.SmithingRecipe;
 
-import javax.annotation.Nonnull;
-
 public class v1_19_R2 extends InternalsProvider {
 
     @Override
@@ -177,11 +175,6 @@ public class v1_19_R2 extends InternalsProvider {
         else {
             ((CraftLivingEntity) attacker).getHandle().doHurtTarget(((CraftEntity) defender).getHandle());
         }
-    }
-
-    @Override
-    public boolean isInWater(@Nonnull Entity entity) {
-        return entity.isInWater();
     }
 
     public static boolean isLookingAtMe(EnderMan enderman, net.minecraft.world.entity.player.Player entityhuman) {

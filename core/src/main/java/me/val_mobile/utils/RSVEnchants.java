@@ -22,6 +22,7 @@ import org.bukkit.enchantments.Enchantment;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class RSVEnchants {
@@ -68,8 +69,7 @@ public class RSVEnchants {
         if (registered) {
             String raw = plugin.getConfig().getString("RegisteredEnchant");
 
-            raw = raw.replaceAll("%ENCHANT%", ench.getKey().getKey());
-            plugin.getLogger().info(Utils.translateMsg(raw));
+            plugin.getLogger().info(Utils.translateMsg(raw, null, Map.of("ENCHANT", ench.getKey().getKey())));
         }
     }
 

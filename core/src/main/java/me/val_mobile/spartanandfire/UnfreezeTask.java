@@ -46,12 +46,10 @@ public class UnfreezeTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        for (FrozenBlock block : blocks) {
-            block.getBlock().remove();
-        }
+        blocks.forEach(block -> block.getBlock().remove());
 
-        if (entity instanceof LivingEntity && !wasOriginallyFrozen) {
-            ((LivingEntity) entity).setAI(true);
+        if (entity instanceof LivingEntity living && !wasOriginallyFrozen) {
+            living.setAI(true);
         }
         tasks.remove(entity.getUniqueId());
     }

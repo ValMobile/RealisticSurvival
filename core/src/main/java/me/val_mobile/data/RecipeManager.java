@@ -17,7 +17,8 @@
 package me.val_mobile.data;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.*;
+import me.val_mobile.utils.Utils;
+import me.val_mobile.utils.recipe.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
@@ -79,45 +80,70 @@ public class RecipeManager {
     }
 
     public Recipe getRecipe(String type, String recipeName) {
-        Recipe recipe;
+        Recipe recipe = null;
         switch (type) {
             case "Shaped" -> {
-                recipe = new RSVShapedRecipe(recipeConfig, recipeName, plugin);
-                recipeKeys.add(((ShapedRecipe) recipe).getKey());
+                try {
+                    recipe = new RSVShapedRecipe(recipeConfig, recipeName, plugin);
+                    recipeKeys.add(((ShapedRecipe) recipe).getKey());
+                } catch (Exception ignored) {}
             }
             case "Shapeless" -> {
-                recipe = new RSVShapelessRecipe(recipeConfig, recipeName, plugin);
-                recipeKeys.add(((ShapelessRecipe) recipe).getKey());
+                // shapeless recipes do not work properly on spigot
+                if (Utils.isServerRunningPaper()) {
+                    try {
+                        recipe = new RSVShapelessRecipe(recipeConfig, recipeName, plugin);
+                        recipeKeys.add(((ShapelessRecipe) recipe).getKey());
+                    } catch (Exception ignored) {}
+                }
+                else {
+                    try {
+                        recipe = new RSVShapedRecipe(recipeConfig, recipeName, plugin);
+                        recipeKeys.add(((ShapedRecipe) recipe).getKey());
+                    } catch (Exception ignored) {}
+                }
             }
             case "Smithing" -> {
-                recipe = new RSVSmithingRecipe(recipeConfig, recipeName, plugin);
-                recipeKeys.add(((SmithingRecipe) recipe).getKey());
+                try {
+                    recipe = new RSVSmithingRecipe(recipeConfig, recipeName, plugin);
+                    recipeKeys.add(((SmithingRecipe) recipe).getKey());
+                } catch (Exception ignored) {}
             }
             case "Furnace" -> {
-                recipe = new RSVFurnaceRecipe(recipeConfig, recipeName, plugin);
-                recipeKeys.add(((FurnaceRecipe) recipe).getKey());
+                try {
+                    recipe = new RSVFurnaceRecipe(recipeConfig, recipeName, plugin);
+                    recipeKeys.add(((FurnaceRecipe) recipe).getKey());
+                } catch (Exception ignored) {}
             }
             case "Campfire" -> {
-                recipe = new RSVCampfireRecipe(recipeConfig, recipeName, plugin);
-                recipeKeys.add(((CampfireRecipe) recipe).getKey());
+                try {
+                    recipe = new RSVCampfireRecipe(recipeConfig, recipeName, plugin);
+                    recipeKeys.add(((CampfireRecipe) recipe).getKey());
+                } catch (Exception ignored) {}
             }
             case "Smoker" -> {
-                recipe = new RSVSmokingRecipe(recipeConfig, recipeName, plugin);
-                recipeKeys.add(((SmokingRecipe) recipe).getKey());
+                try {
+                    recipe = new RSVSmokingRecipe(recipeConfig, recipeName, plugin);
+                    recipeKeys.add(((SmokingRecipe) recipe).getKey());
+                } catch (Exception ignored) {}
             }
             case "Stonecutting" -> {
-                recipe = new RSVStonecuttingRecipe(recipeConfig, recipeName, plugin);
-                recipeKeys.add(((StonecuttingRecipe) recipe).getKey());
+                try {
+                    recipe = new RSVStonecuttingRecipe(recipeConfig, recipeName, plugin);
+                    recipeKeys.add(((StonecuttingRecipe) recipe).getKey());
+                } catch (Exception ignored) {}
             }
             case "Anvil" -> {
-                recipe = new RSVAnvilRecipe(recipeConfig, recipeName);
-                anvilRecipes.add((RSVAnvilRecipe) recipe);
-                return recipe;
+                try {
+                    recipe = new RSVAnvilRecipe(recipeConfig, recipeName);
+                    anvilRecipes.add((RSVAnvilRecipe) recipe);
+                } catch (Exception ignored) {}
             }
             case "Brewing" -> {
-                recipe = new RSVBrewingRecipe(plugin, recipeConfig, recipeName);
-                brewingRecipes.add((RSVBrewingRecipe) recipe);
-                return recipe;
+                try {
+                    recipe = new RSVBrewingRecipe(plugin, recipeConfig, recipeName);
+                    brewingRecipes.add((RSVBrewingRecipe) recipe);
+                } catch (Exception ignored) {}
             }
             default -> {
                 return null;

@@ -65,7 +65,7 @@ public class WormholeInventory extends GUI {
             ((SkullMeta) meta).setOwningPlayer(Bukkit.getOfflinePlayer(id));
         }
 
-        meta.setDisplayName(Utils.translateMsg(player, config.getString("WormholeInventory.SkullName").replaceAll("%PLAYER_NAME%", player.getDisplayName())));
+        meta.setDisplayName(Utils.translateMsg(config.getString("WormholeInventory.SkullName"), player, Map.of("PLAYER_NAME", player.getDisplayName())));
 
         skull.setItemMeta(meta);
         if (!players.containsKey(id)) {

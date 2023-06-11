@@ -35,22 +35,30 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class RSVItem extends ItemStack {
 
-    private static final String LOREPRESET = "LOREPRESET";
-
     private static final Map<String, RSVItem> itemMap = new HashMap<>();
 
+    private final Ingredient repairIng;
     private final String name;
     private final String module;
+    private final FileConfiguration itemConfig;
 
-    public RSVItem(FileConfiguration config, String name) {
-        super(Material.valueOf(config.getString(name + ".Material")));
+    public RSVItem(RSVItem copy) {
+        this(RSVModule.getModule(copy.module), copy.itemConfig, copy.name);
+    }
 
+    public RSVItem(@Nullable RSVModule module, @Nonnull FileConfiguration itemConfig, @Nonnull String name) {
+        super(Material.valueOf(itemConfig.getString(name + ".Material")));
+
+        this.itemConfig = itemConfig;
         this.name = name;
-        this.module = null;
+        this.module = module == null ? null : module.getName();
 
         String materialPath = name + ".Material";
         String displayNamePath = name + ".DisplayName";
@@ -60,15 +68,16 @@ public class RSVItem extends ItemStack {
         String enchantmentsPath = name + ".Enchantments";
         String attributesPath = name + ".Attributes";
         String nbtTagsPath = name + ".NBTTags";
+        String repairIngPath = name + ".RepairIngredients";
 
-        Material material = Material.valueOf(config.getString(materialPath));
-        String displayName = config.getString(displayNamePath);
-        int customModelData = config.getInt(customModelDataPath);
-        List<String> lore = config.getStringList(lorePath);
-        List<String> itemFlags = config.getStringList(itemFlagsPath);
-        ConfigurationSection enchantments = config.getConfigurationSection(enchantmentsPath);
-        ConfigurationSection attributes = config.getConfigurationSection(attributesPath);
-        ConfigurationSection nbtTags = config.getConfigurationSection(nbtTagsPath);
+        Material material = Material.valueOf(itemConfig.getString(materialPath));
+        String displayName = itemConfig.getString(displayNamePath);
+        int customModelData = itemConfig.getInt(customModelDataPath);
+        List<String> lore = itemConfig.getStringList(lorePath);
+        List<String> itemFlags = itemConfig.getStringList(itemFlagsPath);
+        ConfigurationSection enchantments = itemConfig.getConfigurationSection(enchantmentsPath);
+        ConfigurationSection attributes = itemConfig.getConfigurationSection(attributesPath);
+        ConfigurationSection nbtTags = itemConfig.getConfigurationSection(nbtTagsPath);
 
         ItemMeta meta = this.getItemMeta();
         List<String> newLore = new ArrayList<>();
@@ -77,12 +86,12 @@ public class RSVItem extends ItemStack {
             String colorPath = name + ".Color";
             String effectsPath = name + ".PotionType";
 
-            if (config.getString(colorPath) != null) {
-                Color color = Utils.valueOfColor(config.getString(colorPath));
+            if (itemConfig.getString(colorPath) != null) {
+                Color color = Utils.valueOfColor(itemConfig.getString(colorPath));
                 ((PotionMeta) meta).setColor(color);
             }
-            if (config.getString(effectsPath) != null) {
-                String effect = config.getString(effectsPath);
+            if (itemConfig.getString(effectsPath) != null) {
+                String effect = itemConfig.getString(effectsPath);
                 PotionType potionType = PotionType.valueOf(effect);
 
                 ((PotionMeta) meta).setBasePotionData(new PotionData(potionType));
@@ -90,12 +99,18 @@ public class RSVItem extends ItemStack {
         }
 
         if (displayName != null) {
-            meta.setDisplayName(Utils.translateMsg(displayName));
+            meta.setDisplayName(Utils.translateMsg(displayName,null, null));
         }
 
         if (! (lore == null || lore.isEmpty()) ) {
             for (String s : lore) {
-                newLore.add(Utils.translateMsg(s));
+                if (s.startsWith("LOREPRESET")) {
+                    String key = s.substring(11);
+                    LorePresets.useLorePreset(newLore, key, module.getUserConfig().getConfig().getConfigurationSection("Items." + name));
+                }
+                else {
+                    newLore.add(Utils.translateMsg(s, null, null));
+                }
             }
         }
         if (! (itemFlags == null || itemFlags.isEmpty())) {
@@ -110,7 +125,7 @@ public class RSVItem extends ItemStack {
             for (String s : enchantKeys) {
                 String mcName = Utils.getMinecraftEnchName(s);
                 Enchantment ench = EnchantmentWrapper.getByKey(NamespacedKey.minecraft(mcName));
-                int value = config.getInt(enchantmentsPath + "." + s);
+                int value = itemConfig.getInt(enchantmentsPath + "." + s);
 
                 if (!(ench == null || value <= 0)) {
                     meta.addEnchant(ench, value, true);
@@ -119,21 +134,28 @@ public class RSVItem extends ItemStack {
         }
 
         if (attributes != null) {
+            boolean useModuleConfig = itemConfig.getBoolean(attributesPath + ".UseModuleConfig");
+            FileConfiguration atrConfig = useModuleConfig ? module.getUserConfig().getConfig() : itemConfig;
+            attributesPath = useModuleConfig ? "Items." + name + ".Attributes" : attributesPath;
+
             LorePresets.addGearLore(newLore, material);
 
-            Set<String> keys = config.getConfigurationSection(attributesPath).getKeys(false);
+            if (atrConfig.getConfigurationSection(attributesPath) != null) {
+                Set<String> keys = atrConfig.getConfigurationSection(attributesPath).getKeys(false);
+                keys.remove("UseModuleConfig");
 
-            for (String s : keys) {
-                Attribute atr = Utils.translateInformalAttributeName(s);
-                String atrName = Utils.toLowercaseAttributeName(atr);
-                double displayValue = config.getDouble(attributesPath + "." + s);
-                double correctValue = Utils.getCorrectAttributeValue(atr, displayValue);
-                EquipmentSlot slot = Utils.getCorrectEquipmentSlot(atr, material);
+                for (String s : keys) {
+                    Attribute atr = Utils.translateInformalAttributeName(s);
+                    String atrName = Utils.toLowercaseAttributeName(atr);
+                    double displayValue = atrConfig.getDouble(attributesPath + "." + s);
+                    double correctValue = Utils.getCorrectAttributeValue(atr, displayValue);
+                    EquipmentSlot slot = Utils.getCorrectEquipmentSlot(atr, material);
 
-                if (!(atrName == null)) {
-                    AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, AttributeModifier.Operation.ADD_NUMBER, slot);
-                    LorePresets.addGearStats(newLore, atr, displayValue);
-                    meta.addAttributeModifier(atr, atrMod);
+                    if (atrName != null) {
+                        AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, AttributeModifier.Operation.ADD_NUMBER, slot);
+                        LorePresets.addGearStats(newLore, atr, displayValue);
+                        meta.addAttributeModifier(atr, atrMod);
+                    }
                 }
             }
         }
@@ -150,7 +172,7 @@ public class RSVItem extends ItemStack {
         if (nbtTags != null) {
             for (String s : nbtTags.getKeys(false)) {
                 String key = s;
-                String value = config.getString(nbtTagsPath + "." + s);
+                String value = itemConfig.getString(nbtTagsPath + "." + s);
                 if (!(key == null || key.isEmpty() || value == null || value.isEmpty())) {
                     if (org.apache.commons.lang.math.NumberUtils.isDigits(value)) {
                         Utils.addNbtTag(this, key, Integer.parseInt(value), PersistentDataType.INTEGER);
@@ -162,156 +184,50 @@ public class RSVItem extends ItemStack {
             }
         }
 
-        itemMap.put(name, this);
-    }
+        if (itemConfig.contains(repairIngPath)) {
+            String raw = itemConfig.getString(repairIngPath);
 
-    public RSVItem(RSVModule module, String name)  {
-        super(Material.valueOf(module.getItemConfig().getConfig().getString(name + ".Material")));
+            repairIng = new Ingredient(raw);
+        }
+        else {
+            repairIng = new Ingredient("");
+            Set<Material> vanilla = Utils.getVanillaRepairMaterials(this.getType());
 
-        FileConfiguration config = module.getItemConfig().getConfig();
-
-        this.name = name;
-        this.module = module.getName();
-
-        String materialPath = name + ".Material";
-        String displayNamePath = name + ".DisplayName";
-        String customModelDataPath = name + ".CustomModelData";
-        String lorePath = name + ".Lore";
-        String itemFlagsPath = name + ".ItemFlags";
-        String enchantmentsPath = name + ".Enchantments";
-        String attributesPath = name + ".Attributes";
-        String nbtTagsPath = name + ".NBTTags";
-
-        Material material = Material.valueOf(config.getString(materialPath));
-        String displayName = config.getString(displayNamePath);
-        int customModelData = config.getInt(customModelDataPath);
-        List<String> lore = config.getStringList(lorePath);
-        List<String> itemFlags = config.getStringList(itemFlagsPath);
-        ConfigurationSection enchantments = config.getConfigurationSection(enchantmentsPath);
-        ConfigurationSection attributes = config.getConfigurationSection(attributesPath);
-        ConfigurationSection nbtTags = config.getConfigurationSection(nbtTagsPath);
-
-        ItemMeta meta = this.getItemMeta();
-        List<String> newLore = new ArrayList<>();
-
-        if (material == Material.POTION) {
-            String colorPath = name + ".Color";
-            String effectsPath = name + ".Effects";
-
-            if (config.getString(colorPath) != null) {
-                Color color = Utils.valueOfColor(config.getString(colorPath));
-                ((PotionMeta) meta).setColor(color);
-            }
-            if (config.getString(effectsPath) != null) {
-                String effect = config.getString(effectsPath);
-                PotionType potionType = PotionType.valueOf(effect);
-
-                ((PotionMeta) meta).setBasePotionData(new PotionData(potionType));
-            }
+            repairIng.add(vanilla);
         }
 
-        meta.setDisplayName(Utils.translateMsg(displayName));
-
-        if (! (lore == null || lore.isEmpty()) ) {
-            for (String s : lore) {
-                if (s.startsWith(LOREPRESET)) {
-                    String key = s.substring(LOREPRESET.length() + 1);
-                    LorePresets.useLorePreset(newLore, key, module.getUserConfig().getConfig().getConfigurationSection("Items." + name));
-                }
-                else {
-                    newLore.add(Utils.translateMsg(s));
-                }
-            }
+        if (module != null) {
+            Utils.addNbtTag(this, "rsvitem", this.name, PersistentDataType.STRING);
+            Utils.addNbtTag(this, "rsvmodule", module.getName(), PersistentDataType.STRING);
         }
-        if (! (itemFlags == null || itemFlags.isEmpty())) {
-            for (String s : itemFlags) {
-                ItemFlag flag = ItemFlag.valueOf(s);
-                meta.addItemFlags(flag);
-            }
-        }
-
-        if (enchantments != null) {
-            Set<String> enchantKeys = enchantments.getKeys(false);
-            for (String s : enchantKeys) {
-                String mcName = Utils.getMinecraftEnchName(s);
-                Enchantment ench = EnchantmentWrapper.getByKey(NamespacedKey.minecraft(mcName));
-                int value = config.getInt(enchantmentsPath + "." + s);
-
-                if (!(ench == null || value <= 0)) {
-                    meta.addEnchant(ench, value, true);
-                }
-            }
-        }
-
-        if (attributes != null) {
-            boolean useModuleConfig = config.getBoolean(attributesPath + ".UseModuleConfig");
-            FileConfiguration atrConfig = useModuleConfig ? module.getUserConfig().getConfig() : config;
-            attributesPath = useModuleConfig ? "Items." + name + ".Attributes" : attributesPath;
-
-            LorePresets.addGearLore(newLore, material);
-
-            if (atrConfig.getConfigurationSection(attributesPath) != null) {
-                Set<String> keys = atrConfig.getConfigurationSection(attributesPath).getKeys(false);
-                keys.remove("UseModuleConfig");
-
-                for (String s : keys) {
-                    Attribute atr = Utils.translateInformalAttributeName(s);
-                    String atrName = Utils.toLowercaseAttributeName(atr);
-                    double displayValue = atrConfig.getDouble(attributesPath + "." + s);
-                    double correctValue = Utils.getCorrectAttributeValue(atr, displayValue);
-                    EquipmentSlot slot = Utils.getCorrectEquipmentSlot(atr, material);
-
-                    if (!(atrName == null)) {
-                        AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, AttributeModifier.Operation.ADD_NUMBER, slot);
-                        LorePresets.addGearStats(newLore, atr, displayValue);
-                        meta.addAttributeModifier(atr, atrMod);
-                    }
-                }
-            }
-        }
-
-        meta.setLore(newLore);
-        meta.setCustomModelData(customModelData);
-
-        this.setItemMeta(meta);
-
-        if (nbtTags != null) {
-            for (String s : nbtTags.getKeys(false)) {
-                String key = s;
-                String value = config.getString(nbtTagsPath + "." + s);
-                if (!(key == null || key.isEmpty() || value == null || value.isEmpty())) {
-                    if (org.apache.commons.lang.math.NumberUtils.isDigits(value)) {
-                        Utils.addNbtTag(this, key, Integer.parseInt(value), PersistentDataType.INTEGER);
-                    }
-                    else {
-                        Utils.addNbtTag(this, key, value, PersistentDataType.STRING);
-                    }
-                }
-            }
-        }
-        Utils.addNbtTag(this, "rsvitem", this.name, PersistentDataType.STRING);
-        Utils.addNbtTag(this, "rsvmodule", this.module, PersistentDataType.STRING);
 
         itemMap.put(name, this);
     }
 
-    public RSVItem resize(int amount) {
+    @Nonnull
+    public Ingredient getRepairIng() {
+        return repairIng;
+    }
+
+    @Nonnull
+    public RSVItem resize(@Nonnegative int amount) {
         this.setAmount(amount);
         return this;
     }
 
-    public static boolean isRSVItem(ItemStack item) {
+    public static boolean isRSVItem(@Nullable ItemStack item) {
         if (Utils.isItemReal(item)) {
             return Utils.hasNbtTag(item, "rsvitem");
         }
         return false;
     }
 
-    public static boolean isRSVItem(String name) {
+    public static boolean isRSVItem(@Nonnull String name) {
         return itemMap.containsKey(name);
     }
 
-    public static ItemStack convertItemStackToRSVItem(ItemStack item) {
+    @Nullable
+    public static ItemStack convertItemStackToRSVItem(@Nullable ItemStack item) {
         return isRSVItem(item) ? getItem(getNameFromItem(item)) : item;
     }
 
@@ -319,19 +235,22 @@ public class RSVItem extends ItemStack {
         Utils.addNbtTag(item, key, obj, type);
     }
 
-
-    public static String getModuleNameFromItem(ItemStack item) {
+    @Nullable
+    public static String getModuleNameFromItem(@Nonnull ItemStack item) {
         return Utils.getNbtTag(item, "rsvmodule", PersistentDataType.STRING);
     }
 
-    public static String getNameFromItem(ItemStack item) {
+    @Nullable
+    public static String getNameFromItem(@Nonnull ItemStack item) {
         return Utils.getNbtTag(item, "rsvitem", PersistentDataType.STRING);
     }
 
+    @Nullable
     public String getModule() {
         return module;
     }
 
+    @Nonnull
     public String getName() {
         return name;
     }
@@ -340,7 +259,14 @@ public class RSVItem extends ItemStack {
         return itemMap;
     }
 
-    public static ItemStack getItem(String name) {
-        return itemMap.get(name).clone();
+    @Nullable
+    public static RSVItem getItem(@Nullable String name) {
+        if (name == null) {
+            return null;
+        }
+
+        RSVItem item = itemMap.getOrDefault(name, null);
+
+        return item == null ? null : new RSVItem(item);
     }
 }

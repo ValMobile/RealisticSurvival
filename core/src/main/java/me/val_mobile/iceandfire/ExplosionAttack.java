@@ -31,7 +31,7 @@ public abstract class ExplosionAttack extends GenericBreath {
 
         String capitalizeBreed = StringUtils.capitalize(DragonUtils.getBreed(dragon).toString().toLowerCase());
 
-        this.block = new ExplosiveBreathBlock(loc, Material.valueOf(config.getString("Dragons." + capitalizeBreed + "Dragon.ExplosionAttack.FallingBlock")));
+        this.block = new ExplosiveBreathBlock(loc, Material.valueOf(config.getString("Dragon." + capitalizeBreed + "Dragon.ExplosionAttack.FallingBlock")));
     }
 
     public ExplosionAttack(Dragon dragon, Location target, RealisticSurvivalPlugin plugin) {
@@ -39,7 +39,7 @@ public abstract class ExplosionAttack extends GenericBreath {
 
         String capitalizeBreed = StringUtils.capitalize(dragon.getBreed().toString().toLowerCase());
 
-        this.block = new ExplosiveBreathBlock(loc, Material.valueOf(config.getString("Dragons." + capitalizeBreed + "Dragon.ExplosionAttack.FallingBlock")));
+        this.block = new ExplosiveBreathBlock(loc, Material.valueOf(config.getString("Dragon." + capitalizeBreed + "Dragon.ExplosionAttack.FallingBlock")));
     }
 
     @Override

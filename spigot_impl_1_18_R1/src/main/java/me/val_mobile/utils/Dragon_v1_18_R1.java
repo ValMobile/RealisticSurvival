@@ -20,22 +20,15 @@ import me.val_mobile.iceandfire.Dragon;
 import me.val_mobile.iceandfire.DragonBreed;
 import me.val_mobile.iceandfire.DragonGender;
 import me.val_mobile.iceandfire.DragonVariant;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.level.Level;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 public abstract class Dragon_v1_18_R1 extends EnderDragon implements Dragon {
@@ -45,8 +38,7 @@ public abstract class Dragon_v1_18_R1 extends EnderDragon implements Dragon {
     private int age;
     private final DragonGender gender;
     private final DragonVariant variant;
-    private final Collection<ItemStack> loot = new ArrayList<>();
-
+    
     public Dragon_v1_18_R1(EntityType<? extends EnderDragon> entityType, Level world, DragonBreed breed) {
         super(entityType, world);
 
@@ -58,10 +50,7 @@ public abstract class Dragon_v1_18_R1 extends EnderDragon implements Dragon {
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(new TextComponent(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
-        this.setCustomNameVisible(false);
-
-        addNbtData();
+        setup();
     }
 
     public Dragon_v1_18_R1(Location loc, DragonBreed breed) {
@@ -76,10 +65,7 @@ public abstract class Dragon_v1_18_R1 extends EnderDragon implements Dragon {
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(new TextComponent(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
-        this.setCustomNameVisible(false);
-
-        addNbtData();
+        setup();
     }
 
     public Dragon_v1_18_R1(Location loc, DragonBreed breed, DragonVariant variant) {
@@ -93,10 +79,7 @@ public abstract class Dragon_v1_18_R1 extends EnderDragon implements Dragon {
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(new TextComponent(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
-        this.setCustomNameVisible(false);
-
-        addNbtData();
+        setup();
     }
 
     public Dragon_v1_18_R1(Location loc, DragonBreed breed, int stage) {
@@ -111,10 +94,7 @@ public abstract class Dragon_v1_18_R1 extends EnderDragon implements Dragon {
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(new TextComponent(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
-        this.setCustomNameVisible(false);
-
-        addNbtData();
+        setup();
     }
 
     public Dragon_v1_18_R1(Location loc, DragonBreed breed, DragonVariant variant, int stage) {
@@ -128,10 +108,7 @@ public abstract class Dragon_v1_18_R1 extends EnderDragon implements Dragon {
 
         this.gender = Utils.getRandomNum(0, 1) == 1 ? DragonGender.MALE : DragonGender.FEMALE;
 
-        this.setCustomName(new TextComponent(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Dragon")));
-        this.setCustomNameVisible(false);
-
-        addNbtData();
+        setup();
     }
 
     @Override
@@ -142,22 +119,6 @@ public abstract class Dragon_v1_18_R1 extends EnderDragon implements Dragon {
     @Override
     public Entity getEntity() {
         return this.getBukkitEntity();
-    }
-
-    @Override
-    public void die(DamageSource damageSource) {
-        super.die(damageSource);
-        generateLoot(loot);
-        Location loc = this.getBukkitEntity().getLocation();
-        World world = loc.getWorld();
-
-        Location center = world.getHighestBlockAt(loc).isEmpty() ? new Location(world, 0, 64, 256) : loc;
-
-        for (ItemStack item : loot) {
-            if (item != null) {
-                world.dropItemNaturally(center, item);
-            }
-        }
     }
 
     @Override
@@ -183,11 +144,6 @@ public abstract class Dragon_v1_18_R1 extends EnderDragon implements Dragon {
     @Override
     public DragonGender getGender() {
         return gender;
-    }
-
-    @Override
-    public Collection<ItemStack> getLoot() {
-        return loot;
     }
 
     @Override

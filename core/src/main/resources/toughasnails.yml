@@ -2,15 +2,15 @@
 #          Tough As Nails             #
 #######################################
 
-ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
   Enabled: true
-  Message: "&6[Realistic Survival] &fInitializing &b%NAME% &fmodule"                # All placeholders: %NAME%
+  Message: "&6[Realistic Survival] &fInitializing &e%NAME% &fmodule"                # All placeholders: %NAME%
 Shutdown:
   Enabled: true
-  Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"               # All placeholders: %NAME%
+  Message: "&6[Realistic Survival] &fShutting down &e%NAME% &fmodule"               # All placeholders: %NAME%
 
 # One message from the "Messages" list will be randomly selected as the death message
 DehydrationDeath:
@@ -37,10 +37,10 @@ HypothermiaDeath:
 # Used to specify custom item drops for any mob
 # By default, there is no use for this, so the chance is set to 0.00
 MobDrops:
-  WITHER:
-    magma_shard:
-      Type: "Rare"
-      Chance: 0.00
+# WITHER:
+#   magma_shard:
+#     Type: "Rare"
+#     Chance: 0.00
 
 # Used to specify custom block drops
 BlockDrops:
@@ -199,10 +199,6 @@ Temperature:
       FIRE:
         IsRegulatory: false
         Value: 0.4
-      CAULDRON:               # Used for backward compatibility
-        IsRegulatory: false
-        Value: -0.02
-        MinimumLevel: 1       # In 1.16.x versions, WATER_CAULDRON does not exist as a material enum so CAULDRON must be used instead
       LAVA:
         IsRegulatory: false
         Value: 0.3
@@ -625,8 +621,8 @@ Temperature:
 Thirst:
   Enabled: true
   CalculateTickPeriod: 90   # Time in ticks that the game will check to deplete thirst, don't recommend changing unless the server is lagging severely
-  DefaultThirst: 20.0       # Amount of thirst a player will automatically spawn with, 20.0 = Maximum, 0.0 = Minimum
-  DefaultSaturation: 5.0    # Amount of saturation a player will automatically spawn with
+  DefaultThirst: 20         # Amount of thirst a player will automatically spawn with, 20 = Maximum, 0 = Minimum
+  DefaultSaturation: 5      # Amount of saturation a player will automatically spawn with
   DefaultExhaustion: 0.0
   DefaultExhaustionTickTimer: 0
   Dehydration:
@@ -686,104 +682,108 @@ Thirst:
           Amplifier: 0
           Duration: 210
   ExhaustionLevelIncrease:
-    Swimming: 0.01
-    BreakingBlock: 0.005
-    Sprinting: 0.1
-    Jumping: 0.05
-    AttackingEnemy: 0.1
-    TakingDamage: 0.1
-    JumpingWhileSprinting: 0.2
-    RegeneratingHealth: 6.0
+    Swimming: 0.003
+    BreakingBlock: 0.002
+    Sprinting: 0.03
+    Jumping: 0.015
+    AttackingEnemy: 0.03
+    TakingDamage: 0.03
+    JumpingWhileSprinting: 0.06
+    RegeneratingHealth: 2.0
+    PassiveDecay: 0.00001
+    Hyperthermia:
+      MaxValue: 0.03                     # Actual value varies depending on player's temperature
+      MinTemperature: 18.0
   SaturationRestoration:
     Foods:
       APPLE:
-        ThirstPoints: 2.0
-        SaturationPoints: 1.2
+        ThirstPoints: 2
+        SaturationPoints: 1
       BEETROOT:
-        ThirstPoints: 0.5
-        SaturationPoints: 0.6
+        ThirstPoints: 1
+        SaturationPoints: 1
       BEETROOT_SOUP:
-        ThirstPoints: 3.0
-        SaturationPoints: 3.6
+        ThirstPoints: 3
+        SaturationPoints: 4
       CARROT:
-        ThirstPoints: 1.5
-        SaturationPoints: 1.8
+        ThirstPoints: 2
+        SaturationPoints: 3
       GOLDEN_CARROT:
-        ThirstPoints: 3.0
-        SaturationPoints: 7.2
+        ThirstPoints: 3
+        SaturationPoints: 7
       CHORUS_FRUIT:
-        ThirstPoints: 2.0
-        SaturationPoints: 1.2
+        ThirstPoints: 2
+        SaturationPoints: 1
       GOLDEN_APPLE:
-        ThirstPoints: 2.0
-        SaturationPoints: 4.8
+        ThirstPoints: 2
+        SaturationPoints: 5
       ENCHANTED_GOLDEN_APPLE:
-        ThirstPoints: 2.0
-        SaturationPoints: 4.8
+        ThirstPoints: 2
+        SaturationPoints: 5
       GLOW_BERRIES:
-        ThirstPoints: 1.0
-        SaturationPoints: 0.2
+        ThirstPoints: 1
+        SaturationPoints: 0
       HONEY_BOTTLE:
-        ThirstPoints: 3.0
-        SaturationPoints: 0.6
+        ThirstPoints: 3
+        SaturationPoints: 1
       MELON_SLICE:
-        ThirstPoints: 1.0
-        SaturationPoints: 0.6
+        ThirstPoints: 1
+        SaturationPoints: 1
       MUSHROOM_STEW:
-        ThirstPoints: 3.0
-        SaturationPoints: 3.6
+        ThirstPoints: 3
+        SaturationPoints: 4
       RABBIT_STEW:
-        ThirstPoints: 5.0
-        SaturationPoints: 6.0
+        ThirstPoints: 5
+        SaturationPoints: 6
       SWEET_BERRIES:
-        ThirstPoints: 1.0
-        SaturationPoints: 0.2
+        ThirstPoints: 1
+        SaturationPoints: 0
       SUSPICIOUS_STEW:
-        ThirstPoints: 3.0
-        SaturationPoints: 3.6
+        ThirstPoints: 3
+        SaturationPoints: 4
       POTION:
-        ThirstPoints: 4.0
-        SaturationPoints: 2.0
+        ThirstPoints: 4
+        SaturationPoints: 2
       MILK_BUCKET:
-        ThirstPoints: 6.0
-        SaturationPoints: 3.0
+        ThirstPoints: 6
+        SaturationPoints: 3
       juice_apple:
-        ThirstPoints: 8.0
-        SaturationPoints: 4.0
+        ThirstPoints: 8
+        SaturationPoints: 4
       juice_beetroot:
-        ThirstPoints: 8.0
-        SaturationPoints: 4.0
+        ThirstPoints: 8
+        SaturationPoints: 4
       juice_cactus:
-        ThirstPoints: 10.0
-        SaturationPoints: 5.0
+        ThirstPoints: 10
+        SaturationPoints: 5
       juice_carrot:
-        ThirstPoints: 10.0
-        SaturationPoints: 5.0
+        ThirstPoints: 10
+        SaturationPoints: 5
       juice_chorus_fruit:
-        ThirstPoints: 12.0
-        SaturationPoints: 6.0
+        ThirstPoints: 12
+        SaturationPoints: 6
       juice_melon_glistering:
-        ThirstPoints: 16.0
-        SaturationPoints: 8.0
+        ThirstPoints: 16
+        SaturationPoints: 8
       juice_apple_golden:
-        ThirstPoints: 20.0
-        SaturationPoints: 10.0
+        ThirstPoints: 20
+        SaturationPoints: 10
       juice_carrot_golden:
-        ThirstPoints: 20.0
-        SaturationPoints: 15.0
+        ThirstPoints: 20
+        SaturationPoints: 15
       juice_melon:
-        ThirstPoints: 10.0
-        SaturationPoints: 5.0
+        ThirstPoints: 10
+        SaturationPoints: 5
       juice_pumpkin:
-        ThirstPoints: 10.0
-        SaturationPoints: 5.0
+        ThirstPoints: 10
+        SaturationPoints: 5
       purified_water_bottle:
-        ThirstPoints: 6.0
-        SaturationPoints: 3.0
+        ThirstPoints: 6
+        SaturationPoints: 3
     Drinking:
       Enabled: true
-      ThirstPoints: 2.0
-      SaturationPoints: 1.0
+      ThirstPoints: 2
+      SaturationPoints: 1
       # Customize aspects of the sound made when a player drinks from a source block of water
       # Volume ranges from 0.0 to 1.0, any values greater than 1.0 just increase the distance at which the sound can be heard
       # Pitch ranges from 0.5 to 2.0 where 1.0 is normal play speed
@@ -798,8 +798,8 @@ Thirst:
       OverrideLimit: false
     Raining:
       Enabled: true
-      ThirstPoints: 1.0
-      SaturationPoints: 1.0
+      ThirstPoints: 1
+      SaturationPoints: 1
       Sound:
         Enabled: true
         Sound: "ENTITY_GENERIC_DRINK"
@@ -807,8 +807,8 @@ Thirst:
         Pitch: 1.0
     Drowning:
       Enabled: true
-      ThirstPoints: 2.0
-      SaturationPoints: 1.0
+      ThirstPoints: 2
+      SaturationPoints: 0
 Items:
   ice_cube:
     Enabled:
@@ -1036,8 +1036,6 @@ Recipes:
       EnableAllVersions: true
     Unlock: true
 
-
-
 # Do NOT edit unless you know what you're doing
 CharacterOverrides:
   # All placeholders: %TEMP%, %THIRST%
@@ -1045,57 +1043,57 @@ CharacterOverrides:
   TemperatureActionbar: "              %TEMP%              "          # Template for sending overriden text to the actionbar when only temperature is enabled
   ThirstActionbar: "                 %THIRST% "               # Template for sending overriden text to the actionbar when only thirst is enabled
   TemperatureThirstActionbar: "              %TEMP%%THIRST% "    #  Template for sending overriden text to the actionbar when temperature and thirst are enabled
-  AboveWaterFullThirstDrop: ''                          # Default Unicode Value: \uE784
-  AboveWaterHalfThirstDrop: ''                         # Default Unicode Value: \uE790
-  AboveWaterEmptyThirstDrop: ''                        # Default Unicode Value: \uE791
-  UnderwaterFullThirstDrop: ''                         # Default Unicode Value: \uE828
-  UnderwaterHalfThirstDrop: ''                         # Default Unicode Value: \uE826
-  UnderwaterEmptyThirstDrop: ''                        # Default Unicode Value: \uE827
-  ParasitesAboveWaterFullThirstDrop: ''                         # Default Unicode Value: \uE792
-  ParasitesAboveWaterHalfThirstDrop: ''                         # Default Unicode Value: \uE793
-  ParasitesUnderwaterFullThirstDrop: ''                         # Default Unicode Value: \uE794
-  ParasitesUnderwaterHalfThirstDrop: ''                         # Default Unicode Value: \uE795
-  Temperature0: ''                            # Default Unicode Value: \uE779
-  Temperature1: ''                            # Default Unicode Value: \uE779
-  Temperature2: ''                            # Default Unicode Value: \uE779
-  Temperature3: ''                            # Default Unicode Value: \uE779
-  Temperature4: ''                            # Default Unicode Value: \uE779
-  Temperature5: ''                            # Default Unicode Value: \uE779
-  Temperature6: ''                           # Default Unicode Value: \uE806
-  Temperature7: ''                           # Default Unicode Value: \uE807
-  Temperature8: ''                           # Default Unicode Value: \uE808
-  Temperature9: ''                           # Default Unicode Value: \uE809
-  Temperature10: ''                          # Default Unicode Value: \uE810
-  Temperature11: ''                          # Default Unicode Value: \uE811
-  Temperature12: ''                          # Default Unicode Value: \uE812
-  Temperature13: ''                          # Default Unicode Value: \uE813
-  Temperature14: ''                          # Default Unicode Value: \uE814
-  Temperature15: ''                          # Default Unicode Value: \uE815
-  Temperature16: ''                          # Default Unicode Value: \uE816
-  Temperature17: ''                          # Default Unicode Value: \uE817
-  Temperature18: ''                          # Default Unicode Value: \uE818
-  Temperature19: ''                          # Default Unicode Value: \uE819
-  Temperature20: ''                           # Default Unicode Value: \uE782
-  Temperature21: ''                           # Default Unicode Value: \uE782
-  Temperature22: ''                           # Default Unicode Value: \uE782
-  Temperature23: ''                           # Default Unicode Value: \uE782
-  Temperature24: ''                           # Default Unicode Value: \uE782
-  Temperature25: ''                           # Default Unicode Value: \uE782
-  FreezingView: ''                             # Default Unicode Value: \uE788
-  IceVignette1: ''                           # Default Unicode Value: \uE831
-  IceVignette2: ''                           # Default Unicode Value: \uE832
-  IceVignette3: ''                            # Default Unicode Value: \uE833
-  IceVignette4: ''                            # Default Unicode Value: \uE834
-  IceVignette5: ''                            # Default Unicode Value: \uE835
-  FireVignette1: ''                           # Default Unicode Value: \uE821
-  FireVignette2: ''                           # Default Unicode Value: \uE822
-  FireVignette3: ''                           # Default Unicode Value: \uE823
-  FireVignette4: ''                           # Default Unicode Value: \uE824
-  FireVignette5: ''                           # Default Unicode Value: \uE825
-  BurningView: ''                              # Default Unicode Value: \uE787
-  DehydratedView: ' '                           # Default Unicode Value:
-  ThirstVignette1: ' '                          # Default Unicode Value:
-  ThirstVignette2: ' '                          # Default Unicode Value:
-  ThirstVignette3: ' '                          # Default Unicode Value:
-  ThirstVignette4: ' '                          # Default Unicode Value:
-  ThirstVignette5: ' '                          # Default Unicode Value:
+  AboveWaterFullThirstDrop: ""                         # Default Unicode Value: \uE784
+  AboveWaterHalfThirstDrop: ""                         # Default Unicode Value: \uE790
+  AboveWaterEmptyThirstDrop: ""                        # Default Unicode Value: \uE791
+  UnderwaterFullThirstDrop: ""                         # Default Unicode Value: \uE828
+  UnderwaterHalfThirstDrop: ""                         # Default Unicode Value: \uE826
+  UnderwaterEmptyThirstDrop: ""                        # Default Unicode Value: \uE827
+  ParasitesAboveWaterFullThirstDrop: ""                # Default Unicode Value: \uE792
+  ParasitesAboveWaterHalfThirstDrop: ""                # Default Unicode Value: \uE793
+  ParasitesUnderwaterFullThirstDrop: ""                # Default Unicode Value: \uE794
+  ParasitesUnderwaterHalfThirstDrop: ""                # Default Unicode Value: \uE795
+  Temperature0: ""                                     # Default Unicode Value: \uE779
+  Temperature1: ""                                     # Default Unicode Value: \uE779
+  Temperature2: ""                                     # Default Unicode Value: \uE779
+  Temperature3: ""                                     # Default Unicode Value: \uE779
+  Temperature4: ""                                     # Default Unicode Value: \uE779
+  Temperature5: ""                                     # Default Unicode Value: \uE779
+  Temperature6: ""                                     # Default Unicode Value: \uE806
+  Temperature7: ""                                      # Default Unicode Value: \uE807
+  Temperature8: ""                                      # Default Unicode Value: \uE808
+  Temperature9: ""                                      # Default Unicode Value: \uE809
+  Temperature10: ""                                     # Default Unicode Value: \uE810
+  Temperature11: ""                                    # Default Unicode Value: \uE811
+  Temperature12: ""                                    # Default Unicode Value: \uE812
+  Temperature13: ""                                    # Default Unicode Value: \uE813
+  Temperature14: ""                                    # Default Unicode Value: \uE814
+  Temperature15: ""                                    # Default Unicode Value: \uE815
+  Temperature16: ""                                    # Default Unicode Value: \uE816
+  Temperature17: ""                                    # Default Unicode Value: \uE817
+  Temperature18: ""                                    # Default Unicode Value: \uE818
+  Temperature19: ""                                    # Default Unicode Value: \uE819
+  Temperature20: ""                                    # Default Unicode Value: \uE782
+  Temperature21: ""                                    # Default Unicode Value: \uE782
+  Temperature22: ""                                    # Default Unicode Value: \uE782
+  Temperature23: ""                                    # Default Unicode Value: \uE782
+  Temperature24: ""                                    # Default Unicode Value: \uE782
+  Temperature25: ""                                    # Default Unicode Value: \uE782
+  FreezingView: ""                                     # Default Unicode Value: \uE788
+  IceVignette1: ""                                     # Default Unicode Value: \uE831
+  IceVignette2: ""                                     # Default Unicode Value: \uE832
+  IceVignette3: ""                                     # Default Unicode Value: \uE833
+  IceVignette4: ""                                     # Default Unicode Value: \uE834
+  IceVignette5: ""                                     # Default Unicode Value: \uE835
+  FireVignette1: ""                                    # Default Unicode Value: \uE821
+  FireVignette2: ""                                    # Default Unicode Value: \uE822
+  FireVignette3: ""                                    # Default Unicode Value: \uE823
+  FireVignette4: ""                                    # Default Unicode Value: \uE824
+  FireVignette5: ""                                    # Default Unicode Value: \uE825
+  BurningView: ""                                      # Default Unicode Value: \uE787
+  DehydratedView: ""                                    # Default Unicode Value:
+  ThirstVignette1: ""                                   # Default Unicode Value:
+  ThirstVignette2: ""                                   # Default Unicode Value:
+  ThirstVignette3: ""                                   # Default Unicode Value:
+  ThirstVignette4: ""                                   # Default Unicode Value:
+  ThirstVignette5: ""                                   # Default Unicode Value:

@@ -26,6 +26,8 @@ import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.util.Map;
+
 public class IceFireModule extends RSVModule {
 
     private final RealisticSurvivalPlugin plugin;
@@ -35,7 +37,7 @@ public class IceFireModule extends RSVModule {
 
 
     public IceFireModule(RealisticSurvivalPlugin plugin) {
-        super(NAME, plugin);
+        super(NAME, plugin, Map.of(), Map.of());
         this.plugin = plugin;
     }
 
@@ -49,8 +51,7 @@ public class IceFireModule extends RSVModule {
 
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Initialize.Enabled")) {
-            String message = Utils.translateMsg(config.getString("Initialize.Message"));
-            message = message.replaceAll("%NAME%", NAME);
+            String message = Utils.translateMsg(config.getString("Initialize.Message"), null, Map.of("NAME", NAME));
 
             plugin.getLogger().info(message);
         }
@@ -66,8 +67,7 @@ public class IceFireModule extends RSVModule {
     public void shutdown() {
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Shutdown.Enabled")) {
-            String message = Utils.translateMsg(config.getString("Shutdown.Message"));
-            message = message.replaceAll("%NAME%", NAME);
+            String message = Utils.translateMsg(config.getString("Shutdown.Message"), null, Map.of("NAME", NAME));
 
             plugin.getLogger().info(message);
         }

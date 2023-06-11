@@ -17,7 +17,6 @@
 package me.val_mobile.integrations;
 
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
-import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.flags.Flag;
 import com.sk89q.worldguard.protection.flags.Flags;
@@ -26,15 +25,9 @@ import com.sk89q.worldguard.protection.flags.registry.FlagConflictException;
 import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
-import me.casperge.realisticseasons.api.SeasonsAPI;
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.tan.TanModule;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nonnull;
 
 public class WorldGuard extends ProtectionPlugin {
 
@@ -51,13 +44,13 @@ public class WorldGuard extends ProtectionPlugin {
                 // create a flag with the name "rsv-throwing", defaulting to true
                 StateFlag flag = new StateFlag("rsv-throwing", true);
                 registry.register(flag);
-                MY_CUSTOM_FLAG = flag; // only set our field if there was no error
+//                MY_CUSTOM_FLAG = flag; // only set our field if there was no error
             } catch (FlagConflictException e) {
                 // some other plugin registered a flag by the same name already.
                 // you can use the existing flag, but this may cause conflicts - be sure to check type
                 Flag<?> existing = registry.get("rsv-throwing");
                 if (existing instanceof StateFlag) {
-                    MY_CUSTOM_FLAG = (StateFlag) existing;
+//                    MY_CUSTOM_FLAG = (StateFlag) existing;
                 } else {
                     // types don't match - this is bad news! some other plugin conflicts with you
                     // hopefully this never actually happens

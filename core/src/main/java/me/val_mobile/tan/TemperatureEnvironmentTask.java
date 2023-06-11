@@ -29,6 +29,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collection;
 
@@ -74,7 +75,7 @@ public class TemperatureEnvironmentTask extends BukkitRunnable implements RSVTas
 
                         if (!block.isEmpty()) {
                             if (willAffectTemperature(block)) {
-                                add("Temperature.Environment.Blocks." + block.getType());
+                                add(block);
                             }
                         }
                     }
@@ -88,106 +89,111 @@ public class TemperatureEnvironmentTask extends BukkitRunnable implements RSVTas
         }
     }
 
-    public static boolean willAffectTemperature(Block block, ConfigurationSection section) {
-        BlockData data = block.getBlockData();
+    public static boolean willAffectTemperature(@Nullable BlockData data, @Nonnull ConfigurationSection section) {
+        if (data == null) {
+            return false;
+        }
 
         String material = data.getMaterial().toString();
+
+        if (!section.contains(material)) {
+            return false;
+        }
 
         if (data instanceof Lightable lightable) {
             if (section.contains(material + ".Lit")) {
                 return section.getBoolean(material + ".Lit") == lightable.isLit();
             }
-            else {
-                return true;
-            }
         }
         else if (data instanceof Levelled levelled) {
-            if (block.isLiquid()) {
-                if (section.contains(material + ".MaximumLevel")) {
-                    return levelled.getLevel() <= section.getInt(material + ".MaximumLevel");
-                }
-                else {
-                    return true;
-                }
+            if (section.contains(material + ".MaximumLevel")) {
+                return levelled.getLevel() <= section.getInt(material + ".MaximumLevel");
             }
             else {
                 if (section.contains(material + ".MinimumLevel")) {
                     return levelled.getLevel() >= section.getInt(material + ".MinimumLevel");
                 }
-                else {
-                    return true;
-                }
             }
+        }
+        return true;
+    }
+
+    public static boolean willAffectTemperature(@Nonnull Block block, @Nonnull ConfigurationSection section) {
+        return willAffectTemperature(block.getBlockData(), section);
+    }
+
+    public static boolean isRegulatory(@Nullable BlockData blockData, @Nonnull ConfigurationSection section) {
+        if (blockData == null) {
+            return false;
+        }
+        return section.getBoolean(blockData.getMaterial() + ".IsRegulatory");
+    }
+
+    public static boolean isRegulatory(@Nonnull Block block, @Nonnull ConfigurationSection section) {
+        return isRegulatory(block.getBlockData(), section);
+    }
+
+    public static double getValue(@Nullable BlockData blockData, @Nonnull ConfigurationSection section) {
+        if (blockData == null) {
+            return 0D;
+        }
+
+        if (!section.contains(blockData.getMaterial() + ".Value")) {
+            return 0D;
+        }
+
+        double val = section.getDouble(blockData.getMaterial() + ".Value");
+        String type = blockData.getMaterial().toString();
+
+        if (blockData instanceof Lightable lightable) {
+            if (section.contains(type + ".Lit") && section.getBoolean(type + ".Lit")) {
+                return lightable.isLit() ? val : 0D;
+            }
+        }
+        if (blockData instanceof Levelled levelled) {
+            if (section.contains(type + ".MinimumLevel")) {
+                int minLevel = section.getInt(type + ".MinimumLevel");
+                return levelled.getLevel() >= minLevel ? val : 0D;
+            }
+            else if (section.contains(type + ".MaximumLevel")) {
+                int maxLevel = section.getInt(type + ".MaximumLevel");
+                return levelled.getLevel() <= maxLevel ? val : 0D;
+            }
+        }
+        return val;
+    }
+
+    public static double getValue(@Nonnull Block block, @Nonnull ConfigurationSection section) {
+        return getValue(block.getBlockData(), section);
+    }
+
+    public boolean willAffectTemperature(@Nonnull Block block) {
+        return willAffectTemperature(block.getBlockData(), section);
+    }
+
+    public void add(@Nonnull BlockData data) {
+        String type = data.getMaterial().toString();
+
+        double val = getValue(data, section);
+
+        if (section.getBoolean(type + ".IsRegulatory")) {
+            regulate += val;
         }
         else {
-            return true;
+            change += val;
         }
     }
 
-    public static boolean isRegulatory(Block block, ConfigurationSection section) {
-        return section.getBoolean(block.getType() + ".IsRegulatory");
-    }
+    public void add(@Nonnull Block data) {
+        String type = data.getType().toString();
 
-    public static double getValue(Block block, ConfigurationSection section) {
-        return section.getDouble(block.getType() + ".Value");
-    }
+        double val = getValue(data, section);
 
-    public boolean willAffectTemperature(Block block) {
-        BlockData data = block.getBlockData();
-
-        String material = data.getMaterial().toString();
-
-        if (data instanceof Lightable lightable) {
-            if (section.contains(material + ".Lit")) {
-                return section.getBoolean(material + ".Lit") == lightable.isLit();
-            }
-            else {
-                return true;
-            }
-        }
-        else if (data instanceof Levelled levelled) {
-            if (block.isLiquid()) {
-                if (section.contains(material + ".MaximumLevel")) {
-                    return levelled.getLevel() <= section.getInt(material + ".MaximumLevel");
-                }
-                else {
-                    return true;
-                }
-            }
-            else {
-                if (section.contains(material + ".MinimumLevel")) {
-                    return levelled.getLevel() >= section.getInt(material + ".MinimumLevel");
-                }
-                else {
-                    return true;
-                }
-            }
+        if (section.getBoolean(type + ".IsRegulatory")) {
+            regulate += val;
         }
         else {
-            return true;
-        }
-    }
-
-    public void add(String configPath) {
-        double amount = config.getDouble(configPath + ".Value");
-
-        if (config.contains(configPath + ".Enabled")) {
-            if (config.getBoolean(configPath + ".Enabled")) {
-                if (config.getBoolean(configPath + ".IsRegulatory")) {
-                    regulate += amount;
-                }
-                else {
-                    change += amount;
-                }
-            }
-        }
-        else {
-            if (config.getBoolean(configPath + ".IsRegulatory")) {
-                regulate += amount;
-            }
-            else {
-                change += amount;
-            }
+            change += val;
         }
     }
 

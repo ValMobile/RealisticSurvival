@@ -23,12 +23,14 @@ import me.val_mobile.data.baubles.ItemConfig;
 import me.val_mobile.data.baubles.PlayerDataConfig;
 import me.val_mobile.data.baubles.RecipesConfig;
 import me.val_mobile.data.baubles.UserConfig;
+import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 import java.util.UUID;
 
 public class BaubleModule extends RSVModule {
@@ -43,7 +45,7 @@ public class BaubleModule extends RSVModule {
     private final Collection<UUID> brokenHeartPlayers = new ArrayList<>();
 
     public BaubleModule(RealisticSurvivalPlugin plugin) {
-        super(NAME, plugin);
+        super(NAME, plugin, Map.of(), Map.of(RSVModule.getModule(IceFireModule.NAME), "Detected disabled Ice and Fire module. Dragon's eye recipe will be partially disabled."));
         this.plugin = plugin;
         this.config = new PlayerDataConfig(plugin);
     }
@@ -58,8 +60,7 @@ public class BaubleModule extends RSVModule {
 
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Initialize.Enabled")) {
-            String message = Utils.translateMsg(config.getString("Initialize.Message"));
-            message = message.replaceAll("%NAME%", NAME);
+            String message = Utils.translateMsg(config.getString("Initialize.Message"), null, Map.of("NAME", NAME));
 
             plugin.getLogger().info(message);
         }
@@ -77,8 +78,7 @@ public class BaubleModule extends RSVModule {
     public void shutdown() {
         FileConfiguration config = getUserConfig().getConfig();
         if (config.getBoolean("Shutdown.Enabled")) {
-            String message = Utils.translateMsg(config.getString("Shutdown.Message"));
-            message = message.replaceAll("%NAME%", NAME);
+            String message = Utils.translateMsg(config.getString("Shutdown.Message"), null, Map.of("NAME", NAME));
 
             plugin.getLogger().info(message);
         }

@@ -107,7 +107,7 @@ public class EnderCrownTask extends BukkitRunnable implements RSVTask {
 
                 if (waterDamageTicks > waterDamageDelay) {
                     if (Utils.roll(waterDamageChance)) {
-                        if (Utils.isInWater(player)) {
+                        if (player.isInWater()) {
                             player.damage(waterDamage);
                             waterDamageTicks = 0;
                         }

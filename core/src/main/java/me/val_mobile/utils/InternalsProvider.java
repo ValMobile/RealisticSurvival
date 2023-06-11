@@ -61,5 +61,4 @@ public abstract class InternalsProvider {
 
     public abstract void attack(LivingEntity attacker, Entity defender);
 
-    public abstract boolean isInWater(Entity entity);
 }

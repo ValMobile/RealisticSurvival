@@ -2,7 +2,7 @@
 #          Spartan and Fire Items     #
 #######################################
 
-ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -19,6 +19,7 @@ dragonbone_rapier:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_katana:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Katana"
@@ -32,6 +33,7 @@ dragonbone_katana:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Greatsword"
@@ -45,6 +47,7 @@ dragonbone_greatsword:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Longsword"
@@ -58,6 +61,7 @@ dragonbone_longsword:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Spear"
@@ -71,6 +75,7 @@ dragonbone_spear:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Saber"
@@ -84,6 +89,7 @@ dragonbone_saber:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Boomerang"
@@ -97,6 +103,7 @@ dragonbone_boomerang:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Dagger"
@@ -110,6 +117,7 @@ dragonbone_dagger:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Glaive"
@@ -123,6 +131,7 @@ dragonbone_glaive:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Halberd"
@@ -136,6 +145,7 @@ dragonbone_halberd:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Hammer"
@@ -149,6 +159,7 @@ dragonbone_hammer:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Javelin"
@@ -162,6 +173,7 @@ dragonbone_javelin:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Lance"
@@ -175,6 +187,7 @@ dragonbone_lance:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Flanged Mace"
@@ -188,6 +201,7 @@ dragonbone_mace:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Pike"
@@ -201,6 +215,7 @@ dragonbone_pike:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Quarterstaff"
@@ -214,6 +229,7 @@ dragonbone_quarterstaff:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Tomahawk"
@@ -227,6 +243,7 @@ dragonbone_tomahawk:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Throwing Knife"
@@ -240,6 +257,7 @@ dragonbone_throwing_knife:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Warhammer"
@@ -253,6 +271,7 @@ dragonbone_warhammer:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fDragonbone Battleaxe"
@@ -266,6 +285,7 @@ dragonbone_battleaxe:
   NBTTags:
     rsvdurability: 1660
     rsvmaxdurability: 1660
+  RepairIngredients: "dragonbone"
 dragonbone_longbow:
   Material: "BOW"
   DisplayName: "&fDragonbone-Strengthened Longbow"
@@ -307,6 +327,7 @@ dragonbone_flamed_katana:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Greatsword"
@@ -321,6 +342,7 @@ dragonbone_flamed_greatsword:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Longsword"
@@ -335,6 +357,7 @@ dragonbone_flamed_longsword:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Spear"
@@ -349,6 +372,7 @@ dragonbone_flamed_spear:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Saber"
@@ -363,6 +387,7 @@ dragonbone_flamed_saber:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Boomerang"
@@ -377,6 +402,7 @@ dragonbone_flamed_boomerang:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Dagger"
@@ -391,6 +417,7 @@ dragonbone_flamed_dagger:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Glaive"
@@ -405,6 +432,7 @@ dragonbone_flamed_glaive:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Halberd"
@@ -419,6 +447,7 @@ dragonbone_flamed_halberd:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Hammer"
@@ -433,6 +462,7 @@ dragonbone_flamed_hammer:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Javelin"
@@ -447,6 +477,7 @@ dragonbone_flamed_javelin:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Lance"
@@ -461,6 +492,7 @@ dragonbone_flamed_lance:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Flanged Mace"
@@ -475,6 +507,7 @@ dragonbone_flamed_mace:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Pike"
@@ -489,6 +522,7 @@ dragonbone_flamed_pike:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Quarterstaff"
@@ -503,6 +537,7 @@ dragonbone_flamed_quarterstaff:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Tomahawk"
@@ -517,6 +552,7 @@ dragonbone_flamed_tomahawk:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Throwing Knife"
@@ -531,6 +567,7 @@ dragonbone_flamed_throwing_knife:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Warhammer"
@@ -545,6 +582,7 @@ dragonbone_flamed_warhammer:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fFlamed Dragonbone Battleaxe"
@@ -559,6 +597,7 @@ dragonbone_flamed_battleaxe:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_flamed_longbow:
   Material: "BOW"
   DisplayName: "&fFlamed Dragonbone-Strengthened Longbow"
@@ -591,6 +630,7 @@ dragonbone_iced_rapier:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_katana:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Katana"
@@ -605,6 +645,7 @@ dragonbone_iced_katana:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Greatsword"
@@ -615,6 +656,7 @@ dragonbone_iced_greatsword:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Longsword"
@@ -629,6 +671,7 @@ dragonbone_iced_longsword:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Spear"
@@ -643,6 +686,7 @@ dragonbone_iced_spear:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Saber"
@@ -657,6 +701,7 @@ dragonbone_iced_saber:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Boomerang"
@@ -671,6 +716,7 @@ dragonbone_iced_boomerang:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Dagger"
@@ -685,6 +731,7 @@ dragonbone_iced_dagger:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Glaive"
@@ -699,6 +746,7 @@ dragonbone_iced_glaive:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Halberd"
@@ -713,6 +761,7 @@ dragonbone_iced_halberd:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Hammer"
@@ -727,6 +776,7 @@ dragonbone_iced_hammer:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Javelin"
@@ -741,6 +791,7 @@ dragonbone_iced_javelin:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Lance"
@@ -755,6 +806,7 @@ dragonbone_iced_lance:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Flanged Mace"
@@ -769,6 +821,7 @@ dragonbone_iced_mace:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Pike"
@@ -783,6 +836,7 @@ dragonbone_iced_pike:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Quarterstaff"
@@ -797,6 +851,7 @@ dragonbone_iced_quarterstaff:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Tomahawk"
@@ -811,6 +866,7 @@ dragonbone_iced_tomahawk:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Throwing Knife"
@@ -825,6 +881,7 @@ dragonbone_iced_throwing_knife:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Warhammer"
@@ -839,6 +896,7 @@ dragonbone_iced_warhammer:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fIced Dragonbone Battleaxe"
@@ -853,6 +911,7 @@ dragonbone_iced_battleaxe:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_iced_longbow:
   Material: "BOW"
   DisplayName: "&fIced Dragonbone-Strengthened Longbow"
@@ -885,6 +944,7 @@ dragonbone_lightning_rapier:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_katana:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Katana"
@@ -899,6 +959,7 @@ dragonbone_lightning_katana:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Greatsword"
@@ -913,6 +974,7 @@ dragonbone_lightning_greatsword:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Longsword"
@@ -927,6 +989,7 @@ dragonbone_lightning_longsword:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Spear"
@@ -941,6 +1004,7 @@ dragonbone_lightning_spear:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Saber"
@@ -955,6 +1019,7 @@ dragonbone_lightning_saber:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Boomerang"
@@ -969,6 +1034,7 @@ dragonbone_lightning_boomerang:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Dagger"
@@ -983,6 +1049,7 @@ dragonbone_lightning_dagger:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Glaive"
@@ -997,6 +1064,7 @@ dragonbone_lightning_glaive:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Halberd"
@@ -1011,6 +1079,7 @@ dragonbone_lightning_halberd:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Hammer"
@@ -1025,6 +1094,7 @@ dragonbone_lightning_hammer:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Javelin"
@@ -1039,6 +1109,7 @@ dragonbone_lightning_javelin:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Lance"
@@ -1053,6 +1124,7 @@ dragonbone_lightning_lance:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Flanged Mace"
@@ -1067,6 +1139,7 @@ dragonbone_lightning_mace:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Pike"
@@ -1081,6 +1154,7 @@ dragonbone_lightning_pike:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Quarterstaff"
@@ -1095,6 +1169,7 @@ dragonbone_lightning_quarterstaff:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Tomahawk"
@@ -1109,6 +1184,7 @@ dragonbone_lightning_tomahawk:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Throwing Knife"
@@ -1123,6 +1199,7 @@ dragonbone_lightning_throwing_knife:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Warhammer"
@@ -1137,6 +1214,7 @@ dragonbone_lightning_warhammer:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fLightning Dragonbone Battleaxe"
@@ -1151,6 +1229,7 @@ dragonbone_lightning_battleaxe:
   NBTTags:
     rsvdurability: 2000
     rsvmaxdurability: 2000
+  RepairIngredients: "dragonbone"
 dragonbone_lightning_longbow:
   Material: "BOW"
   DisplayName: "&fLightning Dragonbone-Strengthened Longbow"
@@ -1183,6 +1262,7 @@ dragonsteel_fire_rapier:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_katana:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Katana"
@@ -1197,6 +1277,7 @@ dragonsteel_fire_katana:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_greatsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Greatsword"
@@ -1211,6 +1292,7 @@ dragonsteel_fire_greatsword:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_longsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Longsword"
@@ -1225,6 +1307,7 @@ dragonsteel_fire_longsword:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_spear:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Spear"
@@ -1239,6 +1322,7 @@ dragonsteel_fire_spear:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_saber:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Saber"
@@ -1253,6 +1337,7 @@ dragonsteel_fire_saber:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_boomerang:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Boomerang"
@@ -1267,6 +1352,7 @@ dragonsteel_fire_boomerang:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_dagger:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Dagger"
@@ -1281,6 +1367,7 @@ dragonsteel_fire_dagger:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_glaive:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Glaive"
@@ -1295,6 +1382,7 @@ dragonsteel_fire_glaive:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_halberd:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Halberd"
@@ -1309,6 +1397,7 @@ dragonsteel_fire_halberd:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_hammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Hammer"
@@ -1323,6 +1412,7 @@ dragonsteel_fire_hammer:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_javelin:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Javelin"
@@ -1337,6 +1427,7 @@ dragonsteel_fire_javelin:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_lance:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Lance"
@@ -1351,6 +1442,7 @@ dragonsteel_fire_lance:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_mace:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Flanged Mace"
@@ -1365,6 +1457,7 @@ dragonsteel_fire_mace:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_pike:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Pike"
@@ -1379,6 +1472,7 @@ dragonsteel_fire_pike:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_quarterstaff:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Quarterstaff"
@@ -1393,6 +1487,7 @@ dragonsteel_fire_quarterstaff:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_tomahawk:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Tomahawk"
@@ -1407,6 +1502,7 @@ dragonsteel_fire_tomahawk:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_throwing_knife:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Throwing Knife"
@@ -1421,6 +1517,7 @@ dragonsteel_fire_throwing_knife:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_warhammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Warhammer"
@@ -1435,6 +1532,7 @@ dragonsteel_fire_warhammer:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_battleaxe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fFire Dragonsteel Battleaxe"
@@ -1449,6 +1547,7 @@ dragonsteel_fire_battleaxe:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_longbow:
   Material: "BOW"
   DisplayName: "&fFire Dragonsteel-Strengthened Longbow"
@@ -1459,6 +1558,7 @@ dragonsteel_fire_longbow:
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_fire_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fFire Dragonsteel-Strengthened Crossbow"
@@ -1469,6 +1569,7 @@ dragonsteel_fire_crossbow:
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000
+  RepairIngredients: "dragonsteel_fire_ingot"
 dragonsteel_ice_rapier:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Rapier"
@@ -1483,6 +1584,7 @@ dragonsteel_ice_rapier:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_katana:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Katana"
@@ -1497,6 +1599,7 @@ dragonsteel_ice_katana:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_greatsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Greatsword"
@@ -1511,6 +1614,7 @@ dragonsteel_ice_greatsword:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_longsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Longsword"
@@ -1525,6 +1629,7 @@ dragonsteel_ice_longsword:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_spear:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Spear"
@@ -1539,6 +1644,7 @@ dragonsteel_ice_spear:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_saber:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Saber"
@@ -1553,6 +1659,7 @@ dragonsteel_ice_saber:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_boomerang:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Boomerang"
@@ -1567,6 +1674,7 @@ dragonsteel_ice_boomerang:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_dagger:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Dagger"
@@ -1581,6 +1689,7 @@ dragonsteel_ice_dagger:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_glaive:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Glaive"
@@ -1595,6 +1704,7 @@ dragonsteel_ice_glaive:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_halberd:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Halberd"
@@ -1609,6 +1719,7 @@ dragonsteel_ice_halberd:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_hammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Hammer"
@@ -1623,6 +1734,7 @@ dragonsteel_ice_hammer:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_javelin:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Javelin"
@@ -1637,6 +1749,7 @@ dragonsteel_ice_javelin:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_lance:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Lance"
@@ -1651,6 +1764,7 @@ dragonsteel_ice_lance:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_mace:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Flanged Mace"
@@ -1665,6 +1779,7 @@ dragonsteel_ice_mace:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_pike:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Pike"
@@ -1679,6 +1794,7 @@ dragonsteel_ice_pike:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_quarterstaff:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Quarterstaff"
@@ -1693,6 +1809,7 @@ dragonsteel_ice_quarterstaff:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_tomahawk:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Tomahawk"
@@ -1707,6 +1824,7 @@ dragonsteel_ice_tomahawk:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_throwing_knife:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Throwing Knife"
@@ -1721,6 +1839,7 @@ dragonsteel_ice_throwing_knife:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_warhammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Warhammer"
@@ -1735,6 +1854,7 @@ dragonsteel_ice_warhammer:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_battleaxe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fIce Dragonsteel Battleaxe"
@@ -1749,6 +1869,7 @@ dragonsteel_ice_battleaxe:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_longbow:
   Material: "BOW"
   DisplayName: "&fIce Dragonsteel-Strengthened Longbow"
@@ -1759,6 +1880,7 @@ dragonsteel_ice_longbow:
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_ice_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fIce Dragonsteel-Strengthened Crossbow"
@@ -1769,6 +1891,7 @@ dragonsteel_ice_crossbow:
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000
+  RepairIngredients: "dragonsteel_ice_ingot"
 dragonsteel_lightning_rapier:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Rapier"
@@ -1783,6 +1906,7 @@ dragonsteel_lightning_rapier:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_katana:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Katana"
@@ -1797,6 +1921,7 @@ dragonsteel_lightning_katana:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_greatsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Greatsword"
@@ -1811,6 +1936,7 @@ dragonsteel_lightning_greatsword:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_longsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Longsword"
@@ -1825,6 +1951,7 @@ dragonsteel_lightning_longsword:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_spear:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Spear"
@@ -1839,6 +1966,7 @@ dragonsteel_lightning_spear:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_saber:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Saber"
@@ -1853,6 +1981,7 @@ dragonsteel_lightning_saber:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_boomerang:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Boomerang"
@@ -1867,6 +1996,7 @@ dragonsteel_lightning_boomerang:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_dagger:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Dagger"
@@ -1881,6 +2011,7 @@ dragonsteel_lightning_dagger:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_glaive:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Glaive"
@@ -1895,6 +2026,7 @@ dragonsteel_lightning_glaive:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_halberd:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Halberd"
@@ -1909,6 +2041,7 @@ dragonsteel_lightning_halberd:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_hammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Hammer"
@@ -1923,6 +2056,7 @@ dragonsteel_lightning_hammer:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_javelin:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Javelin"
@@ -1937,6 +2071,7 @@ dragonsteel_lightning_javelin:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_lance:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Lance"
@@ -1951,6 +2086,7 @@ dragonsteel_lightning_lance:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_mace:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Flanged Mace"
@@ -1965,6 +2101,7 @@ dragonsteel_lightning_mace:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_pike:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Pike"
@@ -1979,6 +2116,7 @@ dragonsteel_lightning_pike:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_quarterstaff:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Quarterstaff"
@@ -1993,6 +2131,7 @@ dragonsteel_lightning_quarterstaff:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_tomahawk:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Tomahawk"
@@ -2007,6 +2146,7 @@ dragonsteel_lightning_tomahawk:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_throwing_knife:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Throwing Knife"
@@ -2021,6 +2161,7 @@ dragonsteel_lightning_throwing_knife:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_warhammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Warhammer"
@@ -2035,6 +2176,7 @@ dragonsteel_lightning_warhammer:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_battleaxe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fLightning Dragonsteel Battleaxe"
@@ -2049,6 +2191,7 @@ dragonsteel_lightning_battleaxe:
   NBTTags:
     rsvdurability: 8000
     rsvmaxdurability: 8000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_longbow:
   Material: "BOW"
   DisplayName: "&fLightning Dragonsteel-Strengthened Longbow"
@@ -2059,6 +2202,7 @@ dragonsteel_lightning_longbow:
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 dragonsteel_lightning_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fLightning Dragonsteel-Strengthened Crossbow"
@@ -2069,6 +2213,7 @@ dragonsteel_lightning_crossbow:
   NBTTags:
     rsvdurability: 9000
     rsvmaxdurability: 9000
+  RepairIngredients: "dragonsteel_lightning_ingot"
 witherbone_handle:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fWitherbone Handle"

@@ -63,7 +63,7 @@ public class IceExplosionAttack extends ExplosionAttack {
                         if (block.isEmpty() || !blockMaterial.isOccluding()) {
                             if (!immuneBlocks.contains(blockMaterial.toString())) {
                                 if (!secondBlock.isEmpty()) {
-                                    world.getBlockAt(loc).setType(getFrozenMaterial(blockMaterial, Material.valueOf(config.getString("Dragons.IceDragon.ExplosionAttack.LayerBlock"))));
+                                    world.getBlockAt(loc).setType(getFrozenMaterial(blockMaterial, Material.valueOf(config.getString("Dragon.IceDragon.ExplosionAttack.LayerBlock"))));
                                 }
                             }
                         }
@@ -72,7 +72,7 @@ public class IceExplosionAttack extends ExplosionAttack {
                             // check if the upper block is immune to ice breath attacks
                             if (!immuneBlocks.contains(blockMaterial.toString())) {
                                 if (!secondBlock.isEmpty()) {
-                                    world.getBlockAt(loc).setType(getFrozenMaterial(blockMaterial, Material.valueOf(config.getString("Dragons.IceDragon.ExplosionAttack.FrozenBlock"))));
+                                    world.getBlockAt(loc).setType(getFrozenMaterial(blockMaterial, Material.valueOf(config.getString("Dragon.IceDragon.ExplosionAttack.FrozenBlock"))));
                                 }
                             }
                         }
@@ -81,7 +81,7 @@ public class IceExplosionAttack extends ExplosionAttack {
             }
         }
 
-        world.createExplosion(center, (float) (config.getDouble("Dragons.IceDragon.ExplosionAttack.Explosion.Power") * config.getDouble("Dragons.IceDragon.ExplosionAttack.StageMultipliers.Stage" + DragonUtils.getStage(dragon))), config.getBoolean("Dragons.IceDragon.ExplosionAttack.SetFire"), config.getBoolean("Dragons.IceDragon.ExplosionAttack.BreakBlocks"), dragon);
+        world.createExplosion(center, (float) (config.getDouble("Dragon.IceDragon.ExplosionAttack.Explosion.Power") * config.getDouble("Dragon.IceDragon.ExplosionAttack.StageMultipliers.Stage" + DragonUtils.getStage(dragon))), config.getBoolean("Dragon.IceDragon.ExplosionAttack.SetFire"), config.getBoolean("Dragon.IceDragon.ExplosionAttack.BreakBlocks"), dragon);
     }
 
     @Nonnull

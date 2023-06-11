@@ -6,7 +6,7 @@
 # Any item put here will be created; there is no separate enable like in other item config files
 # NOTE: Lore presents cannot be used for miscellaneous items
 
-ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -16,4 +16,8 @@ potion_fire_resistance:
 awkward_potion:
   Material: "POTION"
   PotionType: "AWKWARD"
+prismarine_shard:
+  Material: "PRISMARINE_SHARD"
+prismarine_crystals:
+  Material: "PRISMARINE_CRYSTALS"
 

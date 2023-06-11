@@ -23,8 +23,8 @@ import me.val_mobile.integrations.CompatiblePlugin;
 import me.val_mobile.integrations.RealisticSeasons;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.tan.TanModule;
-import me.val_mobile.tan.TemperatureCalculateTask;
-import me.val_mobile.tan.ThirstCalculateTask;
+import me.val_mobile.tan.TempManager;
+import me.val_mobile.tan.ThirstManager;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
@@ -33,7 +33,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nullable;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -49,26 +48,20 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
     private final CharacterValues characterValues;
     private boolean underSirenEffect = false;
     private boolean parasitesActive = false;
-    private final boolean tempEnabled;
-    private final boolean thirstEnabled;
-    private final Collection<String> tanAllowedWorlds;
-    private final Collection<String> ifAllowedWorlds;
+    private final TanModule tanModule;
+    private final IceFireModule ifModule;
     private final RealisticSeasons rs;
 
     public DisplayTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
 
-        RSVModule tanModule = RSVModule.getModule(TanModule.NAME);
-        RSVModule ifModule = RSVModule.getModule(IceFireModule.NAME);
+        this.tanModule = (TanModule) RSVModule.getModule(TanModule.NAME);
+        this.ifModule = (IceFireModule) RSVModule.getModule(IceFireModule.NAME);
 
-        this.tanConfig = tanModule.isEnabled() ? tanModule.getUserConfig().getConfig() : null;
-        this.ifConfig = ifModule.isEnabled() ? ifModule.getUserConfig().getConfig() : null;
+        this.tanConfig = tanModule.isGloballyEnabled() ? tanModule.getUserConfig().getConfig() : null;
+        this.ifConfig = ifModule.isGloballyEnabled() ? ifModule.getUserConfig().getConfig() : null;
         this.player = player;
         this.characterValues = new CharacterValues();
-        this.tempEnabled = tanConfig.getBoolean("Temperature.Enabled");
-        this.thirstEnabled = tanConfig.getBoolean("Thirst.Enabled");
-        this.tanAllowedWorlds = tanModule.getAllowedWorlds();
-        this.ifAllowedWorlds = ifModule.getAllowedWorlds();
         this.id = player.getPlayer().getUniqueId();
         this.rs = (RealisticSeasons) CompatiblePlugin.getPlugin(RealisticSeasons.NAME);
         tasks.put(id, this);
@@ -82,40 +75,35 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
             String actionbarText = "";
             String titleText = "";
 
-            if (ifConfig != null && ifAllowedWorlds.contains(player.getWorld().getName())) {
+            if (ifConfig != null && ifModule.getAllowedWorlds().contains(player.getWorld().getName())) {
                 if (!player.hasPermission("realisticsurvival.iceandfire.resistance.sirenvisual")) {
                     if (underSirenEffect) {
-                        if (ifConfig.getBoolean("Sirens.ChangeScreen.Enabled")) {
-                            titleText += characterValues.getSirenView();
+                        if (ifConfig.getBoolean("Siren.ChangeScreen.Enabled")) {
+                            titleText += characterValues.getSirenView(player);
                         }
                     }
                 }
             }
 
-            if (tanConfig != null && tanAllowedWorlds.contains(player.getWorld().getName())) {
-                double temperature = tanConfig.getDouble("Temperature.DefaultTemperature");
-                double thirst = tanConfig.getDouble("Temperature.DefaultThirst");
-
-                if (TemperatureCalculateTask.hasTask(id)) {
-                    temperature = TemperatureCalculateTask.getTasks().get(id).getTemp();
-                }
-                if (ThirstCalculateTask.hasTask(id)) {
-                    thirst = ThirstCalculateTask.getTasks().get(id).getThirstLvl();
-                }
+            if (tanConfig != null) {
+                TempManager tempManager = tanModule.getTempManager();
+                ThirstManager thirstManager = tanModule.getThirstManager();
+                double temperature = tempManager.getTemperature(player);
+                double thirst = thirstManager.getThirst(player);
 
                 boolean isUnderwater = player.getRemainingAir() < 300 || player.getEyeLocation().getBlock().getType() == Material.WATER;
 
-                if (tempEnabled && thirstEnabled) {
-                    actionbarText += characterValues.getTemperatureThirstActionbar((int) Math.round(temperature), (int) Math.round(thirst), isUnderwater, parasitesActive);
+                if (tempManager.isTempEnabled(player) && thirstManager.isThirstEnabled(player)) {
+                    actionbarText += characterValues.getTemperatureThirstActionbar(player, (int) Math.round(temperature), (int) Math.round(thirst), isUnderwater, parasitesActive);
                 }
                 else {
                     // only temperature is enabled
-                    if (tempEnabled) {
-                        actionbarText += characterValues.getTemperatureOnlyActionbar((int) Math.round(temperature));
+                    if (tempManager.isTempEnabled(player)) {
+                        actionbarText += characterValues.getTemperatureOnlyActionbar(player, (int) Math.round(temperature));
                     }
                     // only thirst is enabled
                     else {
-                        actionbarText += characterValues.getThirstOnlyActionbar((int) Math.round(thirst), isUnderwater, parasitesActive);
+                        actionbarText += characterValues.getThirstOnlyActionbar(player, (int) Math.round(thirst), isUnderwater, parasitesActive);
                     }
                 }
 
@@ -126,7 +114,7 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
                                 Utils.setFreezingView(player, tanConfig.getInt("VisualTickPeriod") + 5);
                             }
                             else {
-                                titleText += characterValues.getIceVignette((int) Math.round(temperature));
+                                titleText += characterValues.getIceVignette(player, (int) Math.round(temperature));
                             }
                         }
                     }
@@ -134,7 +122,7 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
                 if (temperature > 19) {
                     if (tanConfig.getBoolean("Temperature.Hyperthermia.ScreenTinting") && !rs.disableHyperthermiaTinting()) {
                         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.hot.visual")) {
-                            titleText += characterValues.getFireVignette((int) Math.round(temperature));
+                            titleText += characterValues.getFireVignette(player, (int) Math.round(temperature));
                         }
                     }
                 }
@@ -142,18 +130,18 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
                 if (thirst < 5) {
                     if (tanConfig.getBoolean("Thirst.Dehydration.ScreenTinting")) {
                         if (!player.hasPermission("realisticsurvival.toughasnails.resistance.thirst.visual")) {
-                            titleText += characterValues.getThirstVignette((int) Math.round(thirst));
+                            titleText += characterValues.getThirstVignette(player, (int) Math.round(thirst));
                         }
                     }
                 }
             }
 
             if (!actionbarText.isEmpty()) {
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(Utils.translateMsg(player, actionbarText)));
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(Utils.translateMsg(actionbarText, player, null)));
             }
 
             if (!titleText.isEmpty()) {
-                player.sendTitle(Utils.translateMsg(player, titleText), "", 0, 70, 0);
+                player.sendTitle(Utils.translateMsg(titleText, player, null), "", 0, 70, 0);
             }
         }
         else {

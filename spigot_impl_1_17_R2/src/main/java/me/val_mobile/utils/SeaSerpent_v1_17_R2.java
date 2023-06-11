@@ -18,37 +18,27 @@ package me.val_mobile.utils;
 
 import me.val_mobile.iceandfire.SeaSerpent;
 import me.val_mobile.iceandfire.SeaSerpentVariant;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.ElderGuardian;
 import net.minecraft.world.level.Level;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class SeaSerpent_v1_17_R2 extends ElderGuardian implements SeaSerpent {
 
     private final SeaSerpentVariant variant;
-    private final Collection<ItemStack> loot = new ArrayList<>();
-
+    
     public SeaSerpent_v1_17_R2(EntityType<? extends ElderGuardian> entitytype, Level world) {
         super(entitytype, world);
 
         List<SeaSerpentVariant> enabledVariants = SeaSerpentVariant.getEnabledVariants();
         this.variant = enabledVariants.get(Utils.getRandomNum(0, enabledVariants.size() - 1));
 
-        this.setCustomName(new TextComponent(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
-        this.setCustomNameVisible(false);
-        addNbtData();
+        setup();
     }
 
     public SeaSerpent_v1_17_R2(Location loc) {
@@ -58,9 +48,7 @@ public class SeaSerpent_v1_17_R2 extends ElderGuardian implements SeaSerpent {
         List<SeaSerpentVariant> enabledVariants = SeaSerpentVariant.getEnabledVariants();
         this.variant = enabledVariants.get(Utils.getRandomNum(0, enabledVariants.size() - 1));
 
-        this.setCustomName(new TextComponent(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
-        this.setCustomNameVisible(false);
-        addNbtData();
+        setup();
     }
 
     public SeaSerpent_v1_17_R2(Location loc, SeaSerpentVariant variant) {
@@ -69,9 +57,7 @@ public class SeaSerpent_v1_17_R2 extends ElderGuardian implements SeaSerpent {
 
         this.variant = variant.isEnabled() ? variant : null;
 
-        this.setCustomName(new TextComponent(Utils.translateMsg("Realistic Survival " + StringUtils.capitalize(variant.toString().toLowerCase()) + " Sea Serpent")));
-        this.setCustomNameVisible(false);
-        addNbtData();
+        setup();
     }
 
     @Override
@@ -82,20 +68,6 @@ public class SeaSerpent_v1_17_R2 extends ElderGuardian implements SeaSerpent {
     @Override
     public void addEntityToWorld(org.bukkit.World world) {
         ((CraftWorld) world).addEntity(this, CreatureSpawnEvent.SpawnReason.CUSTOM);
-    }
-
-    @Override
-    public void die(DamageSource damageSource) {
-        super.die(damageSource);
-
-        Location loc = this.getBukkitEntity().getLocation();
-        World world = loc.getWorld();
-        generateLoot(loot);
-        for (ItemStack item : loot) {
-            if (item != null) {
-                world.dropItemNaturally(loc, item);
-            }
-        }
     }
 
     @Override

@@ -272,8 +272,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
                             }
                             else {
                                 if (config.getBoolean("MaxDistanceReached.Enabled")) {
-                                    String message = Utils.translateMsg(entity, config.getString("MaxDistanceReached.Message"));
-                                    message = message.replaceAll("%MAX_DISTANCE%", String.valueOf(Math.round(Math.sqrt(maxDistanceSquared))));
+                                    String message = Utils.translateMsg(config.getString("MaxDistanceReached.Message"), entity, Map.of("MAX_DISTANCE", Math.round(Math.sqrt(maxDistanceSquared))));
                                     entity.sendMessage(message);
                                 }
                                 dropWeaponTask(armorStand, entity, item.clone());
@@ -312,10 +311,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
         as.remove();
 
         if (config.getBoolean("WeaponDropped.Enabled")) {
-            String message = Utils.translateMsg(this.entity, config.getString("WeaponDropped.Message"));
-            message = message.replaceAll("%X-COORD%", String.valueOf((int) loc.getX()));
-            message = message.replaceAll("%Y-COORD%", String.valueOf((int) loc.getY()));
-            message = message.replaceAll("%Z-COORD%", String.valueOf((int) loc.getZ()));
+            String message = Utils.translateMsg(config.getString("WeaponDropped.Message"), this.entity, Map.of("X_COORD", (int) Math.round(loc.getX()), "Y_COORD", (int) Math.round(loc.getY()), "Z_COORD", (int) Math.round(loc.getZ())));
 
             entity.sendMessage(message);
         }

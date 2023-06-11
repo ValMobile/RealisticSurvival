@@ -66,7 +66,7 @@ public class FireExplosionAttack extends ExplosionAttack {
                                 // if the lower block is solid
                                 if (!secondBlock.isEmpty()) {
                                     // set the upper block on fire
-                                    world.getBlockAt(loc).setType(Material.valueOf(config.getString("Dragons.FireDragon.ExplosionAttack.LayerBlock")));
+                                    world.getBlockAt(loc).setType(Material.valueOf(config.getString("Dragon.FireDragon.ExplosionAttack.LayerBlock")));
                                 }
                             }
                         }
@@ -85,7 +85,7 @@ public class FireExplosionAttack extends ExplosionAttack {
             }
         }
 
-        world.createExplosion(center, (float) (config.getDouble("Dragons.FireDragon.ExplosionAttack.Explosion.Power") * config.getDouble("Dragons.FireDragon.ExplosionAttack.StageMultipliers.Stage" + DragonUtils.getStage(dragon))), config.getBoolean("Dragons.FireDragon.ExplosionAttack.SetFire"), config.getBoolean("Dragons.FireDragon.ExplosionAttack.BreakBlocks"), dragon);
+        world.createExplosion(center, (float) (config.getDouble("Dragon.FireDragon.ExplosionAttack.Explosion.Power") * config.getDouble("Dragon.FireDragon.ExplosionAttack.StageMultipliers.Stage" + DragonUtils.getStage(dragon))), config.getBoolean("Dragon.FireDragon.ExplosionAttack.SetFire"), config.getBoolean("Dragon.FireDragon.ExplosionAttack.BreakBlocks"), dragon);
     }
 
     @Nonnull
@@ -97,8 +97,8 @@ public class FireExplosionAttack extends ExplosionAttack {
             burnt = Material.valueOf(mats[Utils.getRandomNum(0, mats.length - 1)]);
         }
         else {
-            burnt = material.isFuel() ? Material.valueOf(config.getString("Dragons.FireDragon.ExplosionAttack.BurntBlock"))
-                    : Material.valueOf(config.getString("Dragons.FireDragon.ExplosionAttack.CharredBlock"));
+            burnt = material.isFuel() ? Material.valueOf(config.getString("Dragon.FireDragon.ExplosionAttack.BurntBlock"))
+                    : Material.valueOf(config.getString("Dragon.FireDragon.ExplosionAttack.CharredBlock"));
         }
         return burnt;
     }

@@ -18,13 +18,40 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.utils.RSVPet;
 import me.val_mobile.utils.Utils;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.List;
 
 public interface EndermanAlly extends RSVPet {
 
     @Override
+    default List<String> getRequiredModules() {
+        return List.of(BaubleModule.NAME);
+    }
+
+    @Override
+    default String getParentModule() {
+        return BaubleModule.NAME;
+    }
+
+    @Override
     default void addNbtData() {
-        Utils.addNbtTag(getEntity(), "rsvmob", "enderman_ally", PersistentDataType.STRING);
+        Utils.addNbtTag(getEntity(), "rsvmob", name(), PersistentDataType.STRING);
         Utils.addNbtTag(getEntity(), "rsvendermanallyowner", getOwner().getUniqueId().toString(), PersistentDataType.STRING);
+    }
+
+    @Override
+    default String name() {
+        return "enderman_ally";
+    }
+
+    @Override
+    @Nonnull
+    default Collection<ItemStack> getLoot(@Nullable ItemStack tool) {
+        return getConfigurableLoot(tool);
     }
 }

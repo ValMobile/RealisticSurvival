@@ -2,15 +2,15 @@
 #          Baubles                    #
 #######################################
 
-ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
   Enabled: true
-  Message: "&6[Realistic Survival] &fInitializing &b%NAME% &fmodule"                # All placeholders: %NAME%
+  Message: "&6[Realistic Survival] &fInitializing &e%NAME% &fmodule"                # All placeholders: %NAME%
 Shutdown:
   Enabled: true
-  Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"               # All placeholders: %NAME%
+  Message: "&6[Realistic Survival] &fShutting down &e%NAME% &fmodule"               # All placeholders: %NAME%
 
 # Customize any bauble items
 
@@ -244,13 +244,13 @@ MobDrops:
 # Used to specify custom block drops
 # By default, there is no use for this, so the chance is set to 0.00
 BlockDrops:
-  BARRIER:
-    spectral_silt:
-      Type: "Rare"
-      Chance: 0.01
-      ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
-      IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
-      RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
+# BARRIER:
+#   spectral_silt:
+#     Type: "Rare"
+#     Chance: 0.00
+#     ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
+#     IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
+#     RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
 
 Items:
   # MaxAmplifier - Maximum level of potion effect a player can have get with multiple potion rings

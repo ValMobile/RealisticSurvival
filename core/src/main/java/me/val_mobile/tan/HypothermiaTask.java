@@ -36,7 +36,6 @@ public class HypothermiaTask extends BukkitRunnable implements RSVTask {
     private static final Map<UUID, HypothermiaTask> tasks = new HashMap<>();
     private final TanModule module;
     private final FileConfiguration config;
-
     private final RealisticSurvivalPlugin plugin;
     private final RSVPlayer player;
     private final UUID id;
@@ -107,7 +106,7 @@ public class HypothermiaTask extends BukkitRunnable implements RSVTask {
 
     @Override
     public boolean conditionsMet(@Nullable Player player) {
-        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && this.player.getTanDataModule().getTemperature() < maxTemperature;
+        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && module.getTempManager().getTemperature(player) < maxTemperature;
     }
 
     @Override

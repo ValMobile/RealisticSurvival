@@ -2,23 +2,23 @@
 #          No Tree Punching           #
 #######################################
 
-ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
   Enabled: true
-  Message: "&6[Realistic Survival] &fInitializing &b%NAME% &fmodule"                # All placeholders: %NAME%
+  Message: "&6[Realistic Survival] &fInitializing &e%NAME% &fmodule"                # All placeholders: %NAME%
 Shutdown:
   Enabled: true
-  Message: "&6[Realistic Survival] &fShutting down &b%NAME% &fmodule"               # All placeholders: %NAME%
+  Message: "&6[Realistic Survival] &fShutting down &e%NAME% &fmodule"               # All placeholders: %NAME%
 
 # Used to specify custom item drops for any mob
 # By default, there is no use for this, so the chance is set to 0.00
 MobDrops:
-  WITHER:
-    flint_shard:
-      Type: "Rare"
-      Chance: 0.00
+# WITHER:
+#   flint_shard:
+#     Type: "Rare"
+#     Chance: 0.00
 
 # Used to specify custom block drops
 BlockDrops:
@@ -408,109 +408,55 @@ Items:
       EnableAllVersions: true
   copper_axe:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 9.0
       AttackSpeed: 0.9
   copper_pickaxe:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 2.75
       AttackSpeed: 1.2
   copper_shovel:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 3.0
       AttackSpeed: 1.0
   copper_sword:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 1.6
   copper_hoe:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 1.0
       AttackSpeed: 2.5
   copper_helmet:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Attributes:
       Armor: 1.0
       Toughness: 0.0
   copper_chestplate:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Attributes:
       Armor: 3.0
       Toughness: 0.0
   copper_leggings:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Attributes:
       Armor: 3.0
       Toughness: 0.0
   copper_boots:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Attributes:
       Armor: 1.0
       Toughness: 0.0
@@ -522,13 +468,7 @@ Items:
       AttackSpeed: 1.6
   copper_mattock:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Attributes:
       AttackDamage: 5.0
       AttackSpeed: 1.6
@@ -587,12 +527,6 @@ Items:
     Enabled:
       EnableAllVersions: false
       Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
-        v1_17_R1: false
         v1_17_R2: false
         v1_18_R1: false
         v1_18_R2: false
@@ -606,21 +540,9 @@ Items:
   ceramic_powder_snow_bucket:
     Enabled:
       EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
   ceramic_axolotl_bucket:
     Enabled:
       EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
   ceramic_cod_bucket:
     Enabled:
       EnableAllVersions: true
@@ -687,13 +609,7 @@ Recipes:
     Unlock: true
   copper_mattock:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Unlock: true
   iron_mattock:
     Enabled:
@@ -713,93 +629,39 @@ Recipes:
     Unlock: true
   copper_axe:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Unlock: true
   copper_pickaxe:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Unlock: true
   copper_shovel:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Unlock: true
   copper_sword:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Unlock: true
   copper_hoe:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Unlock: true
   copper_helmet:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Unlock: true
   copper_chestplate:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Unlock: true
   copper_leggings:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Unlock: true
   copper_boots:
     Enabled:
-      EnableAllVersions: false
-      Versions:
-        v1_16_R1: false
-        v1_16_R2: false
-        v1_16_R3: false
-        v1_16_R4: false
-        v1_16_R5: false
+      EnableAllVersions: true
     Unlock: true
   clay_tool:
     Enabled:

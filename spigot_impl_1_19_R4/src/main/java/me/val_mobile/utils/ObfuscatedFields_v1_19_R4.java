@@ -19,12 +19,9 @@ package me.val_mobile.utils;
 public class ObfuscatedFields_v1_19_R4 {
     // corresponds to net.minecraft.core.MappedRegistry#frozen
     public static final String FROZEN_SYMBOL = "l";
-    public static final String FROZEN = "frozen";
-
+    
     // corresponds to net.minecraft.core.MappedRegistry#unregisteredIntrusiveHolders
     public static final String INTRUSIVE_HOLDER_CACHE_SYMBOL = "m";
-    public static final String INTRUSIVE_HOLDER_CACHE = "unregisteredIntrusiveHolders";
-
-
+    
     private ObfuscatedFields_v1_19_R4() {};
 }

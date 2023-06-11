@@ -2,7 +2,7 @@
 #          Spartan Weaponry Items     #
 #######################################
 
-ConfigId: "1.2.5-DEV-1"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -223,6 +223,7 @@ netherite_longbow:
   NBTTags:
     rsvdurability: 2600
     rsvmaxdurability: 2600
+  RepairIngredients: "NETHERITE_INGOT"
 netherite_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fNetherite-Strengthened Crossbow"
@@ -232,6 +233,7 @@ netherite_crossbow:
   NBTTags:
     rsvdurability: 2600
     rsvmaxdurability: 2600
+  RepairIngredients: "NETHERITE_INGOT"
 diamond_rapier:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Rapier"
@@ -441,6 +443,7 @@ diamond_longbow:
   NBTTags:
     rsvdurability: 2341
     rsvmaxdurability: 2341
+  RepairIngredients: "DIAMOND"
 diamond_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fDiamond-Strengthened Crossbow"
@@ -450,6 +453,7 @@ diamond_crossbow:
   NBTTags:
     rsvdurability: 2341
     rsvmaxdurability: 2341
+  RepairIngredients: "DIAMOND"
 iron_rapier:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Rapier"
@@ -659,6 +663,7 @@ iron_longbow:
   NBTTags:
     rsvdurability: 375
     rsvmaxdurability: 375
+  RepairIngredients: "IRON_INGOT"
 iron_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fIron-Strengthened Crossbow"
@@ -668,6 +673,7 @@ iron_crossbow:
   NBTTags:
     rsvdurability: 375
     rsvmaxdurability: 375
+  RepairIngredients: "IRON_INGOT"
 gold_rapier:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Rapier"
@@ -877,6 +883,7 @@ gold_longbow:
   NBTTags:
     rsvdurability: 32
     rsvmaxdurability: 32
+  RepairIngredients: "GOLD_INGOT"
 gold_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fGolden-Strengthened Crossbow"
@@ -886,6 +893,7 @@ gold_crossbow:
   NBTTags:
     rsvdurability: 32
     rsvmaxdurability: 32
+  RepairIngredients: "GOLD_INGOT"
 stone_rapier:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Rapier"
@@ -1295,6 +1303,7 @@ wooden_longbow:
   NBTTags:
     rsvdurability: 88
     rsvmaxdurability: 88
+  RepairIngredients: "Tag.PLANKS"
 wooden_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fWooden-Strengthened Crossbow"
@@ -1304,6 +1313,7 @@ wooden_crossbow:
   NBTTags:
     rsvdurability: 88
     rsvmaxdurability: 88
+  RepairIngredients: "Tag.PLANKS"
 wooden_club:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Club"
@@ -1323,6 +1333,7 @@ leather_longbow:
   NBTTags:
     rsvdurability: 192
     rsvmaxdurability: 192
+  RepairIngredients: "LEATHER"
 leather_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fLeather-Strengthened Crossbow"
@@ -1332,6 +1343,7 @@ leather_crossbow:
   NBTTags:
     rsvdurability: 192
     rsvmaxdurability: 192
+  RepairIngredients: "LEATHER"
 copper_rapier:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Rapier"
@@ -1345,6 +1357,7 @@ copper_rapier:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_katana:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Katana"
@@ -1358,6 +1371,7 @@ copper_katana:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_greatsword:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Greatsword"
@@ -1371,6 +1385,7 @@ copper_greatsword:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_longsword:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Longsword"
@@ -1384,6 +1399,7 @@ copper_longsword:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_spear:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Spear"
@@ -1397,6 +1413,7 @@ copper_spear:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_saber:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Saber"
@@ -1410,6 +1427,7 @@ copper_saber:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_boomerang:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Boomerang"
@@ -1423,6 +1441,7 @@ copper_boomerang:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_dagger:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Dagger"
@@ -1436,6 +1455,7 @@ copper_dagger:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_glaive:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Glaive"
@@ -1449,6 +1469,7 @@ copper_glaive:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_halberd:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Halberd"
@@ -1462,6 +1483,7 @@ copper_halberd:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_hammer:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Hammer"
@@ -1475,6 +1497,7 @@ copper_hammer:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_javelin:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Javelin"
@@ -1488,6 +1511,7 @@ copper_javelin:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_lance:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Lance"
@@ -1501,6 +1525,7 @@ copper_lance:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_mace:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Flanged Mace"
@@ -1514,6 +1539,7 @@ copper_mace:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_pike:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Pike"
@@ -1527,6 +1553,7 @@ copper_pike:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_quarterstaff:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Quarterstaff"
@@ -1540,6 +1567,7 @@ copper_quarterstaff:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_tomahawk:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Tomahawk"
@@ -1553,6 +1581,7 @@ copper_tomahawk:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_throwing_knife:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Throwing Knife"
@@ -1566,6 +1595,7 @@ copper_throwing_knife:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_warhammer:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Warhammer"
@@ -1579,6 +1609,7 @@ copper_warhammer:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_battleaxe:
   Material: "STONE_AXE"
   DisplayName: "&fCopper Battleaxe"
@@ -1592,6 +1623,7 @@ copper_battleaxe:
   NBTTags:
     rsvdurability: 175
     rsvmaxdurability: 175
+  RepairIngredients: "COPPER_INGOT"
 copper_longbow:
   Material: "BOW"
   DisplayName: "&fCopper-Strengthened Longbow"
@@ -1601,6 +1633,7 @@ copper_longbow:
   NBTTags:
     rsvdurability: 245
     rsvmaxdurability: 245
+  RepairIngredients: "COPPER_INGOT"
 copper_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fCopper-Strengthened Crossbow"
@@ -1610,6 +1643,7 @@ copper_crossbow:
   NBTTags:
     rsvdurability: 245
     rsvmaxdurability: 245
+  RepairIngredients: "COPPER_INGOT"
 studded_club:
   Material: "IRON_SWORD"
   DisplayName: "&fStudded Club"

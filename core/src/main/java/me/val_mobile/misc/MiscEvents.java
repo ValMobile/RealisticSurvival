@@ -19,7 +19,11 @@ package me.val_mobile.misc;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.utils.*;
+import me.val_mobile.utils.PlayerJumpEvent;
+import me.val_mobile.utils.RSVItem;
+import me.val_mobile.utils.Utils;
+import me.val_mobile.utils.recipe.RSVAnvilRecipe;
+import me.val_mobile.utils.recipe.RSVBrewingRecipe;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -62,7 +66,7 @@ public class MiscEvents implements Listener {
         Collection<RSVModule> rsvModules = RSVModule.getModules().values();
 
         for (RSVModule module : rsvModules) {
-            if (module.isEnabled()) {
+            if (module.isGloballyEnabled()) {
                 if (module.getAllowedWorlds().contains(player.getWorld().getName())) {
                     Collection<NamespacedKey> keys = module.getModuleRecipes().getRecipeKeys();
                     FileConfiguration config = module.getUserConfig().getConfig();
@@ -133,8 +137,8 @@ public class MiscEvents implements Listener {
                     }
                 }
             }
-            if (r instanceof ShapedRecipe shaped) {
-                NamespacedKey key = shaped.getKey();
+            if (r instanceof Keyed keyed) {
+                NamespacedKey key = keyed.getKey();
 
                 if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
                     switch (key.getKey()) {
@@ -241,42 +245,60 @@ public class MiscEvents implements Listener {
         ItemStack first = inv.getItem(0);
         ItemStack second = inv.getItem(1);
 
-        if (Utils.isItemReal(result) && (RSVItem.isRSVItem(first) || RSVItem.isRSVItem(second))) {
-            if (RSVItem.isRSVItem(first)) {
-                if (RSVItem.isRSVItem(second)) {
-                    if (RSVItem.getNameFromItem(first).equals(RSVItem.getNameFromItem(second))) {
-                        if (Utils.hasCustomDurability(first)) {
-                            int maxDur = Utils.getMaxCustomDurability(first);
-                            int total = Math.min(Utils.getCustomDurability(first) + Utils.getCustomDurability(second), maxDur);
+        if (RSVItem.isRSVItem(first) || RSVItem.isRSVItem(second)) {
+            if (Utils.isItemReal(result)) {
+                if (RSVItem.isRSVItem(first)) {
+                    if (RSVItem.isRSVItem(second)) {
+                        if (RSVItem.getNameFromItem(first).equals(RSVItem.getNameFromItem(second))) {
+                            if (Utils.hasCustomDurability(first)) {
+                                int maxDur = Utils.getMaxCustomDurability(first);
+                                int total = Math.min(Utils.getCustomDurability(first) + Utils.getCustomDurability(second), maxDur);
 
-                            if (first.getItemMeta().hasEnchant(Enchantment.DAMAGE_ALL) || second.getItemMeta().hasEnchant(Enchantment.DAMAGE_ALL)) {
-                                Utils.updateDamageLore(result, result.getItemMeta().getEnchants().entrySet());
+                                if (first.getItemMeta().hasEnchant(Enchantment.DAMAGE_ALL) || second.getItemMeta().hasEnchant(Enchantment.DAMAGE_ALL)) {
+                                    Utils.updateDamageLore(result, result.getItemMeta().getEnchants().entrySet());
+                                }
+
+                                int resultDur = Math.min(Utils.getCustomDurability(result), maxDur);
+
+                                Utils.changeDurability(result,  -resultDur + total, false);
+                                event.setResult(result);
                             }
-
-                            int resultDur = Math.min(Utils.getCustomDurability(result), maxDur);
-
-                            Utils.changeDurability(result,  -resultDur + total, false);
-                            event.setResult(result);
+                        }
+                        else {
+                            event.setResult(null);
                         }
                     }
-                    else {
-                        event.setResult(null);
+                    else if (Utils.isItemReal(second)) {
+                        if (second.getItemMeta() instanceof EnchantmentStorageMeta enchMeta) {
+                            if (enchMeta.hasStoredEnchant(Enchantment.DAMAGE_ALL)) {
+                                Utils.updateDamageLore(result, result.getItemMeta().getEnchants().entrySet());
+                                event.setResult(result);
+                            }
+                        }
+                        else if (RSVItem.getItem(RSVItem.getNameFromItem(first)).getRepairIng().test(second) && Utils.getDurability(first) < Utils.getMaxDurability(first)) {
+                            int change = (int) Math.round(Utils.getMaxDurability(first) * 0.25 * second.getAmount());
+
+                            Utils.changeDurability(result, change, false);
+                            event.setResult(result);
+                        }
+                        else {
+                            event.setResult(null);
+                        }
                     }
                 }
-                else if (Utils.isItemReal(second)) {
-                    if (second.getItemMeta() instanceof EnchantmentStorageMeta enchMeta) {
-                        if (enchMeta.hasStoredEnchant(Enchantment.DAMAGE_ALL)) {
-                            Utils.updateDamageLore(result, result.getItemMeta().getEnchants().entrySet());
-                            event.setResult(result);
-                        }
-                    }
-                    else {
-                        event.setResult(null);
-                    }
+                else {
+                    event.setResult(null);
                 }
             }
             else {
-                event.setResult(null);
+                if (RSVItem.isRSVItem(first) && RSVItem.getItem(RSVItem.getNameFromItem(first)).getRepairIng().test(second) && Utils.getDurability(first) < Utils.getMaxDurability(first)) {
+                    result = first.clone();
+                    int change = Utils.getDurability(result);
+                    change *= 0.25 * second.getAmount();
+
+                    Utils.changeDurability(result, change, false);
+                    event.setResult(result);
+                }
             }
         }
     }

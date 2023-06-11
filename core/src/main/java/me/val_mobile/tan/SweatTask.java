@@ -36,8 +36,8 @@ import java.util.UUID;
 public class SweatTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, SweatTask> tasks = new HashMap<>();
+    private final TempManager manager;
     private final FileConfiguration config;
-
     private final RealisticSurvivalPlugin plugin;
     private final RSVPlayer player;
     private final UUID id;
@@ -57,6 +57,7 @@ public class SweatTask extends BukkitRunnable implements RSVTask {
 
     public SweatTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
+        this.manager = module.getTempManager();
         this.config = module.getUserConfig().getConfig();
         this.player = player;
         this.id = player.getPlayer().getUniqueId();
@@ -112,7 +113,7 @@ public class SweatTask extends BukkitRunnable implements RSVTask {
 
     @Override
     public boolean conditionsMet(@Nullable Player player) {
-        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && this.player.getTanDataModule().getTemperature() > minTemperature;
+        return globalConditionsMet(player) && !player.isDead() && allowedWorlds.contains(player.getWorld().getName()) && manager.getTemperature(player) > minTemperature;
     }
 
     @Override

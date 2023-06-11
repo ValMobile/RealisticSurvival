@@ -23,13 +23,13 @@ import java.util.List;
 
 public enum SeaSerpentVariant {
 
-    BLUE("SeaSerpents.Enabled.Variants.Blue"),
-    BRONZE("SeaSerpents.Enabled.Variants.Bronze"),
-    DEEPBLUE("SeaSerpents.Enabled.Variants.DeepBlue"),
-    GREEN("SeaSerpents.Enabled.Variants.Green"),
-    PURPLE("SeaSerpents.Enabled.Variants.Purple"),
-    RED("SeaSerpents.Enabled.Variants.Red"),
-    TEAL("SeaSerpents.Enabled.Variants.Teal");
+    BLUE("SeaSerpent.Enabled.Variants.Blue"),
+    BRONZE("SeaSerpent.Enabled.Variants.Bronze"),
+    DEEPBLUE("SeaSerpent.Enabled.Variants.DeepBlue"),
+    GREEN("SeaSerpent.Enabled.Variants.Green"),
+    PURPLE("SeaSerpent.Enabled.Variants.Purple"),
+    RED("SeaSerpent.Enabled.Variants.Red"),
+    TEAL("SeaSerpent.Enabled.Variants.Teal");
 
     private final boolean enabled;
 
@@ -50,5 +50,10 @@ public enum SeaSerpentVariant {
             }
         }
         return valid;
+    }
+
+    @Override
+    public String toString() {
+        return name().charAt(0) + name().substring(1).toLowerCase();
     }
 }

@@ -17,23 +17,33 @@
 package me.val_mobile.commands;
 
 import me.val_mobile.data.RSVConfig;
+import me.val_mobile.data.RSVModule;
+import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
-import me.val_mobile.tan.TemperatureCalculateTask;
-import me.val_mobile.tan.ThirstCalculateTask;
+import me.val_mobile.tan.*;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.minecart.CommandMinecart;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-import java.util.Collection;
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static me.val_mobile.realisticsurvival.RealisticSurvivalPlugin.NAME;
 
@@ -41,7 +51,7 @@ import static me.val_mobile.realisticsurvival.RealisticSurvivalPlugin.NAME;
  * Commands is a class that allows users to
  * access the plugin's commands in-game
  * @author Val_Mobile
- * @version 1.2.5-DEV-1
+ * @version 1.2.5-RELEASE
  * @since 1.0
  */
 public class Commands implements CommandExecutor {
@@ -51,10 +61,12 @@ public class Commands implements CommandExecutor {
      * The custom config class must be injected because its non-static methods are needed
      */
     private final RealisticSurvivalPlugin plugin;
+    private final FileConfiguration config;
 
     // constructing the Commands class
     public Commands(RealisticSurvivalPlugin plugin) {
         this.plugin = plugin;
+        this.config = plugin.getCommandsConfig();
     }
 
     /**
@@ -66,24 +78,30 @@ public class Commands implements CommandExecutor {
      * @return A boolean showing if the user successfully executed the appropriate command
      * @see RSVItem
      */
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    @Override
+    public boolean onCommand(@Nonnull CommandSender sender, @Nonnull Command cmd, @Nonnull String label, @Nonnull String[] args) {
         // check if the user typed /realisticsurvival, case-insensitive
         if (label.equalsIgnoreCase(NAME) || label.equalsIgnoreCase("rsv")) {
-
-            boolean isPlayer = sender instanceof Player;
+            if (sender instanceof BlockCommandSender) {
+                if (!config.getBoolean("EnableCommandBlockUsage")) {
+                    sendNoPermissionMessage(sender);
+                    return true;
+                }
+            }
+            else if (sender instanceof CommandMinecart) {
+                if (!config.getBoolean("EnableCommandBlockMinecartUsage")) {
+                    sendNoPermissionMessage(sender);
+                    return true;
+                }
+            }
 
             // check if the user only typed /realisticsurvival with no arguments
             if (args.length == 0) {
                 // send the user a message explaining how to use the realisticsurvival command
-                sendHelpMessage(sender);
+                sendIncompleteCommandMsg(sender);
                 return true;
             }
-            // if the first argument is just a space
-            if (args[0].isEmpty()) {
-                // send the user a message explaining how to use the realisticsurvival command
-                sendHelpMessage(sender);
-                return true;
-            }
+
             switch (args[0].toLowerCase()) {
                 case "give" -> {
                     // check if the player has the permission to give himself/herself items
@@ -92,70 +110,112 @@ public class Commands implements CommandExecutor {
                         sendNoPermissionMessage(sender);
                         return true;
                     }
-                    /**
-                     * The user must be typing from the console if they didn't type in-game as a player.
-                     * Check if the user typed more than 1 argument
-                     */
-                    if (args.length > 1) {
-                        // if the second argument is just a space
-                        if (args[1].isEmpty()) {
-                            // send the user a message explaining how to use the realisticsurvival command
-                            sendHelpMessage(sender);
+
+                    // check if the user typed more than 3 arguments
+                    if (args.length < 3) {
+                        sendIncompleteCommandMsg(sender);
+                        return true;
+                    }
+
+                    RSVItem customItem = RSVItem.getItem(args[2]); // get the item from its command name
+
+                    if (!Utils.isItemReal(customItem)) {
+                        sender.sendMessage(Utils.translateMsg(config.getString("MisspelledItemName"), sender, Map.of("MISSPELLED_NAME", args[2])));
+                        return true;
+                    }
+
+                    int amount = 1;
+                    boolean exceedsMaxStackSize = false;
+                    int maxStackSize = customItem.getMaxStackSize();
+
+                    if (args.length > 3) {
+                        try {
+                            amount = Integer.parseInt(args[3]);
+                        } catch (NumberFormatException e) {
+                            sendInvalidArgumentMsg(sender);
                             return true;
                         }
-                        // check if the user typed more than 2 arguments
-                        if (args.length > 2) {
-                            /**
-                             * Check if the second argument is a player's name
-                             * example: /realisticsurvival give ^~%1t --> invalid player name
-                             *          /realisticsurvival give Notch --> valid player name
-                             */
-                            if (!(Bukkit.getPlayer(args[1]) == null)) {
-                                // check if the player to give items to is online
-                                if (Bukkit.getPlayer(args[1]).isOnline()) {
-                                    Player player = Bukkit.getPlayer(args[1]); // get the online player
+                    }
 
-                                    ItemStack customItem = RSVItem.getItem(args[2]); // get the item from its command name
+                    if (amount < 1) {
+                        if (config.getBoolean("Give.TooFewItems.Enabled"))
+                            sender.sendMessage(Utils.translateMsg(config.getString("Give.TooFewItems.Message"), sender, null));
+                        return true;
+                    }
 
-                                    if (Utils.isItemReal(customItem)) {
-                                        // amount specified
-                                        if (args.length > 3) {
-                                            // if the first argument is just a space
-                                            if (args[3].isEmpty()) {
-                                                // send the user a message explaining how to use the realisticsurvival command
-                                                sendHelpMessage(sender);
-                                                return true;
-                                            }
-
-                                            int amount = Integer.parseInt(args[3]);
-                                            if (amount > 0) {
-                                                customItem.setAmount(amount);
-                                            }
-                                        }
-
-                                        if (player.getInventory().firstEmpty() == -1) {
-                                            player.getWorld().dropItemNaturally(player.getLocation(), customItem);
-                                        }
-                                        else {
-                                            player.getInventory().addItem(customItem);
-                                        }
-                                        Utils.playSound(player.getLocation(), "ENTITY_ITEM_PICKUP", 1f, 1f);
-                                        return true;
-                                    }
-                                    // send the user a message showing how they misspelled the item name
-                                    player.sendMessage(Utils.translateMsg(player, plugin.getConfig().getString("MisspelledItemName")));
-                                    return true;
-                                }
-                                // send the user a message showing how that the specified player is offline
-                                sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("NoOnlinePlayer")));
-                                return true;
-                            }
-                            // send the user a message showing how they misspelled the specified player's name
-                            sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("MisspelledPlayer")));
-                            return true;
+                    if (amount > config.getInt("Give.TooManyItems.MaxValue")) {
+                        if (config.getBoolean("Give.TooManyItems.Enabled")) {
+                            Map<String, Object> placeholders = Map.of("MAXIMUM_VALUE", config.getInt("Give.TooManyItems.MaxValue"));
+                            sender.sendMessage(Utils.translateMsg(config.getString("Give.TooManyItems.Message"), sender, placeholders));
                         }
                         return true;
                     }
+
+                    Entity[] targets = CommandUtils.getTargets(sender, args[1]);
+
+                    if (targets == null) {
+                        sendInvalidArgumentMsg(sender);
+                        return true;
+                    }
+
+                    List<Player> filteredTargets = new ArrayList<>();
+
+                    for (Entity e : targets) {
+                        if (e instanceof Player player && player.isOnline()) {
+                            filteredTargets.add(player);
+                        }
+                    }
+
+                    if (filteredTargets.isEmpty()) {
+                        sendInvalidTargetMsg(sender);
+                        return true;
+                    }
+
+                    if (amount <= maxStackSize) {
+                        customItem.setAmount(amount);
+                    }
+                    else {
+                        exceedsMaxStackSize = true;
+                    }
+
+                    for (Player player : filteredTargets) {
+                        if (exceedsMaxStackSize) {
+                            int remainder = amount % maxStackSize;
+
+                            customItem.setAmount(maxStackSize);
+                            for (int i = 0; i < amount / maxStackSize; i++) {
+                                if (player.getInventory().firstEmpty() == -1) {
+                                    player.getWorld().dropItemNaturally(player.getLocation(), customItem);
+                                }
+                                else {
+                                    player.getInventory().addItem(customItem);
+                                    playSound(player);
+                                }
+                            }
+
+                            customItem.setAmount(remainder);
+
+                        }
+                        if (player.getInventory().firstEmpty() == -1) {
+                            player.getWorld().dropItemNaturally(player.getLocation(), customItem);
+                        }
+                        else {
+                            player.getInventory().addItem(customItem);
+                            playSound(player);
+                        }
+                    }
+
+                    if (config.getBoolean("Give.CorrectExecution.Enabled")) {
+                        if (filteredTargets.size() == 1) {
+                            Map<String, Object> placeholders = Map.of("VALUE", amount, "DISPLAY_NAME", ChatColor.stripColor(customItem.getItemMeta().getDisplayName()), "PLAYER_NAME", filteredTargets.get(0).getDisplayName());
+                            sender.sendMessage(Utils.translateMsg(config.getString("Give.CorrectExecution.SingleTargetMessage"), sender, placeholders));
+                        }
+                        else {
+                            Map<String, Object> placeholders = Map.of("VALUE", amount, "DISPLAY_NAME", ChatColor.stripColor(customItem.getItemMeta().getDisplayName()));
+                            sender.sendMessage(Utils.translateMsg(config.getString("Give.CorrectExecution.MultipleTargetMessage"), sender, placeholders));
+                        }
+                    }
+
                     return true;
                 }
                 case "reload" -> {
@@ -166,17 +226,11 @@ public class Commands implements CommandExecutor {
                         return true;
                     }
 
-                    /**
-                     * The user must be typing from the console if they didn't type in-game as a player.
-                     * Send the player a message showing successful reload of the plugin, and reload all configs.
-                     */
-                    sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("Reload")));
+                    RSVConfig.getConfigList().forEach(config -> config.reloadConfig());
 
-                    Collection<RSVConfig> configs = RSVConfig.getConfigList();
+                    if (config.getBoolean("Reload.CorrectExecution.Enabled"))
+                        sender.sendMessage(Utils.translateMsg(config.getString("Reload.CorrectExecution.Message"), sender, null));
 
-                    for (RSVConfig config : configs) {
-                        config.reloadConfig();
-                    }
                     return true;
                 }
                 case "spawnitem" -> {
@@ -187,172 +241,232 @@ public class Commands implements CommandExecutor {
                         return true;
                     }
 
+                    if (args.length == 1) {
+                        sendIncompleteCommandMsg(sender);
+                        return true;
+                    }
+
+                    ItemStack item = RSVItem.getItem(args[1]);
+
                     /**
-                     * The user must be typing from the console if they didn't type in-game as a player.
-                     * Check if the user typed more than 1 argument
+                     * Check if the second argument is a custom item
+                     * example: /realisticsurvival spawnitem ^~%1t --> invalid item name
+                     *          /realisticsurvival spawnitem flint_hatchet --> valid item name
                      */
-                    if (args.length > 1) {
-                        // if the second argument is just a space
-                        if (args[1].isEmpty()) {
-                            return true;
+                    if (!Utils.isItemReal(item)) {
+                        sender.sendMessage(Utils.translateMsg(config.getString("MisspelledItemName"), sender, Map.of("MISSPELLED_NAME", args[1])));
+                        return true;
+                    }
+
+                    int amount = 1;
+                    World world;
+                    double x, y, z;
+
+                    if (sender instanceof Player player) {
+                        if (args.length == 2) {
+                            world = player.getWorld();
+                            Location loc = player.getLocation();
+                            x = loc.getX();
+                            y = loc.getY();
+                            z = loc.getZ();
                         }
-                        // check if the user typed more than 2 arguments
-                        if (args.length > 2) {
-                            ItemStack item = RSVItem.getItem(args[1]);
-
-                            /**
-                             * Check if the second argument is a custom item
-                             * example: /realisticsurvival spawnitem ^~%1t --> invalid item name
-                             *          /realisticsurvival spawnitem flint_hatchet --> valid item name
-                             */
-                            if (Utils.isItemReal(item)) {
-                                if (args.length > 5) {
-                                    if (!(args[2].isEmpty() || args[3].isEmpty() || args[4].isEmpty() || args[5].isEmpty())) {
-                                        int amount = Integer.parseInt(args[2]);
-
-                                        double x = Double.parseDouble(args[3]);
-                                        double y = Double.parseDouble(args[4]);
-                                        double z = Double.parseDouble(args[5]);
-
-                                        item.setAmount(amount);
-
-                                        if (args.length > 6) {
-                                            if (!args[6].isEmpty()) {
-                                                World world = Bukkit.getWorld(args[6]);
-                                                Location loc = new Location(world, x, y, z);
-                                                world.dropItemNaturally(loc, item);
-                                                return true;
-                                            }
-                                            return true;
-                                        }
-                                        if (isPlayer) {
-                                            Player player = (Player) sender;
-                                            World world = player.getWorld();
-                                            Location loc = new Location(world, x, y, z);
-                                            world.dropItemNaturally(loc, item);
-                                            return true;
-                                        }
-                                        return true;
-                                    }
-                                    return true;
-                                }
+                        else {
+                            if (args.length < 6) {
+                                sendIncompleteCommandMsg(player);
                                 return true;
                             }
-                            // send the user a message showing how they misspelled the item name
-                            sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("MisspelledItemName")));
+
+                            try {
+                                amount = Integer.parseInt(args[2]);
+
+                                x = Double.parseDouble(args[3]);
+                                y = Double.parseDouble(args[4]);
+                                z = Double.parseDouble(args[5]);
+                            }
+                            catch (NumberFormatException e) {
+                                sendInvalidArgumentMsg(sender);
+                                return true;
+                            }
+
+
+                            world = player.getWorld();
+
+                            if (args.length == 7) {
+                                world = Bukkit.getWorld(args[6]);
+                            }
+                        }
+                    }
+                    else {
+                        if (args.length < 7) {
+                            sendIncompleteCommandMsg(sender);
                             return true;
                         }
-                        if (isPlayer) {
-                            ItemStack item = RSVItem.getItem(args[1]);
 
-                            if (Utils.isItemReal(item)) {
-                                Player player = (Player) sender;
-                                World world = player.getWorld();
-                                Location loc = player.getLocation();
-                                world.dropItemNaturally(loc, item);
-                            }
+                        try {
+                            amount = Integer.parseInt(args[2]);
+
+                            x = Double.parseDouble(args[3]);
+                            y = Double.parseDouble(args[4]);
+                            z = Double.parseDouble(args[5]);
+                            world = Bukkit.getWorld(args[6]);
+                        }
+                        catch (NumberFormatException e) {
+                            sendInvalidArgumentMsg(sender);
                             return true;
+                        }
+                    }
+
+                    if (world == null) {
+                        sender.sendMessage(Utils.translateMsg(config.getString("MisspelledWorld"), sender, null));
+                        return true;
+                    }
+
+                    if (amount < 1) {
+                        if (config.getBoolean("SpawnItem.TooFewItems.Enabled"))
+                            sender.sendMessage(Utils.translateMsg(config.getString("SpawnItem.TooFewItems.Message"), sender, null));
+                        return true;
+                    }
+
+                    if (amount > item.getMaxStackSize()) {
+                        if (config.getBoolean("SpawnItem.ExceedsStackSize.Enabled")) {
+                            Map<String, Object> placeholders = Map.of("STACK_SIZE", item.getMaxStackSize());
+                            sender.sendMessage(Utils.translateMsg(config.getString("SpawnItem.ExceedsStackSize.Message"), sender, placeholders));
                         }
                         return true;
                     }
+
+                    if (amount > config.getInt("SpawnItem.TooManyItems.MaxValue")) {
+                        if (config.getBoolean("SpawnItem.TooManyItems.Enabled")) {
+                            Map<String, Object> placeholders = Map.of("MAXIMUM_VALUE", config.getInt("SpawnItem.TooManyItems.MaxValue"));
+                            sender.sendMessage(Utils.translateMsg(config.getString("SpawnItem.TooManyItems.Message"), sender, placeholders));
+                        }
+                        return true;
+                    }
+
+                    if (amount <= item.getMaxStackSize() || !config.getBoolean("SpawnItem.CheckStackSize")) {
+                        item.setAmount(amount);
+                    }
+                    else {
+                        sendInvalidArgumentMsg(sender);
+                        return true;
+                    }
+
+                    world.dropItemNaturally(new Location(world, x, y, z), item);
+
+                    if (config.getBoolean("SpawnItem.CorrectExecution.Enabled")) {
+                        Map<String, Object> placeholders = Map.of("ITEM_NAME", item.hasItemMeta() ? item.getItemMeta().getDisplayName() : args[1], "X_COORD", x, "Y_COORD", y, "Z_COORD", z, "WORLD_NAME", world.getName());
+                        sender.sendMessage(Utils.translateMsg(config.getString("SpawnItem.CorrectExecution.Message"), sender, placeholders));
+                    }
+
                     return true;
                 }
-                case "spawnmob" -> {
+                case "summon" -> {
                     // check if the player has the permission to summon mobs
-                    if (!sender.hasPermission("realisticsurvival.command.spawnmob")) {
+                    if (!sender.hasPermission("realisticsurvival.command.summon")) {
                         // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
                     }
 
-                    /**
-                     * The user must be typing from the console if they didn't type in-game as a player.
-                     * Check if the user typed more than 1 argument
-                     */
-                    if (args.length > 1) {
-                        // if the second argument is just a space
-                        if (args[1].isEmpty()) {
+                    if (args.length == 1) {
+                        sendIncompleteCommandMsg(sender);
+                        return true;
+                    }
+
+                    RSVMob mob;
+                    World world;
+                    double x, y, z;
+
+                    if (sender instanceof Player player) {
+                        if (args.length == 2) {
+                            Location loc = player.getLocation();
+                            world = loc.getWorld();
+                            x = loc.getX();
+                            y = loc.getY();
+                            z = loc.getZ();
+                        }
+                        else {
+                            if (args.length < 5) {
+                                sendIncompleteCommandMsg(player);
+                                return true;
+                            }
+
+                            try {
+                                x = Double.parseDouble(args[2]);
+                                y = Double.parseDouble(args[3]);
+                                z = Double.parseDouble(args[4]);
+                            }
+                            catch (NumberFormatException e) {
+                                sendInvalidArgumentMsg(sender);
+                                return true;
+                            }
+
+
+                            world = player.getWorld();
+
+                            if (args.length == 6) {
+                                world = Bukkit.getWorld(args[6]);
+                            }
+                        }
+                    }
+                    else {
+                        if (args.length < 6) {
+                            sendIncompleteCommandMsg(sender);
                             return true;
                         }
-                        // check if the user typed more than 2 arguments
-                        if (args.length > 2) {
-                            /**
-                             * Check if the second argument is the name of a custom mob
-                             * example: /realisticsurvival spawnmob ^~%1t --> invalid item name
-                             *          /realisticsurvival spawnmob fire_dragon --> valid item name
-                             */
-                            if (args.length > 4) {
-                                if (!(args[2].isEmpty() || args[3].isEmpty() || args[4].isEmpty())) {
 
-                                    double x = Double.parseDouble(args[2]);
-                                    double y = Double.parseDouble(args[3]);
-                                    double z = Double.parseDouble(args[4]);
+                        try {
+                            x = Double.parseDouble(args[2]);
+                            y = Double.parseDouble(args[3]);
+                            z = Double.parseDouble(args[4]);
+                            world = Bukkit.getWorld(args[5]);
+                        }
+                        catch (NumberFormatException e) {
+                            sendInvalidArgumentMsg(sender);
+                            return true;
+                        }
+                    }
 
-                                    if (args.length > 5) {
-                                        if (!args[5].isEmpty()) {
-                                            World world = Bukkit.getWorld(args[5]);
-                                            Location loc = new Location(world, x, y, z);
+                    if (world == null) {
+                        sender.sendMessage(Utils.translateMsg(config.getString("MisspelledWorld"), sender, null));
+                        return true;
+                    }
 
-                                            RSVMob mob = null;
+                    Location loc = new Location(world, x, y, z);
+                    String mobName = args[1].toLowerCase();
 
-                                            switch (args[1].toLowerCase()) {
-                                                case "fire_dragon" -> mob = Utils.spawnFireDragon(loc);
-                                                case "ice_dragon" -> mob = Utils.spawnIceDragon(loc);
-                                                case "lightning_dragon" -> mob = Utils.spawnLightningDragon(loc);
-                                                case "sea_serpent" -> mob = Utils.spawnSeaSerpent(loc);
-                                                case "siren" -> mob = Utils.spawnSiren(loc);
-                                                default -> {}
-                                            }
+                    switch (mobName) {
+                        case "fire_dragon" -> mob = Utils.spawnFireDragon(loc);
+                        case "ice_dragon" -> mob = Utils.spawnIceDragon(loc);
+                        case "lightning_dragon" -> mob = Utils.spawnLightningDragon(loc);
+                        case "sea_serpent" -> mob = Utils.spawnSeaSerpent(loc);
+                        case "siren" -> mob = Utils.spawnSiren(loc);
+                        default -> mob = null;
+                    }
 
-                                            if (mob != null) {
-                                                mob.addEntityToWorld(world);
-                                            }
-                                        }
-                                        return true;
-                                    }
+                    if (mob == null) {
+                        if (config.getBoolean("Summon.MisspelledMob.Enabled"))
+                            sender.sendMessage(Utils.translateMsg(config.getString("Summon.MisspelledMob.Message"), sender, Map.of("MISSPELLED_NAME", mobName)));
+                        return true;
+                    }
 
-                                    if (isPlayer) {
-                                        Player player = (Player) sender;
-                                        World world = player.getWorld();
-                                        Location loc = new Location(world, x, y, z);
-
-                                        RSVMob mob = null;
-
-                                        switch (args[1].toLowerCase()) {
-                                            case "fire_dragon" -> mob = Utils.spawnFireDragon(loc);
-                                            case "ice_dragon" -> mob = Utils.spawnIceDragon(loc);
-                                            case "lightning_dragon" -> mob = Utils.spawnLightningDragon(loc);
-                                            case "sea_serpent" -> mob = Utils.spawnSeaSerpent(loc);
-                                            case "siren" -> mob = Utils.spawnSiren(loc);
-                                        }
-
-                                        if (mob != null) {
-                                            mob.addEntityToWorld(world);
-                                        }
-                                    }
+                    switch (mobName) {
+                        case "fire_dragon", "ice_dragon", "lightning_dragon", "sea_serpent", "siren" -> {
+                            if (!RSVModule.getModule(IceFireModule.NAME).isEnabled(world)) {
+                                if (config.getBoolean("Summon.RequiredModulesDisabled.Enabled")) {
+                                    Map<String, Object> placeholders = Map.of("REQUIRED_MODULES", String.join(", ", mob.getRequiredModules()));
+                                    sender.sendMessage(Utils.translateMsg(config.getString("Summon.RequiredModulesDisabled.Message"), sender, placeholders));
                                 }
                                 return true;
                             }
-                            return true;
-                            // send the user a message showing how they misspelled the item name
                         }
-                        if (isPlayer) {
-                            RSVMob mob = null;
+                    }
 
-                            switch (args[1].toLowerCase()) {
-                                case "fire_dragon" -> mob = Utils.spawnFireDragon(((Player) sender).getLocation());
-                                case "ice_dragon" -> mob = Utils.spawnIceDragon(((Player) sender).getLocation());
-                                case "lightning_dragon" -> mob = Utils.spawnLightningDragon(((Player) sender).getLocation());
-                                case "sea_serpent" -> mob = Utils.spawnSeaSerpent(((Player) sender).getLocation());
-                                case "siren" -> mob = Utils.spawnSiren(((Player) sender).getLocation());
-                                default -> {}
-                            }
+                    mob.addEntityToWorld(world);
 
-                            if (mob != null) {
-                                mob.addEntityToWorld(((Player) sender).getWorld());
-                            }
-                        }
-                        return true;
+                    if (config.getBoolean("Summon.CorrectExecution.Enabled")) {
+                        Map<String, Object> placeholders = Map.of("MOB_NAME", StringUtils.capitalize(mobName.replaceAll("_", "")), "X_COORD", x, "Y_COORD", y, "Z_COORD", z, "WORLD_NAME", world.getName());
+                        sender.sendMessage(Utils.translateMsg(config.getString("Summon.CorrectExecution.Message"), sender, placeholders));
                     }
                     return true;
                 }
@@ -364,85 +478,215 @@ public class Commands implements CommandExecutor {
                         return true;
                     }
 
-                    // check if the user typed more than 2 arguments
-                    if (args.length > 2) {
-                        /**
-                         * Check if the second argument is a player's name
-                         * example: /realisticsurvival ^~%1t --> invalid player name
-                         *          /realisticsurvival Notch --> valid player name
-                         */
-                        if (Bukkit.getPlayer(args[1]) != null) {
-                            // check if the player to change temperature to is online
-                            if (Bukkit.getPlayer(args[1]).isOnline()) {
-                                Player player = Bukkit.getPlayer(args[1]); // get the online player
-
-                                int temperature;
-                                try {
-                                    temperature = Integer.parseInt(args[2]);
-                                } catch (Exception e) {
-                                    sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("InvalidArguments")));
-                                    return true;
-                                }
-
-                                TemperatureCalculateTask task = TemperatureCalculateTask.getTasks().get(player.getUniqueId());
-
-                                if (task != null) {
-                                    task.setTemp(temperature);
-                                }
-                                return true;
-                            }
-                            // send the user a message showing how that the specified player is offline
-                            sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("NoOnlinePlayer")));
-                            return true;
-                        }
-                        // send the user a message showing how they misspelled the specified player's name
-                        sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("MisspelledPlayer")));
+                    if (args.length <= 2) {
+                        sendIncompleteCommandMsg(sender);
                         return true;
                     }
+
+                    TempManager manager = ((TanModule) RSVModule.getModule(TanModule.NAME)).getTempManager();
+
+                    Entity[] targets = CommandUtils.getTargets(sender, args[1]);
+
+                    if (targets == null) {
+                        sendInvalidArgumentMsg(sender);
+                        return true;
+                    }
+
+                    if (!RSVModule.getModule(TanModule.NAME).isGloballyEnabled()) {
+                        if (config.getBoolean("Temperature.TanModuleDisabled.Enabled"))
+                            sender.sendMessage(Utils.translateMsg(config.getString("Temperature.TanModuleDisabled.Message"), sender, null));
+                        return true;
+                    }
+
+                    List<Player> filteredTargets = new ArrayList<>();
+
+                    for (Entity e : targets) {
+                        if (e instanceof Player player && player.isOnline() && manager.isTempEnabled(player)) {
+                            filteredTargets.add(player);
+                        }
+                    }
+
+                    if (filteredTargets.isEmpty()) {
+                        sendInvalidTargetMsg(sender);
+                        return true;
+                    }
+
+                    double temperature = (TemperatureCalculateTask.MAXIMUM_TEMPERATURE + TemperatureCalculateTask.MINIMUM_TEMPERATURE) / 2;
+                    double addition = 0;
+                    boolean isRelative = false;
+
+                    try {
+                        if (args[2].startsWith("~")) {
+                            isRelative = true;
+                            addition = Double.parseDouble(args[2].substring(1));
+                        }
+                        else {
+                            temperature = Double.parseDouble(args[2]);
+                        }
+                    } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
+                        sendInvalidArgumentMsg(sender);
+                        return true;
+                    }
+
+                    if (temperature < TemperatureCalculateTask.MINIMUM_TEMPERATURE) {
+                        if (config.getBoolean("Temperature.BelowMinValue.Enabled")) {
+                            Map<String, Object> placeholders = Map.of("MINIMUM_VALUE", TemperatureCalculateTask.MINIMUM_TEMPERATURE);
+                            sender.sendMessage(Utils.translateMsg(config.getString("Temperature.BelowMinValue.Message"), sender, placeholders));
+                        }
+                        return true;
+                    }
+
+                    if (temperature > TemperatureCalculateTask.MAXIMUM_TEMPERATURE) {
+                        if (config.getBoolean("Temperature.AboveMaxValue.Enabled")) {
+                            Map<String, Object> placeholders = Map.of("MAXIMUM_VALUE", TemperatureCalculateTask.MAXIMUM_TEMPERATURE);
+                            sender.sendMessage(Utils.translateMsg(config.getString("Temperature.AboveMaxValue.Message"), sender, placeholders));
+                        }
+                        return true;
+                    }
+
+                    double oldTemp = manager.getTemperature(filteredTargets.get(0));
+
+                    if (isRelative) {
+                        double finalAddition = addition;
+                        filteredTargets.forEach(player -> manager.addTemperature(player, finalAddition));
+                    }
+                    else {
+                        double finalTemperature = temperature;
+                        filteredTargets.forEach(player -> manager.setTemperature(player, finalTemperature));
+                    }
+
+                    if (config.getBoolean("Temperature.CorrectExecution.Enabled")) {
+                        if (filteredTargets.size() == 1) {
+                            if (isRelative) {
+                                Map<String, Object> placeholders = Map.of("PLAYER_NAME", filteredTargets.get(0).getDisplayName(), "OLD_TEMPERATURE", oldTemp, "NEW_TEMPERATURE", temperature, "CHANGE", addition);
+                                sender.sendMessage(Utils.translateMsg(config.getString("Temperature.CorrectExecution.SingleTargetRelativeMessage"), sender, placeholders));
+                            }
+                            else {
+                                Map<String, Object> placeholders = Map.of("PLAYER_NAME", filteredTargets.get(0).getDisplayName(), "OLD_TEMPERATURE", oldTemp, "NEW_TEMPERATURE", temperature);
+                                sender.sendMessage(Utils.translateMsg(config.getString("Temperature.CorrectExecution.SingleTargetMessage"), sender, placeholders));
+                            }
+
+                        }
+                        else {
+                            if (isRelative) {
+                                Map<String, Object> placeholders = Map.of("CHANGE", addition);
+                                sender.sendMessage(Utils.translateMsg(config.getString("Temperature.CorrectExecution.MultipleTargetRelativeMessage"), sender, placeholders));
+                            }
+                            else {
+                                Map<String, Object> placeholders = Map.of("NEW_TEMPERATURE", temperature);
+                                sender.sendMessage(Utils.translateMsg(config.getString("Temperature.CorrectExecution.MultipleTargetMessage"), sender, placeholders));
+                            }
+                        }
+                    }
+
                     return true;
                 }
                 case "thirst" -> {
                     // check if the player has the permission to change thirst
                     if (!sender.hasPermission("realisticsurvival.command.thirst")) {
-                        // send the player a message explaining that he/she does not have permission to execute the command
                         sendNoPermissionMessage(sender);
                         return true;
                     }
 
-                    // check if the user typed more than 2 arguments
-                    if (args.length > 2) {
-                        /**
-                         * Check if the second argument is a player's name
-                         * example: /realisticsurvival ^~%1t --> invalid player name
-                         *          /realisticsurvival Notch --> valid player name
-                         */
-                        if (!(Bukkit.getPlayer(args[1]) == null)) {
-                            // check if the player to change thirst to is online
-                            if (Bukkit.getPlayer(args[1]).isOnline()) {
-                                Player player = Bukkit.getPlayer(args[1]); // get the online player
-
-                                int thirst;
-                                try {
-                                    thirst = Integer.parseInt(args[2]);
-                                } catch (Exception e) {
-                                    sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("InvalidArguments")));
-                                    return true;
-                                }
-
-                                ThirstCalculateTask task = ThirstCalculateTask.getTasks().get(player.getUniqueId());
-
-                                if (task != null) {
-                                    task.setThirstLvl(thirst);
-                                }
-                                return true;
-                            }
-                            // send the user a message showing how that the specified player is offline
-                            sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("NoOnlinePlayer")));
-                            return true;
-                        }
-                        // send the user a message showing how they misspelled the specified player's name
-                        sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("MisspelledPlayer")));
+                    if (args.length <= 2) {
+                        sendIncompleteCommandMsg(sender);
                         return true;
+                    }
+
+                    ThirstManager manager = ((TanModule) RSVModule.getModule(TanModule.NAME)).getThirstManager();
+
+                    Entity[] targets = CommandUtils.getTargets(sender, args[1]);
+
+                    if (targets == null) {
+                        sendInvalidArgumentMsg(sender);
+                        return true;
+                    }
+
+                    if (!RSVModule.getModule(TanModule.NAME).isGloballyEnabled()) {
+                        if (config.getBoolean("Thirst.TanModuleDisabled.Enabled"))
+                            sender.sendMessage(Utils.translateMsg(config.getString("Thirst.TanModuleDisabled.Message"), sender, null));
+                        return true;
+                    }
+
+                    List<Player> filteredTargets = new ArrayList<>();
+
+                    for (Entity e : targets) {
+                        if (e instanceof Player player && player.isOnline() && manager.isThirstEnabled(player)) {
+                            filteredTargets.add(player);
+                        }
+                    }
+
+                    if (filteredTargets.isEmpty()) {
+                        sendInvalidTargetMsg(sender);
+                        return true;
+                    }
+
+                    int thirst = (ThirstCalculateTask.MAXIMUM_THIRST + ThirstCalculateTask.MINIMUM_THIRST) / 2;
+                    int addition = 0;
+                    boolean isRelative = false;
+
+                    try {
+                        if (args[2].startsWith("~")) {
+                            isRelative = true;
+                            addition = Integer.parseInt(args[2].substring(1));
+                        }
+                        else {
+                            thirst = Integer.parseInt(args[2]);
+                        }
+                    } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
+                        sendInvalidArgumentMsg(sender);
+                        return true;
+                    }
+
+                    if (thirst < ThirstCalculateTask.MINIMUM_THIRST) {
+                        if (config.getBoolean("Thirst.BelowMinValue.Enabled")) {
+                            Map<String, Object> placeholders = Map.of("MINIMUM_VALUE", ThirstCalculateTask.MINIMUM_THIRST);
+                            sender.sendMessage(Utils.translateMsg(config.getString("Thirst.BelowMinValue.Message"), sender, placeholders));
+                        }
+                        return true;
+                    }
+
+                    if (thirst > ThirstCalculateTask.MAXIMUM_THIRST) {
+                        if (config.getBoolean("Thirst.AboveMaxValue.Enabled")) {
+                            Map<String, Object> placeholders = Map.of("MAXIMUM_VALUE", ThirstCalculateTask.MAXIMUM_THIRST);
+                            sender.sendMessage(Utils.translateMsg(config.getString("Thirst.AboveMaxValue.Message"), sender, placeholders));
+                        }
+                        return true;
+                    }
+
+                    int oldThirst = manager.getThirst(filteredTargets.get(0));
+
+                    if (isRelative) {
+                        int finalAddition = addition;
+                        filteredTargets.forEach(player -> manager.addThirst(player, finalAddition));
+                    }
+                    else {
+                        int finalThirst = thirst;
+                        filteredTargets.forEach(player -> manager.setThirst(player, finalThirst));
+                    }
+
+                    if (config.getBoolean("Thirst.CorrectExecution.Enabled")) {
+                        if (filteredTargets.size() == 1) {
+                            if (isRelative) {
+                                Map<String, Object> placeholders = Map.of("PLAYER_NAME", filteredTargets.get(0).getDisplayName(), "OLD_THIRST", oldThirst, "NEW_THIRST", thirst, "CHANGE", addition);
+                                sender.sendMessage(Utils.translateMsg(config.getString("Thirst.CorrectExecution.SingleTargetRelativeMessage"), sender, placeholders));
+                            }
+                            else {
+                                Map<String, Object> placeholders = Map.of("PLAYER_NAME", filteredTargets.get(0).getDisplayName(), "OLD_THIRST", oldThirst, "NEW_THIRST", thirst);
+                                sender.sendMessage(Utils.translateMsg(config.getString("Thirst.CorrectExecution.SingleTargetMessage"), sender, placeholders));
+                            }
+
+                        }
+                        else {
+                            if (isRelative) {
+                                Map<String, Object> placeholders = Map.of("CHANGE", addition);
+                                sender.sendMessage(Utils.translateMsg(config.getString("Thirst.CorrectExecution.MultipleTargetRelativeMessage"), sender, placeholders));
+                            }
+                            else {
+                                Map<String, Object> placeholders = Map.of("NEW_THIRST", thirst);
+                                sender.sendMessage(Utils.translateMsg(config.getString("Thirst.CorrectExecution.MultipleTargetMessage"), sender, placeholders));
+                            }
+                        }
                     }
                     return true;
                 }
@@ -452,15 +696,82 @@ public class Commands implements CommandExecutor {
                         sendNoPermissionMessage(sender);
                         return true;
                     }
-                    if (sender instanceof Player) {
-                        Player player = ((Player) sender).getPlayer();
-                        PlayerInventory inv = player.getInventory();
-                        ItemStack itemMainHand = inv.getItemInMainHand();
 
-                        if (RSVItem.isRSVItem(itemMainHand)) {
-                            inv.setItemInMainHand(RSVItem.convertItemStackToRSVItem(itemMainHand));
-                            player.updateInventory();
+                    if (args.length == 1) {
+                        if (sender instanceof Player player) {
+                            PlayerInventory inv = player.getInventory();
+                            ItemStack itemMainHand = inv.getItemInMainHand();
+
+                            if (RSVItem.isRSVItem(itemMainHand)) {
+                                inv.setItemInMainHand(RSVItem.convertItemStackToRSVItem(itemMainHand));
+                                player.updateInventory();
+                                if (config.getBoolean("ResetItem.CorrectExecution.Enabled")) {
+                                    sender.sendMessage(Utils.translateMsg(config.getString("ResetItem.CorrectExecution.MainHand.SingleTargetMessage"), sender, null));
+                                }
+                            }
+                            else {
+                                if (config.getBoolean("ResetItem.NoValidItemsFound.Enabled")) {
+                                    sender.sendMessage(Utils.translateMsg(config.getString("ResetItem.NoValidItemsFound.MainHand.SingleTargetMessage"), sender, null));
+                                }
+                            }
+                            return true;
                         }
+                        sendInvalidTargetMsg(sender);
+                        return true;
+                    }
+                    Entity[] targets = CommandUtils.getTargets(sender, args[1]);
+
+                    if (targets == null) {
+                        sendInvalidArgumentMsg(sender);
+                        return true;
+                    }
+
+                    List<Player> filteredTargets = new ArrayList<>();
+
+                    for (Entity e : targets) {
+                        if (e instanceof Player player && player.isOnline()) {
+                            filteredTargets.add(player);
+                        }
+                    }
+
+                    if (filteredTargets.isEmpty()) {
+                        sendInvalidTargetMsg(sender);
+                        return true;
+                    }
+
+                    boolean checkEntireInv = args.length >= 3 && args[2].equalsIgnoreCase("all");
+                    boolean reset = false;
+                    PlayerInventory inv;
+                    ItemStack item;
+
+                    for (Player player : filteredTargets) {
+                        inv = player.getInventory();
+
+                        if (checkEntireInv) {
+                            for (int i = 0; i < inv.getSize(); i++) {
+                                item = inv.getItem(i);
+                                if (RSVItem.isRSVItem(item)) {
+                                    inv.setItem(i, RSVItem.convertItemStackToRSVItem(item));
+                                    reset = true;
+                                }
+                            }
+                        }
+                        else {
+                            item = inv.getItemInMainHand();
+                            if (RSVItem.isRSVItem(item)) {
+                                inv.setItemInMainHand(RSVItem.convertItemStackToRSVItem(item));
+                                reset = true;
+                            }
+                        }
+                        player.updateInventory();
+                    }
+
+                    String execution = reset ? "CorrectExecution" : "NoValidItemsFound";
+                    String single = filteredTargets.size() == 1 ? "SingleTargetMessage" : "MultipleTargetMessage";
+                    String mainHand = checkEntireInv ? "Inventory" : "MainHand";
+
+                    if (config.getBoolean("ResetItem." + execution + ".Enabled")) {
+                        sender.sendMessage(Utils.translateMsg(config.getString("ResetItem." + execution + "." + mainHand + "." + single), sender, null));
                     }
                     return true;
                 }
@@ -471,14 +782,81 @@ public class Commands implements CommandExecutor {
                         return true;
                     }
 
-                    if (sender instanceof Player) {
-                        Player player = ((Player) sender).getPlayer();
-                        PlayerInventory inv = player.getInventory();
-                        ItemStack itemMainHand = inv.getItemInMainHand();
+                    if (args.length == 1) {
+                        if (sender instanceof Player player) {
+                            PlayerInventory inv = player.getInventory();
+                            ItemStack itemMainHand = inv.getItemInMainHand();
 
-                        if (RSVItem.isRSVItem(itemMainHand)) {
-                            Utils.updateItem(itemMainHand);
+                            if (RSVItem.isRSVItem(itemMainHand)) {
+                                Utils.updateItem(itemMainHand);
+                                player.updateInventory();
+                                if (config.getBoolean("UpdateItem.CorrectExecution.Enabled")) {
+                                    sender.sendMessage(Utils.translateMsg(config.getString("UpdateItem.CorrectExecution.MainHand.SingleTargetMessage"), sender, null));
+                                }
+                            }
+                            else {
+                                if (config.getBoolean("UpdateItem.NoValidItemsFound.Enabled")) {
+                                    sender.sendMessage(Utils.translateMsg(config.getString("UpdateItem.NoValidItemsFound.MainHand.SingleTargetMessage"), sender, null));
+                                }
+                            }
+                            return true;
                         }
+                        sendInvalidTargetMsg(sender);
+                        return true;
+                    }
+                    Entity[] targets = CommandUtils.getTargets(sender, args[1]);
+
+                    if (targets == null) {
+                        sendInvalidArgumentMsg(sender);
+                        return true;
+                    }
+
+                    List<Player> filteredTargets = new ArrayList<>();
+
+                    for (Entity e : targets) {
+                        if (e instanceof Player player && player.isOnline()) {
+                            filteredTargets.add(player);
+                        }
+                    }
+
+                    if (filteredTargets.isEmpty()) {
+                        sendInvalidTargetMsg(sender);
+                        return true;
+                    }
+
+                    boolean checkEntireInv = args.length >= 3 && args[2].equalsIgnoreCase("all");
+                    boolean reset = false;
+                    PlayerInventory inv;
+                    ItemStack item;
+
+                    for (Player player : filteredTargets) {
+                        inv = player.getInventory();
+
+                        if (checkEntireInv) {
+                            for (int i = 0; i < inv.getSize(); i++) {
+                                item = inv.getItem(i);
+                                if (RSVItem.isRSVItem(item)) {
+                                    Utils.updateItem(item);
+                                    reset = true;
+                                }
+                            }
+                        }
+                        else {
+                            item = inv.getItemInMainHand();
+                            if (RSVItem.isRSVItem(item)) {
+                                Utils.updateItem(item);
+                                reset = true;
+                            }
+                        }
+                        player.updateInventory();
+                    }
+
+                    String execution = reset ? "CorrectExecution" : "NoValidItemsFound";
+                    String single = filteredTargets.size() == 1 ? "SingleTargetMessage" : "MultipleTargetMessage";
+                    String mainHand = checkEntireInv ? "Inventory" : "MainHand";
+
+                    if (config.getBoolean("UpdateItem." + execution + ".Enabled")) {
+                        sender.sendMessage(Utils.translateMsg(config.getString("UpdateItem." + execution + "." + mainHand + "." + single), sender, null));
                     }
                     return true;
                 }
@@ -488,7 +866,7 @@ public class Commands implements CommandExecutor {
                         sendNoPermissionMessage(sender);
                         return true;
                     }
-                    sendHelpMessage(sender);
+                    config.getStringList("Help").forEach(msg -> sender.sendMessage(Utils.translateMsg(msg, sender, null)));
                     return true;
                 }
                 case "version" -> {
@@ -497,10 +875,8 @@ public class Commands implements CommandExecutor {
                         sendNoPermissionMessage(sender);
                         return true;
                     }
-
-                    String version = plugin.getConfig().getString("Version");
-                    version = version.replaceAll("%PLUGIN_VERSION%", plugin.getDescription().getVersion());
-                    sender.sendMessage(Utils.translateMsg(sender, version));
+                    Map<String, Object> placeholders = Map.of("PLUGIN_VERSION", plugin.getDescription().getVersion());
+                    sender.sendMessage(Utils.translateMsg(config.getString("Version"), sender, placeholders));
                     Bukkit.getServer().dispatchCommand(sender, "version");
                     return true;
                 }
@@ -512,11 +888,25 @@ public class Commands implements CommandExecutor {
         return false;
     }
 
-    private void sendHelpMessage(CommandSender sender) {
-        sender.sendMessage(Utils.translateMsgs(sender, plugin.getConfig().getStringList("Help").toArray(new String[0])));
+    private void sendInvalidTargetMsg(CommandSender sender) {
+        sender.sendMessage(Utils.translateMsg(config.getString("InvalidTarget"), sender, null));
+    }
+
+    private void sendInvalidArgumentMsg(CommandSender sender) {
+        sender.sendMessage(Utils.translateMsg(config.getString("InvalidArgument"), sender, null));
+    }
+
+    private void sendIncompleteCommandMsg(CommandSender sender) {
+        sender.sendMessage(Utils.translateMsg(config.getString("IncompleteCommand"), sender, null));
     }
 
     private void sendNoPermissionMessage(CommandSender sender) {
-        sender.sendMessage(Utils.translateMsg(sender, plugin.getConfig().getString("NoPermission")));
+        sender.sendMessage(Utils.translateMsg(config.getString("NoPermission"), sender, null));
     }
+
+    private void playSound(Player player) {
+        if (config.getBoolean("Give.CorrectExecution.Sound.Enabled"))
+            Utils.playSound(player.getLocation(), config.getString("Give.CorrectExecution.Sound.Sound"), (float) config.getDouble("Give.CorrectExecution.Sound.Volume"), (float) config.getDouble("Give.CorrectExecution.Sound.Pitch"));
+    }
+
 }

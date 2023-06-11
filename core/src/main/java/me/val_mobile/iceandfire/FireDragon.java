@@ -29,15 +29,15 @@ public interface FireDragon extends Dragon {
 
     @Override
     default void performMeleeAttack(LivingEntity entity) {
-        double stageMultiplier = CONFIG.getDouble("Dragons.FireDragon.MeleeAttack.StageMultiplier.Stage" + getStage());
-        entity.damage(CONFIG.getDouble("Dragons.FireDragon.MeleeAttack.BaseDamage") * stageMultiplier, getEntity());
+        double stageMultiplier = CONFIG.getDouble("Dragon.FireDragon.MeleeAttack.StageMultiplier.Stage" + getStage());
+        entity.damage(CONFIG.getDouble("Dragon.FireDragon.MeleeAttack.BaseDamage") * stageMultiplier, getEntity());
     }
 
     @Override
     default void performSpecialAbility(LivingEntity entity) {
-        double stageMultiplier = CONFIG.getDouble("Dragons.FireDragon.InfernoAbility.StageMultiplier.Stage" + getStage());
+        double stageMultiplier = CONFIG.getDouble("Dragon.FireDragon.InfernoAbility.StageMultiplier.Stage" + getStage());
         if (!BurnTask.hasTask(entity.getUniqueId())) {
-            new BurnTask(RealisticSurvivalPlugin.getPlugin(), entity, (int) (CONFIG.getInt("Dragons.FireDragon.InfernoAbility.FireTicks") * stageMultiplier), CONFIG.getInt("Dragons.FireDragon.InfernoAbility.TickPeriod")).start();
+            new BurnTask(RealisticSurvivalPlugin.getPlugin(), entity, (int) (CONFIG.getInt("Dragon.FireDragon.InfernoAbility.FireTicks") * stageMultiplier), CONFIG.getInt("Dragon.FireDragon.InfernoAbility.TickPeriod")).start();
         }
     }
 
