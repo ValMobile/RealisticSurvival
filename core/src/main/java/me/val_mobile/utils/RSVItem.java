@@ -26,6 +26,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentWrapper;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -253,6 +254,22 @@ public class RSVItem extends ItemStack {
     @Nonnull
     public String getName() {
         return name;
+    }
+
+    public static boolean isHoldingItem(@Nonnull String name, @Nonnull Player player) {
+        return isHoldingItemInMainHand(name, player) || isHoldingItemInOffHand(name, player);
+    }
+
+    public static boolean isHoldingItemInMainHand(@Nonnull String name, @Nonnull Player player) {
+        ItemStack mainHand = player.getInventory().getItemInMainHand();
+
+        return RSVItem.isRSVItem(mainHand) && RSVItem.getNameFromItem(mainHand).equals(name);
+    }
+
+    public static boolean isHoldingItemInOffHand(@Nonnull String name, @Nonnull Player player) {
+        ItemStack offHand = player.getInventory().getItemInOffHand();
+
+        return RSVItem.isRSVItem(offHand) && RSVItem.getNameFromItem(offHand).equals(name);
     }
 
     public static Map<String, RSVItem> getItemMap() {

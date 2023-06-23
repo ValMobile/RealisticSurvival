@@ -59,7 +59,7 @@ import java.util.UUID;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.5-RELEASE
+ * @version 1.2.6-RELEASE
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -132,24 +132,6 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                     Bukkit.getServer().getPluginManager().callEvent(new BaubleChangeEvent(p, item, BaubleChange.ADDITION));
                 }
 
-                // update bauble inventory
-                Inventory baubleInv = rsvPlayer.getBaubleDataModule().getBaubleBag().getInventory();
-                ItemStack item;
-
-                for (int i = 0; i < baubleInv.getSize(); i++) {
-                    item = baubleInv.getItem(i);
-                    if (RSVItem.isRSVItem(item)) {
-                        if (RSVItem.getNameFromItem(item).equals("gui_glass"))
-                            baubleInv.setItem(i, RSVItem.convertItemStackToRSVItem(item));
-                        else
-                            Utils.updateItem(item);
-
-                        if (item.getAmount() > 1) {
-                            item.setAmount(1);
-                            baubleInv.setItem(i, item);
-                        }
-                    }
-                }
             }
         }
     }

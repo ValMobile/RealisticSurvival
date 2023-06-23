@@ -177,4 +177,13 @@ public class BaubleInventory extends GUI {
         }
         return null;
     }
+
+    public void fillDefaultItems() {
+        Inventory inv = getInventory();
+        for (int i = 0; i < inv.getSize(); i++) {
+            if (!Utils.isItemReal(inv.getItem(i))) {
+                inv.setItem(i, BaubleSlot.getItemInSlot(i));
+            }
+        }
+    }
 }

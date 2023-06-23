@@ -293,7 +293,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
                             }
                         }
                         case "fire_starter" -> {
-                            if (config.getBoolean("FireStarter.Enabled")) {
+                            if (config.getBoolean("FireStarter.Enabled") && player.isSneaking()) {
                                 double maxDistance = config.getDouble("FireStarter.MaxDistance");
 
                                 boolean needsFuel = config.getBoolean("FireStarter.Fuel.Required");
@@ -309,9 +309,12 @@ public class NtpEvents extends ModuleEvents implements Listener {
 
                                 List<Material> fuelMats = Utils.getMaterialsFromList(config.getStringList("FireStarter.Fuel.Materials"));
                                 List<Material> kindlingMats = Utils.getMaterialsFromList(config.getStringList("FireStarter.Kindling.Materials"));
-                                List<Material> soulMats = Utils.getMaterialsFromList(config.getStringList("FireStarter.SoulItems"));
+                                List<Material> soulMats = Utils.getMaterialsFromList(config.getStringList("FireStarter.SoulItems.Materials"));
 
-                                Location loc = event.getClickedBlock().getLocation();
+                                Location loc = block.getLocation();
+                                if (!block.isPassable()) {
+                                    loc.setY(loc.getY() + 1);
+                                }
 
                                 Predicate<Entity> filter = entity -> entity instanceof Item;
                                 Collection<Entity> entities = loc.getWorld().getNearbyEntities(loc, maxDistance, maxDistance, maxDistance, filter);
@@ -345,7 +348,6 @@ public class NtpEvents extends ModuleEvents implements Listener {
 
                                     if (fuel >= requiredFuel && kindling >= requiredKindling) {
                                         if (!FireStarterTask.hasTask(id)) {
-                                            plugin.getLogger().info("Test");
                                             new FireStarterTask(plugin, module, player, loc.add(0D, 0.6D, 0D), ingredients, soul >= requiredSoulItems).start();
                                             Utils.changeDurability(item, -1, true);
                                         }
@@ -401,7 +403,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
 
                     if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
                         switch (key.getKey()) {
-                            case "acacia_planks", "birch_planks", "crimson_planks", "dark_oak_planks", "jungle_planks", "mangrove_planks", "oak_planks", "spruce_planks", "warped_planks" -> {
+                            case "acacia_planks", "birch_planks", "crimson_planks", "dark_oak_planks", "jungle_planks", "mangrove_planks", "oak_planks", "spruce_planks", "warped_planks", "cherry_planks", "bamboo_planks" -> {
                                 if (config.getBoolean("Lumberjack.DisablePlankRecipes"))
                                     event.getInventory().setResult(null);
                             }
@@ -419,11 +421,11 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                     event.getInventory().setResult(null);
                             }
                             case "campfire", "soul_campfire" -> {
-                                if (config.getBoolean("FireStarter.RemoveVanillaCampfireRecipes"))
+                                if (config.getBoolean("FireStarter.DisableVanillaCampfireRecipes"))
                                     event.getInventory().setResult(null);
                             }
                             case "flower_pot" -> {
-                                if (config.getBoolean("Pottery.RemoveFlowerPotRecipe"))
+                                if (config.getBoolean("Pottery.DisableFlowerPotRecipe"))
                                     event.getInventory().setResult(null);
                             }
                             default -> {}
@@ -467,7 +469,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
                 }
             }
 
-            if (config.getBoolean("Pottery.RemoveFlowerPotRecipe") && clayToolIndex > -1 && clayIndex > -1) {
+            if (config.getBoolean("Pottery.DisableFlowerPotRecipe") && clayToolIndex > -1 && clayIndex > -1) {
                 ItemStack clayTool = matrix[clayToolIndex];
                 ItemStack clay = matrix[clayIndex];
 
@@ -909,7 +911,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
 
             if (Utils.isItemReal(smeltedItem)) {
                 if (smeltedItem.getType() == Material.CLAY_BALL) {
-                    if (config.getBoolean("Pottery.RemoveBrickSmeltingRecipe")) {
+                    if (config.getBoolean("Pottery.DisableBrickSmeltingRecipe")) {
                         event.setCancelled(true);
                     }
                 }
@@ -921,7 +923,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
     public void onSmelt(FurnaceSmeltEvent event) {
         if (shouldEventBeRan(event.getBlock().getWorld())) {
             if (event.getResult().getType() == Material.BRICK && event.getSource().getType() == Material.CLAY_BALL) {
-                if (config.getBoolean("Pottery.RemoveBrickSmeltingRecipe")) {
+                if (config.getBoolean("Pottery.DisableBrickSmeltingRecipe")) {
                     event.setCancelled(true);
                 }
             }

@@ -2,7 +2,7 @@
 #          Spartan's Weaponry         #
 #######################################
 
-ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.6-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -108,6 +108,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25     # How much does the rapier absorb damage taken (0.25 = 25%)
       DamageDurability: 2       # Durability used up when attacked
+    Sweep: true
   diamond_rapier:
     Enabled:
       EnableAllVersions: true
@@ -118,6 +119,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
   gold_rapier:
     Enabled:
       EnableAllVersions: true
@@ -128,6 +130,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
   iron_rapier:
     Enabled:
       EnableAllVersions: true
@@ -138,6 +141,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
   copper_rapier:
     Enabled:
       EnableAllVersions: true
@@ -148,6 +152,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
   stone_rapier:
     Enabled:
       EnableAllVersions: true
@@ -158,6 +163,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
   wooden_rapier:
     Enabled:
       EnableAllVersions: true
@@ -168,6 +174,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
 
   # Katanas
 
@@ -182,6 +189,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
   diamond_katana:
     Enabled:
       EnableAllVersions: true
@@ -193,6 +201,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
   gold_katana:
     Enabled:
       EnableAllVersions: true
@@ -204,6 +213,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
   iron_katana:
     TickPeriod: 20
     Enabled:
@@ -216,6 +226,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
   copper_katana:
     Enabled:
       EnableAllVersions: true
@@ -227,6 +238,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
   stone_katana:
     Enabled:
       EnableAllVersions: true
@@ -238,6 +250,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
   wooden_katana:
     Enabled:
       EnableAllVersions: true
@@ -249,6 +262,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
 
   # Greatswords
 
@@ -264,6 +278,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
   diamond_greatsword:
     Enabled:
       EnableAllVersions: true
@@ -276,6 +291,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
   gold_greatsword:
     Enabled:
       EnableAllVersions: true
@@ -288,6 +304,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
   iron_greatsword:
     Enabled:
       EnableAllVersions: true
@@ -300,6 +317,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
   copper_greatsword:
     Enabled:
       EnableAllVersions: true
@@ -312,6 +330,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
   stone_greatsword:
     Enabled:
       EnableAllVersions: true
@@ -324,6 +343,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
   wooden_greatsword:
     Enabled:
       EnableAllVersions: true
@@ -336,6 +356,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
 
   # Longswords
 
@@ -350,6 +371,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
   diamond_longsword:
     Enabled:
       EnableAllVersions: true
@@ -361,6 +383,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
   gold_longsword:
     Enabled:
       EnableAllVersions: true
@@ -372,6 +395,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
   iron_longsword:
     Enabled:
       EnableAllVersions: true
@@ -383,6 +407,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
   copper_longsword:
     Enabled:
       EnableAllVersions: true
@@ -394,6 +419,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
   stone_longsword:
     Enabled:
       EnableAllVersions: true
@@ -405,6 +431,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
   wooden_longsword:
     Enabled:
       EnableAllVersions: true
@@ -416,6 +443,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
 
   # Spears
 
@@ -426,6 +454,7 @@ Items:
       AttackDamage: 7.5
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
   diamond_spear:
     Enabled:
       EnableAllVersions: true
@@ -433,6 +462,7 @@ Items:
       AttackDamage: 7.0
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
   gold_spear:
     Enabled:
       EnableAllVersions: true
@@ -440,6 +470,7 @@ Items:
       AttackDamage: 5.5
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
   iron_spear:
     Enabled:
       EnableAllVersions: true
@@ -447,6 +478,7 @@ Items:
       AttackDamage: 6.5
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
   copper_spear:
     Enabled:
       EnableAllVersions: true
@@ -454,6 +486,7 @@ Items:
       AttackDamage: 6.25
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
   stone_spear:
     Enabled:
       EnableAllVersions: true
@@ -461,6 +494,7 @@ Items:
       AttackDamage: 6.0
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
   wooden_spear:
     Enabled:
       EnableAllVersions: true
@@ -468,6 +502,7 @@ Items:
       AttackDamage: 5.5
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
 
   # Sabers
 
@@ -481,6 +516,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
   diamond_saber:
     Enabled:
       EnableAllVersions: true
@@ -491,6 +527,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
   gold_saber:
     Enabled:
       EnableAllVersions: true
@@ -501,6 +538,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
   iron_saber:
     Enabled:
       EnableAllVersions: true
@@ -511,6 +549,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
   copper_saber:
     Enabled:
       EnableAllVersions: true
@@ -521,6 +560,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
   stone_saber:
     Enabled:
       EnableAllVersions: true
@@ -531,6 +571,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
   wooden_saber:
     Enabled:
       EnableAllVersions: true
@@ -541,6 +582,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
 
   # Boomerangs
 
@@ -580,6 +622,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 8.0
       Velocity: 20.0
+    Sweep: false
   diamond_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -616,6 +659,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 7.0
       Velocity: 20.0
+    Sweep: false
   gold_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -652,6 +696,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 4.0
       Velocity: 20.0
+    Sweep: false
   iron_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -688,6 +733,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 6.0
       Velocity: 20.0
+    Sweep: false
   copper_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -724,6 +770,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 5.5
       Velocity: 20.0
+    Sweep: false
   stone_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -760,6 +807,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 5.0
       Velocity: 20.0
+    Sweep: false
   wooden_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -796,6 +844,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 4.0
       Velocity: 20.0
+    Sweep: false
 
   # Daggers
 
@@ -836,6 +885,7 @@ Items:
       AttackDamage: 6.5
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
   diamond_dagger:
     Enabled:
       EnableAllVersions: true
@@ -873,6 +923,7 @@ Items:
       AttackDamage: 5.5
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
   gold_dagger:
     Enabled:
       EnableAllVersions: true
@@ -910,6 +961,7 @@ Items:
       AttackDamage: 2.5
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
   iron_dagger:
     Enabled:
       EnableAllVersions: true
@@ -947,6 +999,7 @@ Items:
       AttackDamage: 4.5
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
   copper_dagger:
     Enabled:
       EnableAllVersions: true
@@ -984,6 +1037,7 @@ Items:
       AttackDamage: 4.0
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
   stone_dagger:
     Enabled:
       EnableAllVersions: true
@@ -1021,6 +1075,7 @@ Items:
       AttackDamage: 3.5
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
   wooden_dagger:
     Enabled:
       EnableAllVersions: true
@@ -1058,6 +1113,7 @@ Items:
       AttackDamage: 2.5
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
 
   # Glaives
 
@@ -1073,6 +1129,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   diamond_glaive:
     Enabled:
       EnableAllVersions: true
@@ -1085,6 +1142,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   gold_glaive:
     Enabled:
       EnableAllVersions: true
@@ -1097,6 +1155,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   iron_glaive:
     Enabled:
       EnableAllVersions: true
@@ -1109,6 +1168,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   copper_glaive:
     Enabled:
       EnableAllVersions: true
@@ -1121,6 +1181,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   stone_glaive:
     Enabled:
       EnableAllVersions: true
@@ -1133,6 +1194,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   wooden_glaive:
     Enabled:
       EnableAllVersions: true
@@ -1145,6 +1207,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
 
   # Halberds
 
@@ -1162,6 +1225,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
   diamond_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1176,6 +1240,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
   gold_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1190,6 +1255,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
   iron_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1204,6 +1270,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
   copper_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1218,6 +1285,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
   stone_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1232,6 +1300,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
   wooden_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1246,6 +1315,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
 
   # Hammers
 
@@ -1259,6 +1329,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
   diamond_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1269,6 +1340,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
   gold_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1279,6 +1351,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
   iron_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1289,6 +1362,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
   copper_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1299,6 +1373,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
   stone_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1309,6 +1384,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
   wooden_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1319,6 +1395,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
 
   # Javelins
 
@@ -1358,6 +1435,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 16.5
       Velocity: 20.0
+    Sweep: false
   diamond_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1394,6 +1472,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 13.5
       Velocity: 20.0
+    Sweep: false
   gold_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1430,6 +1509,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 4.5
       Velocity: 20.0
+    Sweep: false
   iron_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1466,6 +1546,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 10.5
       Velocity: 20.0
+    Sweep: false
   copper_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1502,6 +1583,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 9.0
       Velocity: 20.0
+    Sweep: false
   stone_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1538,6 +1620,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 7.5
       Velocity: 20.0
+    Sweep: false
   wooden_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1574,6 +1657,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 4.5
       Velocity: 20.0
+    Sweep: false
 
   # Lances
 
@@ -1585,6 +1669,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
   diamond_lance:
     Enabled:
       EnableAllVersions: true
@@ -1593,6 +1678,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
   gold_lance:
     Enabled:
       EnableAllVersions: true
@@ -1601,6 +1687,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
   iron_lance:
     Enabled:
       EnableAllVersions: true
@@ -1609,6 +1696,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
   copper_lance:
     Enabled:
       EnableAllVersions: true
@@ -1617,6 +1705,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
   stone_lance:
     Enabled:
       EnableAllVersions: true
@@ -1625,6 +1714,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
   wooden_lance:
     Enabled:
       EnableAllVersions: true
@@ -1633,6 +1723,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
 
   # Maces
 
@@ -1643,6 +1734,7 @@ Items:
       AttackDamage: 9.0
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
   diamond_mace:
     Enabled:
       EnableAllVersions: true
@@ -1650,6 +1742,7 @@ Items:
       AttackDamage: 7.5
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
   gold_mace:
     Enabled:
       EnableAllVersions: true
@@ -1657,6 +1750,7 @@ Items:
       AttackDamage: 3.0
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
   iron_mace:
     Enabled:
       EnableAllVersions: true
@@ -1664,6 +1758,7 @@ Items:
       AttackDamage: 6.0
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
   copper_mace:
     Enabled:
       EnableAllVersions: true
@@ -1671,6 +1766,7 @@ Items:
       AttackDamage: 5.25
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
   stone_mace:
     Enabled:
       EnableAllVersions: true
@@ -1678,6 +1774,7 @@ Items:
       AttackDamage: 4.5
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
   wooden_mace:
     Enabled:
       EnableAllVersions: true
@@ -1685,6 +1782,7 @@ Items:
       AttackDamage: 3.0
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
 
   # Pikes
 
@@ -1699,6 +1797,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
   diamond_pike:
     Enabled:
       EnableAllVersions: true
@@ -1710,6 +1809,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
   gold_pike:
     Enabled:
       EnableAllVersions: true
@@ -1721,6 +1821,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
   iron_pike:
     Enabled:
       EnableAllVersions: true
@@ -1732,6 +1833,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
   copper_pike:
     Enabled:
       EnableAllVersions: true
@@ -1743,6 +1845,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
   stone_pike:
     Enabled:
       EnableAllVersions: true
@@ -1754,6 +1857,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
   wooden_pike:
     Enabled:
       EnableAllVersions: true
@@ -1765,6 +1869,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
 
   # Quarterstaffs
 
@@ -1779,6 +1884,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   diamond_quarterstaff:
     Enabled:
       EnableAllVersions: true
@@ -1790,6 +1896,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   gold_quarterstaff:
     Enabled:
       EnableAllVersions: true
@@ -1801,6 +1908,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   iron_quarterstaff:
     Enabled:
       EnableAllVersions: true
@@ -1812,6 +1920,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   copper_quarterstaff:
     Enabled:
       EnableAllVersions: true
@@ -1823,6 +1932,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   stone_quarterstaff:
     Enabled:
       EnableAllVersions: true
@@ -1834,6 +1944,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   wooden_quarterstaff:
     Enabled:
       EnableAllVersions: true
@@ -1845,6 +1956,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
 
   # Tomahawks
 
@@ -1884,6 +1996,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 16.0
       Velocity: 20.0
+    Sweep: false
   diamond_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -1920,6 +2033,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 13.0
       Velocity: 20.0
+    Sweep: false
   gold_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -1956,6 +2070,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 4.0
       Velocity: 20.0
+    Sweep: false
   iron_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -1992,6 +2107,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 10.0
       Velocity: 20.0
+    Sweep: false
   copper_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2028,6 +2144,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 8.5
       Velocity: 20.0
+    Sweep: false
   stone_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2064,6 +2181,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 7.0
       Velocity: 20.0
+    Sweep: false
   wooden_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2100,6 +2218,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 4.0
       Velocity: 20.0
+    Sweep: false
 
   # Throwing Knives
 
@@ -2139,6 +2258,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 11.0
       Velocity: 20.0
+    Sweep: false
   diamond_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2175,6 +2295,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 9.0
       Velocity: 20.0
+    Sweep: false
   gold_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2211,6 +2332,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 3.0
       Velocity: 20.0
+    Sweep: false
   iron_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2247,6 +2369,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 7.0
       Velocity: 20.0
+    Sweep: false
   copper_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2283,6 +2406,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 6.0
       Velocity: 20.0
+    Sweep: false
   stone_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2319,6 +2443,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 5.0
       Velocity: 20.0
+    Sweep: false
   wooden_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2355,6 +2480,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 3.0
       Velocity: 20.0
+    Sweep: false
 
   # Warhammers
 
@@ -2448,6 +2574,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
   diamond_battleaxe:
     Enabled:
       EnableAllVersions: true
@@ -2458,6 +2585,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
   gold_battleaxe:
     Enabled:
       EnableAllVersions: true
@@ -2468,6 +2596,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
   iron_battleaxe:
     Enabled:
       EnableAllVersions: true
@@ -2478,6 +2607,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
   copper_battleaxe:
     Enabled:
       EnableAllVersions: true
@@ -2488,6 +2618,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
   stone_battleaxe:
     Enabled:
       EnableAllVersions: true
@@ -2498,6 +2629,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
   wooden_battleaxe:
     Enabled:
       EnableAllVersions: true
@@ -2508,6 +2640,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
 
   # Clubs
 

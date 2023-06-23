@@ -16,11 +16,8 @@
  */
 package me.val_mobile.baubles;
 
-import me.val_mobile.data.RSVModule;
-import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -28,7 +25,6 @@ import java.util.UUID;
 
 public class EndermanAllyUtils {
 
-    private static final FileConfiguration CONFIG = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
     public static boolean isEndermanAlly(Entity entity) {
         if (entity instanceof EndermanAlly) {
             return true;

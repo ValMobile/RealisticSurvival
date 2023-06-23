@@ -2,7 +2,7 @@
 #          Baubles                    #
 #######################################
 
-ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.6-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -599,6 +599,7 @@ Items:
     VerticalSpeedIncrement: 0.2
     MaxHorizontalSpeed: 100.0
     MaxVerticalSpeed: 3.0
+    ParasiteImmunity: true
     Effects:
       WATER_BREATHING:
         AmplifierIncrement: 0

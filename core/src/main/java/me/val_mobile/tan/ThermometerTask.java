@@ -24,8 +24,6 @@ import me.val_mobile.utils.RSVTask;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -91,7 +89,7 @@ public class ThermometerTask extends BukkitRunnable implements RSVTask {
 
     @Override
     public boolean conditionsMet(@Nullable Player player) {
-        return globalConditionsMet(player) && allowedWorlds.contains(player.getWorld().getName()) && task != null && isHoldingThermometer(player);
+        return globalConditionsMet(player) && allowedWorlds.contains(player.getWorld().getName()) && task != null && RSVItem.isHoldingItem("thermometer", player);
     }
 
     @Override
@@ -108,23 +106,6 @@ public class ThermometerTask extends BukkitRunnable implements RSVTask {
 
         tasks.remove(id);
         cancel();
-    }
-
-    public static boolean isHoldingThermometer(Player player) {
-        PlayerInventory inv = player.getPlayer().getInventory();
-        ItemStack itemMainHand = inv.getItemInMainHand();
-        ItemStack itemOffHand = inv.getItemInOffHand();
-        boolean isHolding = false;
-
-        if (RSVItem.isRSVItem(itemMainHand)) {
-            isHolding = RSVItem.getNameFromItem(itemMainHand).equals("thermometer");
-        }
-
-        if (RSVItem.isRSVItem(itemOffHand)) {
-            isHolding = isHolding || RSVItem.getNameFromItem(itemOffHand).equals("thermometer");
-        }
-
-        return isHolding;
     }
 
     public static boolean hasTask(UUID id) {

@@ -19,6 +19,7 @@ package me.val_mobile.baubles;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
 import me.val_mobile.utils.RSVTask;
+import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -67,28 +68,23 @@ public class StoneSeaTask extends BukkitRunnable implements RSVTask {
         Player player = rsvPlayer.getPlayer();
 
         if (conditionsMet(player)) {
-            if (player.isSwimming() || player.isInWater()) {
+            Vector velocity = player.getVelocity().clone();
+            double magnitude = velocity.length() * 43.17;
+
+            if ((player.isSwimming() && magnitude > 1.5) || (player.isInWater() && magnitude > 0.5)) {
                 double swimSpeed = baseSwimSpeed;
                 int depthStrider = 0;
                 boolean dolphinsGrace = player.hasPotionEffect(PotionEffectType.DOLPHINS_GRACE);
                 Vector dir = player.getLocation().getDirection().clone();
-                Vector velocity = player.getVelocity().clone();
-                double magnitude = Math.sqrt((velocity.getX() * velocity.getX()) + (velocity.getY() * velocity.getY()) + (velocity.getZ() * velocity.getZ()));
 
                 ItemStack boots = player.getInventory().getBoots();
-                if (boots != null) {
-                    if (boots.getItemMeta().hasEnchant(Enchantment.DEPTH_STRIDER)) {
-                        depthStrider = boots.getItemMeta().getEnchantLevel(Enchantment.DEPTH_STRIDER);
-                    }
+                if (Utils.isItemReal(boots)) {
+                    depthStrider = boots.getEnchantmentLevel(Enchantment.DEPTH_STRIDER);
                 }
 
-                if (depthStrider > 0 && dolphinsGrace) {
-                    swimSpeed += (9.8 + (8.983 * depthStrider));
-                }
-                else if (depthStrider > 0) {
-                    swimSpeed += ((depthStrider / 3D) * 4.317);
-                }
-                else if (dolphinsGrace){
+                swimSpeed += 8.93 * depthStrider;
+
+                if (dolphinsGrace){
                     swimSpeed += 9.8;
                 }
 

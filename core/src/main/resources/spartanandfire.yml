@@ -2,7 +2,7 @@
 #          Spartan and Fire           #
 #######################################
 
-ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.6-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 Initialize:
   Enabled: true
@@ -66,6 +66,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
   dragonbone_flamed_rapier:
     Enabled:
       EnableAllVersions: true
@@ -76,6 +77,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -90,6 +92,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
     DragonBonusDamage: 8.0
     FreezeAbility:
       Slowness:
@@ -115,6 +118,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -133,6 +137,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -146,6 +151,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -169,6 +175,7 @@ Items:
     Protection:
       PercentAbsorbed: 0.25
       DamageDurability: 2
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -190,6 +197,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
   dragonbone_flamed_katana:
     Enabled:
       EnableAllVersions: true
@@ -201,6 +209,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -216,6 +225,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -240,6 +250,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -259,6 +270,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -273,6 +285,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -297,6 +310,7 @@ Items:
       Amplifier: 2
       Duration: 30
     ChestDamageMultiplier: 2.0
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -319,6 +333,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
   dragonbone_flamed_greatsword:
     Enabled:
       EnableAllVersions: true
@@ -331,6 +346,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -347,6 +363,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -372,6 +389,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -392,6 +410,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -407,6 +426,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -432,6 +452,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 1.0
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -453,6 +474,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
   dragonbone_flamed_longsword:
     Enabled:
       EnableAllVersions: true
@@ -464,6 +486,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -482,6 +505,7 @@ Items:
       Amplifier: 4
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
     FrozenDuration: 10
     DragonBonusDamage: 8.0
     Block: "ICE"
@@ -496,6 +520,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -515,6 +540,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -529,6 +555,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -553,6 +580,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.25
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -570,6 +598,7 @@ Items:
       AttackDamage: 6.5
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
   dragonbone_flamed_spear:
     Enabled:
       EnableAllVersions: true
@@ -588,6 +617,7 @@ Items:
       AttackDamage: 7.25
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -608,6 +638,7 @@ Items:
       AttackDamage: 7.25
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -623,6 +654,7 @@ Items:
       AttackDamage: 15.0
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -633,6 +665,7 @@ Items:
       AttackDamage: 15.0
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -653,6 +686,7 @@ Items:
       AttackDamage: 15.0
       AttackSpeed: 1.4
     Reach: 7.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -673,6 +707,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
   dragonbone_flamed_saber:
     Enabled:
       EnableAllVersions: true
@@ -683,6 +718,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -697,6 +733,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -720,6 +757,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -738,6 +776,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -751,6 +790,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -774,6 +814,7 @@ Items:
       PercentAbsorbed: 0.25
       DamageDurability: 2
     ChestDamageMultiplier: 2.0
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -820,6 +861,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 8.0
       Velocity: 20.0
+    Sweep: false
   dragonbone_flamed_boomerang:
     Enabled:
       EnableAllVersions: true
@@ -856,6 +898,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 9.5
       Velocity: 20.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -896,6 +939,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 9.5
       Velocity: 20.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -945,6 +989,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 9.5
       Velocity: 20.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -989,6 +1034,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 25.0
       Velocity: 20.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -1028,6 +1074,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 25.0
       Velocity: 20.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1077,6 +1124,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 25.0
       Velocity: 20.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -1124,6 +1172,7 @@ Items:
       AttackDamage: 4.5
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
   dragonbone_flamed_dagger:
     Enabled:
       EnableAllVersions: true
@@ -1161,6 +1210,7 @@ Items:
       AttackDamage: 5.25
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -1202,6 +1252,7 @@ Items:
       AttackDamage: 5.25
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1257,6 +1308,7 @@ Items:
       AttackDamage: 5.25
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -1302,6 +1354,7 @@ Items:
       AttackDamage: 13.0
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -1342,6 +1395,7 @@ Items:
       AttackDamage: 13.0
       Velocity: 20.0
     BackstabDamageMultiplier: 3.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1414,6 +1468,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   dragonbone_flamed_glaive:
     Enabled:
       EnableAllVersions: true
@@ -1426,6 +1481,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -1442,6 +1498,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1467,6 +1524,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -1487,6 +1545,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -1502,6 +1561,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1527,6 +1587,7 @@ Items:
       Duration: 30
     Reach: 7.0
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -1551,6 +1612,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
   dragonbone_flamed_halberd:
     Enabled:
       EnableAllVersions: true
@@ -1565,6 +1627,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -1583,6 +1646,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1610,6 +1674,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -1632,6 +1697,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -1649,6 +1715,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1676,6 +1743,7 @@ Items:
     ShieldBreach:
       Chance: 0.5
       Cooldown: 100
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -1696,6 +1764,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
   dragonbone_flamed_hammer:
     Enabled:
       EnableAllVersions: true
@@ -1706,6 +1775,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -1720,6 +1790,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1743,6 +1814,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -1761,6 +1833,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -1774,6 +1847,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1797,6 +1871,7 @@ Items:
     Nausea:
       Amplifier: 1
       Duration: 170
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -1843,6 +1918,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 10.5
       Velocity: 20.0
+    Sweep: false
   dragonbone_flamed_javelin:
     Enabled:
       EnableAllVersions: true
@@ -1879,6 +1955,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 12.75
       Velocity: 20.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -1919,6 +1996,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 12.75
       Velocity: 20.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -1968,6 +2046,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 12.75
       Velocity: 20.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2012,6 +2091,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 36.0
       Velocity: 20.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -2051,6 +2131,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 36.0
       Velocity: 20.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -2100,6 +2181,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 36.0
       Velocity: 20.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2118,6 +2200,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
   dragonbone_flamed_lance:
     Enabled:
       EnableAllVersions: true
@@ -2126,6 +2209,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -2138,6 +2222,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -2159,6 +2244,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2175,6 +2261,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -2186,6 +2273,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -2207,6 +2295,7 @@ Items:
       AttackSpeed: 1.0
     Reach: 7.0
     RidingDamageBonus: 2.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2224,6 +2313,7 @@ Items:
       AttackDamage: 8.0
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
   dragonbone_flamed_mace:
     Enabled:
       EnableAllVersions: true
@@ -2231,6 +2321,7 @@ Items:
       AttackDamage: 9.5
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -2242,6 +2333,7 @@ Items:
       AttackDamage: 9.5
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -2262,6 +2354,7 @@ Items:
       AttackDamage: 9.5
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2277,6 +2370,7 @@ Items:
       AttackDamage: 25.0
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -2287,6 +2381,7 @@ Items:
       AttackDamage: 25.0
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -2307,6 +2402,7 @@ Items:
       AttackDamage: 25.0
       AttackSpeed: 1.2
     UndeadDamageMultiplier: 1.5
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2328,6 +2424,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
   dragonbone_flamed_pike:
     Enabled:
       EnableAllVersions: true
@@ -2339,6 +2436,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -2354,6 +2452,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -2378,6 +2477,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2397,6 +2497,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -2411,6 +2512,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -2435,6 +2537,7 @@ Items:
       Amplifier: 2
       Duration: 30
     Reach: 8.5
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2456,6 +2559,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
   dragonbone_flamed_quarterstaff:
     Enabled:
       EnableAllVersions: true
@@ -2467,6 +2571,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -2482,6 +2587,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -2506,6 +2612,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2525,6 +2632,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -2539,6 +2647,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -2562,6 +2671,7 @@ Items:
       Amplifier: 2
       Duration: 30
     SweepingDamageMultiplier: 0.5
+    Sweep: true
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2608,6 +2718,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 12.0
       Velocity: 20.0
+    Sweep: false
   dragonbone_flamed_tomahawk:
     Enabled:
       EnableAllVersions: true
@@ -2644,6 +2755,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 15.0
       Velocity: 20.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -2684,6 +2796,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 15.0
       Velocity: 20.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -2733,6 +2846,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 15.0
       Velocity: 20.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2777,6 +2891,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 46.0
       Velocity: 20.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -2816,6 +2931,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 46.0
       Velocity: 20.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -2865,6 +2981,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 46.0
       Velocity: 20.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -2911,6 +3028,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 7.0
       Velocity: 20.0
+    Sweep: false
   dragonbone_flamed_throwing_knife:
     Enabled:
       EnableAllVersions: true
@@ -2947,6 +3065,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 8.5
       Velocity: 20.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -2987,6 +3106,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 8.5
       Velocity: 20.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -3036,6 +3156,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 8.5
       Velocity: 20.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -3080,6 +3201,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 24.0
       Velocity: 20.0
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -3119,6 +3241,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 24.0
       Velocity: 20.0
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -3168,6 +3291,7 @@ Items:
       MaxReturnDistance: 150.0
       AttackDamage: 24.0
       Velocity: 20.0
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -3309,6 +3433,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
   dragonbone_flamed_battleaxe:
     Enabled:
       EnableAllVersions: true
@@ -3319,6 +3444,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -3333,6 +3459,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -3356,6 +3483,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -3374,6 +3502,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
@@ -3387,6 +3516,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -3410,6 +3540,7 @@ Items:
       TickPeriod: 20
       Amplifier: 2
       Duration: 30
+    Sweep: false
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true

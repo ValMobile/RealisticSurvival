@@ -23,7 +23,6 @@ import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nullable;
@@ -65,9 +64,7 @@ public class StoneNegativeGravityTask extends BukkitRunnable implements RSVTask 
         if (conditionsMet(player)) {
             player.setGravity(false);
 
-            boolean isUnstable = isHoldingStone();
-
-            if (isUnstable)
+            if (RSVItem.isHoldingItemInMainHand("stone_negative_gravity", player))
                 player.setVelocity(player.getVelocity().setY(Utils.getRandomNum(maxDownwardVelocity, maxUpwardVelocity)));
         }
         else {
@@ -77,7 +74,7 @@ public class StoneNegativeGravityTask extends BukkitRunnable implements RSVTask 
 
     @Override
     public boolean conditionsMet(@Nullable Player player) {
-        return globalConditionsMet(player) && allowedWorlds.contains(player.getWorld().getName()) && (rsvPlayer.getBaubleDataModule().hasBauble("stone_negative_gravity") || isHoldingStone());
+        return globalConditionsMet(player) && allowedWorlds.contains(player.getWorld().getName()) && (rsvPlayer.getBaubleDataModule().hasBauble("stone_negative_gravity") || RSVItem.isHoldingItemInMainHand("stone_negative_gravity", player));
     }
 
     @Override
@@ -109,16 +106,5 @@ public class StoneNegativeGravityTask extends BukkitRunnable implements RSVTask 
 
     public static Map<UUID, StoneNegativeGravityTask> getTasks() {
         return tasks;
-    }
-
-    private boolean isHoldingStone() {
-        Player player = rsvPlayer.getPlayer();
-        ItemStack item = player.getInventory().getItemInMainHand();
-
-        if (RSVItem.isRSVItem(item)) {
-            return RSVItem.getNameFromItem(item).equals("stone_negative_gravity");
-        }
-
-        return false;
     }
 }

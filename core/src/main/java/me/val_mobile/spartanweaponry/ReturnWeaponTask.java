@@ -149,6 +149,7 @@ public class ReturnWeaponTask extends BukkitRunnable {
     public Location dropItem(Location location) { // drop the throwable weapon if player inventory is full
         Item droppedItem = entity.getWorld().dropItem(location, item.clone());
         droppedItem.setGlowing(true);
+        droppedItem.setOwner(entity.getUniqueId());
 
         return droppedItem.getLocation();
     }

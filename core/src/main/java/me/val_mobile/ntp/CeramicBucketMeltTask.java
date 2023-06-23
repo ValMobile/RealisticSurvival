@@ -25,7 +25,6 @@ import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
@@ -116,7 +115,7 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
             stop();
         }
         else {
-            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && isHoldingCeramicLavaBucket()) {
+            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && RSVItem.isHoldingItemInMainHand("ceramic_lava_bucket", player)) {
                 ticks++;
 
                 if (ticks > duration) {
@@ -164,12 +163,4 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
         return false;
     }
 
-    private boolean isHoldingCeramicLavaBucket() {
-        ItemStack itemMainHand = player.getInventory().getItemInMainHand();
-
-        if (RSVItem.isRSVItem(itemMainHand)) {
-            return RSVItem.getNameFromItem(itemMainHand).equals("ceramic_lava_bucket");
-        }
-        return false;
-    }
 }

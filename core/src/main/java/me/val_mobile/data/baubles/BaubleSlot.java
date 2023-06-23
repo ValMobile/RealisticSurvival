@@ -49,4 +49,15 @@ public enum BaubleSlot {
     public String getTag() {
         return tag;
     }
+
+    public static ItemStack getItemInSlot(int slot) {
+        for (BaubleSlot s : BaubleSlot.values()) {
+            for (int k : s.getValues()) {
+                if (slot == k) {
+                    return s.getItem();
+                }
+            }
+        }
+        return RSVItem.getItem("gui_glass");
+    }
 }

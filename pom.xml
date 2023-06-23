@@ -6,15 +6,16 @@
 
     <groupId>me.Val_Mobile</groupId>
     <artifactId>realisticsurvival-parent</artifactId>
-    <version>1.2.5-RELEASE</version>
+    <version>1.2.6-RELEASE</version>
     <packaging>pom</packaging>
 
     <name>RealisticSurvival</name>
     <description>A Spigot plugin that aims to increase the difficulty of normal vanilla Minecraft</description>
-    <url>https://www.spigotmc.org/resources/realistic-survival-1-17-dragons-baubles-weapons.93795/</url>
+    <url>https://www.spigotmc.org/resources/realistic-survival-1-17-hardcore-modded-experience.93795/</url>
 
     <modules>
         <module>core</module>
+        <module>spigot_impl_1_20_R2</module>
         <module>spigot_impl_1_20_R1</module>
         <module>spigot_impl_1_19_R5</module>
         <module>spigot_impl_1_19_R4</module>

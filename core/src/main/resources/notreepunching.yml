@@ -2,7 +2,7 @@
 #          No Tree Punching           #
 #######################################
 
-ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.6-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -148,8 +148,10 @@ PreventPunchingWood:
     - "STRIPPED_MANGROVE_WOOD"
 
 Lumberjack:
-  DisablePlankRecipes: true
+  DisablePlankRecipes: true     # Removes recipe from worlds that have NTP enabled
+  RemovePlankRecipes: true      # Completely removes recipe from the server (i:e even worlds that do not NTP enabled will not have the recipe)
   DisableStickRecipes: true
+  RemoveStickRecipes: true
   PlankDrops:
     Type: "Range"
     Chance: 0.4           # Chance to break a log into planks when right-clicking a log with an axe
@@ -164,10 +166,11 @@ Lumberjack:
   EnableSawStickRecipes: true
 
 FireStarter:
+  DisableVanillaCampfireRecipes: true
   RemoveVanillaCampfireRecipes: true
   Enabled: true             # Right-click and hold the fire starter over the fuel and kindling to create campfires
   Time: 200                 # Time needed to create a campfire
-  MaxDistance: 0.4          # Maximum distance that the fuel and kindling items can be from one another
+  MaxDistance: 1.0          # Maximum distance that the fuel and kindling items can be from one another
   MaxItems: 20              # Max items that can be on the ground
   BurningSound:
     Enabled: true
@@ -208,8 +211,10 @@ FireStarter:
       - "SOUL_SOIL"
 
 Pottery:
-  RemoveFlowerPotRecipe: true       # Removes the vanilla recipe where bricks can be crafted into a flower pot
-  RemoveBrickSmeltingRecipe: true   # Removes the vanilla recipe where clay can be smelted into a brick
+  DisableFlowerPotRecipe: true       # Removes the vanilla recipe where bricks can be crafted into a flower pot
+  RemoveFlowerPotRecipe: true
+  DisableBrickSmeltingRecipe: true   # Removes the vanilla recipe where clay can be smelted into a brick
+  RemoveBrickSmeltingRecipe: true
   EnableClayToolRecipe: true        # Clay tools are used to craft clay bricks
   CeramicLavaBucketMelting:
     Enabled: true

@@ -1,7 +1,7 @@
 ###########################################################################
 #                                                                         #
 #   Realistic Survival Plugin   MC 1.17 - 1.20                            #
-#   Version 1.2.5-RELEASE       Made by: Val_Mobile                       #
+#   Version 1.2.6-RELEASE       Made by: Val_Mobile                       #
 #                                                                         #
 ###########################################################################
 
@@ -16,7 +16,7 @@ CorrectVersion:
   - "&fYou are running the latest version"
 OutdatedVersion:
   - "&cYou are running on an outdated version"
-  - "&cUpdate to receive the latest features! https://www.spigotmc.org/resources/realistic-survival-1-17-dragons-baubles-weapons.93795/history"
+  - "&cUpdate to receive the latest features! https://www.spigotmc.org/resources/realistic-survival-1-17-hardcore-modded-experience.93795/history"
 DeveloperBuildVersion:
   - "&eYou are running on a developer build"
   - "&eNote that there might be bugs or glitches! Please report any bugs, issues, or glitches"
@@ -82,4 +82,4 @@ ToughAsNails:
 ####################################
 
 BStats: true             # Do you want non-confidential server data to be recorded for my use?
-ConfigId: "1.2.5-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.6-RELEASE"  # Used for config syncing purposes, do NOT edit

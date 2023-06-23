@@ -159,9 +159,8 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     }
 
     @Override
-    @Nonnull
     public FileConfiguration getConfig() {
-        return config.getConfig();
+        return config == null ? null : config.getConfig();
     }
 
     @Nonnull

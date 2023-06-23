@@ -1,10 +1,10 @@
 # Realistic Survival
-[![SpigotMC badge](https://i.imgur.com/3kXfij6.png)](https://www.spigotmc.org/resources/realistic-survival-1-17-dragons-baubles-weapons.93795/)
+[![SpigotMC badge](https://i.imgur.com/3kXfij6.png)](https://www.spigotmc.org/resources/realistic-survival-1-17-hardcore-modded-experience.93795/)
 [![Paypal badge](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=MCSBPJP4B5KHL) 
 [![Discord badge](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/mMt3f4usqK)
 [![Patreon badge](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/realisticsurvival)
 
-*Looking for the download link? **[Click here](https://www.spigotmc.org/resources/realistic-survival-1-17-dragons-baubles-weapons.93795/history)***
+*Looking for the download link? **[Click here](https://www.spigotmc.org/resources/realistic-survival-1-17-hardcore-modded-experience.93795/history)***
 
 Realistic Survival is a plugin inspired by RLCraft that aims to 
 increase the difficulty of normal vanilla Minecraft.
@@ -42,7 +42,7 @@ Order now using [my affiliate link](https://billing.redlinehosting.net/aff.php?a
 Realistic Survival requires your Minecraft server to be running on [Spigot](https://www.spigotmc.org/) or any of 
 its forks like [Paper](https://papermc.io/) and [Purpur](https://purpur.pl3x.net/).
 
-You can download stable builds Realistic Survival for free [here](https://www.spigotmc.org/resources/realistic-survival-1-17-dragons-baubles-weapons.93795/history).  
+You can download stable builds Realistic Survival for free [here](https://www.spigotmc.org/resources/realistic-survival-1-17-hardcore-modded-experience.93795/history).  
 Alternatively, you can download development builds in the [Discord server](https://discord.gg/mMt3f4usqK). Development
 builds are less stable but offer the newest features and improvements.
 

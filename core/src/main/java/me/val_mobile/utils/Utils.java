@@ -223,6 +223,7 @@ public class Utils {
         int x;
         int y;
         int z;
+        Block below;
         Block block;
         Block highestBlock;
         Block aboveBlock;
@@ -234,16 +235,25 @@ public class Utils {
             x = (int) getRandomNum(-1 * radius, radius);
             y = (int) getRandomNum(-1 * radius, radius);
             z = (int) getRandomNum(-1 * radius, radius);
-            block = world.getBlockAt((int) Math.round(loc.getX() + x), (int) Math.round(loc.getY() + y), (int) Math.round(loc.getZ() + z));
+
+            double actualX = loc.getX() + x;
+            actualX = Math.floor(actualX) + clamp(actualX - (int) actualX, 0.45, 0.55);
+
+            double actualZ = loc.getZ() + z;
+            actualZ = Math.floor(actualZ) + clamp(actualZ - (int) actualZ, 0.45, 0.55);
+
+            double actualY = clamp(loc.getY() + y, world.getMinHeight(), world.getMaxHeight());
+            block = world.getBlockAt((int) Math.round(actualX), (int) Math.round(actualY), (int) Math.round(actualZ));
+            below = world.getBlockAt(block.getX(), block.getY() - 1, block.getZ());
             highestBlock = world.getHighestBlockAt(block.getX(), block.getZ());
             aboveBlock = world.getBlockAt(block.getX(), block.getY() + 1, block.getZ());
             thirdBlock = world.getBlockAt(block.getX(), block.getY() + 1, block.getZ());
 
-            if (block.isPassable() && aboveBlock.isPassable() && !highestBlock.isEmpty() && !(block.isLiquid() || aboveBlock.isLiquid() || highestBlock.isLiquid())) {
+            if (!below.isPassable() && block.isPassable() && aboveBlock.isPassable() && !highestBlock.isEmpty() && !(block.isLiquid() || aboveBlock.isLiquid() || highestBlock.isLiquid())) {
                 if ((thirdBlock.isPassable() && !thirdBlock.isLiquid()) || isShort) {
-                    loc.setX(loc.getX() + (x < 0 ? Math.max(x, -0.3) : Math.min(x, 0.3)));
+                    loc.setX(actualX);
                     loc.setY(highestBlock.getY() + 1D);
-                    loc.setZ(loc.getZ() + (z < 0 ? Math.max(z, -0.3) : Math.min(z, 0.3)));
+                    loc.setZ(actualZ);
                     entity.teleport(loc);
                     break;
                 }
@@ -736,8 +746,7 @@ public class Utils {
         int lvl = 0;
 
         if (isItemReal(tool)) {
-            ItemMeta meta = tool.getItemMeta();
-            lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
+            lvl = tool.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
         }
 
         switch (section.getString("Type").toUpperCase()) {
@@ -821,11 +830,8 @@ public class Utils {
     public static ItemStack getMobLoot(@Nonnull ConfigurationSection section, @Nonnull ItemStack drop, @Nullable ItemStack tool, boolean checkLooting) {
         int lvl = 0;
 
-        if (isItemReal(tool)) {
-            ItemMeta meta = tool.getItemMeta();
-            if (meta != null && checkLooting) {
-                lvl = meta.getEnchantLevel(Enchantment.LOOT_BONUS_MOBS);
-            }
+        if (isItemReal(tool) && checkLooting) {
+            lvl = tool.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
         }
 
         switch (section.getString("Type").toUpperCase()) {

@@ -19,14 +19,19 @@ package me.val_mobile.data.baubles;
 import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.data.RSVDataModule;
 import me.val_mobile.data.RSVModule;
+import me.val_mobile.utils.RSVItem;
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 public class DataModule implements RSVDataModule {
 
@@ -55,47 +60,51 @@ public class DataModule implements RSVDataModule {
     @Override
     public void retrieveData() {
         FileConfiguration config = this.config.getConfig();
+        ConfigurationSection section = config.getConfigurationSection(id + ".Items");
+        Set<String> keys = section == null ? new HashSet<>() : section.getKeys(false);
+        Inventory inv = baubleBag.getInventory();
 
-        if (config.contains(id.toString())) {
-            if (config.contains(id + ".Items")) {
-                ItemStack[] items = loadItemStacks();
+        int dataVersion = Bukkit.getUnsafe().getDataVersion();
 
-                if (items != null) {
-                    Inventory inv = baubleBag.getInventory();
-
-                    for (int i = 0; i < items.length; i++) {
-                        inv.setItem(i, items[i]);
-                    }
-                }
+        for (String key : keys) {
+            if (config.getInt(id + ".Items." + key + ".v") != dataVersion) {
+                config.set(id + ".Items." + key + ".v", dataVersion);
             }
-            else {
-                config.createSection(id + ".Items");
-                saveFile(config);
-            }
-        }
-        else {
-            String itemsPath = id + ".Items";
 
-            config.createSection(id.toString());
-            config.createSection(itemsPath);
+            int k = Integer.parseInt(key);
 
-            saveFile(config);
+            ItemStack item = ItemStack.deserialize(config.getConfigurationSection(id + ".Items." + key).getValues(true));
+
+            inv.setItem(k, item);
         }
+
+        saveFile(config);
+
+        baubleBag.fillDefaultItems();
     }
 
     @Override
     public void saveData() {
         FileConfiguration config = this.config.getConfig();
 
-        config.set(id + ".Items", baubleBag.getInventory().getContents());
+        Inventory inv = baubleBag.getInventory();
+
+        BaubleSlot[] values = BaubleSlot.values();
+        Pattern pattern = Pattern.compile("^(charm|body|ring|belt|amulet|head)_slot$");
+        ItemStack item;
+        for (BaubleSlot slot : values) {
+            for (int i : slot.getValues()) {
+                item = inv.getItem(i);
+                if (RSVItem.isRSVItem(item) && !pattern.matcher(RSVItem.getNameFromItem(item)).find()) {
+                    config.set(id + ".Items." + i, item.serialize());
+                }
+                else {
+                    config.set(id + ".Items." + i, null);
+                }
+            }
+        }
 
         saveFile(config);
-    }
-
-    public ItemStack[] loadItemStacks() {
-        Object object = config.getConfig().get(id + ".Items");
-
-        return object instanceof Collection ? ((Collection<ItemStack>) object).toArray(new ItemStack[baubleBag.getInventory().getSize()]) : null;
     }
 
     public void saveFile(FileConfiguration config) {

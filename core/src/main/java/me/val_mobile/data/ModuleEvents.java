@@ -26,7 +26,6 @@ import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.Furnace;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
@@ -37,13 +36,19 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.inventory.*;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.PrepareAnvilEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldSaveEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.AnvilInventory;
+import org.bukkit.inventory.BrewerInventory;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 
 import java.io.IOException;
@@ -254,17 +259,13 @@ public abstract class ModuleEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onRecipeBurn(FurnaceBurnEvent event) {
-        if (!shouldEventBeRan(event.getBlock().getWorld())) {
-            FurnaceInventory inv = ((Furnace) event.getBlock().getState()).getSnapshotInventory();
-            ItemStack smeltedItem = inv.getSmelting();
-
-            if (Utils.isItemReal(smeltedItem)) {
-
-            }
-        }
-    }
+//    @EventHandler(priority = EventPriority.HIGHEST)
+//    public void onRecipeBurn(FurnaceStartSmeltEvent event) {
+//        if (!shouldEventBeRan(event.getBlock().getWorld())) {
+//            if (module.getModuleRecipes().getRecipeKeys().contains(event.getRecipe().getKey())) {
+//            }
+//        }
+//    }
 
 
 

@@ -17,12 +17,14 @@
 package me.val_mobile.ntp;
 
 import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -115,35 +117,29 @@ public class FireStarterTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        plugin.getLogger().info("a");
         if (player == null) {
             stop();
         }
         else {
-            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName())) {
+            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && loc.getBlock().isPassable() && RSVItem.isHoldingItem("fire_starter", player) && validateItems() && player.isSneaking()) {
                 ticks++;
-
                 if (ticks > duration) {
-                    if (!ingredients.contains(null)) {
-                        loc.getWorld().getBlockAt(loc).setType(isSoulCampfire ? Material.SOUL_CAMPFIRE : Material.CAMPFIRE);
-                        for (Item drop : ingredients) {
-                            drop.remove();
-                        }
-                    }
+                    loc.getWorld().getBlockAt(loc).setType(isSoulCampfire ? Material.SOUL_CAMPFIRE : Material.CAMPFIRE);
+                    ingredients.forEach(Entity::remove);
+
                     stop();
                 }
                 else {
-                    if (emitSound)
-                        if (Utils.roll(soundChance))
-                            Utils.playSound(loc, sound, volume, pitch);
+                    if (emitSound && Utils.roll(soundChance))
+                        Utils.playSound(loc, sound, volume, pitch);
 
-                    if (emitParticles)
-                        if (Utils.roll(particleChance))
-                            loc.getWorld().spawnParticle(particle, loc, Utils.getRandomNum(minCount, maxCount), xOffset, yOffset, zOffset, extra, dust);
+                    if (emitParticles && Utils.roll(particleChance))
+                        loc.getWorld().spawnParticle(particle, loc, Utils.getRandomNum(minCount, maxCount), xOffset, yOffset, zOffset, extra, dust);
                 }
             }
-            else
+            else {
                 stop();
+            }
         }
     }
 
@@ -165,5 +161,14 @@ public class FireStarterTask extends BukkitRunnable {
             return tasks.get(id) != null;
         }
         return false;
+    }
+
+    public boolean validateItems() {
+        for (Item item : ingredients) {
+            if (item == null || !item.isValid()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
