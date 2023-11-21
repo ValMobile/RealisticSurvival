@@ -2,7 +2,7 @@
 #          Spartan and Fire           #
 #######################################
 
-ConfigId: "1.2.6-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.7-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 Initialize:
   Enabled: true
@@ -3554,13 +3554,13 @@ Items:
   dragonbone_longbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 1.75
-    ArrowVelocityMultiplier: 1.75
+    AttackDamageMultiplier: 1.3
+    ArrowVelocityMultiplier: 1.3
   dragonbone_flamed_longbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 2.0
-    ArrowVelocityMultiplier: 2.0
+    AttackDamageMultiplier: 1.5
+    ArrowVelocityMultiplier: 1.5
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -3568,8 +3568,8 @@ Items:
   dragonbone_iced_longbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 2.0
-    ArrowVelocityMultiplier: 2.0
+    AttackDamageMultiplier: 1.5
+    ArrowVelocityMultiplier: 1.5
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -3586,8 +3586,8 @@ Items:
   dragonbone_lightning_longbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 2.0
-    ArrowVelocityMultiplier: 2.0
+    AttackDamageMultiplier: 1.5
+    ArrowVelocityMultiplier: 1.5
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -3599,16 +3599,16 @@ Items:
   dragonsteel_fire_longbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 3.0
-    ArrowVelocityMultiplier: 3.0
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 1.5
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
   dragonsteel_ice_longbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 3.0
-    ArrowVelocityMultiplier: 3.0
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 1.5
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -3625,8 +3625,8 @@ Items:
   dragonsteel_lightning_longbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 3.0
-    ArrowVelocityMultiplier: 3.0
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 1.5
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -3640,13 +3640,13 @@ Items:
   dragonbone_crossbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 1.75
-    ArrowVelocityMultiplier: 1.75
+    AttackDamageMultiplier: 1.3
+    ArrowVelocityMultiplier: 1.3
   dragonbone_flamed_crossbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 2.0
-    ArrowVelocityMultiplier: 2.0
+    AttackDamageMultiplier: 1.5
+    ArrowVelocityMultiplier: 1.5
     InfernoAbility:
       FireTicks: 200
       TickPeriod: 1
@@ -3654,8 +3654,8 @@ Items:
   dragonbone_iced_crossbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 2.0
-    ArrowVelocityMultiplier: 2.0
+    AttackDamageMultiplier: 1.5
+    ArrowVelocityMultiplier: 1.5
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -3672,8 +3672,8 @@ Items:
   dragonbone_lightning_crossbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 2.0
-    ArrowVelocityMultiplier: 2.0
+    AttackDamageMultiplier: 1.5
+    ArrowVelocityMultiplier: 1.5
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true
@@ -3685,16 +3685,16 @@ Items:
   dragonsteel_fire_crossbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 3.0
-    ArrowVelocityMultiplier: 3.0
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 1.5
     InfernoAbility:
       FireTicks: 400
       TickPeriod: 1
   dragonsteel_ice_crossbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 3.0
-    ArrowVelocityMultiplier: 3.0
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 1.5
     FreezeAbility:
       Slowness:
         Amplifier: 4
@@ -3711,8 +3711,8 @@ Items:
   dragonsteel_lightning_crossbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 3.0
-    ArrowVelocityMultiplier: 3.0
+    AttackDamageMultiplier: 2.0
+    ArrowVelocityMultiplier: 1.5
     ElectrocuteAbility:
       SummonLightning:
         Enabled: true

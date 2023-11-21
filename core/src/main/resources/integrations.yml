@@ -2,7 +2,7 @@
 #          Integrations               #
 #######################################
 
-ConfigId: "1.2.6-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.7-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 EnableIntegrationMessage: true  # Should a message be printed in console notifying that integration with a plugin is enabled?
 

@@ -17,7 +17,7 @@
 package me.val_mobile.spartanweaponry;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
@@ -38,12 +38,12 @@ public class TwoHandedTask extends BukkitRunnable {
     private static final Map<UUID, TwoHandedTask> tasks = new HashMap<>();
     private final FileConfiguration config;
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final UUID id;
     private final String itemName;
 
 
-    public TwoHandedTask(RSVModule module, RealisticSurvivalPlugin plugin, LivingEntity entity, String itemName) {
+    public TwoHandedTask(RSVModule module, RSVPlugin plugin, LivingEntity entity, String itemName) {
         this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();
         this.id = entity.getUniqueId();

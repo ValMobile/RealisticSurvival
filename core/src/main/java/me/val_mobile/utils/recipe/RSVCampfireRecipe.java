@@ -16,14 +16,14 @@
  */
 package me.val_mobile.utils.recipe;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.CampfireRecipe;
 
-public class RSVCampfireRecipe extends CampfireRecipe {
+public class RSVCampfireRecipe extends CampfireRecipe implements RSVRecipe {
 
-    public RSVCampfireRecipe(FileConfiguration config, String name, RealisticSurvivalPlugin plugin) {
+    public RSVCampfireRecipe(FileConfiguration config, String name, RSVPlugin plugin) {
         super(new NamespacedKey(plugin, name), RSVRecipe.getResult(config, name), new RecipeIngredient(config.getString(name + ".Input")).getRecipeChoice(),
                 (float) config.getDouble(name + ".Experience"), config.getInt(name + ".CookingTime"));
     }

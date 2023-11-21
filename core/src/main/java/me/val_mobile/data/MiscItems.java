@@ -16,11 +16,11 @@
  */
 package me.val_mobile.data;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 
 public class MiscItems extends ItemManager {
 
-    public MiscItems(RealisticSurvivalPlugin plugin) {
+    public MiscItems(RSVPlugin plugin) {
         super(plugin.getMiscItemsConfig());
     }
 }

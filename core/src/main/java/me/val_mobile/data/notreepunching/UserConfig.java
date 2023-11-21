@@ -17,7 +17,7 @@
 package me.val_mobile.data.notreepunching;
 
 import me.val_mobile.data.RSVConfig;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 
 public class UserConfig extends RSVConfig {
 
@@ -25,7 +25,7 @@ public class UserConfig extends RSVConfig {
     public static final boolean REPLACE = false;
     public static final boolean UPDATE = true;
 
-    public UserConfig(RealisticSurvivalPlugin plugin) {
+    public UserConfig(RSVPlugin plugin) {
         super(plugin, PATH, REPLACE, UPDATE);
     }
 }

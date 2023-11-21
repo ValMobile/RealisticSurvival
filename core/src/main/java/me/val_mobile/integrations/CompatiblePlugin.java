@@ -16,7 +16,7 @@
  */
 package me.val_mobile.integrations;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -33,7 +33,7 @@ public abstract class CompatiblePlugin {
     protected final String name;
     protected final boolean isIntegrated;
 
-    public CompatiblePlugin(@Nonnull RealisticSurvivalPlugin plugin, @Nonnull String name) {
+    public CompatiblePlugin(@Nonnull RSVPlugin plugin, @Nonnull String name) {
         this.name = name;
         this.intConfig = plugin.getIntegrationsConfig();
 

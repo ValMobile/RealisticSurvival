@@ -17,6 +17,7 @@
 package me.val_mobile.utils;
 
 import org.bukkit.Material;
+import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -150,6 +151,21 @@ public class Ingredient {
                 }
             }
             return test(item.getType());
+        }
+        return false;
+    }
+
+    public final boolean test(@Nullable CraftingInventory inv) {
+        if (inv == null) {
+            return false;
+        }
+
+        for (RSVItem i : items) {
+            if (i != null) {
+                if (inv.contains(i)) {
+                    return true;
+                }
+            }
         }
         return false;
     }

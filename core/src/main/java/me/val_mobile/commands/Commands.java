@@ -19,7 +19,7 @@ package me.val_mobile.commands;
 import me.val_mobile.data.RSVConfig;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.IceFireModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.tan.*;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.RSVMob;
@@ -45,13 +45,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static me.val_mobile.realisticsurvival.RealisticSurvivalPlugin.NAME;
+import static me.val_mobile.rsv.RSVPlugin.NAME;
 
 /**
  * Commands is a class that allows users to
  * access the plugin's commands in-game
  * @author Val_Mobile
- * @version 1.2.6-RELEASE
+ * @version 1.2.7-RELEASE
  * @since 1.0
  */
 public class Commands implements CommandExecutor {
@@ -60,11 +60,11 @@ public class Commands implements CommandExecutor {
      * Dependency injecting the main and custom config class for use
      * The custom config class must be injected because its non-static methods are needed
      */
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final FileConfiguration config;
 
     // constructing the Commands class
-    public Commands(RealisticSurvivalPlugin plugin) {
+    public Commands(RSVPlugin plugin) {
         this.plugin = plugin;
         this.config = plugin.getCommandsConfig();
     }

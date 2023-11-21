@@ -23,7 +23,7 @@ import me.val_mobile.data.spartanandfire.ItemConfig;
 import me.val_mobile.data.spartanandfire.RecipesConfig;
 import me.val_mobile.data.spartanandfire.UserConfig;
 import me.val_mobile.iceandfire.IceFireModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanweaponry.SwModule;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -32,13 +32,13 @@ import java.util.Map;
 
 public class SfModule extends RSVModule {
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
 
     private SfEvents events;
 
     public static final String NAME = "SpartanandFire";
 
-    public SfModule(RealisticSurvivalPlugin plugin) {
+    public SfModule(RSVPlugin plugin) {
         super(NAME, plugin, Map.of(RSVModule.getModule(IceFireModule.NAME), "Module requires Ice and Fire to be enabled.", RSVModule.getModule(SwModule.NAME), "Module requires Spartan Weaponry to be enabled."), Map.of());
         this.plugin = plugin;
     }

@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package me.val_mobile.realisticsurvival;
+package me.val_mobile.rsv;
 
 import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.commands.Commands;
@@ -43,11 +43,11 @@ import javax.annotation.Nonnull;
 import java.io.File;
 import java.util.Collection;
 
-public class RealisticSurvivalPlugin extends JavaPlugin {
+public class RSVPlugin extends JavaPlugin {
 
     public static final String NAME = "RealisticSurvival";
 
-    private static RealisticSurvivalPlugin plugin;
+    private static RSVPlugin plugin;
     private static Utils util;
     private ToolUtils toolUtils;
     private ToolHandler toolHandler;
@@ -164,7 +164,7 @@ public class RealisticSurvivalPlugin extends JavaPlugin {
     }
 
     @Nonnull
-    public static RealisticSurvivalPlugin getPlugin() {
+    public static RSVPlugin getPlugin() {
         return plugin;
     }
 

@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.ToolHandler.Tool;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -78,12 +78,12 @@ public class ToolUtils {
             "NETHERITE_SHOVEL"
     };
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     //final Map<Material,Tool> uToolMap;
 
 
     // This is called AFTER BestToolsHandler, so the Utils can affect the Handler
-    public ToolUtils(RealisticSurvivalPlugin plugin) {
+    public ToolUtils(RSVPlugin plugin) {
         this.plugin = Objects.requireNonNull(plugin, "Main must not be null");
         Objects.requireNonNull(plugin.getToolHandler(), "ToolsHandler must be instantiated before ToolUtils!");
 

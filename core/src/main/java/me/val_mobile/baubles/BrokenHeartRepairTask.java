@@ -17,7 +17,7 @@
 package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -36,7 +36,7 @@ public class BrokenHeartRepairTask extends BukkitRunnable implements RSVTask {
     private static final Map<UUID, BrokenHeartRepairTask> tasks = new HashMap<>();
     private final RSVPlayer rsvPlayer;
     private final UUID id;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final Collection<String> allowedWorlds;
     private final boolean sleepRepairEnabled;
     private final int durabilityChange;
@@ -44,7 +44,7 @@ public class BrokenHeartRepairTask extends BukkitRunnable implements RSVTask {
 
     private int ticks = 0;
 
-    public BrokenHeartRepairTask(RealisticSurvivalPlugin plugin, BaubleModule module, RSVPlayer rsvPlayer) {
+    public BrokenHeartRepairTask(RSVPlugin plugin, BaubleModule module, RSVPlayer rsvPlayer) {
         this.rsvPlayer = rsvPlayer;
         this.id = rsvPlayer.getPlayer().getUniqueId();
         this.allowedWorlds = module.getAllowedWorlds();

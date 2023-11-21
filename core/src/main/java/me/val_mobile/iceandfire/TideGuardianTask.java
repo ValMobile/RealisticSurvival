@@ -16,7 +16,7 @@
  */
 package me.val_mobile.iceandfire;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -35,7 +35,7 @@ public class TideGuardianTask extends BukkitRunnable {
     private static final Map<UUID, TideGuardianTask> tasks = new HashMap<>();
     private final FileConfiguration config;
     private final Player player;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private boolean containsTideArmor = false;
     private final Collection<String> allowedWorlds;
 
@@ -49,7 +49,7 @@ public class TideGuardianTask extends BukkitRunnable {
     private final boolean strRequiresWater;
     private final boolean breathingRequiresWater;
 
-    public TideGuardianTask(IceFireModule module, Player player, RealisticSurvivalPlugin plugin) {
+    public TideGuardianTask(IceFireModule module, Player player, RSVPlugin plugin) {
         this.player = player;
         this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();

@@ -16,7 +16,7 @@
  */
 package me.val_mobile.data;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import me.val_mobile.utils.recipe.*;
 import org.bukkit.Bukkit;
@@ -33,11 +33,11 @@ public class RecipeManager {
     private final Set<NamespacedKey> recipeKeys = new HashSet<>();
     private final Set<RSVAnvilRecipe> anvilRecipes = new HashSet<>();
     private final Set<RSVBrewingRecipe> brewingRecipes = new HashSet<>();
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final FileConfiguration recipeConfig;
     private final FileConfiguration userConfig;
 
-    public RecipeManager(RealisticSurvivalPlugin plugin, FileConfiguration recipeConfig, FileConfiguration userConfig) {
+    public RecipeManager(RSVPlugin plugin, FileConfiguration recipeConfig, FileConfiguration userConfig) {
         this.plugin = plugin;
         this.recipeConfig = recipeConfig;
         this.userConfig = userConfig;
@@ -141,7 +141,7 @@ public class RecipeManager {
             }
             case "Brewing" -> {
                 try {
-                    recipe = new RSVBrewingRecipe(plugin, recipeConfig, recipeName);
+                    recipe = new RSVBrewingRecipe(recipeConfig, recipeName, plugin);
                     brewingRecipes.add((RSVBrewingRecipe) recipe);
                 } catch (Exception ignored) {}
             }

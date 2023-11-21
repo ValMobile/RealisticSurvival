@@ -16,7 +16,7 @@
  */
 package me.val_mobile.iceandfire;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -28,11 +28,11 @@ import javax.annotation.Nonnull;
 
 public class LightningExplosionAttack extends ExplosionAttack {
 
-    public LightningExplosionAttack(EnderDragon dragon, Location target, RealisticSurvivalPlugin plugin) {
+    public LightningExplosionAttack(EnderDragon dragon, Location target, RSVPlugin plugin) {
         super(dragon, target, plugin);
     }
 
-    public LightningExplosionAttack(Dragon dragon, Location target, RealisticSurvivalPlugin plugin) {
+    public LightningExplosionAttack(Dragon dragon, Location target, RSVPlugin plugin) {
         super(dragon, target, plugin);
     }
 

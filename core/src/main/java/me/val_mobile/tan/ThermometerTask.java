@@ -18,7 +18,7 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.RSVTask;
 import org.bukkit.Location;
@@ -40,7 +40,7 @@ public class ThermometerTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, ThermometerTask> tasks = new HashMap<>();
     private final FileConfiguration config;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final RSVPlayer player;
     private final UUID id;
     private final Collection<String> allowedWorlds;
@@ -48,7 +48,7 @@ public class ThermometerTask extends BukkitRunnable implements RSVTask {
     private final Location originalCompassTarget;
 
 
-    public ThermometerTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public ThermometerTask(RSVPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
         this.config = RSVModule.getModule(TanModule.NAME).getUserConfig().getConfig();
         this.player = player;

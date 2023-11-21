@@ -17,7 +17,7 @@
 package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanandfire.FreezeTask;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -34,15 +34,15 @@ public interface IceDragon extends Dragon {
 
     default void performSpecialAbility(LivingEntity entity) {
         if (!FreezeTask.hasTask(entity.getUniqueId())) {
-            new FreezeTask(RealisticSurvivalPlugin.getPlugin(), getStage(), entity).start();
+            new FreezeTask(RSVPlugin.getPlugin(), getStage(), entity).start();
         }
     }
 
     default void triggerBreathAttack(Location target) {
-        new IceBreath(this, target, RealisticSurvivalPlugin.getPlugin()).start();
+        new IceBreath(this, target, RSVPlugin.getPlugin()).start();
     }
 
     default void triggerExplosionAttack(Location target) {
-        new IceExplosionAttack(this, target, RealisticSurvivalPlugin.getPlugin()).start();
+        new IceExplosionAttack(this, target, RSVPlugin.getPlugin()).start();
     }
 }

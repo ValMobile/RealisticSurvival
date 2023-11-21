@@ -32,8 +32,7 @@ public class RecipeIngredient extends Ingredient {
         super(raw);
     }
 
-    @Nonnull
-    public RecipeChoice getRecipeChoice() {
+    public @Nonnull RecipeChoice getRecipeChoice() {
         if (!getItems().isEmpty()) {
             List<ItemStack> items = new ArrayList<>(getItems());
 

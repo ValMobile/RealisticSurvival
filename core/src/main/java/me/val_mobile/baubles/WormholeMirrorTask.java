@@ -16,7 +16,7 @@
  */
 package me.val_mobile.baubles;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -31,13 +31,13 @@ import java.util.UUID;
 public class WormholeMirrorTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, WormholeMirrorTask> tasks = new HashMap<>();
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final UUID id;
     private int ticks;
     private final int duration;
     private final int tickPeriod;
 
-    public WormholeMirrorTask(BaubleModule module, Player player, RealisticSurvivalPlugin plugin) {
+    public WormholeMirrorTask(BaubleModule module, Player player, RSVPlugin plugin) {
         this.id = player.getUniqueId();
         this.plugin = plugin;
         FileConfiguration config = module.getUserConfig().getConfig();

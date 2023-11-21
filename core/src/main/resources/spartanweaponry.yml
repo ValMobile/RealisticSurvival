@@ -2,7 +2,7 @@
 #          Spartan's Weaponry         #
 #######################################
 
-ConfigId: "1.2.6-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.7-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -2683,76 +2683,76 @@ Items:
   netherite_longbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 2.25
-    ArrowVelocityMultiplier: 2.25
-  diamond_longbow:
-    Enabled:
-      EnableAllVersions: true
-    AttackDamageMultiplier: 1.5
-    ArrowVelocityMultiplier: 1.5
-  gold_longbow:
-    Enabled:
-      EnableAllVersions: true
-    AttackDamageMultiplier: 1.1
-    ArrowVelocityMultiplier: 1.1
-  iron_longbow:
-    Enabled:
-      EnableAllVersions: true
     AttackDamageMultiplier: 1.35
     ArrowVelocityMultiplier: 1.35
-  leather_longbow:
-    Enabled:
-      EnableAllVersions: true
-    AttackDamageMultiplier: 1.3
-    ArrowVelocityMultiplier: 1.3
-  copper_longbow:
+  diamond_longbow:
     Enabled:
       EnableAllVersions: true
     AttackDamageMultiplier: 1.25
     ArrowVelocityMultiplier: 1.25
-  wooden_longbow:
+  gold_longbow:
+    Enabled:
+      EnableAllVersions: true
+    AttackDamageMultiplier: 1.025
+    ArrowVelocityMultiplier: 1.025
+  iron_longbow:
+    Enabled:
+      EnableAllVersions: true
+    AttackDamageMultiplier: 1.15
+    ArrowVelocityMultiplier: 1.15
+  leather_longbow:
     Enabled:
       EnableAllVersions: true
     AttackDamageMultiplier: 1.1
     ArrowVelocityMultiplier: 1.1
+  copper_longbow:
+    Enabled:
+      EnableAllVersions: true
+    AttackDamageMultiplier: 1.05
+    ArrowVelocityMultiplier: 1.05
+  wooden_longbow:
+    Enabled:
+      EnableAllVersions: true
+    AttackDamageMultiplier: 1.025
+    ArrowVelocityMultiplier: 1.025
 
   # Crossbows
 
   netherite_crossbow:
     Enabled:
       EnableAllVersions: true
-    AttackDamageMultiplier: 2.25
-    ArrowVelocityMultiplier: 2.25
-  diamond_crossbow:
-    Enabled:
-      EnableAllVersions: true
-    AttackDamageMultiplier: 1.5
-    ArrowVelocityMultiplier: 1.5
-  gold_crossbow:
-    Enabled:
-      EnableAllVersions: true
-    AttackDamageMultiplier: 1.1
-    ArrowVelocityMultiplier: 1.1
-  iron_crossbow:
-    Enabled:
-      EnableAllVersions: true
     AttackDamageMultiplier: 1.35
     ArrowVelocityMultiplier: 1.35
-  leather_crossbow:
-    Enabled:
-      EnableAllVersions: true
-    AttackDamageMultiplier: 1.3
-    ArrowVelocityMultiplier: 1.3
-  copper_crossbow:
+  diamond_crossbow:
     Enabled:
       EnableAllVersions: true
     AttackDamageMultiplier: 1.25
     ArrowVelocityMultiplier: 1.25
-  wooden_crossbow:
+  gold_crossbow:
+    Enabled:
+      EnableAllVersions: true
+    AttackDamageMultiplier: 1.025
+    ArrowVelocityMultiplier: 1.025
+  iron_crossbow:
+    Enabled:
+      EnableAllVersions: true
+    AttackDamageMultiplier: 1.15
+    ArrowVelocityMultiplier: 1.15
+  leather_crossbow:
     Enabled:
       EnableAllVersions: true
     AttackDamageMultiplier: 1.1
     ArrowVelocityMultiplier: 1.1
+  copper_crossbow:
+    Enabled:
+      EnableAllVersions: true
+    AttackDamageMultiplier: 1.05
+    ArrowVelocityMultiplier: 1.05
+  wooden_crossbow:
+    Enabled:
+      EnableAllVersions: true
+    AttackDamageMultiplier: 1.025
+    ArrowVelocityMultiplier: 1.025
 
 # Customize recipes
 # Requires restart upon changing

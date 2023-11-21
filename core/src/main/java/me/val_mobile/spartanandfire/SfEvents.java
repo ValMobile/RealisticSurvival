@@ -17,7 +17,7 @@
 package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.ModuleEvents;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
@@ -32,11 +32,11 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class SfEvents extends ModuleEvents implements Listener {
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final SfModule module;
     private final FileConfiguration config;
 
-    public SfEvents(SfModule module, RealisticSurvivalPlugin plugin) {
+    public SfEvents(SfModule module, RSVPlugin plugin) {
         super(module, plugin);
         this.plugin = plugin;
         this.module = module;

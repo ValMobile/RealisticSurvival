@@ -16,17 +16,17 @@
  */
 package me.val_mobile.spartanweaponry;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class KbTask extends BukkitRunnable {
 
     private final Entity entity;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final double multiplier;
 
-    public KbTask(RealisticSurvivalPlugin plugin, Entity entity, double multiplier) {
+    public KbTask(RSVPlugin plugin, Entity entity, double multiplier) {
         this.entity = entity;
         this.plugin = plugin;
         this.multiplier = multiplier;

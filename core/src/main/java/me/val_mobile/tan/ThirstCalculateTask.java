@@ -17,7 +17,7 @@
 package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
@@ -39,7 +39,7 @@ public class ThirstCalculateTask extends BukkitRunnable implements RSVTask {
     private final TempManager tempManager;
     private final ThirstManager thirstManager;
     private final FileConfiguration config;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final RSVPlayer player;
     private final UUID id;
     private final Collection<String> allowedWorlds;
@@ -59,7 +59,7 @@ public class ThirstCalculateTask extends BukkitRunnable implements RSVTask {
     public static final int MAXIMUM_THIRST = 20;
     public static final int MINIMUM_THIRST = 0;
 
-    public ThirstCalculateTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public ThirstCalculateTask(TanModule module, RSVPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
         this.module = module;
         this.tempManager = module.getTempManager();

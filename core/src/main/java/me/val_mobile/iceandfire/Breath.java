@@ -16,17 +16,17 @@
  */
 package me.val_mobile.iceandfire;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.Location;
 import org.bukkit.entity.EnderDragon;
 
 public abstract class Breath extends GenericBreath {
 
-    public Breath(EnderDragon dragon, Location target, RealisticSurvivalPlugin plugin) {
+    public Breath(EnderDragon dragon, Location target, RSVPlugin plugin) {
         super(dragon, target, plugin, BreathType.BREATH);
     }
 
-    public Breath(Dragon dragon, Location target, RealisticSurvivalPlugin plugin) {
+    public Breath(Dragon dragon, Location target, RSVPlugin plugin) {
         super(dragon, target, plugin, BreathType.BREATH);
     }
 

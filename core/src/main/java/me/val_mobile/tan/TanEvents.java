@@ -21,7 +21,7 @@ import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.data.baubles.DataModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.DisplayTask;
 import me.val_mobile.utils.PlayerJumpEvent;
 import me.val_mobile.utils.RSVItem;
@@ -60,7 +60,7 @@ import java.util.*;
 
 public class TanEvents extends ModuleEvents implements Listener {
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final FileConfiguration config;
     private final boolean tempEnabled;
     private final TanModule module;
@@ -69,7 +69,7 @@ public class TanEvents extends ModuleEvents implements Listener {
     private final ThirstManager thirstManager;
 
 
-    public TanEvents(TanModule module, RealisticSurvivalPlugin plugin) {
+    public TanEvents(TanModule module, RSVPlugin plugin) {
         super(module, plugin);
         this.module = module;
         this.plugin = plugin;

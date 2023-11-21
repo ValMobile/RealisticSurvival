@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -34,7 +34,7 @@ import java.util.Map;
 
 public class LorePresets {
 
-    private static final FileConfiguration CONFIG = RealisticSurvivalPlugin.getLorePresetConfig();
+    private static final FileConfiguration CONFIG = RSVPlugin.getLorePresetConfig();
 
     public static void addRapierLore(List<String> lore, ConfigurationSection section) {
         DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));

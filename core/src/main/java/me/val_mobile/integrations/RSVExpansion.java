@@ -18,7 +18,7 @@ package me.val_mobile.integrations;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.tan.TanModule;
 import me.val_mobile.tan.TempManager;
 import me.val_mobile.tan.TemperatureCalculateTask;
@@ -35,12 +35,12 @@ import java.util.Map;
 
 public class RSVExpansion extends PlaceholderExpansion {
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final TempManager tempManager;
     private final ThirstManager thirstManager;
     private final CharacterValues charValues;
 
-    public RSVExpansion(RealisticSurvivalPlugin plugin) {
+    public RSVExpansion(RSVPlugin plugin) {
         this.plugin = plugin;
         TanModule module = (TanModule) RSVModule.getModule(TanModule.NAME);
         this.tempManager = module.getTempManager();

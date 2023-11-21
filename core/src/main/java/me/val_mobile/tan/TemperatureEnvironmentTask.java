@@ -17,7 +17,7 @@
 package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -37,14 +37,14 @@ public class TemperatureEnvironmentTask extends BukkitRunnable implements RSVTas
 
     private final TemperatureCalculateTask calcTask;
     private final FileConfiguration config;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
     private final ConfigurationSection section;
     private double regulate = 0D;
     private double change = 0D;
 
-    public TemperatureEnvironmentTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public TemperatureEnvironmentTask(TanModule module, RSVPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();
         this.player = player;

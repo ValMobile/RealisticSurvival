@@ -16,7 +16,7 @@
  */
 package me.val_mobile.iceandfire;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -26,7 +26,7 @@ public abstract class ExplosionAttack extends GenericBreath {
 
     private final ExplosiveBreathBlock block;
 
-    public ExplosionAttack(EnderDragon dragon, Location target, RealisticSurvivalPlugin plugin) {
+    public ExplosionAttack(EnderDragon dragon, Location target, RSVPlugin plugin) {
         super(dragon, target, plugin, BreathType.EXPLOSION);
 
         String capitalizeBreed = StringUtils.capitalize(DragonUtils.getBreed(dragon).toString().toLowerCase());
@@ -34,7 +34,7 @@ public abstract class ExplosionAttack extends GenericBreath {
         this.block = new ExplosiveBreathBlock(loc, Material.valueOf(config.getString("Dragon." + capitalizeBreed + "Dragon.ExplosionAttack.FallingBlock")));
     }
 
-    public ExplosionAttack(Dragon dragon, Location target, RealisticSurvivalPlugin plugin) {
+    public ExplosionAttack(Dragon dragon, Location target, RSVPlugin plugin) {
         super(dragon, target, plugin, BreathType.EXPLOSION);
 
         String capitalizeBreed = StringUtils.capitalize(dragon.getBreed().toString().toLowerCase());

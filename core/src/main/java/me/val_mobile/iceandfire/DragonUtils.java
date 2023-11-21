@@ -17,7 +17,7 @@
 package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanandfire.BurnTask;
 import me.val_mobile.spartanandfire.ElectrocuteTask;
 import me.val_mobile.spartanandfire.FreezeTask;
@@ -101,13 +101,13 @@ public class DragonUtils {
 
     public static void performSpecialFireAbility(EnderDragon dragon, LivingEntity defender) {
         if (!BurnTask.hasTask(defender.getUniqueId())) {
-            new BurnTask(RealisticSurvivalPlugin.getPlugin(), defender, (CONFIG.getInt("Dragon.FireDragon.InfernoAbility.Stage" + getStage(dragon))), CONFIG.getInt("Dragon.FireDragon.InfernoAbility.TickPeriod")).start();
+            new BurnTask(RSVPlugin.getPlugin(), defender, (CONFIG.getInt("Dragon.FireDragon.InfernoAbility.Stage" + getStage(dragon))), CONFIG.getInt("Dragon.FireDragon.InfernoAbility.TickPeriod")).start();
         }
     }
 
     public static void performSpecialIceAbility(EnderDragon dragon, LivingEntity defender) {
         if (!FreezeTask.hasTask(defender.getUniqueId())) {
-            new FreezeTask(RealisticSurvivalPlugin.getPlugin(), getStage(dragon), defender).start();
+            new FreezeTask(RSVPlugin.getPlugin(), getStage(dragon), defender).start();
         }
     }
 
@@ -120,7 +120,7 @@ public class DragonUtils {
             loc.getWorld().strikeLightning(loc);
         }
         if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
-            new ElectrocuteTask(RealisticSurvivalPlugin.getPlugin(), getStage(dragon), defender).start();
+            new ElectrocuteTask(RSVPlugin.getPlugin(), getStage(dragon), defender).start();
         }
     }
 
@@ -147,28 +147,28 @@ public class DragonUtils {
     }
 
     public static void triggerBreathFireAttack(EnderDragon dragon, Location target) {
-        new FireBreath(dragon, target, RealisticSurvivalPlugin.getPlugin()).start();
+        new FireBreath(dragon, target, RSVPlugin.getPlugin()).start();
     }
 
     public static void triggerBreathIceAttack(EnderDragon dragon, Location target) {
-        new IceBreath(dragon, target, RealisticSurvivalPlugin.getPlugin()).start();
+        new IceBreath(dragon, target, RSVPlugin.getPlugin()).start();
     }
 
 
     public static void triggerBreathLightningAttack(EnderDragon dragon, Location target) {
-        new LightningBreath(dragon, target, RealisticSurvivalPlugin.getPlugin()).start();
+        new LightningBreath(dragon, target, RSVPlugin.getPlugin()).start();
     }
 
     public static void triggerExplosionFireAttack(EnderDragon dragon, Location target) {
-        new FireExplosionAttack(dragon, target, RealisticSurvivalPlugin.getPlugin()).start();
+        new FireExplosionAttack(dragon, target, RSVPlugin.getPlugin()).start();
     }
 
     public static void triggerExplosionIceAttack(EnderDragon dragon, Location target) {
-        new IceExplosionAttack(dragon, target, RealisticSurvivalPlugin.getPlugin()).start();
+        new IceExplosionAttack(dragon, target, RSVPlugin.getPlugin()).start();
     }
 
     public static void triggerExplosionLightningAttack(EnderDragon dragon, Location target) {
-        new LightningExplosionAttack(dragon, target, RealisticSurvivalPlugin.getPlugin()).start();
+        new LightningExplosionAttack(dragon, target, RSVPlugin.getPlugin()).start();
     }
 
     public static Collection<ItemStack> generateLoot(EnderDragon dragon) {

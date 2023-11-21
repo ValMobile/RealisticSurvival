@@ -22,7 +22,7 @@ import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.*;
 import me.val_mobile.integrations.CompatiblePlugin;
 import me.val_mobile.integrations.PAPI;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanweaponry.KbTask;
 import me.val_mobile.utils.ToolHandler.Tool;
 import org.apache.commons.lang.StringUtils;
@@ -70,7 +70,7 @@ public class Utils {
     public static final double ATTACK_SPEED_CONSTANT = -4.0;
     private static final Pattern VERSION_PATTERN = Pattern.compile("([1-9])\\.([1-9][0-9]|[1-9])(\\.([0-9]))?");
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
 
     private static InternalsProvider internals;
 
@@ -84,7 +84,7 @@ public class Utils {
         }
     }
 
-    public Utils(RealisticSurvivalPlugin plugin) {
+    public Utils(RSVPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -603,30 +603,30 @@ public class Utils {
     }
 
     public static <T> void addNbtTag(@Nonnull Entity entity, @Nonnull String key, @Nonnull T value, @Nonnull PersistentDataType<T,T> type) {
-        RealisticSurvivalPlugin.getUtil().addInternalNbtTag(entity, key, value, type);
+        RSVPlugin.getUtil().addInternalNbtTag(entity, key, value, type);
     }
 
     public static <T> void addNbtTag(@Nonnull ItemStack item, @Nonnull String key, @Nonnull T value, @Nonnull PersistentDataType<T,T> type) {
-        RealisticSurvivalPlugin.getUtil().addInternalNbtTag(item, key, value, type);
+        RSVPlugin.getUtil().addInternalNbtTag(item, key, value, type);
     }
 
     @Nullable
     public static <T> T getNbtTag(@Nonnull Entity entity, @Nonnull String key, @Nonnull PersistentDataType<T,T> type) {
-        return RealisticSurvivalPlugin.getUtil().getInternalNbtTag(entity, key, type);
+        return RSVPlugin.getUtil().getInternalNbtTag(entity, key, type);
     }
 
 
     @Nullable
     public static <T> T getNbtTag(@Nonnull ItemStack item, @Nonnull String key, @Nonnull PersistentDataType<T,T> type) {
-        return RealisticSurvivalPlugin.getUtil().getInternalNbtTag(item, key, type);
+        return RSVPlugin.getUtil().getInternalNbtTag(item, key, type);
     }
 
     public static boolean hasNbtTag(@Nonnull Entity entity, @Nonnull String key) {
-        return RealisticSurvivalPlugin.getUtil().hasInternalNbtTag(entity, key);
+        return RSVPlugin.getUtil().hasInternalNbtTag(entity, key);
     }
 
     public static boolean hasNbtTag(@Nonnull ItemStack item, @Nonnull String key) {
-        return RealisticSurvivalPlugin.getUtil().hasInternalNbtTag(item, key);
+        return RSVPlugin.getUtil().hasInternalNbtTag(item, key);
     }
 
     public static int getMaxDurability(@Nonnull ItemStack item) {
@@ -646,7 +646,7 @@ public class Utils {
     }
 
     public static int getVanillaDurability(@Nonnull ItemStack item) {
-        return getMaxVanillaDurability(item) - ((Damageable) item).getDamage();
+        return getMaxVanillaDurability(item) - ((Damageable) item.getItemMeta()).getDamage();
     }
 
     public static int getCustomDurability(@Nonnull ItemStack item) {
@@ -658,11 +658,11 @@ public class Utils {
     }
 
     public static void setKbMultiplier(@Nonnull Entity entity, double multiplier) {
-        RealisticSurvivalPlugin.getUtil().setInternalKbMultiplier(entity, multiplier);
+        RSVPlugin.getUtil().setInternalKbMultiplier(entity, multiplier);
     }
 
     public static void setZeroKb(@Nonnull Entity entity) {
-        RealisticSurvivalPlugin.getUtil().setInternalZeroKb(entity);
+        RSVPlugin.getUtil().setInternalZeroKb(entity);
     }
 
     public static boolean doublesEquals(double v, double v1) {
@@ -883,11 +883,15 @@ public class Utils {
         return null;
     }
 
-    public static void dropLooting(@Nonnull ConfigurationSection section, @Nonnull ItemStack drop, @Nullable ItemStack tool, @Nonnull Location loc, boolean checkLooting) {
+    public static boolean dropLooting(@Nonnull ConfigurationSection section, @Nonnull ItemStack drop, @Nullable ItemStack tool, @Nonnull Location loc, boolean checkLooting) {
         ItemStack item = getMobLoot(section, drop, tool, checkLooting);
 
-        if (Utils.isItemReal(item))
+        if (Utils.isItemReal(item)) {
             loc.getWorld().dropItemNaturally(loc, item);
+            return true;
+        }
+        return false;
+
     }
 
     @Nullable
@@ -1029,12 +1033,12 @@ public class Utils {
     }
 
     public static void updateItem(@Nonnull ItemStack item) {
-        RealisticSurvivalPlugin.getUtil().updateInternalItem(item);
+        RSVPlugin.getUtil().updateInternalItem(item);
     }
 
     @Nonnull
     public static ItemStack getNetheriteRSVWeapon(@Nonnull ItemStack item) {
-        return RealisticSurvivalPlugin.getUtil().getInternalNetheriteRSVWeapon(item);
+        return RSVPlugin.getUtil().getInternalNetheriteRSVWeapon(item);
     }
 
     @Nonnull
@@ -1134,7 +1138,7 @@ public class Utils {
 
     @Nonnull
     public static Tool getBestTool(@Nonnull Material mat) {
-        return RealisticSurvivalPlugin.getUtil().getInternalBestTool(mat);
+        return RSVPlugin.getUtil().getInternalBestTool(mat);
     }
 
     public static void registerEntities() {

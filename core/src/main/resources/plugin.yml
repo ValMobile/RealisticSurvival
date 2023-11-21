@@ -1,4 +1,4 @@
-main: me.val_mobile.realisticsurvival.RealisticSurvivalPlugin
+main: me.val_mobile.rsv.RSVPlugin
 name: ${project.parent.name}
 version: ${project.parent.version}
 author: Val_Mobile

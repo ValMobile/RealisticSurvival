@@ -23,7 +23,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class RSVAnvilRecipe implements Recipe {
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
+
+public class RSVAnvilRecipe implements Recipe, RSVRecipe {
 
     private final String name;
     private final ItemStack result;
@@ -32,7 +35,7 @@ public class RSVAnvilRecipe implements Recipe {
     private final int repairCost;
     private final int maxRepairCost;
 
-    public RSVAnvilRecipe(FileConfiguration config, String name) {
+    public RSVAnvilRecipe(@Nonnull FileConfiguration config, @Nonnull String name) {
         this.name = name;
 
         this.result = RSVRecipe.getResult(config, name);
@@ -43,31 +46,32 @@ public class RSVAnvilRecipe implements Recipe {
         this.maxRepairCost = config.getInt(name + ".MaximumRepairCost");
     }
 
-    public String getName() {
+    public @Nonnull String getName() {
         return name;
     }
 
-    public ItemStack getResult() {
+    @Override
+    public @Nonnull ItemStack getResult() {
         return result;
     }
 
-    public ItemStack getLeftIngredient() {
+    public @Nonnull ItemStack getLeftIngredient() {
         return leftIng;
     }
 
-    public ItemStack getRightIngredient() {
+    public @Nonnull ItemStack getRightIngredient() {
         return rightIng;
     }
 
-    public int getRepairCost() {
+    public @Nonnegative int getRepairCost() {
         return repairCost;
     }
 
-    public int getMaxRepairCost() {
+    public @Nonnegative int getMaxRepairCost() {
         return maxRepairCost;
     }
 
-    public boolean isValidRecipe(AnvilInventory inv) {
+    public boolean isValidRecipe(@Nonnull AnvilInventory inv) {
         ItemStack firstItem = inv.getItem(0);
         ItemStack secondItem = inv.getItem(1);
 
@@ -82,7 +86,7 @@ public class RSVAnvilRecipe implements Recipe {
         return false;
     }
 
-    public void useRecipe(PrepareAnvilEvent e) {
+    public void useRecipe(@Nonnull PrepareAnvilEvent e) {
         AnvilInventory inv = e.getInventory();
 
         e.setResult(result);

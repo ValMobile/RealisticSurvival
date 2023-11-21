@@ -16,7 +16,7 @@
  */
 package me.val_mobile.spartanweaponry;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -32,7 +32,7 @@ import java.util.UUID;
 public class SweepAttackTask extends BukkitRunnable {
 
     private static final Collection<UUID> mobs = new ArrayList<>();
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final List<Entity> nearby;
     private final List<UUID> attacked = new ArrayList<>();
     private final Entity attacker;
@@ -40,7 +40,7 @@ public class SweepAttackTask extends BukkitRunnable {
     private final double damage;
     private final boolean checkPet;
 
-    public SweepAttackTask(RealisticSurvivalPlugin plugin, List<Entity> nearby, Entity attacker, Entity defender, double damage, boolean checkPet) {
+    public SweepAttackTask(RSVPlugin plugin, List<Entity> nearby, Entity attacker, Entity defender, double damage, boolean checkPet) {
         this.plugin = plugin;
         this.attacker = attacker;
         this.defender = defender;

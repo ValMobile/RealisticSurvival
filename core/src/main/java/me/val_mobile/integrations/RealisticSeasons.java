@@ -18,7 +18,7 @@ package me.val_mobile.integrations;
 
 import me.casperge.realisticseasons.api.SeasonsAPI;
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.tan.TanModule;
 import org.bukkit.entity.Player;
 
@@ -28,7 +28,7 @@ public class RealisticSeasons extends CompatiblePlugin {
 
     public static final String NAME = "RealisticSeasons";
 
-    public RealisticSeasons(RealisticSurvivalPlugin plugin) {
+    public RealisticSeasons(RSVPlugin plugin) {
         super(plugin, NAME);
     }
 

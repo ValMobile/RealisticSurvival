@@ -18,7 +18,7 @@ package me.val_mobile.spartanweaponry;
 
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
@@ -49,9 +49,9 @@ import java.util.function.Predicate;
 public class SwEvents extends ModuleEvents implements Listener {
 
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
 
-    public SwEvents(SwModule module, RealisticSurvivalPlugin plugin) {
+    public SwEvents(SwModule module, RSVPlugin plugin) {
         super(module, plugin);
         this.plugin = plugin;
     }

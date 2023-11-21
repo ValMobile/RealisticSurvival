@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.enchantments.Enchantment;
 
 import java.lang.reflect.Field;
@@ -33,9 +33,9 @@ public class RSVEnchants {
     public static final Enchantment COOLING = new EnchantmentWrapper("cooling", "Cooling", 1);
     public static final Enchantment OZZY_LINER = new EnchantmentWrapper("ozzy_liner", "Ozzy Liner", 1);
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
 
-    public RSVEnchants(RealisticSurvivalPlugin plugin) {
+    public RSVEnchants(RSVPlugin plugin) {
         this.plugin = plugin;
         populateEnchants();
     }

@@ -22,7 +22,7 @@ import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.iceandfire.ItemConfig;
 import me.val_mobile.data.iceandfire.RecipesConfig;
 import me.val_mobile.data.iceandfire.UserConfig;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -30,13 +30,13 @@ import java.util.Map;
 
 public class IceFireModule extends RSVModule {
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
 
     public static final String NAME = "IceandFire";
     private IceFireEvents events;
 
 
-    public IceFireModule(RealisticSurvivalPlugin plugin) {
+    public IceFireModule(RSVPlugin plugin) {
         super(NAME, plugin, Map.of(), Map.of());
         this.plugin = plugin;
     }

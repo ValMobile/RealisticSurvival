@@ -17,7 +17,7 @@
 package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -40,7 +40,7 @@ public class StoneSeaTask extends BukkitRunnable implements RSVTask {
     private final RSVPlayer rsvPlayer;
     private final UUID id;
     private final Collection<String> allowedWorlds;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final double baseSwimSpeed;
     private final double horizontalSpeedIncrement;
     private final double verticalSpeedIncrement;
@@ -49,7 +49,7 @@ public class StoneSeaTask extends BukkitRunnable implements RSVTask {
 
     private final FileConfiguration config;
 
-    public StoneSeaTask(BaubleModule module, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
+    public StoneSeaTask(BaubleModule module, RSVPlayer rsvPlayer, RSVPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
         this.allowedWorlds = module.getAllowedWorlds();
         this.id = rsvPlayer.getPlayer().getUniqueId();

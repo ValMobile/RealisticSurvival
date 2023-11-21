@@ -16,12 +16,15 @@
  */
 package me.val_mobile.utils.recipe;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.Material;
 import org.bukkit.block.BrewingStand;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
 
 public class BrewClock extends BukkitRunnable {
     private final BrewerInventory inventory;
@@ -30,7 +33,7 @@ public class BrewClock extends BukkitRunnable {
     private final BrewingStand stand;
     private int current;
 
-    public BrewClock(RealisticSurvivalPlugin plugin, RSVBrewingRecipe recipe, BrewerInventory inventory, int time) {
+    public BrewClock(@Nonnull RSVBrewingRecipe recipe, @Nonnull BrewerInventory inventory, @Nonnegative int time, @Nonnull RSVPlugin plugin) {
         this.recipe = recipe;
         this.inventory = inventory;
         this.stand = inventory.getHolder();
@@ -101,7 +104,7 @@ public class BrewClock extends BukkitRunnable {
     }
 
     // Check if any slots were changed
-    public boolean searchChanged(ItemStack[] before, ItemStack[] after, boolean mode) {
+    public boolean searchChanged(@Nonnull ItemStack[] before, @Nonnull ItemStack[] after, boolean mode) {
         for (int i = 0; i < before.length; i++) {
             if ((before[i] != null && after[i] == null) || (before[i] == null && after[i] != null)) {
                 return false;

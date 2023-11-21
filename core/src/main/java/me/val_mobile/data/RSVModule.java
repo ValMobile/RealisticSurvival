@@ -16,7 +16,7 @@
  */
 package me.val_mobile.data;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
@@ -60,7 +60,7 @@ public abstract class RSVModule {
     @Nonnull
     private final Map<RSVModule, String> softDependencies;
 
-    public RSVModule(@Nonnull String name, @Nonnull RealisticSurvivalPlugin plugin, @Nonnull Map<RSVModule, String> dependencies, @Nonnull Map<RSVModule, String> softDependencies) {
+    public RSVModule(@Nonnull String name, @Nonnull RSVPlugin plugin, @Nonnull Map<RSVModule, String> dependencies, @Nonnull Map<RSVModule, String> softDependencies) {
         FileConfiguration config = plugin.getConfig();
         this.name = name;
         this.dependencies = dependencies;

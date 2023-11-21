@@ -17,7 +17,7 @@
 package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -36,11 +36,11 @@ public class ScarliteRingTask extends BukkitRunnable implements RSVTask {
     private final RSVPlayer rsvPlayer;
     private final UUID id;
     private final Collection<String> allowedWorlds;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final FileConfiguration config;
     private final double defaultHealAmount;
 
-    public ScarliteRingTask(BaubleModule module, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
+    public ScarliteRingTask(BaubleModule module, RSVPlayer rsvPlayer, RSVPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
         this.config = module.getUserConfig().getConfig();
         this.allowedWorlds = module.getAllowedWorlds();

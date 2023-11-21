@@ -17,7 +17,7 @@
 package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanandfire.ElectrocuteTask;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -41,15 +41,15 @@ public interface LightningDragon extends Dragon {
             loc.getWorld().strikeLightning(loc);
         }
         if (!ElectrocuteTask.hasTask(entity.getUniqueId())) {
-            new ElectrocuteTask(RealisticSurvivalPlugin.getPlugin(), getStage(), entity).start();
+            new ElectrocuteTask(RSVPlugin.getPlugin(), getStage(), entity).start();
         }
     }
 
     default void triggerBreathAttack(Location target) {
-        new LightningBreath(this, target, RealisticSurvivalPlugin.getPlugin()).start();
+        new LightningBreath(this, target, RSVPlugin.getPlugin()).start();
     }
 
     default void triggerExplosionAttack(Location target) {
-        new LightningExplosionAttack(this, target, RealisticSurvivalPlugin.getPlugin()).start();
+        new LightningExplosionAttack(this, target, RSVPlugin.getPlugin()).start();
     }
 }

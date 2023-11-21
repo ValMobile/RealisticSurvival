@@ -1,7 +1,7 @@
 ###########################################################################
 #                                                                         #
 #   Realistic Survival Plugin   MC 1.17 - 1.20                            #
-#   Version 1.2.6-RELEASE       Made by: Val_Mobile                       #
+#   Version 1.2.7-RELEASE       Made by: Val_Mobile                       #
 #                                                                         #
 ###########################################################################
 
@@ -82,4 +82,4 @@ ToughAsNails:
 ####################################
 
 BStats: true             # Do you want non-confidential server data to be recorded for my use?
-ConfigId: "1.2.6-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.7-RELEASE"  # Used for config syncing purposes, do NOT edit

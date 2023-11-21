@@ -16,7 +16,7 @@
  */
 package me.val_mobile.data;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import me.val_mobile.utils.recipe.RSVAnvilRecipe;
@@ -57,11 +57,11 @@ import java.util.Set;
 
 public abstract class ModuleEvents implements Listener {
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final RSVModule module;
     private final FileConfiguration config;
 
-    public ModuleEvents(RSVModule module, RealisticSurvivalPlugin plugin) {
+    public ModuleEvents(RSVModule module, RSVPlugin plugin) {
         this.module = module;
         this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();

@@ -16,7 +16,7 @@
  */
 package me.val_mobile.spartanandfire;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -28,12 +28,12 @@ public class BurnTask extends BukkitRunnable {
 
     private static final Map<UUID, BurnTask> tasks = new HashMap<>();
     private final Entity entity;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private int fireTicks;
     private final int tickPeriod;
 
 
-    public BurnTask(RealisticSurvivalPlugin plugin, Entity entity, int fireTicks, int tickPeriod) {
+    public BurnTask(RSVPlugin plugin, Entity entity, int fireTicks, int tickPeriod) {
         this.entity = entity;
         this.plugin = plugin;
         this.fireTicks = fireTicks;

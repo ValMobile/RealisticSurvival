@@ -19,7 +19,7 @@ package me.val_mobile.tan;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.integrations.CompatiblePlugin;
 import me.val_mobile.integrations.RealisticSeasons;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -36,7 +36,7 @@ public class HypothermiaTask extends BukkitRunnable implements RSVTask {
     private static final Map<UUID, HypothermiaTask> tasks = new HashMap<>();
     private final TanModule module;
     private final FileConfiguration config;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final RSVPlayer player;
     private final UUID id;
     private final Collection<String> allowedWorlds;
@@ -49,7 +49,7 @@ public class HypothermiaTask extends BukkitRunnable implements RSVTask {
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
 
 
-    public HypothermiaTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public HypothermiaTask(TanModule module, RSVPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
         this.module = module;
         this.config = module.getUserConfig().getConfig();

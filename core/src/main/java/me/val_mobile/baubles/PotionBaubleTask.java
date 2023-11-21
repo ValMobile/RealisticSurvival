@@ -18,7 +18,7 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.data.baubles.DataModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.attribute.Attribute;
@@ -37,10 +37,10 @@ public class PotionBaubleTask extends BukkitRunnable implements RSVTask {
     private final RSVPlayer rsvPlayer;
     private final UUID id;
     private final Collection<String> allowedWorlds;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final PotionBauble potionBauble;
 
-    public PotionBaubleTask(BaubleModule module, PotionBauble potionBauble, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
+    public PotionBaubleTask(BaubleModule module, PotionBauble potionBauble, RSVPlayer rsvPlayer, RSVPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
         this.id = rsvPlayer.getPlayer().getUniqueId();
         this.allowedWorlds = module.getAllowedWorlds();

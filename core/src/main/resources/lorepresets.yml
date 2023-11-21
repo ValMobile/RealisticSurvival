@@ -2,7 +2,7 @@
 #          Lore Presets               #
 #######################################
 
-ConfigId: "1.2.6-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.7-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Used for Spartan Weaponry and Spartan and Fire weapons
 Rapier:         # All placeholders: %DAMAGE_ABSORBED%, %DURABILITY_TAKEN%, %DAMAGE_BONUS%

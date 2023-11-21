@@ -21,7 +21,7 @@ import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.data.baubles.BaubleInventory;
 import me.val_mobile.data.baubles.BaubleSlot;
 import me.val_mobile.data.baubles.DataModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.PlayerJumpEvent;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
@@ -59,7 +59,7 @@ import java.util.UUID;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.6-RELEASE
+ * @version 1.2.7-RELEASE
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -68,12 +68,12 @@ public class BaubleEvents extends ModuleEvents implements Listener {
      * Dependency injecting the main and util class for use
      * The util class must be injected because its non-static methods are needed
      */
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final FileConfiguration config;
     private final BaubleModule module;
 
     // constructing the BaubleEvents class
-    public BaubleEvents(BaubleModule module, RealisticSurvivalPlugin plugin) {
+    public BaubleEvents(BaubleModule module, RSVPlugin plugin) {
         super(module, plugin);
         this.plugin = plugin;
         this.module = module;

@@ -21,7 +21,7 @@ import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.integrations.CompatiblePlugin;
 import me.val_mobile.integrations.RealisticSeasons;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.tan.TanModule;
 import me.val_mobile.tan.TempManager;
 import me.val_mobile.tan.ThirstManager;
@@ -43,7 +43,7 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
     private final UUID id;
     private final FileConfiguration tanConfig;
     private final FileConfiguration ifConfig;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final RSVPlayer player;
     private final CharacterValues characterValues;
     private boolean underSirenEffect = false;
@@ -52,7 +52,7 @@ public class DisplayTask extends BukkitRunnable implements RSVTask {
     private final IceFireModule ifModule;
     private final RealisticSeasons rs;
 
-    public DisplayTask(RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public DisplayTask(RSVPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
 
         this.tanModule = (TanModule) RSVModule.getModule(TanModule.NAME);

@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils.recipe;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Ingredient;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -34,7 +34,7 @@ public class RSVShapedRecipe extends ShapedRecipe implements RSVRecipe {
 
     private final Map<Character, RecipeIngredient> ingredients = new HashMap<>();
 
-    public RSVShapedRecipe(@Nonnull FileConfiguration config, @Nonnull String name, @Nonnull RealisticSurvivalPlugin plugin) {
+    public RSVShapedRecipe(@Nonnull FileConfiguration config, @Nonnull String name, @Nonnull RSVPlugin plugin) {
         super(new NamespacedKey(plugin, name), RSVRecipe.getResult(config, name));
 
         String ingredientsPath = name + ".Ingredients";

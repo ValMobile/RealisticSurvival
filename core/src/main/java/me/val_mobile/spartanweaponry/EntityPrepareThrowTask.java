@@ -17,7 +17,7 @@
 package me.val_mobile.spartanweaponry;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
@@ -37,7 +37,7 @@ public class EntityPrepareThrowTask extends BukkitRunnable {
 
     private final FileConfiguration config;
     private final LivingEntity entity;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final RSVModule module;
     private final double chance;
     private final boolean rotateWeapon;
@@ -50,7 +50,7 @@ public class EntityPrepareThrowTask extends BukkitRunnable {
     private final List<String> blacklistedItems;
     private static final Map<UUID, EntityPrepareThrowTask> tasks = new HashMap<>();
 
-    public EntityPrepareThrowTask(RSVModule module, RealisticSurvivalPlugin plugin, LivingEntity entity, ItemStack item) {
+    public EntityPrepareThrowTask(RSVModule module, RSVPlugin plugin, LivingEntity entity, ItemStack item) {
         this.module = module;
         this.config = module.getUserConfig().getConfig();
         FileConfiguration swConfig = RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig();

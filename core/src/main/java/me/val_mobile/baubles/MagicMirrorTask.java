@@ -17,7 +17,7 @@
 package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -32,13 +32,13 @@ import java.util.UUID;
 public class MagicMirrorTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, MagicMirrorTask> tasks = new HashMap<>();
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final UUID id;
     private int ticks = 0;
     private final int duration;
     private final int tickPeriod;
 
-    public MagicMirrorTask(Player player, RealisticSurvivalPlugin plugin) {
+    public MagicMirrorTask(Player player, RSVPlugin plugin) {
         this.id = player.getUniqueId();
         this.plugin = plugin;
         FileConfiguration config = RSVModule.getModule(BaubleModule.NAME).getUserConfig().getConfig();

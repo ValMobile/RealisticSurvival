@@ -22,7 +22,7 @@ import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.notreepunching.ItemConfig;
 import me.val_mobile.data.notreepunching.RecipesConfig;
 import me.val_mobile.data.notreepunching.UserConfig;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
@@ -32,13 +32,13 @@ import java.util.Map;
 
 public class NtpModule extends RSVModule {
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
 
     private NtpEvents events;
 
     public static final String NAME = "NoTreePunching";
 
-    public NtpModule(RealisticSurvivalPlugin plugin) {
+    public NtpModule(RSVPlugin plugin) {
         super(NAME, plugin, Map.of(), Map.of());
         this.plugin = plugin;
     }

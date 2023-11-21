@@ -17,7 +17,7 @@
 package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -35,7 +35,7 @@ public class DehydrationTask extends BukkitRunnable implements RSVTask  {
     private final ThirstManager manager;
     private final UUID id;
     private final FileConfiguration config;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final RSVPlayer player;
     private final Collection<String> allowedWorlds;
     private final double damage;
@@ -47,7 +47,7 @@ public class DehydrationTask extends BukkitRunnable implements RSVTask  {
     private final Collection<PotionEffect> potionEffects = new ArrayList<>();
 
 
-    public DehydrationTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public DehydrationTask(TanModule module, RSVPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
         this.manager = module.getThirstManager();
         this.module = module;

@@ -16,7 +16,7 @@
  */
 package me.val_mobile.utils.recipe;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.SmithingRecipe;
@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
 
 public class RSVSmithingRecipe extends SmithingRecipe implements RSVRecipe {
 
-    public RSVSmithingRecipe(@Nonnull FileConfiguration config, @Nonnull String name, @Nonnull RealisticSurvivalPlugin plugin) {
+    public RSVSmithingRecipe(@Nonnull FileConfiguration config, @Nonnull String name, @Nonnull RSVPlugin plugin) {
         super(new NamespacedKey(plugin, name), RSVRecipe.getResult(config, name),
                 RSVRecipe.getRecipeChoice((config.getString(name + ".Base"))), new RecipeIngredient((config.getString(name + ".Addition"))).getRecipeChoice());
     }

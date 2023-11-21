@@ -17,7 +17,7 @@
 package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -37,14 +37,14 @@ public class PolarizedStoneTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, PolarizedStoneTask> tasks = new HashMap<>();
     private final RSVPlayer rsvPlayer;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final UUID id;
     private final Collection<String> allowedWorlds;
     private final FileConfiguration config;
     private final double maxRadius;
     private final double pullForce;
 
-    public PolarizedStoneTask(BaubleModule module, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
+    public PolarizedStoneTask(BaubleModule module, RSVPlayer rsvPlayer, RSVPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
         this.id = rsvPlayer.getPlayer().getUniqueId();
         this.allowedWorlds = module.getAllowedWorlds();

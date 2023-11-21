@@ -16,7 +16,7 @@
  */
 package me.val_mobile.data;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 
 public class CommandsConfig extends RSVConfig {
 
@@ -24,7 +24,7 @@ public class CommandsConfig extends RSVConfig {
     public static final boolean REPLACE = false;
     public static final boolean UPDATE = true;
 
-    public CommandsConfig(RealisticSurvivalPlugin plugin) {
+    public CommandsConfig(RSVPlugin plugin) {
         super(plugin, PATH, REPLACE, UPDATE);
     }
 }

@@ -17,7 +17,7 @@
 package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
 import org.apache.commons.lang.StringUtils;
@@ -46,11 +46,11 @@ public abstract class GenericBreath extends BukkitRunnable {
     protected final Particle particle;
     protected final double radius;
     protected final int decayTicks;
-    protected final RealisticSurvivalPlugin plugin;
+    protected final RSVPlugin plugin;
     protected final FileConfiguration config;
     protected int ticks = 0;
 
-    public GenericBreath(EnderDragon dragon, Location target, RealisticSurvivalPlugin plugin, BreathType type) {
+    public GenericBreath(EnderDragon dragon, Location target, RSVPlugin plugin, BreathType type) {
         this.dragon = dragon;
         this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
 
@@ -91,7 +91,7 @@ public abstract class GenericBreath extends BukkitRunnable {
     }
 
 
-    public GenericBreath(Dragon dragon, Location target, RealisticSurvivalPlugin plugin, BreathType type) {
+    public GenericBreath(Dragon dragon, Location target, RSVPlugin plugin, BreathType type) {
         this.dragon = (EnderDragon) dragon.getEntity();
         this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
 

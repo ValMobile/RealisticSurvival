@@ -16,10 +16,14 @@
  */
 package me.val_mobile.utils.recipe;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Ingredient;
+import me.val_mobile.utils.RSVItem;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.inventory.CraftingInventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 
 import javax.annotation.Nonnull;
@@ -28,12 +32,13 @@ import java.util.Collection;
 
 public class RSVShapelessRecipe extends ShapelessRecipe implements RSVRecipe {
 
-    public RSVShapelessRecipe(@Nonnull FileConfiguration config, @Nonnull String name, @Nonnull RealisticSurvivalPlugin plugin) {
+    private final ItemStack result;
+    private final Collection<RecipeIngredient> ingredients = new ArrayList<>();
+
+    public RSVShapelessRecipe(@Nonnull FileConfiguration config, @Nonnull String name, @Nonnull RSVPlugin plugin) {
         super(new NamespacedKey(plugin, name), RSVRecipe.getResult(config, name));
-
+        this.result = RSVItem.getItem(name + ".Result");
         String ingredientsPath = name + ".Ingredients";
-
-        Collection<RecipeIngredient> ingredients = new ArrayList<>();
 
         for (String text : config.getStringList(ingredientsPath)) {
             if (Ingredient.isValid(text)) {
@@ -42,5 +47,19 @@ public class RSVShapelessRecipe extends ShapelessRecipe implements RSVRecipe {
         }
 
         ingredients.forEach(ing -> this.addIngredient(ing.getRecipeChoice()));
+    }
+
+    public boolean isValidRecipe(@Nonnull CraftingInventory inv) {
+        for (RecipeIngredient ingredient : ingredients) {
+            if (!ingredient.test(inv)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void useRecipe(@Nonnull PrepareItemCraftEvent e) {
+        e.getInventory().setResult(result);
     }
 }

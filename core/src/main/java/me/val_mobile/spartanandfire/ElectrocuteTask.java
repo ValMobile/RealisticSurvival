@@ -18,7 +18,7 @@ package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.IceFireModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Damageable;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -31,14 +31,14 @@ public class ElectrocuteTask extends BukkitRunnable {
 
     private static final Map<UUID, ElectrocuteTask> tasks = new HashMap<>();
     private final Damageable entity;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final FileConfiguration config;
     private final double shockDamage;
     private int shockAmount;
     private final int tickPeriod;
 
 
-    public ElectrocuteTask(RealisticSurvivalPlugin plugin, int stage, Damageable entity) {
+    public ElectrocuteTask(RSVPlugin plugin, int stage, Damageable entity) {
         this.entity = entity;
         this.plugin = plugin;
         this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
@@ -48,7 +48,7 @@ public class ElectrocuteTask extends BukkitRunnable {
         tasks.put(entity.getUniqueId(), this);
     }
 
-    public ElectrocuteTask(RealisticSurvivalPlugin plugin, RSVModule module, String itemName, Damageable entity) {
+    public ElectrocuteTask(RSVPlugin plugin, RSVModule module, String itemName, Damageable entity) {
         this.entity = entity;
         this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();

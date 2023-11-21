@@ -17,7 +17,7 @@
 package me.val_mobile.tan;
 
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Color;
@@ -38,7 +38,7 @@ public class SweatTask extends BukkitRunnable implements RSVTask {
     private static final Map<UUID, SweatTask> tasks = new HashMap<>();
     private final TempManager manager;
     private final FileConfiguration config;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final RSVPlayer player;
     private final UUID id;
     private final Collection<String> allowedWorlds;
@@ -55,7 +55,7 @@ public class SweatTask extends BukkitRunnable implements RSVTask {
     private Particle.DustOptions dust;
 
 
-    public SweatTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public SweatTask(TanModule module, RSVPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
         this.manager = module.getTempManager();
         this.config = module.getUserConfig().getConfig();

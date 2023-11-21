@@ -17,7 +17,7 @@
 package me.val_mobile.spartanweaponry;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanandfire.BurnTask;
 import me.val_mobile.spartanandfire.ElectrocuteTask;
 import me.val_mobile.spartanandfire.FreezeTask;
@@ -49,13 +49,13 @@ public class ThrowWeaponTask extends BukkitRunnable {
     private final boolean returnWeaponCollideEntities;
     private final boolean returnWeaponTooFar;
     private final RSVModule module;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final Location started;
 
     private final Vector vector;
     private static final Map<UUID, ThrowWeaponTask> tasks = new HashMap<>();
 
-    public ThrowWeaponTask(RSVModule module, RealisticSurvivalPlugin plugin, LivingEntity entity, ItemStack item, double maxDistance, boolean rotateWeapon, boolean piercing, boolean returnWeaponCollideBlocks, boolean returnWeaponCollideEntities, boolean returnWeaponTooFar, Vector velocity) {
+    public ThrowWeaponTask(RSVModule module, RSVPlugin plugin, LivingEntity entity, ItemStack item, double maxDistance, boolean rotateWeapon, boolean piercing, boolean returnWeaponCollideBlocks, boolean returnWeaponCollideEntities, boolean returnWeaponTooFar, Vector velocity) {
         this.config = module.getUserConfig().getConfig();
         this.module = module;
         this.name = RSVItem.getNameFromItem(item);

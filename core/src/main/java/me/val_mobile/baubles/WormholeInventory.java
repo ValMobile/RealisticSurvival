@@ -17,7 +17,7 @@
 package me.val_mobile.baubles;
 
 import me.val_mobile.data.baubles.GUI;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
@@ -38,7 +38,7 @@ public class WormholeInventory extends GUI {
     private final FileConfiguration config;
     private int nextSlot = 10;
 
-    public WormholeInventory(RealisticSurvivalPlugin plugin, BaubleModule module) {
+    public WormholeInventory(RSVPlugin plugin, BaubleModule module) {
         super(null, 54, "Wormhole Inventory");
         this.config = module.getUserConfig().getConfig();
         Inventory inv = getInventory();

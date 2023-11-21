@@ -18,7 +18,7 @@ package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.IceFireModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -35,7 +35,7 @@ public class FreezeTask extends BukkitRunnable {
 
     private static final Map<UUID, FreezeTask> tasks = new HashMap<>();
     private final Entity entity;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final Collection<FrozenBlock> blocks = new ArrayList<>();
     private final FileConfiguration config;
     private final boolean encaseIce;
@@ -48,7 +48,7 @@ public class FreezeTask extends BukkitRunnable {
     private final int duration;
     private final boolean wasOriginallyFrozen;
 
-    public FreezeTask(RealisticSurvivalPlugin plugin, int stage, Entity entity) {
+    public FreezeTask(RSVPlugin plugin, int stage, Entity entity) {
         this.entity = entity;
         this.plugin = plugin;
         this.config = RSVModule.getModule(IceFireModule.NAME).getUserConfig().getConfig();
@@ -67,7 +67,7 @@ public class FreezeTask extends BukkitRunnable {
         tasks.put(entity.getUniqueId(), this);
     }
 
-    public FreezeTask(RealisticSurvivalPlugin plugin, RSVModule module, String itemName, Entity entity) {
+    public FreezeTask(RSVPlugin plugin, RSVModule module, String itemName, Entity entity) {
         this.entity = entity;
         this.plugin = plugin;
         this.config = module.getUserConfig().getConfig();

@@ -17,7 +17,7 @@
 package me.val_mobile.data.spartanweaponry;
 
 import me.val_mobile.data.RSVConfig;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 
 public class RecipesConfig extends RSVConfig {
 
@@ -25,7 +25,7 @@ public class RecipesConfig extends RSVConfig {
     public static final boolean REPLACE = false;
     public static final boolean UPDATE = true;
 
-    public RecipesConfig(RealisticSurvivalPlugin plugin) {
+    public RecipesConfig(RSVPlugin plugin) {
         super(plugin, PATH, REPLACE, UPDATE);
     }
 }

@@ -16,7 +16,7 @@
  */
 package me.val_mobile.ntp;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Color;
@@ -39,7 +39,7 @@ public class FireStarterTask extends BukkitRunnable {
     private final Set<String> allowedWorlds;
 
     private final UUID id;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final Location loc;
     private final int duration;
     private final boolean isSoulCampfire;
@@ -64,7 +64,7 @@ public class FireStarterTask extends BukkitRunnable {
 
     private int ticks = 0;
 
-    public FireStarterTask(RealisticSurvivalPlugin plugin, NtpModule module, Player player, Location loc, Collection<Item> ingredients, boolean isSoulCampfire) {
+    public FireStarterTask(RSVPlugin plugin, NtpModule module, Player player, Location loc, Collection<Item> ingredients, boolean isSoulCampfire) {
         this.ingredients = ingredients;
         this.loc = loc;
         this.id = player.getUniqueId();

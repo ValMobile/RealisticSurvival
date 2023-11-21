@@ -17,7 +17,7 @@
 package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
@@ -43,7 +43,7 @@ public class EnderCrownTask extends BukkitRunnable implements RSVTask {
 
     private final RSVPlayer rsvPlayer;
     private final UUID id;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final boolean transfromEndermen;
     private final double maxDist;
     private final boolean alliesEnabled;
@@ -63,7 +63,7 @@ public class EnderCrownTask extends BukkitRunnable implements RSVTask {
     private int waterDamageTicks;
     private int allyTicks;
 
-    public EnderCrownTask(BaubleModule module, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
+    public EnderCrownTask(BaubleModule module, RSVPlayer rsvPlayer, RSVPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
         this.id = rsvPlayer.getPlayer().getUniqueId();
         FileConfiguration config = module.getUserConfig().getConfig();

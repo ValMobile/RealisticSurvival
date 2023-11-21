@@ -16,11 +16,11 @@
  */
 package me.val_mobile.data;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 
 public class ModuleRecipes extends RecipeManager {
 
-    public ModuleRecipes(RSVModule module, RealisticSurvivalPlugin plugin) {
+    public ModuleRecipes(RSVModule module, RSVPlugin plugin) {
         super(plugin, module.getRecipeConfig().getConfig(), module.getUserConfig().getConfig());
     }
 }

@@ -29,7 +29,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.CommandMinecart;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Team;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -616,7 +615,7 @@ public class CommandUtils {
 
     }
 
-    private static boolean isRXM(String arg, @NotNull Entity e) {
+    private static boolean isRXM(String arg, @Nonnull Entity e) {
         return isLessThan(arg, e.getLocation().getYaw());
     }
 

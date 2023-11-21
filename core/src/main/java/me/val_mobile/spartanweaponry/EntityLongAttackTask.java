@@ -17,7 +17,7 @@
 package me.val_mobile.spartanweaponry;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.FluidCollisionMode;
@@ -39,7 +39,7 @@ import java.util.function.Predicate;
 public class EntityLongAttackTask extends BukkitRunnable {
 
     private final LivingEntity attacker;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final double chance;
     private final double reach;
     private final List<String> blacklistedMobs;
@@ -47,7 +47,7 @@ public class EntityLongAttackTask extends BukkitRunnable {
     private final Entity target;
     private static final Map<UUID, EntityLongAttackTask> tasks = new HashMap<>();
 
-    public EntityLongAttackTask(RSVModule module, RealisticSurvivalPlugin plugin, LivingEntity attacker, ItemStack item, Entity target) {
+    public EntityLongAttackTask(RSVModule module, RSVPlugin plugin, LivingEntity attacker, ItemStack item, Entity target) {
         FileConfiguration config = module.getUserConfig().getConfig();
         FileConfiguration swConfig = RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig();
 

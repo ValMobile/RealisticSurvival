@@ -16,7 +16,7 @@
  */
 package me.val_mobile.commands;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
@@ -32,13 +32,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static me.val_mobile.realisticsurvival.RealisticSurvivalPlugin.NAME;
+import static me.val_mobile.rsv.RSVPlugin.NAME;
 
 /**
  * Tab is a class that creates a tab completer
  * when the user types appropriate commands
  * @author Val_Mobile
- * @version 1.2.6-RELEASE
+ * @version 1.2.7-RELEASE
  * @since 1.0
  */
 public class Tab implements TabCompleter {
@@ -52,7 +52,7 @@ public class Tab implements TabCompleter {
 
     private final FileConfiguration config;
 
-    public Tab(RealisticSurvivalPlugin plugin) {
+    public Tab(RSVPlugin plugin) {
         this.config = plugin.getCommandsConfig();
     }
 

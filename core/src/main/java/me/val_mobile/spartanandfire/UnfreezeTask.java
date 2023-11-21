@@ -16,7 +16,7 @@
  */
 package me.val_mobile.spartanandfire;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -31,11 +31,11 @@ public class UnfreezeTask extends BukkitRunnable {
     private static final Map<UUID, UnfreezeTask> tasks = new HashMap<>();
     private final int pause;
     private final Collection<FrozenBlock> blocks;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final Entity entity;
     private final boolean wasOriginallyFrozen;
 
-    public UnfreezeTask(RealisticSurvivalPlugin plugin, Entity entity, Collection<FrozenBlock> blocks, int pause, boolean wasOriginallyFrozen) {
+    public UnfreezeTask(RSVPlugin plugin, Entity entity, Collection<FrozenBlock> blocks, int pause, boolean wasOriginallyFrozen) {
         this.blocks = blocks;
         this.plugin = plugin;
         this.pause = pause;

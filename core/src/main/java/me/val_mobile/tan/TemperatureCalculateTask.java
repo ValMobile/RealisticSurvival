@@ -19,7 +19,7 @@ package me.val_mobile.tan;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.integrations.CompatiblePlugin;
 import me.val_mobile.integrations.RealisticSeasons;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVEnchants;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.RSVTask;
@@ -48,7 +48,7 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
     private final TanModule module;
     private final TempManager manager;
     private final FileConfiguration config;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final RSVPlayer player;
     private final UUID id;
     private final Collection<String> allowedWorlds;
@@ -68,7 +68,7 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
 
     public static final double NEUTRAL_TEMPERATURE = 12.5;
 
-    public TemperatureCalculateTask(TanModule module, RealisticSurvivalPlugin plugin, RSVPlayer player) {
+    public TemperatureCalculateTask(TanModule module, RSVPlugin plugin, RSVPlayer player) {
         this.plugin = plugin;
         this.module = module;
         this.manager = module.getTempManager();

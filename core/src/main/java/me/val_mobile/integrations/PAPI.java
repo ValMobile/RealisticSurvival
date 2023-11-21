@@ -16,7 +16,7 @@
  */
 package me.val_mobile.integrations;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 
 import javax.annotation.Nonnull;
 
@@ -24,7 +24,7 @@ public class PAPI extends CompatiblePlugin {
 
     public static final String NAME = "PlaceholderAPI";
 
-    public PAPI(@Nonnull RealisticSurvivalPlugin plugin) {
+    public PAPI(@Nonnull RSVPlugin plugin) {
         super(plugin, NAME);
 
         if (isIntegrated) {

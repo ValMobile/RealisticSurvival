@@ -16,7 +16,7 @@
  */
 package me.val_mobile.misc;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.Bukkit;
 
 import java.util.HashMap;
@@ -27,7 +27,7 @@ public class BStats {
     private static final int ID = 13786;
     private final Metrics metrics;
 
-    public BStats(RealisticSurvivalPlugin plugin) {
+    public BStats(RSVPlugin plugin) {
         metrics = new Metrics(plugin, ID);
     }
 

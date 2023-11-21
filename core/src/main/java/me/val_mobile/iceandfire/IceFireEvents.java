@@ -17,7 +17,7 @@
 package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.ModuleEvents;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanandfire.BurnTask;
 import me.val_mobile.spartanandfire.ElectrocuteTask;
 import me.val_mobile.spartanandfire.FreezeTask;
@@ -49,17 +49,17 @@ import java.util.Collection;
  * IceFireEvents is a class containing listener methods
  * that activate fire, ice, and lighting dragon weapon abilities
  * @author Val_Mobile
- * @version 1.2.6-RELEASE
+ * @version 1.2.7-RELEASE
  * @since 1.0
  */
 public class IceFireEvents extends ModuleEvents implements Listener {
 
     private final IceFireModule module;
     private final FileConfiguration config;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
 
     // constructing the IceFireEvents class
-    public IceFireEvents(IceFireModule module, RealisticSurvivalPlugin plugin) {
+    public IceFireEvents(IceFireModule module, RSVPlugin plugin) {
         super(module, plugin);
         this.config = module.getUserConfig().getConfig();
         this.plugin = plugin;

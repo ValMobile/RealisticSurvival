@@ -16,17 +16,19 @@
  */
 package me.val_mobile.utils.recipe;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
-import org.jetbrains.annotations.NotNull;
 
-public class RSVBrewingRecipe implements Recipe {
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
 
-    private final RealisticSurvivalPlugin plugin;
+public class RSVBrewingRecipe implements Recipe, RSVRecipe {
+
+    private final RSVPlugin plugin;
     protected final ItemStack result;
     protected final ItemStack potion;
     protected final ItemStack ingredient;
@@ -40,7 +42,7 @@ public class RSVBrewingRecipe implements Recipe {
     protected final int duration;
     protected final boolean perfect;
 
-    public RSVBrewingRecipe(RealisticSurvivalPlugin plugin, FileConfiguration config, String name) {
+    public RSVBrewingRecipe(@Nonnull FileConfiguration config, @Nonnull String name, @Nonnull RSVPlugin plugin) {
         this.name = name;
 
         this.fuelPower = config.getInt(name + ".FuelPower");
@@ -56,23 +58,23 @@ public class RSVBrewingRecipe implements Recipe {
         this.plugin = plugin;
     }
 
-    public ItemStack getIngredient() {
+    public @Nonnull ItemStack getIngredient() {
         return ingredient;
     }
 
-    public ItemStack getPotion() {
+    public @Nonnull ItemStack getPotion() {
         return potion;
     }
 
-    public ItemStack getFuel() {
+    public @Nonnull ItemStack getFuel() {
         return fuel;
     }
 
-    public String getName() {
+    public @Nonnull String getName() {
         return name;
     }
 
-    public BrewClock getClock() {
+    public @Nonnull BrewClock getClock() {
         return clock;
     }
 
@@ -80,12 +82,12 @@ public class RSVBrewingRecipe implements Recipe {
         return duration;
     }
 
-    public void setClock(BrewClock clock) {
+    public void setClock(@Nonnull BrewClock clock) {
         this.clock = clock;
     }
 
 
-    public boolean isValidRecipe(BrewerInventory inv) {
+    public boolean isValidRecipe(@Nonnull BrewerInventory inv) {
         ItemStack invFuel = inv.getFuel();
         ItemStack invIng = inv.getIngredient();
 
@@ -96,19 +98,19 @@ public class RSVBrewingRecipe implements Recipe {
     }
 
     public void startBrewing(BrewerInventory inventory) {
-        clock = new BrewClock(plugin, this, inventory, duration);
+        clock = new BrewClock(this, inventory, duration, plugin);
     }
 
-    public int getFuelPower() {
+    public @Nonnegative int getFuelPower() {
         return fuelPower;
     }
 
-    public int getFuelCharge() {
+    public @Nonnegative int getFuelCharge() {
         return fuelCharge;
     }
 
     @Override
-    public @NotNull ItemStack getResult() {
+    public @Nonnull ItemStack getResult() {
         return result;
     }
 }

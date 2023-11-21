@@ -18,7 +18,7 @@ package me.val_mobile.misc;
 
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.PlayerJumpEvent;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
@@ -34,10 +34,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.inventory.*;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerItemDamageEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerStatisticIncrementEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
@@ -48,9 +45,9 @@ import java.util.Set;
 
 public class MiscEvents implements Listener {
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
 
-    public MiscEvents(RealisticSurvivalPlugin plugin) {
+    public MiscEvents(RSVPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -201,6 +198,21 @@ public class MiscEvents implements Listener {
             if (RSVItem.isRSVItem(item)) {
                 if (Utils.hasCustomDurability(item)) {
                     Utils.changeDurability(item, -event.getDamage(), true);
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onDurability(PlayerItemMendEvent event) {
+        ItemStack item = event.getItem();
+
+        if (!event.isCancelled()) {
+            if (RSVItem.isRSVItem(item)) {
+                if (Utils.hasCustomDurability(item)) {
+                    int customDif = Utils.getMaxCustomDurability(item) - Utils.getCustomDurability(item);
+                    int dif = Utils.getMaxVanillaDurability(item) - Utils.getVanillaDurability(item);
+                    Utils.changeDurability(item, (int) Math.ceil(event.getRepairAmount() * (double) customDif / dif), false);
                 }
             }
         }

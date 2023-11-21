@@ -24,7 +24,7 @@ import me.val_mobile.data.baubles.PlayerDataConfig;
 import me.val_mobile.data.baubles.RecipesConfig;
 import me.val_mobile.data.baubles.UserConfig;
 import me.val_mobile.iceandfire.IceFireModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -35,7 +35,7 @@ import java.util.UUID;
 
 public class BaubleModule extends RSVModule {
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
 
     public static final String NAME = "Baubles";
 
@@ -44,7 +44,7 @@ public class BaubleModule extends RSVModule {
     private BaubleEvents events;
     private final Collection<UUID> brokenHeartPlayers = new ArrayList<>();
 
-    public BaubleModule(RealisticSurvivalPlugin plugin) {
+    public BaubleModule(RSVPlugin plugin) {
         super(NAME, plugin, Map.of(), Map.of(RSVModule.getModule(IceFireModule.NAME), "Detected disabled Ice and Fire module. Dragon's eye recipe will be partially disabled."));
         this.plugin = plugin;
         this.config = new PlayerDataConfig(plugin);

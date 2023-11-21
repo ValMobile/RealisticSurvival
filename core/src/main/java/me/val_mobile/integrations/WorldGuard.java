@@ -25,15 +25,16 @@ import com.sk89q.worldguard.protection.flags.registry.FlagConflictException;
 import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.Location;
-import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 public class WorldGuard extends ProtectionPlugin {
 
     public static final String NAME = "WorldGuard";
 
-    public WorldGuard(RealisticSurvivalPlugin plugin) {
+    public WorldGuard(RSVPlugin plugin) {
         super(plugin, NAME);
 
         if (isIntegrated) {
@@ -65,7 +66,7 @@ public class WorldGuard extends ProtectionPlugin {
     }
 
     @Override
-    public boolean isPvpAllowed(@NotNull Location loc) {
+    public boolean isPvpAllowed(@Nonnull Location loc) {
         RegionContainer container = com.sk89q.worldguard.WorldGuard.getInstance().getPlatform().getRegionContainer();
         RegionQuery query = container.createQuery();
         ApplicableRegionSet set = query.getApplicableRegions(BukkitAdapter.adapt(loc));
@@ -74,7 +75,7 @@ public class WorldGuard extends ProtectionPlugin {
     }
 
     @Override
-    public boolean isMobGriefingAllowed(@NotNull Location loc) {
+    public boolean isMobGriefingAllowed(@Nonnull Location loc) {
         RegionContainer container = com.sk89q.worldguard.WorldGuard.getInstance().getPlatform().getRegionContainer();
         RegionQuery query = container.createQuery();
         ApplicableRegionSet set = query.getApplicableRegions(BukkitAdapter.adapt(loc));

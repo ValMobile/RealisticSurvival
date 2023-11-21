@@ -17,7 +17,7 @@
 package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanandfire.BurnTask;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -37,17 +37,17 @@ public interface FireDragon extends Dragon {
     default void performSpecialAbility(LivingEntity entity) {
         double stageMultiplier = CONFIG.getDouble("Dragon.FireDragon.InfernoAbility.StageMultiplier.Stage" + getStage());
         if (!BurnTask.hasTask(entity.getUniqueId())) {
-            new BurnTask(RealisticSurvivalPlugin.getPlugin(), entity, (int) (CONFIG.getInt("Dragon.FireDragon.InfernoAbility.FireTicks") * stageMultiplier), CONFIG.getInt("Dragon.FireDragon.InfernoAbility.TickPeriod")).start();
+            new BurnTask(RSVPlugin.getPlugin(), entity, (int) (CONFIG.getInt("Dragon.FireDragon.InfernoAbility.FireTicks") * stageMultiplier), CONFIG.getInt("Dragon.FireDragon.InfernoAbility.TickPeriod")).start();
         }
     }
 
     @Override
     default void triggerBreathAttack(Location target) {
-        new FireBreath(this, target, RealisticSurvivalPlugin.getPlugin()).start();
+        new FireBreath(this, target, RSVPlugin.getPlugin()).start();
     }
 
     @Override
     default void triggerExplosionAttack(Location target) {
-        new FireExplosionAttack(this, target, RealisticSurvivalPlugin.getPlugin());
+        new FireExplosionAttack(this, target, RSVPlugin.getPlugin());
     }
 }

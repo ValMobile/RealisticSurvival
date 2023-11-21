@@ -22,7 +22,7 @@ import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.spartanweaponry.ItemConfig;
 import me.val_mobile.data.spartanweaponry.RecipesConfig;
 import me.val_mobile.data.spartanweaponry.UserConfig;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -30,12 +30,12 @@ import java.util.Map;
 
 public class SwModule extends RSVModule {
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     public static final String NAME = "SpartanWeaponry";
 
     private SwEvents events;
 
-    public SwModule(RealisticSurvivalPlugin plugin) {
+    public SwModule(RSVPlugin plugin) {
         super(NAME, plugin, Map.of(), Map.of());
         this.plugin = plugin;
     }

@@ -16,7 +16,7 @@
  */
 package me.val_mobile.ntp;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Color;
@@ -37,7 +37,7 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
     private static final Map<UUID, CeramicBucketMeltTask> tasks = new HashMap<>();
     private final Player player;
     private final UUID id;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final int duration;
     private final Set<String> allowedWorlds;
     private final double soundChance;
@@ -60,7 +60,7 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
 
     private int ticks = 0;
 
-    public CeramicBucketMeltTask(RealisticSurvivalPlugin plugin, NtpModule module, Player player) {
+    public CeramicBucketMeltTask(RSVPlugin plugin, NtpModule module, Player player) {
         this.player = player;
         this.id = player.getUniqueId();
         this.plugin = plugin;

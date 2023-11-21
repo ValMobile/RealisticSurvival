@@ -16,7 +16,7 @@
  */
 package me.val_mobile.data;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -36,11 +36,11 @@ public class RSVConfig extends FileBuilder {
     private boolean updated;
 
     private final String path;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final boolean updateOldVersions;
     private FileConfiguration config;
 
-    public RSVConfig(RealisticSurvivalPlugin plugin, String path, boolean replace, boolean updateOldVersions) {
+    public RSVConfig(RSVPlugin plugin, String path, boolean replace, boolean updateOldVersions) {
         super(plugin, path, replace);
         this.plugin = plugin;
         this.path = path;

@@ -17,7 +17,7 @@
 package me.val_mobile.baubles;
 
 import me.val_mobile.data.RSVPlayer;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -33,21 +33,20 @@ public class StoneGreaterInertiaTask extends BukkitRunnable implements RSVTask {
 
     private static final Map<UUID, StoneGreaterInertiaTask> tasks = new HashMap<>();
     private static final float MAX_WALK_SPEED = 1.0f;
+    private static final float DEFAULT_WALK_SPEED = 0.2f;
     private final RSVPlayer rsvPlayer;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
     private final UUID id;
     private final Collection<String> allowedWorlds;
     private final FileConfiguration config;
-    private final float initialWalkSpeed;
     private final double walkSpeedMultiplier;
 
-    public StoneGreaterInertiaTask(BaubleModule module, RSVPlayer rsvPlayer, RealisticSurvivalPlugin plugin) {
+    public StoneGreaterInertiaTask(BaubleModule module, RSVPlayer rsvPlayer, RSVPlugin plugin) {
         this.rsvPlayer = rsvPlayer;
         this.id = rsvPlayer.getPlayer().getUniqueId();
         this.config = module.getUserConfig().getConfig();
         this.allowedWorlds = module.getAllowedWorlds();
         this.plugin = plugin;
-        this.initialWalkSpeed = rsvPlayer.getPlayer().getWalkSpeed();
         this.walkSpeedMultiplier = config.getDouble("Items.stone_greater_inertia.WalkSpeedMultiplier");
         tasks.put(id, this);
     }
@@ -57,7 +56,7 @@ public class StoneGreaterInertiaTask extends BukkitRunnable implements RSVTask {
         Player player = rsvPlayer.getPlayer();
 
         if (conditionsMet(player)) {
-            player.setWalkSpeed((float) Math.min(initialWalkSpeed * walkSpeedMultiplier, MAX_WALK_SPEED));
+            player.setWalkSpeed((float) Math.min(DEFAULT_WALK_SPEED * walkSpeedMultiplier, MAX_WALK_SPEED));
         }
         else {
             stop();
@@ -78,7 +77,7 @@ public class StoneGreaterInertiaTask extends BukkitRunnable implements RSVTask {
     @Override
     public void stop() {
         if (rsvPlayer.getPlayer() != null) {
-            rsvPlayer.getPlayer().setWalkSpeed(initialWalkSpeed);
+            rsvPlayer.getPlayer().setWalkSpeed(DEFAULT_WALK_SPEED);
         }
         tasks.remove(id);
         cancel();

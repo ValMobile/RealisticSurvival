@@ -17,7 +17,7 @@
 package me.val_mobile.data.toughasnails;
 
 import me.val_mobile.data.RSVConfig;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 
 public class PlayerDataConfig extends RSVConfig {
 
@@ -25,7 +25,7 @@ public class PlayerDataConfig extends RSVConfig {
     public static final boolean REPLACE = false;
     public static final boolean UPDATE = true;
 
-    public PlayerDataConfig(RealisticSurvivalPlugin plugin) {
+    public PlayerDataConfig(RSVPlugin plugin) {
         super(plugin, PATH, REPLACE, UPDATE);
     }
 }

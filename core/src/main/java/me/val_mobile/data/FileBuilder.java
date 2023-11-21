@@ -16,7 +16,7 @@
  */
 package me.val_mobile.data;
 
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 
 import java.io.File;
 
@@ -24,9 +24,9 @@ public class FileBuilder {
     protected File file;
     private final boolean replace;
 
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
 
-    public FileBuilder(RealisticSurvivalPlugin plugin, String path, boolean replace) {
+    public FileBuilder(RSVPlugin plugin, String path, boolean replace) {
         this.plugin = plugin;
         this.replace = replace;
 

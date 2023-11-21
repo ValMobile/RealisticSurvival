@@ -18,7 +18,7 @@ package me.val_mobile.ntp;
 
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.ModuleItems;
-import me.val_mobile.realisticsurvival.RealisticSurvivalPlugin;
+import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.ToolHandler.Tool;
 import me.val_mobile.utils.Utils;
@@ -58,9 +58,9 @@ public class NtpEvents extends ModuleEvents implements Listener {
     private final FileConfiguration config;
     private final ModuleItems moduleItems;
     private final NtpModule module;
-    private final RealisticSurvivalPlugin plugin;
+    private final RSVPlugin plugin;
 
-    public NtpEvents(NtpModule module, RealisticSurvivalPlugin plugin) {
+    public NtpEvents(NtpModule module, RSVPlugin plugin) {
         super(module, plugin);
         this.module = module;
         this.plugin = plugin;
@@ -127,13 +127,13 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                     Utils.playSound(player.getLocation(), config.getString("FlintKnapping.BlockDrops." + blockMat + ".Sound.Sound"), (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Volume"),  (float) config.getDouble("FlintKnapping.BlockDrops." + blockMat + ".Sound.Pitch"));
                                 }
 
-                                Utils.dropLooting(config.getConfigurationSection("FlintKnapping.BlockDrops." + blockMat), flintShard, null, block.getLocation().add(0D, 0.15D, 0D), true);
-
-                                if (item.getAmount() > 0) {
-                                    item.setAmount(item.getAmount() - 1);
-                                }
-                                else {
-                                    item.setType(Material.AIR);
+                                if (Utils.dropLooting(config.getConfigurationSection("FlintKnapping.BlockDrops." + blockMat), flintShard, null, block.getLocation().add(0D, 0.15D, 0D), true)) {
+                                    if (item.getAmount() > 0) {
+                                        item.setAmount(item.getAmount() - 1);
+                                    }
+                                    else {
+                                        item.setType(Material.AIR);
+                                    }
                                 }
                             }
                         }
