@@ -51,7 +51,7 @@ import static me.val_mobile.rsv.RSVPlugin.NAME;
  * Commands is a class that allows users to
  * access the plugin's commands in-game
  * @author Val_Mobile
- * @version 1.2.7-RELEASE
+ * @version 1.2.8-RELEASE
  * @since 1.0
  */
 public class Commands implements CommandExecutor {

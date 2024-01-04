@@ -18,7 +18,6 @@ package me.val_mobile.utils;
 
 import me.val_mobile.iceandfire.SeaSerpent;
 import me.val_mobile.iceandfire.SeaSerpentVariant;
-import me.val_mobile.utils.Utils;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.ElderGuardian;
 import net.minecraft.world.level.Level;

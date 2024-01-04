@@ -128,13 +128,11 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
                     stop();
                 }
                 else {
-                    if (emitSound)
-                        if (Utils.roll(soundChance))
-                            Utils.playSound(player.getLocation(), sound, volume, pitch);
+                    if (emitSound && Utils.roll(soundChance))
+                        Utils.playSound(player.getLocation(), sound, volume, pitch);
 
-                    if (emitParticles)
-                        if (Utils.roll(particleChance))
-                            player.spawnParticle(particle, player.getLocation(), Utils.getRandomNum(minCount, maxCount), xOffset, yOffset, zOffset, extra, dust);
+                    if (emitParticles && Utils.roll(particleChance))
+                        player.spawnParticle(particle, player.getLocation(), Utils.getRandomNum(minCount, maxCount), xOffset, yOffset, zOffset, extra, dust);
                 }
             }
             else {
@@ -157,10 +155,7 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
     }
 
     public static boolean hasTask(UUID id) {
-        if (tasks.containsKey(id)) {
-            return tasks.get(id) != null;
-        }
-        return false;
+        return tasks.containsKey(id) && tasks.get(id) != null;
     }
 
 }

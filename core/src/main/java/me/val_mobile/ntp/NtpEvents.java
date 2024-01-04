@@ -94,8 +94,8 @@ public class NtpEvents extends ModuleEvents implements Listener {
                             if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
                                 if (config.getConfigurationSection("PlantFiberGathering.BlockDrops").getKeys(false).contains(material.toString())) {
                                     ItemStack plantFiber = RSVItem.getItem("plant_fiber");
+                                    Utils.changeDurability(itemMainHand, -1, true, true, player); // required since instant-mineable blocks do not decrease durability
                                     Utils.dropLooting(config.getConfigurationSection("PlantFiberGathering.BlockDrops." + material), plantFiber, itemMainHand, block.getLocation(), true);
-                                    Utils.changeDurability(itemMainHand, -1, true);
                                 }
                             }
                         }
@@ -209,40 +209,52 @@ public class NtpEvents extends ModuleEvents implements Listener {
                             boolean isNotShovel = !matName.contains("SHOVEL");
                             boolean isNotAxe = !matName.contains("AXE");
 
-                            if (isNotHoe || isNotShovel) {
+                            if (Tag.LOGS.isTagged(blockMaterial) && !blockMaterial.toString().contains("STRIPPED") && isNotAxe) {
+                                Utils.playSound(player.getLocation(), Sound.ITEM_AXE_STRIP.toString(), 1.0f, 1.0f);
+                                b.setType(Material.valueOf("STRIPPED_" + blockMaterial));
+                                Utils.changeDurability(item, -1, true, true, player);
+                            }
+                            else if (isNotHoe || isNotShovel) {
                                 if (isNotHoe && isNotShovel) {
                                     switch (blockMaterial) {
                                         case GRASS_BLOCK, DIRT -> {
                                             if (player.isSneaking()) {
+                                                Utils.playSound(player.getLocation(), Sound.ITEM_SHOVEL_FLATTEN.toString(), 1.0f, 1.0f);
                                                 b.setType(Material.DIRT_PATH);
                                             }
                                             else {
+                                                Utils.playSound(player.getLocation(), Sound.ITEM_HOE_TILL.toString(), 1.0f, 1.0f);
                                                 b.setType(Material.FARMLAND);
                                             }
-                                            Utils.changeDurability(item, -1, true);
+                                            Utils.changeDurability(item, -1, true, true, player);
                                         }
                                         case COARSE_DIRT, PODZOL, MYCELIUM -> {
                                             if (player.isSneaking()) {
+                                                Utils.playSound(player.getLocation(), Sound.ITEM_SHOVEL_FLATTEN.toString(), 1.0f, 1.0f);
                                                 b.setType(Material.DIRT_PATH);
                                             }
                                             else {
+                                                Utils.playSound(player.getLocation(), Sound.ITEM_HOE_TILL.toString(), 1.0f, 1.0f);
                                                 b.setType(Material.DIRT);
                                             }
-                                            Utils.changeDurability(item, -1, true);
+                                            Utils.changeDurability(item, -1, true, true, player);
                                         }
                                         case DIRT_PATH -> {
+                                            Utils.playSound(player.getLocation(), Sound.ITEM_HOE_TILL.toString(), 1.0f, 1.0f);
                                             b.setType(Material.FARMLAND);
-                                            Utils.changeDurability(item, -1, true);
+                                            Utils.changeDurability(item, -1, true, true, player);
                                         }
                                         case ROOTED_DIRT -> {
                                             if (player.isSneaking()) {
+                                                Utils.playSound(player.getLocation(), Sound.ITEM_SHOVEL_FLATTEN.toString(), 1.0f, 1.0f);
                                                 b.setType(Material.DIRT_PATH);
                                             }
                                             else {
-                                                player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.valueOf("HANGING_ROOTS")));
+                                                Utils.playSound(player.getLocation(), Sound.ITEM_HOE_TILL.toString(), 1.0f, 1.0f);
+                                                player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.HANGING_ROOTS));
                                                 b.setType(Material.DIRT);
                                             }
-                                            Utils.changeDurability(item, -1, true);
+                                            Utils.changeDurability(item, -1, true, true, player);
                                         }
                                         default -> {}
                                     }
@@ -252,22 +264,25 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                     switch (blockMaterial) {
                                         case GRASS_BLOCK, DIRT -> {
                                             if (player.isSneaking()) {
+                                                Utils.playSound(player.getLocation(), Sound.ITEM_HOE_TILL.toString(), 1.0f, 1.0f);
                                                 b.setType(Material.FARMLAND);
                                             }
-                                            Utils.changeDurability(item, -1, true);
+                                            Utils.changeDurability(item, -1, true, true, player);
                                         }
                                         case COARSE_DIRT, PODZOL, MYCELIUM -> {
                                             if (player.isSneaking()) {
+                                                Utils.playSound(player.getLocation(), Sound.ITEM_SHOVEL_FLATTEN.toString(), 1.0f, 1.0f);
                                                 b.setType(Material.DIRT);
                                             }
-                                            Utils.changeDurability(item, -1, true);
+                                            Utils.changeDurability(item, -1, true, true, player);
                                         }
                                         case ROOTED_DIRT -> {
                                             if (player.isSneaking()) {
-                                                player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.valueOf("HANGING_ROOTS")));
+                                                Utils.playSound(player.getLocation(), Sound.ITEM_HOE_TILL.toString(), 1.0f, 1.0f);
+                                                player.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.HANGING_ROOTS));
                                                 b.setType(Material.DIRT);
                                             }
-                                            Utils.changeDurability(item, -1, true);
+                                            Utils.changeDurability(item, -1, true, true, player);
                                         }
                                         default -> {}
                                     }
@@ -277,20 +292,16 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                     switch (blockMaterial) {
                                         case GRASS_BLOCK, DIRT, COARSE_DIRT, PODZOL, MYCELIUM, ROOTED_DIRT -> {
                                             if (player.isSneaking()) {
+                                                Utils.playSound(player.getLocation(), Sound.ITEM_SHOVEL_FLATTEN.toString(), 1.0f, 1.0f);
                                                 b.setType(Material.DIRT_PATH);
                                             }
-                                            Utils.changeDurability(item, -1, true);
+                                            Utils.changeDurability(item, -1, true, true, player);
                                         }
                                         default -> {}
                                     }
                                 }
                             }
-                            else if (isNotAxe) {
-                                if (Tag.LOGS.isTagged(blockMaterial) && !blockMaterial.toString().contains("STRIPPED")) {
-                                    b.setType(Material.valueOf("STRIPPED_" + blockMaterial));
-                                    Utils.changeDurability(item, -1, true);
-                                }
-                            }
+
                         }
                         case "fire_starter" -> {
                             if (config.getBoolean("FireStarter.Enabled") && player.isSneaking()) {
@@ -349,7 +360,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                     if (fuel >= requiredFuel && kindling >= requiredKindling) {
                                         if (!FireStarterTask.hasTask(id)) {
                                             new FireStarterTask(plugin, module, player, loc.add(0D, 0.6D, 0D), ingredients, soul >= requiredSoulItems).start();
-                                            Utils.changeDurability(item, -1, true);
+                                            Utils.changeDurability(item, -1, true, true, player);
                                         }
                                     }
                                 }
@@ -524,23 +535,20 @@ public class NtpEvents extends ModuleEvents implements Listener {
                 ItemStack itemMainHand = player.getInventory().getItemInMainHand();
                 ItemStack itemOffHand = player.getInventory().getItemInOffHand();
                 ItemStack item = event.getItemStack();
+
+                // getItemStack() returns a vanilla bucket with no rsv nbt tags, so isRSVItem(item) will not work properly
                 if (Utils.isItemReal(item)) {
                     Material type = item.getType();
                     String bucketType = type.toString().toLowerCase();
 
-                    if (isCeramicBucket(itemMainHand)) {
-                        event.setItemStack(RSVItem.getItem("ceramic_" + bucketType));
-                        if (type == Material.LAVA_BUCKET) {
-                            checkAndRunTask(player, itemMainHand);
-                        }
-                    }
-                    else if (isCeramicBucket(itemOffHand)) {
-                        event.setItemStack(RSVItem.getItem("ceramic_" + bucketType));
-                        if (type == Material.LAVA_BUCKET) {
-                            checkAndRunTask(player, itemOffHand);
-                        }
-                    }
+                    if (isCeramicBucket(itemMainHand) || isCeramicBucket(itemOffHand)) {
+                        ItemStack newBucket = RSVItem.getItem("ceramic_" + bucketType);
 
+                        event.setItemStack(newBucket);
+                        if (type == Material.LAVA_BUCKET) {
+                            checkAndRunTask(player, newBucket);
+                        }
+                    }
                 }
             }
         }
@@ -798,11 +806,11 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                                 int durability = Utils.getCustomDurability(tool);
 
                                                 if (durability - temp.getAmount() < 0) {
-                                                    Utils.changeDurability(tool, -durability, true);
+                                                    Utils.changeDurability(tool, -durability, true, true, player);
                                                     temp.setAmount(temp.getAmount() - durability);
 
                                                 } else {
-                                                    Utils.changeDurability(tool, -temp.getAmount(), true);
+                                                    Utils.changeDurability(tool, -temp.getAmount(), true, true, player);
                                                     temp.setAmount(0);
 
                                                     copy = tool;
@@ -830,11 +838,11 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                                 int durability = Utils.getCustomDurability(tool);
 
                                                 if (durability - temp.getAmount() < 0) {
-                                                    Utils.changeDurability(tool, -durability, true);
+                                                    Utils.changeDurability(tool, -durability, true, true, player);
                                                     temp.setAmount(temp.getAmount() - durability);
 
                                                 } else {
-                                                    Utils.changeDurability(tool, -temp.getAmount(), true);
+                                                    Utils.changeDurability(tool, -temp.getAmount(), true, true, player);
                                                     temp.setAmount(0);
 
                                                     copy = tool;
@@ -864,11 +872,11 @@ public class NtpEvents extends ModuleEvents implements Listener {
                                                     int durability = Utils.hasCustomDurability(tool) ? Utils.getCustomDurability(tool) : tool.getType().getMaxDurability() - ((Damageable) tool.getItemMeta()).getDamage();
 
                                                     if (durability - temp.getAmount() < 0) {
-                                                        Utils.changeDurability(tool, -durability, true);
+                                                        Utils.changeDurability(tool, -durability, true, true, player);
                                                         temp.setAmount(temp.getAmount() - durability);
 
                                                     } else {
-                                                        Utils.changeDurability(tool, -temp.getAmount(), true);
+                                                        Utils.changeDurability(tool, -temp.getAmount(), true, true, player);
                                                         temp.setAmount(0);
 
                                                         copy = tool;
@@ -948,23 +956,16 @@ public class NtpEvents extends ModuleEvents implements Listener {
             Player player = event.getPlayer();
 
             String message = event.getMessage();
+            String[] args = message.substring(1).split(" ");
 
-            if (message.length() > 1) {
-                String[] args = message.substring(1).split(" ");
-
+            if (args.length > 3 && args[1].equalsIgnoreCase("give") && message.length() > 1 && RSVItem.isRSVItem(args[3]) && args[3].equalsIgnoreCase("ceramic_lava_bucket")) {
                 if (args[0].equalsIgnoreCase("rsv") || args[0].equalsIgnoreCase("realisticsurvival")) {
-                    if (args.length > 3) {
-                        if (args[1].equalsIgnoreCase("give")) {
-                            if (RSVItem.isRSVItem(args[3]) && args[3].equalsIgnoreCase("ceramic_lava_bucket")) {
-                                new BukkitRunnable() {
-                                    @Override
-                                    public void run() {
-                                        checkAndRunTask(player, player.getInventory().getItemInMainHand());
-                                    }
-                                }.runTaskLater(plugin, 1L);
-                            }
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            checkAndRunTask(player, player.getInventory().getItemInMainHand());
                         }
-                    }
+                    }.runTaskLater(plugin, 1L);
                 }
             }
         }
@@ -974,22 +975,18 @@ public class NtpEvents extends ModuleEvents implements Listener {
     public void onServerCommand(ServerCommandEvent event) {
         if (!event.isCancelled()) {
             String message = event.getCommand();
+            String[] args = message.substring(1).split(" ");
 
-            if (message.length() > 1) {
-                String[] args = message.substring(1).split(" ");
+            if (args.length > 3 && args[1].equalsIgnoreCase("give") && message.length() > 1 && RSVItem.isRSVItem(args[3]) && args[3].equalsIgnoreCase("ceramic_lava_bucket")) {
                 if (args[0].equalsIgnoreCase("rsv") || args[0].equalsIgnoreCase("realisticsurvival")) {
-                    if (args.length > 3) {
-                        if (args[1].equalsIgnoreCase("give")) {
-                            Player player = Bukkit.getPlayer(args[2]);
-                            if (player != null && RSVItem.isRSVItem(args[3]) && args[3].equalsIgnoreCase("ceramic_lava_bucket")) {
-                                new BukkitRunnable() {
-                                    @Override
-                                    public void run() {
-                                        checkAndRunTask(player, player.getInventory().getItemInMainHand());
-                                    }
-                                }.runTaskLater(plugin, 1L);
+                    Player player = Bukkit.getPlayer(args[2]);
+                    if (player != null) {
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                checkAndRunTask(player, player.getInventory().getItemInMainHand());
                             }
-                        }
+                        }.runTaskLater(plugin, 1L);
                     }
                 }
             }
@@ -997,29 +994,19 @@ public class NtpEvents extends ModuleEvents implements Listener {
     }
 
     private void checkAndRunTask(Player player, ItemStack item) {
-        if (RSVItem.isRSVItem(item)) {
-            if (RSVItem.getNameFromItem(item).equals("ceramic_lava_bucket")) {
-                if (player != null) {
-                    UUID id = player.getUniqueId();
-                    if (!CeramicBucketMeltTask.hasTask(id)) {
-                        new CeramicBucketMeltTask(plugin, module, player).start();
-                    }
-                }
+        if (RSVItem.isRSVItem(item) && RSVItem.getNameFromItem(item).equals("ceramic_lava_bucket") && player != null) {
+            UUID id = player.getUniqueId();
+            if (!CeramicBucketMeltTask.hasTask(id)) {
+                new CeramicBucketMeltTask(plugin, module, player).start();
             }
         }
     }
 
     public boolean isCeramicBucket(@Nullable ItemStack item) {
-        if (RSVItem.isRSVItem(item)) {
-            return RSVItem.getNameFromItem(item).equals("ceramic_bucket");
-        }
-        return false;
+        return RSVItem.isRSVItem(item) && RSVItem.getNameFromItem(item).equals("ceramic_bucket");
     }
 
     public boolean isGenericCeramicBucket(@Nullable ItemStack item) {
-        if (RSVItem.isRSVItem(item)) {
-            return RSVItem.getNameFromItem(item).contains("ceramic_");
-        }
-        return false;
+        return RSVItem.isRSVItem(item) && RSVItem.getNameFromItem(item).contains("ceramic_");
     }
 }

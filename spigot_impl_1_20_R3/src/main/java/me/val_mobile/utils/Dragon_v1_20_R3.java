@@ -20,7 +20,6 @@ import me.val_mobile.iceandfire.Dragon;
 import me.val_mobile.iceandfire.DragonBreed;
 import me.val_mobile.iceandfire.DragonGender;
 import me.val_mobile.iceandfire.DragonVariant;
-import me.val_mobile.utils.Utils;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.level.Level;

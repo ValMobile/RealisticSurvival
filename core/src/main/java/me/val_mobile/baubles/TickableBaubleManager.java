@@ -63,9 +63,6 @@ public enum TickableBaubleManager {
     }
 
     public static boolean hasTask(UUID id) {
-        if (baubles.containsKey(id)) {
-            return baubles.get(id) != null;
-        }
-        return false;
+        return baubles.containsKey(id) && baubles.get(id) != null;
     }
 }

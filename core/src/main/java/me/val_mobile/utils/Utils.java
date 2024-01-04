@@ -947,27 +947,32 @@ public class Utils {
         internals.attack(attacker, defender);
     }
 
-    public static void changeDurability(@Nonnull ItemStack item, int change, boolean shouldBreak) {
+    public static void changeDurability(@Nonnull ItemStack item, int change, boolean shouldBreak, boolean playBreakSound, @Nullable Entity user) {
         ItemMeta meta = item.getItemMeta();
+
+        // durability should not decrease if user is in creative mode
+        if (user instanceof Player player && player.getGameMode() == GameMode.CREATIVE && change < 0) {
+            return;
+        }
+
         int lvl = meta.hasEnchant(Enchantment.DURABILITY) ? meta.getEnchantLevel(Enchantment.DURABILITY) : 0;
 
         boolean hasCustomDurability = hasCustomDurability(item);
 
         int actualChange = change;
 
-        if (hasCustomDurability) {
-            // if durability should decrease, check for unbreaking enchant
-            if (change < 0) {
-                if (lvl > 0) {
-                    for (int i = 0; i < -change; i++) {
-                        if (roll((1D / (lvl + 1D)))) {
-                            actualChange++;
-                        }
-                    }
+        // if durability should decrease, check for unbreaking enchant
+        if (change < 0 && lvl > 0) {
+            for (int i = 0; i < -change; i++) {
+                if (roll((1D / (lvl + 1D)))) {
+                    actualChange++;
                 }
             }
+        }
 
-            int maxMcDurability = item.getType().getMaxDurability();
+        int maxMcDurability = item.getType().getMaxDurability();
+
+        if (hasCustomDurability) {
             int mcDurability;
 
             int rsvDurability = getCustomDurability(item);
@@ -984,6 +989,10 @@ public class Utils {
             if (rsvDurability <= 0 && shouldBreak) {
                 item.setAmount(0);
                 item.setType(Material.AIR);
+
+                if (playBreakSound && user != null) {
+                    Utils.playSound(user.getLocation(), Sound.ENTITY_ITEM_BREAK.toString(), 1.0f, 1.0f);
+                }
             }
             else {
                 item.setItemMeta(meta);
@@ -992,20 +1001,7 @@ public class Utils {
             }
         }
         else {
-            // if durability should decrease, check for unbreaking enchant
-            if (change < 0) {
-                if (lvl > 0) {
-                    for (int i = 0; i < -change; i++) {
-                        if (roll(1D / (lvl + 1D))) {
-                            actualChange++;
-                        }
-                    }
-                }
-            }
-
-            int maxMcDurability = item.getType().getMaxDurability();
             int mcDurability;
-
 
             // if vanilla item has durability
             if (maxMcDurability > 0) {
@@ -1016,6 +1012,10 @@ public class Utils {
                 if (mcDurability <= 0 && shouldBreak) {
                     item.setAmount(0);
                     item.setType(Material.AIR);
+
+                    if (playBreakSound && user != null) {
+                        Utils.playSound(user.getLocation(), Sound.ENTITY_ITEM_BREAK.toString(), 1.0f, 1.0f);
+                    }
                 }
 
                 item.setItemMeta(meta);

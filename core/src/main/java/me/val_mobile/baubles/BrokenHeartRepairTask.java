@@ -65,7 +65,7 @@ public class BrokenHeartRepairTask extends BukkitRunnable implements RSVTask {
 
             if (ticks > duration) {
                 ItemStack brokenHeart = rsvPlayer.getBaubleDataModule().getBaubleBag().getItem("broken_heart");
-                Utils.changeDurability(brokenHeart, durabilityChange, false);
+                Utils.changeDurability(brokenHeart, durabilityChange, false, false, player);
 
                 stop();
             }
@@ -96,9 +96,6 @@ public class BrokenHeartRepairTask extends BukkitRunnable implements RSVTask {
     }
 
     public static boolean hasTask(UUID id) {
-        if (tasks.containsKey(id)) {
-            return tasks.get(id) != null;
-        }
-        return false;
+        return tasks.containsKey(id) && tasks.get(id) != null;
     }
 }

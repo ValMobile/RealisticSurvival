@@ -79,9 +79,6 @@ public class ElectrocuteTask extends BukkitRunnable {
     }
 
     public static boolean hasTask(UUID id) {
-        if (tasks.containsKey(id)) {
-            return tasks.get(id) != null;
-        }
-        return false;
+        return tasks.containsKey(id) && tasks.get(id) != null;
     }
 }

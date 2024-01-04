@@ -59,7 +59,7 @@ import java.util.UUID;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.7-RELEASE
+ * @version 1.2.8-RELEASE
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -672,7 +672,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                     if (baubleInv.hasBauble("broken_heart")) {
                         ItemStack item = baubleInv.getItem("broken_heart");
                         if (Utils.getCustomDurability(item) >= 1) {
-                            Utils.changeDurability(item, -1, false);
+                            Utils.changeDurability(item, -1, false, false, player);
 
                             if (config.getBoolean("Items.broken_heart.PlayTotemEffect"))
                                 player.playEffect(EntityEffect.TOTEM_RESURRECT);
@@ -723,7 +723,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
                             DataModule dataModule = rsvPlayer.getBaubleDataModule();
 
                             if (dataModule.getBaubleBag().hasBauble("broken_heart")) {
-                                Utils.changeDurability(dataModule.getBaubleBag().getItem("broken_heart"), 1, false);
+                                Utils.changeDurability(dataModule.getBaubleBag().getItem("broken_heart"), 1, false, false, rsvPlayer.getPlayer());
                             }
 
                             if (BrokenHeartRepairTask.hasTask(id)) {

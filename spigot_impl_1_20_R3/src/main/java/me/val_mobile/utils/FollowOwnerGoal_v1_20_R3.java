@@ -16,7 +16,6 @@
  */
 package me.val_mobile.utils;
 
-import me.val_mobile.utils.RSVPet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;

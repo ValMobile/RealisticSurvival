@@ -92,16 +92,12 @@ public class TanEvents extends ModuleEvents implements Listener {
                         new TemperatureCalculateTask(module, plugin, rsvplayer).start();
                     }
 
-                    if (RSVItem.isHoldingItem("thermometer", player)) {
-                        if (!ThermometerTask.hasTask(player.getUniqueId())) {
-                            new ThermometerTask(plugin, rsvplayer).start();
-                        }
+                    if (RSVItem.isHoldingItem("thermometer", player) && !ThermometerTask.hasTask(player.getUniqueId())) {
+                        new ThermometerTask(plugin, rsvplayer).start();
                     }
                 }
-                if (thirstEnabled) {
-                    if (!ThirstCalculateTask.hasTask(player.getUniqueId())) {
-                        new ThirstCalculateTask(module, plugin, rsvplayer).start();
-                    }
+                if (thirstEnabled && !ThirstCalculateTask.hasTask(player.getUniqueId())) {
+                    new ThirstCalculateTask(module, plugin, rsvplayer).start();
                 }
                 if (!DisplayTask.hasTask(player.getUniqueId())) {
                     new DisplayTask(plugin, rsvplayer).start();
@@ -718,16 +714,12 @@ public class TanEvents extends ModuleEvents implements Listener {
                             new TemperatureCalculateTask(module, plugin, rsvplayer).start();
                         }
 
-                        if (RSVItem.isHoldingItem("thermometer", player)) {
-                            if (!ThermometerTask.hasTask(player.getUniqueId())) {
-                                new ThermometerTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
-                            }
+                        if (RSVItem.isHoldingItem("thermometer", player) && !ThermometerTask.hasTask(player.getUniqueId())) {
+                            new ThermometerTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
                         }
                     }
-                    if (thirstEnabled) {
-                        if (!ThirstCalculateTask.hasTask(player.getUniqueId())) {
-                            new ThirstCalculateTask(module, plugin, rsvplayer).start();
-                        }
+                    if (thirstEnabled && !ThirstCalculateTask.hasTask(player.getUniqueId())) {
+                        new ThirstCalculateTask(module, plugin, rsvplayer).start();
                     }
                     if (!DisplayTask.hasTask(player.getUniqueId())) {
                         new DisplayTask(plugin, rsvplayer).start();
@@ -854,23 +846,16 @@ public class TanEvents extends ModuleEvents implements Listener {
             Player player = event.getPlayer();
 
             String message = event.getMessage();
+            String[] args = message.substring(1).split(" ");
 
-            if (message.length() > 1) {
-                String[] args = message.substring(1).split(" ");
-
+            if (args.length > 3 && args[1].equalsIgnoreCase("give") && message.length() > 1 && RSVItem.isRSVItem(args[3]) && args[3].equalsIgnoreCase("thermometer")) {
                 if (args[0].equalsIgnoreCase("rsv") || args[0].equalsIgnoreCase("realisticsurvival")) {
-                    if (args.length > 3) {
-                        if (args[1].equalsIgnoreCase("give")) {
-                            if (RSVItem.isRSVItem(args[3]) && args[3].equalsIgnoreCase("thermometer")) {
-                                new BukkitRunnable() {
-                                    @Override
-                                    public void run() {
-                                        checkAndRunTask(player, player.getInventory().getItemInMainHand());
-                                    }
-                                }.runTaskLater(plugin, 1L);
-                            }
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            checkAndRunTask(player, player.getInventory().getItemInMainHand());
                         }
-                    }
+                    }.runTaskLater(plugin, 1L);
                 }
             }
         }
@@ -880,22 +865,18 @@ public class TanEvents extends ModuleEvents implements Listener {
     public void onServerCommand(ServerCommandEvent event) {
         if (!event.isCancelled()) {
             String message = event.getCommand();
+            String[] args = message.substring(1).split(" ");
 
-            if (message.length() > 1) {
-                String[] args = message.substring(1).split(" ");
+            if (args.length > 3 && args[1].equalsIgnoreCase("give") && message.length() > 1 && RSVItem.isRSVItem(args[3]) && args[3].equalsIgnoreCase("thermometer")) {
                 if (args[0].equalsIgnoreCase("rsv") || args[0].equalsIgnoreCase("realisticsurvival")) {
-                    if (args.length > 3) {
-                        if (args[1].equalsIgnoreCase("give")) {
-                            Player player = Bukkit.getPlayer(args[2]);
-                            if (player != null && RSVItem.isRSVItem(args[3]) && args[3].equalsIgnoreCase("thermometer")) {
-                                new BukkitRunnable() {
-                                    @Override
-                                    public void run() {
-                                        checkAndRunTask(player, player.getInventory().getItemInMainHand());
-                                    }
-                                }.runTaskLater(plugin, 1L);
+                    Player player = Bukkit.getPlayer(args[2]);
+                    if (player != null) {
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                checkAndRunTask(player, player.getInventory().getItemInMainHand());
                             }
-                        }
+                        }.runTaskLater(plugin, 1L);
                     }
                 }
             }
@@ -903,15 +884,9 @@ public class TanEvents extends ModuleEvents implements Listener {
     }
 
     private void checkAndRunTask(Player player, ItemStack item) {
-        if (tempEnabled) {
-            if (RSVItem.isRSVItem(item)) {
-                if (RSVItem.getNameFromItem(item).equals("thermometer")) {
-                    if (player != null) {
-                        if (!ThermometerTask.hasTask(player.getUniqueId())) {
-                            new ThermometerTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
-                        }
-                    }
-                }
+        if (tempEnabled && RSVItem.isRSVItem(item) && RSVItem.getNameFromItem(item).equals("thermometer") && player != null) {
+            if (!ThermometerTask.hasTask(player.getUniqueId())) {
+                new ThermometerTask(plugin, RSVPlayer.getPlayers().get(player.getUniqueId())).start();
             }
         }
     }
@@ -977,7 +952,7 @@ public class TanEvents extends ModuleEvents implements Listener {
             Utils.addNbtTag(canteen, "rsvdrink", drink, PersistentDataType.STRING);
             canteen.setType(Material.POTION);
         }
-        Utils.changeDurability(canteen, change, false);
+        Utils.changeDurability(canteen, change, false, false, null);
         return canteen;
     }
 

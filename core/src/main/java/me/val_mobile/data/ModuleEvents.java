@@ -20,7 +20,6 @@ import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import me.val_mobile.utils.recipe.RSVAnvilRecipe;
-import me.val_mobile.utils.recipe.RSVBrewingRecipe;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
@@ -36,8 +35,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -46,8 +43,6 @@ import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldSaveEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.AnvilInventory;
-import org.bukkit.inventory.BrewerInventory;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 
@@ -161,92 +156,6 @@ public abstract class ModuleEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onBrew(InventoryClickEvent event) {
-        Inventory inv = event.getClickedInventory();
-
-        if (inv instanceof BrewerInventory brewInv) {
-            ClickType click = event.getClick();
-            if (click == ClickType.LEFT || click == ClickType.RIGHT) {
-                ItemStack current = event.getCurrentItem(); // GETS ITEMSTACK THAT IS BEING CLICKED
-                ItemStack cursor = event.getCursor(); // GETS CURRENT ITEMSTACK HELD ON MOUSE
-
-                if (!(click == ClickType.RIGHT && current.isSimilar(cursor))) {
-                    Player player = (Player) event.getView().getPlayer();
-                    if (shouldEventBeRan(player.getWorld())) {
-                        boolean compare = current.isSimilar(cursor);
-                        ClickType type = event.getClick();
-
-                        int currentAmount = current.getAmount();
-                        int cursorAmount = cursor.getAmount();
-
-                        int stack = current.getMaxStackSize();
-                        int half = currentAmount / 2;
-
-                        int clickedSlot = event.getSlot();
-
-                        if (type == ClickType.LEFT) {
-                            if (!Utils.isItemReal(current)) {
-                                player.setItemOnCursor(current);
-                                inv.setItem(clickedSlot, cursor);
-                            }
-                            else if (compare) {
-                                int used = stack - currentAmount;
-                                if (cursorAmount <= used) {
-                                    current.setAmount(currentAmount + cursorAmount);
-                                    player.setItemOnCursor(null);
-                                }
-                                else {
-                                    cursor.setAmount(cursorAmount - used);
-                                    current.setAmount(currentAmount + used);
-                                    player.setItemOnCursor(cursor);
-                                }
-                            }
-                            else {
-                                inv.setItem(clickedSlot, cursor);
-                                player.setItemOnCursor(current);
-                            }
-                        }
-                        else {
-                            if (!Utils.isItemReal(current)) {
-                                player.setItemOnCursor(current);
-                                inv.setItem(clickedSlot, cursor);
-                            }
-                            else if (Utils.isItemReal(current) && !Utils.isItemReal(cursor)) {
-                                ItemStack isClone = current.clone();
-                                isClone.setAmount(current.getAmount() % 2 == 0 ? currentAmount - half : currentAmount - half - 1);
-                                player.setItemOnCursor(isClone);
-
-                                current.setAmount(currentAmount - half);
-                            }
-                            else if (compare) {
-                                if ((currentAmount + 1) <= stack) {
-                                    cursor.setAmount(cursorAmount - 1);
-                                    current.setAmount(currentAmount + 1);
-                                }
-                            }
-                            else {
-                                inv.setItem(clickedSlot, cursor);
-                                player.setItemOnCursor(current);
-                            }
-                        }
-
-                        if (brewInv.getIngredient() != null) {
-                            Set<RSVBrewingRecipe> brewingRecipes = module.getModuleRecipes().getBrewingRecipes();
-
-                            for (RSVBrewingRecipe recipe : brewingRecipes) {
-                                if (recipe.isValidRecipe(brewInv)) {
-                                    recipe.startBrewing(brewInv);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST)
     public void onRecipeCraftCancel(PrepareItemCraftEvent event) {
         Player player = (Player) event.getView().getPlayer();
 
@@ -258,16 +167,6 @@ public abstract class ModuleEvents implements Listener {
             }
         }
     }
-
-//    @EventHandler(priority = EventPriority.HIGHEST)
-//    public void onRecipeBurn(FurnaceStartSmeltEvent event) {
-//        if (!shouldEventBeRan(event.getBlock().getWorld())) {
-//            if (module.getModuleRecipes().getRecipeKeys().contains(event.getRecipe().getKey())) {
-//            }
-//        }
-//    }
-
-
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onRecipeDiscover(PlayerChangedWorldEvent event) {

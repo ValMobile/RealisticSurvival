@@ -23,7 +23,6 @@ import me.val_mobile.utils.PlayerJumpEvent;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import me.val_mobile.utils.recipe.RSVAnvilRecipe;
-import me.val_mobile.utils.recipe.RSVBrewingRecipe;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -33,10 +32,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.enchantment.EnchantItemEvent;
-import org.bukkit.event.inventory.*;
+import org.bukkit.event.inventory.PrepareAnvilEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.server.ServerCommandEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.AnvilInventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -121,7 +125,7 @@ public class MiscEvents implements Listener {
                             int total = (int) Math.min(firstDur + secondDur + Math.floor(maxDur / 20D), maxDur);
 
                             ItemStack result = RSVItem.getItem(RSVItem.getNameFromItem(first));
-                            Utils.changeDurability(result, total - maxDur, false);
+                            Utils.changeDurability(result, total - maxDur, false, false, null);
 
                             event.getInventory().setResult(result);
                         }
@@ -197,7 +201,7 @@ public class MiscEvents implements Listener {
         if (!event.isCancelled()) {
             if (RSVItem.isRSVItem(item)) {
                 if (Utils.hasCustomDurability(item)) {
-                    Utils.changeDurability(item, -event.getDamage(), true);
+                    Utils.changeDurability(item, -event.getDamage(), true, true, event.getPlayer());
                 }
             }
         }
@@ -212,7 +216,7 @@ public class MiscEvents implements Listener {
                 if (Utils.hasCustomDurability(item)) {
                     int customDif = Utils.getMaxCustomDurability(item) - Utils.getCustomDurability(item);
                     int dif = Utils.getMaxVanillaDurability(item) - Utils.getVanillaDurability(item);
-                    Utils.changeDurability(item, (int) Math.ceil(event.getRepairAmount() * (double) customDif / dif), false);
+                    Utils.changeDurability(item, (int) Math.ceil(event.getRepairAmount() * (double) customDif / dif), false, false, event.getPlayer());
                 }
             }
         }
@@ -272,7 +276,7 @@ public class MiscEvents implements Listener {
 
                                 int resultDur = Math.min(Utils.getCustomDurability(result), maxDur);
 
-                                Utils.changeDurability(result,  -resultDur + total, false);
+                                Utils.changeDurability(result,  -resultDur + total, false, false, null);
                                 event.setResult(result);
                             }
                         }
@@ -290,7 +294,7 @@ public class MiscEvents implements Listener {
                         else if (RSVItem.getItem(RSVItem.getNameFromItem(first)).getRepairIng().test(second) && Utils.getDurability(first) < Utils.getMaxDurability(first)) {
                             int change = (int) Math.round(Utils.getMaxDurability(first) * 0.25 * second.getAmount());
 
-                            Utils.changeDurability(result, change, false);
+                            Utils.changeDurability(result, change, false, false, null);
                             event.setResult(result);
                         }
                         else {
@@ -308,93 +312,8 @@ public class MiscEvents implements Listener {
                     int change = Utils.getDurability(result);
                     change *= 0.25 * second.getAmount();
 
-                    Utils.changeDurability(result, change, false);
+                    Utils.changeDurability(result, change, false, false, null);
                     event.setResult(result);
-                }
-            }
-        }
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onBrew(InventoryClickEvent event) {
-        Inventory inv = event.getClickedInventory();
-
-        if (inv instanceof BrewerInventory brewInv) {
-            ClickType click = event.getClick();
-            if (click == ClickType.LEFT || click == ClickType.RIGHT) {
-                ItemStack current = event.getCurrentItem(); // GETS ITEMSTACK THAT IS BEING CLICKED
-                ItemStack cursor = event.getCursor(); // GETS CURRENT ITEMSTACK HELD ON MOUSE
-
-                if (!(click == ClickType.RIGHT && current.isSimilar(cursor))) {
-                    Player player = (Player) event.getView().getPlayer();
-
-                    boolean compare = current.isSimilar(cursor);
-                    ClickType type = event.getClick();
-
-                    int currentAmount = current.getAmount();
-                    int cursorAmount = cursor.getAmount();
-
-                    int stack = current.getMaxStackSize();
-                    int half = currentAmount / 2;
-
-                    int clickedSlot = event.getSlot();
-
-                    if (type == ClickType.LEFT) {
-                        if (!Utils.isItemReal(current)) {
-                            player.setItemOnCursor(current);
-                            inv.setItem(clickedSlot, cursor);
-                        }
-                        else if (compare) {
-                            int used = stack - currentAmount;
-                            if (cursorAmount <= used) {
-                                current.setAmount(currentAmount + cursorAmount);
-                                player.setItemOnCursor(null);
-                            }
-                            else {
-                                cursor.setAmount(cursorAmount - used);
-                                current.setAmount(currentAmount + used);
-                                player.setItemOnCursor(cursor);
-                            }
-                        }
-                        else {
-                            inv.setItem(clickedSlot, cursor);
-                            player.setItemOnCursor(current);
-                        }
-                    }
-                    else {
-                        if (!Utils.isItemReal(current)) {
-                            player.setItemOnCursor(current);
-                            inv.setItem(clickedSlot, cursor);
-                        }
-                        else if (Utils.isItemReal(current) && !Utils.isItemReal(cursor)) {
-                            ItemStack isClone = current.clone();
-                            isClone.setAmount(current.getAmount() % 2 == 0 ? currentAmount - half : currentAmount - half - 1);
-                            player.setItemOnCursor(isClone);
-
-                            current.setAmount(currentAmount - half);
-                        }
-                        else if (compare) {
-                            if ((currentAmount + 1) <= stack) {
-                                cursor.setAmount(cursorAmount - 1);
-                                current.setAmount(currentAmount + 1);
-                            }
-                        }
-                        else {
-                            inv.setItem(clickedSlot, cursor);
-                            player.setItemOnCursor(current);
-                        }
-                    }
-
-                    if (brewInv.getIngredient() != null) {
-                        Set<RSVBrewingRecipe> brewingRecipes = plugin.getMiscRecipes().getBrewingRecipes();
-
-                        for (RSVBrewingRecipe recipe : brewingRecipes) {
-                            if (recipe.isValidRecipe(brewInv)) {
-                                recipe.startBrewing(brewInv);
-                                break;
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -406,93 +325,6 @@ public class MiscEvents implements Listener {
             Utils.updateDamageLore(event.getItem(), event.getEnchantsToAdd().entrySet());
         }
     }
-
-//    @EventHandler(priority = EventPriority.HIGHEST)
-//    public void onDisenchant(InventoryClickEvent event) {
-//        InventoryView view = event.getView();
-//        if (view.getTopInventory() instanceof GrindstoneInventory grindInv) {
-//
-//            int slot = event.getSlot();
-//            if (slot < 3) {
-//                ItemStack cursor = event.getCursor();
-//
-//                if (Utils.isItemReal(cursor)) {
-//                    ItemStack other = grindInv.getItem(slot == 0 ? 1 : 0);
-//
-//                    boolean isCursor = RSVItem.isRSVItem(cursor);
-//                    boolean isOther = RSVItem.isRSVItem(other);
-//
-//                    int i = 2;
-//                    final ItemStack copy;
-//
-//                    if (isCursor || isOther) {
-//                        if (isCursor && isOther) {
-//                            if (RSVItem.getNameFromItem(cursor).equals(RSVItem.getNameFromItem(other))) {
-//                                int newDurability = -1;
-//                                int maxDurability = -1;
-//
-//                                if (Utils.hasCustomDurability(cursor)) {
-//                                    newDurability = Utils.getCustomDurability(cursor) + Utils.getCustomDurability(other);
-//                                    maxDurability = Utils.getMaxCustomDurability(cursor);
-//                                }
-//                                else if (cursor.getItemMeta() instanceof Damageable dmg) {
-//                                   newDurability = cursor.getType().getMaxDurability() * 2 - dmg.getDamage() - ((Damageable) other.getItemMeta()).getDamage();
-//                                   maxDurability = cursor.getType().getMaxDurability();
-//                                }
-//                                ItemStack result = cursor.clone();
-//                                ItemMeta meta = result.getItemMeta();
-//
-//                                final Set<Map.Entry<Enchantment, Integer>> entries = meta.getEnchants().entrySet();
-//
-//                                for (Map.Entry<Enchantment, Integer> entry : entries) {
-//                                    meta.removeEnchant(entry.getKey());
-//                                }
-//                                result.setItemMeta(meta);
-//                                Utils.updateDamageLore(result, null);
-//                                if (!(newDurability == -1 || maxDurability == -1)) {
-//                                    Utils.changeDurability(result, newDurability + (int) Math.floor(0.05 * maxDurability), false);
-//                                }
-//                                copy = result;
-//                            }
-//                            else {
-//                                copy = null;
-//                            }
-//                        }
-//                        else {
-//                            if (isCursor && !Utils.isItemReal(other)) {
-//                                ItemStack result = cursor.clone();
-//                                ItemMeta meta = result.getItemMeta();
-//
-//                                if (meta.hasEnchants()) {
-//                                    final Set<Map.Entry<Enchantment, Integer>> entries = meta.getEnchants().entrySet();
-//
-//                                    for (Map.Entry<Enchantment, Integer> entry : entries) {
-//                                        meta.removeEnchant(entry.getKey());
-//                                    }
-//
-//                                    result.setItemMeta(meta);
-//                                    Utils.updateDamageLore(result, null);
-//                                    copy = result;
-//                                }
-//                                else {
-//                                    copy = null;
-//                                }
-//                            }
-//                            else {
-//                                copy = null;
-//                            }
-//                        }
-//                        new BukkitRunnable() {
-//                            @Override
-//                            public void run() {
-//                                view.setItem(i, copy);
-//                            }
-//                        }.runTaskLater(plugin, 1L);
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerCommand(PlayerCommandPreprocessEvent event) {

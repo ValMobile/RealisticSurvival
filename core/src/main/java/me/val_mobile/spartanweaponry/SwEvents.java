@@ -258,7 +258,7 @@ public class SwEvents extends ModuleEvents implements Listener {
                             int decrement = config.getInt("Items." + name + ".Protection.DamageDurability");
 
                             damage *= multiplier;
-                            Utils.changeDurability(itemMainHand, -decrement, true);
+                            Utils.changeDurability(itemMainHand, -decrement, true, true, defender);
                         }
                     }
                 }
@@ -361,7 +361,7 @@ public class SwEvents extends ModuleEvents implements Listener {
                                 Vector velocity = loc.getDirection().normalize().multiply(config.getDouble("Items." + name + ".ThrownAttributes.Velocity"));
 
                                 if (player.getGameMode() == GameMode.ADVENTURE || player.getGameMode() == GameMode.SURVIVAL) {
-                                    Utils.changeDurability(itemMainHand, -1, true);
+                                    Utils.changeDurability(itemMainHand, -1, true, true, player);
                                 }
 
                                 if (RSVItem.isRSVItem(itemMainHand)) {
