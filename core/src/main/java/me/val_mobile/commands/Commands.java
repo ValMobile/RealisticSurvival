@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2023  Val_Mobile
+    Copyright (C) 2024  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -125,8 +125,6 @@ public class Commands implements CommandExecutor {
                     }
 
                     int amount = 1;
-                    boolean exceedsMaxStackSize = false;
-                    int maxStackSize = customItem.getMaxStackSize();
 
                     if (args.length > 3) {
                         try {
@@ -151,9 +149,9 @@ public class Commands implements CommandExecutor {
                         return true;
                     }
 
-                    Entity[] targets = CommandUtils.getTargets(sender, args[1]);
+                    List<Entity> targets = Bukkit.selectEntities(sender, args[1]);
 
-                    if (targets == null) {
+                    if (targets.isEmpty()) {
                         sendInvalidArgumentMsg(sender);
                         return true;
                     }
@@ -171,38 +169,9 @@ public class Commands implements CommandExecutor {
                         return true;
                     }
 
-                    if (amount <= maxStackSize) {
-                        customItem.setAmount(amount);
-                    }
-                    else {
-                        exceedsMaxStackSize = true;
-                    }
-
                     for (Player player : filteredTargets) {
-                        if (exceedsMaxStackSize) {
-                            int remainder = amount % maxStackSize;
-
-                            customItem.setAmount(maxStackSize);
-                            for (int i = 0; i < amount / maxStackSize; i++) {
-                                if (player.getInventory().firstEmpty() == -1) {
-                                    player.getWorld().dropItemNaturally(player.getLocation(), customItem);
-                                }
-                                else {
-                                    player.getInventory().addItem(customItem);
-                                    playSound(player);
-                                }
-                            }
-
-                            customItem.setAmount(remainder);
-
-                        }
-                        if (player.getInventory().firstEmpty() == -1) {
-                            player.getWorld().dropItemNaturally(player.getLocation(), customItem);
-                        }
-                        else {
-                            player.getInventory().addItem(customItem);
-                            playSound(player);
-                        }
+                        Utils.addItemToInventory(player.getInventory(), customItem, amount, player.getLocation());
+                        playSound(player);
                     }
 
                     if (config.getBoolean("Give.CorrectExecution.Enabled")) {
@@ -485,7 +454,7 @@ public class Commands implements CommandExecutor {
 
                     TempManager manager = ((TanModule) RSVModule.getModule(TanModule.NAME)).getTempManager();
 
-                    Entity[] targets = CommandUtils.getTargets(sender, args[1]);
+                    List<Entity> targets = Bukkit.selectEntities(sender, args[1]);
 
                     if (targets == null) {
                         sendInvalidArgumentMsg(sender);
@@ -595,9 +564,9 @@ public class Commands implements CommandExecutor {
 
                     ThirstManager manager = ((TanModule) RSVModule.getModule(TanModule.NAME)).getThirstManager();
 
-                    Entity[] targets = CommandUtils.getTargets(sender, args[1]);
+                    List<Entity> targets = Bukkit.selectEntities(sender, args[1]);
 
-                    if (targets == null) {
+                    if (targets.isEmpty()) {
                         sendInvalidArgumentMsg(sender);
                         return true;
                     }
@@ -719,9 +688,9 @@ public class Commands implements CommandExecutor {
                         sendInvalidTargetMsg(sender);
                         return true;
                     }
-                    Entity[] targets = CommandUtils.getTargets(sender, args[1]);
+                    List<Entity> targets = Bukkit.selectEntities(sender, args[1]);
 
-                    if (targets == null) {
+                    if (targets.isEmpty()) {
                         sendInvalidArgumentMsg(sender);
                         return true;
                     }
@@ -804,9 +773,9 @@ public class Commands implements CommandExecutor {
                         sendInvalidTargetMsg(sender);
                         return true;
                     }
-                    Entity[] targets = CommandUtils.getTargets(sender, args[1]);
+                    List<Entity> targets = Bukkit.selectEntities(sender, args[1]);
 
-                    if (targets == null) {
+                    if (targets.isEmpty()) {
                         sendInvalidArgumentMsg(sender);
                         return true;
                     }

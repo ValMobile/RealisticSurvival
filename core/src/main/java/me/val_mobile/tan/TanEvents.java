@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2023  Val_Mobile
+    Copyright (C) 2024  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -774,12 +774,23 @@ public class TanEvents extends ModuleEvents implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onItemHeld(PlayerItemHeldEvent event) {
-        if (tempEnabled) {
-            if (!event.isCancelled()) {
-                Player player = event.getPlayer();
-                if (shouldEventBeRan(player)) {
-                    ItemStack item = player.getInventory().getItem(event.getNewSlot());
+        if (tempEnabled && !event.isCancelled()) {
+            Player player = event.getPlayer();
+            if (shouldEventBeRan(player)) {
+                ItemStack item = player.getInventory().getItem(event.getNewSlot());
 
+                checkAndRunTask(player, item);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemPickup(EntityPickupItemEvent event) {
+        if (tempEnabled && !event.isCancelled()) {
+            Entity entity = event.getEntity();
+            if (entity instanceof Player player) {
+                if (shouldEventBeRan(player)) {
+                    ItemStack item = event.getItem().getItemStack();
                     checkAndRunTask(player, item);
                 }
             }
@@ -787,39 +798,22 @@ public class TanEvents extends ModuleEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onItemPickup(EntityPickupItemEvent event) {
-        if (tempEnabled) {
-            if (!event.isCancelled()) {
-                Entity entity = event.getEntity();
-                if (entity instanceof Player player) {
-                    if (shouldEventBeRan(player)) {
-                        ItemStack item = event.getItem().getItemStack();
-                        checkAndRunTask(player, item);
-                    }
-                }
-            }
-        }
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR)
     public void onClick(InventoryClickEvent event) {
-        if (tempEnabled) {
-            if (!event.isCancelled()) {
-                Player player = (Player) event.getWhoClicked();
-                if (shouldEventBeRan(player)) {
-                    ItemStack cursor = event.getCursor();
+        if (tempEnabled && !event.isCancelled()) {
+            Player player = (Player) event.getWhoClicked();
+            if (shouldEventBeRan(player)) {
+                ItemStack cursor = event.getCursor();
 
-                    int heldSlot = player.getInventory().getHeldItemSlot();
-                    int slot = event.getSlot();
+                int heldSlot = player.getInventory().getHeldItemSlot();
+                int slot = event.getSlot();
 
-                    if (slot == heldSlot || event.getRawSlot() == 45) {
-                        checkAndRunTask(player, cursor);
-                    }
+                if (slot == heldSlot || event.getRawSlot() == 45) {
+                    checkAndRunTask(player, cursor);
+                }
 
-                    if (event.isShiftClick()) {
-                        if (event.getView().getTopInventory().getType() != InventoryType.PLAYER) {
-                            checkAndRunTask(player, event.getCurrentItem());
-                        }
+                if (event.isShiftClick()) {
+                    if (event.getView().getTopInventory().getType() != InventoryType.PLAYER) {
+                        checkAndRunTask(player, event.getCurrentItem());
                     }
                 }
             }
@@ -828,14 +822,12 @@ public class TanEvents extends ModuleEvents implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onItemSwap(PlayerSwapHandItemsEvent event) {
-        if (tempEnabled) {
-            if (!event.isCancelled()) {
-                Player player = event.getPlayer();
+        if (tempEnabled && !event.isCancelled()) {
+            Player player = event.getPlayer();
 
-                if (shouldEventBeRan(player)) {
-                    ItemStack item = event.getMainHandItem();
-                    checkAndRunTask(player, item);
-                }
+            if (shouldEventBeRan(player)) {
+                ItemStack item = event.getMainHandItem();
+                checkAndRunTask(player, item);
             }
         }
     }

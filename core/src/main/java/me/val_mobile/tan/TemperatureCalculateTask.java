@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2023  Val_Mobile
+    Copyright (C) 2024  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -196,17 +196,17 @@ public class TemperatureCalculateTask extends BukkitRunnable implements RSVTask 
                             }
                         }
 
-                        if (meta.hasEnchant(RSVEnchants.COOLING)) {
-                            add("Temperature.Enchantments.Cooling");
-                        }
-
-                        if (meta.hasEnchant(RSVEnchants.WARMING)) {
-                            add("Temperature.Enchantments.Warming");
-                        }
-
-                        if (meta.hasEnchant(RSVEnchants.OZZY_LINER)) {
-                            add("Temperature.Enchantments.OzzyLiner");
-                        }
+//                        if (meta.hasEnchant(RSVEnchants.COOLING)) {
+//                            add("Temperature.Enchantments.Cooling");
+//                        }
+//
+//                        if (meta.hasEnchant(RSVEnchants.WARMING)) {
+//                            add("Temperature.Enchantments.Warming");
+//                        }
+//
+//                        if (meta.hasEnchant(RSVEnchants.OZZY_LINER)) {
+//                            add("Temperature.Enchantments.OzzyLiner");
+//                        }
                     }
                 }
 

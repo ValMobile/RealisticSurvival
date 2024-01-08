@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2023  Val_Mobile
+    Copyright (C) 2024  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,10 +23,7 @@ import me.val_mobile.data.*;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.integrations.PAPI;
 import me.val_mobile.integrations.RealisticSeasons;
-import me.val_mobile.misc.BStats;
-import me.val_mobile.misc.MiscEvents;
-import me.val_mobile.misc.ResourcePackEvents;
-import me.val_mobile.misc.UpdateChecker;
+import me.val_mobile.misc.*;
 import me.val_mobile.ntp.NtpModule;
 import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.spartanweaponry.SwModule;
@@ -131,6 +128,7 @@ public class RSVPlugin extends JavaPlugin {
             new BStats(this).recordData();
 
         pm.registerEvents(new MiscEvents(this), this);
+        pm.registerEvents(new ItemAcquireEvents(this), this);
 
         this.getCommand(NAME).setExecutor(new Commands(this));
         this.getCommand(NAME).setTabCompleter(new Tab(this));

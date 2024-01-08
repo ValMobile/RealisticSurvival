@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2023  Val_Mobile
+    Copyright (C) 2024  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -115,7 +115,7 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
             stop();
         }
         else {
-            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && RSVItem.isHoldingItemInMainHand("ceramic_lava_bucket", player)) {
+            if (player.isOnline() && allowedWorlds.contains(player.getWorld().getName()) && RSVItem.isHoldingItem("ceramic_lava_bucket", player)) {
                 ticks++;
 
                 if (ticks > duration) {
@@ -124,7 +124,12 @@ public class CeramicBucketMeltTask extends BukkitRunnable {
                         if (block.isPassable() && shouldOnlyReplacePassableBlocks)
                             block.setType(Material.LAVA);
                     }
-                    player.getInventory().setItemInMainHand(null);
+                    if (RSVItem.isHoldingItemInMainHand("ceramic_lava_bucket", player))
+                        player.getInventory().setItemInMainHand(null);
+
+                    if (RSVItem.isHoldingItemInOffHand("ceramic_lava_bucket", player))
+                        player.getInventory().setItemInOffHand(null);
+
                     stop();
                 }
                 else {

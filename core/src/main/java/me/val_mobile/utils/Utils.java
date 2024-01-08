@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2023  Val_Mobile
+    Copyright (C) 2024  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1217,6 +1217,67 @@ public class Utils {
             }
         }
         return item;
+    }
+
+    /*
+    @return Integer
+     */
+    @Nonnegative
+    public static int addItemToInventory(@Nonnull Inventory inv, @Nonnull ItemStack item, @Nonnegative int amount) {
+        item = item.clone();
+        int maxStackSize = item.getMaxStackSize();
+        int leftover = 0;
+
+        while (amount >= maxStackSize) {
+            if (inv.firstEmpty() == -1) {
+                leftover += amount;
+                return leftover;
+            }
+            else {
+                item.setAmount(maxStackSize);
+                int excess = inv.addItem(item).keySet().stream().mapToInt(Integer::intValue).sum();
+                amount += excess;
+            }
+
+            amount -= maxStackSize;
+        }
+
+        int remainder = amount % maxStackSize;
+
+        if (remainder > 0) {
+            if (inv.firstEmpty() == -1) {
+                leftover += remainder;
+            }
+            else {
+                item.setAmount(remainder);
+                inv.addItem(item);
+            }
+        }
+
+        return leftover;
+    }
+
+    /*
+    @return
+     */
+    public static void addItemToInventory(@Nonnull Inventory inv, @Nonnull ItemStack item, @Nonnegative int amount, @Nonnull Location loc) {
+        item = item.clone();
+        int leftover = addItemToInventory(inv, item, amount);
+
+        int maxStackSize = item.getMaxStackSize();
+        int remainder = leftover % maxStackSize;
+
+        while (leftover > maxStackSize) {
+            item.setAmount(maxStackSize);
+            loc.getWorld().dropItemNaturally(loc, item);
+
+            leftover -= maxStackSize;
+        }
+
+        if (remainder > 0) {
+            item.setAmount(remainder);
+            loc.getWorld().dropItemNaturally(loc, item);
+        }
     }
 
     @Nonnull
