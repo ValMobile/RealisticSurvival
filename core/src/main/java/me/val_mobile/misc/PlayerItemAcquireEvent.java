@@ -26,17 +26,18 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class PlayerItemAcquireEvent extends EntityItemAcquireEvent {
 
     private static final HandlerList handlers = new HandlerList();
 
-    public PlayerItemAcquireEvent(@Nonnull Player player, @Nonnull ItemStack item, @Nonnull ItemAcquireCause cause, @Nonnull EquipmentSlot loc) {
-        super(player, item, cause, loc);
+    public PlayerItemAcquireEvent(@Nonnull Player player, @Nonnull ItemStack item, @Nonnull ItemAcquireCause cause, @Nonnull EquipmentSlot loc, @Nullable ItemStack origItem) {
+        super(player, item, cause, loc, origItem);
     }
 
-    public Player getPlayer() {
+    public @Nonnull Player getPlayer() {
         return (Player) entity;
     }
 

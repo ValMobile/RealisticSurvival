@@ -17,7 +17,10 @@
 package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.ModuleEvents;
+import me.val_mobile.data.RSVModule;
+import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.rsv.RSVPlugin;
+import me.val_mobile.spartanweaponry.SwModule;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
@@ -29,6 +32,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class SfEvents extends ModuleEvents implements Listener {
 
@@ -48,220 +54,29 @@ public class SfEvents extends ModuleEvents implements Listener {
      * @param event The event called when an entity attacks another entity
      * @see Utils
      */
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         Entity defender = event.getEntity(); // get the defender
         Entity attacker = event.getDamager(); // get the attacker
 
-        if (!event.isCancelled()) {
-            if (shouldEventBeRan(attacker) && shouldEventBeRan(defender)) {
-                double damage = event.getDamage();
+        if (!(shouldEventBeRan(attacker) && shouldEventBeRan(defender)))
+            return;
 
-                if (attacker instanceof LivingEntity living) {
-                    if (living.getEquipment() != null) {
-                        ItemStack itemMainHand = living.getEquipment().getItemInMainHand(); // get the item in the player's main hand
+        double damage = event.getDamage();
 
-                        // check if the item is real
-                        if (RSVItem.isRSVItem(itemMainHand)) {
-                            if (RSVItem.getModuleNameFromItem(itemMainHand).equals(SfModule.NAME)) {
-                                String name = RSVItem.getNameFromItem(itemMainHand);
-                                String type = name.substring(0, name.lastIndexOf("_"));
+        if (Utils.hasNbtTag(attacker, "rsvbow")) {
+            String name = Utils.getNbtTag(attacker, "rsvbow", PersistentDataType.STRING);
 
-                                switch (type) {
-                                    case "dragonbone_flamed" -> {
-                                        if (Utils.hasNbtTag(defender, "rsvmob")) {
-                                            if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
-                                                damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                            }
-                                        }
-
-                                        if (!BurnTask.hasTask(defender.getUniqueId())) {
-                                            int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                            int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
-
-                                            new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
-                                        }
-                                    }
-                                    case "dragonbone_iced" -> {
-                                        if (Utils.hasNbtTag(defender, "rsvmob")) {
-                                            if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
-                                                damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                            }
-                                        }
-
-                                        if (!FreezeTask.hasTask(defender.getUniqueId())) {
-                                            new FreezeTask(plugin, module, name, defender).start();
-                                        }
-
-                                    }
-                                    case "dragonbone_lightning" -> {
-                                        if (Utils.hasNbtTag(defender, "rsvmob")) {
-                                            if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("lightning_dragon")) {
-                                                damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                            }
-                                        }
-
-                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
-                                            Location loc = defender.getLocation();
-                                            if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
-                                                loc.getWorld().strikeLightningEffect(loc);
-                                            } else {
-                                                loc.getWorld().strikeLightning(loc);
-                                            }
-                                        }
-
-                                        if (defender instanceof Damageable) {
-                                            if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
-                                                new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                            }
-                                        }
-                                    }
-                                    case "dragonsteel_fire" -> {
-                                        if (!BurnTask.hasTask(defender.getUniqueId())) {
-                                            int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                            int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
-
-                                            new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
-                                        }
-
-                                    }
-                                    case "dragonsteel_ice" -> {
-                                        if (!FreezeTask.hasTask(defender.getUniqueId())) {
-                                            new FreezeTask(plugin, module, name, defender).start();
-                                        }
-                                    }
-                                    case "dragonsteel_lightning" -> {
-                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
-                                            Location loc = defender.getLocation();
-                                            if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
-                                                loc.getWorld().strikeLightningEffect(loc);
-                                            } else {
-                                                loc.getWorld().strikeLightning(loc);
-                                            }
-                                        }
-
-                                        if (defender instanceof Damageable) {
-                                            if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
-                                                new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                            }
-                                        }
-                                    }
-                                    default -> {}
-                                }
-                            }
-                        }
-                    }
-                }
-
-                else if (attacker instanceof Arrow || attacker instanceof SpectralArrow || attacker instanceof Firework) {
-                    Projectile arrow = (Projectile) attacker;
-                    if (arrow.getShooter() != null) {
-                        Entity shooter = (Entity) arrow.getShooter();
-
-                        if (shooter instanceof LivingEntity living) {
-                            if (living.getEquipment() != null) {
-                                ItemStack itemMainHand = living.getEquipment().getItemInMainHand();
-
-                                if (RSVItem.isRSVItem(itemMainHand)) {
-                                    if (RSVItem.getModuleNameFromItem(itemMainHand).equals(SfModule.NAME)) {
-                                        String name = RSVItem.getNameFromItem(itemMainHand);
-                                        String materialType = name.substring(0, name.lastIndexOf("_"));
-
-                                        String weaponType = name.substring(name.lastIndexOf("_") + 1);
-
-                                        if (weaponType.equals("longbow") || weaponType.equals("crossbow")) {
-                                            damage *= config.getDouble("Items." + name + ".AttackDamageMultiplier");
-                                            switch (materialType) {
-                                                case "dragonbone_flamed" -> {
-                                                    if (Utils.hasNbtTag(defender, "rsvmob")) {
-                                                        if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
-                                                            damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                                        }
-                                                    }
-
-                                                    if (!BurnTask.hasTask(defender.getUniqueId())) {
-                                                        int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                                        int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
-
-                                                        new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
-                                                    }
-                                                }
-                                                case "dragonbone_iced" -> {
-                                                    if (Utils.hasNbtTag(defender, "rsvmob")) {
-                                                        if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
-                                                            damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                                        }
-                                                    }
-
-                                                    if (!FreezeTask.hasTask(defender.getUniqueId())) {
-                                                        new FreezeTask(plugin, module, name, defender).start();
-                                                    }
-                                                }
-                                                case "dragonbone_lightning" -> {
-                                                    if (Utils.hasNbtTag(defender, "rsvmob")) {
-                                                        if (!Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("llightning_dragon")) {
-                                                            damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                                        }
-                                                    }
-
-                                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
-                                                        Location loc = defender.getLocation();
-
-                                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
-                                                            loc.getWorld().strikeLightningEffect(loc);
-                                                        } else {
-                                                            loc.getWorld().strikeLightning(loc);
-                                                        }
-                                                    }
-
-                                                    if (defender instanceof Damageable) {
-                                                        if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
-                                                            new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                                        }
-                                                    }
-                                                }
-                                                case "dragonsteel_fire" -> {
-                                                    if (!BurnTask.hasTask(defender.getUniqueId())) {
-                                                        int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                                        int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
-
-                                                        new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
-                                                    }
-                                                }
-                                                case "dragonsteel_ice" -> {
-                                                    if (!FreezeTask.hasTask(defender.getUniqueId())) {
-                                                        new FreezeTask(plugin, module, name, defender).start();
-                                                    }
-                                                }
-                                                case "dragonsteel_lightning" -> {
-                                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
-                                                        Location loc = defender.getLocation();
-
-                                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
-                                                            loc.getWorld().strikeLightningEffect(loc);
-                                                        } else {
-                                                            loc.getWorld().strikeLightning(loc);
-                                                        }
-                                                    }
-
-                                                    if (defender instanceof Damageable) {
-                                                        if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
-                                                            new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                                        }
-                                                    }
-                                                }
-                                                default -> {}
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                event.setDamage(damage);
-            }
+            IceFireModule.applyDragonItemEffect(defender, name, module);
+            damage = IceFireModule.applyDragonItemBonusDamage(defender, name, damage, module);
         }
-    }
+        else if (attacker instanceof LivingEntity living && living.getEquipment() != null) {
+            ItemStack itemMainHand = living.getEquipment().getItemInMainHand();
 
+            IceFireModule.applyDragonItemEffect(defender, itemMainHand, module);
+            damage = IceFireModule.applyDragonItemBonusDamage(defender, itemMainHand, damage, module);
+        }
+
+        event.setDamage(damage);
+    }
 }

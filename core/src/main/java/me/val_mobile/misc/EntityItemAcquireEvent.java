@@ -24,6 +24,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class EntityItemAcquireEvent extends Event {
@@ -35,32 +36,38 @@ public class EntityItemAcquireEvent extends Event {
     private final ItemAcquireCause cause;
 
     private final EquipmentSlot loc;
+    private final ItemStack origItem;
 
-    public EntityItemAcquireEvent(@Nonnull LivingEntity entity, @Nonnull ItemStack item, @Nonnull ItemAcquireCause cause, @Nonnull EquipmentSlot loc) {
+    public EntityItemAcquireEvent(@Nonnull LivingEntity entity, @Nonnull ItemStack item, @Nonnull ItemAcquireCause cause, @Nonnull EquipmentSlot loc, @Nullable ItemStack origItem) {
         this.entity = entity;
         this.item = item;
         this.cause = cause;
         this.loc = loc;
+        this.origItem = origItem;
     }
 
-    public LivingEntity getEntity() {
+    public @Nonnull LivingEntity getEntity() {
         return entity;
     }
 
-    public ItemStack getItem() {
+    public @Nonnull ItemStack getItem() {
         return item;
     }
 
-    public ItemAcquireCause getCause() {
+    public @Nonnull ItemAcquireCause getCause() {
         return cause;
     }
 
-    public EquipmentSlot getLocation() {
+    public @Nonnull EquipmentSlot getLocation() {
         return loc;
     }
 
+    public @Nullable ItemStack getOriginalItem() {
+        return origItem;
+    }
+
     public enum ItemAcquireCause {
-        ARMOR_STAND, ARMOR_DISPENSE, ARMOR_RIGHT_CLICK, PLAYER_JOIN, PLAYER_RESPAWN, ENTITY_SPAWN, ITEM_HELD, GIVE_COMMAND, SWAP_HANDS, ITEM_PICKUP, INVENTORY_CLICK, DRAG_CLICK, BUCKET_EMPTY, BUCKET_FILL_MOB, BUCKET_FILL_LIQUID, FOOD_CONSUME
+        SHULKER_BOX_WASH, BANNER_WASH, LEATHER_ARMOR_WASH, ARMOR_STAND, ARMOR_DISPENSE, ARMOR_RIGHT_CLICK, PLAYER_JOIN, PLAYER_RESPAWN, ENTITY_SPAWN, ITEM_HELD, GIVE_COMMAND, SWAP_HANDS, ITEM_PICKUP, INVENTORY_CLICK, DRAG_CLICK, BOTTLE_EMPTY, BOTTLE_FILL, BUCKET_EMPTY, BUCKET_FILL_MOB, BUCKET_FILL_LIQUID, FOOD_CONSUME
     }
 
     @Nonnull

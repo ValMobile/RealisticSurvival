@@ -23,9 +23,22 @@ import me.val_mobile.data.iceandfire.ItemConfig;
 import me.val_mobile.data.iceandfire.RecipesConfig;
 import me.val_mobile.data.iceandfire.UserConfig;
 import me.val_mobile.rsv.RSVPlugin;
+import me.val_mobile.spartanandfire.BurnTask;
+import me.val_mobile.spartanandfire.ElectrocuteTask;
+import me.val_mobile.spartanandfire.FreezeTask;
+import me.val_mobile.spartanandfire.SfModule;
+import me.val_mobile.spartanweaponry.SwModule;
+import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Damageable;
+import org.bukkit.entity.Entity;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Map;
 
 public class IceFireModule extends RSVModule {
@@ -75,5 +88,90 @@ public class IceFireModule extends RSVModule {
 
     public IceFireEvents getEvents() {
         return events;
+    }
+
+    public static double applyDragonItemBonusDamage(@Nullable Entity defender, @Nullable ItemStack item, double origDamage, @Nonnull RSVModule compare) {
+        if (!(RSVItem.isRSVItem(item) && RSVItem.getModuleNameFromItem(item).equals(compare.getName())))
+            return origDamage;
+
+        return applyDragonItemBonusDamage(defender, RSVItem.getNameFromItem(item), origDamage, compare);
+    }
+
+    public static double applyDragonItemBonusDamage(@Nullable Entity defender, @Nullable String name, double origDamage, @Nonnull RSVModule compare) {
+        if (compare.getUserConfig() == null || defender == null || name == null || name.isEmpty() || name.startsWith("_") || name.endsWith("_"))
+            return origDamage;
+
+        FileConfiguration config = compare.getUserConfig().getConfig();
+
+        String type = name.substring(0, name.lastIndexOf("_"));
+        String weaponType = name.substring(name.lastIndexOf("_") + 1);
+
+        if (weaponType.equals("longbow") || weaponType.equals("crossbow")) {
+            origDamage *= config.getDouble("Items." + name + ".AttackDamageMultiplier");
+        }
+
+        String prefix = switch (type) {
+            case "dragonbone_flamed" -> "fire";
+            case "dragonbone_iced" -> "ice";
+            case "dragonbone_lightning" -> "lightning";
+            default -> null;
+        };
+
+        if (prefix == null)
+            return origDamage;
+
+        if (Utils.hasNbtTag(defender, "rsvmob") && !Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals(prefix + "_dragon")) {
+            origDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+        }
+
+        return origDamage;
+    }
+
+    public static void applyDragonItemEffect(@Nullable Entity defender, @Nullable ItemStack item, @Nonnull RSVModule compare) {
+        if (!(RSVItem.isRSVItem(item) && RSVItem.getModuleNameFromItem(item).equals(compare.getName())))
+            return;
+
+        applyDragonItemEffect(defender, RSVItem.getNameFromItem(item), compare);
+    }
+
+    public static void applyDragonItemEffect(@Nullable Entity defender, @Nullable String name, @Nonnull RSVModule compare) {
+        if (compare.getUserConfig() == null || defender == null || name == null || name.isEmpty() || name.startsWith("_") || name.endsWith("_"))
+            return;
+
+        FileConfiguration config = compare.getUserConfig().getConfig();
+        RSVPlugin plugin = RSVPlugin.getPlugin();
+
+        String type = name.substring(0, name.lastIndexOf("_"));
+
+        switch (type) {
+            case "dragonbone_flamed", "dragonsteel_fire" -> {
+                if (!BurnTask.hasTask(defender.getUniqueId())) {
+                    int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
+                    int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
+
+                    new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
+                }
+            }
+            case "dragonbone_iced", "dragonsteel_ice" -> {
+                if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                    new FreezeTask(plugin, compare, name, defender).start();
+                }
+            }
+            case "dragonbone_lightning", "dragonsteel_lightning" -> {
+                if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
+                    Location loc = defender.getLocation();
+                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                        loc.getWorld().strikeLightningEffect(loc);
+                    } else {
+                        loc.getWorld().strikeLightning(loc);
+                    }
+                }
+
+                if (defender instanceof Damageable damageable && !ElectrocuteTask.hasTask(defender.getUniqueId())) {
+                    new ElectrocuteTask(plugin, compare, name, damageable).start();
+                }
+            }
+            default -> {}
+        }
     }
 }

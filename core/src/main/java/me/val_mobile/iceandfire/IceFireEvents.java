@@ -17,10 +17,14 @@
 package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.ModuleEvents;
+import me.val_mobile.data.RSVModule;
+import me.val_mobile.misc.PlayerItemAcquireEvent;
 import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanandfire.BurnTask;
 import me.val_mobile.spartanandfire.ElectrocuteTask;
 import me.val_mobile.spartanandfire.FreezeTask;
+import me.val_mobile.spartanandfire.SfModule;
+import me.val_mobile.spartanweaponry.SwModule;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
@@ -38,10 +42,14 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -66,469 +74,209 @@ public class IceFireEvents extends ModuleEvents implements Listener {
         this.module = module;
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onEntityDamageByEntityMonitor(EntityDamageByEntityEvent event) {
-        if (!event.isCancelled()) {
-            Entity defender = event.getEntity(); // get the entity
-            Entity attacker = event.getDamager(); // get the attacker
+    private double applyDragonItemEffect(@Nullable Entity defender, @Nullable ItemStack item, double origDamage) {
+        if (!(RSVItem.isRSVItem(item) && RSVItem.getModuleNameFromItem(item).equals(module.getName())))
+            return origDamage;
 
-            if (shouldEventBeRan(defender) && shouldEventBeRan(attacker)) {
+        return applyDragonItemEffect(defender, RSVItem.getNameFromItem(item), origDamage);
+    }
 
-                if (attacker instanceof LivingEntity living) {
-                    if (living.getEquipment() != null) {
-                        ItemStack itemMainHand = living.getEquipment().getItemInMainHand(); // get the item in the player's main hand
+    private double applyDragonItemEffect(@Nullable Entity defender, @Nullable String name, double origDamage) {
+        if (module.getUserConfig() == null || defender == null || name == null || name.isEmpty() || name.startsWith("_") || name.endsWith("_"))
+            return origDamage;
 
-                        // check if the item is real
-                        if (RSVItem.isRSVItem(itemMainHand)) {
-                            if (RSVItem.getModuleNameFromItem(itemMainHand).equals(IceFireModule.NAME)) {
-                                String name = RSVItem.getNameFromItem(itemMainHand);
-                                String type = name.substring(0, name.lastIndexOf("_"));
+        String type = name.substring(0, name.lastIndexOf("_"));
+        String weaponType = name.substring(name.lastIndexOf("_") + 1);
 
-                                switch (type) {
-                                    case "dragonbone_flamed", "dragonsteel_fire" -> {
-                                        if (!BurnTask.hasTask(defender.getUniqueId())) {
-                                            int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                            int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
+        if (weaponType.equals("longbow") || weaponType.equals("crossbow")) {
+            origDamage *= config.getDouble("Items." + name + ".AttackDamageMultiplier");
+        }
 
-                                            new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
-                                        }
-                                    }
-                                    case "dragonbone_iced", "dragonsteel_ice" -> {
-                                        if (!FreezeTask.hasTask(defender.getUniqueId())) {
-                                            new FreezeTask(plugin, module, name, defender).start();
-                                        }
-                                    }
-                                    case "dragonbone_lightning", "dragonsteel_lightning" -> {
-                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
-                                            Location loc = defender.getLocation();
-                                            if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
-                                                loc.getWorld().strikeLightningEffect(loc);
-                                            } else {
-                                                loc.getWorld().strikeLightning(loc);
-                                            }
-                                        }
-
-                                        if (defender instanceof Damageable) {
-                                            if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
-                                                new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                            }
-                                        }
-                                    }
-                                    default -> {}
-                                }
-                            }
-                        }
-                    }
+        switch (type) {
+            case "dragonbone_flamed" -> {
+                if (Utils.hasNbtTag(defender, "rsvmob") && !Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
+                    origDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
                 }
 
-                else if (attacker instanceof Arrow || attacker instanceof SpectralArrow || attacker instanceof Firework) {
-                    Projectile arrow = (Projectile) attacker;
-                    if (arrow.getShooter() != null) {
-                        Entity shooter = (Entity) arrow.getShooter();
+                if (!BurnTask.hasTask(defender.getUniqueId())) {
+                    int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
+                    int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
 
-                        if (shooter instanceof LivingEntity living) {
-                            if (living.getEquipment() != null) {
-                                ItemStack itemMainHand = living.getEquipment().getItemInMainHand();
-
-                                if (RSVItem.isRSVItem(itemMainHand)) {
-                                    if (RSVItem.getModuleNameFromItem(itemMainHand).equals(IceFireModule.NAME)) {
-                                        String name = RSVItem.getNameFromItem(itemMainHand);
-                                        String materialType = name.substring(0, name.lastIndexOf("_"));
-
-                                        String weaponType = name.substring(name.lastIndexOf("_") + 1);
-
-                                        if (weaponType.equals("bow") || weaponType.equals("crossbow")) {
-                                            switch (materialType) {
-                                                case "dragonbone_flamed", "dragon steel_fire" -> {
-                                                    if (!BurnTask.hasTask(defender.getUniqueId())) {
-                                                        int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                                        int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
-
-                                                        new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
-                                                    }
-                                                }
-                                                case "dragonbone_iced", "dragonsteel_ice" -> {
-                                                    if (!FreezeTask.hasTask(defender.getUniqueId())) {
-                                                        new FreezeTask(plugin, module, name, defender).start();
-                                                    }
-                                                }
-                                                case "dragonbone_lightning", "dragonsteel_lightning" -> {
-                                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
-                                                        Location loc = defender.getLocation();
-
-                                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
-                                                            loc.getWorld().strikeLightningEffect(loc);
-                                                        } else {
-                                                            loc.getWorld().strikeLightning(loc);
-                                                        }
-                                                    }
-
-                                                    if (defender instanceof Damageable) {
-                                                        if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
-                                                            new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                                        }
-                                                    }
-                                                }
-                                                default -> {}
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
                 }
             }
+            case "dragonbone_iced" -> {
+                if (Utils.hasNbtTag(defender, "rsvmob") && !Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
+                    origDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+                }
+
+                if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                    new FreezeTask(plugin, module, name, defender).start();
+                }
+
+            }
+            case "dragonbone_lightning" -> {
+                if (Utils.hasNbtTag(defender, "rsvmob") && !Utils.getNbtTag(defender, "rsvmob", PersistentDataType.STRING).equals("lightning_dragon")) {
+                    origDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+                }
+
+                if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
+                    Location loc = defender.getLocation();
+                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                        loc.getWorld().strikeLightningEffect(loc);
+                    } else {
+                        loc.getWorld().strikeLightning(loc);
+                    }
+                }
+
+                if (defender instanceof Damageable damageable && !ElectrocuteTask.hasTask(defender.getUniqueId())) {
+                    new ElectrocuteTask(plugin, module, name, damageable).start();
+                }
+            }
+            case "dragonsteel_fire" -> {
+                if (!BurnTask.hasTask(defender.getUniqueId())) {
+                    int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
+                    int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
+
+                    new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
+                }
+            }
+            case "dragonsteel_ice" -> {
+                if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                    new FreezeTask(plugin, module, name, defender).start();
+                }
+            }
+            case "dragonsteel_lightning" -> {
+                if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
+                    Location loc = defender.getLocation();
+                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                        loc.getWorld().strikeLightningEffect(loc);
+                    } else {
+                        loc.getWorld().strikeLightning(loc);
+                    }
+                }
+
+                if (defender instanceof Damageable damageable && !ElectrocuteTask.hasTask(defender.getUniqueId())) {
+                    new ElectrocuteTask(plugin, module, name, damageable).start();
+                }
+            }
+            default -> {}
+        }
+
+        return origDamage;
+    }
+
+    /**
+     * Activates dragon weapon abilities if an entity successfully attacks with a dragon weapon
+     * @see Utils
+     */
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onEntityDamageByEntityMonitor(EntityDamageByEntityEvent event) {
+        Entity defender = event.getEntity(); // get the entity
+        Entity attacker = event.getDamager(); // get the attacker
+
+        if (!(shouldEventBeRan(defender) && shouldEventBeRan(attacker)))
+            return;
+
+        if (Utils.hasNbtTag(attacker, "rsvbow")) {
+            String name = Utils.getNbtTag(attacker, "rsvbow", PersistentDataType.STRING);
+
+            IceFireModule.applyDragonItemEffect(defender, name, module);
+        }
+        else if (attacker instanceof LivingEntity living && living.getEquipment() != null) {
+            ItemStack itemMainHand = living.getEquipment().getItemInMainHand(); // get the item in the player's main hand
+
+            IceFireModule.applyDragonItemEffect(defender, itemMainHand, module);
         }
     }
 
     /**
-     * Activates dragon weapon abilities if a player attacks with a dragon weapon
+     * Increases raw damage if an entity attacks a dragon with a dragon weapon
      * @param event The event called when an entity attacks another entity
      * @see Utils
      */
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (!event.isCancelled()) {
-            Entity defender = event.getEntity(); // get the entity
-            Entity attacker = event.getDamager(); // get the attacker
+        Entity defender = event.getEntity(); // get the entity
+        Entity attacker = event.getDamager(); // get the attacker
 
-            if (shouldEventBeRan(defender) && shouldEventBeRan(attacker)) {
-                double damage = event.getDamage();
+        if (!(shouldEventBeRan(defender) && shouldEventBeRan(attacker)))
+            return;
 
-                if (attacker instanceof LivingEntity living) {
-                    if (living.getEquipment() != null) {
-                        ItemStack itemMainHand = living.getEquipment().getItemInMainHand(); // get the item in the player's main hand
+        double damage = event.getDamage();
 
-                        // check if the item is real
-                        if (RSVItem.isRSVItem(itemMainHand)) {
-                            if (RSVItem.getModuleNameFromItem(itemMainHand).equals(IceFireModule.NAME)) {
-                                String name = RSVItem.getNameFromItem(itemMainHand);
-                                String type = name.substring(0, name.lastIndexOf("_"));
+        if (Utils.hasNbtTag(attacker, "rsvbow")) {
+            String name = Utils.getNbtTag(attacker, "rsvbow", PersistentDataType.STRING);
 
-                                switch (type) {
-                                    case "dragonbone_flamed" -> {
-                                        if (RSVMob.isMob(defender)) {
-                                            if (!RSVMob.getMob(defender).equals("fire_dragon")) {
-                                                damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                            }
-                                        }
-
-                                        if (!BurnTask.hasTask(defender.getUniqueId())) {
-                                            int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                            int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
-
-                                            new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
-                                        }
-                                    }
-                                    case "dragonbone_iced" -> {
-                                        if (RSVMob.isMob(defender)) {
-                                            if (!RSVMob.getMob(defender).equals("ice_dragon")) {
-                                                damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                            }
-                                        }
-                                        if (!FreezeTask.hasTask(defender.getUniqueId())) {
-                                            new FreezeTask(plugin, module, name, defender).start();
-                                        }
-                                    }
-                                    case "dragonbone_lightning" -> {
-                                        if (RSVMob.isMob(defender)) {
-                                            if (!RSVMob.getMob(defender).equals("lightning_dragon")) {
-                                                damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                            }
-                                        }
-
-                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
-                                            Location loc = defender.getLocation();
-                                            if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
-                                                loc.getWorld().strikeLightningEffect(loc);
-                                            } else {
-                                                loc.getWorld().strikeLightning(loc);
-                                            }
-                                        }
-
-                                        if (defender instanceof Damageable) {
-                                            if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
-                                                new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                            }
-                                        }
-                                    }
-                                    case "dragonsteel_fire" -> {
-                                        if (!BurnTask.hasTask(defender.getUniqueId())) {
-                                            int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                            int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
-
-                                            new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
-                                        }
-                                    }
-                                    case "dragonsteel_ice" -> {
-                                        if (!FreezeTask.hasTask(defender.getUniqueId())) {
-                                            new FreezeTask(plugin, module, name, defender).start();
-                                        }
-                                    }
-                                    case "dragonsteel_lightning" -> {
-                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
-                                            Location loc = defender.getLocation();
-                                            if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
-                                                loc.getWorld().strikeLightningEffect(loc);
-                                            } else {
-                                                loc.getWorld().strikeLightning(loc);
-                                            }
-                                        }
-
-                                        if (defender instanceof Damageable) {
-                                            if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
-                                                new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                            }
-                                        }
-                                    }
-                                    default -> {}
-                                }
-                            }
-                        }
-                    }
-
-                    if (attacker instanceof EnderDragon) {
-                        if (defender instanceof LivingEntity def) {
-                            if (def.getEquipment() != null) {
-                                ItemStack[] items = def.getEquipment().getArmorContents();
-                                double dragonProtection = 0;
-
-                                for (ItemStack item : items) {
-                                    // if a real item is in the armor slot
-                                    if (RSVItem.isRSVItem(item)) {
-                                        String name = RSVItem.getNameFromItem(item);
-                                        if (name.startsWith("dragonscale") || name.startsWith("dragonsteel")) {
-                                            dragonProtection += config.getDouble("Items." + name + ".DragonDamageReduction");
-                                        }
-                                    }
-                                }
-
-                                damage *= (1D - dragonProtection);
-                            }
-                        }
-                    }
-                }
-
-                else if (attacker instanceof Arrow || attacker instanceof SpectralArrow || attacker instanceof Firework) {
-                    Projectile arrow = (Projectile) attacker;
-                    if (arrow.getShooter() != null) {
-                        Entity shooter = (Entity) arrow.getShooter();
-
-                        if (shooter instanceof LivingEntity living) {
-                            if (living.getEquipment() != null) {
-                                ItemStack itemMainHand = living.getEquipment().getItemInMainHand();
-
-                                if (RSVItem.isRSVItem(itemMainHand)) {
-                                    if (RSVItem.getModuleNameFromItem(itemMainHand).equals(IceFireModule.NAME)) {
-                                        String name = RSVItem.getNameFromItem(itemMainHand);
-                                        String materialType = name.substring(0, name.lastIndexOf("_"));
-
-                                        String weaponType = name.substring(name.lastIndexOf("_") + 1);
-
-                                        if (weaponType.equals("bow") || weaponType.equals("crossbow")) {
-                                            damage *= config.getDouble("Items." + name + ".AttackDamageMultiplier");
-                                            switch (materialType) {
-                                                case "dragonbone_flamed" -> {
-                                                    if (RSVMob.isMob(defender)) {
-                                                        if (!RSVMob.getMob(defender).equals("fire_dragon")) {
-                                                            damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                                        }
-                                                    }
-
-                                                    if (!BurnTask.hasTask(defender.getUniqueId())) {
-                                                        int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                                        int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
-
-                                                        new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
-                                                    }
-                                                }
-                                                case "dragonbone_iced" -> {
-                                                    if (RSVMob.isMob(defender)) {
-                                                        if (!RSVMob.getMob(defender).equals("ice_dragon")) {
-                                                            damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                                        }
-                                                    }
-                                                    if (!FreezeTask.hasTask(defender.getUniqueId())) {
-                                                        new FreezeTask(plugin, module, name, defender).start();
-                                                    }
-                                                }
-                                                case "dragonbone_lightning" -> {
-                                                    if (RSVMob.isMob(defender)) {
-                                                        if (!RSVMob.getMob(defender).equals("llightning_dragon")) {
-                                                            damage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                                        }
-                                                    }
-
-                                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
-                                                        Location loc = defender.getLocation();
-
-                                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
-                                                            loc.getWorld().strikeLightningEffect(loc);
-                                                        } else {
-                                                            loc.getWorld().strikeLightning(loc);
-                                                        }
-                                                    }
-
-                                                    if (defender instanceof Damageable) {
-                                                        if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
-                                                            new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                                        }
-                                                    }
-                                                }
-                                                case "dragonsteel_fire" -> {
-                                                    if (!BurnTask.hasTask(defender.getUniqueId())) {
-                                                        int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                                        int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
-
-                                                        new BurnTask(plugin, defender, fireTicks, tickPeriod).start();
-                                                    }
-                                                }
-                                                case "dragonsteel_ice" -> {
-                                                    if (!FreezeTask.hasTask(defender.getUniqueId())) {
-                                                        new FreezeTask(plugin, module, name, defender).start();
-                                                    }
-                                                }
-                                                case "dragonsteel_lightning" -> {
-                                                    if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
-                                                        Location loc = defender.getLocation();
-
-                                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
-                                                            loc.getWorld().strikeLightningEffect(loc);
-                                                        } else {
-                                                            loc.getWorld().strikeLightning(loc);
-                                                        }
-                                                    }
-
-                                                    if (defender instanceof Damageable) {
-                                                        if (!ElectrocuteTask.hasTask(defender.getUniqueId())) {
-                                                            new ElectrocuteTask(plugin, module, name, (Damageable) defender).start();
-                                                        }
-                                                    }
-                                                }
-                                                default -> {}
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                event.setDamage(damage);
-            }
+            damage = IceFireModule.applyDragonItemBonusDamage(defender, name, damage, module);
         }
+        else if (attacker instanceof LivingEntity living && living.getEquipment() != null) {
+            ItemStack itemMainHand = living.getEquipment().getItemInMainHand(); // get the item in the player's main hand
+
+            damage = IceFireModule.applyDragonItemBonusDamage(defender, itemMainHand, damage, module);
+        }
+
+        event.setDamage(damage);
     }
 
-    @EventHandler (priority = EventPriority.MONITOR)
-    public void onItemThrow(PlayerDropItemEvent event) {
-        if (!event.isCancelled()) {
-            Player player = event.getPlayer();
+    @EventHandler
+    public void onArmorAcquire(PlayerItemAcquireEvent event) {
+        ItemStack item = event.getItem();
 
-            if (shouldEventBeRan(player)) {
-                ItemStack item = event.getItemDrop().getItemStack();
-                if (RSVItem.isRSVItem(item)) {
-                    if (RSVItem.getNameFromItem(item).contains("tide_guardian_")) {
-                        if (!TideGuardianTask.hasTask(player.getUniqueId())) {
-                            new TideGuardianTask(module, player, plugin).start();
-                        }
-                    }
-                }
+        if (!(RSVItem.isRSVItem(item) && RSVItem.getNameFromItem(item).contains("tide_guardian_")))
+            return;
+
+        EquipmentSlot loc = event.getLocation();
+
+        switch (loc) {
+            case HEAD, CHEST, LEGS, FEET -> {}
+            default -> {
+                return;
             }
         }
-    }
 
-    @EventHandler (priority = EventPriority.MONITOR)
-    public void onClick(InventoryClickEvent event) {
-        Player player = (Player) event.getWhoClicked();
+        Player player = event.getPlayer();
 
-        if (!event.isCancelled()) {
-            if (shouldEventBeRan(player)) {
-                ItemStack item;
-                if (RSVItem.isRSVItem(event.getCurrentItem())) {
-                    item = event.getCurrentItem();
-
-                    if (RSVItem.isRSVItem(item)) {
-                        if (RSVItem.getNameFromItem(item).contains("tide_guardian_")) {
-                            if (!TideGuardianTask.hasTask(player.getUniqueId())) {
-                                new TideGuardianTask(module, player, plugin).start();
-                            }
-                        }
-                    }
-                }
-                if (RSVItem.isRSVItem(event.getCursor())) {
-                    item = event.getCursor();
-                    if (RSVItem.isRSVItem(item)) {
-                        if (RSVItem.getNameFromItem(item).contains("tide_guardian_")) {
-                            if (!TideGuardianTask.hasTask(player.getUniqueId())) {
-                                new TideGuardianTask(module, player, plugin).start();
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @EventHandler (priority = EventPriority.MONITOR)
-    public void onDragClick(InventoryDragEvent event) {
-        if (!event.isCancelled()) {
-            Player player = (Player) event.getWhoClicked();
-
-            if (shouldEventBeRan(player)) {
-                ItemStack item = event.getCursor();
-                if (RSVItem.isRSVItem(item)) {
-                    if (RSVItem.getNameFromItem(item).contains("tide_guardian_")) {
-                        if (!TideGuardianTask.hasTask(player.getUniqueId())) {
-                            new TideGuardianTask(module, player, plugin).start();
-                        }
-                    }
-                }
-            }
+        if (!TideGuardianTask.hasTask(player.getUniqueId())) {
+            new TideGuardianTask(module, player, plugin).start();
         }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
-        Entity e = event.getEntity();
-        if (shouldEventBeRan(e)) {
-            if (e instanceof Squid) {
-                boolean spawned = false;
+        Entity entity = event.getEntity();
 
-                if (config.getBoolean("SeaSerpent.Enabled.Enabled")) {
-                    if (Utils.roll(config.getDouble("SeaSerpent.SpawnChance"))) {
-                        Utils.spawnSeaSerpent(e.getLocation()).addEntityToWorld(e.getWorld());
-                        spawned = true;
-                        event.setCancelled(true);
-                    }
-                }
+        if (!shouldEventBeRan(entity))
+            return;
 
-                if (!spawned && config.getBoolean("Siren.Enabled")) {
-                    if (Utils.roll(config.getDouble("Siren.SpawnChance"))) {
-                        Utils.spawnSiren(e.getLocation()).addEntityToWorld(e.getWorld());
-                        event.setCancelled(true);
-                    }
-                }
+        if (entity instanceof Squid) {
+            boolean spawned = false;
+
+            if (config.getBoolean("SeaSerpent.Enabled.Enabled") && Utils.roll(config.getDouble("SeaSerpent.SpawnChance"))) {
+                Utils.spawnSeaSerpent(entity.getLocation()).addEntityToWorld(entity.getWorld());
+                spawned = true;
+                event.setCancelled(true);
             }
-            if (e instanceof EnderDragon dragon && !(DragonUtils.isDragon(dragon))) {
-                if (config.getBoolean("Dragon.Enabled")) {
-                    if (Utils.roll(config.getDouble("Dragon.SpawnChance"))) {
-                        double val = Math.random();
-                        double fireChance = config.getDouble("Dragon.FireDragon.Enabled.Chance");
-                        double iceChance = config.getDouble("Dragon.IceDragon.Enabled.Chance");
 
-                        if (val <= fireChance) {
-                            DragonUtils.convertToFireDragon(dragon);
-                        }
-                        else if (val <= fireChance + iceChance) {
-                            DragonUtils.convertToIceDragon(dragon);
-                        }
-                        else {
-                            DragonUtils.convertToLightningDragon(dragon);
-                        }
-                    }
-                }
+            if (!spawned && config.getBoolean("Siren.Enabled") && Utils.roll(config.getDouble("Siren.SpawnChance"))) {
+                Utils.spawnSiren(entity.getLocation()).addEntityToWorld(entity.getWorld());
+                event.setCancelled(true);
+            }
+        }
+
+        if (entity instanceof EnderDragon dragon && !(DragonUtils.isDragon(dragon)) && config.getBoolean("Dragon.Enabled") && Utils.roll(config.getDouble("Dragon.SpawnChance"))) {
+            double val = Math.random();
+            double fireChance = config.getDouble("Dragon.FireDragon.Enabled.Chance");
+            double iceChance = config.getDouble("Dragon.IceDragon.Enabled.Chance");
+
+            if (val <= fireChance) {
+                DragonUtils.convertToFireDragon(dragon);
+            }
+            else if (val <= fireChance + iceChance) {
+                DragonUtils.convertToIceDragon(dragon);
+            }
+            else {
+                DragonUtils.convertToLightningDragon(dragon);
             }
         }
     }
@@ -536,90 +284,82 @@ public class IceFireEvents extends ModuleEvents implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onLaunch(ProjectileLaunchEvent event) {
         Projectile proj = event.getEntity();
-        if (shouldEventBeRan(proj)) {
-            if (proj instanceof DragonFireball) {
-                ProjectileSource shooter = proj.getShooter();
 
-                if (shooter instanceof EnderDragon dragon) {
-                    if (DragonUtils.isDragon(dragon)) {
-                        DragonBreed breed = DragonUtils.getBreed(dragon);
+        if (!(shouldEventBeRan(proj) && proj instanceof DragonFireball && proj.getShooter() instanceof EnderDragon dragon && DragonUtils.isDragon(dragon)))
+            return;
 
-                        new BukkitRunnable() {
-                            @Override
-                            public void run() {
-                                Location target = dragon.getEyeLocation().add(proj.getVelocity().normalize().multiply(100));
+        DragonBreed breed = DragonUtils.getBreed(dragon);
 
-                                switch (breed) {
-                                    case FIRE -> {
-                                        if (Utils.roll(config.getDouble("Dragon.FireDragon.BreathAttack.Chance"))) {
-                                            DragonUtils.triggerBreathFireAttack(dragon, target);
-                                        }
-                                        else {
-                                            DragonUtils.triggerExplosionFireAttack(dragon, target);
-                                        }
-                                    }
-                                    case ICE -> {
-                                        if (Utils.roll(config.getDouble("Dragon.IceDragon.BreathAttack.Chance"))) {
-                                            DragonUtils.triggerBreathIceAttack(dragon, target);
-                                        }
-                                        else {
-                                            DragonUtils.triggerExplosionIceAttack(dragon, target);
-                                        }
-                                    }
-                                    case LIGHTNING -> {
-                                        if (Utils.roll(config.getDouble("Dragon.LightningDragon.BreathAttack.Chance"))) {
-                                            DragonUtils.triggerBreathLightningAttack(dragon, target);
-                                        }
-                                        else {
-                                            DragonUtils.triggerExplosionLightningAttack(dragon, target);
-                                        }
-                                    }
-                                    default -> {}
-                                }
-                                proj.remove();
-                            }
-                        }.runTaskLater(plugin, 2L);
-                    }
-                }
-            }
-        }
-    }
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Location target = dragon.getEyeLocation().add(proj.getVelocity().normalize().multiply(100));
 
-    @EventHandler
-    public void onDeath(EntityDeathEvent event) {
-        LivingEntity e = event.getEntity();
-        if (shouldEventBeRan(e)) {
-            Location loc = e.getLocation();
-            World world = loc.getWorld();
-            Collection<ItemStack> loots = new ArrayList<>();
-
-            if (RSVMob.isMob(e)) {
-                switch (RSVMob.getMob(e)) {
-                    case "fire_dragon", "ice_dragon", "lightning_dragon" -> {
-                        if (!(e instanceof Dragon)) {
-                            loots = DragonUtils.generateLoot((EnderDragon) e);
+                switch (breed) {
+                    case FIRE -> {
+                        if (Utils.roll(config.getDouble("Dragon.FireDragon.BreathAttack.Chance"))) {
+                            DragonUtils.triggerBreathFireAttack(dragon, target);
+                        }
+                        else {
+                            DragonUtils.triggerExplosionFireAttack(dragon, target);
                         }
                     }
-                    case "sea_serpent" -> {
-                        if (!(e instanceof SeaSerpent)) {
-                            loots = SeaSerpentUtils.generateLoot((ElderGuardian) e);
+                    case ICE -> {
+                        if (Utils.roll(config.getDouble("Dragon.IceDragon.BreathAttack.Chance"))) {
+                            DragonUtils.triggerBreathIceAttack(dragon, target);
+                        }
+                        else {
+                            DragonUtils.triggerExplosionIceAttack(dragon, target);
                         }
                     }
-                    case "siren" -> {
-                        if (!(e instanceof Siren)) {
-                            loots = SirenUtils.generateLoot((Guardian) e);
+                    case LIGHTNING -> {
+                        if (Utils.roll(config.getDouble("Dragon.LightningDragon.BreathAttack.Chance"))) {
+                            DragonUtils.triggerBreathLightningAttack(dragon, target);
+                        }
+                        else {
+                            DragonUtils.triggerExplosionLightningAttack(dragon, target);
                         }
                     }
                     default -> {}
                 }
+                proj.remove();
+            }
+        }.runTaskLater(plugin, 2L);
+    }
 
-                if (!loots.isEmpty()) {
-                    for (ItemStack loot : loots) {
-                        if (Utils.isItemReal(loot)) {
-                            world.dropItemNaturally(loc, loot);
-                        }
-                    }
+    @EventHandler
+    public void onDeath(EntityDeathEvent event) {
+        LivingEntity entity = event.getEntity();
+
+        if (!(shouldEventBeRan(entity) && RSVMob.isMob(entity)))
+            return;
+
+        Location loc = entity.getLocation();
+        World world = loc.getWorld();
+        Collection<ItemStack> loots = new ArrayList<>();
+
+        switch (RSVMob.getMob(entity)) {
+            case "fire_dragon", "ice_dragon", "lightning_dragon" -> {
+                if (!(entity instanceof Dragon)) {
+                    loots = DragonUtils.generateLoot((EnderDragon) entity);
                 }
+            }
+            case "sea_serpent" -> {
+                if (!(entity instanceof SeaSerpent)) {
+                    loots = SeaSerpentUtils.generateLoot((ElderGuardian) entity);
+                }
+            }
+            case "siren" -> {
+                if (!(entity instanceof Siren)) {
+                    loots = SirenUtils.generateLoot((Guardian) entity);
+                }
+            }
+            default -> {}
+        }
+
+        for (ItemStack loot : loots) {
+            if (Utils.isItemReal(loot)) {
+                world.dropItemNaturally(loc, loot);
             }
         }
     }
