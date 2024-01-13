@@ -164,6 +164,10 @@ public class SwEvents extends ModuleEvents implements Listener {
 
         FileConfiguration config = moduleName.equals(SwModule.NAME) ? RSVModule.getModule(SwModule.NAME).getUserConfig().getConfig() : RSVModule.getModule(SfModule.NAME).getUserConfig().getConfig();
         String name = RSVItem.getNameFromItem(bow);
+
+        if (!name.contains("_") || name.endsWith("_") || name.startsWith("_"))
+            return;
+
         String type = name.substring(name.lastIndexOf("_") + 1);
 
         if (type.equals("longbow") || type.equals("crossbow")) {

@@ -1,7 +1,7 @@
 ###########################################################################
 #                                                                         #
 #   Realistic Survival Plugin   MC 1.17 - 1.20                            #
-#   Version 1.2.8-RELEASE       Made by: Val_Mobile                       #
+#   Version 1.2.8-DEV-0       Made by: Val_Mobile                       #
 #                                                                         #
 ###########################################################################
 
@@ -35,7 +35,7 @@ ResourcePack:
   Enabled: true
   # If you upgrade to newer versions, the URL will need to be manually updated to the newest one,
   # which can be found in the Discord server: https://discord.gg/mMt3f4usqK
-  Url: "https://www.dropbox.com/scl/fi/rks60210y99yo39q9t885/Realistic-Survival-RP-1.2.5-RELEASE.zip?dl=1&rlkey=vrzti6onh8qq3y3s4db60auyt"
+  Url: "https://www.dropbox.com/scl/fi/5ggc7t20bfxmrzsbb1kok/Realistic-Survival-RP-1.2.8-DEV-0.zip?rlkey=55llpn4zj146usfmm8okf1ier&dl=0"
 
 AutomaticallyEnableWorlds: true   # Will automatically enable modules for newly added worlds; if set to false, automatically disables modules for newly added worlds
 AutoUpdateConfig: true            # If set to true, will automatically update config; note that this may cause issues with porting across large updates
@@ -82,4 +82,4 @@ ToughAsNails:
 ####################################
 
 BStats: true             # Do you want non-confidential server data to be recorded for my use?
-ConfigId: "1.2.8-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.8-DEV-0"  # Used for config syncing purposes, do NOT edit

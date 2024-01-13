@@ -101,6 +101,9 @@ public class IceFireModule extends RSVModule {
         if (compare.getUserConfig() == null || defender == null || name == null || name.isEmpty() || name.startsWith("_") || name.endsWith("_"))
             return origDamage;
 
+        if (!(RSVItem.isRSVItem(name) && compare.getName().equals(RSVItem.getModuleNameFromItem(RSVItem.getItem(name)))))
+            return origDamage;
+
         FileConfiguration config = compare.getUserConfig().getConfig();
 
         String type = name.substring(0, name.lastIndexOf("_"));
@@ -136,6 +139,9 @@ public class IceFireModule extends RSVModule {
 
     public static void applyDragonItemEffect(@Nullable Entity defender, @Nullable String name, @Nonnull RSVModule compare) {
         if (compare.getUserConfig() == null || defender == null || name == null || name.isEmpty() || name.startsWith("_") || name.endsWith("_"))
+            return;
+
+        if (!(RSVItem.isRSVItem(name) && compare.getName().equals(RSVItem.getModuleNameFromItem(RSVItem.getItem(name)))))
             return;
 
         FileConfiguration config = compare.getUserConfig().getConfig();
