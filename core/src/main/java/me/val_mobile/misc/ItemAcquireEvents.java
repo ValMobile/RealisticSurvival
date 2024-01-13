@@ -83,21 +83,21 @@ public class ItemAcquireEvents implements Listener {
 ////        plugin.getLogger().info("Entity: " + event.getEntity().getType() + " " + label + " " + event.getLocation() + " " + event.getCause());
 //    }
 //
-    @EventHandler
-    public void onPlayerAcquireItem(PlayerItemAcquireEvent event) {
-        String name = ChatColor.stripColor(event.getItem().getItemMeta().getDisplayName());
-
-        String label = name.isEmpty() ? event.getItem().getType().toString() : name;
-        plugin.getLogger().info("Player: " + event.getPlayer().getDisplayName() + " " + label + " " + event.getLocation() + " " + event.getCause());
-
-        ItemStack origItem = event.getOriginalItem();
-        if (Utils.isItemReal(origItem)) {
-            String origName = ChatColor.stripColor(origItem.getItemMeta().getDisplayName());
-            String origLabel = origName.isEmpty() ? origItem.getType().toString() : origName;
-
-            plugin.getLogger().info("Original Item: " + origLabel);
-        }
-    }
+//    @EventHandler
+//    public void onPlayerAcquireItem(PlayerItemAcquireEvent event) {
+//        String name = ChatColor.stripColor(event.getItem().getItemMeta().getDisplayName());
+//
+//        String label = name.isEmpty() ? event.getItem().getType().toString() : name;
+//        plugin.getLogger().info("Player: " + event.getPlayer().getDisplayName() + " " + label + " " + event.getLocation() + " " + event.getCause());
+//
+//        ItemStack origItem = event.getOriginalItem();
+//        if (Utils.isItemReal(origItem)) {
+//            String origName = ChatColor.stripColor(origItem.getItemMeta().getDisplayName());
+//            String origLabel = origName.isEmpty() ? origItem.getType().toString() : origName;
+//
+//            plugin.getLogger().info("Original Item: " + origLabel);
+//        }
+//    }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent event) {
