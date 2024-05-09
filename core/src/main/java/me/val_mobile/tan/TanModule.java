@@ -18,11 +18,8 @@ package me.val_mobile.tan;
 
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
+import me.val_mobile.data.RSVConfig;
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.data.toughasnails.ItemConfig;
-import me.val_mobile.data.toughasnails.PlayerDataConfig;
-import me.val_mobile.data.toughasnails.RecipesConfig;
-import me.val_mobile.data.toughasnails.UserConfig;
 import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -37,7 +34,7 @@ public class TanModule extends RSVModule {
 
     private final RSVPlugin plugin;
 
-    private final PlayerDataConfig config;
+    private final RSVConfig config;
     private TanEvents events;
 
     public static final String NAME = "ToughAsNails";
@@ -53,15 +50,15 @@ public class TanModule extends RSVModule {
     public TanModule(RSVPlugin plugin) {
         super(NAME, plugin, Map.of(), Map.of());
         this.plugin = plugin;
-        this.config = new me.val_mobile.data.toughasnails.PlayerDataConfig(plugin);
+        this.config = new RSVConfig(plugin, "resources/toughasnails/playerdata.yml");
         this.tempManager = new TempManager(this);
     }
 
     @Override
     public void initialize() {
-        setUserConfig(new UserConfig(plugin));
-        setItemConfig(new ItemConfig(plugin));
-        setRecipeConfig(new RecipesConfig(plugin));
+        setUserConfig(new RSVConfig(plugin, "toughasnails.yml"));
+        setItemConfig(new RSVConfig(plugin, "resources/toughasnails/items.yml"));
+        setRecipeConfig(new RSVConfig(plugin, "resources/toughasnails/recipes.yml"));
         this.thirstManager = new ThirstManager(this);
 
         setModuleItems(new ModuleItems(this));
@@ -105,7 +102,7 @@ public class TanModule extends RSVModule {
     }
 
     @Nonnull
-    public PlayerDataConfig getPlayerDataConfig() {
+    public RSVConfig getPlayerDataConfig() {
         return config;
     }
 

@@ -18,10 +18,8 @@ package me.val_mobile.spartanweaponry;
 
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
+import me.val_mobile.data.RSVConfig;
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.data.spartanweaponry.ItemConfig;
-import me.val_mobile.data.spartanweaponry.RecipesConfig;
-import me.val_mobile.data.spartanweaponry.UserConfig;
 import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -42,9 +40,9 @@ public class SwModule extends RSVModule {
 
     @Override
     public void initialize() {
-        setUserConfig(new UserConfig(plugin));
-        setItemConfig(new ItemConfig(plugin));
-        setRecipeConfig(new RecipesConfig(plugin));
+        setUserConfig(new RSVConfig(plugin, "spartanweaponry.yml"));
+        setItemConfig(new RSVConfig(plugin, "resources/spartanweaponry/items.yml"));
+        setRecipeConfig(new RSVConfig(plugin, "resources/spartanweaponry/recipes.yml"));
 
         setModuleItems(new ModuleItems(this));
         setModuleRecipes(new ModuleRecipes(this, plugin));

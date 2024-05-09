@@ -16,18 +16,13 @@
  */
 package me.val_mobile.misc;
 
-import net.minecraft.world.entity.Entity;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.UUID;
 
 public class PlayerItemAcquireEvent extends EntityItemAcquireEvent {
 

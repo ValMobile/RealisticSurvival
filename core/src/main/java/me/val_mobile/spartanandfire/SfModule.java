@@ -18,10 +18,8 @@ package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
+import me.val_mobile.data.RSVConfig;
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.data.spartanandfire.ItemConfig;
-import me.val_mobile.data.spartanandfire.RecipesConfig;
-import me.val_mobile.data.spartanandfire.UserConfig;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanweaponry.SwModule;
@@ -45,9 +43,9 @@ public class SfModule extends RSVModule {
 
     @Override
     public void initialize() {
-        setUserConfig(new UserConfig(plugin));
-        setItemConfig(new ItemConfig(plugin));
-        setRecipeConfig(new RecipesConfig(plugin));
+        setUserConfig(new RSVConfig(plugin, "spartanandfire.yml"));
+        setItemConfig(new RSVConfig(plugin, "resources/spartanandfire/items.yml"));
+        setRecipeConfig(new RSVConfig(plugin, "resources/spartanandfire/recipes.yml"));
 
         setModuleItems(new ModuleItems(this));
         setModuleRecipes(new ModuleRecipes(this, plugin));

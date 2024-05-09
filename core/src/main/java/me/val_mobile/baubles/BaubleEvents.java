@@ -39,9 +39,7 @@ import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
-import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.event.world.TimeSkipEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -60,7 +58,7 @@ import java.util.UUID;
  * BaubleEvents is a class containing listener methods
  * that activate abilities on entities
  * @author Val_Mobile
- * @version 1.2.8-DEV-0
+ * @version 1.2.8-RELEASE
  * @since 1.0
  */
 public class BaubleEvents extends ModuleEvents implements Listener {
@@ -891,14 +889,15 @@ public class BaubleEvents extends ModuleEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    // ignoredCancelled is omitted since it bugs with PlayerInteractEvent
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
         if (!(shouldEventBeRan(player) && RSVPlayer.isValidPlayer(player)))
             return;
 
-        if (event.getAction() == Action.RIGHT_CLICK_AIR) {
+        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             ItemStack itemMainHand = player.getInventory().getItemInMainHand();
 
             if (!RSVItem.isRSVItem(itemMainHand))

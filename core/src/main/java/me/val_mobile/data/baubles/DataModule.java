@@ -17,6 +17,7 @@
 package me.val_mobile.data.baubles;
 
 import me.val_mobile.baubles.BaubleModule;
+import me.val_mobile.data.RSVConfig;
 import me.val_mobile.data.RSVDataModule;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.utils.RSVItem;
@@ -35,7 +36,7 @@ import java.util.regex.Pattern;
 
 public class DataModule implements RSVDataModule {
 
-    private final PlayerDataConfig config;
+    private final RSVConfig config;
     private final BaubleInventory baubleBag;
     private final UUID id;
 

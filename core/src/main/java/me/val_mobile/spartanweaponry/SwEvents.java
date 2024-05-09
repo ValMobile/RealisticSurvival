@@ -16,7 +16,6 @@
  */
 package me.val_mobile.spartanweaponry;
 
-import com.ibm.icu.lang.UProperty;
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.misc.EntityItemAcquireEvent;
@@ -25,15 +24,20 @@ import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanandfire.SfModule;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.*;
+import org.bukkit.FluidCollisionMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.*;
-import org.bukkit.event.player.*;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;

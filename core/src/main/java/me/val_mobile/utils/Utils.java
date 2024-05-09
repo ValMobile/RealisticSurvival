@@ -1425,7 +1425,7 @@ public class Utils {
 
             if (config.getBoolean("UpdateItem.CustomModelData")) {
                 if (rsvMeta.hasCustomModelData()) {
-                    meta.setCustomModelData(rsvMeta.getCustomModelData());
+                    meta.setCustomModelData(Integer.valueOf(rsvMeta.getCustomModelData()));
                 }
             }
 
@@ -1533,7 +1533,7 @@ public class Utils {
 
                 if (config.getBoolean("UpdateNetheriteItems.UpdateCustomModelData")) {
                     if (rsvMeta.hasCustomModelData()) {
-                        meta.setCustomModelData(rsvMeta.getCustomModelData());
+                        meta.setCustomModelData(Integer.valueOf(rsvMeta.getCustomModelData()));
                     }
                 }
 

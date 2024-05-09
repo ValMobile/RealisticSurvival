@@ -17,7 +17,6 @@
 package me.val_mobile.tan;
 
 import me.val_mobile.baubles.BaubleModule;
-import me.val_mobile.baubles.StoneNegativeGravityTask;
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.data.RSVPlayer;
@@ -43,11 +42,8 @@ import org.bukkit.event.*;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.FurnaceBurnEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.*;
-import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -55,7 +51,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionType;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.RayTraceResult;
 
 import java.util.*;

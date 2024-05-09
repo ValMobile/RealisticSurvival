@@ -17,24 +17,18 @@
 package me.val_mobile.spartanandfire;
 
 import me.val_mobile.data.ModuleEvents;
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.rsv.RSVPlugin;
-import me.val_mobile.spartanweaponry.SwModule;
-import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class SfEvents extends ModuleEvents implements Listener {
 

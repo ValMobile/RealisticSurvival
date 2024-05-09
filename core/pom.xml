@@ -32,7 +32,7 @@
     <parent>
         <groupId>me.Val_Mobile</groupId>
         <artifactId>realisticsurvival-parent</artifactId>
-        <version>1.2.8-DEV-0</version>
+        <version>1.2.8-RELEASE</version>
     </parent>
 
     <dependencies>

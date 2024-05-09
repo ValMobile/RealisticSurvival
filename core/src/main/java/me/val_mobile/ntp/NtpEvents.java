@@ -16,7 +16,6 @@
  */
 package me.val_mobile.ntp;
 
-import jdk.jshell.execution.Util;
 import me.val_mobile.data.ModuleEvents;
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.misc.PlayerItemAcquireEvent;
@@ -39,16 +38,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.*;
-import org.bukkit.event.player.*;
-import org.bukkit.event.server.ServerCommandEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

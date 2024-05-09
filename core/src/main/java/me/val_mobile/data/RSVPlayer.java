@@ -83,24 +83,10 @@ public class RSVPlayer {
     }
 
     public static boolean isValidPlayer(@Nullable Player player) {
-        if (player == null) {
-            return false;
-        }
-
-        if (players.containsKey(player.getUniqueId())) {
-            return players.get(player.getUniqueId()) != null;
-        }
-        return false;
+        return player != null && isValidPlayer(player.getUniqueId());
     }
 
     public static boolean isValidPlayer(@Nullable UUID id) {
-        if (id == null) {
-            return false;
-        }
-
-        if (players.containsKey(id)) {
-            return players.get(id) != null;
-        }
-        return false;
+        return id != null && players.containsKey(id) && players.get(id) != null;
     }
 }

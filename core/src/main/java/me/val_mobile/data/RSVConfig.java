@@ -50,6 +50,10 @@ public class RSVConfig extends FileBuilder {
         configList.add(this);
     }
 
+    public RSVConfig(RSVPlugin plugin, String path) {
+        this(plugin, path, false, true);
+    }
+
     public void createConfig() {
         config = new YamlConfiguration(); // create a temporary empty config
 

@@ -19,20 +19,12 @@ package me.val_mobile.misc;
 import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
-import net.minecraft.world.entity.item.EntityItem;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.block.ShulkerBox;
 import org.bukkit.block.banner.PatternType;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.libs.org.apache.maven.model.PluginManagement;
-import org.bukkit.craftbukkit.v1_17_R1.block.impl.CraftFence;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Shulker;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -42,7 +34,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.CauldronLevelChangeEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
-import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryType;
@@ -50,10 +41,8 @@ import org.bukkit.event.player.*;
 import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.BannerMeta;
-import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -853,8 +842,6 @@ public class ItemAcquireEvents implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCauldronLevelChange(CauldronLevelChangeEvent event) {
-        plugin.getLogger().info("Cauldron level changed ---- Reason: " + event.getReason() + " Old State: " + event.getBlock().getType() + " New State: " + event.getNewState().getType());
-
         if (!(event.getEntity() instanceof Player player))
             return;
 

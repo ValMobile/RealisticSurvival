@@ -20,7 +20,6 @@ import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.integrations.CompatiblePlugin;
 import me.val_mobile.integrations.RealisticSeasons;
 import me.val_mobile.rsv.RSVPlugin;
-import me.val_mobile.utils.RSVEnchants;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.RSVTask;
 import me.val_mobile.utils.Utils;

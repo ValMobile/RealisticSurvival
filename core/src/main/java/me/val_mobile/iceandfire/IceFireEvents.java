@@ -17,14 +17,11 @@
 package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.ModuleEvents;
-import me.val_mobile.data.RSVModule;
 import me.val_mobile.misc.PlayerItemAcquireEvent;
 import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanandfire.BurnTask;
 import me.val_mobile.spartanandfire.ElectrocuteTask;
 import me.val_mobile.spartanandfire.FreezeTask;
-import me.val_mobile.spartanandfire.SfModule;
-import me.val_mobile.spartanweaponry.SwModule;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.RSVMob;
 import me.val_mobile.utils.Utils;
@@ -39,16 +36,11 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -57,7 +49,7 @@ import java.util.Collection;
  * IceFireEvents is a class containing listener methods
  * that activate fire, ice, and lighting dragon weapon abilities
  * @author Val_Mobile
- * @version 1.2.8-DEV-0
+ * @version 1.2.8-RELEASE
  * @since 1.0
  */
 public class IceFireEvents extends ModuleEvents implements Listener {

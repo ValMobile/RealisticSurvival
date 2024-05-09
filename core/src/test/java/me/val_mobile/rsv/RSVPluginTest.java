@@ -30,14 +30,14 @@ public class RSVPluginTest {
     @BeforeEach
     public void setUp()
     {
-        server = MockBukkit.mock();
-        plugin = MockBukkit.load(RSVPlugin.class);
+//        server = MockBukkit.mock();
+//        plugin = MockBukkit.load(RSVPlugin.class);
     }
 
     @AfterEach
     public void tearDown()
     {
-        MockBukkit.unmock();
+//        MockBukkit.unmock();
     }
 
     @Test

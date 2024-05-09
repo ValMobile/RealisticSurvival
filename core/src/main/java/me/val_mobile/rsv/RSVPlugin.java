@@ -20,6 +20,7 @@ import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.commands.Commands;
 import me.val_mobile.commands.Tab;
 import me.val_mobile.data.*;
+import me.val_mobile.firstaid.FaModule;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.integrations.PAPI;
 import me.val_mobile.integrations.RealisticSeasons;
@@ -49,13 +50,13 @@ public class RSVPlugin extends JavaPlugin {
     private ToolUtils toolUtils;
     private ToolHandler toolHandler;
     private PluginConfig config;
-    private static LorePresetConfig lorePresetConfig;
-    private MiscItemsConfig miscItemsConfig;
-    private MiscRecipesConfig miscRecipesConfig;
+    private static RSVConfig lorePresetConfig;
+    private RSVConfig miscItemsConfig;
+    private RSVConfig miscRecipesConfig;
     private MiscRecipes miscRecipes;
     private MiscItems miscItems;
-    private IntegrationsConfig integrationsConfig;
-    private CommandsConfig commandsConfig;
+    private RSVConfig integrationsConfig;
+    private RSVConfig commandsConfig;
 
 //    private static RSVConfig langConfig;
 
@@ -64,11 +65,11 @@ public class RSVPlugin extends JavaPlugin {
         plugin = this;
         this.config = new PluginConfig(this);
 
-        lorePresetConfig = new LorePresetConfig(this);
-        this.miscItemsConfig = new MiscItemsConfig(this);
-        this.miscRecipesConfig = new MiscRecipesConfig(this);
-        this.integrationsConfig = new IntegrationsConfig(this);
-        this.commandsConfig = new CommandsConfig(this);
+        lorePresetConfig = new RSVConfig(this, "lorepresets.yml");
+        this.miscItemsConfig = new RSVConfig(this, "resources/misc_items.yml");
+        this.miscRecipesConfig = new RSVConfig(this, "resources/misc_recipes.yml");
+        this.integrationsConfig = new RSVConfig(this, "integrations.yml");
+        this.commandsConfig = new RSVConfig(this, "commands.yml");
 
         util = new Utils(this);
 
@@ -108,6 +109,10 @@ public class RSVPlugin extends JavaPlugin {
         TanModule tanModule = new TanModule(this);
         if (tanModule.isGloballyEnabled())
             tanModule.initialize();
+
+        FaModule faModule = new FaModule(this);
+        if (faModule.isGloballyEnabled())
+            faModule.initialize();
 
 //        TODO: Add custom enchantment system
 //        RSVEnchants rsvEnchants = new RSVEnchants(this);

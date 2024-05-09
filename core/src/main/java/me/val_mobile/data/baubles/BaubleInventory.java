@@ -128,18 +128,6 @@ public class BaubleInventory extends GUI {
             return false;
         }
 
-//        boolean hasBaubleBag = false;
-//        for (ItemStack item : player.getInventory().getStorageContents()) {
-//            if (RSVItem.isRSVItem(item) && RSVItem.getNameFromItem(item).equals("bauble_bag")) {
-//                hasBaubleBag = true;
-//                break;
-//            }
-//        }
-//
-//        if (!hasBaubleBag) {
-//            return false;
-//        }
-
         Collection<ItemStack> baubleCol = getAllBaubles();
 
         for (ItemStack bauble : baubleCol) {

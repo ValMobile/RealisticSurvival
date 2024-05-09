@@ -18,16 +18,12 @@ package me.val_mobile.iceandfire;
 
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
+import me.val_mobile.data.RSVConfig;
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.data.iceandfire.ItemConfig;
-import me.val_mobile.data.iceandfire.RecipesConfig;
-import me.val_mobile.data.iceandfire.UserConfig;
 import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanandfire.BurnTask;
 import me.val_mobile.spartanandfire.ElectrocuteTask;
 import me.val_mobile.spartanandfire.FreezeTask;
-import me.val_mobile.spartanandfire.SfModule;
-import me.val_mobile.spartanweaponry.SwModule;
 import me.val_mobile.utils.RSVItem;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Location;
@@ -56,9 +52,9 @@ public class IceFireModule extends RSVModule {
 
     @Override
     public void initialize() {
-        setUserConfig(new UserConfig(plugin));
-        setItemConfig(new ItemConfig(plugin));
-        setRecipeConfig(new RecipesConfig(plugin));
+        setUserConfig(new RSVConfig(plugin, "iceandfire.yml"));
+        setItemConfig(new RSVConfig(plugin, "resources/iceandfire/items.yml"));
+        setRecipeConfig(new RSVConfig(plugin, "resources/iceandfire/items.yml"));
         setModuleItems(new ModuleItems(this));
         setModuleRecipes(new ModuleRecipes(this, plugin));
 

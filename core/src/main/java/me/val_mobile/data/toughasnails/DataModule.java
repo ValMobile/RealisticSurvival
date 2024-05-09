@@ -16,6 +16,7 @@
  */
 package me.val_mobile.data.toughasnails;
 
+import me.val_mobile.data.RSVConfig;
 import me.val_mobile.data.RSVDataModule;
 import me.val_mobile.data.RSVModule;
 import me.val_mobile.tan.TanModule;
@@ -29,7 +30,7 @@ public class DataModule implements RSVDataModule {
 
     private final UUID id;
     private final FileConfiguration userConfig;
-    private final PlayerDataConfig playerDataConfig;
+    private final RSVConfig playerDataConfig;
     private double temperature;
     private int thirst;
     private double thirstExhaustion;

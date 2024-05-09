@@ -46,6 +46,7 @@ import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
@@ -277,18 +278,12 @@ public abstract class ModuleEvents implements Listener {
         }
     }
 
-    public boolean shouldEventBeRan(Entity e) {
-        if (e == null) {
-            return false;
-        }
-        return module.getAllowedWorlds().contains(e.getWorld().getName());
+    public boolean shouldEventBeRan(@Nullable Entity e) {
+        return e != null && module.getAllowedWorlds().contains(e.getWorld().getName());
     }
 
-    public boolean shouldEventBeRan(World world) {
-        if (world == null) {
-            return false;
-        }
-        return module.getAllowedWorlds().contains(world.getName());
+    public boolean shouldEventBeRan(@Nullable World world) {
+        return world != null && module.getAllowedWorlds().contains(world.getName());
     }
 
     public RSVModule getModule() {

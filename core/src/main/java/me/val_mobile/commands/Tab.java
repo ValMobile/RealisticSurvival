@@ -38,7 +38,7 @@ import static me.val_mobile.rsv.RSVPlugin.NAME;
  * Tab is a class that creates a tab completer
  * when the user types appropriate commands
  * @author Val_Mobile
- * @version 1.2.8-DEV-0
+ * @version 1.2.8-RELEASE
  * @since 1.0
  */
 public class Tab implements TabCompleter {

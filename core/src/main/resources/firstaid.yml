@@ -1,0 +1,231 @@
+#######################################
+#          First Aid                  #
+#######################################
+
+ConfigId: "1.2.8-RELEASE"  # Used for config syncing purposes, do NOT edit
+
+# Customize messages
+Initialize:
+  Enabled: true
+  Message: "&6[Realistic Survival] &fInitializing &e%NAME% &fmodule"                                  # All placeholders: %NAME%
+Shutdown:
+  Enabled: true
+  Message: "&6[Realistic Survival] &fShutting down &e%NAME% &fmodule"                                 # All placeholders: %NAME%
+
+# Used to specify custom item drops for any mob
+# By default, there is no use for this, so the chance is set to 0.00
+MobDrops:
+# WITHER:
+#   handle:
+#     Type: "Rare"
+#     Chance: 0.00
+
+# Used to specify custom block drops
+# By default, there is no use for this, so the chance is set to 0.00
+BlockDrops:
+# BARRIER:
+#   handle:
+#     Type: "Rare"
+#     Chance: 0.00
+#     ReplaceDefaultDrop: true            # Will prevent whatever items normally drop from dropping if set to true
+#     IgnoreSilkTouchEnchant: false       # If set to false, item will only drop if a block when mined with a tool without silk touch
+#     RequireRightTool: true              # If set to true, item will only drop if block can be mined with the tool in player's hand
+
+BodyParts:
+  AbsorptionHealthBoost:        # Decides how extra health from absorption or health boost will be distributed
+    Priority:                   # Body parts at the top of list will receive health first, followed by the parts below
+      - "HEAD"                  # Parts can be removed from the list if you don't want them to receive boosts
+      - "CHEST"
+      - "LEFT_LEG"
+      - "RIGHT_LEG"
+      - "LEFT_FOOT"
+      - "RIGHT_FOOT"
+      - "LEFT_ARM"
+      - "RIGHT_ARM"
+  Legs:
+    IsLethal: false               # If true, the player will die if both their left and right leg healths reach 0
+    LeftLeg:
+      Health: 6.0                 # Determines health allocated to the body part (Conversion rate: 1.0 = half a heart)
+      IsLethal: false             # If true, the player will die if their left leg health reaches 0
+      Symptoms:                   # Adds status effects to the player if their health gets too low
+        Symptom1:                 # Multiple symptoms can be added
+          RequiredHealth: 0.0     # Any health less than or equal to this will trigger effect
+          Effects:
+            SLOW:                 # Effect types follow Spigot naming: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/potion/PotionEffectType.html
+              Amplifier: 0        # Amplifiers - Strength of potion effect (0 = Slowness I, 1 = Slowness II, etc.)
+              Duration: 270       # Duration - Length of the potion effect in ticks (20 ticks = 1 second)
+        Symptom2:
+          RequiredHealth: 1.0
+          Effects:
+            SLOW:
+              Amplifier: 0
+              Duration: 120
+    RightLeg:
+      Health: 6.0
+      Symptoms:
+        Symptom1:
+          RequiredHealth: 0.0
+          Effects:
+            SLOW:
+              Amplifier: 0
+              Duration: 270
+        Symptom2:
+          RequiredHealth: 1.0
+          Effects:
+            SLOW:
+              Amplifier: 0
+              Duration: 120
+    Symptoms:
+      Symptom1:
+        RequiredHealth: 0.0        # Acts like above, but adds health of left and right leg before comparing
+        Effects:
+          SLOW:
+            Amplifier: 1
+            Duration: 270
+      Symptom2:
+        RequiredHealth: 1.0
+        Effects:
+          SLOW:
+            Amplifier: 1
+            Duration: 120
+  Arms:
+    IsLethal: false
+    LeftArm:
+      Health: 6.0
+      IsLethal: false
+      Symptoms:
+        Symptom1:
+          RequiredHealth: 0.0
+          Effects:
+            SLOW_DIGGING:
+              Amplifier: 0
+              Duration: 270
+        Symptom2:
+          RequiredHealth: 1.0
+          Effects:
+            SLOW_DIGGING:
+              Amplifier: 0
+              Duration: 120
+    RightArm:
+      Health: 6.0
+      IsLethal: false
+      Symptoms:
+        Symptom1:
+          RequiredHealth: 0.0
+          Effects:
+            SLOW_DIGGING:
+              Amplifier: 0
+              Duration: 270
+        Symptom2:
+          RequiredHealth: 1.0
+          Effects:
+            SLOW_DIGGING:
+              Amplifier: 0
+              Duration: 120
+    Symptoms:
+      Symptom1:
+        RequiredHealth: 0.0
+        Effects:
+          SLOW_DIGGING:
+            Amplifier: 1
+            Duration: 270
+      Symptom2:
+        RequiredHealth: 2.0
+        Effects:
+          SLOW_DIGGING:
+            Amplifier: 0
+            Duration: 120
+  Feet:
+    IsLethal: false
+    LeftFoot:
+      IsLethal: false
+      Health: 6.0
+      Symptoms:
+        Symptom1:
+          RequiredHealth: 0.0
+          Effects:
+            SLOW:
+              Amplifier: 0
+              Duration: 270
+        Symptom2:
+          RequiredHealth: 1.0
+          Effects:
+            SLOW:
+              Amplifier: 0
+              Duration: 120
+    RightFoot:
+      Health: 6.0
+      IsLethal: false
+      Symptoms:
+        Symptom1:
+          RequiredHealth: 0.0
+          Effects:
+            SLOW:
+              Amplifier: 0
+              Duration: 270
+        Symptom2:
+          RequiredHealth: 1.0
+          Effects:
+            SLOW:
+              Amplifier: 0
+              Duration: 120
+    Symptoms:
+      Symptom1:
+        RequiredHealth: 0.0
+        Effects:
+          SLOW:
+            Amplifier: 1
+            Duration: 270
+      Symptom2:
+        RequiredHealth: 2.0
+        Effects:
+          SLOW:
+            Amplifier: 0
+            Duration: 120
+  Head:
+    Health: 6.0
+    IsLethal: true
+    Symptoms:
+      Symptom1:
+        RequiredHealth: 1.0
+        Effects:
+          BLINDNESS:
+            Amplifier: 1
+            Duration: 270
+          CONFUSION:
+            Amplifier: 0
+            Duration: 270
+      Symptom2:
+        RequiredHealth: 2.0
+        Effects:
+          CONFUSION:
+            Amplifier: 0
+            Duration: 270
+  Torso:
+    Health: 6.0
+    IsLethal: true
+    Symptoms:
+      Symptom1:
+        RequiredHealth: 1.0
+        Effects:
+          WEAKNESS:
+            Amplifier: 1
+            Duration: 270
+          CONFUSION:
+            Amplifier: 1
+            Duration: 270
+      Symptom2:
+        RequiredHealth: 2.0
+        Effects:
+          WEAKNESS:
+            Amplifier: 1
+            Duration: 270
+
+
+# Customize weapon and armor traits of the First Aid items
+
+Items:
+
+# Customize recipes
+# Requires restart upon changing
+Recipes:

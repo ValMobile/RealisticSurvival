@@ -18,10 +18,8 @@ package me.val_mobile.ntp;
 
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
+import me.val_mobile.data.RSVConfig;
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.data.notreepunching.ItemConfig;
-import me.val_mobile.data.notreepunching.RecipesConfig;
-import me.val_mobile.data.notreepunching.UserConfig;
 import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
 import org.bukkit.Bukkit;
@@ -45,9 +43,9 @@ public class NtpModule extends RSVModule {
 
     @Override
     public void initialize() {
-        setUserConfig(new UserConfig(plugin));
-        setItemConfig(new ItemConfig(plugin));
-        setRecipeConfig(new RecipesConfig(plugin));
+        setUserConfig(new RSVConfig(plugin, "notreepunching.yml"));
+        setItemConfig(new RSVConfig(plugin, "resources/notreepunching/items.yml"));
+        setRecipeConfig(new RSVConfig(plugin, "resources/notreepunching/recipes.yml"));
         setModuleItems(new ModuleItems(this));
         setModuleRecipes(new ModuleRecipes(this, plugin));
 

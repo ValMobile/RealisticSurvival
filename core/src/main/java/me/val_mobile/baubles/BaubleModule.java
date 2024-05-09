@@ -18,11 +18,8 @@ package me.val_mobile.baubles;
 
 import me.val_mobile.data.ModuleItems;
 import me.val_mobile.data.ModuleRecipes;
+import me.val_mobile.data.RSVConfig;
 import me.val_mobile.data.RSVModule;
-import me.val_mobile.data.baubles.ItemConfig;
-import me.val_mobile.data.baubles.PlayerDataConfig;
-import me.val_mobile.data.baubles.RecipesConfig;
-import me.val_mobile.data.baubles.UserConfig;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.Utils;
@@ -39,7 +36,7 @@ public class BaubleModule extends RSVModule {
 
     public static final String NAME = "Baubles";
 
-    private final PlayerDataConfig config;
+    private final RSVConfig config;
     private WormholeInventory inv;
     private BaubleEvents events;
     private final Collection<UUID> brokenHeartPlayers = new ArrayList<>();
@@ -47,14 +44,14 @@ public class BaubleModule extends RSVModule {
     public BaubleModule(RSVPlugin plugin) {
         super(NAME, plugin, Map.of(), Map.of(RSVModule.getModule(IceFireModule.NAME), "Detected disabled Ice and Fire module. Dragon's eye recipe will be partially disabled."));
         this.plugin = plugin;
-        this.config = new PlayerDataConfig(plugin);
+        this.config = new RSVConfig(plugin, "resources/baubles/playerdata.yml");
     }
 
     @Override
     public void initialize() {
-        setUserConfig(new UserConfig(plugin));
-        setItemConfig(new ItemConfig(plugin));
-        setRecipeConfig(new RecipesConfig(plugin));
+        setUserConfig(new RSVConfig(plugin, "baubles.yml"));
+        setItemConfig(new RSVConfig(plugin, "resources/baubles/items.yml"));
+        setRecipeConfig(new RSVConfig(plugin, "resources/baubles/recipes.yml"));
         setModuleItems(new ModuleItems(this));
         setModuleRecipes(new ModuleRecipes(this, plugin));
 
@@ -84,7 +81,7 @@ public class BaubleModule extends RSVModule {
         }
     }
 
-    public PlayerDataConfig getPlayerDataConfig() {
+    public RSVConfig getPlayerDataConfig() {
         return config;
     }
 
