@@ -75,6 +75,10 @@ public class SeaSerpent_v1_20_R1 extends ElderGuardian implements SeaSerpent {
         super.registerGoals();
     }
 
+    // disable mining fatigue effect
+    @Override
+    protected void customServerAiStep() {}
+
     @Override
     public SeaSerpentVariant getVariant() {
         return variant;

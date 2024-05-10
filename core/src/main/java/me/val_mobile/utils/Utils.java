@@ -39,10 +39,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -552,7 +549,7 @@ public class Utils {
         return !(item == null || item.getType() == Material.AIR || item.getAmount() < 1);
     }
 
-    public static void damageEntity(@Nonnull org.bukkit.entity.Damageable entity, double damage) {
+    public static void damageEntity(@Nonnull org.bukkit.entity.Damageable entity, double damage, @Nullable Entity attacker) {
         double points = 0;
         double toughness = 0;
         int resistance = 0;
@@ -578,7 +575,7 @@ public class Utils {
                 epf = getEPF(equipment);
             }
         }
-        entity.damage(calculateDamageApplied(damage, points, toughness, resistance, epf));
+        entity.damage(calculateDamageApplied(damage, points, toughness, resistance, epf), attacker);
     }
 
     public static double calculateDamageApplied(double damage, double points, double toughness, int resistance, int epf) {

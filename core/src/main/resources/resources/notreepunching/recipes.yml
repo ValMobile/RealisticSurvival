@@ -205,8 +205,8 @@ copper_sword:
     Item: "copper_sword"
     Amount: 1
   Ingredients:
-    - "COPPER_INGOT"
-    - "COPPER_INGOT"
+    - "|COPPER_INGOT"
+    - "|COPPER_INGOT"
     - "|STICK"
 copper_hoe:
   Type: "Shaped"

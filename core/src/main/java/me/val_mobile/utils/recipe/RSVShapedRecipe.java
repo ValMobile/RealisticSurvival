@@ -30,8 +30,6 @@ import java.util.Objects;
 
 public class RSVShapedRecipe extends ShapedRecipe implements RSVRecipe {
 
-    private static final List<Character> CHARS = List.of('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I');
-
     private final Map<Character, RecipeIngredient> ingredients = new HashMap<>();
 
     public RSVShapedRecipe(@Nonnull FileConfiguration config, @Nonnull String name, @Nonnull RSVPlugin plugin) {
@@ -44,6 +42,7 @@ public class RSVShapedRecipe extends ShapedRecipe implements RSVRecipe {
         RecipeIngredient[][] grid = new RecipeIngredient[3][3];
         Character[][] chars;
 
+        // row-major order
         for (int i = 0; i < ingredients.size(); i++) {
             String raw = ingredients.get(i);
             RecipeIngredient[] items = getItems(raw);
@@ -89,39 +88,40 @@ public class RSVShapedRecipe extends ShapedRecipe implements RSVRecipe {
         if (firstIndex == -1) {
             if (Ingredient.isValid(text))
                 items[0] = new RecipeIngredient(text);
+
+            return items;
         }
+
+        // two items
+        if (firstIndex == lastIndex) {
+            if (firstIndex != 0) {
+                String firstItem = text.substring(0, firstIndex);
+
+                if (Ingredient.isValid(firstItem))
+                    items[0] = new RecipeIngredient(firstItem);
+            }
+            String secondItem = text.substring(firstIndex + 1);
+
+            if (Ingredient.isValid(secondItem))
+                items[1] = new RecipeIngredient(secondItem);
+
+        }
+        // three items
         else {
-            // two items
-            if (firstIndex == lastIndex) {
-                if (firstIndex != 0) {
-                    String firstItem = text.substring(0, firstIndex);
+            if (firstIndex != 0) {
+                String firstItem = text.substring(0, firstIndex);
 
-                    if (Ingredient.isValid(firstItem))
-                        items[0] = new RecipeIngredient(firstItem);
-                }
-                String secondItem = text.substring(firstIndex + 1);
-
-                if (Ingredient.isValid(secondItem))
-                    items[1] = new RecipeIngredient(secondItem);
-
+                if (Ingredient.isValid(firstItem))
+                    items[0] = new RecipeIngredient(firstItem);
             }
-            // three items
-            else {
-                if (firstIndex != 0) {
-                    String firstItem = text.substring(0, firstIndex);
+            String secondItem = text.substring(firstIndex + 1, lastIndex);
+            String thirdItem = text.substring(lastIndex + 1);
 
-                    if (Ingredient.isValid(firstItem))
-                        items[0] = new RecipeIngredient(firstItem);
-                }
-                String secondItem = text.substring(firstIndex + 1, lastIndex);
-                String thirdItem = text.substring(lastIndex + 1);
+            if (Ingredient.isValid(secondItem))
+                items[1] = new RecipeIngredient(secondItem);
 
-                if (Ingredient.isValid(secondItem))
-                    items[1] = new RecipeIngredient(secondItem);
-
-                if (Ingredient.isValid(thirdItem))
-                    items[2] = new RecipeIngredient(thirdItem);
-            }
+            if (Ingredient.isValid(thirdItem))
+                items[2] = new RecipeIngredient(thirdItem);
         }
         return items;
     }
@@ -129,7 +129,7 @@ public class RSVShapedRecipe extends ShapedRecipe implements RSVRecipe {
     public Character[][] getChars(RecipeIngredient[][] items, int len) {
         Character[][] characters = new Character[len][len];
 
-        char buffer = 'A';
+        char label = 'A';
 
         for (int i = 0; i < len; i++) {
             for (int j = 0; j < len; j++) {
@@ -147,9 +147,9 @@ public class RSVShapedRecipe extends ShapedRecipe implements RSVRecipe {
 
                     }
                     else {
-                        ingredients.put(buffer, items[i][j]);
-                        characters[i][j] = buffer;
-                        buffer = CHARS.get(CHARS.indexOf(buffer) + 1);
+                        ingredients.put(label, items[i][j]);
+                        characters[i][j] = label;
+                        label += 1;
                     }
                 }
             }

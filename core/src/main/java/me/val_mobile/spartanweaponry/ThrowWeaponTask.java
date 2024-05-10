@@ -33,6 +33,7 @@ import org.bukkit.util.EulerAngle;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class ThrowWeaponTask extends BukkitRunnable {
@@ -143,123 +144,138 @@ public class ThrowWeaponTask extends BukkitRunnable {
                     // check if there are nearby entities around the given bounding box
                     // piercing can hit through multiple entities without returning
                     if (!entityList.isEmpty() && !entityList.contains(entity)) {
-                        double attackDamage = config.getDouble("Items." + name + ".ThrownAttributes.AttackDamage");
-
-                        for (Entity e : entityList) {
-                            if (e instanceof Damageable damageable && e.getUniqueId() != entity.getUniqueId()) {
-                                String name = RSVItem.getNameFromItem(item);
-                                String type = name.substring(0, name.lastIndexOf("_"));
-
-                                boolean shouldBurn = false;
-                                boolean shouldFreeze = false;
-                                boolean shouldStrikeLightning = false;
-                                boolean shouldElectrocute = false;
-
-                                switch (type) {
-                                    case "dragonbone_flamed" -> {
-                                        if (Utils.hasNbtTag(damageable, "rsvmob")) {
-                                            if (!Utils.getNbtTag(damageable, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
-                                                attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                            }
-                                        }
-
-                                        if (!BurnTask.hasTask(damageable.getUniqueId())) {
-                                            shouldBurn = true;
-                                        }
-                                    }
-                                    case "dragonbone_iced" -> {
-                                        if (Utils.hasNbtTag(damageable, "rsvmob")) {
-                                            if (!Utils.getNbtTag(damageable, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
-                                                attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                            }
-                                        }
-                                        if (!FreezeTask.hasTask(damageable.getUniqueId())) {
-                                            shouldFreeze = true;
-                                        }
-                                    }
-                                    case "dragonbone_lightning" -> {
-                                        if (Utils.hasNbtTag(damageable, "rsvmob")) {
-                                            if (!Utils.getNbtTag(damageable, "rsvmob", PersistentDataType.STRING).equals("lightning_dragon")) {
-                                                attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
-                                            }
-                                        }
-                                        shouldStrikeLightning = true;
-
-                                        if (!ElectrocuteTask.hasTask(damageable.getUniqueId())) {
-                                            shouldElectrocute = true;
-                                        }
-                                    }
-                                    case "dragonsteel_fire" -> {
-                                        if (!BurnTask.hasTask(damageable.getUniqueId())) {
-                                            shouldBurn = true;
-                                        }
-                                    }
-                                    case "dragonsteel_ice" -> {
-                                        if (!FreezeTask.hasTask(damageable.getUniqueId())) {
-                                            shouldFreeze = true;
-                                        }
-                                    }
-                                    case "dragonsteel_lightning" -> {
-                                        shouldStrikeLightning = true;
-
-                                        if (!ElectrocuteTask.hasTask(damageable.getUniqueId())) {
-                                            shouldElectrocute = true;
-                                        }
-                                    }
-                                    default -> {}
-                                }
-
-                                if (name.contains("dagger")) {
-                                    if (Utils.wasBackstabbed(entity, damageable)) {
-                                        attackDamage *= config.getDouble("Items." + name + ".BackstabDamageMultiplier");
-                                    }
-                                }
-
-                                if (isAttackable(damageable)) {
-                                    if (shouldBurn) {
-                                        int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
-                                        int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
-
-                                        new BurnTask(plugin, damageable, fireTicks, tickPeriod).start();
-                                    }
-
-                                    if (shouldFreeze) {
-                                        new FreezeTask(plugin, module, name, damageable).start();
-                                    }
-
-                                    if (shouldStrikeLightning) {
-                                        if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
-                                            Location eLoc = damageable.getLocation();
-                                            if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
-                                                eLoc.getWorld().strikeLightningEffect(loc);
-                                            } else {
-                                                eLoc.getWorld().strikeLightning(loc);
-                                            }
-                                        }
-                                    }
-
-                                    if (shouldElectrocute) {
-                                        new ElectrocuteTask(plugin, module, name, damageable).start();
-                                    }
-
-                                    Utils.damageEntity(damageable, attackDamage);
+                        if (onlyContainsEndermen(entityList)) {
+                            for (Entity e : entityList) {
+                                if (e instanceof Enderman enderman) {
+                                    Utils.randomTpSafely(enderman, 0);
                                 }
                             }
-                        }
 
-                        if (config.getBoolean("Items." + name + ".ThrownAttributes.HitMobSound.Enabled")) {
-                            String soundName = config.getString("Items." + name + ".ThrownAttributes.HitMobSound.Sound");
-                            float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitMobSound.Volume");
-                            float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitMobSound.Pitch");
-                            Utils.playSound(armorStand.getLocation(), soundName, volume, pitch);
                         }
+                        else {
+                            double attackDamage = config.getDouble("Items." + name + ".ThrownAttributes.AttackDamage");
 
-                        if (returnWeaponCollideEntities && !piercing) {
-                            returnWeapon();
-                        }
+                            for (Entity e : entityList) {
+                                if (e instanceof Damageable damageable && e.getUniqueId() != entity.getUniqueId()) {
+                                    if (e instanceof Enderman enderman) {
+                                        Utils.randomTpSafely(enderman, 0);
+                                        continue;
+                                    }
 
-                        if (!piercing) {
-                            dropWeaponTask(armorStand, entity, item.clone());
+                                    String name = RSVItem.getNameFromItem(item);
+                                    String type = name.substring(0, name.lastIndexOf("_"));
+
+                                    boolean shouldBurn = false;
+                                    boolean shouldFreeze = false;
+                                    boolean shouldStrikeLightning = false;
+                                    boolean shouldElectrocute = false;
+
+                                    switch (type) {
+                                        case "dragonbone_flamed" -> {
+                                            if (Utils.hasNbtTag(damageable, "rsvmob")) {
+                                                if (!Utils.getNbtTag(damageable, "rsvmob", PersistentDataType.STRING).equals("fire_dragon")) {
+                                                    attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+                                                }
+                                            }
+
+                                            if (!BurnTask.hasTask(damageable.getUniqueId())) {
+                                                shouldBurn = true;
+                                            }
+                                        }
+                                        case "dragonbone_iced" -> {
+                                            if (Utils.hasNbtTag(damageable, "rsvmob")) {
+                                                if (!Utils.getNbtTag(damageable, "rsvmob", PersistentDataType.STRING).equals("ice_dragon")) {
+                                                    attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+                                                }
+                                            }
+                                            if (!FreezeTask.hasTask(damageable.getUniqueId())) {
+                                                shouldFreeze = true;
+                                            }
+                                        }
+                                        case "dragonbone_lightning" -> {
+                                            if (Utils.hasNbtTag(damageable, "rsvmob")) {
+                                                if (!Utils.getNbtTag(damageable, "rsvmob", PersistentDataType.STRING).equals("lightning_dragon")) {
+                                                    attackDamage += config.getDouble("Items." + name + ".DragonBonusDamage");
+                                                }
+                                            }
+                                            shouldStrikeLightning = true;
+
+                                            if (!ElectrocuteTask.hasTask(damageable.getUniqueId())) {
+                                                shouldElectrocute = true;
+                                            }
+                                        }
+                                        case "dragonsteel_fire" -> {
+                                            if (!BurnTask.hasTask(damageable.getUniqueId())) {
+                                                shouldBurn = true;
+                                            }
+                                        }
+                                        case "dragonsteel_ice" -> {
+                                            if (!FreezeTask.hasTask(damageable.getUniqueId())) {
+                                                shouldFreeze = true;
+                                            }
+                                        }
+                                        case "dragonsteel_lightning" -> {
+                                            shouldStrikeLightning = true;
+
+                                            if (!ElectrocuteTask.hasTask(damageable.getUniqueId())) {
+                                                shouldElectrocute = true;
+                                            }
+                                        }
+                                        default -> {}
+                                    }
+
+                                    if (name.contains("dagger")) {
+                                        if (Utils.wasBackstabbed(entity, damageable)) {
+                                            attackDamage *= config.getDouble("Items." + name + ".BackstabDamageMultiplier");
+                                        }
+                                    }
+
+                                    if (isAttackable(damageable)) {
+                                        if (shouldBurn) {
+                                            int fireTicks = config.getInt("Items." + name + ".InfernoAbility.FireTicks");
+                                            int tickPeriod = config.getInt("Items." + name + ".InfernoAbility.TickPeriod");
+
+                                            new BurnTask(plugin, damageable, fireTicks, tickPeriod).start();
+                                        }
+
+                                        if (shouldFreeze) {
+                                            new FreezeTask(plugin, module, name, damageable).start();
+                                        }
+
+                                        if (shouldStrikeLightning) {
+                                            if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Enabled")) {
+                                                Location eLoc = damageable.getLocation();
+                                                if (config.getBoolean("Items." + name + ".ElectrocuteAbility.SummonLightning.Cosmetic")) {
+                                                    eLoc.getWorld().strikeLightningEffect(loc);
+                                                } else {
+                                                    eLoc.getWorld().strikeLightning(loc);
+                                                }
+                                            }
+                                        }
+
+                                        if (shouldElectrocute) {
+                                            new ElectrocuteTask(plugin, module, name, damageable).start();
+                                        }
+
+                                        Utils.damageEntity(damageable, attackDamage, entity);
+                                    }
+                                }
+                            }
+
+                            if (config.getBoolean("Items." + name + ".ThrownAttributes.HitMobSound.Enabled")) {
+                                String soundName = config.getString("Items." + name + ".ThrownAttributes.HitMobSound.Sound");
+                                float volume = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitMobSound.Volume");
+                                float pitch = (float) config.getDouble("Items." + name + ".ThrownAttributes.HitMobSound.Pitch");
+                                Utils.playSound(armorStand.getLocation(), soundName, volume, pitch);
+                            }
+
+                            if (returnWeaponCollideEntities && !piercing) {
+                                returnWeapon();
+                            }
+
+                            if (!piercing) {
+                                dropWeaponTask(armorStand, entity, item.clone());
+                            }
                         }
                     }
 
@@ -289,6 +305,20 @@ public class ThrowWeaponTask extends BukkitRunnable {
                 }
             }
         }
+    }
+
+    public boolean onlyContainsEndermen(@Nullable List<Entity> entities) {
+        if (entities == null) {
+            return false;
+        }
+
+        for (Entity e : entities) {
+            if (!(e instanceof Enderman)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void dropWeaponTask(ArmorStand as, ItemStack itemStack) {

@@ -140,19 +140,19 @@ public class Ingredient {
     }
 
     public final boolean test(@Nullable ItemStack item) {
-        if (Utils.isItemReal(item)) {
-            if (RSVItem.isRSVItem(item)) {
-                for (RSVItem i : items) {
-                    if (i != null) {
-                        if (Objects.equals(RSVItem.getNameFromItem(item), i.getName())) {
-                            return true;
-                        }
-                    }
+        if (!Utils.isItemReal(item)) {
+            return false;
+        }
+
+        if (RSVItem.isRSVItem(item)) {
+            for (RSVItem i : items) {
+                if (Utils.isItemReal(i) && Objects.equals(RSVItem.getNameFromItem(item), i.getName())) {
+                    return true;
                 }
             }
-            return test(item.getType());
+            return false;
         }
-        return false;
+        return test(item.getType());
     }
 
     public final boolean test(@Nullable CraftingInventory inv) {
@@ -161,10 +161,8 @@ public class Ingredient {
         }
 
         for (RSVItem i : items) {
-            if (i != null) {
-                if (inv.contains(i)) {
-                    return true;
-                }
+            if (Utils.isItemReal(i) && inv.contains(i)) {
+                return true;
             }
         }
         return false;

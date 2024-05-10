@@ -31,13 +31,11 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftEnderman;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityCategory;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.SmithingRecipe;
@@ -175,6 +173,11 @@ public class v1_18_R1 extends InternalsProvider {
         else {
             ((CraftLivingEntity) attacker).getHandle().doHurtTarget(((CraftEntity) defender).getHandle());
         }
+    }
+
+    @Override
+    public void teleportEnderman(Enderman enderman) {
+        teleport(((CraftEnderman) enderman).getHandle());
     }
 
     public static boolean isLookingAtMe(EnderMan enderman, net.minecraft.world.entity.player.Player entityhuman) {

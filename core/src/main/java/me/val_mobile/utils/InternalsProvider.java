@@ -21,6 +21,7 @@ import me.val_mobile.iceandfire.*;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
+import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -60,5 +61,7 @@ public abstract class InternalsProvider {
     public abstract void setFreezingView(Player player, int ticks);
 
     public abstract void attack(LivingEntity attacker, Entity defender);
+
+    public abstract void teleportEnderman(Enderman enderman);
 
 }

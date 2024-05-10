@@ -153,7 +153,14 @@ public class RSVItem extends ItemStack {
                     EquipmentSlot slot = Utils.getCorrectEquipmentSlot(atr, material);
 
                     if (atrName != null) {
-                        AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, AttributeModifier.Operation.ADD_NUMBER, slot);
+                        String uuidStr = switch(atr) {
+                            case GENERIC_ARMOR -> "7e7e958a-ecc8-4db4-a8c9-d41354bec06a";
+                            case GENERIC_ARMOR_TOUGHNESS -> "7e7e958a-ecc8-4db4-a8c9-d41354bec06b";
+                            case GENERIC_ATTACK_DAMAGE -> "7e7e958a-ecc8-4db4-a8c9-d41354bec06c";
+                            case GENERIC_ATTACK_SPEED -> "7e7e958a-ecc8-4db4-a8c9-d41354bec06d";
+                            default -> "7e7e958a-ecc8-4db4-a8c9-d41354bec06e";
+                        };
+                        AttributeModifier atrMod = new AttributeModifier(UUID.fromString(uuidStr), atrName, correctValue, AttributeModifier.Operation.ADD_NUMBER, slot);
                         LorePresets.addGearStats(newLore, atr, displayValue);
                         meta.addAttributeModifier(atr, atrMod);
                     }
