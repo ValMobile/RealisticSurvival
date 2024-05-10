@@ -155,7 +155,7 @@ public class IceFireModule extends RSVModule {
                 }
             }
             case "dragonbone_iced", "dragonsteel_ice" -> {
-                if (!FreezeTask.hasTask(defender.getUniqueId())) {
+                if (!FreezeTask.hasTask(defender.getUniqueId()) && config.getString("Items." + name + ".FreezeAbility.EncaseIce.Block") != null) {
                     new FreezeTask(plugin, compare, name, defender).start();
                 }
             }

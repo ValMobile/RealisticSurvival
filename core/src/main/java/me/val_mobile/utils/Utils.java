@@ -1030,7 +1030,7 @@ public class Utils {
                 ((Damageable) meta).setDamage(maxMcDurability - mcDurability);
             }
 
-            if (rsvDurability <= 0 && shouldBreak) {
+            if (rsvDurability < 0 && shouldBreak) {
                 item.setAmount(0);
                 item.setType(Material.AIR);
 
@@ -1053,7 +1053,7 @@ public class Utils {
                 mcDurability += actualChange;
                 ((Damageable) meta).setDamage(maxMcDurability - mcDurability);
 
-                if (mcDurability <= 0 && shouldBreak) {
+                if (mcDurability < 0 && shouldBreak) {
                     item.setAmount(0);
                     item.setType(Material.AIR);
 

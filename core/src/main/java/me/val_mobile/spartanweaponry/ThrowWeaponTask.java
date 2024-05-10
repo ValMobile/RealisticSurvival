@@ -147,7 +147,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
                         if (onlyContainsEndermen(entityList)) {
                             for (Entity e : entityList) {
                                 if (e instanceof Enderman enderman) {
-                                    Utils.randomTpSafely(enderman, 0);
+                                    Utils.randomTpSafely(enderman, 16);
                                 }
                             }
 
@@ -158,7 +158,7 @@ public class ThrowWeaponTask extends BukkitRunnable {
                             for (Entity e : entityList) {
                                 if (e instanceof Damageable damageable && e.getUniqueId() != entity.getUniqueId()) {
                                     if (e instanceof Enderman enderman) {
-                                        Utils.randomTpSafely(enderman, 0);
+                                        Utils.randomTpSafely(enderman, 16);
                                         continue;
                                     }
 

@@ -110,9 +110,9 @@ public class RSVPlugin extends JavaPlugin {
         if (tanModule.isGloballyEnabled())
             tanModule.initialize();
 
-        FaModule faModule = new FaModule(this);
-        if (faModule.isGloballyEnabled())
-            faModule.initialize();
+//        FaModule faModule = new FaModule(this);
+//        if (faModule.isGloballyEnabled())
+//            faModule.initialize();
 
 //        TODO: Add custom enchantment system
 //        RSVEnchants rsvEnchants = new RSVEnchants(this);

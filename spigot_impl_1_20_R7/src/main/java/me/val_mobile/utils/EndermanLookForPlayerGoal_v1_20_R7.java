@@ -85,7 +85,7 @@ public class EndermanLookForPlayerGoal_v1_20_R7 extends NearestAttackableTargetG
             if (target != null && !enderman.isPassenger()) {
                 if (v1_20_R7.isLookingAtMe(enderman, (Player) target)) {
                     if (target.distanceToSqr(enderman) < 16.0) {
-                        v1_20_R7.teleport(enderman);
+                        enderman.teleport();
                     }
                     teleportTime = 0;
                 }

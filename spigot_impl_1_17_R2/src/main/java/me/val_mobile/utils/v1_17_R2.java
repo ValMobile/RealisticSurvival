@@ -175,11 +175,6 @@ public class v1_17_R2 extends InternalsProvider {
         }
     }
 
-    @Override
-    public void teleportEnderman(Enderman enderman) {
-        teleport(((CraftEnderman) enderman).getHandle());
-    }
-
     public static boolean isLookingAtMe(EnderMan enderman, net.minecraft.world.entity.player.Player entityhuman) {
         ItemStack itemstack = entityhuman.getInventory().armor.get(3);
         if (itemstack.is(Blocks.CARVED_PUMPKIN.asItem())) {

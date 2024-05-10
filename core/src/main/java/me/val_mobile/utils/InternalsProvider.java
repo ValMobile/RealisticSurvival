@@ -62,6 +62,4 @@ public abstract class InternalsProvider {
 
     public abstract void attack(LivingEntity attacker, Entity defender);
 
-    public abstract void teleportEnderman(Enderman enderman);
-
 }

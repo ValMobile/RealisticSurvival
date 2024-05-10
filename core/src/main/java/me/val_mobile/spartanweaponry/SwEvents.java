@@ -441,7 +441,9 @@ public class SwEvents extends ModuleEvents implements Listener {
 
         Utils.changeDurability(itemMainHand, -1, true, true, player);
 
-        new ThrowWeaponTask(module, plugin, player, itemMainHand, maxDistance, rotateWeapon, piercing, returnWeaponCollideBlocks, returnWeaponCollideEntities, returnWeaponTooFar, velocity).start();
+        if (Utils.isItemReal(itemMainHand) && Utils.getDurability(itemMainHand) >= 0) {
+            new ThrowWeaponTask(module, plugin, player, itemMainHand, maxDistance, rotateWeapon, piercing, returnWeaponCollideBlocks, returnWeaponCollideEntities, returnWeaponTooFar, velocity).start();
+        }
         player.getInventory().setItemInMainHand(null);
     }
 }
