@@ -25,6 +25,7 @@ import me.val_mobile.integrations.PAPI;
 import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.spartanweaponry.KbTask;
 import me.val_mobile.utils.ToolHandler.Tool;
+import me.val_mobile.utils.recipe.RSVRecipe;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
@@ -939,8 +940,54 @@ public class Utils {
             case "WARPED_STEM", "WARPED_HYPHAE", "STRIPPED_WARPED_HYPHAE", "STRIPPED_WARPED_STEM" -> Material.WARPED_PLANKS;
             case "DARK_OAK_WOOD", "DARK_OAK_LOG", "STRIPPED_DARK_OAK_LOG", "STRIPPED_DARK_OAK_WOOD" -> Material.DARK_OAK_PLANKS;
             case "MANGROVE_WOOD", "MANGROVE_LOG", "STRIPPED_MANGROVE_LOG", "STRIPPED_MANGROVE_WOOD" -> Material.valueOf("MANGROVE_PLANKS");
+            case "BAMBOO_BLOCK", "STRIPPED_BAMBOO_BLOCK" -> Material.valueOf("BAMBOO_PLANKS");
+            case "CHERRY_WOOD", "CHERRY_LOG", "STRIPPED_CHERRY_WOOD", "STRIPPED_CHERRY_LOG" -> Material.valueOf("CHERRY_PLANKS");
             default -> null;
         };
+    }
+
+    // checks if a material matches a string that represents a string or tag
+    public static boolean matchMaterial(@Nullable Material mat, @Nullable String key, boolean ignoreTags) {
+        if (mat == null || key == null) {
+            return false;
+        }
+
+        if (ignoreTags) {
+            return mat.toString().equals(key);
+        }
+
+        RecipeChoice choice = RSVRecipe.getRecipeChoice(key);
+
+        return choice != null && choice.test(new ItemStack(mat));
+    }
+
+    // checks if a material matches a list of strings and/or tags
+    public static boolean matchMaterial(@Nullable Material mat, @Nullable Collection<String> keys, boolean ignoreTags) {
+        if (mat == null || keys == null) {
+            return false;
+        }
+
+        // only check materials
+        if (ignoreTags) {
+            for (String key : keys) {
+                if (mat.toString().equals(key)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        ItemStack item = new ItemStack(mat);
+
+        for (String key : keys) {
+            RecipeChoice choice = RSVRecipe.getRecipeChoice(key);
+
+            if (choice != null && choice.test(item)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static void attack(@Nonnull LivingEntity attacker, @Nonnull Entity defender) {

@@ -76,7 +76,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
         Block block = event.getBlock();
         Material material = block.getType();
 
-        if (config.getBoolean("PreventPunchingWood.Enabled") && config.getStringList("PreventPunchingWood.WoodBlocks").contains(material.toString()) && !Utils.isHoldingAxe(player)) {
+        if (config.getBoolean("PreventPunchingWood.Enabled") && Utils.matchMaterial(material, config.getStringList("PreventPunchingWood.WoodBlocks"), false) && !Utils.isHoldingAxe(player)) {
             event.setDropItems(false);
         }
 
@@ -85,7 +85,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
 
             if (name.contains("dagger") || name.contains("knife")) {
                 if (!itemMainHand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
-                    if (config.getConfigurationSection("PlantFiberGathering.BlockDrops").getKeys(false).contains(material.toString())) {
+                    if (Utils.matchMaterial(material, config.getConfigurationSection("PlantFiberGathering.BlockDrops").getKeys(false), true)) {
                         ItemStack plantFiber = RSVItem.getItem("plant_fiber");
                         Utils.changeDurability(itemMainHand, -1, true, true, player); // required since instant-mineable blocks do not decrease durability
                         Utils.dropLooting(config.getConfigurationSection("PlantFiberGathering.BlockDrops." + material), plantFiber, itemMainHand, block.getLocation(), true);
@@ -130,7 +130,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
             Material blockMat = block.getType();
 
             if (Utils.isItemReal(item) && Utils.isHoldingAxe(player)) {
-                if (Tag.LOGS.isTagged(blockMat)) {
+                if (Tag.LOGS.isTagged(blockMat) || (blockMat.toString().equals("BAMBOO_BLOCK") || blockMat.toString().equals("STRIPPED_BAMBOO_BLOCK"))) {
                     if (RSVItem.isRSVItem(item) && RSVItem.getNameFromItem(item).contains("mattock")) {
                         Tool tool = Utils.getBestTool(blockMat);
 

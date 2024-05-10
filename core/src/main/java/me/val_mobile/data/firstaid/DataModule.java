@@ -16,16 +16,9 @@
  */
 package me.val_mobile.data.firstaid;
 
-import me.val_mobile.data.RSVConfig;
 import me.val_mobile.data.RSVDataModule;
-import me.val_mobile.data.RSVModule;
-import me.val_mobile.firstaid.FaModule;
-import me.val_mobile.tan.TanModule;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-
-import java.io.IOException;
-import java.util.UUID;
 
 public class DataModule implements RSVDataModule {
 
