@@ -76,11 +76,6 @@
         </dependency>
         <dependency>
             <groupId>me.Val_Mobile</groupId>
-            <artifactId>realisticsurvival-spigot_impl_1_20_R1</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>me.Val_Mobile</groupId>
             <artifactId>realisticsurvival-spigot_impl_1_19_R5</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
