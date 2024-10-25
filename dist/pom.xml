@@ -56,6 +56,16 @@
         </dependency>
         <dependency>
             <groupId>me.Val_Mobile</groupId>
+            <artifactId>realisticsurvival-spigot_impl_1_21_R4</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>me.Val_Mobile</groupId>
+            <artifactId>realisticsurvival-spigot_impl_1_21_R2</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>me.Val_Mobile</groupId>
             <artifactId>realisticsurvival-spigot_impl_1_20_R7</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
