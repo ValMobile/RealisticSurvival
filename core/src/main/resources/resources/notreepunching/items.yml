@@ -2,7 +2,7 @@
 #          NoTreePunching Items       #
 #######################################
 
-ConfigId: "1.2.8-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.9-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -10,10 +10,12 @@ flint_shard:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fFlint Shard"
   CustomModelData: 83786
+  ItemModel: "DEFAULT"
 flint_hatchet:
   Material: "WOODEN_AXE"
   DisplayName: "&fFlint Hatchet"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -26,6 +28,7 @@ flint_knife:
   Material: "WOODEN_SWORD"
   DisplayName: "&fFlint Knife"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -38,6 +41,7 @@ copper_knife:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Knife"
   CustomModelData: 83688
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -50,6 +54,7 @@ golden_knife:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Knife"
   CustomModelData: 83669
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -58,6 +63,7 @@ iron_knife:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Knife"
   CustomModelData: 83671
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -66,6 +72,7 @@ diamond_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Knife"
   CustomModelData: 83749
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -74,6 +81,7 @@ netherite_knife:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Knife"
   CustomModelData: 83729
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -82,6 +90,7 @@ flint_pickaxe:
   Material: "WOODEN_PICKAXE"
   DisplayName: "&fFlint Pickaxe"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -94,6 +103,7 @@ flint_shovel:
   Material: "WOODEN_SHOVEL"
   DisplayName: "&fFlint Shovel"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -106,6 +116,7 @@ flint_hoe:
   Material: "WOODEN_HOE"
   DisplayName: "&fFlint Hoe"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -118,6 +129,7 @@ golden_saw:
   Material: "GOLDEN_AXE"
   DisplayName: "&fGolden Saw"
   CustomModelData: 83651
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -129,6 +141,7 @@ copper_saw:
   Material: "STONE_AXE"
   DisplayName: "&fCopper Saw"
   CustomModelData: 83652
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -140,6 +153,7 @@ iron_saw:
   Material: "IRON_AXE"
   DisplayName: "&fIron Saw"
   CustomModelData: 83651
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -151,6 +165,7 @@ diamond_saw:
   Material: "DIAMOND_AXE"
   DisplayName: "&fDiamond Saw"
   CustomModelData: 83656
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -162,6 +177,7 @@ netherite_saw:
   Material: "NETHERITE_AXE"
   DisplayName: "&fNetherite Saw"
   CustomModelData: 83657
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -173,38 +189,47 @@ plant_fiber:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fPlant Fiber"
   CustomModelData: 83787
+  ItemModel: "DEFAULT"
 plant_string:
   Material: "STRING"
   DisplayName: "&fPlant String"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
 stone_rock:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fStone Rock"
   CustomModelData: 83729
+  ItemModel: "DEFAULT"
 andesite_rock:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fAndesite Rock"
   CustomModelData: 83730
+  ItemModel: "DEFAULT"
 diorite_rock:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fDiorite Rock"
   CustomModelData: 83731
+  ItemModel: "DEFAULT"
 granite_rock:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fGranite Rock"
   CustomModelData: 83732
+  ItemModel: "DEFAULT"
 sandstone_rock:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fSandstone Rock"
   CustomModelData: 83733
+  ItemModel: "DEFAULT"
 red_sandstone_rock:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fRed Sandstone Rock"
   CustomModelData: 83734
+  ItemModel: "DEFAULT"
 matchbox:
   Material: "FLINT_AND_STEEL"
   DisplayName: "&fMatchbox"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   NBTTags:
     rsvdurability: 32
     rsvmaxdurability: 32
@@ -212,6 +237,7 @@ fire_starter:
   Material: "WOODEN_AXE"
   DisplayName: "&fFire Starter"
   CustomModelData: 83652
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -222,6 +248,7 @@ copper_axe:
   Material: "STONE_AXE"
   DisplayName: "&fCopper Axe"
   CustomModelData: 83653
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -234,6 +261,7 @@ copper_pickaxe:
   Material: "STONE_PICKAXE"
   DisplayName: "&fCopper Pickaxe"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -246,6 +274,7 @@ copper_shovel:
   Material: "STONE_SHOVEL"
   DisplayName: "&fCopper Shovel"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -258,6 +287,7 @@ copper_sword:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Sword"
   CustomModelData: 83690
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -270,6 +300,7 @@ copper_hoe:
   Material: "STONE_HOE"
   DisplayName: "&fCopper Hoe"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -282,6 +313,8 @@ copper_helmet:
   Material: "IRON_HELMET"
   DisplayName: "&fCopper Helmet"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
+  EquippableComponentModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -294,6 +327,8 @@ copper_chestplate:
   Material: "IRON_CHESTPLATE"
   DisplayName: "&fCopper Chestplate"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
+  EquippableComponentModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -306,6 +341,8 @@ copper_leggings:
   Material: "IRON_LEGGINGS"
   DisplayName: "&fCopper Leggings"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
+  EquippableComponentModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -318,6 +355,8 @@ copper_boots:
   Material: "IRON_BOOTS"
   DisplayName: "&fCopper Boots"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
+  EquippableComponentModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -330,6 +369,7 @@ golden_mattock:
   Material: "GOLDEN_AXE"
   DisplayName: "&fGolden Mattock"
   CustomModelData: 93650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -341,6 +381,7 @@ copper_mattock:
   Material: "STONE_AXE"
   DisplayName: "&fCopper Mattock"
   CustomModelData: 93650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -353,6 +394,7 @@ iron_mattock:
   Material: "IRON_AXE"
   DisplayName: "&fIron Mattock"
   CustomModelData: 93650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -364,6 +406,7 @@ diamond_mattock:
   Material: "DIAMOND_AXE"
   DisplayName: "&fDiamond Mattock"
   CustomModelData: 93650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -375,6 +418,7 @@ netherite_mattock:
   Material: "NETHERITE_AXE"
   DisplayName: "&fNetherite Mattock"
   CustomModelData: 93650
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -386,6 +430,7 @@ macuahuitl:
   Material: "STONE_SWORD"
   DisplayName: "&fMacuahuitl"
   CustomModelData: 83689
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   Attributes:
@@ -398,6 +443,7 @@ clay_tool:
   Material: "WOODEN_AXE"
   DisplayName: "&fClay Tool"
   CustomModelData: 83653
+  ItemModel: "DEFAULT"
   ItemFlags:
     - "HIDE_ATTRIBUTES"
   NBTTags:
@@ -408,55 +454,69 @@ clay_brick:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fClay Brick"
   CustomModelData: 83735
+  ItemModel: "DEFAULT"
 clay_bucket:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fClay Bucket"
   CustomModelData: 83736
+  ItemModel: "DEFAULT"
 clay_flower_pot:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fClay Flower Pot"
   CustomModelData: 83737
+  ItemModel: "DEFAULT"
 ceramic_bucket:
   Material: "BUCKET"
   DisplayName: "&fCeramic Bucket"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
 ceramic_water_bucket:
   Material: "WATER_BUCKET"
   DisplayName: "&fCeramic Water Bucket"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
 ceramic_lava_bucket:
   Material: "LAVA_BUCKET"
   DisplayName: "&fCeramic Lava Bucket"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
 ceramic_milk_bucket:
   Material: "MILK_BUCKET"
   DisplayName: "&fCeramic Milk Bucket"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
 ceramic_tropical_fish_bucket:
   Material: "TROPICAL_FISH_BUCKET"
   DisplayName: "&fCeramic Bucket of Tropical Fish"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
 ceramic_tadpole_bucket:
   Material: "TADPOLE_BUCKET"
   DisplayName: "&fCeramic Bucket of Tadpole"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
 ceramic_salmon_bucket:
   Material: "SALMON_BUCKET"
   DisplayName: "&fCeramic Bucket of Salmon"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
 ceramic_pufferfish_bucket:
   Material: "PUFFERFISH_BUCKET"
   DisplayName: "&fCeramic Bucket of Pufferfish"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
 ceramic_powder_snow_bucket:
   Material: "POWDER_SNOW_BUCKET"
   DisplayName: "&fCeramic Powder Snow Bucket"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
 ceramic_axolotl_bucket:
   Material: "AXOLOTL_BUCKET"
   DisplayName: "&fCeramic Bucket of Axolotl"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
 ceramic_cod_bucket:
   Material: "COD_BUCKET"
   DisplayName: "&fCeramic Bucket of Cod"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"

@@ -2,7 +2,7 @@
 #          Spartan Weaponry Items     #
 #######################################
 
-ConfigId: "1.2.8-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.9-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -10,14 +10,17 @@ handle:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fHandle"
   CustomModelData: 83725
+  ItemModel: "DEFAULT"
 pole:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fPole"
   CustomModelData: 83726
+  ItemModel: "DEFAULT"
 netherite_rapier:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Rapier"
   CustomModelData: 83710
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
   ItemFlags:
@@ -28,6 +31,7 @@ netherite_katana:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Katana"
   CustomModelData: 83711
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
   ItemFlags:
@@ -38,6 +42,7 @@ netherite_greatsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Greatsword"
   CustomModelData: 83712
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
   ItemFlags:
@@ -48,6 +53,7 @@ netherite_longsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Longsword"
   CustomModelData: 83713
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
   ItemFlags:
@@ -58,6 +64,7 @@ netherite_spear:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Spear"
   CustomModelData: 83714
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
   ItemFlags:
@@ -68,6 +75,7 @@ netherite_saber:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Saber"
   CustomModelData: 83715
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
   ItemFlags:
@@ -78,6 +86,7 @@ netherite_boomerang:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Boomerang"
   CustomModelData: 83716
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
   ItemFlags:
@@ -88,6 +97,7 @@ netherite_dagger:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Dagger"
   CustomModelData: 83717
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
   ItemFlags:
@@ -98,6 +108,7 @@ netherite_glaive:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Glaive"
   CustomModelData: 83718
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
   ItemFlags:
@@ -108,6 +119,7 @@ netherite_halberd:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Halberd"
   CustomModelData: 83719
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
   ItemFlags:
@@ -118,6 +130,7 @@ netherite_hammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Hammer"
   CustomModelData: 83720
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
   ItemFlags:
@@ -128,6 +141,7 @@ netherite_javelin:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Javelin"
   CustomModelData: 83721
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
   ItemFlags:
@@ -138,6 +152,7 @@ netherite_lance:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Lance"
   CustomModelData: 83722
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
   ItemFlags:
@@ -148,6 +163,7 @@ netherite_mace:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Flanged Mace"
   CustomModelData: 83723
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
   ItemFlags:
@@ -158,6 +174,7 @@ netherite_pike:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Pike"
   CustomModelData: 83724
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
   ItemFlags:
@@ -168,6 +185,7 @@ netherite_quarterstaff:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Quarterstaff"
   CustomModelData: 83725
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
   ItemFlags:
@@ -178,6 +196,7 @@ netherite_tomahawk:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Tomahawk"
   CustomModelData: 83726
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
   ItemFlags:
@@ -188,6 +207,7 @@ netherite_throwing_knife:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Throwing Knife"
   CustomModelData: 83727
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
   ItemFlags:
@@ -198,6 +218,7 @@ netherite_warhammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fNetherite Warhammer"
   CustomModelData: 83728
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
   ItemFlags:
@@ -208,6 +229,7 @@ netherite_battleaxe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fNetherite Battleaxe"
   CustomModelData: 83656
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
   ItemFlags:
@@ -218,6 +240,7 @@ netherite_longbow:
   Material: "BOW"
   DisplayName: "&fNetherite-Strengthened Longbow"
   CustomModelData: 83658
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
   NBTTags:
@@ -228,6 +251,7 @@ netherite_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fNetherite-Strengthened Crossbow"
   CustomModelData: 83657
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
   NBTTags:
@@ -238,6 +262,7 @@ diamond_rapier:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Rapier"
   CustomModelData: 83730
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
   ItemFlags:
@@ -248,6 +273,7 @@ diamond_katana:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Katana"
   CustomModelData: 83731
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
   ItemFlags:
@@ -258,6 +284,7 @@ diamond_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Greatsword"
   CustomModelData: 83732
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
   ItemFlags:
@@ -268,6 +295,7 @@ diamond_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Longsword"
   CustomModelData: 83733
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
   ItemFlags:
@@ -278,6 +306,7 @@ diamond_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Spear"
   CustomModelData: 83734
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
   ItemFlags:
@@ -288,6 +317,7 @@ diamond_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Saber"
   CustomModelData: 83735
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
   ItemFlags:
@@ -298,6 +328,7 @@ diamond_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Boomerang"
   CustomModelData: 83736
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
   ItemFlags:
@@ -308,6 +339,7 @@ diamond_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Dagger"
   CustomModelData: 83737
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
   ItemFlags:
@@ -318,6 +350,7 @@ diamond_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Glaive"
   CustomModelData: 83738
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
   ItemFlags:
@@ -328,6 +361,7 @@ diamond_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Halberd"
   CustomModelData: 83739
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
   ItemFlags:
@@ -338,6 +372,7 @@ diamond_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Hammer"
   CustomModelData: 83740
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
   ItemFlags:
@@ -348,6 +383,7 @@ diamond_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Javelin"
   CustomModelData: 83741
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
   ItemFlags:
@@ -358,6 +394,7 @@ diamond_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Lance"
   CustomModelData: 83742
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
   ItemFlags:
@@ -368,6 +405,7 @@ diamond_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Flanged Mace"
   CustomModelData: 83743
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
   ItemFlags:
@@ -378,6 +416,7 @@ diamond_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Pike"
   CustomModelData: 83744
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
   ItemFlags:
@@ -388,6 +427,7 @@ diamond_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Quarterstaff"
   CustomModelData: 83745
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
   ItemFlags:
@@ -398,6 +438,7 @@ diamond_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Tomahawk"
   CustomModelData: 83746
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
   ItemFlags:
@@ -408,6 +449,7 @@ diamond_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Throwing Knife"
   CustomModelData: 83747
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
   ItemFlags:
@@ -418,6 +460,7 @@ diamond_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDiamond Warhammer"
   CustomModelData: 83748
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
   ItemFlags:
@@ -428,6 +471,7 @@ diamond_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fDiamond Battleaxe"
   CustomModelData: 83655
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
   ItemFlags:
@@ -438,6 +482,7 @@ diamond_longbow:
   Material: "BOW"
   DisplayName: "&fDiamond-Strengthened Longbow"
   CustomModelData: 83659
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
   NBTTags:
@@ -448,6 +493,7 @@ diamond_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fDiamond-Strengthened Crossbow"
   CustomModelData: 83658
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
   NBTTags:
@@ -458,6 +504,7 @@ iron_rapier:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Rapier"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
   ItemFlags:
@@ -468,6 +515,7 @@ iron_katana:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Katana"
   CustomModelData: 83651
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
   ItemFlags:
@@ -478,6 +526,7 @@ iron_greatsword:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Greatsword"
   CustomModelData: 83652
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
   ItemFlags:
@@ -488,6 +537,7 @@ iron_longsword:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Longsword"
   CustomModelData: 83653
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
   ItemFlags:
@@ -498,6 +548,7 @@ iron_spear:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Spear"
   CustomModelData: 83654
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
   ItemFlags:
@@ -508,6 +559,7 @@ iron_saber:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Saber"
   CustomModelData: 83655
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
   ItemFlags:
@@ -518,6 +570,7 @@ iron_boomerang:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Boomerang"
   CustomModelData: 83656
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
   ItemFlags:
@@ -528,6 +581,7 @@ iron_dagger:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Dagger"
   CustomModelData: 83657
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
   ItemFlags:
@@ -538,6 +592,7 @@ iron_glaive:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Glaive"
   CustomModelData: 83658
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
   ItemFlags:
@@ -548,6 +603,7 @@ iron_halberd:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Halberd"
   CustomModelData: 83659
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
   ItemFlags:
@@ -558,6 +614,7 @@ iron_hammer:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Hammer"
   CustomModelData: 83660
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
   ItemFlags:
@@ -568,6 +625,7 @@ iron_javelin:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Javelin"
   CustomModelData: 83661
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
   ItemFlags:
@@ -578,6 +636,7 @@ iron_lance:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Lance"
   CustomModelData: 83662
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
   ItemFlags:
@@ -588,6 +647,7 @@ iron_mace:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Flanged Mace"
   CustomModelData: 83663
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
   ItemFlags:
@@ -598,6 +658,7 @@ iron_pike:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Pike"
   CustomModelData: 83664
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
   ItemFlags:
@@ -608,6 +669,7 @@ iron_quarterstaff:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Quarterstaff"
   CustomModelData: 83665
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
   ItemFlags:
@@ -618,6 +680,7 @@ iron_tomahawk:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Tomahawk"
   CustomModelData: 83666
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
   ItemFlags:
@@ -628,6 +691,7 @@ iron_throwing_knife:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Throwing Knife"
   CustomModelData: 83667
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
   ItemFlags:
@@ -638,6 +702,7 @@ iron_warhammer:
   Material: "IRON_SWORD"
   DisplayName: "&fIron Warhammer"
   CustomModelData: 83668
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
   ItemFlags:
@@ -648,6 +713,7 @@ iron_battleaxe:
   Material: "IRON_AXE"
   DisplayName: "&fIron Battleaxe"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
   ItemFlags:
@@ -658,6 +724,7 @@ iron_longbow:
   Material: "BOW"
   DisplayName: "&fIron-Strengthened Longbow"
   CustomModelData: 83660
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
   NBTTags:
@@ -668,6 +735,7 @@ iron_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fIron-Strengthened Crossbow"
   CustomModelData: 83659
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
   NBTTags:
@@ -678,6 +746,7 @@ gold_rapier:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Rapier"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
   ItemFlags:
@@ -688,6 +757,7 @@ gold_katana:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Katana"
   CustomModelData: 83651
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
   ItemFlags:
@@ -698,6 +768,7 @@ gold_greatsword:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Greatsword"
   CustomModelData: 83652
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
   ItemFlags:
@@ -708,6 +779,7 @@ gold_longsword:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Longsword"
   CustomModelData: 83653
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
   ItemFlags:
@@ -718,6 +790,7 @@ gold_spear:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Spear"
   CustomModelData: 83654
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
   ItemFlags:
@@ -728,6 +801,7 @@ gold_saber:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Saber"
   CustomModelData: 83655
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
   ItemFlags:
@@ -738,6 +812,7 @@ gold_boomerang:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Boomerang"
   CustomModelData: 83656
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
   ItemFlags:
@@ -748,6 +823,7 @@ gold_dagger:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Dagger"
   CustomModelData: 83657
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
   ItemFlags:
@@ -758,6 +834,7 @@ gold_glaive:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Glaive"
   CustomModelData: 83658
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
   ItemFlags:
@@ -768,6 +845,7 @@ gold_halberd:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Halberd"
   CustomModelData: 83659
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
   ItemFlags:
@@ -778,6 +856,7 @@ gold_hammer:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Hammer"
   CustomModelData: 83660
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
   ItemFlags:
@@ -788,6 +867,7 @@ gold_javelin:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Javelin"
   CustomModelData: 83661
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
   ItemFlags:
@@ -798,6 +878,7 @@ gold_lance:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Lance"
   CustomModelData: 83662
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
   ItemFlags:
@@ -808,6 +889,7 @@ gold_mace:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Flanged Mace"
   CustomModelData: 83663
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
   ItemFlags:
@@ -818,6 +900,7 @@ gold_pike:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Pike"
   CustomModelData: 83664
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
   ItemFlags:
@@ -828,6 +911,7 @@ gold_quarterstaff:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Quarterstaff"
   CustomModelData: 83665
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
   ItemFlags:
@@ -838,6 +922,7 @@ gold_tomahawk:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Tomahawk"
   CustomModelData: 83666
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
   ItemFlags:
@@ -848,6 +933,7 @@ gold_throwing_knife:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Throwing Knife"
   CustomModelData: 83667
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
   ItemFlags:
@@ -858,6 +944,7 @@ gold_warhammer:
   Material: "GOLDEN_SWORD"
   DisplayName: "&fGolden Warhammer"
   CustomModelData: 83668
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
   ItemFlags:
@@ -868,6 +955,7 @@ gold_battleaxe:
   Material: "GOLDEN_AXE"
   DisplayName: "&fGolden Battleaxe"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
   ItemFlags:
@@ -878,6 +966,7 @@ gold_longbow:
   Material: "BOW"
   DisplayName: "&fGolden-Strengthened Longbow"
   CustomModelData: 83661
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
   NBTTags:
@@ -888,6 +977,7 @@ gold_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fGolden-Strengthened Crossbow"
   CustomModelData: 83660
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
   NBTTags:
@@ -898,6 +988,7 @@ stone_rapier:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Rapier"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
   ItemFlags:
@@ -908,6 +999,7 @@ stone_katana:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Katana"
   CustomModelData: 83651
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
   ItemFlags:
@@ -918,6 +1010,7 @@ stone_greatsword:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Greatsword"
   CustomModelData: 83652
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
   ItemFlags:
@@ -928,6 +1021,7 @@ stone_longsword:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Longsword"
   CustomModelData: 83653
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
   ItemFlags:
@@ -938,6 +1032,7 @@ stone_spear:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Spear"
   CustomModelData: 83654
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
   ItemFlags:
@@ -948,6 +1043,7 @@ stone_saber:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Saber"
   CustomModelData: 83655
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
   ItemFlags:
@@ -958,6 +1054,7 @@ stone_boomerang:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Boomerang"
   CustomModelData: 83656
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
   ItemFlags:
@@ -968,6 +1065,7 @@ stone_dagger:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Dagger"
   CustomModelData: 83657
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
   ItemFlags:
@@ -978,6 +1076,7 @@ stone_glaive:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Glaive"
   CustomModelData: 83658
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
   ItemFlags:
@@ -988,6 +1087,7 @@ stone_halberd:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Halberd"
   CustomModelData: 83659
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
   ItemFlags:
@@ -998,6 +1098,7 @@ stone_hammer:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Hammer"
   CustomModelData: 83660
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
   ItemFlags:
@@ -1008,6 +1109,7 @@ stone_javelin:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Javelin"
   CustomModelData: 83661
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
   ItemFlags:
@@ -1018,6 +1120,7 @@ stone_lance:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Lance"
   CustomModelData: 83662
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
   ItemFlags:
@@ -1028,6 +1131,7 @@ stone_mace:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Flanged Mace"
   CustomModelData: 83663
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
   ItemFlags:
@@ -1038,6 +1142,7 @@ stone_pike:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Pike"
   CustomModelData: 83664
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
   ItemFlags:
@@ -1048,6 +1153,7 @@ stone_quarterstaff:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Quarterstaff"
   CustomModelData: 83665
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
   ItemFlags:
@@ -1058,6 +1164,7 @@ stone_tomahawk:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Tomahawk"
   CustomModelData: 83666
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
   ItemFlags:
@@ -1068,6 +1175,7 @@ stone_throwing_knife:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Throwing Knife"
   CustomModelData: 83667
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
   ItemFlags:
@@ -1078,6 +1186,7 @@ stone_warhammer:
   Material: "STONE_SWORD"
   DisplayName: "&fStone Warhammer"
   CustomModelData: 83668
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
   ItemFlags:
@@ -1088,6 +1197,7 @@ stone_battleaxe:
   Material: "STONE_AXE"
   DisplayName: "&fStone Battleaxe"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
   ItemFlags:
@@ -1098,6 +1208,7 @@ wooden_rapier:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Rapier"
   CustomModelData: 83651
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
   ItemFlags:
@@ -1108,6 +1219,7 @@ wooden_katana:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Katana"
   CustomModelData: 83652
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
   ItemFlags:
@@ -1118,6 +1230,7 @@ wooden_greatsword:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Greatsword"
   CustomModelData: 83653
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
   ItemFlags:
@@ -1128,6 +1241,7 @@ wooden_longsword:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Longsword"
   CustomModelData: 83654
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
   ItemFlags:
@@ -1138,6 +1252,7 @@ wooden_spear:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Spear"
   CustomModelData: 83655
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
   ItemFlags:
@@ -1148,6 +1263,7 @@ wooden_saber:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Saber"
   CustomModelData: 83656
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
   ItemFlags:
@@ -1158,6 +1274,7 @@ wooden_boomerang:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Boomerang"
   CustomModelData: 83657
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
   ItemFlags:
@@ -1168,6 +1285,7 @@ wooden_dagger:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Dagger"
   CustomModelData: 83658
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
   ItemFlags:
@@ -1178,6 +1296,7 @@ wooden_glaive:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Glaive"
   CustomModelData: 83659
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
   ItemFlags:
@@ -1188,6 +1307,7 @@ wooden_halberd:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Halberd"
   CustomModelData: 83660
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
   ItemFlags:
@@ -1198,6 +1318,7 @@ wooden_hammer:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Hammer"
   CustomModelData: 83661
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
   ItemFlags:
@@ -1208,6 +1329,7 @@ wooden_javelin:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Javelin"
   CustomModelData: 83662
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
   ItemFlags:
@@ -1218,6 +1340,7 @@ wooden_lance:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Lance"
   CustomModelData: 83663
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
   ItemFlags:
@@ -1228,6 +1351,7 @@ wooden_mace:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Flanged Mace"
   CustomModelData: 83664
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
   ItemFlags:
@@ -1238,6 +1362,7 @@ wooden_pike:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Pike"
   CustomModelData: 83665
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
   ItemFlags:
@@ -1248,6 +1373,7 @@ wooden_quarterstaff:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Quarterstaff"
   CustomModelData: 83666
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
   ItemFlags:
@@ -1258,6 +1384,7 @@ wooden_tomahawk:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Tomahawk"
   CustomModelData: 83667
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
   ItemFlags:
@@ -1268,6 +1395,7 @@ wooden_throwing_knife:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Throwing Knife"
   CustomModelData: 83668
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
   ItemFlags:
@@ -1278,6 +1406,7 @@ wooden_warhammer:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Warhammer"
   CustomModelData: 83669
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
   ItemFlags:
@@ -1288,6 +1417,7 @@ wooden_battleaxe:
   Material: "WOODEN_AXE"
   DisplayName: "&fWooden Battleaxe"
   CustomModelData: 83651
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
   ItemFlags:
@@ -1298,6 +1428,7 @@ wooden_longbow:
   Material: "BOW"
   DisplayName: "&fWooden-Strengthened Longbow"
   CustomModelData: 83662
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
   NBTTags:
@@ -1308,6 +1439,7 @@ wooden_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fWooden-Strengthened Crossbow"
   CustomModelData: 83661
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
   NBTTags:
@@ -1318,6 +1450,7 @@ wooden_club:
   Material: "WOODEN_SWORD"
   DisplayName: "&fWooden Club"
   CustomModelData: 83670
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CLUB"
   ItemFlags:
@@ -1328,6 +1461,7 @@ leather_longbow:
   Material: "BOW"
   DisplayName: "&fLeather-Strengthened Longbow"
   CustomModelData: 83663
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
   NBTTags:
@@ -1338,6 +1472,7 @@ leather_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fLeather-Strengthened Crossbow"
   CustomModelData: 83662
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
   NBTTags:
@@ -1348,6 +1483,7 @@ copper_rapier:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Rapier"
   CustomModelData: 83669
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
   ItemFlags:
@@ -1362,6 +1498,7 @@ copper_katana:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Katana"
   CustomModelData: 83670
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
   ItemFlags:
@@ -1376,6 +1513,7 @@ copper_greatsword:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Greatsword"
   CustomModelData: 83671
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
   ItemFlags:
@@ -1390,6 +1528,7 @@ copper_longsword:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Longsword"
   CustomModelData: 83672
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
   ItemFlags:
@@ -1404,6 +1543,7 @@ copper_spear:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Spear"
   CustomModelData: 83673
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
   ItemFlags:
@@ -1418,6 +1558,7 @@ copper_saber:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Saber"
   CustomModelData: 83674
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
   ItemFlags:
@@ -1432,6 +1573,7 @@ copper_boomerang:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Boomerang"
   CustomModelData: 83675
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
   ItemFlags:
@@ -1446,6 +1588,7 @@ copper_dagger:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Dagger"
   CustomModelData: 83676
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
   ItemFlags:
@@ -1460,6 +1603,7 @@ copper_glaive:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Glaive"
   CustomModelData: 83677
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
   ItemFlags:
@@ -1474,6 +1618,7 @@ copper_halberd:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Halberd"
   CustomModelData: 83678
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
   ItemFlags:
@@ -1488,6 +1633,7 @@ copper_hammer:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Hammer"
   CustomModelData: 83679
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
   ItemFlags:
@@ -1502,6 +1648,7 @@ copper_javelin:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Javelin"
   CustomModelData: 83680
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
   ItemFlags:
@@ -1516,6 +1663,7 @@ copper_lance:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Lance"
   CustomModelData: 83681
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
   ItemFlags:
@@ -1530,6 +1678,7 @@ copper_mace:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Flanged Mace"
   CustomModelData: 83682
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
   ItemFlags:
@@ -1544,6 +1693,7 @@ copper_pike:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Pike"
   CustomModelData: 83683
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
   ItemFlags:
@@ -1558,6 +1708,7 @@ copper_quarterstaff:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Quarterstaff"
   CustomModelData: 83684
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
   ItemFlags:
@@ -1572,6 +1723,7 @@ copper_tomahawk:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Tomahawk"
   CustomModelData: 83685
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
   ItemFlags:
@@ -1586,6 +1738,7 @@ copper_throwing_knife:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Throwing Knife"
   CustomModelData: 83686
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
   ItemFlags:
@@ -1600,6 +1753,7 @@ copper_warhammer:
   Material: "STONE_SWORD"
   DisplayName: "&fCopper Warhammer"
   CustomModelData: 83687
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
   ItemFlags:
@@ -1614,6 +1768,7 @@ copper_battleaxe:
   Material: "STONE_AXE"
   DisplayName: "&fCopper Battleaxe"
   CustomModelData: 83651
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
   ItemFlags:
@@ -1628,6 +1783,7 @@ copper_longbow:
   Material: "BOW"
   DisplayName: "&fCopper-Strengthened Longbow"
   CustomModelData: 83664
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
   NBTTags:
@@ -1638,6 +1794,7 @@ copper_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fCopper-Strengthened Crossbow"
   CustomModelData: 83663
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
   NBTTags:
@@ -1648,6 +1805,7 @@ studded_club:
   Material: "IRON_SWORD"
   DisplayName: "&fStudded Club"
   CustomModelData: 83669
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CLUB"
   ItemFlags:
@@ -1661,6 +1819,7 @@ cestus:
   Material: "WOODEN_SWORD"
   DisplayName: "&fCestus"
   CustomModelData: 83671
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CESTUS"
   ItemFlags:
@@ -1674,6 +1833,7 @@ studded_cestus:
   Material: "IRON_SWORD"
   DisplayName: "&fStudded Cestus"
   CustomModelData: 83670
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CESTUS"
   ItemFlags:

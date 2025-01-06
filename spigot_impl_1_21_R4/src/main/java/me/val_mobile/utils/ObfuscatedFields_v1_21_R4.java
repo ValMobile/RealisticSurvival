@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +22,15 @@ public class ObfuscatedFields_v1_21_R4 {
     
     // corresponds to net.minecraft.core.MappedRegistry#unregisteredIntrusiveHolders
     public static final String INTRUSIVE_HOLDER_CACHE_SYMBOL = "m";
-    
+
+    // corresponds to net.minecraft.core.MappedRegistry#allTags
+    public static final String ALL_TAGS_SYMBOL = "k";
+
+    // corresponds to net.minecraft.core.MappedRegistry$TagSet
+    public static final String TAGSET_SYMBOL_OBFUSCATED = "net.minecraft.core.RegistryMaterials$a";
+
+    // corresponds to net.minecraft.core.MappedRegistry$TagSet
+    public static final String TAGSET_SYMBOL_UNOBFUSCATED = "net.minecraft.core.MappedRegistry$TagSet";
+
     private ObfuscatedFields_v1_21_R4() {};
 }

@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,12 +18,13 @@ package me.val_mobile.utils;
 
 import me.val_mobile.iceandfire.SeaSerpent;
 import me.val_mobile.iceandfire.SeaSerpentVariant;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.ElderGuardian;
 import net.minecraft.world.level.Level;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_20_R4.CraftWorld;
+import org.bukkit.craftbukkit.v1_21_R2.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
@@ -77,7 +78,7 @@ public class SeaSerpent_v1_21_R4 extends ElderGuardian implements SeaSerpent {
 
     // disable mining fatigue effect
     @Override
-    protected void customServerAiStep() {}
+    protected void customServerAiStep(ServerLevel worldserver) {}
 
     @Override
     public SeaSerpentVariant getVariant() {

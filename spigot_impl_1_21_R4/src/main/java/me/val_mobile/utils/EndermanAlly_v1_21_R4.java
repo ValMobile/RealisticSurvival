@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ public class EndermanAlly_v1_21_R4 extends EnderMan implements EndermanAlly {
         goalSelector.addGoal(11, new EndermanTakeBlockGoal_v1_21_R4(this));
         targetSelector.addGoal(1, new OwnerHurtByTargetGoal_v1_21_R4(this));
         targetSelector.addGoal(2, new OwnerHurtTargetGoal_v1_21_R4(this));
-        targetSelector.addGoal(3, new EndermanLookForPlayerGoal_v1_21_R4(this, this::isAngryAt));
+        targetSelector.addGoal(3, new EndermanLookForPlayerGoal_v1_21_R4(this, (entityLiving, serverLevel) -> isAngryAt(entityLiving, serverLevel)));
         targetSelector.addGoal(4, new HurtByTargetGoal(this).setAlertOthers());
         targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Endermite.class, true, false));
         targetSelector.addGoal(6, new ResetUniversalAngerTargetGoal<>(this, false));

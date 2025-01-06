@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 package me.val_mobile.utils;
 
 import me.val_mobile.data.RSVModule;
+import me.val_mobile.rsv.RSVPlugin;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -44,6 +45,7 @@ import java.util.*;
 public class RSVItem extends ItemStack {
 
     private static final Map<String, RSVItem> itemMap = new HashMap<>();
+    private static final String MODEL_CONFIG_DEFAULT_OPTION = "DEFAULT";
 
     private final Ingredient repairIng;
     private final String name;
@@ -64,6 +66,8 @@ public class RSVItem extends ItemStack {
         String materialPath = name + ".Material";
         String displayNamePath = name + ".DisplayName";
         String customModelDataPath = name + ".CustomModelData";
+        String itemModelPath = name + ".ItemModel";
+        String equippableComponentModelPath = name + ".EquippableComponentModel";
         String lorePath = name + ".Lore";
         String itemFlagsPath = name + ".ItemFlags";
         String enchantmentsPath = name + ".Enchantments";
@@ -74,6 +78,45 @@ public class RSVItem extends ItemStack {
         Material material = Material.valueOf(itemConfig.getString(materialPath));
         String displayName = itemConfig.getString(displayNamePath);
         int customModelData = itemConfig.getInt(customModelDataPath);
+
+        RSVPlugin pluginNamespace = RSVPlugin.getPlugin();
+        String itemModelStr = itemConfig.getString(itemModelPath);
+        NamespacedKey itemModelKey = null;
+
+        if (itemModelStr != null) {
+            // automatically generate item model key if default option is used
+            if (itemModelStr.equals(MODEL_CONFIG_DEFAULT_OPTION)) {
+                itemModelKey = NamespacedKey.fromString(module.getName().toLowerCase() + "/" + name, pluginNamespace);
+            }
+            else {
+                itemModelKey = NamespacedKey.fromString(itemModelStr, pluginNamespace);
+            }
+        }
+
+        String ecmStr = itemConfig.getString(equippableComponentModelPath);
+        NamespacedKey ecmKey = null;
+
+        if (ecmStr != null) {
+            // automatically generate item model key if default option is used
+            if (ecmStr.equals(MODEL_CONFIG_DEFAULT_OPTION)) {
+                // create a list of different armor slots
+                List<String> armorSlots = List.of("helmet", "chestplate", "leggings", "boots", "hood", "jacket", "pants");
+
+                // attempt to find the armor material from the item name
+                String armorMaterial = name;
+                for (String armorSlot : armorSlots) {
+                    if (armorMaterial.contains("_" + armorSlot)) {
+                        armorMaterial = armorMaterial.replaceAll("_" + armorSlot, "");
+                    }
+                }
+
+                ecmKey = NamespacedKey.fromString(module.getName().toLowerCase() + "/" + armorMaterial, pluginNamespace);
+            }
+            else {
+                ecmKey = NamespacedKey.fromString(ecmStr, pluginNamespace);
+            }
+        }
+
         List<String> lore = itemConfig.getStringList(lorePath);
         List<String> itemFlags = itemConfig.getStringList(itemFlagsPath);
         ConfigurationSection enchantments = itemConfig.getConfigurationSection(enchantmentsPath);
@@ -153,14 +196,7 @@ public class RSVItem extends ItemStack {
                     EquipmentSlot slot = Utils.getCorrectEquipmentSlot(atr, material);
 
                     if (atrName != null) {
-                        String uuidStr = switch(atr) {
-                            case GENERIC_ARMOR -> "7e7e958a-ecc8-4db4-a8c9-d41354bec06a";
-                            case GENERIC_ARMOR_TOUGHNESS -> "7e7e958a-ecc8-4db4-a8c9-d41354bec06b";
-                            case GENERIC_ATTACK_DAMAGE -> "7e7e958a-ecc8-4db4-a8c9-d41354bec06c";
-                            case GENERIC_ATTACK_SPEED -> "7e7e958a-ecc8-4db4-a8c9-d41354bec06d";
-                            default -> "7e7e958a-ecc8-4db4-a8c9-d41354bec06e";
-                        };
-                        AttributeModifier atrMod = new AttributeModifier(UUID.fromString(uuidStr), atrName, correctValue, AttributeModifier.Operation.ADD_NUMBER, slot);
+                        AttributeModifier atrMod = new AttributeModifier(UUID.randomUUID(), atrName, correctValue, AttributeModifier.Operation.ADD_NUMBER, slot);
                         LorePresets.addGearStats(newLore, atr, displayValue);
                         meta.addAttributeModifier(atr, atrMod);
                     }
@@ -173,6 +209,14 @@ public class RSVItem extends ItemStack {
         }
         if (customModelData > 0) {
             meta.setCustomModelData(customModelData);
+        }
+
+        if (itemModelKey != null) {
+            Utils.setItemModel(meta, itemModelKey);
+        }
+
+        if (ecmKey != null) {
+            Utils.setEquippableComponentModel(meta, ecmKey, Utils.getEquipmentSlotFromMaterial(material));
         }
 
         this.setItemMeta(meta);

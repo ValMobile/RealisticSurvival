@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -386,7 +386,7 @@ public class NtpEvents extends ModuleEvents implements Listener {
 
                 if (key.getNamespace().equals(NamespacedKey.MINECRAFT)) {
                     switch (key.getKey()) {
-                        case "acacia_planks", "birch_planks", "crimson_planks", "dark_oak_planks", "jungle_planks", "mangrove_planks", "oak_planks", "spruce_planks", "warped_planks", "cherry_planks", "bamboo_planks" -> {
+                        case "acacia_planks", "birch_planks", "crimson_planks", "dark_oak_planks", "jungle_planks", "mangrove_planks", "oak_planks", "spruce_planks", "warped_planks", "cherry_planks", "bamboo_planks", "pale_oak_planks" -> {
                             if (config.getBoolean("Lumberjack.DisablePlankRecipes"))
                                 event.getInventory().setResult(null);
                         }

@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -163,7 +163,16 @@ public class MiscEvents implements Listener {
         SmithingInventory inv = event.getInventory();
 
         if (Utils.isNetheriteRecipe(inv)) {
-            ItemStack base = inv.getItem(0);
+            ItemStack base;
+
+            // in versions 1.20 and above, a smithing template slot was added to the smithing table,
+            // and the item to be upgraded is now placed in 1st slot instead of the 0th
+            if (Utils.getMinecraftVersion(false).compareTo("1.20") >= 0) {
+                base = inv.getItem(1);
+            }
+            else {
+                base = inv.getItem(0);
+            }
 
             if (RSVItem.isRSVItem(base)) {
                 String rsvName = RSVItem.getNameFromItem(base);

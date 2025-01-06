@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -107,7 +107,7 @@ public class EnderCrownTask extends BukkitRunnable implements RSVTask {
 
                 if (waterDamageTicks > waterDamageDelay) {
                     if (Utils.roll(waterDamageChance)) {
-                        if (player.isInWater()) {
+                        if (player.isInWater() || (player.getWorld().hasStorm() && player.getLocation().getY() >= player.getWorld().getHighestBlockYAt(player.getLocation()))) {
                             player.damage(waterDamage);
                             waterDamageTicks = 0;
                         }

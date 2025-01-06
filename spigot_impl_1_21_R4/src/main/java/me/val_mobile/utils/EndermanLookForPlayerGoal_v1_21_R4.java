@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,14 +16,12 @@
  */
 package me.val_mobile.utils;
 
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 
 import javax.annotation.Nullable;
-import java.util.function.Predicate;
 
 public class EndermanLookForPlayerGoal_v1_21_R4 extends NearestAttackableTargetGoal<Player> {
     private final EnderMan enderman;
@@ -33,14 +31,17 @@ public class EndermanLookForPlayerGoal_v1_21_R4 extends NearestAttackableTargetG
     private int teleportTime;
     private final TargetingConditions startAggroTargetConditions;
     private final TargetingConditions continueAggroTargetConditions = TargetingConditions.forCombat().ignoreLineOfSight();
-    public EndermanLookForPlayerGoal_v1_21_R4(EnderMan enderman, @Nullable Predicate<LivingEntity> predicate) {
-        super(enderman, Player.class, 10, false, false, predicate);
+    private final TargetingConditions.Selector isAngerInducing;
+
+    public EndermanLookForPlayerGoal_v1_21_R4(EnderMan enderman, @Nullable TargetingConditions.Selector pathfindertargetcondition_a) {
+        super(enderman, Player.class, 10, false, false, pathfindertargetcondition_a);
         this.enderman = enderman;
-        this.startAggroTargetConditions = TargetingConditions.forCombat().range(getFollowDistance()).selector((entityliving) -> v1_21_R4.isLookingAtMe(enderman, (Player) entityliving));
+        this.isAngerInducing = (entityliving, worldserver) -> (v1_21_R4.isLookingAtMe(enderman, (Player) entityliving) || enderman.isAngryAt(entityliving, worldserver)) && !enderman.hasIndirectPassenger(entityliving);
+        this.startAggroTargetConditions = TargetingConditions.forCombat().range(this.getFollowDistance()).selector(this.isAngerInducing);
     }
 
     public boolean canUse() {
-        pendingTarget = enderman.level().getNearestPlayer(startAggroTargetConditions, enderman);
+        this.pendingTarget = getServerLevel(this.enderman).getNearestPlayer(this.startAggroTargetConditions.range(this.getFollowDistance()), this.enderman);
         return pendingTarget != null;
     }
 
@@ -66,7 +67,7 @@ public class EndermanLookForPlayerGoal_v1_21_R4 extends NearestAttackableTargetG
             }
         }
         else {
-            return target != null && continueAggroTargetConditions.test(enderman, target) || super.canContinueToUse();
+            return target != null && continueAggroTargetConditions.test(getServerLevel(this.enderman), enderman, target) || super.canContinueToUse();
         }
     }
 

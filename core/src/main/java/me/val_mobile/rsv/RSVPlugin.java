@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@ import me.val_mobile.baubles.BaubleModule;
 import me.val_mobile.commands.Commands;
 import me.val_mobile.commands.Tab;
 import me.val_mobile.data.*;
-import me.val_mobile.firstaid.FaModule;
 import me.val_mobile.iceandfire.IceFireModule;
 import me.val_mobile.integrations.PAPI;
 import me.val_mobile.integrations.RealisticSeasons;
@@ -158,7 +157,7 @@ public class RSVPlugin extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        Utils.registerEntities();
+//        Utils.registerEntities();
     }
 
     @Override

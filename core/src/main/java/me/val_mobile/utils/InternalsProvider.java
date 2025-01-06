@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,12 +20,14 @@ import me.val_mobile.baubles.EndermanAlly;
 import me.val_mobile.iceandfire.*;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
-import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.SmithingInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public abstract class InternalsProvider {
 
@@ -62,4 +64,15 @@ public abstract class InternalsProvider {
 
     public abstract void attack(LivingEntity attacker, Entity defender);
 
+    public abstract boolean hasItemModel(ItemMeta meta); // for 1.21.3 and above
+
+    public abstract NamespacedKey getItemModel(ItemMeta meta); // for 1.21.3 and above
+
+    public abstract void setItemModel(ItemMeta meta, NamespacedKey key); // for 1.21.3 and above
+
+    public abstract boolean hasEquippableComponentModel(ItemMeta meta); // for 1.21.3 and above
+
+    public abstract NamespacedKey getEquippableComponentModel(ItemMeta meta); // for 1.21.3 and above
+
+    public abstract void setEquippableComponentModel(ItemMeta meta, NamespacedKey key, EquipmentSlot slot); // for 1.21.3 and above
 }

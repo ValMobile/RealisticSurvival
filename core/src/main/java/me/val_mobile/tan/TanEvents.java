@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -783,14 +783,29 @@ public class TanEvents extends ModuleEvents implements Listener {
             if (meta.getDisplayName().equals(RSVItem.getItem("canteen_filled").getItemMeta().getDisplayName())) {
                 meta.setDisplayName(RSVItem.getItem("canteen_empty").getItemMeta().getDisplayName());
             }
-            int modelData = RSVItem.getItem("canteen_empty").getItemMeta().getCustomModelData();
+            int customModelData = RSVItem.getItem("canteen_empty").getItemMeta().getCustomModelData();
+            NamespacedKey itemModel = Utils.getItemModel(RSVItem.getItem("canteen_empty").getItemMeta());
+
+            // 1.21.2 and below
             if (!meta.hasCustomModelData()) {
-                meta.setCustomModelData(modelData);
+                meta.setCustomModelData(customModelData);
                 canteen.setItemMeta(meta);
             }
             else {
-                if (meta.getCustomModelData() != modelData) {
-                    meta.setCustomModelData(modelData);
+                if (meta.getCustomModelData() != customModelData) {
+                    meta.setCustomModelData(customModelData);
+                    canteen.setItemMeta(meta);
+                }
+            }
+
+            // 1.21.3 and above
+            if (!Utils.hasItemModel(meta)) {
+                Utils.setItemModel(meta, itemModel);
+                canteen.setItemMeta(meta);
+            }
+            else {
+                if (Utils.getItemModel(meta) != itemModel) {
+                    Utils.setItemModel(meta, itemModel);
                     canteen.setItemMeta(meta);
                 }
             }
@@ -805,15 +820,31 @@ public class TanEvents extends ModuleEvents implements Listener {
                 meta.setDisplayName(RSVItem.getItem("canteen_filled").getItemMeta().getDisplayName());
             }
 
-            int modelData = RSVItem.getItem("canteen_filled").getItemMeta().getCustomModelData();
+            int customModelData = RSVItem.getItem("canteen_filled").getItemMeta().getCustomModelData();
+            NamespacedKey itemModel = Utils.getItemModel(RSVItem.getItem("canteen_filled").getItemMeta());
+
             meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+
+            // 1.21.2 and below
             if (!meta.hasCustomModelData()) {
-                meta.setCustomModelData(modelData);
+                meta.setCustomModelData(customModelData);
                 canteen.setItemMeta(meta);
             }
             else {
-                if (meta.getCustomModelData() != modelData) {
-                    meta.setCustomModelData(modelData);
+                if (meta.getCustomModelData() != customModelData) {
+                    meta.setCustomModelData(customModelData);
+                    canteen.setItemMeta(meta);
+                }
+            }
+
+            // 1.21.3 and above
+            if (!Utils.hasItemModel(meta)) {
+                Utils.setItemModel(meta, itemModel);
+                canteen.setItemMeta(meta);
+            }
+            else {
+                if (Utils.getItemModel(meta) != itemModel) {
+                    Utils.setItemModel(meta, itemModel);
                     canteen.setItemMeta(meta);
                 }
             }

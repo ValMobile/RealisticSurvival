@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -74,6 +74,7 @@ public class NtpModule extends RSVModule {
             Bukkit.removeRecipe(new NamespacedKey(NamespacedKey.MINECRAFT, "warped_planks"));
             Bukkit.removeRecipe(new NamespacedKey(NamespacedKey.MINECRAFT, "cherry_planks"));
             Bukkit.removeRecipe(new NamespacedKey(NamespacedKey.MINECRAFT, "bamboo_planks"));
+            Bukkit.removeRecipe(new NamespacedKey(NamespacedKey.MINECRAFT, "pale_oak_planks"));
         }
 
         if (config.getBoolean("Lumberjack.RemoveStickRecipes")) {

@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import org.bukkit.craftbukkit.v1_20_R4.event.CraftEventFactory;
+import org.bukkit.craftbukkit.v1_21_R2.event.CraftEventFactory;
 
 public class EndermanTakeBlockGoal_v1_21_R4 extends Goal {
     private final EnderMan enderman;
@@ -40,7 +40,7 @@ public class EndermanTakeBlockGoal_v1_21_R4 extends Goal {
     }
 
     public boolean canUse() {
-        return this.enderman.getCarriedBlock() == null && (enderman.level().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) && enderman.getRandom().nextInt(reducedTickDelay(20)) == 0);
+        return this.enderman.getCarriedBlock() == null && (getServerLevel(this.enderman).getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) && this.enderman.getRandom().nextInt(reducedTickDelay(20)) == 0);
     }
 
     public void tick() {

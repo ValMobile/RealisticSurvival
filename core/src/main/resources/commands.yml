@@ -2,7 +2,7 @@
 #          Commands                   #
 #######################################
 
-ConfigId: "1.2.8-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.9-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Permissions
 EnableCommandBlockUsage: true
@@ -159,7 +159,9 @@ UpdateItem:
       Unbreakability: true
       AttributeModifiers: true
       LocalizedName: true
-      CustomModelData: true
+      CustomModelData: true  # For 1.21.2 and below
+      ItemModel: true # For 1.21.3 and above
+      EquippableComponent: true # For 1.21.3 and above
       Enchants:
         Enabled: true
         PreserveExistingEnchants: true

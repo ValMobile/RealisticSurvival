@@ -2,7 +2,7 @@
 #          Spartan and Fire Items     #
 #######################################
 
-ConfigId: "1.2.8-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.9-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Edit carefully, following the guide: https://github.com/ValMobile/RealisticSurvival/wiki/Editing-Item-YML-Files
 
@@ -10,6 +10,7 @@ dragonbone_rapier:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Rapier"
   CustomModelData: 83654
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
   ItemFlags:
@@ -24,6 +25,7 @@ dragonbone_katana:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Katana"
   CustomModelData: 83655
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
   ItemFlags:
@@ -38,6 +40,7 @@ dragonbone_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Greatsword"
   CustomModelData: 83656
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
   ItemFlags:
@@ -52,6 +55,7 @@ dragonbone_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Longsword"
   CustomModelData: 83657
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
   ItemFlags:
@@ -66,6 +70,7 @@ dragonbone_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Spear"
   CustomModelData: 83658
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
   ItemFlags:
@@ -80,6 +85,7 @@ dragonbone_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Saber"
   CustomModelData: 83659
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
   ItemFlags:
@@ -94,6 +100,7 @@ dragonbone_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Boomerang"
   CustomModelData: 83660
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
   ItemFlags:
@@ -108,6 +115,7 @@ dragonbone_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Dagger"
   CustomModelData: 83661
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
   ItemFlags:
@@ -122,6 +130,7 @@ dragonbone_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Glaive"
   CustomModelData: 83662
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
   ItemFlags:
@@ -136,6 +145,7 @@ dragonbone_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Halberd"
   CustomModelData: 83663
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
   ItemFlags:
@@ -150,6 +160,7 @@ dragonbone_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Hammer"
   CustomModelData: 83664
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
   ItemFlags:
@@ -164,6 +175,7 @@ dragonbone_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Javelin"
   CustomModelData: 83665
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
   ItemFlags:
@@ -178,6 +190,7 @@ dragonbone_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Lance"
   CustomModelData: 83666
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
   ItemFlags:
@@ -192,6 +205,7 @@ dragonbone_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Flanged Mace"
   CustomModelData: 83667
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
   ItemFlags:
@@ -206,6 +220,7 @@ dragonbone_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Pike"
   CustomModelData: 83668
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
   ItemFlags:
@@ -220,6 +235,7 @@ dragonbone_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Quarterstaff"
   CustomModelData: 83669
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
   ItemFlags:
@@ -234,6 +250,7 @@ dragonbone_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Tomahawk"
   CustomModelData: 83670
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
   ItemFlags:
@@ -248,6 +265,7 @@ dragonbone_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Throwing Knife"
   CustomModelData: 83671
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
   ItemFlags:
@@ -262,6 +280,7 @@ dragonbone_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fDragonbone Warhammer"
   CustomModelData: 83672
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
   ItemFlags:
@@ -276,6 +295,7 @@ dragonbone_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fDragonbone Battleaxe"
   CustomModelData: 83651
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
   ItemFlags:
@@ -290,6 +310,7 @@ dragonbone_longbow:
   Material: "BOW"
   DisplayName: "&fDragonbone-Strengthened Longbow"
   CustomModelData: 83651
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
   NBTTags:
@@ -298,6 +319,7 @@ dragonbone_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fDragonbone-Strengthened Crossbow"
   CustomModelData: 83650
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
   NBTTags:
@@ -306,6 +328,7 @@ dragonbone_flamed_rapier:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Rapier"
   CustomModelData: 83673
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -317,6 +340,7 @@ dragonbone_flamed_katana:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Katana"
   CustomModelData: 83674
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -332,6 +356,7 @@ dragonbone_flamed_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Greatsword"
   CustomModelData: 83675
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -347,6 +372,7 @@ dragonbone_flamed_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Longsword"
   CustomModelData: 83676
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -362,6 +388,7 @@ dragonbone_flamed_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Spear"
   CustomModelData: 83677
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -377,6 +404,7 @@ dragonbone_flamed_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Saber"
   CustomModelData: 83678
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -392,6 +420,7 @@ dragonbone_flamed_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Boomerang"
   CustomModelData: 83679
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -407,6 +436,7 @@ dragonbone_flamed_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Dagger"
   CustomModelData: 83680
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -422,6 +452,7 @@ dragonbone_flamed_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Glaive"
   CustomModelData: 83681
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -437,6 +468,7 @@ dragonbone_flamed_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Halberd"
   CustomModelData: 83682
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -452,6 +484,7 @@ dragonbone_flamed_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Hammer"
   CustomModelData: 83683
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -467,6 +500,7 @@ dragonbone_flamed_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Javelin"
   CustomModelData: 83684
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -482,6 +516,7 @@ dragonbone_flamed_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Lance"
   CustomModelData: 83685
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -497,6 +532,7 @@ dragonbone_flamed_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Flanged Mace"
   CustomModelData: 83686
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -512,6 +548,7 @@ dragonbone_flamed_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Pike"
   CustomModelData: 83687
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -527,6 +564,7 @@ dragonbone_flamed_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Quarterstaff"
   CustomModelData: 83688
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -542,6 +580,7 @@ dragonbone_flamed_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Tomahawk"
   CustomModelData: 83689
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -557,6 +596,7 @@ dragonbone_flamed_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Throwing Knife"
   CustomModelData: 83690
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -572,6 +612,7 @@ dragonbone_flamed_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fFlamed Dragonbone Warhammer"
   CustomModelData: 83691
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -587,6 +628,7 @@ dragonbone_flamed_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fFlamed Dragonbone Battleaxe"
   CustomModelData: 83652
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -602,6 +644,7 @@ dragonbone_flamed_longbow:
   Material: "BOW"
   DisplayName: "&fFlamed Dragonbone-Strengthened Longbow"
   CustomModelData: 83652
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -611,6 +654,7 @@ dragonbone_flamed_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fFlamed Dragonbone-Strengthened Crossbow"
   CustomModelData: 83651
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.FLAMED_DRAGONBONE"
@@ -620,6 +664,7 @@ dragonbone_iced_rapier:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Rapier"
   CustomModelData: 83692
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -635,6 +680,7 @@ dragonbone_iced_katana:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Katana"
   CustomModelData: 83693
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -650,6 +696,7 @@ dragonbone_iced_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Greatsword"
   CustomModelData: 83694
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -661,6 +708,7 @@ dragonbone_iced_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Longsword"
   CustomModelData: 83695
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -676,6 +724,7 @@ dragonbone_iced_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Spear"
   CustomModelData: 83696
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -691,6 +740,7 @@ dragonbone_iced_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Saber"
   CustomModelData: 83697
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -706,6 +756,7 @@ dragonbone_iced_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Boomerang"
   CustomModelData: 83698
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -721,6 +772,7 @@ dragonbone_iced_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Dagger"
   CustomModelData: 83699
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -736,6 +788,7 @@ dragonbone_iced_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Glaive"
   CustomModelData: 83700
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -751,6 +804,7 @@ dragonbone_iced_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Halberd"
   CustomModelData: 83701
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -766,6 +820,7 @@ dragonbone_iced_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Hammer"
   CustomModelData: 83702
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -781,6 +836,7 @@ dragonbone_iced_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Javelin"
   CustomModelData: 83703
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -796,6 +852,7 @@ dragonbone_iced_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Lance"
   CustomModelData: 83704
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -811,6 +868,7 @@ dragonbone_iced_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Flanged Mace"
   CustomModelData: 83705
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -826,6 +884,7 @@ dragonbone_iced_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Pike"
   CustomModelData: 83706
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -841,6 +900,7 @@ dragonbone_iced_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Quarterstaff"
   CustomModelData: 83707
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -856,6 +916,7 @@ dragonbone_iced_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Tomahawk"
   CustomModelData: 83708
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -871,6 +932,7 @@ dragonbone_iced_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Throwing Knife"
   CustomModelData: 83709
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -886,6 +948,7 @@ dragonbone_iced_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fIced Dragonbone Warhammer"
   CustomModelData: 83710
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -901,6 +964,7 @@ dragonbone_iced_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fIced Dragonbone Battleaxe"
   CustomModelData: 83653
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -916,6 +980,7 @@ dragonbone_iced_longbow:
   Material: "BOW"
   DisplayName: "&fIced Dragonbone-Strengthened Longbow"
   CustomModelData: 83653
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -925,6 +990,7 @@ dragonbone_iced_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fIced Dragonbone-Strengthened Crossbow"
   CustomModelData: 83652
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.ICED_DRAGONBONE"
@@ -934,6 +1000,7 @@ dragonbone_lightning_rapier:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Rapier"
   CustomModelData: 83711
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -949,6 +1016,7 @@ dragonbone_lightning_katana:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Katana"
   CustomModelData: 83712
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -964,6 +1032,7 @@ dragonbone_lightning_greatsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Greatsword"
   CustomModelData: 83713
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -979,6 +1048,7 @@ dragonbone_lightning_longsword:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Longsword"
   CustomModelData: 83714
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -994,6 +1064,7 @@ dragonbone_lightning_spear:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Spear"
   CustomModelData: 83715
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1009,6 +1080,7 @@ dragonbone_lightning_saber:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Saber"
   CustomModelData: 83716
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1024,6 +1096,7 @@ dragonbone_lightning_boomerang:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Boomerang"
   CustomModelData: 83717
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1039,6 +1112,7 @@ dragonbone_lightning_dagger:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Dagger"
   CustomModelData: 83718
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1054,6 +1128,7 @@ dragonbone_lightning_glaive:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Glaive"
   CustomModelData: 83719
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1069,6 +1144,7 @@ dragonbone_lightning_halberd:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Halberd"
   CustomModelData: 83720
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1084,6 +1160,7 @@ dragonbone_lightning_hammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Hammer"
   CustomModelData: 83721
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1099,6 +1176,7 @@ dragonbone_lightning_javelin:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Javelin"
   CustomModelData: 83722
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1114,6 +1192,7 @@ dragonbone_lightning_lance:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Lance"
   CustomModelData: 83723
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1129,6 +1208,7 @@ dragonbone_lightning_mace:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Flanged Mace"
   CustomModelData: 83724
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1144,6 +1224,7 @@ dragonbone_lightning_pike:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Pike"
   CustomModelData: 83725
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1159,6 +1240,7 @@ dragonbone_lightning_quarterstaff:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Quarterstaff"
   CustomModelData: 83726
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1174,6 +1256,7 @@ dragonbone_lightning_tomahawk:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Tomahawk"
   CustomModelData: 83727
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1189,6 +1272,7 @@ dragonbone_lightning_throwing_knife:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Throwing Knife"
   CustomModelData: 83728
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1204,6 +1288,7 @@ dragonbone_lightning_warhammer:
   Material: "DIAMOND_SWORD"
   DisplayName: "&fLightning Dragonbone Warhammer"
   CustomModelData: 83729
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1219,6 +1304,7 @@ dragonbone_lightning_battleaxe:
   Material: "DIAMOND_AXE"
   DisplayName: "&fLightning Dragonbone Battleaxe"
   CustomModelData: 83654
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1234,6 +1320,7 @@ dragonbone_lightning_longbow:
   Material: "BOW"
   DisplayName: "&fLightning Dragonbone-Strengthened Longbow"
   CustomModelData: 83654
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1243,6 +1330,7 @@ dragonbone_lightning_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fLightning Dragonbone-Strengthened Crossbow"
   CustomModelData: 83653
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.LIGHTNING_DRAGONBONE"
@@ -1252,6 +1340,7 @@ dragonsteel_fire_rapier:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Rapier"
   CustomModelData: 83653
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1267,6 +1356,7 @@ dragonsteel_fire_katana:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Katana"
   CustomModelData: 83654
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1282,6 +1372,7 @@ dragonsteel_fire_greatsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Greatsword"
   CustomModelData: 83655
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1297,6 +1388,7 @@ dragonsteel_fire_longsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Longsword"
   CustomModelData: 83656
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1312,6 +1404,7 @@ dragonsteel_fire_spear:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Spear"
   CustomModelData: 83657
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1327,6 +1420,7 @@ dragonsteel_fire_saber:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Saber"
   CustomModelData: 83658
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1342,6 +1436,7 @@ dragonsteel_fire_boomerang:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Boomerang"
   CustomModelData: 83659
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1357,6 +1452,7 @@ dragonsteel_fire_dagger:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Dagger"
   CustomModelData: 83660
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1372,6 +1468,7 @@ dragonsteel_fire_glaive:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Glaive"
   CustomModelData: 83661
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1387,6 +1484,7 @@ dragonsteel_fire_halberd:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Halberd"
   CustomModelData: 83662
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1402,6 +1500,7 @@ dragonsteel_fire_hammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Hammer"
   CustomModelData: 83663
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1417,6 +1516,7 @@ dragonsteel_fire_javelin:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Javelin"
   CustomModelData: 83664
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1432,6 +1532,7 @@ dragonsteel_fire_lance:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Lance"
   CustomModelData: 83665
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1447,6 +1548,7 @@ dragonsteel_fire_mace:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Flanged Mace"
   CustomModelData: 83666
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1462,6 +1564,7 @@ dragonsteel_fire_pike:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Pike"
   CustomModelData: 83667
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1477,6 +1580,7 @@ dragonsteel_fire_quarterstaff:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Quarterstaff"
   CustomModelData: 83668
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1492,6 +1596,7 @@ dragonsteel_fire_tomahawk:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Tomahawk"
   CustomModelData: 83669
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1507,6 +1612,7 @@ dragonsteel_fire_throwing_knife:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Throwing Knife"
   CustomModelData: 83670
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1522,6 +1628,7 @@ dragonsteel_fire_warhammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fFire Dragonsteel Warhammer"
   CustomModelData: 83671
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1537,6 +1644,7 @@ dragonsteel_fire_battleaxe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fFire Dragonsteel Battleaxe"
   CustomModelData: 83653
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1552,6 +1660,7 @@ dragonsteel_fire_longbow:
   Material: "BOW"
   DisplayName: "&fFire Dragonsteel-Strengthened Longbow"
   CustomModelData: 83655
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1563,6 +1672,7 @@ dragonsteel_fire_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fFire Dragonsteel-Strengthened Crossbow"
   CustomModelData: 83654
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.FIRE_DRAGONSTEEL"
@@ -1574,6 +1684,7 @@ dragonsteel_ice_rapier:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Rapier"
   CustomModelData: 83672
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1589,6 +1700,7 @@ dragonsteel_ice_katana:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Katana"
   CustomModelData: 83673
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1604,6 +1716,7 @@ dragonsteel_ice_greatsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Greatsword"
   CustomModelData: 83674
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1619,6 +1732,7 @@ dragonsteel_ice_longsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Longsword"
   CustomModelData: 83675
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1634,6 +1748,7 @@ dragonsteel_ice_spear:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Spear"
   CustomModelData: 83676
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1649,6 +1764,7 @@ dragonsteel_ice_saber:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Saber"
   CustomModelData: 83677
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1664,6 +1780,7 @@ dragonsteel_ice_boomerang:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Boomerang"
   CustomModelData: 83678
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1679,6 +1796,7 @@ dragonsteel_ice_dagger:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Dagger"
   CustomModelData: 83679
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1694,6 +1812,7 @@ dragonsteel_ice_glaive:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Glaive"
   CustomModelData: 83680
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1709,6 +1828,7 @@ dragonsteel_ice_halberd:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Halberd"
   CustomModelData: 83681
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1724,6 +1844,7 @@ dragonsteel_ice_hammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Hammer"
   CustomModelData: 83682
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1739,6 +1860,7 @@ dragonsteel_ice_javelin:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Javelin"
   CustomModelData: 83683
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1754,6 +1876,7 @@ dragonsteel_ice_lance:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Lance"
   CustomModelData: 83684
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1769,6 +1892,7 @@ dragonsteel_ice_mace:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Flanged Mace"
   CustomModelData: 83685
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1784,6 +1908,7 @@ dragonsteel_ice_pike:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Pike"
   CustomModelData: 83686
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1799,6 +1924,7 @@ dragonsteel_ice_quarterstaff:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Quarterstaff"
   CustomModelData: 83687
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1814,6 +1940,7 @@ dragonsteel_ice_tomahawk:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Tomahawk"
   CustomModelData: 83688
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1829,6 +1956,7 @@ dragonsteel_ice_throwing_knife:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Throwing Knife"
   CustomModelData: 83689
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1844,6 +1972,7 @@ dragonsteel_ice_warhammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fIce Dragonsteel Warhammer"
   CustomModelData: 83690
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1859,6 +1988,7 @@ dragonsteel_ice_battleaxe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fIce Dragonsteel Battleaxe"
   CustomModelData: 83654
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1874,6 +2004,7 @@ dragonsteel_ice_longbow:
   Material: "BOW"
   DisplayName: "&fIce Dragonsteel-Strengthened Longbow"
   CustomModelData: 83656
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1885,6 +2016,7 @@ dragonsteel_ice_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fIce Dragonsteel-Strengthened Crossbow"
   CustomModelData: 83655
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.ICE_DRAGONSTEEL"
@@ -1896,6 +2028,7 @@ dragonsteel_lightning_rapier:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Rapier"
   CustomModelData: 83691
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.RAPIER"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -1911,6 +2044,7 @@ dragonsteel_lightning_katana:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Katana"
   CustomModelData: 83692
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.KATANA"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -1926,6 +2060,7 @@ dragonsteel_lightning_greatsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Greatsword"
   CustomModelData: 83693
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GREATSWORD"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -1941,6 +2076,7 @@ dragonsteel_lightning_longsword:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Longsword"
   CustomModelData: 83694
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGSWORD"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -1956,6 +2092,7 @@ dragonsteel_lightning_spear:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Spear"
   CustomModelData: 83695
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SPEAR"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -1971,6 +2108,7 @@ dragonsteel_lightning_saber:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Saber"
   CustomModelData: 83696
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.SABER"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -1986,6 +2124,7 @@ dragonsteel_lightning_boomerang:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Boomerang"
   CustomModelData: 83697
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BOOMERANG"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2001,6 +2140,7 @@ dragonsteel_lightning_dagger:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Dagger"
   CustomModelData: 83698
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.DAGGER"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2016,6 +2156,7 @@ dragonsteel_lightning_glaive:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Glaive"
   CustomModelData: 83699
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.GLAIVE"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2031,6 +2172,7 @@ dragonsteel_lightning_halberd:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Halberd"
   CustomModelData: 83700
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HALBERD"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2046,6 +2188,7 @@ dragonsteel_lightning_hammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Hammer"
   CustomModelData: 83701
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.HAMMER"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2061,6 +2204,7 @@ dragonsteel_lightning_javelin:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Javelin"
   CustomModelData: 83702
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.JAVELIN"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2076,6 +2220,7 @@ dragonsteel_lightning_lance:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Lance"
   CustomModelData: 83703
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LANCE"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2091,6 +2236,7 @@ dragonsteel_lightning_mace:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Flanged Mace"
   CustomModelData: 83704
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.MACE"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2106,6 +2252,7 @@ dragonsteel_lightning_pike:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Pike"
   CustomModelData: 83705
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.PIKE"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2121,6 +2268,7 @@ dragonsteel_lightning_quarterstaff:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Quarterstaff"
   CustomModelData: 83706
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.QUARTERSTAFF"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2136,6 +2284,7 @@ dragonsteel_lightning_tomahawk:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Tomahawk"
   CustomModelData: 83707
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.TOMAHAWK"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2151,6 +2300,7 @@ dragonsteel_lightning_throwing_knife:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Throwing Knife"
   CustomModelData: 83708
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.THROWING_KNIFE"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2166,6 +2316,7 @@ dragonsteel_lightning_warhammer:
   Material: "NETHERITE_SWORD"
   DisplayName: "&fLightning Dragonsteel Warhammer"
   CustomModelData: 83709
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.WARHAMMER"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2181,6 +2332,7 @@ dragonsteel_lightning_battleaxe:
   Material: "NETHERITE_AXE"
   DisplayName: "&fLightning Dragonsteel Battleaxe"
   CustomModelData: 83655
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.BATTLEAXE"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2196,6 +2348,7 @@ dragonsteel_lightning_longbow:
   Material: "BOW"
   DisplayName: "&fLightning Dragonsteel-Strengthened Longbow"
   CustomModelData: 83657
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.LONGBOW"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2207,6 +2360,7 @@ dragonsteel_lightning_crossbow:
   Material: "CROSSBOW"
   DisplayName: "&fLightning Dragonsteel-Strengthened Crossbow"
   CustomModelData: 83656
+  ItemModel: "DEFAULT"
   Lore:
     - "LOREPRESET.CROSSBOW"
     - "LOREPRESET.LIGHTNING_DRAGONSTEEL"
@@ -2218,8 +2372,10 @@ witherbone_handle:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fWitherbone Handle"
   CustomModelData: 83727
+  ItemModel: "DEFAULT"
 witherbone_pole:
   Material: "PRISMARINE_SHARD"
   DisplayName: "&fWitherbone Pole"
   CustomModelData: 83728
+  ItemModel: "DEFAULT"
 

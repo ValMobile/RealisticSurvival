@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 package me.val_mobile.misc;
 
 import me.val_mobile.rsv.RSVPlugin;
+import me.val_mobile.utils.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,7 +34,14 @@ public class ResourcePackEvents implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        player.setResourcePack(plugin.getConfig().getString("ResourcePack.Url"));
+        // if the plugin is run in version 1.21.3 or above
+        if (Utils.getMinecraftVersion(false).compareTo("1.21.3") >= 0) {
+            player.setResourcePack(plugin.getConfig().getString("ResourcePack.Url_1_21_3"));
+        }
+        // if the plugin is run in version 1.21.2 or below
+        else {
+            player.setResourcePack(plugin.getConfig().getString("ResourcePack.Url"));
+        }
     }
 
 }

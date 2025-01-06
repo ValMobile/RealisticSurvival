@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -60,7 +60,7 @@ public enum CustomEntities_v1_21_R2 {
         this.name = name;
         this.id = id;
         this.entityType = entityType;
-        this.minecraftKey = new ResourceLocation(name);
+        this.minecraftKey = ResourceLocation.tryParse(name);
         this.nmsClass = nmsClass;
         this.customClass = customClass;
 
@@ -80,7 +80,7 @@ public enum CustomEntities_v1_21_R2 {
     }
 
     private static void registerEntity(String type, EntityType.EntityFactory customMob, Map<String, Type<?>> types) {
-        if (BuiltInRegistries.ENTITY_TYPE.getOptional(new ResourceLocation(type)).isEmpty()) {
+        if (BuiltInRegistries.ENTITY_TYPE.getOptional(ResourceLocation.tryParse(type)).isEmpty()) {
             String customName = "minecraft:realisticsurvival_" + type;
             types.put(customName, types.get("minecraft:" + type));
             EntityType.Builder<Entity> a = EntityType.Builder.of(customMob, MobCategory.MONSTER);

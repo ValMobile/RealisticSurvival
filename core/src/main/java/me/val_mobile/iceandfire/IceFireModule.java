@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ public class IceFireModule extends RSVModule {
     public void initialize() {
         setUserConfig(new RSVConfig(plugin, "iceandfire.yml"));
         setItemConfig(new RSVConfig(plugin, "resources/iceandfire/items.yml"));
-        setRecipeConfig(new RSVConfig(plugin, "resources/iceandfire/items.yml"));
+        setRecipeConfig(new RSVConfig(plugin, "resources/iceandfire/recipes.yml"));
         setModuleItems(new ModuleItems(this));
         setModuleRecipes(new ModuleRecipes(this, plugin));
 

@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,7 +39,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.*;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -313,6 +316,25 @@ public class Utils {
             case CHAINMAIL_BOOTS, DIAMOND_BOOTS, GOLDEN_BOOTS, IRON_BOOTS, LEATHER_BOOTS, NETHERITE_BOOTS -> true;
             default -> false;
         };
+    }
+
+    public static EquipmentSlot getEquipmentSlotFromMaterial(@Nonnull Material material) {
+        if (isHelmet(material)) {
+            return EquipmentSlot.HEAD;
+        }
+
+        if (isChestplate(material)) {
+            return EquipmentSlot.CHEST;
+        }
+
+        if (isLeggings(material)) {
+            return EquipmentSlot.LEGS;
+        }
+
+        if (isBoots(material)) {
+            return EquipmentSlot.FEET;
+        }
+        return EquipmentSlot.HAND;
     }
 
     public static boolean isArmor(@Nonnull Material material) {
@@ -939,6 +961,7 @@ public class Utils {
             case "MANGROVE_WOOD", "MANGROVE_LOG", "STRIPPED_MANGROVE_LOG", "STRIPPED_MANGROVE_WOOD" -> Material.valueOf("MANGROVE_PLANKS");
             case "BAMBOO_BLOCK", "STRIPPED_BAMBOO_BLOCK" -> Material.valueOf("BAMBOO_PLANKS");
             case "CHERRY_WOOD", "CHERRY_LOG", "STRIPPED_CHERRY_WOOD", "STRIPPED_CHERRY_LOG" -> Material.valueOf("CHERRY_PLANKS");
+            case "PALE_OAK_WOOD", "PALE_OAK_LOG", "STRIPPED_PALE_OAK_WOOD", "STRIPPED_PALE_OAK_LOG" -> Material.valueOf("PALE_OAK_PLANKS");
             default -> null;
         };
     }
@@ -974,7 +997,14 @@ public class Utils {
             return false;
         }
 
-        ItemStack item = new ItemStack(mat);
+        ItemStack item = null;
+
+        // if an item cannot be created from the material
+        try {
+            item = new ItemStack(mat);
+        } catch (IllegalArgumentException ignored) {
+            return false;
+        }
 
         for (String key : keys) {
             RecipeChoice choice = RSVRecipe.getRecipeChoice(key);
@@ -1164,6 +1194,30 @@ public class Utils {
         return internals.spawnSiren(loc);
     }
 
+    public static boolean hasItemModel(@Nonnull ItemMeta meta) {
+        return internals.hasItemModel(meta);
+    }
+
+    public static NamespacedKey getItemModel(@Nonnull ItemMeta meta) {
+        return internals.getItemModel(meta);
+    }
+
+    public static void setItemModel(@Nonnull ItemMeta meta, @Nullable NamespacedKey key) {
+        internals.setItemModel(meta, key);
+    }
+
+    public static boolean hasEquippableComponentModel(@Nonnull ItemMeta meta) {
+        return internals.hasEquippableComponentModel(meta);
+    }
+
+    public static NamespacedKey getEquippableComponentModel(@Nonnull ItemMeta meta) {
+        return internals.getEquippableComponentModel(meta);
+    }
+
+    public static void setEquippableComponentModel(@Nonnull ItemMeta meta, @Nullable NamespacedKey key, @Nonnull EquipmentSlot slot) {
+        internals.setEquippableComponentModel(meta, key, slot);
+    }
+
     public static boolean isBestTool(@Nonnull Block block, @Nullable ItemStack tool) {
         Tool bestTool = getBestTool(block.getType());
 
@@ -1209,7 +1263,7 @@ public class Utils {
             }
         }
         else {
-            if (StringUtils.isAllUpperCase(soundName)) {
+            if (soundName.equals(soundName.toUpperCase())) {
                 loc.getWorld().playSound(loc, Sound.valueOf(soundName), volume, pitch);
             }
             else {
@@ -1473,6 +1527,18 @@ public class Utils {
                 }
             }
 
+            if (config.getBoolean("UpdateItem.ItemModel")) {
+                if (internals.hasItemModel(rsvMeta)) {
+                    internals.setItemModel(meta, internals.getItemModel(rsvMeta));
+                }
+            }
+
+            if (config.getBoolean("UpdateItem.EquippableComponent")) {
+                if (internals.hasEquippableComponentModel(rsvMeta)) {
+                    internals.setEquippableComponentModel(meta, internals.getEquippableComponentModel(rsvMeta), getEquipmentSlotFromMaterial(item.getType()));
+                }
+            }
+
             if (config.getBoolean("UpdateItem.Enchants.Enabled")) {
                 Map<Enchantment, Integer> map = meta.getEnchants();
 
@@ -1578,6 +1644,18 @@ public class Utils {
                 if (config.getBoolean("UpdateNetheriteItems.UpdateCustomModelData")) {
                     if (rsvMeta.hasCustomModelData()) {
                         meta.setCustomModelData(Integer.valueOf(rsvMeta.getCustomModelData()));
+                    }
+                }
+
+                if (config.getBoolean("UpdateNetheriteItems.UpdateItemModel")) {
+                    if (internals.hasItemModel(rsvMeta)) {
+                        internals.setItemModel(meta, internals.getItemModel(rsvMeta));
+                    }
+                }
+
+                if (config.getBoolean("UpdateNetheriteItems.UpdateEquippableComponent")) {
+                    if (internals.hasEquippableComponentModel(rsvMeta)) {
+                        internals.setEquippableComponentModel(meta, internals.getEquippableComponentModel(rsvMeta), getEquipmentSlotFromMaterial(item.getType()));
                     }
                 }
 

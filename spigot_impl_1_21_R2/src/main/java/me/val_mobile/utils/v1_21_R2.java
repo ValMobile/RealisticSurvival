@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,14 +33,18 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
-import org.bukkit.craftbukkit.v1_21_R1.entity.CraftEnderman;
 import org.bukkit.craftbukkit.v1_21_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_21_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_21_R1.entity.CraftPlayer;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityCategory;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.SmithingRecipe;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class v1_21_R2 extends InternalsProvider {
 
@@ -126,7 +130,7 @@ public class v1_21_R2 extends InternalsProvider {
 
     @Override
     public Tag<Material> getTag(String name) {
-        return TagList_v1_21_R2.valueOf(name).getTag();
+        return TagUtils.getTag(Tag.class, name);
     }
 
     @Override
@@ -174,6 +178,32 @@ public class v1_21_R2 extends InternalsProvider {
             ((CraftLivingEntity) attacker).getHandle().doHurtTarget(((CraftEntity) defender).getHandle());
         }
     }
+
+    @Override
+    public boolean hasItemModel(ItemMeta meta) {
+        return false;
+    }
+
+    @Override
+    public NamespacedKey getItemModel(ItemMeta meta) {
+        return null;
+    }
+
+    @Override
+    public void setItemModel(ItemMeta meta, NamespacedKey key) {}
+
+    @Override
+    public boolean hasEquippableComponentModel(ItemMeta meta) {
+        return false;
+    }
+
+    @Override
+    public NamespacedKey getEquippableComponentModel(ItemMeta meta) {
+        return null;
+    }
+
+    @Override
+    public void setEquippableComponentModel(ItemMeta meta, NamespacedKey key, EquipmentSlot slot) {}
 
     public static boolean isLookingAtMe(EnderMan enderman, net.minecraft.world.entity.player.Player entityhuman) {
         ItemStack itemstack = entityhuman.getInventory().armor.get(3);

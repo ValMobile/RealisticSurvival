@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2024  Val_Mobile
+    Copyright (C) 2025  Val_Mobile
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,6 +23,8 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.MappedRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.datafix.DataFixers;
 import net.minecraft.util.datafix.fixes.References;
@@ -36,6 +38,9 @@ import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.monster.Guardian;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.IdentityHashMap;
 import java.util.Map;
 
@@ -60,7 +65,7 @@ public enum CustomEntities_v1_21_R4 {
         this.name = name;
         this.id = id;
         this.entityType = entityType;
-        this.minecraftKey = new ResourceLocation(name);
+        this.minecraftKey = ResourceLocation.tryParse(name);
         this.nmsClass = nmsClass;
         this.customClass = customClass;
 
@@ -80,11 +85,12 @@ public enum CustomEntities_v1_21_R4 {
     }
 
     private static void registerEntity(String type, EntityType.EntityFactory customMob, Map<String, Type<?>> types) {
-        if (BuiltInRegistries.ENTITY_TYPE.getOptional(new ResourceLocation(type)).isEmpty()) {
+        if (BuiltInRegistries.ENTITY_TYPE.getOptional(ResourceLocation.tryParse(type)).isEmpty()) {
             String customName = "minecraft:realisticsurvival_" + type;
             types.put(customName, types.get("minecraft:" + type));
             EntityType.Builder<Entity> a = EntityType.Builder.of(customMob, MobCategory.MONSTER);
-            Registry.register(BuiltInRegistries.ENTITY_TYPE, customName, a.build(customName));
+            ResourceLocation resourceLoc = ResourceLocation.parse(customName);
+            Registry.register(BuiltInRegistries.ENTITY_TYPE, customName, a.build(ResourceKey.create(Registries.ENTITY_TYPE, resourceLoc)));
         }
     }
 
@@ -97,7 +103,35 @@ public enum CustomEntities_v1_21_R4 {
             Field frozen = registryClass.getDeclaredField(ObfuscatedFields_v1_21_R4.FROZEN_SYMBOL);
             frozen.setAccessible(true);
             frozen.set(BuiltInRegistries.ENTITY_TYPE, false);
-        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+
+            // Dynamically locate the TagSet interface within MappedRegistry
+            Class<?> tagSetInterface = null;
+            for (Class<?> nestedClass : MappedRegistry.class.getDeclaredClasses()) {
+                if (nestedClass.getName().equals(ObfuscatedFields_v1_21_R4.TAGSET_SYMBOL_OBFUSCATED) || nestedClass.getName().equals(ObfuscatedFields_v1_21_R4.TAGSET_SYMBOL_UNOBFUSCATED)) {
+                    tagSetInterface = nestedClass;
+                    break;
+                }
+            }
+
+            // Locate the 'unbound' method within TagSet
+            Method unboundMethod = null;
+            for (Method method : tagSetInterface.getDeclaredMethods()) {
+                if (Modifier.isStatic(method.getModifiers()) && method.getParameterCount() == 0) {
+                    unboundMethod = method;
+                    unboundMethod.setAccessible(true);
+                    break;
+                }
+            }
+
+            // Retrieve the unbound TagSet instance
+            Object unboundTagSet = unboundMethod.invoke(null);
+
+            Field allTags = registryClass.getDeclaredField(ObfuscatedFields_v1_21_R4.ALL_TAGS_SYMBOL);
+            allTags.setAccessible(true);
+            // Set the unbound TagSet to the registry's allTags field
+            allTags.set(BuiltInRegistries.ENTITY_TYPE, unboundTagSet);
+        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException |
+                 InvocationTargetException e) {
             e.printStackTrace();
         }
     }

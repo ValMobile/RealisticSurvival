@@ -2,7 +2,7 @@
 #          Ice and Fire               #
 #######################################
 
-ConfigId: "1.2.8-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.9-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -1714,7 +1714,7 @@ SeaSerpent:
       Purple: true
       Red: true
       Teal: true
-  SpawnChance: 0.0005           # Replaces squid spawns
+  SpawnChance: 0.01           # Has this chance to spawn when a squid, guardian, or dolphin spawns
   Info:
     Name: "Realistic Survival Sea Serpent"     # All internal placeholders: %VARIANT%
     CustomNameVisible: false
@@ -1737,7 +1737,7 @@ SeaSerpent:
 
 Siren:                         # Siren loot table can be found under "MobDrops" at the top of this config
   Enabled: true
-  SpawnChance: 0.001           # Replaces squid spawns
+  SpawnChance: 0.05           # Has this chance to spawn when a squid, guardian, or dolphin spawns
   Info:
     Name: "Realistic Survival Siren"
     CustomNameVisible: false

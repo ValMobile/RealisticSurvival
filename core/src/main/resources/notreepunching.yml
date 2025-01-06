@@ -2,7 +2,7 @@
 #          No Tree Punching           #
 #######################################
 
-ConfigId: "1.2.8-RELEASE"  # Used for config syncing purposes, do NOT edit
+ConfigId: "1.2.9-RELEASE"  # Used for config syncing purposes, do NOT edit
 
 # Customize messages
 Initialize:
@@ -82,7 +82,9 @@ UpdateNetheriteItems:   # Specify which factors will be transferred over when a 
   UpdateUnbreakability: true
   UpdateAttributeModifiers: true
   UpdateLocalizedName: true
-  UpdateCustomModelData: true
+  UpdateCustomModelData: true # For 1.21.2 and below
+  UpdateItemModel: true # For 1.21.3 and above
+  UpdateEquippableComponent: true # For 1.21.3 and above
   UpdateEnchants:
     Enabled: true
     PreserveExistingEnchants: true
