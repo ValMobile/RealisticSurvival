@@ -69,7 +69,7 @@ public class Utils {
 
     public static final double ATTACK_DAMAGE_CONSTANT = -1.0;
     public static final double ATTACK_SPEED_CONSTANT = -4.0;
-    private static final Pattern VERSION_PATTERN = Pattern.compile("([1-9])\\.([1-9][0-9]|[1-9])(\\.([0-9]))?");
+    private static final Pattern VERSION_PATTERN = Pattern.compile("(\\d+)\\.(\\d+)(?:\\.(\\d+))?");
 
     private final RSVPlugin plugin;
 
@@ -171,7 +171,12 @@ public class Utils {
         if (m.find()) {
             String prefix = m.group(1);
             String major = m.group(2);
-            String minor = m.group(4) == null ? "0" : m.group(4);
+            String minor = m.group(3) == null ? "0" : m.group(3);
+
+            if (Integer.parseInt(prefix) >= 26) {
+                return impl ? "v26_1_R3" : prefix + "." + major + (minor.equals("0") ? "" : "." + minor);
+            }
+
             return impl ? "v" + prefix + "_" + major + "_R" + (Integer.parseInt(minor) + 1) : prefix + "." + major + (minor.equals("0") ? "" : "." + minor);
         }
         return "";
