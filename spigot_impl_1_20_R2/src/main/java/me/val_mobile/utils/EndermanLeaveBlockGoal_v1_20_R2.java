@@ -54,7 +54,7 @@ public class EndermanLeaveBlockGoal_v1_20_R2 extends Goal {
         BlockState iblockdata2 = enderman.getCarriedBlock();
         if (iblockdata2 != null) {
             iblockdata2 = net.minecraft.world.level.block.Block.updateFromNeighbourShapes(iblockdata2, this.enderman.level(), blockposition);
-            if (canPlaceBlock(world, blockposition, iblockdata2, iblockdata, iblockdata1, blockposition1) && !CraftEventFactory.callEntityChangeBlockEvent(this.enderman, blockposition, iblockdata2).isCancelled()) {
+            if (canPlaceBlock(world, blockposition, iblockdata2, iblockdata, iblockdata1, blockposition1) && CraftEventFactory.callEntityChangeBlockEvent(this.enderman, blockposition, iblockdata2)) {
                 world.setBlock(blockposition, iblockdata2, 3);
                 world.gameEvent(GameEvent.BLOCK_PLACE, blockposition, GameEvent.Context.of(enderman, iblockdata2));
                 enderman.setCarriedBlock(null);
