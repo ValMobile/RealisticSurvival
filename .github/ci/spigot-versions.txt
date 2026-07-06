@@ -1,6 +1,6 @@
 # <minecraft version> <jdk major used by BuildTools>
-1.17 17
-1.17.1 17
+1.17 16
+1.17.1 16
 1.18 17
 1.18.1 17
 1.18.2 17
