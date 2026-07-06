@@ -132,8 +132,8 @@ public interface Dragon extends RSVMob {
 
         double health = Utils.getRandomNum(minHealth, maxHealth);
 
-        if (health > dragon.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
-            dragon.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(health);
+        if (health > dragon.getAttribute(Utils.getAttribute("GENERIC_MAX_HEALTH")).getValue()) {
+            dragon.getAttribute(Utils.getAttribute("GENERIC_MAX_HEALTH")).setBaseValue(health);
         }
         dragon.setHealth(health);
     }

@@ -16,6 +16,7 @@
  */
 package me.val_mobile.baubles;
 
+import me.val_mobile.utils.Utils;
 import me.val_mobile.data.RSVPlayer;
 import me.val_mobile.rsv.RSVPlugin;
 import me.val_mobile.utils.RSVTask;
@@ -55,7 +56,7 @@ public class ScarliteRingTask extends BukkitRunnable implements RSVTask {
         Player player = rsvPlayer.getPlayer();
 
         if (conditionsMet(player)) {
-            double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+            double maxHealth = player.getAttribute(Utils.getAttribute("GENERIC_MAX_HEALTH")).getValue();
             double currentHealth = player.getHealth();
 
             player.setHealth(Math.min(maxHealth, currentHealth + defaultHealAmount));

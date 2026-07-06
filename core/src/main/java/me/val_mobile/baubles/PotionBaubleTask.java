@@ -73,7 +73,7 @@ public class PotionBaubleTask extends BukkitRunnable implements RSVTask {
 
             if (amount > 0) {
                 if (potionBauble.getName().equals("pride_pendant")) {
-                    if (Utils.doublesEquals(player.getHealth(), player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue())) {
+                    if (Utils.doublesEquals(player.getHealth(), player.getAttribute(Utils.getAttribute("GENERIC_MAX_HEALTH")).getValue())) {
                         potionBauble.ability(player, amount);
                     }
                     else {
