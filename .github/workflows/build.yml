@@ -8,29 +8,12 @@ on:
 jobs:
   jar:
     runs-on: ubuntu-latest
-    # First run builds 18 Spigot versions with BuildTools (~2h); afterwards the
-    # Maven repository cache makes this a few minutes.
-    timeout-minutes: 350
+    # Builds the MC 26-only jar (dist26). First run builds Spigot 26.1.2 with
+    # BuildTools (~10 min); afterwards the Maven repository cache makes this a
+    # few minutes.
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up JDK 16
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 16
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
 
       - name: Set up JDK 25
         uses: actions/setup-java@v4
@@ -52,12 +35,12 @@ jobs:
       - name: Generate RealisticSeasons compile stub
         run: bash .github/ci/make-realisticseasons-stub.sh
 
-      - name: Build plugin
-        run: mvn -B -ntp -DskipTests package
+      - name: Build plugin (MC 26 only)
+        run: mvn -B -ntp -DskipTests -pl dist26 -am package
 
       - name: Upload plugin jar
         uses: actions/upload-artifact@v4
         with:
-          name: realisticsurvival-${{ github.sha }}
-          path: target/realisticsurvival-*.jar
+          name: realisticsurvival-mc26-jar
+          path: target/realisticsurvival-*-mc26.jar
           if-no-files-found: error

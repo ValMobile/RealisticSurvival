@@ -34,6 +34,7 @@
         <module>spigot_impl_1_17_R2</module>
         <module>spigot_impl_1_17_R1</module>
         <module>dist</module>
+        <module>dist26</module>
     </modules>
 
     <properties>
