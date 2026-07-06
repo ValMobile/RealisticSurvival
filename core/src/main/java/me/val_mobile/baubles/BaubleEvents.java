@@ -663,7 +663,7 @@ public class BaubleEvents extends ModuleEvents implements Listener {
     public void onSkip(TimeSkipEvent event) {
         World world = event.getWorld();
 
-        if (!(shouldEventBeRan(world) && event.getSkipReason() == TimeSkipEvent.SkipReason.NIGHT_SKIP && config.getBoolean("Items.broken_heart.SleepRepair.Enabled")))
+        if (!(shouldEventBeRan(world) && isNightSkip(event) && config.getBoolean("Items.broken_heart.SleepRepair.Enabled")))
             return;
 
         Collection<UUID> ids = module.getBrokenHeartPlayers();
@@ -682,6 +682,18 @@ public class BaubleEvents extends ModuleEvents implements Listener {
             if (BrokenHeartRepairTask.hasTask(id)) {
                 BrokenHeartRepairTask.getTasks().get(id).stop();
             }
+        }
+    }
+
+    // Paper 26.1 moved getSkipReason into a new ClockTimeSkipEvent superclass with a
+    // different SkipReason type, so a compile-time call throws NoSuchMethodError on
+    // either Spigot or Paper depending on which API compiled it. Resolve reflectively.
+    private static boolean isNightSkip(TimeSkipEvent event) {
+        try {
+            Object reason = event.getClass().getMethod("getSkipReason").invoke(event);
+            return reason instanceof Enum<?> e && e.name().equals("NIGHT_SKIP");
+        } catch (ReflectiveOperationException ex) {
+            return false;
         }
     }
 
