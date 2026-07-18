@@ -69,7 +69,39 @@ public class Utils {
 
     public static final double ATTACK_DAMAGE_CONSTANT = -1.0;
     public static final double ATTACK_SPEED_CONSTANT = -4.0;
-    private static final Pattern VERSION_PATTERN = Pattern.compile("([1-9])\\.([1-9][0-9]|[1-9])(\\.([0-9]))?");
+    private static final Pattern VERSION_PATTERN = Pattern.compile("(\\d+)\\.(\\d+)(?:\\.(\\d+))?");
+
+    // MC 26.1 removed the legacy attribute constants (GENERIC_MAX_HEALTH -> MAX_HEALTH,
+    // HORSE_JUMP_STRENGTH -> JUMP_STRENGTH, ...) and Utils.JUMP_BOOST (-> JUMP_BOOST),
+    // while pre-1.20.5 servers only have the legacy names. Resolve them by name at runtime
+    // so the same jar runs on both API generations.
+    public static final PotionEffectType JUMP_BOOST = resolveJumpBoost();
+
+    private static final Map<String, Attribute> ATTRIBUTE_CACHE = new HashMap<>();
+
+    @Nonnull
+    public static Attribute getAttribute(@Nonnull String legacyName) {
+        Attribute cached = ATTRIBUTE_CACHE.get(legacyName);
+        if (cached != null)
+            return cached;
+
+        String modernName = legacyName.replaceFirst("^(GENERIC_|HORSE_|ZOMBIE_)", "");
+        for (String candidate : new String[]{legacyName, modernName}) {
+            try {
+                Object value = Attribute.class.getField(candidate).get(null);
+                if (value instanceof Attribute attribute) {
+                    ATTRIBUTE_CACHE.put(legacyName, attribute);
+                    return attribute;
+                }
+            } catch (ReflectiveOperationException ignored) {}
+        }
+        throw new IllegalArgumentException("Unknown attribute " + legacyName + " on this server version");
+    }
+
+    private static PotionEffectType resolveJumpBoost() {
+        PotionEffectType type = PotionEffectType.getByName("jump_boost");
+        return type != null ? type : PotionEffectType.getByName("jump");
+    }
 
     private final RSVPlugin plugin;
 
@@ -171,7 +203,12 @@ public class Utils {
         if (m.find()) {
             String prefix = m.group(1);
             String major = m.group(2);
-            String minor = m.group(4) == null ? "0" : m.group(4);
+            String minor = m.group(3) == null ? "0" : m.group(3);
+
+            if (Integer.parseInt(prefix) >= 26) {
+                return impl ? "v26_1_R3" : prefix + "." + major + (minor.equals("0") ? "" : "." + minor);
+            }
+
             return impl ? "v" + prefix + "_" + major + "_R" + (Integer.parseInt(minor) + 1) : prefix + "." + major + (minor.equals("0") ? "" : "." + minor);
         }
         return "";
@@ -348,7 +385,7 @@ public class Utils {
             if (meta != null) {
                 if (meta.hasAttributeModifiers() && meta.hasLore()) {
                     List<String> lore = meta.getLore();
-                    Collection<AttributeModifier> modifiers = meta.getAttributeModifiers(Attribute.GENERIC_ATTACK_DAMAGE);
+                    Collection<AttributeModifier> modifiers = meta.getAttributeModifiers(Utils.getAttribute("GENERIC_ATTACK_DAMAGE"));
 
                     if (!(modifiers == null || modifiers.isEmpty() || lore == null)) {
                         int lvl = 0;
@@ -385,7 +422,7 @@ public class Utils {
 
                         if (index != -1) {
                             List<String> before = new ArrayList<>(lore.subList(0, index));
-                            LorePresets.addGearStats(before, Attribute.GENERIC_ATTACK_DAMAGE, newDmg);
+                            LorePresets.addGearStats(before, Utils.getAttribute("GENERIC_ATTACK_DAMAGE"), newDmg);
 
                             if (index + 1 < len) {
                                 before.addAll(lore.subList(index + 1, lore.size()));
@@ -428,19 +465,19 @@ public class Utils {
     @Nonnull
     public static Attribute translateInformalAttributeName(@Nonnull String name) {
         return switch (name) {
-            case "AttackDamage" -> Attribute.GENERIC_ATTACK_DAMAGE;
-            case "AttackKnockback" -> Attribute.GENERIC_ATTACK_KNOCKBACK;
-            case "AttackSpeed" -> Attribute.GENERIC_ATTACK_SPEED;
-            case "Armor" -> Attribute.GENERIC_ARMOR;
-            case "Toughness" -> Attribute.GENERIC_ARMOR_TOUGHNESS;
-            case "FlyingSpeed" -> Attribute.GENERIC_FLYING_SPEED;
-            case "FollowRange" -> Attribute.GENERIC_FOLLOW_RANGE;
-            case "KnockbackResistance" -> Attribute.GENERIC_KNOCKBACK_RESISTANCE;
-            case "Luck" -> Attribute.GENERIC_LUCK;
-            case "MaxHealth" -> Attribute.GENERIC_MAX_HEALTH;
-            case "MovementSpeed" -> Attribute.GENERIC_MOVEMENT_SPEED;
-            case "HorseJumpStrength" -> Attribute.HORSE_JUMP_STRENGTH;
-            case "ZombieSpawnReinforcements" -> Attribute.ZOMBIE_SPAWN_REINFORCEMENTS;
+            case "AttackDamage" -> Utils.getAttribute("GENERIC_ATTACK_DAMAGE");
+            case "AttackKnockback" -> Utils.getAttribute("GENERIC_ATTACK_KNOCKBACK");
+            case "AttackSpeed" -> Utils.getAttribute("GENERIC_ATTACK_SPEED");
+            case "Armor" -> Utils.getAttribute("GENERIC_ARMOR");
+            case "Toughness" -> Utils.getAttribute("GENERIC_ARMOR_TOUGHNESS");
+            case "FlyingSpeed" -> Utils.getAttribute("GENERIC_FLYING_SPEED");
+            case "FollowRange" -> Utils.getAttribute("GENERIC_FOLLOW_RANGE");
+            case "KnockbackResistance" -> Utils.getAttribute("GENERIC_KNOCKBACK_RESISTANCE");
+            case "Luck" -> Utils.getAttribute("GENERIC_LUCK");
+            case "MaxHealth" -> Utils.getAttribute("GENERIC_MAX_HEALTH");
+            case "MovementSpeed" -> Utils.getAttribute("GENERIC_MOVEMENT_SPEED");
+            case "HorseJumpStrength" -> Utils.getAttribute("HORSE_JUMP_STRENGTH");
+            case "ZombieSpawnReinforcements" -> Utils.getAttribute("ZOMBIE_SPAWN_REINFORCEMENTS");
             default -> Attribute.valueOf(name);
         };
     }
@@ -578,8 +615,8 @@ public class Utils {
         int epf = 0;
 
         if (entity instanceof LivingEntity living) {
-            AttributeInstance armor = living.getAttribute(Attribute.GENERIC_ARMOR);
-            AttributeInstance armorToughness = living.getAttribute(Attribute.GENERIC_ARMOR_TOUGHNESS);
+            AttributeInstance armor = living.getAttribute(Utils.getAttribute("GENERIC_ARMOR"));
+            AttributeInstance armorToughness = living.getAttribute(Utils.getAttribute("GENERIC_ARMOR_TOUGHNESS"));
             EntityEquipment equipment = living.getEquipment();
 
             if (armor != null) {

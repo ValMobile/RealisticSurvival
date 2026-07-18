@@ -1,0 +1,5 @@
+# <minecraft version> <jdk major used by BuildTools>
+# CI builds the MC 26-only jar (dist26); only the current Spigot is needed.
+# For a full multi-version build, restore the 1.17-1.21.4 list from git history
+# (commit c74d772) and build the `dist` module instead.
+26.1.2 25

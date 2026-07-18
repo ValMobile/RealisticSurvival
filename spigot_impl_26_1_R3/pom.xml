@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>realisticsurvival-spigot_impl_26_1_R3</artifactId>
+    <version>${project.parent.version}</version>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>me.Val_Mobile</groupId>
+        <artifactId>realisticsurvival-parent</artifactId>
+        <version>1.2.9-RELEASE</version>
+    </parent>
+
+    <!-- Since MC 26.1 the server jar ships unobfuscated and Spigot dropped its
+         own mappings, so this module compiles directly against the plain spigot
+         artifact and needs no specialsource remap steps. -->
+    <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot</artifactId>
+            <version>26.1.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.Val_Mobile</groupId>
+            <artifactId>realisticsurvival-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>25</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

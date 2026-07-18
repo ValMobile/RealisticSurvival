@@ -160,7 +160,7 @@ public class EnderCrownTask extends BukkitRunnable implements RSVTask {
         if (allyTicks > allyDelay) {
             if (Utils.roll(allySpawnChance)) {
                 Player player = this.rsvPlayer.getPlayer();
-                if (player.getHealth() / player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() <= maxHealthPercent) {
+                if (player.getHealth() / player.getAttribute(Utils.getAttribute("GENERIC_MAX_HEALTH")).getValue() <= maxHealthPercent) {
                     if (mustTakeDamage) {
                         return playerDamaged;
                     }

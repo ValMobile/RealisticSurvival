@@ -55,7 +55,7 @@ public class EndermanTakeBlockGoal_v1_20_R2 extends Goal {
         Vec3 vec3d1 = new Vec3((double)i + 0.5, (double)j + 0.5, (double)k + 0.5);
         BlockHitResult movingobjectpositionblock = world.clip(new ClipContext(vec3d, vec3d1, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, enderman));
         boolean flag = movingobjectpositionblock.getBlockPos().equals(blockposition);
-        if (iblockdata.is(BlockTags.ENDERMAN_HOLDABLE) && flag && !CraftEventFactory.callEntityChangeBlockEvent(enderman, blockposition, Blocks.AIR.defaultBlockState()).isCancelled()) {
+        if (iblockdata.is(BlockTags.ENDERMAN_HOLDABLE) && flag && CraftEventFactory.callEntityChangeBlockEvent(enderman, blockposition, Blocks.AIR.defaultBlockState())) {
             world.removeBlock(blockposition, false);
             world.gameEvent(GameEvent.BLOCK_DESTROY, blockposition, GameEvent.Context.of(enderman, iblockdata));
             enderman.setCarriedBlock(iblockdata.getBlock().defaultBlockState());

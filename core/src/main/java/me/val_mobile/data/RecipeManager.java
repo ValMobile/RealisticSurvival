@@ -86,7 +86,7 @@ public class RecipeManager {
                 try {
                     recipe = new RSVShapedRecipe(recipeConfig, recipeName, plugin);
                     recipeKeys.add(((ShapedRecipe) recipe).getKey());
-                } catch (Exception ignored) {}
+                } catch (Exception e) { plugin.getLogger().log(java.util.logging.Level.WARNING, "Failed to create recipe " + recipeName + " (" + type + ")", e); }
             }
             case "Shapeless" -> {
                 // shapeless recipes do not work properly on spigot
@@ -94,56 +94,56 @@ public class RecipeManager {
                     try {
                         recipe = new RSVShapelessRecipe(recipeConfig, recipeName, plugin);
                         recipeKeys.add(((ShapelessRecipe) recipe).getKey());
-                    } catch (Exception ignored) {}
+                    } catch (Exception e) { plugin.getLogger().log(java.util.logging.Level.WARNING, "Failed to create recipe " + recipeName + " (" + type + ")", e); }
                 }
                 else {
                     try {
                         recipe = new RSVShapedRecipe(recipeConfig, recipeName, plugin);
                         recipeKeys.add(((ShapedRecipe) recipe).getKey());
-                    } catch (Exception ignored) {}
+                    } catch (Exception e) { plugin.getLogger().log(java.util.logging.Level.WARNING, "Failed to create recipe " + recipeName + " (" + type + ")", e); }
                 }
             }
             case "Smithing" -> {
                 try {
                     recipe = new RSVSmithingRecipe(recipeConfig, recipeName, plugin);
                     recipeKeys.add(((SmithingRecipe) recipe).getKey());
-                } catch (Exception ignored) {}
+                } catch (Exception e) { plugin.getLogger().log(java.util.logging.Level.WARNING, "Failed to create recipe " + recipeName + " (" + type + ")", e); }
             }
             case "Furnace" -> {
                 try {
                     recipe = new RSVFurnaceRecipe(recipeConfig, recipeName, plugin);
                     recipeKeys.add(((FurnaceRecipe) recipe).getKey());
-                } catch (Exception ignored) {}
+                } catch (Exception e) { plugin.getLogger().log(java.util.logging.Level.WARNING, "Failed to create recipe " + recipeName + " (" + type + ")", e); }
             }
             case "Campfire" -> {
                 try {
                     recipe = new RSVCampfireRecipe(recipeConfig, recipeName, plugin);
                     recipeKeys.add(((CampfireRecipe) recipe).getKey());
-                } catch (Exception ignored) {}
+                } catch (Exception e) { plugin.getLogger().log(java.util.logging.Level.WARNING, "Failed to create recipe " + recipeName + " (" + type + ")", e); }
             }
             case "Smoker" -> {
                 try {
                     recipe = new RSVSmokingRecipe(recipeConfig, recipeName, plugin);
                     recipeKeys.add(((SmokingRecipe) recipe).getKey());
-                } catch (Exception ignored) {}
+                } catch (Exception e) { plugin.getLogger().log(java.util.logging.Level.WARNING, "Failed to create recipe " + recipeName + " (" + type + ")", e); }
             }
             case "Stonecutting" -> {
                 try {
                     recipe = new RSVStonecuttingRecipe(recipeConfig, recipeName, plugin);
                     recipeKeys.add(((StonecuttingRecipe) recipe).getKey());
-                } catch (Exception ignored) {}
+                } catch (Exception e) { plugin.getLogger().log(java.util.logging.Level.WARNING, "Failed to create recipe " + recipeName + " (" + type + ")", e); }
             }
             case "Anvil" -> {
                 try {
                     recipe = new RSVAnvilRecipe(recipeConfig, recipeName);
                     anvilRecipes.add((RSVAnvilRecipe) recipe);
-                } catch (Exception ignored) {}
+                } catch (Exception e) { plugin.getLogger().log(java.util.logging.Level.WARNING, "Failed to create recipe " + recipeName + " (" + type + ")", e); }
             }
             case "Brewing" -> {
                 try {
                     recipe = new RSVBrewingRecipe(recipeConfig, recipeName, plugin);
                     brewingRecipes.add((RSVBrewingRecipe) recipe);
-                } catch (Exception ignored) {}
+                } catch (Exception e) { plugin.getLogger().log(java.util.logging.Level.WARNING, "Failed to create recipe " + recipeName + " (" + type + ")", e); }
             }
             default -> {
                 return null;

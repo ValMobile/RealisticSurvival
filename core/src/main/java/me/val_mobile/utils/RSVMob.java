@@ -100,8 +100,8 @@ public interface RSVMob {
 
             double health = Utils.getRandomNum(minHealth, maxHealth);
 
-            if (health > living.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
-                living.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(health);
+            if (health > living.getAttribute(Utils.getAttribute("GENERIC_MAX_HEALTH")).getValue()) {
+                living.getAttribute(Utils.getAttribute("GENERIC_MAX_HEALTH")).setBaseValue(health);
             }
 
             living.setHealth(health);

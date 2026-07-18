@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>realisticsurvival-dist26</artifactId>
+    <version>${project.parent.version}</version>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>me.Val_Mobile</groupId>
+        <artifactId>realisticsurvival-parent</artifactId>
+        <version>1.2.9-RELEASE</version>
+    </parent>
+
+    <!-- MC 26-only distribution: shades just core and the 26_1_R3 internals so
+         CI does not need Spigot artifacts for every historical version. -->
+    <build>
+        <directory>../target</directory>
+        <finalName>realisticsurvival-${project.version}-mc26</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/**</exclude>
+                                        <exclude>languages/**</exclude>
+                                        <exclude>schematics/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <artifactSet>
+                                <includes>
+                                    <include>me.Val_Mobile:realisticsurvival-*</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>me.Val_Mobile</groupId>
+            <artifactId>realisticsurvival-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>me.Val_Mobile</groupId>
+            <artifactId>realisticsurvival-spigot_impl_26_1_R3</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
