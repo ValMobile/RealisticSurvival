@@ -1040,57 +1040,57 @@ Recipes:
 CharacterOverrides:
   # All placeholders: %TEMP%, %THIRST%
 
-  TemperatureActionbar: "              %TEMP%              "          # Template for sending overriden text to the actionbar when only temperature is enabled
-  ThirstActionbar: "                 %THIRST% "               # Template for sending overriden text to the actionbar when only thirst is enabled
-  TemperatureThirstActionbar: "              %TEMP%%THIRST% "    #  Template for sending overriden text to the actionbar when temperature and thirst are enabled
-  AboveWaterFullThirstDrop: ""                         # Default Unicode Value: \uE784
-  AboveWaterHalfThirstDrop: ""                         # Default Unicode Value: \uE790
-  AboveWaterEmptyThirstDrop: ""                        # Default Unicode Value: \uE791
-  UnderwaterFullThirstDrop: ""                         # Default Unicode Value: \uE828
-  UnderwaterHalfThirstDrop: ""                         # Default Unicode Value: \uE826
-  UnderwaterEmptyThirstDrop: ""                        # Default Unicode Value: \uE827
-  ParasitesAboveWaterFullThirstDrop: ""                # Default Unicode Value: \uE792
-  ParasitesAboveWaterHalfThirstDrop: ""                # Default Unicode Value: \uE793
-  ParasitesUnderwaterFullThirstDrop: ""                # Default Unicode Value: \uE794
-  ParasitesUnderwaterHalfThirstDrop: ""                # Default Unicode Value: \uE795
-  Temperature0: ""                                     # Default Unicode Value: \uE779
-  Temperature1: ""                                     # Default Unicode Value: \uE779
-  Temperature2: ""                                     # Default Unicode Value: \uE779
-  Temperature3: ""                                     # Default Unicode Value: \uE779
-  Temperature4: ""                                     # Default Unicode Value: \uE779
-  Temperature5: ""                                     # Default Unicode Value: \uE779
-  Temperature6: ""                                     # Default Unicode Value: \uE806
-  Temperature7: ""                                      # Default Unicode Value: \uE807
-  Temperature8: ""                                      # Default Unicode Value: \uE808
-  Temperature9: ""                                      # Default Unicode Value: \uE809
-  Temperature10: ""                                     # Default Unicode Value: \uE810
-  Temperature11: ""                                    # Default Unicode Value: \uE811
-  Temperature12: ""                                    # Default Unicode Value: \uE812
-  Temperature13: ""                                    # Default Unicode Value: \uE813
-  Temperature14: ""                                    # Default Unicode Value: \uE814
-  Temperature15: ""                                    # Default Unicode Value: \uE815
-  Temperature16: ""                                    # Default Unicode Value: \uE816
-  Temperature17: ""                                    # Default Unicode Value: \uE817
-  Temperature18: ""                                    # Default Unicode Value: \uE818
-  Temperature19: ""                                    # Default Unicode Value: \uE819
-  Temperature20: ""                                    # Default Unicode Value: \uE782
-  Temperature21: ""                                    # Default Unicode Value: \uE782
-  Temperature22: ""                                    # Default Unicode Value: \uE782
-  Temperature23: ""                                    # Default Unicode Value: \uE782
-  Temperature24: ""                                    # Default Unicode Value: \uE782
-  Temperature25: ""                                    # Default Unicode Value: \uE782
-  FreezingView: ""                                     # Default Unicode Value: \uE788
-  IceVignette1: ""                                     # Default Unicode Value: \uE831
-  IceVignette2: ""                                     # Default Unicode Value: \uE832
-  IceVignette3: ""                                     # Default Unicode Value: \uE833
-  IceVignette4: ""                                     # Default Unicode Value: \uE834
-  IceVignette5: ""                                     # Default Unicode Value: \uE835
-  FireVignette1: ""                                    # Default Unicode Value: \uE821
-  FireVignette2: ""                                    # Default Unicode Value: \uE822
-  FireVignette3: ""                                    # Default Unicode Value: \uE823
-  FireVignette4: ""                                    # Default Unicode Value: \uE824
-  FireVignette5: ""                                    # Default Unicode Value: \uE825
-  BurningView: ""                                      # Default Unicode Value: \uE787
+  TemperatureActionbar: "Temperature: %TEMP%"          # Template for sending overriden text to the actionbar when only temperature is enabled
+  ThirstActionbar: "Thirst: %THIRST%"               # Template for sending overriden text to the actionbar when only thirst is enabled
+  TemperatureThirstActionbar: "Temp: %TEMP% Thirst: %THIRST%"    #  Template for sending overriden text to the actionbar when temperature and thirst are enabled
+  AboveWaterFullThirstDrop: "(.)"                         # Default Unicode Value: \uE784
+  AboveWaterHalfThirstDrop: "[.]"                         # Default Unicode Value: \uE790
+  AboveWaterEmptyThirstDrop: "."                        # Default Unicode Value: \uE791
+  UnderwaterFullThirstDrop: "(o)"                         # Default Unicode Value: \uE828
+  UnderwaterHalfThirstDrop: "[o]"                         # Default Unicode Value: \uE826
+  UnderwaterEmptyThirstDrop: "o"                        # Default Unicode Value: \uE827
+  ParasitesAboveWaterFullThirstDrop: "(p)"                # Default Unicode Value: \uE792
+  ParasitesAboveWaterHalfThirstDrop: "[p]"                # Default Unicode Value: \uE793
+  ParasitesUnderwaterFullThirstDrop: "(P)"                # Default Unicode Value: \uE794
+  ParasitesUnderwaterHalfThirstDrop: "[P]"                # Default Unicode Value: \uE795
+  Temperature0: "0"                                     # Default Unicode Value: \uE779
+  Temperature1: "1"                                     # Default Unicode Value: \uE779
+  Temperature2: "2"                                     # Default Unicode Value: \uE779
+  Temperature3: "3"                                     # Default Unicode Value: \uE779
+  Temperature4: "4"                                     # Default Unicode Value: \uE779
+  Temperature5: "5"                                     # Default Unicode Value: \uE779
+  Temperature6: "6"                                     # Default Unicode Value: \uE806
+  Temperature7: "7"                                      # Default Unicode Value: \uE807
+  Temperature8: "8"                                      # Default Unicode Value: \uE808
+  Temperature9: "9"                                      # Default Unicode Value: \uE809
+  Temperature10: "10"                                     # Default Unicode Value: \uE810
+  Temperature11: "11"                                    # Default Unicode Value: \uE811
+  Temperature12: "12"                                    # Default Unicode Value: \uE812
+  Temperature13: "13"                                    # Default Unicode Value: \uE813
+  Temperature14: "14"                                    # Default Unicode Value: \uE814
+  Temperature15: "15"                                    # Default Unicode Value: \uE815
+  Temperature16: "16"                                    # Default Unicode Value: \uE816
+  Temperature17: "17"                                    # Default Unicode Value: \uE817
+  Temperature18: "18"                                    # Default Unicode Value: \uE818
+  Temperature19: "19"                                    # Default Unicode Value: \uE819
+  Temperature20: "20"                                    # Default Unicode Value: \uE782
+  Temperature21: "21"                                    # Default Unicode Value: \uE782
+  Temperature22: "22"                                    # Default Unicode Value: \uE782
+  Temperature23: "23"                                    # Default Unicode Value: \uE782
+  Temperature24: "24"                                    # Default Unicode Value: \uE782
+  Temperature25: "25"                                    # Default Unicode Value: \uE782
+  FreezingView: ""                                     # Default Unicode Value: \uE788
+  IceVignette1: ""                                     # Default Unicode Value: \uE831
+  IceVignette2: ""                                     # Default Unicode Value: \uE832
+  IceVignette3: ""                                     # Default Unicode Value: \uE833
+  IceVignette4: ""                                     # Default Unicode Value: \uE834
+  IceVignette5: ""                                     # Default Unicode Value: \uE835
+  FireVignette1: ""                                    # Default Unicode Value: \uE821
+  FireVignette2: ""                                    # Default Unicode Value: \uE822
+  FireVignette3: ""                                    # Default Unicode Value: \uE823
+  FireVignette4: ""                                    # Default Unicode Value: \uE824
+  FireVignette5: ""                                    # Default Unicode Value: \uE825
+  BurningView: ""                                      # Default Unicode Value: \uE787
   DehydratedView: ""                                    # Default Unicode Value:
   ThirstVignette1: ""                                   # Default Unicode Value:
   ThirstVignette2: ""                                   # Default Unicode Value:

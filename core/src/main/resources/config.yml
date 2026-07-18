@@ -45,7 +45,7 @@ AutomaticallyEnableWorlds: true   # Will automatically enable modules for newly 
 AutoUpdateConfig: true            # If set to true, will automatically update config; note that this may cause issues with porting across large updates
 
 NoTreePunching:
-  Enabled: true
+  Enabled: false      # Disabled just because of current issues with it
   Worlds:
     world: true
     world_nether: true
